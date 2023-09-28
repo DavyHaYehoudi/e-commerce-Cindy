@@ -1,0 +1,24 @@
+footer{
+    background-color: antiquewhite;
+    
+}
+.footer-contain-top,.footer-contain-bottom{
+    padding: 40px;
+}
+.footer-contain-top{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+footer .social ul{
+    display: flex;
+    justify-content: space-around;
+}
+.footer-contain-bottom .info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}

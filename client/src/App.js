@@ -9,6 +9,7 @@ import ForEveryday from "./pages/ForEveryday"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import NotFound from "./pages/NotFound"
+import Footer from './layout/Footer';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Route path='/contact' element={<Contact /> } />
         <Route path='/*' element={<NotFound /> } />
       </Routes>
-      
+      <Footer />
     </div>
   );
 }
