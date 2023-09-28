@@ -10,6 +10,7 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import NotFound from "./pages/NotFound"
 import Footer from './layout/Footer';
+import Product from './pages/ProductDetails';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/cart' element={<ShoppingCart /> } />
         <Route path='/pour-un-jour-unique' element={<ForTheDay /> } />
         <Route path='/pour-le-quotidien' element={<ForEveryday /> } />
+        <Route path='/produits/:id' element={<Product /> } />
         <Route path='/a-propos' element={<About /> } />
         <Route path='/contact' element={<Contact /> } />
         <Route path='/*' element={<NotFound /> } />

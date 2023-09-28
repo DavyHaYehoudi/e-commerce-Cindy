@@ -3,7 +3,7 @@ import { FaTruckMoving } from 'react-icons/fa'
 
 const FreeShippingBanner = () => {
     return (
-        <div className='freeShippingBanner'>
+        <div id='freeShippingBanner'>
             <span><FaTruckMoving /></span>
             <p> Livraison offerte à partir de 50€ </p>
         </div>

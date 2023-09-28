@@ -16,17 +16,17 @@ const HeaderWrapper = () => {
     setMegaMenuSection(null);
   };
   return (
-    <div className="headerWrapper">
-      <div className="flex-item">
+    <div id="headerWrapper">
+      <div id="flex-item">
         <Langs />
         <h1>
           <Link to="/">Nom de la société</Link>
         </h1>
-        <div className="navIcons-wrapper">
+        <div>
           <NavIcons />
         </div>
       </div>
-      <div className="menu" onMouseLeave={handleMenuLeave}>
+      <div onMouseLeave={handleMenuLeave}>
         <NavMenu
           handleMenuEnter={handleMenuEnter}
           handleMenuLeave={handleMenuLeave}

@@ -1,17 +1,17 @@
 import React from "react";
-import { CgProfile } from "react-icons/cg";
+import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BiSearch } from "react-icons/bi";
-import { RiShoppingBasketLine } from "react-icons/ri";
+import { IoSearchOutline } from "react-icons/io5";
+import { AiOutlineShopping } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const NavIcons = () => {
   return (
-    <nav className="navIcons">
+    <nav id="navIcons">
       <ul>
         <li>
           <Link to="login">
-            <CgProfile />
+            <AiOutlineUser />
           </Link>
         </li>
         <li>
@@ -20,12 +20,13 @@ const NavIcons = () => {
           </Link>
         </li>
         <li>
-          <BiSearch />
+          <IoSearchOutline />
         </li>
-        <li>
+        <li id="iconCart">
           <Link to="cart">
-            <RiShoppingBasketLine />
+            <AiOutlineShopping />
           </Link>
+          <span id="numberCart">1</span>
         </li>
       </ul>
     </nav>

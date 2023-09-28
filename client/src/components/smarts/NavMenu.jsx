@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
   return (
-    <nav className="navMenu">
+    <nav id="navMenu">
       <ul>
         <li onMouseEnter={() => handleMenuEnter("display1")}>
           <Link to="pour-un-jour-unique">Pour un jour unique</Link>
