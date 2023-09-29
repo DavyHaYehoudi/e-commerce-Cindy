@@ -7,7 +7,6 @@ const Header = () => {
     <header>
       <FreeShippingBanner />
       <HeaderWrapper />
-      <hr/>
     </header>
   );
 };

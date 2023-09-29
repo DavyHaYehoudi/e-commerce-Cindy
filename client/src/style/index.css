@@ -1,6 +1,7 @@
 @import "./variables.css";
+@import "./main.css";
 @import "./app.css";
 @import "./header.css";
 @import "./home.css";
-@import "./forTheDay.css";
+@import "./tabPage.css";
 @import "./footer.css";

@@ -4,6 +4,7 @@ import NavIcons from "../components/smarts/NavIcons";
 import NavMenu from "../components/smarts/NavMenu";
 import { Link } from "react-router-dom";
 import MegaMenu from "../components/smarts/MegaMenu";
+import logo from "../assets/logo.png"
 
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
@@ -20,7 +21,7 @@ const HeaderWrapper = () => {
       <div id="flex-item">
         <Langs />
         <h1>
-          <Link to="/">Nom de la société</Link>
+          <Link to="/"><img src={logo} alt="logo" width="200px"/> </Link>
         </h1>
         <div>
           <NavIcons />

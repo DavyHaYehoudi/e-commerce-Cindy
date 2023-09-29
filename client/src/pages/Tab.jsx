@@ -1,22 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ProductList from "../components/smarts/ProductList";
 
-const ForTheDay = () => {
+const Tab = () => {
+  const { tab } = useParams();
   const [list, setList] = useState([]);
   const getList = async () => {
     const listData = await axios.get(
-      "https://fakestoreapiserver.reactbd.com/products/"
+      `https://fakestoreapiserver.reactbd.com/products/`
+      // `https://fakestoreapiserver.reactbd.com/products/${tab}`
     );
     setList(listData.data);
-    console.log('listData:', listData)
   };
   useEffect(() => {
     getList();
   }, []);
   return (
-    <div id="forTheDay">
-      <h1>FOR THE DAY</h1>
+    <div id="tabPage">
+      <h1>{tab} </h1>
       <div className="collectionList">
         {list.map((item) => (
           <ProductList item={item} key={item.id} />
@@ -26,4 +28,4 @@ const ForTheDay = () => {
   );
 };
 
-export default ForTheDay;
+export default Tab;

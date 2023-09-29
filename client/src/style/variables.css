@@ -1,29 +1,20 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: roboto;
-}
+:root {
+    --text-font-family: 'Nunito Sans', sans-serif;
+    --heading-font-family: 'Raleway', sans-serif;
 
-*,
-::after,
-::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    --border-color: #DDDDDD;
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+    --text-color: #1C1B1B;
+    --light-text-color:#6A6A6A;
+    --nav-menu-color:#1C1B1B;
 
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+    --background: #FFFFFF;
+    --FreeShippingBanner:#F1E1DD;
+    --footer-background:#F1E1DD;
 
-/* *{
-    border: 1px red solid;
-} */
+    --font-weight:400;
+
+    --nav-menu-fontSize:12px;
+
+    --letter-spacing:0.2em;
+}

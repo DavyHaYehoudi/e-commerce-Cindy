@@ -6,10 +6,10 @@ const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
     <nav id="navMenu">
       <ul>
         <li onMouseEnter={() => handleMenuEnter("display1")}>
-          <Link to="pour-un-jour-unique">Pour un jour unique</Link>
+          <Link to="menu-tab/forTheDay">Pour un jour unique</Link>
         </li>
         <li onMouseEnter={() => handleMenuEnter("display2")}>
-          <Link to="pour-le-quotidien">Pour le quotidien</Link>
+          <Link to="menu-tab/forEveryday">Pour le quotidien</Link>
         </li>
         <li onMouseEnter={() => handleMenuLeave()}>
           <Link to="a-propos">A propos</Link>
