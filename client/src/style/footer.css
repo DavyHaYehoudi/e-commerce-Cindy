@@ -32,3 +32,7 @@ footer .social ul{
     flex-wrap: wrap;
     gap: 40px;
 }
+
+/* .col .social {
+    cursor: pointer;
+} */
