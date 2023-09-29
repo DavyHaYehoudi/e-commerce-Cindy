@@ -12,6 +12,9 @@ import Product from "./pages/ProductDetails";
 import Tab from "./pages/Tab";
 import Category from "./pages/Category";
 import SubCategory from "./pages/SubCategory";
+import Deliveries from "./pages/Deliveries";
+import TermsOfSales from "./pages/TermsOfSales";
+import LegalNotice from "./pages/LegalNotice";
 
 function App() {
   return (
@@ -25,9 +28,12 @@ function App() {
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />
         <Route path="/menu-tab-subcategory/:subcategory" element={<SubCategory />} />
-        <Route path="/produits/:id" element={<Product />} />
-        <Route path="/a-propos" element={<About />} />
+        <Route path="/products/:id" element={<Product />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/deliveries&returns" element={<Deliveries />} />
+        <Route path="/terms-of-sales" element={<TermsOfSales />} />
+        <Route path="/legal-notice" element={<LegalNotice />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -1,98 +1,95 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import bo from "../../assets/bo.png"
+import bo from "../../assets/bo.png";
 
 const MegaMenu = ({ megaMenuSection }) => {
   const isDisplay1Visible = megaMenuSection === "display1";
   const isDisplay2Visible = megaMenuSection === "display2";
   return (
-    <div
-      className={`megaMenu ${
-        isDisplay1Visible || isDisplay2Visible ? "visible" : "hidden"
-      }`}
-    >
+    <div id="mega-Menu">
       <div
-        className={`megaMenu-display1 ${
-          isDisplay1Visible ? "visible" : "hidden"
+        className={`mega-Menu-Display ${
+          isDisplay1Visible || isDisplay2Visible ? "visible" : "hidden"
         }`}
       >
-        <div>
-          <h3>
-            <Link to="menu-tab-category/accessoires-cheveux">
-              Accessoires cheveux{" "}
-            </Link>{" "}
-          </h3>
-          <div>
-            <ul>
-              <li>
-                <Link to="menu-tab-subcategory/couronnes">Couronnes</Link>{" "}
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/peignes-et-pics">
-                  Peignes et pics
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <h3>
-            <Link to="menu-tab-category/bijoux">Bijoux</Link>
-          </h3>
-          <div>
-            <ul>
-              <li>
-                <Link to="menu-tab-subcategory/boucles-d-oreilles">
-                  Boucles d'oreilles
-                </Link>
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/bracelets">Bracelets</Link>
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/colliers">Colliers</Link>
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/colliers-de-dos">
-                  Colliers de dos
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <h3>
-            <Link to="menu-tab-category/demoiselles-d-honneur">
-              Demoiselles d'honneur
-            </Link>
-          </h3>
-          <div>
-            <ul>
-              <li>
-                <Link to="menu-tab-subcategory/bracelets">Bracelets</Link>
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/cartes-cadeau">
-                  Cartes cadeau
-                </Link>
-              </li>
-              <li>
-                <Link to="menu-tab-subcategory/coffret-cadeau">
-                  Coffret cadeau
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="imgMenu">
-          <img src={bo} alt="" />
-        </div>
-      </div>
-      <div>
         <div
-          className={`megaMenu-display2-col ${
-            isDisplay2Visible ? "visible" : "hidden"
-          }`}
+          className={`mega-Menu-Display-1 ${!isDisplay1Visible && "hidden"}`}
+        >
+          <div>
+            <h3>
+              <Link to="menu-tab-category/accessoires-cheveux">
+                Accessoires cheveux{" "}
+              </Link>{" "}
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/couronnes">Couronnes</Link>{" "}
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/peignes-et-pics">
+                    Peignes et pics
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3>
+              <Link to="menu-tab-category/bijoux">Bijoux</Link>
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/boucles-d-oreilles">
+                    Boucles d'oreilles
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/bracelets">Bracelets</Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/colliers">Colliers</Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/colliers-de-dos">
+                    Colliers de dos
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3>
+              <Link to="menu-tab-category/demoiselles-d-honneur">
+                Demoiselles d'honneur
+              </Link>
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/bracelets">Bracelets</Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/cartes-cadeau">
+                    Cartes cadeau
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/coffret-cadeau">
+                    Coffret cadeau
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <figure>
+            <img src={bo} alt="" />
+            <figcaption>Mes boucles d'oreilles</figcaption>
+          </figure>
+        </div>
+        <div
+          className={`mega-Menu-Display-2 ${!isDisplay2Visible && "hidden"}`}
         >
           <h3>
             <Link to="menu-tab-category/bijoux-de-mains">Bijoux de mains</Link>
@@ -106,6 +103,10 @@ const MegaMenu = ({ megaMenuSection }) => {
           <h3>
             <Link to="menu-tab-category/colliers">Colliers</Link>
           </h3>
+          <figure>
+            <img src={bo} alt="" />
+            <figcaption>Mes boucles d'oreilles</figcaption>
+          </figure>
         </div>
       </div>
     </div>

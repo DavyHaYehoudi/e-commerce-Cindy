@@ -1,6 +1,16 @@
 footer{
     background-color: var(--footer-background);
-    
+    color: var(--footer-text-color);
+}
+footer h3{
+    font-size: var(--footer-heading-fontSize);
+    color: var(--footer-heading-color);
+}
+footer li a{
+    font-size: var(--footer-text-fontSize);
+}
+footer li  :hover{
+    color: var(--footer-heading-color);
 }
 .footer-contain-top,.footer-contain-bottom{
     padding: 40px;

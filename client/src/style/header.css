@@ -1,4 +1,4 @@
-#freeShippingBanner {
+#freeShippingBanner a{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,9 +10,11 @@
 #freeShippingBanner span {
     font-size: 35px;
 }
-header{
+
+header {
     box-shadow: 0 -1px var(--border-color) inset;
 }
+
 #headerWrapper {
     margin: 30px;
 }
@@ -42,24 +44,27 @@ header{
 
 #navIcons ul {
     display: flex;
-    font-size: 30px;
+    font-size: 25px;
     gap: 20px;
 }
 
 #navIcons :nth-child(3) {
     cursor: pointer;
 }
-#iconCart{
+
+#iconCart {
     position: relative;
 }
-#numberCart{
+
+#numberCart {
     position: absolute;
-    background-color:rgb(245, 150, 150);
+    background-color: rgb(87, 117, 236);
     border-radius: 50%;
-    padding: 3px;
-    font-size: 0.9rem;
-    top:-8px;
+    padding: 5px;
+    font-size: 0.6rem;
+    top: -8px;
     right: -5px;
+    color: aliceblue;
 }
 
 #navMenu ul {
@@ -68,36 +73,45 @@ header{
     gap: 20px;
     margin: 30px 0 30px -40px;
 }
+
 #navMenu a {
     position: relative;
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
     color: var(--text-color);
-    overflow: hidden; 
-    font-size: var(--nav-menu-fontSize);
+    overflow: hidden;
+    font-size: var(--nav-menu-text-fontSize);
     letter-spacing: var(--letter-spacing);
-  }
-  
-  #navMenu a::before {
+}
+
+#navMenu a::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 50%; 
-    transform: translateX(-50%); 
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: var(--nav-menu-color); 
-    transition: width 0.3s ease; 
-  }
-  
-  #navMenu a:hover::before {
-    width: 100%; 
-  }
+    background-color: var(--nav-menu-color);
+    transition: width 0.3s ease;
+}
+
+#navMenu a:hover::before {
+    width: 100%;
+}
+
+.mega-Menu-Display-1,.mega-Menu-Display-2{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    width: 100%;
+}
 
 .visible {
     opacity: 1;
-    height: 200px;
+    height: 350px;
+    width: 100%;
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
@@ -107,47 +121,32 @@ header{
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
-.megaMenu {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    gap: 100px;
+#mega-Menu h3 {
+    color: var(--light-text-color);
+    font-size: var(--nav-menu-heading-fontSize);
+    letter-spacing: var(--letter-spacing);
+    margin-bottom: 10px;
 }
-.megaMenu h3{
-  color: var(--light-text-color);
-  font-size: 11px;
-  letter-spacing: var(--letter-spacing);
-  margin-bottom: 10px;
-}
-.megaMenu li a{
-    font-size: 12px;
+
+#mega-Menu li a {
+    font-size: var(--nav-menu-text-fontSize);
     letter-spacing: var(--letter-spacing);
     line-height: 1.5;
 }
-.megaMenu li:hover{
-  color: var(--light-text-color);
+
+#mega-Menu li:hover {
+    color: var(--light-text-color);
 }
 
-.megaMenu-display1 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    gap: 100px;
+#mega-Menu figure {
+    max-width: 370px;
 }
 
-.megaMenu-display2-col {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: flex;
-    gap: 100px;
+#mega-Menu figure img {
+    width: 100%;
 }
-.imgMenu{
-    width: 300px;
-    height: 200px;
+
+#mega-Menu figcaption {
+    letter-spacing: var(--letter-spacing);
+    font-size: var(--nav-menu-fontSize);
 }

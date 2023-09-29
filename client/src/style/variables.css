@@ -5,7 +5,9 @@
     --border-color: #DDDDDD;
 
     --text-color: #1C1B1B;
+    --footer-heading-color:#1C1B1B;
     --light-text-color:#6A6A6A;
+    --footer-text-color:#6A6A6A;
     --nav-menu-color:#1C1B1B;
 
     --background: #FFFFFF;
@@ -14,7 +16,11 @@
 
     --font-weight:400;
 
-    --nav-menu-fontSize:12px;
+    --nav-menu-heading-fontSize:11px;
+    --nav-menu-text-fontSize:12px;
+    --footer-heading-fontSize:12px;
+    --footer-text-fontSize:11px;
+
 
     --letter-spacing:0.2em;
 }

@@ -12,7 +12,7 @@ const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
           <Link to="menu-tab/forEveryday">Pour le quotidien</Link>
         </li>
         <li onMouseEnter={() => handleMenuLeave()}>
-          <Link to="a-propos">A propos</Link>
+          <Link to="about">A propos</Link>
         </li>
         <li onMouseEnter={() => handleMenuLeave()}>
           <Link to="contact">Contact</Link>

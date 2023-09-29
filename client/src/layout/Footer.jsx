@@ -2,6 +2,7 @@ import React from "react";
 import payment from "../assets/payment.png";
 import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer>
@@ -9,19 +10,19 @@ const Footer = () => {
         <div className="col">
           <h3>BOUTIQUE</h3>
           <ul>
-            <li>Accessoires cheveux</li>
-            <li>Bijoux</li>
-            <li>Demoiselles d'honneur</li>
-            <li>Bracelets</li>
+            <li><Link to="menu-tab-subcategory/accessoires-cheveux" >Accessoires cheveux</Link> </li>
+            <li><Link to="menu-tab-subcategory/bijoux">Bijoux</Link></li>
+            <li><Link to="menu-tab-subcategory/demoiselles-d-honneur">Demoiselles d'honneur</Link></li>
+            <li><Link to="menu-tab-subcategory/bracelets">Bracelets</Link></li>
           </ul>
         </div>
         <div className="col">
           <h3>MENU PRINCIPAL</h3>
           <ul>
-            <li>Pour un jour unique</li>
-            <li>Pour le quotidien</li>
-            <li>A propos</li>
-            <li>Contact</li>
+            <li><Link to="menu-tab/forTheDay">Pour un jour unique</Link> </li>
+            <li><Link to="menu-tab/forEveryday">Pour le quotidien</Link></li>
+            <li><Link to="about">A propos</Link></li>
+            <li><Link to="contact">Contact</Link></li>
           </ul>
         </div>
         <div className="col social">
@@ -33,7 +34,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={facebook} alt="facebook" />
+                <img src={facebook} alt="facebook" width="32px"/>
               </a>
             </li>
             <li>
@@ -42,7 +43,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={instagram} alt="instagram" />
+                <img src={instagram} alt="instagram" width="32px" />
               </a>
             </li>
           </ul>
@@ -50,9 +51,9 @@ const Footer = () => {
         <div className="col">
           <h3>INFORMATIONS</h3>
           <ul>
-            <li>Livraisons et Retours</li>
-            <li>Mentions légales</li>
-            <li>Conditions générales de vente</li>
+            <li><Link to="deliveries&returns"> Livraisons et Retours</Link></li>
+            <li><Link to="legal-notice">Mentions légales</Link> </li>
+            <li><Link to="terms-of-sales">Conditions générales de vente</Link> </li>
           </ul>
         </div>
       </div>
