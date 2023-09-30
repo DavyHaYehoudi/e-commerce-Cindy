@@ -80,7 +80,6 @@ header {
 #navMenu a {
     position: relative;
     display: inline-block;
-    text-decoration: none;
     text-transform: uppercase;
     color: var(--text-color);
     overflow: hidden;

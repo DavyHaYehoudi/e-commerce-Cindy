@@ -1,0 +1,32 @@
+.product-detail-container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+.images-container {
+    width: 60%;
+}
+
+.images-container img {
+    width: 60%;
+    display: block;
+    margin: 10px auto;
+}
+
+.description-container {
+    width: 40%;
+    padding: 20px;
+}
+
+.quantity-section {
+    margin-top: 20px;
+}
+
+.buy-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
