@@ -4,13 +4,15 @@ footer{
 }
 footer h3{
     font-size: var(--footer-heading-fontSize);
-    color: var(--footer-heading-color);
+    color: var(--text-golden);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing);
 }
 footer li a{
     font-size: var(--footer-text-fontSize);
 }
 footer li  :hover{
-    color: var(--footer-heading-color);
+    color: var(--text-golden);
 }
 .footer-contain-top,.footer-contain-bottom{
     padding: 40px;
@@ -24,6 +26,7 @@ footer li  :hover{
 footer .social ul{
     display: flex;
     justify-content: space-around;
+    margin: 10px;
 }
 .footer-contain-bottom .info{
     display: flex;
@@ -32,7 +35,3 @@ footer .social ul{
     flex-wrap: wrap;
     gap: 40px;
 }
-
-/* .col .social {
-    cursor: pointer;
-} */

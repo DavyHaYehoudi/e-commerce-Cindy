@@ -5,14 +5,16 @@
     --border-color: #DDDDDD;
 
     --text-color: #1C1B1B;
+    --text-golden:#967F71;
     --footer-heading-color:#1C1B1B;
     --light-text-color:#6A6A6A;
-    --footer-text-color:#6A6A6A;
+    --footer-text-color:#FFFFFF;
     --nav-menu-color:#1C1B1B;
 
     --background: #FFFFFF;
-    --FreeShippingBanner:#F1E1DD;
-    --footer-background:#F1E1DD;
+    --FreeShippingBanner:#C4B6C3;
+    --footer-background:#C4B6C3;
+    --button-background:#C4B6C3;
 
     --font-weight:400;
 

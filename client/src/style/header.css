@@ -5,10 +5,13 @@
     gap: 30px;
     background-color: var(--FreeShippingBanner);
     letter-spacing: var(--letter-spacing);
+    color: #FFFFFF;
+    padding-top: 10px;
 }
 
 #freeShippingBanner span {
     font-size: 35px;
+    color: var(--text-golden);
 }
 
 header {
