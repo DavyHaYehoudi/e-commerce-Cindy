@@ -25,11 +25,12 @@
     font-size: var(--product-heading-fontSize);
     letter-spacing: var(--letter-spacing);
 }
-.description-container h2 span{
+
+.description-container h2 span {
     position: absolute;
-   font-size: 0.5rem;
-   color: var(--text-golden);
-   font-weight: bold;
+    font-size: 0.5rem;
+    color: var(--text-golden);
+    font-weight: bold;
 }
 
 .description-container .prices {
@@ -51,6 +52,23 @@
 
 .quantity-section {
     margin-top: 20px;
+}
+
+.quantity-select {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-select button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quantity-select span {
+    margin: 0 10px;
 }
 
 .buy-button {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import ImageCarousel from "../components/dumbs/ImageCarousel";
+import QuantitySelectProduct from "../components/dumbs/QuantitySelectProduct";
 
 const Product = () => {
   let { state } = useLocation();
@@ -21,10 +22,11 @@ const Product = () => {
           <span className="oldPrice">€{oldPrice} EUR</span>
         </div>
         <p className="separator"></p>
-        <div className="quantity-section">
+        {/* <div className="quantity-section">
           <label htmlFor="quantity">Quantité:</label>
           <input type="number" id="quantity" name="quantity" />
-        </div>
+        </div> */}
+        <QuantitySelectProduct />
         <p>{description}</p>
         <button className="buy-button">Ajouter au panier</button>
       </div>
