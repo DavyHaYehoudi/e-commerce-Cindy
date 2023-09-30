@@ -1,28 +1,37 @@
 :root {
+    /* FONT FAMILY */
     --text-font-family: 'Nunito Sans', sans-serif;
     --heading-font-family: 'Raleway', sans-serif;
 
+    /* BORDER */
     --border-color: #DDDDDD;
 
+    /* COLOR */
     --text-color: #1C1B1B;
-    --text-golden:#967F71;
-    --footer-heading-color:#1C1B1B;
-    --light-text-color:#6A6A6A;
-    --footer-text-color:#FFFFFF;
-    --nav-menu-color:#1C1B1B;
+    --text-golden: #967F71;
+    --footer-heading-color: #1C1B1B;
+    --light-text-color: #6A6A6A;
+    --footer-text-color: #FFFFFF;
+    --nav-menu-color: #1C1B1B;
 
+    /* BACKGROUND */
     --background: #FFFFFF;
-    --FreeShippingBanner:#C4B6C3;
-    --footer-background:#C4B6C3;
-    --button-background:#C4B6C3;
+    --FreeShippingBanner: #C4B6C3;
+    --footer-background: #C4B6C3;
+    --button-background: #C4B6C3;
 
-    --font-weight:400;
+    /* FONT WEIGHT */
+    --font-weight: 400;
 
-    --nav-menu-heading-fontSize:11px;
-    --nav-menu-text-fontSize:12px;
-    --footer-heading-fontSize:12px;
-    --footer-text-fontSize:11px;
+    /* FONT SIZE */
+    --nav-menu-heading-fontSize: 0.6875rem;
+    --nav-menu-text-fontSize: 0.75rem;
+    --product-heading-fontSize: 1.125rem;
+    --product-price-fontSize: 1rem;
+    --footer-heading-fontSize: 0.75rem;
+    --footer-text-fontSize: 0.6875rem;
+    
 
-
-    --letter-spacing:0.2em;
+    /* LETTER SPACING */
+    --letter-spacing: 0.2em;
 }
