@@ -2,7 +2,7 @@ import React from "react";
 import ImageCarousel from "../dumbs/ImageCarousel";
 import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
 
-const ProductContent = ({ state }) => {
+const ProductContent = ({ state, handleCartShow }) => {
   const { title, image, description, isNew, oldPrice, price } =
     state.product.item;
   return (
@@ -20,7 +20,9 @@ const ProductContent = ({ state }) => {
         </div>
         <p className="separator"></p>
         <QuantitySelectProduct />
-        <button className="buy-button btn">Ajouter au panier</button>
+        <button className="buy-button btn" onClick={handleCartShow}>
+          Ajouter au panier
+        </button>
         <p>{description}</p>
       </div>
     </div>

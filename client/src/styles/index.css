@@ -10,8 +10,11 @@
 @import "./components/navMenu.css";
 @import "./components/productAside.css";
 @import "./components/productContent.css";
+@import "./components/productsAssortments.css";
 @import "./components/quantitySelectProduct.css";
+@import "./components/cartOffCanvas.css";
 @import "./components/productList.css";
+@import "./components/cartIem.css";
 
 /* LAYOUT */
 @import "./layout/header.css";

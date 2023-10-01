@@ -31,17 +31,13 @@ const ProductAside = () => {
             isProductionDetailsOpen ? "open" : ""
           }`}
         >
-          Lorem, ipsum dolor sit amet
-          <br /> consectetur adipisicing elit.
-          <br /> Fugit alias eveniet ducimus eum officia
-          <br />. praesentium debitis repudiandae unde accusantium
-          <br /> excepturi?
+         Mes créations sont confectionnées à la main et à la demande dans mon atelier du sud de la France.
         </div>
         <div
           className={`details-section ${isShippingReturnsOpen ? "open" : ""}`}
           onClick={toggleShippingReturns}
         >
-          <p>LIVRAISONS et RETOURS</p>
+          <p>LIVRAISON & RETOUR</p>
           <button
             className={`rotate ${isShippingReturnsOpen ? "rotate-open" : ""}`}
           >

@@ -45,7 +45,9 @@ ul {
    color: #FFFFFF;
    background-position: -100% 0;
 }
-
+img{
+    object-fit: cover;
+}
 
 /* *{
     border: 1px red solid;

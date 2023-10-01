@@ -23,6 +23,5 @@
 .main-image-container img {
     display: block;
     margin: 10px auto;
-    object-fit: cover;
     cursor: zoom-in;
 }

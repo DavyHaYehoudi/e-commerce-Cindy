@@ -1,0 +1,25 @@
+#products-assortments-section h2{
+ text-align: center;
+ letter-spacing: var(--letter-spacing);
+}
+#products-assortments-section h3{
+ letter-spacing: var(--letter-spacing);
+}
+
+.products-assortments-container{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin: 50px;
+    gap: 30px;
+}
+.product-image img{
+    width: 200px;
+    height: 300px;
+}
+.product-details {
+    font-size: 12px;
+}
+.product-details p{
+    color: var(--light-text-color);
+}
