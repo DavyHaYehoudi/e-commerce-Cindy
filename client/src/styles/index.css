@@ -1,9 +1,21 @@
 @import "./variables.css";
 @import "./main.css";
-@import "./app.css";
-@import "./header.css";
-@import "./home.css";
-@import "./tabPage.css";
-@import "./productPage.css";
-@import "contact.css";
-@import "./footer.css";
+
+/* COMPOSANTS */
+@import "./components/freeShippingBanner.css";
+@import "./components/imageCarousel.css";
+@import "./components/langs.css";
+@import "./components/megaMenu.css";
+@import "./components/navIcons.css";
+@import "./components/navMenu.css";
+@import "./components/productAside.css";
+@import "./components/productContent.css";
+@import "./components/quantitySelectProduct.css";
+@import "./components/productList.css";
+
+/* LAYOUT */
+@import "./layout/header.css";
+@import "./layout/footer.css";
+
+/* PAGES */
+@import "pages/contact.css";

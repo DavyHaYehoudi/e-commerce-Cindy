@@ -1,0 +1,28 @@
+.image-carousel-container {
+    display: flex;
+    justify-content: center;
+}
+
+.main-image-container img {
+    width: 700px;
+    height: 600px;
+    margin: 0;
+}
+
+.thumbnail-container {
+    flex: 0 0 100px;
+    margin-left: 10px;
+}
+
+.thumbnail {
+    width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.main-image-container img {
+    display: block;
+    margin: 10px auto;
+    object-fit: cover;
+    cursor: zoom-in;
+}

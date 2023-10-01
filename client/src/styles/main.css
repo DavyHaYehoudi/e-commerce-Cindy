@@ -33,6 +33,19 @@ ul {
     padding: 0;
     list-style: none;
 }
+.btn {
+    font-family: var(--text-font-family);
+    cursor: pointer;
+    background: linear-gradient(90deg, transparent 50%, var(--button-background) 50%);
+    background-size: 200% 100%;
+    transition: background-position 0.2s ease-in, color 0.2s ease-in, font-weight 0.2s ease-in;
+}
+
+.btn:hover {
+   color: #FFFFFF;
+   background-position: -100% 0;
+}
+
 
 /* *{
     border: 1px red solid;

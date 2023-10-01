@@ -60,16 +60,6 @@ textarea:focus {
     outline: 1px solid black;
 }
 
-#contact-form-box input[type="submit"] {
-    font-family: var(--text-font-family);
-    cursor: pointer;
-    transition: background 0.2s ease-in;
-}
-#contact-form-box input[type="submit"]:hover {
-   color: #FFFFFF;
-   background-color: var(--button-background);
-}
-
 #contact-form-box fieldset legend {
     padding: 5px;
 }

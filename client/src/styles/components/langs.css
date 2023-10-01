@@ -1,0 +1,16 @@
+#langs {
+    display: flex;
+    align-items: last center;
+    cursor: pointer;
+}
+
+#langs #p-fr {
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing);
+    font-size: 10px;
+}
+
+#langs span {
+    font-size: 25px;
+    padding-top: 5px;
+}

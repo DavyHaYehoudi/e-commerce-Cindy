@@ -1,0 +1,22 @@
+.quantity-section {
+    margin-top: 20px;
+}
+
+.quantity-select {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-select button {
+    border: var(--border-color);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quantity-select span {
+    margin: 0 10px;
+}
+
+.quantity-icon {
+    color: var(--light-text-color);
+}

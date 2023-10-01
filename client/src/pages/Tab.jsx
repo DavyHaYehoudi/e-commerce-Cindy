@@ -12,6 +12,7 @@ const Tab = () => {
       // `https://fakestoreapiserver.reactbd.com/products/${tab}`
     );
     setList(listData.data);
+    console.log("ici la data :",listData.data);
   };
   useEffect(() => {
     getList();

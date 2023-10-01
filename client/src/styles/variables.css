@@ -9,16 +9,20 @@
     /* COLOR */
     --text-color: #1C1B1B;
     --text-golden: #967F71;
-    --footer-heading-color: #1C1B1B;
     --light-text-color: #6A6A6A;
-    --footer-text-color: #FFFFFF;
+    --freeShippingBanner-icon: #718196;
     --nav-menu-color: #1C1B1B;
+    --new-badge-text: #FFFFFF;
+    --footer-heading-color: #1C1B1B;
+    --footer-text-color: #FFFFFF;
 
     /* BACKGROUND */
     --background: #FFFFFF;
-    --FreeShippingBanner: #C4B6C3;
+    --freeShippingBanner-bkg: #C4B6C3;
+    --button-background: #967F71;
+    --new-badge-bkg: #718196;
+    --quantity-cart: #6C7196;
     --footer-background: #C4B6C3;
-    --button-background: #C4B6C3;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -30,7 +34,7 @@
     --product-price-fontSize: 1rem;
     --footer-heading-fontSize: 0.75rem;
     --footer-text-fontSize: 0.6875rem;
-    
+
 
     /* LETTER SPACING */
     --letter-spacing: 0.2em;

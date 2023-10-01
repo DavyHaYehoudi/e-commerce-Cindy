@@ -1,0 +1,9 @@
+#navIcons ul {
+    display: flex;
+    font-size: 25px;
+    gap: 20px;
+}
+
+#navIcons :nth-child(3) {
+    cursor: pointer;
+}

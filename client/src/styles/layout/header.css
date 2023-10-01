@@ -1,0 +1,28 @@
+header {
+    box-shadow: 0 -1px var(--border-color) inset;
+}
+
+#headerWrapper {
+    margin: 30px;
+}
+
+#headerWrapper #flex-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#iconCart {
+    position: relative;
+}
+
+#numberCart {
+    position: absolute;
+    background-color: var(--quantity-cart);
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 0.6rem;
+    top: -8px;
+    right: -5px;
+    color: aliceblue;
+}

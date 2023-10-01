@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaTruckMoving } from 'react-icons/fa'
+import { MdOutlineLocalShipping } from 'react-icons/md'
 import { Link } from 'react-router-dom';
 
 const FreeShippingBanner = () => {
     return (
         <div id='freeShippingBanner'>
             <Link to="deliveries&returns">
-            <span><FaTruckMoving /></span>
+            <span><MdOutlineLocalShipping /></span>
             <p> Livraison offerte à partir de 50€ </p>
             </Link>
         </div>

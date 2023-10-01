@@ -26,7 +26,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div id="contact">
+    <section id="contact">
       <p id="contact-text" >
         <span>
           ⚠️ Les informations saisies sur cette page sont confidentielles et
@@ -101,11 +101,11 @@ const Contact = () => {
               name="message"
               placeholder="MESSAGE"
             ></textarea>
-            <input type="submit" value="ENVOYER" />
+            <input type="submit" value="ENVOYER" className="btn" />
           </fieldset>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 
