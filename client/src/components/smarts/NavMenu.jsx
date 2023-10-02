@@ -1,21 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
   return (
     <nav id="navMenu">
       <ul>
         <li onMouseEnter={() => handleMenuEnter("display1")}>
-          <Link to="menu-tab/forTheDay">Pour un jour unique</Link>
+          <NavLink to="menu-tab/forTheDay" activeClassName="active">Pour un jour unique</NavLink>
         </li>
         <li onMouseEnter={() => handleMenuEnter("display2")}>
-          <Link to="menu-tab/forEveryday">Pour le quotidien</Link>
+          <NavLink to="menu-tab/forEveryday" activeClassName="active">Pour le quotidien</NavLink>
         </li>
         <li onMouseEnter={() => handleMenuLeave()}>
-          <Link to="about">A propos</Link>
+          <NavLink to="about" activeClassName="active">A propos</NavLink>
         </li>
         <li onMouseEnter={() => handleMenuLeave()}>
-          <Link to="contact">Contact</Link>
+          <NavLink to="contact" activeClassName="active">Contact</NavLink>
         </li>
       </ul>
     </nav>

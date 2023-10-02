@@ -30,3 +30,6 @@
 #navMenu a:hover::before {
     width: 100%;
 }
+#navMenu a.active {
+    color: var(--text-golden);
+  }
