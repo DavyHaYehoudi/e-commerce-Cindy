@@ -1,8 +1,9 @@
 import React from "react";
+import profil from "../assets/profil.jpg"
 
 const About = () => {
   return (
-    <div className="about-container">
+    <div id="about-container">
       <section className="story-section">
         <h2>MON HISTOIRE</h2>
         <p>
@@ -10,7 +11,6 @@ const About = () => {
           depuis aussi loin que je me souvienne par l'univers du Mariage.
           <br /> Par une douce journée d'hiver, l'idée est apparue comme une
           évidence :
-          <br />
           imaginer et créer un bijou qui vous ressemble en y intégrant
           l'ancienne Tradition du{" "}
           <i>
@@ -31,7 +31,7 @@ const About = () => {
         <p>
           De nature rêveuse et enthousiaste, je puise mes idées pieds nus dans
           l'herbe fraîche de mon jardin, en observant ce que la nature veut bien
-          me montrer et en faisant confiance à mon intuition. Cela m'offre la
+          me montrer et en faisant confiance à mon intuition.<br /> Cela m'offre la
           possibilité de me ressourcer et de retranscrire sur mes croquis toutes
           les émotions ressenties pour en faire un bijou, votre bijou.
           <br /> Un je-ne-sais-quoi de magique !<br /> Je fais en sorte qu'à
@@ -43,6 +43,7 @@ const About = () => {
       </section>
 
       <section className="noralya-section">
+        <img src={profil} alt=""/>
         <h2>NORALYA</h2>
         <p>
           Certains me demandent parfois la signification du nom de mon Atelier.
@@ -58,7 +59,7 @@ const About = () => {
       <section className="engagements-section">
         <h2>MES ENGAGEMENTS</h2>
         <p>
-          Préserver au mieux la nature est un de mes objectifs.
+          Préserver au mieux la nature est l'un de mes objectifs.
           <br /> Il est toujours possible de faire mieux certes, c'est pourquoi
           je me remets régulièrement en question et fait mon maximum pour
           respecter la nature.

@@ -15,6 +15,7 @@
 @import "./components/cartOffCanvas.css";
 @import "./components/productList.css";
 @import "./components/cartIem.css";
+@import "./components/orderItem.css";
 
 /* LAYOUT */
 @import "./layout/header.css";
@@ -25,3 +26,5 @@
 @import "pages/legalNotice.css";
 @import "pages/termsOfSales.css";
 @import "pages/deliveries.css";
+@import "pages/about.css";
+@import "pages/shoppingCart.css";

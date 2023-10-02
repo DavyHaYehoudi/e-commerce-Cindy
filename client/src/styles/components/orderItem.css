@@ -1,0 +1,20 @@
+.orderItem-contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .orderItem-product {
+    display: flex;
+    align-items: center;
+    flex:2;
+  }
+  
+  .orderItem-quantity,
+  .orderItem-total {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }

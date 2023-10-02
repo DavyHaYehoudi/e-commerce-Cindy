@@ -1,0 +1,12 @@
+#about-container {
+    max-width: 1200px;
+  margin: auto;
+}
+#about-container section,.bottom-section{
+margin: 50px;
+}
+
+.noralya-section img{
+    display: block;
+    margin: auto;
+}

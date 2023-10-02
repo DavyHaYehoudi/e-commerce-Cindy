@@ -1,0 +1,34 @@
+#shoppingCart-section h1 {
+    text-align: center;
+}
+
+.shoppingCart-container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    margin: 150px auto;
+}
+
+.shoppingCart-tabs {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.shoppingCart-tab:first-child {
+    flex: 2;
+}
+
+.shoppingCart-tab {
+    flex: 1;
+    padding: 10px;
+}
+
+.shoppingCart-tab:nth-child(2),
+.shoppingCart-tab:last-child {
+    text-align: end;
+}
+.shoppingCart-total{
+    text-align: end;
+    margin: 10px;
+}

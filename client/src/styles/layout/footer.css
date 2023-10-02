@@ -1,6 +1,7 @@
 footer{
     background-color: var(--footer-background);
     color: var(--footer-text-color);
+    margin-top: 40px;
 }
 footer h3{
     font-size: var(--footer-heading-fontSize);
