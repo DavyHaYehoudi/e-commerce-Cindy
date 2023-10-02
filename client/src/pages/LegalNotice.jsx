@@ -13,7 +13,7 @@ const LegalNotice = () => {
           Noralya est une marque artisanale française de bijoux et
           d'accessoires.
         </p>
-        <h2>nous contacter :</h2>
+        <h2>me contacter :</h2>
         <p>
           Mme Pantoustier Cindy
           <br />
