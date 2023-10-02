@@ -10,7 +10,7 @@
     --text-color: #1C1B1B;
     --text-golden: #967F71;
     --light-text-color: #6A6A6A;
-    --freeShippingBanner-icon: #718196;
+    --freeShippingBanner-icon: #fff;
     --nav-menu-color: #1C1B1B;
     --new-badge-text: #FFFFFF;
     --footer-heading-color: #1C1B1B;
@@ -18,10 +18,11 @@
 
     /* BACKGROUND */
     --background: #FFFFFF;
-    --freeShippingBanner-bkg: #C4B6C3;
+    --freeShippingBanner-bkg: #D9C2B6;
     --button-background: #D9C2B6;
     --cart-offcanvas:to right, #d8e1eb, #aeb8c5;
     --new-badge-bkg: to right, #d8e1eb, #aeb8c5;
+    /* --sale-badge:#FF6347; */
     /* --new-badge-bkg: #718196; */
     --quantity-cart: #6C7196;
     --footer-background: #C4B6C3;

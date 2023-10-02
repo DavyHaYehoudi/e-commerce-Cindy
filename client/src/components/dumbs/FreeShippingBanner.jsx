@@ -1,16 +1,17 @@
 import React from 'react';
-import { MdOutlineLocalShipping } from 'react-icons/md'
+import  {PiTruckThin} from "react-icons/pi"
 import { Link } from 'react-router-dom';
 
 const FreeShippingBanner = () => {
-    return (
-        <div id='freeShippingBanner'>
-            <Link to="deliveries&returns">
-            <span><MdOutlineLocalShipping /></span>
+
+      return (
+        <div id='freeShippingBanner' className="show animate-banner">
+          <Link to="deliveries&returns">
+            <span><PiTruckThin /></span>
             <p> Livraison offerte à partir de 50€ </p>
-            </Link>
+          </Link>
         </div>
-    );
+      );
 };
 
 export default FreeShippingBanner;
