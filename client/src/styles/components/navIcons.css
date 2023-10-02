@@ -7,3 +7,7 @@
 #navIcons :nth-child(3) {
     cursor: pointer;
 }
+#navIcons a.active {
+    font-weight: bold;
+    color: var(--text-golden);
+  }

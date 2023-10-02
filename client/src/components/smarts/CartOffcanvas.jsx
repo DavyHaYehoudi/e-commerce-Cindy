@@ -5,9 +5,10 @@ import bar from "../../assets/bar.png";
 import bra from "../../assets/bra.png";
 import col from "../../assets/col.png";
 import CartItem from "../dumbs/CartItem";
+import { Link } from "react-router-dom";
 
 const CartOffcanvas = ({ show, handleClose }) => {
-  const carts = [bo, bar, bra, col, bo, bar, bra, col,bo,bra];
+  const carts = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];
   const handleOutsideClick = useCallback(
     (e) => {
       if (
@@ -40,8 +41,14 @@ const CartOffcanvas = ({ show, handleClose }) => {
         ))}
       </div>
       <div className="fixed-bottom-content">
-        <p>TOTAL DES ARTICLES : <b>€250</b></p>
-        <button >REGLEMENT</button>
+        <p>
+          TOTAL DES ARTICLES : <b>€250</b>
+        </p>
+        <div>
+          <Link to="/cart">
+            <button>REGLEMENT</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

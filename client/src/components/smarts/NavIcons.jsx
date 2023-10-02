@@ -3,29 +3,29 @@ import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavIcons = () => {
   return (
     <nav id="navIcons">
       <ul>
         <li>
-          <Link to="login">
+          <NavLink to="login" activeClassName="active">
             <AiOutlineUser />
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="wishlist">
+          <NavLink to="wishlist" activeClassName="active">
             <AiOutlineHeart />
-          </Link>
+          </NavLink>
         </li>
         <li>
           <IoSearchOutline />
         </li>
         <li id="iconCart">
-          <Link to="cart">
+          <NavLink to="cart" activeClassName="active">
             <AiOutlineShopping />
-          </Link>
+          </NavLink>
           <span id="numberCart">1</span>
         </li>
       </ul>

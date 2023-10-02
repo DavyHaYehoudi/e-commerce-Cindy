@@ -9,25 +9,26 @@
     display: flex;
     justify-content: space-between;
 }
+
 .cart-item-image {
     flex: 1;
-    max-width: 25%; 
-  }
-  
-  .cart-item-name {
-    flex: 3; 
-  }
+    max-width: 25%;
+}
+
+.cart-item-name {
+    flex: 3;
+}
 
 .cart-item-delete {
     flex: 0.2;
     cursor: pointer;
-    color: red;
+    color: #fff;
     text-align: right;
     transition: color 0.2s ease-in;
 }
 
 .cart-item-delete:hover {
-    color: #fff;
+    color: red;
 }
 
 .cart-item-subtotal {
@@ -37,4 +38,40 @@
 .cart-item-quantity {
     flex: 1.4;
     text-align: right;
+}
+
+/* INFO-BULLE */
+.cart-item-image,
+.cart-item-delete {
+    position: relative;
+}
+
+.cart-item-image:hover::before,
+.cart-item-delete:hover::before {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    width: 100px;
+    background: #000;
+    color: #fff;
+    padding: 5px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.cart-item-image:hover::before {
+    left: 50%;
+}
+
+.cart-item-delete:hover::before {
+    left: -70%;
+}
+
+.cart-item-image:hover::before,
+.cart-item-delete:hover::before {
+    opacity: 1;
 }

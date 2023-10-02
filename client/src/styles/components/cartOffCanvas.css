@@ -30,7 +30,8 @@
     transition: transform 0.3s ease;
 }
 .offcanvas-heading button:hover {
-    transform: rotate(360deg); 
+    transform: rotate(180deg) translateY(10%); 
+    color: red;
 }
 .cart-offcanvas-content {
     margin-top: 20px;
@@ -42,13 +43,19 @@
     padding: 20px;
     margin-top: 20px;
     background-color: transparent;
-    transition: background 0.4s ease-in;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .fixed-bottom-content button:hover {
-    background: linear-gradient(var(--cart-offcanvas));
-   color: #fff;
-   cursor: pointer;
+    background: var(--button-background);
+    color: #fff;
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+
+
 .fixed-bottom-content {
     position: sticky;
     bottom: 0;
