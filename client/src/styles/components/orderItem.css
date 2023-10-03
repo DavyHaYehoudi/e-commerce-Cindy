@@ -4,17 +4,42 @@
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid var(--border-color);
-  }
-  
-  .orderItem-product {
+}
+
+.orderItem-product {
     display: flex;
     align-items: center;
-    flex:2;
-  }
-  
-  .orderItem-quantity,
-  .orderItem-total {
+    flex: 2;
+}
+
+.orderItem-quantity,
+.orderItem-total {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-  }
+    flex-direction: column;
+    align-items:flex-end;
+}
+
+.orderItem-details {
+    margin-left: 30px;
+}
+
+.orderItem-name {
+    font-size: var(--product-heading-fontSize);
+    letter-spacing: var(--letter-spacing);
+}
+
+.orderItem-delete {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.orderItem-delete:hover {
+    text-decoration: underline;
+}
+
+.orderItem-price {
+    font-size: var(--product-price-fontSize);
+    color: var(--light-text-color);
+}

@@ -1,12 +1,15 @@
 import React from "react";
 import QuantitySelectProduct from "./QuantitySelectProduct";
+import { Link } from "react-router-dom";
 
 const OrderItem = ({ cart }) => {
   return (
     <div className="orderItem-contain">
       <div className="orderItem-product">
-        <div className="orderItem-img">
-          <img src={cart} alt="" width="100px" height="200px" />
+        <div className="orderItem-img cart-item-image"title="Revenir à l'article">
+            <Link>
+          <img src={cart} alt="" width="100px" height="150px" />
+            </Link>
         </div>
         <div className="orderItem-details">
           <div className="orderItem-name">
@@ -17,6 +20,7 @@ const OrderItem = ({ cart }) => {
       </div>
       <div className="orderItem-quantity">
         <QuantitySelectProduct />
+        <p className="orderItem-delete">supprimer</p>
       </div>
       <div className="orderItem-total">€239,00</div>
     </div>

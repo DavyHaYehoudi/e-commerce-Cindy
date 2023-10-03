@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TfiClose } from "react-icons/tfi";
 import bo from "../../assets/bo.png";
 import bar from "../../assets/bar.png";
@@ -8,7 +8,9 @@ import CartItem from "../dumbs/CartItem";
 import { Link } from "react-router-dom";
 
 const CartOffcanvas = ({ show, handleClose }) => {
-  const carts = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];
+  const cartsMock = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];
+  // const cartsMockEmpty=[]
+  const [carts]=useState(cartsMock)
   const handleOutsideClick = useCallback(
     (e) => {
       if (
@@ -36,10 +38,12 @@ const CartOffcanvas = ({ show, handleClose }) => {
         </button>
       </div>
       <div className="cart-offcanvas-content">
-        {carts.map((cart, i) => (
+        {carts.length>0 ? carts.map((cart, i) => (
           <CartItem cart={cart} key={i} />
-        ))}
+        )):<p className="empty-cart-message" >VOTRE PANIER EST VIDE</p>}
       </div>
+      {carts.length>0 &&
+      
       <div className="fixed-bottom-content">
         <p>
           TOTAL DES ARTICLES : <b>€250</b>
@@ -50,6 +54,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
           </Link>
         </div>
       </div>
+      }
     </div>
   );
 };
