@@ -3,7 +3,7 @@ import paymentCard from "../../assets/paymentCard.png";
 
 const PaymentForm = () => {
   return (
-    <div className="payment-form">
+    <div id="payment-form">
       <h2>Contact</h2>
       <input
         type="email"

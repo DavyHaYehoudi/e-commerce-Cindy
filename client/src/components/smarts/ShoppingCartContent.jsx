@@ -3,7 +3,7 @@ import OrderItem from "../dumbs/OrderItem";
 
 const ShoppingCartContent = ({carts} ) => {
   return (
-    <div className="shoppingCart-container">
+    <div className="shoppingCart-content">
       <div className="shoppingCart-tabs">
         <p className="shoppingCart-tab">PRODUIT</p>
         <p className="shoppingCart-tab">QUANTITE</p>

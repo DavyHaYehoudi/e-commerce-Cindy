@@ -1,7 +1,6 @@
-.payment-form {
+#payment-form {
     width: 800px;
     background-color: #fff;
-    background-color: green;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -43,7 +42,7 @@
     margin-bottom: 20px;
   }
   
-  button {
+  #payment-form button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -53,7 +52,7 @@
     font-size: 16px;
   }
   
-  button:hover {
+  #payment-form button:hover {
     background-color: #45a049;
   }
   

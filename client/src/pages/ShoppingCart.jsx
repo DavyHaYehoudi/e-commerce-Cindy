@@ -10,12 +10,14 @@ const ShoppingCart = () => {
   return (
     <div id="shoppingCart-page">
       <h1>PANIER</h1>
-      <section className="shoppingCart-items">
-        <ShoppingCartContent carts ={carts} />
-      </section>
-      <section id="shoppingCart-payment">
-        <PaymentForm />
-      </section>
+      <div className="shoppingCart-container">
+        <section id="shoppingCart-items">
+          <ShoppingCartContent carts={carts} />
+        </section>
+        <section id="shoppingCart-payment">
+          <PaymentForm />
+        </section>
+      </div>
     </div>
   );
 };

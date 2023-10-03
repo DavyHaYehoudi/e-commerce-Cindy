@@ -16,8 +16,8 @@
 @import "./components/productList.css";
 @import "./components/cartIem.css";
 @import "./components/orderItem.css";
-@import "./components/paymentForm.css";
 @import "./components/shoppingCartContent.css";
+@import "./components/paymentForm.css";
 
 /* LAYOUT */
 @import "./layout/header.css";
