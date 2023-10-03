@@ -35,7 +35,7 @@
 }
 .cart-offcanvas-content {
     margin-top: 20px;
-    background: linear-gradient(var(--cart-offcanvas));
+    background-color: var(--cart-offcanvas);
 }
 
 .empty-cart-message{

@@ -20,8 +20,8 @@ const PaymentForm = () => {
 
       <h2>Livraison</h2>
       <label htmlFor="country">Pays/région:</label>
-      <select id="country" name="country">
-        <option value="france">France</option>
+      <select id="country" name="country" placeholder="Pays/région">
+        <option defaultValue="france">France</option>
         <option value="belgium">Belgique</option>
         <option value="switzerland">Suisse</option>
         <option value="germany">Allemagne</option>
@@ -32,22 +32,36 @@ const PaymentForm = () => {
         <option value="portugal">Portugal</option>
         <option value="luxembourg">Luxembourg</option>
       </select>
-      <input type="text" id="firstname" name="firstname" placeholder="Prénom" />
-      <input type="text" id="last-name" name="last-name" placeholder="Nom" />
-      <input type="text" id="address" name="address" placeholder="Adresse" />
-      <input
-        type="text"
-        id="apartment"
-        name="apartment"
-        placeholder="Appartement"
-      />
-      <input
-        type="text"
-        id="postal-code"
-        name="postal-code"
-        placeholder="Code postal"
-      />
-      <input type="text" id="city" name="city" placeholder="Ville" />
+      <div className="name-input-container">
+        <div className="address-input-container">
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            placeholder="Prénom"
+          />
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            placeholder="Nom"
+          />
+        </div>
+        <input type="text" id="address" name="address" placeholder="Adresse" />
+        <input
+          type="text"
+          id="apartment"
+          name="apartment"
+          placeholder="Appartement"
+        />
+        <input
+          type="text"
+          id="postal-code"
+          name="postal-code"
+          placeholder="Code postal"
+        />
+        <input type="text" id="city" name="city" placeholder="Ville" />
+      </div>
       <input type="tel" id="phone" name="phone" placeholder="Téléphone" />
 
       <div className="checkbox">
