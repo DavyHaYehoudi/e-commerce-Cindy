@@ -8,8 +8,8 @@ const CartItem = ({ cart }) => {
     <div className="cart-item">
       <div className="cart-item-top">
         <div
-          className="cart-item-image"
-          title="Revenir à l'article"
+          className="info-tooltip"
+          aria-label="Revenir à l'article"
         >
           <Link>
             <img src={cart} alt="" width="75px" height="75px" />
@@ -24,7 +24,7 @@ const CartItem = ({ cart }) => {
           <QuantitySelectProduct />
         </div>
 
-        <div className="cart-item-delete" title="Supprimer l'article">
+        <div className="cart-item-delete info-tooltip" aria-label="Supprimer l'article">
           <BsTrash />
         </div>
       </div>

@@ -40,38 +40,7 @@
     text-align: right;
 }
 
-/* INFO-BULLE */
-.cart-item-image,
-.cart-item-delete {
-    position: relative;
-}
-
-.cart-item-image:hover::before,
-.cart-item-delete:hover::before {
-    content: attr(title);
-    position: absolute;
-    top: -30px;
-    width: 100px;
-    background: #000;
-    color: #fff;
-    padding: 5px;
-    font-size: 10px;
-    text-align: center;
-    border-radius: 5px;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.cart-item-image:hover::before {
-    left: 50%;
-}
-
+/* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
 .cart-item-delete:hover::before {
     left: -70%;
-}
-
-.cart-item-image:hover::before,
-.cart-item-delete:hover::before {
-    opacity: 1;
 }

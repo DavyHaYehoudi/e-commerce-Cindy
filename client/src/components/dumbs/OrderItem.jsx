@@ -6,10 +6,13 @@ const OrderItem = ({ cart }) => {
   return (
     <div className="orderItem-contain">
       <div className="orderItem-product">
-        <div className="orderItem-img cart-item-image"title="Revenir à l'article">
-            <Link>
-          <img src={cart} alt="" width="100px" height="150px" />
-            </Link>
+        <div
+          className="orderItem-img info-tooltip"
+          aria-label="Revenir à l'article"
+        >
+          <Link>
+            <img src={cart} alt="" width="100px" height="150px" />
+          </Link>
         </div>
         <div className="orderItem-details">
           <div className="orderItem-name">
