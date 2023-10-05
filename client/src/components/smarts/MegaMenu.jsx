@@ -91,18 +91,70 @@ const MegaMenu = ({ megaMenuSection }) => {
         <div
           className={`mega-Menu-Display-2 ${!isDisplay2Visible && "hidden"}`}
         >
-          <h3>
-            <Link to="menu-tab-category/bijoux-de-mains">Bijoux de mains</Link>
-          </h3>
-          <h3>
-            <Link to="menu-tab-category/bracelets">Bracelets</Link>
-          </h3>
-          <h3>
-            <Link to="menu-tab-category/chouchous">Chouchous</Link>
-          </h3>
-          <h3>
-            <Link to="menu-tab-category/colliers">Colliers</Link>
-          </h3>
+          <div>
+            <h3>
+              <Link to="menu-tab-category/accessoires-cheveux">
+                Accessoires cheveux
+              </Link>
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/chouchous">Chouchous</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3>
+              <Link to="menu-tab-category/bien-etre">Bien-être</Link>
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/eaux-florales">
+                    Eaux florales
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/pochettes-maquillage">
+                    Pochettes maquillage
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/roll-on-visage">
+                    Roll-on visage
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3>
+              <Link to="menu-tab-category/bijoux">bijoux</Link>
+            </h3>
+            <div>
+              <ul>
+                <li>
+                  <Link to="menu-tab-subcategory/bijoux-de-mains">
+                    Bijoux de mains
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/boucles-d-oreilles">
+                    Boucles d'oreilles
+                  </Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/bracelets">Bracelets</Link>
+                </li>
+                <li>
+                  <Link to="menu-tab-subcategory/colliers">Colliers</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
           <figure>
             <img src={bo} alt="" />
             <figcaption>Mes boucles d'oreilles</figcaption>

@@ -5,6 +5,8 @@ const FavoriteButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const heartColor = "var(--button-background)" ;
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -28,9 +30,9 @@ const FavoriteButton = () => {
       className={!isFavorite ? "info-tooltip" : ""}
     >
       {isFavorite ? (
-        <AiFillHeart color="#967F71" />
+        <AiFillHeart color={heartColor} />
       ) : (
-        <AiOutlineHeart color={isHovered ? "#967F71" : "#000000"} />
+        <AiOutlineHeart color={isHovered ? heartColor : "#000000"} />
       )}
     </button>
   );
