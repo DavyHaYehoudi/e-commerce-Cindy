@@ -2,7 +2,6 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import WishList from "./pages/WishList";
 import ShoppingCart from "./pages/ShoppingCart";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -23,7 +22,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/wishlist" element={<WishList />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />

@@ -5,7 +5,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 
-const NavIcons = () => {
+const NavIcons = ({ onClickHeart }) => {
   return (
     <nav id="navIcons">
       <ul>
@@ -15,9 +15,9 @@ const NavIcons = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="wishlist" activeClassName="active">
+          <button onClick={onClickHeart}>
             <AiOutlineHeart />
-          </NavLink>
+          </button>
         </li>
         <li>
           <IoSearchOutline />

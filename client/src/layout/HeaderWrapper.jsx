@@ -4,10 +4,13 @@ import NavIcons from "../components/smarts/NavIcons";
 import NavMenu from "../components/smarts/NavMenu";
 import { Link } from "react-router-dom";
 import MegaMenu from "../components/smarts/MegaMenu";
-import logo from "../assets/logo.png"
+// import WishlistModal from "../components/WishlistModal";
+import logo from "../assets/logo.png";
+import WishlistModal from "../components/smarts/WishlistModal";
 
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
+  const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
 
   const handleMenuEnter = (section) => {
     setMegaMenuSection(section);
@@ -16,15 +19,26 @@ const HeaderWrapper = () => {
   const handleMenuLeave = () => {
     setMegaMenuSection(null);
   };
+
+  const handleOpenWishlistModal = () => {
+    setWishlistModalOpen(true);
+  };
+
+  const handleCloseWishlistModal = () => {
+    setWishlistModalOpen(false);
+  };
+
   return (
     <div id="headerWrapper">
       <div id="flex-item">
         <Langs />
         <h1>
-          <Link to="/"><img src={logo} alt="logo" width="200px"/> </Link>
+          <Link to="/">
+            <img src={logo} alt="logo" width="200px" />{" "}
+          </Link>
         </h1>
         <div>
-          <NavIcons />
+          <NavIcons onClickHeart={handleOpenWishlistModal} />
         </div>
       </div>
       <div onMouseLeave={handleMenuLeave}>
@@ -38,6 +52,12 @@ const HeaderWrapper = () => {
           handleMenuEnter={handleMenuEnter}
         />
       </div>
+
+      <WishlistModal
+        isOpen={isWishlistModalOpen}
+        onClose={handleCloseWishlistModal}
+        // favoriteProducts={/* Passer votre liste de produits favoris ici */}
+      />
     </div>
   );
 };
