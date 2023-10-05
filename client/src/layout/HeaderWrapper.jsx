@@ -4,7 +4,6 @@ import NavIcons from "../components/smarts/NavIcons";
 import NavMenu from "../components/smarts/NavMenu";
 import { Link } from "react-router-dom";
 import MegaMenu from "../components/smarts/MegaMenu";
-// import WishlistModal from "../components/WishlistModal";
 import logo from "../assets/logo.png";
 import WishlistModal from "../components/smarts/WishlistModal";
 

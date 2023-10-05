@@ -10,7 +10,10 @@ const NavIcons = ({ onClickHeart }) => {
     <nav id="navIcons">
       <ul>
         <li>
-          <NavLink to="login" activeClassName="active">
+          <NavLink
+            to="login"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <AiOutlineUser />
           </NavLink>
         </li>
@@ -23,7 +26,10 @@ const NavIcons = ({ onClickHeart }) => {
           <IoSearchOutline />
         </li>
         <li id="iconCart">
-          <NavLink to="cart" activeClassName="active">
+          <NavLink
+            to="cart"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <AiOutlineShopping />
           </NavLink>
           <span id="numberCart">1</span>
