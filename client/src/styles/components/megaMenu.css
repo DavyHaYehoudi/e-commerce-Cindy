@@ -1,13 +1,13 @@
 .mega-Menu-Display {
-    position: relative; 
-  }
-  
-.mega-Menu-Display-1,.mega-Menu-Display-2{
+    position: relative;
+}
+
+.mega-Menu-Display-1,
+.mega-Menu-Display-2 {
     display: flex;
     gap: 100px;
     justify-content: center;
     width: 100%;
-    z-index: 1;
 }
 
 .visible {
@@ -15,14 +15,12 @@
     height: 350px;
     width: 100%;
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    z-index: 2;
 }
 
 .hidden {
-    opacity: 0;
+    visibility: hidden;
     height: 0;
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    z-index: -1;
 }
 
 #mega-Menu h3 {
