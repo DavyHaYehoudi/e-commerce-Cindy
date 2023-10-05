@@ -1,5 +1,8 @@
 #contact {
     margin: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #contact-text {
@@ -11,13 +14,6 @@
     text-align: center;
     border-bottom: 1px solid var(--text-color);
     display: inline-block;
-}
-
-#contact-content-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: baseline;
 }
 
 #contact-info-box {

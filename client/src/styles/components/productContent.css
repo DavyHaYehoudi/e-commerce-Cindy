@@ -9,19 +9,28 @@
 
 
 .description-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 40%;
 }
-
-.description-container h2 {
+.description-heading{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.description-heading button{
+   font-size: 30px;
+   cursor: pointer;
+   border: none;
+   background-color: transparent;
+}
+.description-heading h2 {
     font-size: var(--product-heading-fontSize);
     letter-spacing: var(--letter-spacing);
 }
 
-.description-container h2 span {
+.description-heading h2 span {
     position: absolute;
     top: -10px;
     font-size: 0.5rem;

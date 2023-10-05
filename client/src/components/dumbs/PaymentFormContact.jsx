@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { CiMail } from "react-icons/ci";
 
 const PaymentFormContact = ({ onUpdate }) => {
-  const [isChecked, setChecked] = useState(false);
 
-  const handleCheckboxChange = () => {
-    setChecked(!isChecked);
-  };
   const handleChange = (e) => {
     onUpdate({ [e.target.name]: e.target.value });
   };
@@ -25,18 +21,6 @@ const PaymentFormContact = ({ onUpdate }) => {
         required
         onChange={handleChange}
       />
-      <div className="checkbox">
-        <input
-          type="checkbox"
-          id="subscribe"
-          name="subscribe"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        />
-        <label htmlFor="subscribe">
-          Envoyez-moi les nouvelles et les offres par e-mail
-        </label>
-      </div>
     </>
   );
 };

@@ -8,6 +8,7 @@
 .cart-item-bottom {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .cart-item-image {
@@ -42,5 +43,5 @@
 
 /* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
 .cart-item-delete:hover::before {
-    left: -70%;
+    left: -90%;
 }

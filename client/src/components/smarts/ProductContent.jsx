@@ -1,6 +1,8 @@
 import React from "react";
 import ImageCarousel from "../dumbs/ImageCarousel";
 import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
+import ProductMeta from "../dumbs/ProductMeta";
+import FavoriteButton from "./FavoriteButton";
 
 const ProductContent = ({ state, handleCartShow }) => {
   const { title, image, description, isNew, oldPrice, price } =
@@ -11,9 +13,12 @@ const ProductContent = ({ state, handleCartShow }) => {
         <ImageCarousel mainImage={image} />
       </div>
       <div className="description-container">
-        <h2>
-          {title} {isNew && <span>NOUVEAU</span>}
-        </h2>
+        <div className="description-heading">
+          <h2>
+            {title} {isNew && <span>NOUVEAU</span>}
+          </h2>
+          <FavoriteButton />
+        </div>
         <div className="prices">
           <span className="price">€{price} EUR</span>
           <span className="oldPrice">€{oldPrice} EUR</span>
@@ -23,7 +28,8 @@ const ProductContent = ({ state, handleCartShow }) => {
         <button className="buy-button btn" onClick={handleCartShow}>
           Ajouter au panier
         </button>
-        <p>{description}</p>
+        <p>{description} </p>
+        <ProductMeta />
       </div>
     </div>
   );

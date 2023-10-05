@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const ProductAside = () => {
   const [isProductionDetailsOpen, setIsProductionDetailsOpen] = useState(false);
@@ -19,7 +20,7 @@ const ProductAside = () => {
           className={`details-section ${isProductionDetailsOpen ? "open" : ""}`}
           onClick={toggleProductionDetails}
         >
-          <p>MON SAVOIR-FAIRE</p>
+          <p>CONSEILS D'ENTRETIEN</p>
           <button
             className={`rotate ${isProductionDetailsOpen ? "rotate-open" : ""}`}
           >
@@ -31,7 +32,17 @@ const ProductAside = () => {
             isProductionDetailsOpen ? "open" : ""
           }`}
         >
-         Mes créations sont confectionnées à la main et à la demande dans mon atelier du sud de la France.
+          Le <b>Gold-Filled</b> est une ancienne technique qui consiste à
+          recouvrir d'une épaisse couche d’or de 14 carats, une base en laiton.
+          <br />
+          Il est hypoallergénique et peut se porter sous l'eau.
+          <br />
+          Vous cherchiez le côté Something Old ? Le <b>Gold-Filled</b> est de
+          l'or recyclé !
+          <br />
+          Afin de maintenir son bel éclat doré, vous pouvez nettoyer
+          délicatement votre bijou à l'eau, avec un savon doux et une
+          chamoisine.
         </div>
         <div
           className={`details-section ${isShippingReturnsOpen ? "open" : ""}`}
@@ -49,11 +60,29 @@ const ProductAside = () => {
             isShippingReturnsOpen ? "open" : ""
           }`}
         >
-          Lorem, ipsum dolor sit amet
-          <br /> consectetur adipisicing elit.
-          <br /> Fugit alias eveniet ducimus eum officia
-          <br />. praesentium debitis repudiandae unde accusantium
-          <br /> excepturi?
+          La pièce que vous aurez choisie est fabriquée à la main spécialement
+          pour vous. <br />
+          <br />
+          <u>Délai de confection</u> : <b>7 à 10 jours</b> - Variable selon la
+          période de l'année.
+          <br />
+          <u>Livraisons</u> : <b>2 à 4 jours ouvrés</b> pour la France.{" "}
+          <b>10 jours</b> en moyenne pour les DOM-TOM et l'étranger.
+          <br />
+          <u>Retours</u> : Vous disposez d'un délai de <b>14 jours</b> à compter
+          de la réception pour renvoyer votre commande et être remboursé. <br />
+          <br />
+          Par mesure d'hygiène, nous ne proposons pas de remboursement ni
+          d'échange pour les boucles d'oreilles conformément à l'article L221-28
+          du Code de la consommation.
+          <br />
+          <br />
+          Pour plus d'informations sur les livraisons et les retours,
+          rendez-vous sur la page
+          <Link to="deliveries&returns">
+            {" "}
+            <u> Livraisons & Retours</u>
+          </Link>
         </div>
       </div>
       <div className="assortments"></div>

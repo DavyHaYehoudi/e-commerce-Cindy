@@ -44,7 +44,6 @@ const PaymentForm = () => {
       <PaymentFormDelivery onUpdate={updateDeliveryData} />
       <PaymentFormCard onUpdate={updateCardData} />
       <PaymentFormBilling onUpdate={updateBillingData} />
-
       <button type="button" onClick={handleSubmit}>
         Vérifier la commande
       </button>
