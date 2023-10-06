@@ -9,26 +9,26 @@ import WishlistModalActions from "./WishlistModalActions";
 
 const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
   const favoriteProductsMock = [
-    { id: 1, title: "produit 1", image: bo, material: "or", price: "25,00€" },
+    { id: 1, title: "produit 1", image: bo, material: "Or", price: "25,00€" },
     {
       id: 2,
       title: "produit 2",
       image: bar,
-      material: "argent",
+      material: "Argent",
       price: "55,00€",
     },
     {
       id: 3,
       title: "produit 3",
       image: bra,
-      material: "laiton",
+      material: "Laiton",
       price: "40,00€",
     },
     {
       id: 4,
       title: "produit 4",
       image: col,
-      material: "cuivre",
+      material: "Cuivre",
       price: "84,00€",
     },
   ];

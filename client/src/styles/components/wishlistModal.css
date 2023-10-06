@@ -95,6 +95,10 @@
 .modal-product-details h3{
     font-size: 1rem;
 }
+.modal-product-details .price{
+    color: var(--light-text-color);
+    font-size: 0.875rem;
+}
 .modal-product-actions button{
     border: 1px solid gray;
     padding: 5px;

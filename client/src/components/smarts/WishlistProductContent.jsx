@@ -24,7 +24,7 @@ const WishlistProductContent = ({ product }) => {
       <div className="modal-product-details">
         <h3>{product.title}</h3>
         <p>{product.material}</p>
-        <p>{product.price}</p>
+        <p className="price" >{product.price}</p>
         <div className="modal-product-actions">
           <button className="btn" onClick={() => handleAddToCart(product.id)}>
             Ajouter au panier
