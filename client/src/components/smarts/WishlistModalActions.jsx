@@ -37,27 +37,26 @@ const WishlistModalActions = () => {
 
   return (
     <>
-      <button onClick={handleAddAllToCart} className="btn">
-        Tout ajouter au panier <FaCartArrowDown />
-      </button>
-      <div className="wishlist-share">
-        <span>Partager</span>
-        <div
-          className="wishlist-share-email info-tooltip"
-          aria-label="Partager la liste des favoris par mail"
-        >
-          <span onClick={handleCopyEmailLink}>
-            <FaMailBulk className="wishlist-share-icon" />
-          </span>
-        </div>
-        <div
-          className="wishlist-share-link info-tooltip"
-          aria-label="Copier le lien de la liste des favoris"
-        >
-          <span onClick={handleCopyUrlLink}>
-            <FaLink className="wishlist-share-icon" />
-          </span>
-        </div>
+      <div
+        onClick={handleAddAllToCart}
+        className="info-tooltip"
+        aria-label="Tout ajouter au panier"
+      >
+        <FaCartArrowDown className="wishlist-icon-actions"/>
+      </div>
+      <div
+        onClick={handleCopyEmailLink}
+        className="info-tooltip"
+        aria-label="Partager la liste des favoris par mail"
+      >
+        <FaMailBulk className="wishlist-icon-actions"/>
+      </div>
+      <div
+        onClick={handleCopyUrlLink}
+        className="info-tooltip"
+        aria-label="Copier le lien de la liste des favoris"
+      >
+        <FaLink className="wishlist-icon-actions"/>
       </div>
       <ToastContainer autoClose={2500} />
     </>
