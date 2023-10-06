@@ -17,7 +17,7 @@
 
 /* Animation de la camionnete */
 #freeShippingBanner span {
-    font-size: 35px;
+    font-size: 2.18rem;
     color: var(--freeShippingBanner-icon);
     transform: translateX(-800%);
     animation: slideIn 4s forwards, shake 0.5s infinite alternate; 

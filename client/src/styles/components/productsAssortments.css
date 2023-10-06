@@ -18,7 +18,7 @@
     height: 300px;
 }
 .product-details {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .product-details p{
     color: var(--light-text-color);

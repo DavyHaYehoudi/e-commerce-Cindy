@@ -35,7 +35,7 @@
 }
 
 .modal-header-top button {
-    font-size: 30px;
+    font-size: 1.875rem;
     border: none;
     background-color: transparent;
     color: #838282;
@@ -48,16 +48,24 @@
 .modal-header-bottom button{
     padding: 10px 20px;
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 0.875rem;
     border: none;
+}
+.modal-header-bottom {
+  display: flex;
+  align-items: center;
+}
+.wishlist-share{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.wishlist-share-icon{
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
 }
-.modal-header-bottom button:hover{
-    background-color: #f8f8f8; /* Changez la couleur de fond au survol */
-    color: #333;
+.wishlist-share .info-tooltip:hover::before{
+    top: -65px;
 }
-
 .modal {
     display: flex;
     align-items: center;
@@ -83,6 +91,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+.modal-product-details h3{
+    font-size: 1rem;
 }
 .modal-product-actions button{
     border: 1px solid gray;

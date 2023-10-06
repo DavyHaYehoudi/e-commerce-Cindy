@@ -6,7 +6,7 @@
   letter-spacing: var(--letter-spacing);
   color: var(--light-text-color);
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 #product-meta button{
 border: none;

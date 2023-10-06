@@ -38,7 +38,7 @@ const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="modal-header-top">
-            <h2>Mes favoris</h2>
+            <h2>Mes favoris </h2>
             <button onClick={onClose}>
               <AiOutlineCloseCircle />
             </button>

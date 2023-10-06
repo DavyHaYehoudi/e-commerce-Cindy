@@ -7,10 +7,10 @@
 #langs #p-fr {
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing);
-    font-size: 10px;
+    font-size: 0.625rem;
 }
 
 #langs span {
-    font-size: 25px;
+    font-size: 1.56rem;
     padding-top: 5px;
 }

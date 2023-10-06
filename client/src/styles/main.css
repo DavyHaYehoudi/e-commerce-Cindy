@@ -61,7 +61,7 @@ img{
     background: #000;
     color: #fff;
     padding: 5px;
-    font-size: 10px;
+    font-size: 0.625rem;
     text-align: center;
     border-radius: 5px;
     transform: translateX(-50%);
@@ -71,10 +71,6 @@ img{
 
 .info-tooltip:hover::before {
     left: 50%;
-}
-
-.cart-item-delete:hover::before {
-    left: -70%;
 }
 
 .info-tooltip:hover::before {
