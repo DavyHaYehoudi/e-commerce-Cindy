@@ -22,14 +22,8 @@
 
 .cart-item-delete {
     flex: 0.2;
-    cursor: pointer;
-    color: #aeb8c5;
     text-align: right;
     transition: color 0.2s ease-in;
-}
-
-.cart-item-delete:hover {
-    color: red;
 }
 
 .cart-item-subtotal {

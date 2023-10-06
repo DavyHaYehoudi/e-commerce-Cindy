@@ -31,7 +31,6 @@
 }
 .offcanvas-heading button:hover {
     transform: rotate(180deg) translateY(10%); 
-    color: red;
 }
 .cart-offcanvas-content {
     margin-top: 20px;

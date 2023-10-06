@@ -1,0 +1,15 @@
+import React from "react";
+import { BsTrash } from "react-icons/bs";
+
+const TrashIcon = ({ addClass }) => {
+  return (
+    <div
+      className={`trashIcon info-tooltip ${addClass} `}
+      aria-label="Supprimer l'article"
+    >
+      <BsTrash />
+    </div>
+  );
+};
+
+export default TrashIcon;

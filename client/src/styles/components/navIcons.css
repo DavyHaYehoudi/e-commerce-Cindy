@@ -1,11 +1,15 @@
 #navIcons ul {
     display: flex;
-    font-size: 25px;
     gap: 20px;
 }
-
-#navIcons :nth-child(3) {
+.navlink-icon{
+    font-size: 25px;
     cursor: pointer;
+}
+
+#navIcons button{
+    border: none;
+    background: transparent;
 }
 #navIcons a.active {
     font-weight: bold;

@@ -14,23 +14,23 @@ const NavIcons = ({ onClickHeart }) => {
             to="login"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <AiOutlineUser />
+            <AiOutlineUser className="navlink-icon" />
           </NavLink>
         </li>
         <li>
           <button onClick={onClickHeart}>
-            <AiOutlineHeart />
+            <AiOutlineHeart className="navlink-icon"/>
           </button>
         </li>
         <li>
-          <IoSearchOutline />
+          <IoSearchOutline className="navlink-icon"/>
         </li>
         <li id="iconCart">
           <NavLink
             to="cart"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <AiOutlineShopping />
+            <AiOutlineShopping className="navlink-icon"/>
           </NavLink>
           <span id="numberCart">1</span>
         </li>

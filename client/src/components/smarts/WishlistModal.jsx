@@ -1,61 +1,56 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import bo from "../../assets/bo.png";
+import bar from "../../assets/bar.png";
+import bra from "../../assets/bra.png";
+import col from "../../assets/col.png";
+import WishlistProduct from "./WishlistProduct";
+import WishlistModalActions from "./WishlistModalActions";
 
 const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
-  const handleAddToCart = (productId) => {
-    // Logique pour ajouter le produit au panier
-    console.log(`Ajouter au panier : ${productId}`);
-  };
-  const handleAddAllToCart = () => {
-    console.log("handleAddAllToCart:");
-  };
-
-  const handleCopyEmailLink = () => {
-    const emailLink =
-      "mailto:?subject=Ma liste de favoris&body=Voici ma liste de favoris : [insérer le lien ici]";
-    navigator.clipboard.writeText(emailLink);
-    // Message de confirmation ?
-  };
-
-  const handleCopyUrlLink = () => {
-    const wishlistUrl = "[insérer le lien de la liste de favoris ici]";
-    navigator.clipboard.writeText(wishlistUrl);
-    // Message de confirmation ?
-  };
+  const favoriteProductsMock = [
+    { id: 1, title: "produit 1", image: bo, material: "or", price: "25,00€" },
+    {
+      id: 2,
+      title: "produit 2",
+      image: bar,
+      material: "argent",
+      price: "55,00€",
+    },
+    {
+      id: 3,
+      title: "produit 3",
+      image: bra,
+      material: "laiton",
+      price: "40,00€",
+    },
+    {
+      id: 4,
+      title: "produit 4",
+      image: col,
+      material: "cuivre",
+      price: "84,00€",
+    },
+  ];
 
   return (
     <div className={`wishlist-modal ${isOpen ? "open" : ""}`}>
-      <div className="modal-content">
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <div className="wishlist-modal-content">
-            {/* Contenu de la modale ici */}
-            <h2>Ma liste de favoris</h2>
+          <div className="modal-header-top">
+            <h2>Mes favoris</h2>
             <button onClick={onClose}>
-              Fermer <AiOutlineClose />
+              <AiOutlineCloseCircle />
             </button>
+          </div>
+          <div className="modal-header-bottom">
+            <WishlistModalActions />
           </div>
         </div>
         <div className="modal-body">
-          {/* Afficher la liste des produits favoris */}
-          {/* {favoriteProducts.map((product) => (
-            <div key={product.id} className="product-row">
-              <img src={product.image} alt={product.title} />
-              <div>
-                <h3>{product.title}</h3>
-                <div className="product-actions">
-                  <button onClick={() => handleAddToCart(product.id)}>Ajouter au panier</button>
-                  <button>Retirer des favoris</button>
-                </div>
-              </div>
-            </div>
-          ))} */}
-        </div>
-        <div className="modal-footer">
-          <button onClick={handleAddAllToCart}>Ajouter tous au panier</button>
-          <button onClick={handleCopyEmailLink}>
-            Copier le lien par e-mail
-          </button>
-          <button onClick={handleCopyUrlLink}>Copier le lien URL</button>
+          {favoriteProductsMock.map((product) => (
+            <WishlistProduct product={product} />
+          ))}
         </div>
       </div>
     </div>
