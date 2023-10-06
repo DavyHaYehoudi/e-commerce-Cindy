@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AddToCartButton from "../dumbs/AddToCartButton";
 
 const WishlistProductContent = ({ product }) => {
   const handleAddToCart = (productId) => {
@@ -11,7 +12,7 @@ const WishlistProductContent = ({ product }) => {
         className="modal-product-image info-tooltip"
         aria-label="Revenir à l'article"
       >
-        <Link to={`/products/${product.id}`} >
+        <Link to={`/products/${product.id}`}>
           <img
             src={product.image}
             alt={product.title}
@@ -24,11 +25,13 @@ const WishlistProductContent = ({ product }) => {
       <div className="modal-product-details">
         <h3>{product.title}</h3>
         <p>{product.material}</p>
-        <p className="price" >{product.price}</p>
+        <p className="price">{product.price}</p>
         <div className="modal-product-actions">
-          <button className="btn" onClick={() => handleAddToCart(product.id)}>
-            Ajouter au panier
-          </button>
+          <AddToCartButton
+            className="btn"
+            onClick={() => handleAddToCart(product.id)}
+            buttonText="Ajouter au panier"
+          />
         </div>
       </div>
     </div>

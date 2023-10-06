@@ -3,10 +3,14 @@ import ImageCarousel from "../dumbs/ImageCarousel";
 import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
 import ProductMeta from "../dumbs/ProductMeta";
 import FavoriteButton from "./FavoriteButton";
+import AddToCartButton from "../dumbs/AddToCartButton";
 
 const ProductContent = ({ state, handleCartShow }) => {
   const { title, image, description, isNew, oldPrice, price } =
     state.product.item;
+  const handleAddToCart = (productId) => {
+    console.log(`Ajouter au panier : ${productId}`);
+  };
   return (
     <div id="product-content">
       <div className="images-container">
@@ -25,9 +29,12 @@ const ProductContent = ({ state, handleCartShow }) => {
         </div>
         <p className="separator"></p>
         <QuantitySelectProduct />
-        <button className="buy-button btn" onClick={handleCartShow}>
-          Ajouter au panier
-        </button>
+        <AddToCartButton
+          buttonText="Ajouter au panier"
+          onClick={handleCartShow}
+          additionalFunction={() => handleAddToCart("product.id")}
+          className="buy-button btn"
+        />
         <p>{description} </p>
         <ProductMeta />
       </div>
