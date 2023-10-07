@@ -1,6 +1,11 @@
 import React from "react";
 
-const AddToCartButton = ({ onClick, additionalFunction, buttonText,className }) => {
+const AddToCartButton = ({
+  onClick,
+  additionalFunction,
+  buttonText,
+  className,
+}) => {
   const handleClick = () => {
     onClick();
     additionalFunction();

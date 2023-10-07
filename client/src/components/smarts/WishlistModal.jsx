@@ -32,7 +32,7 @@ const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
       price: "84,00€",
     },
   ];
-
+  
   return (
     <div className={`wishlist-modal ${isOpen ? "open" : ""}`}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

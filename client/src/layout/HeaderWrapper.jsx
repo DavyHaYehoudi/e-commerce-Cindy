@@ -24,11 +24,13 @@ const HeaderWrapper = () => {
   };
 
   const handleCloseWishlistModal = () => {
-    setWishlistModalOpen(false);
+    if (isWishlistModalOpen) {
+      setWishlistModalOpen(false);
+    }
   };
 
   return (
-    <div id="headerWrapper">
+    <div id="headerWrapper" onClick={handleCloseWishlistModal}>
       <div id="flex-item">
         <Langs />
         <h1>

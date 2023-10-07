@@ -18,7 +18,6 @@
 @import "./components/cartIem.css";
 @import "./components/trashIcon.css";
 @import "./components/orderItem.css";
-@import "./components/shoppingCartContent.css";
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
 
@@ -28,8 +27,6 @@
 
 /* PAGES */
 @import "pages/contact.css";
-@import "pages/legalNotice.css";
-@import "pages/termsOfSales.css";
-@import "pages/deliveries.css";
+@import "pages/legalDocs.css";
 @import "pages/about.css";
 @import "pages/shoppingCart.css";

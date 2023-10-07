@@ -1,0 +1,13 @@
+#legalNotice-contain,
+#deliveries-contain,
+#termsOfSales-contain {
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 10px;
+}
