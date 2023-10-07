@@ -70,14 +70,19 @@
 .description-container .separator {
     border: 1px solid var(--border-color);
 }
-#product-content .product-color-selector {
-    display: flex;
-    align-items: center;
-  }
 #product-content .product-color-selector-picker {
     display: flex;
     align-items: center;
   }
+#product-content .color-picker {
+    display: flex;
+  }
+.custom-color-selector {
+    display: flex;
+  }
+#product-content .info-tooltip:hover::before{
+    left: 55px;
+}
 .buy-button {
     width: 50%;
     padding: 10px;

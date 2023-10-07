@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ColorPicker = ({ colors, onSelectColor, defaultColor }) => {
+const ColorPicker = ({ colors, onSelectColor, defaultColor, onHoverColor }) => {
   const [selectedColor, setSelectedColor] = useState(defaultColor);
 
   const handleColorClick = (color) => {
@@ -8,8 +8,12 @@ const ColorPicker = ({ colors, onSelectColor, defaultColor }) => {
     onSelectColor(color);
   };
 
+  const handleColorHover = (color) => {
+    onHoverColor(color);
+  };
+
   return (
-    <div className="custom-color-selector" >
+    <div className="color-picker">
       {colors.map((color) => (
         <div
           key={color.name}
@@ -18,6 +22,8 @@ const ColorPicker = ({ colors, onSelectColor, defaultColor }) => {
           }`}
           style={{ backgroundColor: color.value }}
           onClick={() => handleColorClick(color.name)}
+          onMouseEnter={() => handleColorHover(color.name)}
+          onMouseLeave={() => handleColorHover(null)}
         ></div>
       ))}
     </div>

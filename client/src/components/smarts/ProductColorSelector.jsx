@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import ColorPicker from "./ColorPicker";
 
 const ProductColorSelector = () => {
-  const [selectedProductColor, setSelectedProductColor] = useState("Gold Filled");
+  const [selectedProductColor, setSelectedProductColor] =
+    useState("GOLD FILLED");
+  const [hoveredColor, setHoveredColor] = useState(null);
 
   const handleSelectColor = (color) => {
     setSelectedProductColor(color);
   };
 
+  const handleHoverColor = (color) => {
+    setHoveredColor(color);
+  };
+
   const materialColors = [
-    { name: "Gold Filled", value: "#DAB455" },
-    { name: "Or rose", value: "#FFC0CB" },
-    { name: "Or blanc", value: "#FFF" },
-    { name: "Argent 925", value: "#C0C0C0" },
+    { name: "GOLD FILLED", value: "#DAB455" },
+    { name: "OR ROSE", value: "#FFC0CB" },
+    { name: "OR BLANC", value: "#FFF" },
+    { name: "ARGENT 925", value: "#C0C0C0" },
   ];
 
   return (
-    <div className="product-color-selector-picker">
-    <span>APPRETS :</span>
-    <ColorPicker
-      colors={materialColors}
-      onSelectColor={handleSelectColor}
-      defaultColor={selectedProductColor}
-    />
-    <span>{selectedProductColor}</span>
-  </div>
+    <div
+      className="product-color-selector-picker info-tooltip"
+      aria-label={hoveredColor || selectedProductColor}
+    >
+      <ColorPicker
+        colors={materialColors}
+        onSelectColor={handleSelectColor}
+        defaultColor={selectedProductColor}
+        onHoverColor={handleHoverColor}
+      />
+      <span>Apprêt : {selectedProductColor}</span>
+    </div>
   );
 };
 

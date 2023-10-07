@@ -7,6 +7,8 @@ import AddToCartButton from "../dumbs/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
 
 const ProductContent = ({ state, handleCartShow }) => {
+
+  // Si un produit propose différents matériaux alors le prix change. Prévoir un DB avec un prix courant et une propriété materialColors qui sera un objet contenant les propriétés imbriquées name, code couleur, prix
   const { title, image, description, isNew, oldPrice, price } =
     state.product.item;
   const handleAddToCart = (productId) => {
