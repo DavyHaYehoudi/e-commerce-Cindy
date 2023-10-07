@@ -40,3 +40,7 @@
     --letter-spacing: 0.2em;
 
 }
+
+.test{
+    color: hsl(350, 100%, 88%);
+}

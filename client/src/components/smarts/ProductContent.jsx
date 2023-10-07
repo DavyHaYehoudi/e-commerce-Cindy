@@ -4,6 +4,7 @@ import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
 import ProductMeta from "../dumbs/ProductMeta";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "../dumbs/AddToCartButton";
+import ProductColorSelector from "./ProductColorSelector";
 
 const ProductContent = ({ state, handleCartShow }) => {
   const { title, image, description, isNew, oldPrice, price } =
@@ -26,6 +27,9 @@ const ProductContent = ({ state, handleCartShow }) => {
         <div className="prices">
           <span className="price">€{price} EUR</span>
           <span className="oldPrice">€{oldPrice} EUR</span>
+        </div>
+        <div className="product-color-selector">
+          <ProductColorSelector />
         </div>
         <p className="separator"></p>
         <QuantitySelectProduct />

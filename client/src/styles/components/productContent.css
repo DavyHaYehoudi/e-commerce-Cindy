@@ -7,7 +7,6 @@
     max-width: 1000px;
 }
 
-
 .description-container {
     display: flex;
     flex-direction: column;
@@ -71,7 +70,14 @@
 .description-container .separator {
     border: 1px solid var(--border-color);
 }
-
+#product-content .product-color-selector {
+    display: flex;
+    align-items: center;
+  }
+#product-content .product-color-selector-picker {
+    display: flex;
+    align-items: center;
+  }
 .buy-button {
     width: 50%;
     padding: 10px;

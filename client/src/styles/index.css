@@ -20,6 +20,7 @@
 @import "./components/orderItem.css";
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
+@import "./components/colorPicker.css";
 
 /* LAYOUT */
 @import "./layout/header.css";
