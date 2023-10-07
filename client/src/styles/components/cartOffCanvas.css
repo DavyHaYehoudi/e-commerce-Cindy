@@ -29,32 +29,25 @@
     cursor: pointer;
     transition: transform 0.3s ease;
 }
+
 .offcanvas-heading button:hover {
-    transform: rotate(180deg) translateY(10%); 
-}
-.cart-offcanvas-content {
-    margin-top: 20px;
-    background-color: var(--cart-offcanvas);
+    transform: rotate(180deg) translateY(10%);
 }
 
-.empty-cart-message{
+.cart-offcanvas-content {
+    margin-top: 20px;
+}
+
+.empty-cart-message {
     margin: 50px;
     text-align: center;
 }
+
 .fixed-bottom-content button {
     width: 100%;
     padding: 20px;
     margin-top: 20px;
-    background-color: transparent;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.fixed-bottom-content button:hover {
-    background: var(--button-background);
-    color: #fff;
-    cursor: pointer;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
 }
 
 .fixed-bottom-content {

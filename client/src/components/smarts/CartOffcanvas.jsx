@@ -50,7 +50,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
         </p>
         <div>
           <Link to="/cart">
-            <button>REGLEMENT</button>
+            <button className="btn" >REGLEMENT</button>
           </Link>
         </div>
       </div>

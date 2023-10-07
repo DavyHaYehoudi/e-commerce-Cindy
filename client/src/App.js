@@ -14,6 +14,8 @@ import SubCategory from "./pages/SubCategory";
 import Deliveries from "./pages/Deliveries";
 import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/account/login" element={<Login />} />
+        <Route path="account/register" element={<Register />} />
+        <Route path="account/forgot-password" element={<ForgotPassword />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />

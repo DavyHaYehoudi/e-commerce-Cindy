@@ -14,7 +14,7 @@ const CartItem = ({ cart }) => {
         </div>
 
         <div className="cart-item-name">
-          Nom de l'article qui parfois peut etre tres long{" "}
+          Nom de l'article qui parfois peut être tres long{" "}
         </div>
       </div>
       <div className="cart-item-bottom">
@@ -22,7 +22,9 @@ const CartItem = ({ cart }) => {
         <div className="cart-item-quantity">
           <QuantitySelectProduct />
         </div>
-        <TrashIcon addClass="cart-item-delete" />
+        <div className="cart-item-delete">
+          <TrashIcon />
+        </div>
       </div>
     </div>
   );

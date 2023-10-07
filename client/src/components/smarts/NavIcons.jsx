@@ -11,7 +11,7 @@ const NavIcons = ({ onClickHeart }) => {
       <ul>
         <li>
           <NavLink
-            to="login"
+            to="account/login"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <AiOutlineUser className="navlink-icon" />
