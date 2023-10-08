@@ -5,7 +5,7 @@
     padding: 20px;
   }
   
-  .user-info,
+  .user-info-account,
   .order-history {
     flex: 1;
     margin-right: 30px; 
@@ -31,7 +31,10 @@
     margin-bottom: 15px;
   }
 
-  .user-info p {
+  .user-info-account p {
     margin-bottom: 15px;
+  }
+  .user-info-account b {
+   text-transform: uppercase;
   }
   

@@ -2,12 +2,13 @@ import React from "react";
 
 const UserInfo = ({ userData }) => {
   return (
-    <div className="user-info">
+    <div className="user-info-account">
       <h2>Informations du compte</h2>
-      <p>Nom: {userData.name}</p>
-      <p>Email: {userData.email}</p>
-      <p>Téléphone: {userData.phone}</p>
-      <p>Adresse: {userData.address}</p>
+      <p><b>Prénom :</b> {userData.firstName}</p>
+      <p><b>Nom : </b>{userData.lastName}</p>
+      <p><b>Email :</b> {userData.email}</p>
+      <p><b>Téléphone :</b> {userData.phone}</p>
+      <p><b>Adresse de livraison :</b> {userData.address}</p>
     </div>
   );
 };

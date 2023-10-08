@@ -1,5 +1,7 @@
 import React from "react";
 import { formatDate } from "../../helpers/formatDate";
+import OrderItems from "./OrderItems";
+import { orderStatus } from "../../mocks/orderStatus";
 
 const OtherOrders = ({ orderHistory, getStatusColor }) => {
   return (
@@ -8,13 +10,14 @@ const OtherOrders = ({ orderHistory, getStatusColor }) => {
       {orderHistory
         .filter(
           (order) =>
-            order.status !== "Expédiée" && order.status !== "Livrée"
+            order.status !== orderStatus[2].name
         )
         .map((order) => (
           <div key={order.id} className="order-item">
-            <p>Date de commande: {formatDate(order.date)}</p>
+            <p>Date de commande : {formatDate(order.date)}</p>
+            <OrderItems items={order.items} />
+            <p>Prix total : {order.totalAmount} </p>
             <p>
-              Statut:{" "}
               <span
                 style={{
                   backgroundColor: getStatusColor(order.status),

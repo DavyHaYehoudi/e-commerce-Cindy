@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ColorPicker from "../dumbs/ColorPicker";
+import { materials } from "../../mocks/materials";
 
 const ProductColorSelector = () => {
   const [selectedProductColor, setSelectedProductColor] =
@@ -14,20 +15,13 @@ const ProductColorSelector = () => {
     setHoveredColor(color);
   };
 
-  const materialColors = [
-    { name: "GOLD FILLED", value: "#DAB455" },
-    { name: "OR ROSE", value: "#FFC0CB" },
-    { name: "OR BLANC", value: "#FFF" },
-    { name: "ARGENT 925", value: "#C0C0C0" },
-  ];
-
   return (
     <div
       className="product-color-selector-picker info-tooltip"
       aria-label={hoveredColor || selectedProductColor}
     >
       <ColorPicker
-        colors={materialColors}
+        colors={materials}
         onSelectColor={handleSelectColor}
         defaultColor={selectedProductColor}
         onHoverColor={handleHoverColor}

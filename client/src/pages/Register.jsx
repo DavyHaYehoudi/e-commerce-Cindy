@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Register = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,6 +20,21 @@ const Register = () => {
     <div className="register-container">
       <h2>Inscription</h2>
       <form>
+        <label>Prénom * :</label>
+        <input
+          type="text"
+          value={firstName}
+          required
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+
+        <label>Nom * :</label>
+        <input
+          type="text"
+          value={lastName}
+          required
+          onChange={(e) => setLastName(e.target.value)}
+        />
         <label>Email * :</label>
         <input
           type="email"
