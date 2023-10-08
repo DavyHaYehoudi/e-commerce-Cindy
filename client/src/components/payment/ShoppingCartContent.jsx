@@ -1,5 +1,5 @@
 import React from "react";
-import OrderItem from "../dumbs/OrderItem";
+import OrderItem from "./OrderItem";
 
 const ShoppingCartContent = ({carts} ) => {
   return (

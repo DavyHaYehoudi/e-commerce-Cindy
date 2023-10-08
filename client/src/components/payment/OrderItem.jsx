@@ -1,5 +1,5 @@
 import React from "react";
-import QuantitySelectProduct from "./QuantitySelectProduct";
+import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
 import { Link } from "react-router-dom";
 
 const OrderItem = ({ cart }) => {

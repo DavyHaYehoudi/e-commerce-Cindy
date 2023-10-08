@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PaymentFormContact from "../dumbs/PaymentFormContact";
-import PaymentFormDelivery from "../dumbs/PaymentFormDelivery";
-import PaymentFormCard from "../dumbs/PaymentFormCard";
+import PaymentFormContact from "./PaymentFormContact";
+import PaymentFormDelivery from "./PaymentFormDelivery";
+import PaymentFormCard from "./PaymentFormCard";
 import PaymentFormBilling from "./PaymentFormBilling";
 import axios from "axios";
 

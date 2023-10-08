@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import ProductAside from "../components/smarts/ProductAside";
-import ProductContent from "../components/smarts/ProductContent";
-import ProductAssortments from "../components/smarts/ProductsAssortments";
-import CartOffcanvas from "../components/smarts/CartOffcanvas";
+import ProductAside from "../components/cart/ProductAside";
+import ProductContent from "../components/cart/ProductContent";
+import ProductAssortments from "../components/cart/ProductsAssortments";
+import CartOffcanvas from "../components/cart/CartOffcanvas";
 
 const Product = () => {
   let { state } = useLocation();

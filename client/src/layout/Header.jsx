@@ -1,5 +1,5 @@
 import React from "react";
-import FreeShippingBanner from "../components/dumbs/FreeShippingBanner";
+import FreeShippingBanner from "../components/menu/FreeShippingBanner";
 import HeaderWrapper from "./HeaderWrapper";
 
 const Header = () => {

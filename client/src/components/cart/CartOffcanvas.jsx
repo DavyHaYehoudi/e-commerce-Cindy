@@ -4,7 +4,7 @@ import bo from "../../assets/bo.png";
 import bar from "../../assets/bar.png";
 import bra from "../../assets/bra.png";
 import col from "../../assets/col.png";
-import CartItem from "../dumbs/CartItem";
+import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 
 const CartOffcanvas = ({ show, handleClose }) => {

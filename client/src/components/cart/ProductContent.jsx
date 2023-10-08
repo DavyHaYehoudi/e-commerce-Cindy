@@ -1,8 +1,8 @@
 import React from "react";
-import ImageCarousel from "../dumbs/ImageCarousel";
+import ImageCarousel from "./ImageCarousel";
 import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
 import ProductMeta from "../dumbs/ProductMeta";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "../dumbs/FavoriteButton";
 import AddToCartButton from "../dumbs/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
 

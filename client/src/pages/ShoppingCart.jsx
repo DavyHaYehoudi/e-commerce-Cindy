@@ -2,8 +2,8 @@ import React from "react";
 import bo from "../assets/bo.png";
 import bar from "../assets/bo.png";
 import bra from "../assets/bo.png";
-import PaymentForm from "../components/smarts/PaymentForm";
-import ShoppingCartContent from "../components/smarts/ShoppingCartContent";
+import PaymentForm from "../components/payment/PaymentForm";
+import ShoppingCartContent from "../components/payment/ShoppingCartContent";
 
 const ShoppingCart = () => {
   const carts = [bo, bar, bra];

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductList from "../components/smarts/ProductList";
+import ProductList from "../components/search/ProductList";
 
 const Tab = () => {
   const { tab } = useParams();

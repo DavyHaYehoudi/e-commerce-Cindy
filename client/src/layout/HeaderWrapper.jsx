@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Langs from "../components/smarts/Langs";
-import NavIcons from "../components/smarts/NavIcons";
-import NavMenu from "../components/smarts/NavMenu";
+import Langs from "../components/menu/Langs";
+import NavIcons from "../components/menu/NavIcons";
+import NavMenu from "../components/menu/NavMenu";
 import { Link } from "react-router-dom";
-import MegaMenu from "../components/smarts/MegaMenu";
+import MegaMenu from "../components/menu/MegaMenu";
 import logo from "../assets/logo.png";
-import WishlistModal from "../components/smarts/WishlistModal";
+import WishlistModal from "../components/wishlist/WishlistModal";
 
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
