@@ -15,7 +15,7 @@ const OtherOrders = ({ orderHistory, getStatusColor }) => {
         .map((order) => (
           <div key={order.id} className="order-item">
             <p>Date de commande : {formatDate(order.date)}</p>
-            <OrderItems items={order.items} />
+            <OrderItems products={order.products} image={order.products[0].image} />
             <p>Prix total : {order.totalAmount} </p>
             <p>
               <span

@@ -50,7 +50,8 @@ export const userInfo = {
       id: 1,
       date: "2023-03-10 10:20",
       status: orderStatus[2].name,
-      total: "€150",
+      totalAmount: "€150",
+      shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: false,
       products: [
         {
@@ -67,7 +68,8 @@ export const userInfo = {
       id: 2,
       date: "2023-03-07 11:40",
       status: orderStatus[1].name,
-      total: "€250",
+      totalAmount: "€250",
+      shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: true,
       products: [
         {
@@ -84,7 +86,8 @@ export const userInfo = {
       id: 3,
       date: "2023-03-10 22:20",
       status: orderStatus[0].name,
-      total: "€150",
+      totalAmount: "€150",
+      shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: false,
       products: [
         {

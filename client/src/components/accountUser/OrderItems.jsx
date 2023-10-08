@@ -1,15 +1,24 @@
 import React from "react";
 
-const OrderItems = ({ items }) => {
+const OrderItems = ({ products, image }) => {
   return (
     <div className="order-items">
-      {items.map((item) => (
-        <div key={item.name} className="order-item">
-          <p>Nom du produit : {item.name}</p>
-          <p>Matériau : {item.material}</p>
-          <p>Quantité : {item.quantity}</p>
-          <p>Prix unitaire : {item.price}</p>
-        </div>
+      {products.map((product) => (
+        <>
+          <div key={product.name} className="order-item">
+            <p>Nom du produit : {product.name}</p>
+            <p>Matériau : {product.material}</p>
+            <p>Quantité : {product.quantity}</p>
+            <p>Prix unitaire : {product.price}</p>
+          </div>
+          <div className="image-container">
+            <img
+              src={product.image}
+              alt="Product"
+              style={{ width: "100px", height: "150px" }}
+            />
+          </div>
+        </>
       ))}
     </div>
   );
