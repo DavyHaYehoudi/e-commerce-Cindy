@@ -21,7 +21,7 @@
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
 @import "./components/colorPicker.css";
-@import "./components/userInfo.css";
+@import "./components/accountUser.css";
 
 /* LAYOUT */
 @import "./layout/header.css";
@@ -35,3 +35,4 @@
 @import "pages/legalDocs.css";
 @import "pages/about.css";
 @import "pages/shoppingCart.css";
+@import "pages/adminDashboard.css";

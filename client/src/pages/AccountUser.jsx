@@ -4,7 +4,7 @@ import DeliveredOrders from "../components/account/DeliveredOrders";
 import UserInfo from "../components/account/UserInfo";
 import { getStatusColor } from "../helpers/getStatusColor";
 
-const Account = () => {
+const AccountUser = () => {
   const [userData] = useState({
     name: "John Doe",
     email: "john@example.com",
@@ -16,8 +16,8 @@ const Account = () => {
     { id: 1, date: "2023-01-15 08:30", status: "En attente" },
     { id: 2, date: "2023-02-02 14:45", status: "En cours de préparation" },
     { id: 3, date: "2023-03-10 10:20", status: "Expédiée" },
-    { id: 4, date: "2023-03-20 18:15", status: "Livraison en cours" },
-    { id: 5, date: "2023-04-05 09:55", status: "Livrée" },
+    { id: 4, date: "2023-03-20 18:15", status: "En cours de préparation" },
+    { id: 5, date: "2023-04-05 09:55", status: "Expédiée" },
   ]);
 
   return (
@@ -40,4 +40,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default AccountUser;

@@ -1,0 +1,116 @@
+.admin-dashboard {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.client-list {
+    padding: 20px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.client-list h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.client-item {
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.client-header {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.client-header:nth-child(odd) {
+    background-color: #fff;
+}
+
+.client-header:hover {
+    background-color: #e0e0e0;
+}
+
+.client-header span {
+    flex: 1.5;
+}
+
+.client-header button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.client-header button:hover {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.client-details {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.client-details h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.admin-order-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.admin-order-item p {
+    margin: 5px 0;
+}
+
+.admin-order-item span {
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.admin-order-item .status-pending {
+    background-color: #f39c12;
+    /* Orange */
+}
+
+.admin-order-item .status-processing {
+    background-color: #27ae60;
+    /* Green */
+}
+
+.admin-order-item .status-shipped {
+    background-color: #3498db;
+    /* Blue */
+}
+
+.admin-order-item .status-delivered {
+    background-color: #2ecc71;
+    /* Dark Green */
+}
+
+.admin-order-item .status-canceled {
+    background-color: #e74c3c;
+    /* Red */
+}
