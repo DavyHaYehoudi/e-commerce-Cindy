@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import OtherOrders from "../components/account/OtherOrders";
-import DeliveredOrders from "../components/account/DeliveredOrders";
-import UserInfo from "../components/account/UserInfo";
+import OtherOrders from "../components/accountUser/OtherOrders";
+import DeliveredOrders from "../components/accountUser/DeliveredOrders";
+import UserInfo from "../components/accountUser/UserInfo";
 import { getStatusColor } from "../helpers/getStatusColor";
 
 const AccountUser = () => {

@@ -46,15 +46,27 @@
 }
 
 .client-header span {
-    flex: 1.5;
+    flex: 1;
+}
+.non-traitee-badge {
+    max-width: 10%;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .client-header button {
+    max-width: 30%;
     background-color: #3498db;
     color: #fff;
     border: none;
     padding: 8px;
+    flex: 1;
     cursor: pointer;
+
 }
 
 .client-header button:hover {
@@ -73,6 +85,14 @@
     font-size: 18px;
 }
 
+.client-details .icon{
+    cursor: pointer;
+    font-size: 25px;
+}
+.client-details .icon:hover{
+    color: rgb(88, 103, 2);
+}
+
 .admin-order-item {
     margin-bottom: 10px;
     padding: 10px;
@@ -89,28 +109,19 @@
     border-radius: 5px;
     color: #fff;
 }
-
-.admin-order-item .status-pending {
-    background-color: #f39c12;
-    /* Orange */
+.admin-order-next-step{
+    text-align: end;
 }
-
-.admin-order-item .status-processing {
-    background-color: #27ae60;
-    /* Green */
-}
-
-.admin-order-item .status-shipped {
-    background-color: #3498db;
-    /* Blue */
-}
-
-.admin-order-item .status-delivered {
-    background-color: #2ecc71;
-    /* Dark Green */
-}
-
-.admin-order-item .status-canceled {
-    background-color: #e74c3c;
-    /* Red */
-}
+.move-to-next-step {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s,transform 0.3s;
+  }
+  .move-to-next-step:hover {
+    background-color: rgb(51, 50, 50);
+    transform: translateY(-2px);
+  }
+  
