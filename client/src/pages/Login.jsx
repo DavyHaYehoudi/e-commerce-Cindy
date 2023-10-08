@@ -17,32 +17,34 @@ const Login = () => {
       <form>
         {!forgotPassword && (
           <>
-            <label>Email:</label>
+            <label>Email * :</label>
             <input
               type="email"
               value={email}
               autoFocus
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
 
             <label>
-              <span>Mot de passe:</span>
+              <span>Mot de passe * :</span>
               <input
                 type="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Link to="/account/forgot-password">Mot de passe oublié ?</Link>
+              <Link to="/account/forgot-password" style={{color:"blue"}} >Mot de passe oublié ?</Link>
             </label>
 
-            <div className="link-to-register">
-              Vous n'avez pas de compte ?{" "}
-              <Link to="/account/register">Inscrivez-vous</Link>
-            </div>
 
             <button type="button" className="btn" onClick={handleLogin}>
               Se connecter
             </button>
+            <div className="link-to-register">
+              Vous n'avez pas de compte ?{" "}
+              <Link to="/account/register"><b><u>Inscrivez-vous</u> </b></Link>
+            </div>
           </>
         )}
       </form>

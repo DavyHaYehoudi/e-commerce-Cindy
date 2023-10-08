@@ -17,17 +17,19 @@ const ForgotPassword = () => {
       <form>
         {!resetSent && (
           <>
-            <label>Email:</label>
+            <label>Email * :</label>
             <input
               type="email"
               value={email}
+              autoFocus
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <button type="button" onClick={handleResetPassword}>
+            <button  className="btn" type="button" onClick={handleResetPassword}>
               Envoyer l'email de récupération
             </button>
-            <Link to="/account/login">Retour à la page de connexion</Link>
+            <Link to="/account/login" style={{color:"blue"}} >Retour à la page de connexion</Link>
           </>
         )}
 
@@ -37,7 +39,7 @@ const ForgotPassword = () => {
               Un email de récupération a été envoyé à l'adresse {email}. Veuillez
               suivre les instructions pour réinitialiser votre mot de passe.
             </p>
-            <Link to="/account/login">Retour à la page de connexion</Link>
+            <Link to="/account/login"><b><u>Retour à la page de connexion</u></b> </Link>
           </>
         )}
       </form>

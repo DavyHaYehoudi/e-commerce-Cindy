@@ -15,34 +15,42 @@ const Register = () => {
     <div className="register-container">
       <h2>Inscription</h2>
       <form>
-        <label>Email:</label>
+        <label>Email * :</label>
         <input
           type="email"
           value={email}
+          autoFocus
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label>Mot de passe:</label>
+        <label>Mot de passe * :</label>
         <input
           type="password"
           value={password}
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <label>Confirmer le mot de passe:</label>
+        <label>Confirmer le mot de passe * :</label>
         <input
           type="password"
           value={confirmPassword}
+          required
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <button type="button" onClick={handleRegister}>
+        <button className="btn" type="button" onClick={handleRegister}>
           S'inscrire
         </button>
 
         <p>
           Vous avez déjà un compte ?{" "}
-          <Link to="/account/login">Connectez-vous ici</Link>.
+          <Link to="/account/login">
+            <b>
+              <u>Connectez-vous ici</u>
+            </b>{" "}
+          </Link>
         </p>
       </form>
     </div>
