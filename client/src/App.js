@@ -16,6 +16,7 @@ import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/account/login" element={<Login />} />
         <Route path="account/register" element={<Register />} />
         <Route path="account/forgot-password" element={<ForgotPassword />} />

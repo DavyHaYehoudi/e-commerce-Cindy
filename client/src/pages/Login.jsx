@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [forgotPassword] = useState(false);
 
   const handleLogin = () => {
@@ -28,22 +30,42 @@ const Login = () => {
 
             <label>
               <span>Mot de passe * :</span>
-              <input
-                type="password"
-                value={password}
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Link to="/account/forgot-password" style={{color:"blue"}} >Mot de passe oublié ?</Link>
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className="password-icon-container">
+                  {showPassword ? (
+                    <AiOutlineEye
+                      className="password-icon"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  ) : (
+                    <AiOutlineEyeInvisible
+                      className="password-icon"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  )}
+                </div>
+              </div>
+              <Link to="/account/forgot-password" style={{ color: "blue" }}>
+                Mot de passe oublié ?
+              </Link>
             </label>
-
 
             <button type="button" className="btn" onClick={handleLogin}>
               Se connecter
             </button>
             <div className="link-to-register">
               Vous n'avez pas de compte ?{" "}
-              <Link to="/account/register"><b><u>Inscrivez-vous</u> </b></Link>
+              <Link to="/account/register">
+                <b>
+                  <u>Inscrivez-vous</u>{" "}
+                </b>
+              </Link>
             </div>
           </>
         )}

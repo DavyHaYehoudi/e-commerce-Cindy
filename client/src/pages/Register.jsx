@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleRegister = () => {
     // Logique d'inscription (à implémenter)
@@ -24,21 +27,55 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label>Mot de passe * :</label>
-        <input
-          type="password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <label>
+          <span>Mot de passe * :</span>
+          <div className="password-input">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className="password-icon-container">
+              {showPassword ? (
+                <AiOutlineEyeInvisible
+                  className="password-icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              ) : (
+                <AiOutlineEye
+                  className="password-icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
+            </div>
+          </div>
+        </label>
 
-        <label>Confirmer le mot de passe * :</label>
-        <input
-          type="password"
-          value={confirmPassword}
-          required
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+        <label>
+          <span>Confirmer le mot de passe * :</span>
+          <div className="password-input">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              value={confirmPassword}
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <div className="password-icon-container">
+              {showConfirmPassword ? (
+                <AiOutlineEyeInvisible
+                  className="password-icon"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              ) : (
+                <AiOutlineEye
+                  className="password-icon"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              )}
+            </div>
+          </div>
+        </label>
 
         <button className="btn" type="button" onClick={handleRegister}>
           S'inscrire
