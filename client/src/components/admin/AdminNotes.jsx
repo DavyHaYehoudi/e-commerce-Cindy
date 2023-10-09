@@ -13,7 +13,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
   const handleSaveNotes = () => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
-    const noteWithDate = `${adminNotes} (Enregistré le ${formattedDate})`;
+    const noteWithDate = `${adminNotes} <span class="date-text">(enregistré le ${formattedDate})</span>`;
 
     setPreviousNotes((prevNotes) => [noteWithDate, ...prevNotes]);
   };
@@ -35,7 +35,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
       <div className="previous-notes">
         {previousNotes.map((note, index) => (
           <div key={index} className="previous-note">
-            {note}
+            <span dangerouslySetInnerHTML={{ __html: note }} />
             <button className="delete" onClick={() => handleDeleteNote(index)}>
               <BsTrash className="delete-icon" />{" "}
             </button>

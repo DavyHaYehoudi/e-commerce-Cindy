@@ -25,13 +25,19 @@ const OtherOrders = ({ orderHistory, getStatusColor }) => {
                   {order.status}
                 </span>
               </p>
-              <p>№ suivi de commande : {order.trackingNumber || "Non disponible"} </p>
+              <p>
+                № suivi de commande : {order.trackingNumber || "Non disponible"}{" "}
+              </p>
             </div>
             <OrderItems
               products={order.products}
               image={order.products[0].image}
             />
-            <p>Prix total : {order.totalAmount} </p>
+            <p>
+              Prix total : {order.totalAmount} <br /> Moyen de paiement :{" "}
+              {order.paymentMethod["cardType"]}{" "}
+              {order.paymentMethod["last4Digits"]}{" "}
+            </p>
           </div>
         ))}
     </div>

@@ -135,9 +135,12 @@
     background-color: transparent;
     border: none;
     margin-left: 50px;
-    font-size: 18px;
+    font-size: 15px;
 }
 .admin-notes .delete-icon:hover{
     color: red;
     cursor: pointer;
 }
+.date-text {
+    font-size: 0.75rem;
+  }

@@ -20,6 +20,10 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
         </span>
       </p>
       <p>Total de la commande : {order.totalAmount}</p>
+      <p>
+        {order.paymentMethod["cardType"]} - 4 derniers chiffres :{" "}
+        {order.paymentMethod["last4Digits"]}{" "}
+      </p>
 
       <h3>Produits de la commande :</h3>
       <OrderProductsList products={order.products} />

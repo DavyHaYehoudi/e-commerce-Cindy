@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { MdEmail } from "react-icons/md";
 import AdminNotes from "./AdminNotes";
+import ClientPreferencesDetails from "./ClientPreferencesDetails";
 
 const ClientDetails = ({ client, handleStatusChange }) => {
+  const [showDetails, setShowDetails] = useState(false);
   const handleAdminNotesUpdate = (notes) => {
     // Mettez à jour les notes administratives dans votre logique
     console.log("Notes administratives mises à jour :", notes);
+  };
+  const handleDetailsToggle = () => {
+    setShowDetails(!showDetails);
   };
 
   return (
@@ -21,6 +26,8 @@ const ClientDetails = ({ client, handleStatusChange }) => {
       </p>
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
+      <button onClick={handleDetailsToggle}>Afficher les détails</button>
+      {showDetails && <ClientPreferencesDetails client={client} />}
 
       <h2>Historique des commandes</h2>
       <p>Total des commandes : {client.totalOrders}</p>
