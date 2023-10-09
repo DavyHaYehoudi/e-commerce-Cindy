@@ -12,7 +12,7 @@ const DeliveredOrders = ({ orderHistory, getStatusColor }) => {
             order.status === orderStatus[2].name 
         )
         .map((order) => (
-          <div key={order.id} className="order-item">
+          <div key={order.id} className="order-item-user-account">
             <p>Date de commande : {formatDate(order.date)}</p>
             <p>
               Statut :{" "}

@@ -1,40 +1,67 @@
 .user-profile-container {
-    display: flex;
-    max-width: 1200px; 
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .user-info-account,
-  .order-history {
-    flex: 1;
-    margin-right: 30px; 
-  }
-  
-  .order-item {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .delivered-orders,
-  .other-orders {
-    margin-bottom: 30px;
-  }
-  
-  .order-item p {
-    margin-bottom: 10px;
-  }
-  
-  .delivered-orders h3,
-  .other-orders h3 {
-    margin-bottom: 15px;
-  }
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .user-info-account p {
-    margin-bottom: 15px;
-  }
-  .user-info-account b {
-   text-transform: uppercase;
-  }
-  
+.user-info-account,
+.order-history {
+  margin-right: 30px;
+}
+.order-history {
+  flex: 1.5;
+}
+.user-info-account{
+  flex:0.5;
+}
+.user-info-account button{
+  width: 100%;
+  border: 1px solid var(--border-color);
+  padding: 8px;
+}
+.user-info-account input:focus{
+  outline:none;
+  border:1px solid black;
+  box-shadow: 0 0 3px black;
+}
+.order-item-wrapper-user-account {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.order-item-wrapper-user-account .date-status{
+  display: flex;
+  justify-content: space-between;
+}
+.order-item-user-account {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.order-item-user-account p {
+  margin-bottom: 10px;
+}
+
+.delivered-orders,
+.other-orders {
+  margin-bottom: 30px;
+}
+
+.delivered-orders h3,
+.other-orders h3 {
+  margin-bottom: 15px;
+}
+
+.user-info-account p {
+  margin-bottom: 15px;
+}
+
+.user-info-account b {
+  text-transform: uppercase;
+}

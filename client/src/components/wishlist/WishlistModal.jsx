@@ -48,8 +48,8 @@ const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
           </div>
         </div>
         <div className="modal-body">
-          {favoriteProductsMock.map((product) => (
-            <WishlistProduct product={product} />
+          {favoriteProductsMock.map((product,i) => (
+            <WishlistProduct product={product} key={i} />
           ))}
         </div>
       </div>

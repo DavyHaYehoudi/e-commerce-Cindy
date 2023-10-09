@@ -11,6 +11,10 @@ export const userInfo = {
   email: "john@example.com",
   phone: "07 22 90 87 44",
   address: "12 rue Charles De Gaulle, 27 000 Lyon",
+  paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
   wishlist: [
     {
       productId: 101,

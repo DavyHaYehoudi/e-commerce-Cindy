@@ -17,6 +17,7 @@ export const adminDashboard = [
         status: orderStatus[0].name,
         total: "€150",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 101,
@@ -40,6 +41,7 @@ export const adminDashboard = [
         status: orderStatus[1].name,
         total: "€200",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 103,
@@ -56,7 +58,8 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€150",
         nonTraitee: false,
-        products: [
+        trackingNumber: null,
+                products: [
           {
             productId: 104,
             name: "Product 4",
@@ -83,6 +86,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€120",
         nonTraitee: true,
+        trackingNumber: null,
         products: [
           {
             productId: 105,
@@ -106,6 +110,7 @@ export const adminDashboard = [
         status: orderStatus[1].name,
         total: "€180",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 107,
@@ -147,6 +152,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€150",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 110,
@@ -163,6 +169,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€100",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 111,
@@ -211,6 +218,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€120",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 115,
@@ -234,6 +242,7 @@ export const adminDashboard = [
         status: orderStatus[1].name,
         total: "€80",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 117,
@@ -275,6 +284,7 @@ export const adminDashboard = [
         status: orderStatus[0].name,
         total: "€100",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 120,
@@ -291,6 +301,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€120",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 121,
@@ -328,6 +339,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€100",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 125,
@@ -355,6 +367,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€80",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 126,
@@ -382,6 +395,7 @@ export const adminDashboard = [
         status: orderStatus[0].name,
         total: "€100",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 127,
@@ -398,6 +412,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€150",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 128,
@@ -414,6 +429,7 @@ export const adminDashboard = [
         status: orderStatus[1].name,
         total: "€200",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 129,
@@ -430,6 +446,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€100",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 130,
@@ -464,6 +481,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€80",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 132,
@@ -480,6 +498,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€100",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 133,
@@ -507,6 +526,7 @@ export const adminDashboard = [
         status: orderStatus[0].name,
         total: "€100",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 134,
@@ -530,6 +550,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€80",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 136,
@@ -546,6 +567,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€70",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 137,
@@ -580,6 +602,7 @@ export const adminDashboard = [
         status: orderStatus[3].name,
         total: "€80",
         nonTraitee: true,
+        trackingNumber: "XYZ123456",
         products: [
           {
             productId: 139,
@@ -596,6 +619,7 @@ export const adminDashboard = [
         status: orderStatus[2].name,
         total: "€100",
         nonTraitee: false,
+        trackingNumber: null,
         products: [
           {
             productId: 140,

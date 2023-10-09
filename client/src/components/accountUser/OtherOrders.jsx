@@ -8,27 +8,30 @@ const OtherOrders = ({ orderHistory, getStatusColor }) => {
     <div className="other-orders">
       <h3>Autres Commandes</h3>
       {orderHistory
-        .filter(
-          (order) =>
-            order.status !== orderStatus[2].name
-        )
+        .filter((order) => order.status !== orderStatus[2].name)
         .map((order) => (
-          <div key={order.id} className="order-item">
-            <p>Date de commande : {formatDate(order.date)}</p>
-            <OrderItems products={order.products} image={order.products[0].image} />
+          <div key={order.id} className="order-item-wrapper-user-account">
+            <div className="date-status">
+              <p>Date de commande : {formatDate(order.date)}</p>
+              <p>
+                <span
+                  style={{
+                    backgroundColor: getStatusColor(order.status),
+                    color: "#fff",
+                    padding: "5px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  {order.status}
+                </span>
+              </p>
+              <p>№ suivi de commande : {order.trackingNumber || "Non disponible"} </p>
+            </div>
+            <OrderItems
+              products={order.products}
+              image={order.products[0].image}
+            />
             <p>Prix total : {order.totalAmount} </p>
-            <p>
-              <span
-                style={{
-                  backgroundColor: getStatusColor(order.status),
-                  color: "#fff",
-                  padding: "5px",
-                  borderRadius: "5px",
-                }}
-              >
-                {order.status}
-              </span>
-            </p>
           </div>
         ))}
     </div>
