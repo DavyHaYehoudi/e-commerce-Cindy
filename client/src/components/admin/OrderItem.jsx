@@ -2,6 +2,10 @@ import React from "react";
 import { formatDate } from "../../helpers/formatDate";
 import { getStatusColor } from "../../helpers/getStatusColor";
 import OrderProductsList from "./OrderProductsList";
+import { Link } from "react-router-dom";
+import { orderStatus } from "../../mocks/orderStatus";
+import { ordersMock } from "../../mocks/ordersMock";
+import { userInfo } from "../../mocks/userInfo";
 
 const OrderItem = ({ client, order, handleStatusChange }) => {
   return (
@@ -21,7 +25,7 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
       </p>
       <p>Total de la commande : {order.totalAmount}</p>
       <p>
-        {order.paymentMethod["cardType"]}{" "} se terminant par :{" "}
+        {order.paymentMethod["cardType"]} se terminant par :{" "}
         {order.paymentMethod["last4Digits"]}{" "}
       </p>
 
@@ -41,6 +45,19 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
           Passer à l'étape suivante
         </button>
       </div>
+
+      {order.status === orderStatus[2].name && (
+        <div>
+          <Link
+            to={`/admin/generate-invoice/${order.id}`}
+            state={{ order: ordersMock[0], user: userInfo }}
+          >
+            <button className="account-display-toggle-btn">
+              Générer la facture
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

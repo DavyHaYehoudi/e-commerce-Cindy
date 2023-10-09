@@ -163,7 +163,7 @@
 }
 
 .move-to-next-step:hover,
-.admin-notes-add-btn:hover{
+.admin-notes-add-btn:hover {
     transform: translateY(-2px);
 }
 

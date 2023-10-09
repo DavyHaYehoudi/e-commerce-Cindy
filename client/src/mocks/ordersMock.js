@@ -1,52 +1,11 @@
 import { materials } from "./materials";
+import { orderStatus } from "./orderStatus";
 import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
-import { orderStatus } from "./orderStatus";
 
-export const userInfo = {
-  id:1,
-  firstName: "John",
-  lastName: "Doe",
-  email: "john@example.com",
-  phone: "07 22 90 87 44",
-  address: "12 rue Charles De Gaulle, 27 000 Lyon",
-  wishlist: [
-    {
-      productId: 101,
-      name: "Product 1",
-      material: materials[2].name,
-      price: "€50",
-      image: bo,
-    },
-    {
-      productId: 105,
-      name: "Product 105",
-      material: materials[0].name,
-      price: "€30",
-      image: col,
-    },
-  ],
-  cart: [
-    {
-      productId: 102,
-      name: "Product 2",
-      material: materials[1].name,
-      price: "€25",
-      quantity: 2,
-      image: bar,
-    },
-    {
-      productId: 108,
-      name: "Product 108",
-      material: materials[3].name,
-      price: "€35",
-      quantity: 1,
-      image: bra,
-    },
-  ],
-  orders: [
+export const ordersMock= [
     {
       id: 1,
       date: "2023-03-10 10:20",
@@ -112,5 +71,4 @@ export const userInfo = {
         },
       ],
     },
-  ],
-};
+  ]
