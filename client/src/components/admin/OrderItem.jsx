@@ -6,9 +6,8 @@ import OrderProductsList from "./OrderProductsList";
 const OrderItem = ({ client, order, handleStatusChange }) => {
   return (
     <div className="admin-order-item">
-      <p>Date de commande: {formatDate(order.date)}</p>
+      <p>Date de commande : {formatDate(order.date)}</p>
       <p>
-        Statut:{" "}
         <span
           style={{
             backgroundColor: getStatusColor(order.status),
@@ -20,9 +19,9 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
           {order.status}
         </span>
       </p>
-      <p>Total de la commande: {order.total}</p>
+      <p>Total de la commande : {order.totalAmount}</p>
 
-      <h3>Produits de la commande:</h3>
+      <h3>Produits de la commande :</h3>
       <OrderProductsList products={order.products} />
       <div className="admin-order-next-step">
         <button

@@ -1,5 +1,9 @@
 import { materials } from "./materials";
 import { orderStatus } from "./orderStatus";
+import bo from "../assets/bo.png";
+import bar from "../assets/bar.png";
+import bra from "../assets/bra.png";
+import col from "../assets/col.png";
 
 export const adminDashboard = [
   {
@@ -7,15 +11,53 @@ export const adminDashboard = [
     name: "John Doe",
     email: "john@example.com",
     phone: "06 90 12 34 56",
-    address: "12 Rue de la République, 75001 Paris",
+    shippingAddress: "12 Rue de la République, 75001 Paris",
     totalOrders: 3,
     totalOrderValue: "€500",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 1,
         date: "2023-01-15 08:30",
         status: orderStatus[0].name,
-        total: "€150",
+        totalAmount: "€150",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -25,6 +67,7 @@ export const adminDashboard = [
             price: "€50",
             quantity: 2,
             material: materials[0].name,
+            image:bo,
           },
           {
             productId: 102,
@@ -32,6 +75,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 1,
             material: materials[3].name,
+            image:bar,
           },
         ],
       },
@@ -39,7 +83,7 @@ export const adminDashboard = [
         id: 2,
         date: "2023-02-02 14:45",
         status: orderStatus[1].name,
-        total: "€200",
+        totalAmount: "€200",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -49,6 +93,7 @@ export const adminDashboard = [
             price: "€100",
             quantity: 1,
             material: materials[2].name,
+            image:bra,
           },
         ],
       },
@@ -56,7 +101,7 @@ export const adminDashboard = [
         id: 3,
         date: "2023-03-10 10:20",
         status: orderStatus[2].name,
-        total: "€150",
+        totalAmount: "€150",
         nonTraitee: false,
         trackingNumber: null,
                 products: [
@@ -66,6 +111,7 @@ export const adminDashboard = [
             price: "€75",
             quantity: 2,
             material: materials[1].name,
+            image:col,
           },
         ],
       },
@@ -76,15 +122,53 @@ export const adminDashboard = [
     name: "Alice Smith",
     email: "alice@example.com",
     phone: "07 89 01 23 45",
-    address: "45 Avenue des Champs-Élysées, 75008 Paris",
+    shippingAddress: "45 Avenue des Champs-Élysées, 75008 Paris",
     totalOrders: 2,
     totalOrderValue: "€300",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 4,
         date: "2023-04-05 09:55",
         status: orderStatus[3].name,
-        total: "€120",
+        totalAmount: "€120",
         nonTraitee: true,
         trackingNumber: null,
         products: [
@@ -94,6 +178,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 2,
             material: materials[0].name,
+            image:bo,
           },
           {
             productId: 106,
@@ -101,6 +186,7 @@ export const adminDashboard = [
             price: "€45",
             quantity: 1,
             material: materials[3].name,
+            image:bar,
           },
         ],
       },
@@ -108,7 +194,7 @@ export const adminDashboard = [
         id: 5,
         date: "2023-04-15 12:30",
         status: orderStatus[1].name,
-        total: "€180",
+        totalAmount: "€180",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -118,6 +204,7 @@ export const adminDashboard = [
             price: "€20",
             quantity: 3,
             material: materials[2].name,
+            image:bra,
           },
           {
             productId: 108,
@@ -125,6 +212,7 @@ export const adminDashboard = [
             price: "€35",
             quantity: 2,
             material: materials[1].name,
+            image:col,
           },
           {
             productId: 109,
@@ -132,6 +220,7 @@ export const adminDashboard = [
             price: "€50",
             quantity: 1,
             material: materials[0].name,
+            image:bo,
           },
         ],
       },
@@ -142,15 +231,53 @@ export const adminDashboard = [
     name: "Bob Johnson",
     email: "bob@example.com",
     phone: "06 78 90 12 34",
-    address: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
+    shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
     totalOrders: 2,
     totalOrderValue: "€250",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 6,
         date: "2023-05-01 18:45",
         status: orderStatus[2].name,
-        total: "€150",
+        totalAmount: "€150",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -160,6 +287,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 4,
             material: materials[0].name,
+            image:bar,
           },
         ],
       },
@@ -167,7 +295,7 @@ export const adminDashboard = [
         id: 7,
         date: "2023-05-10 10:00",
         status: orderStatus[3].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -177,6 +305,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 2,
             material: materials[2].name,
+            image:bra,
           },
           {
             productId: 112,
@@ -184,6 +313,7 @@ export const adminDashboard = [
             price: "€15",
             quantity: 1,
             material: materials[1].name,
+            image:col,
           },
           {
             productId: 113,
@@ -191,6 +321,7 @@ export const adminDashboard = [
             price: "€40",
             quantity: 3,
             material: materials[0].name,
+            image:bo,
           },
           {
             productId: 114,
@@ -198,6 +329,7 @@ export const adminDashboard = [
             price: "€20",
             quantity: 2,
             material: materials[0].name,
+            image:bar,
           },
         ],
       },
@@ -208,15 +340,53 @@ export const adminDashboard = [
     name: "Eva Williams",
     email: "eva@example.com",
     phone: "07 67 89 01 23",
-    address: "22 Rue de la Pompe, 75116 Paris",
+    shippingAddress: "22 Rue de la Pompe, 75116 Paris",
     totalOrders: 2,
     totalOrderValue: "€200",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 8,
         date: "2023-06-02 14:20",
         status: orderStatus[3].name,
-        total: "€120",
+        totalAmount: "€120",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -226,6 +396,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 1,
             material: materials[2].name,
+            image:bra,
           },
           {
             productId: 116,
@@ -233,6 +404,7 @@ export const adminDashboard = [
             price: "€40",
             quantity: 2,
             material: materials[2].name,
+            image:col,
           },
         ],
       },
@@ -240,7 +412,7 @@ export const adminDashboard = [
         id: 9,
         date: "2023-06-15 08:00",
         status: orderStatus[1].name,
-        total: "€80",
+        totalAmount: "€80",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -250,6 +422,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 3,
             material: materials[1].name,
+            image:bo,
           },
           {
             productId: 118,
@@ -257,6 +430,7 @@ export const adminDashboard = [
             price: "€15",
             quantity: 1,
             material: materials[0].name,
+            image:bar,
           },
           {
             productId: 119,
@@ -264,6 +438,7 @@ export const adminDashboard = [
             price: "€50",
             quantity: 2,
             material: materials[1].name,
+            image:bra,
           },
         ],
       },
@@ -274,15 +449,53 @@ export const adminDashboard = [
     name: "Sophie Miller",
     email: "sophie@example.com",
     phone: "06 56 78 90 12",
-    address: "5 Quai de la Tournelle, 75005 Paris",
+    shippingAddress: "5 Quai de la Tournelle, 75005 Paris",
     totalOrders: 3,
     totalOrderValue: "€320",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 10,
         date: "2023-07-05 11:30",
         status: orderStatus[0].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -292,6 +505,7 @@ export const adminDashboard = [
             price: "€35",
             quantity: 4,
             material: materials[3].name,
+            image:col,
           },
         ],
       },
@@ -299,7 +513,7 @@ export const adminDashboard = [
         id: 11,
         date: "2023-07-15 15:45",
         status: orderStatus[2].name,
-        total: "€120",
+        totalAmount: "€120",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -309,6 +523,7 @@ export const adminDashboard = [
             price: "€20",
             quantity: 2,
             material: materials[1].name,
+            image:bo,
           },
           {
             productId: 122,
@@ -316,6 +531,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 1,
             material: materials[2].name,
+            image:bar,
           },
           {
             productId: 123,
@@ -323,6 +539,7 @@ export const adminDashboard = [
             price: "€45",
             quantity: 3,
             material: materials[3].name,
+            image:bra,
           },
           {
             productId: 124,
@@ -330,6 +547,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 2,
             material: materials[3].name,
+            image:col,
           },
         ],
       },
@@ -337,7 +555,7 @@ export const adminDashboard = [
         id: 12,
         date: "2023-08-02 09:20",
         status: orderStatus[3].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -347,6 +565,7 @@ export const adminDashboard = [
             price: "€40",
             quantity: 1,
             material: materials[3].name,
+            image:bo,
           },
         ],
       },
@@ -357,15 +576,53 @@ export const adminDashboard = [
     name: "Daniel Brown",
     email: "daniel@example.com",
     phone: "07 45 67 89 01",
-    address: "18 Avenue Montaigne, 75008 Paris",
+    shippingAddress: "18 Avenue Montaigne, 75008 Paris",
     totalOrders: 1,
     totalOrderValue: "€80",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 13,
         date: "2023-08-10 14:30",
         status: orderStatus[3].name,
-        total: "€80",
+        totalAmount: "€80",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -375,6 +632,7 @@ export const adminDashboard = [
             price: "€35",
             quantity: 3,
             material: materials[0].name,
+            image:bar,
           },
         ],
       },
@@ -385,15 +643,53 @@ export const adminDashboard = [
     name: "Emma Davis",
     email: "emma@example.com",
     phone: "06 90 12 34 56",
-    address: "30 Rue du Bac, 75007 Paris",
+    shippingAddress: "30 Rue du Bac, 75007 Paris",
     totalOrders: 4,
     totalOrderValue: "€450",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 14,
         date: "2023-09-01 18:45",
         status: orderStatus[0].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -403,6 +699,7 @@ export const adminDashboard = [
             price: "€15",
             quantity: 1,
             material: materials[0].name,
+            image:bra,
           },
         ],
       },
@@ -410,7 +707,7 @@ export const adminDashboard = [
         id: 15,
         date: "2023-09-10 10:00",
         status: orderStatus[2].name,
-        total: "€150",
+        totalAmount: "€150",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -420,6 +717,7 @@ export const adminDashboard = [
             price: "€50",
             quantity: 2,
             material: materials[0].name,
+            image:col,
           },
         ],
       },
@@ -427,7 +725,7 @@ export const adminDashboard = [
         id: 16,
         date: "2023-09-20 12:00",
         status: orderStatus[1].name,
-        total: "€200",
+        totalAmount: "€200",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -437,6 +735,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 4,
             material: materials[2].name,
+            image:bo,
           },
         ],
       },
@@ -444,7 +743,7 @@ export const adminDashboard = [
         id: 17,
         date: "2023-09-25 09:30",
         status: orderStatus[3].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -454,6 +753,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 2,
             material: materials[0].name,
+            image:bar,
           },
           {
             productId: 131,
@@ -461,6 +761,7 @@ export const adminDashboard = [
             price: "€20",
             quantity: 1,
             material: materials[0].name,
+            image:bra,
           },
         ],
       },
@@ -471,15 +772,53 @@ export const adminDashboard = [
     name: "David White",
     email: "david@example.com",
     phone: "06 34 56 78 90",
-    address: "10 Avenue Foch, 75116 Paris",
+    shippingAddress: "10 Avenue Foch, 75116 Paris",
     totalOrders: 2,
     totalOrderValue: "€180",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 18,
         date: "2023-10-05 15:15",
         status: orderStatus[2].name,
-        total: "€80",
+        totalAmount: "€80",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -489,6 +828,7 @@ export const adminDashboard = [
             price: "€45",
             quantity: 3,
             material: materials[2].name,
+            image:col,
           },
         ],
       },
@@ -496,7 +836,7 @@ export const adminDashboard = [
         id: 19,
         date: "2023-10-15 08:45",
         status: orderStatus[3].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -506,6 +846,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 2,
             material: materials[2].name,
+            image:bo,
           },
         ],
       },
@@ -516,15 +857,53 @@ export const adminDashboard = [
     name: "Olivia Johnson",
     email: "olivia@example.com",
     phone: "07 23 45 67 89",
-    address: "14 Rue de Rivoli, 75001 Paris",
+    shippingAddress: "14 Rue de Rivoli, 75001 Paris",
     totalOrders: 3,
     totalOrderValue: "€250",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 20,
         date: "2023-11-01 11:30",
         status: orderStatus[0].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -534,6 +913,7 @@ export const adminDashboard = [
             price: "€30",
             quantity: 1,
             material: materials[2].name,
+            image:bar,
           },
           {
             productId: 135,
@@ -541,6 +921,7 @@ export const adminDashboard = [
             price: "€40",
             quantity: 2,
             material: materials[2].name,
+            image:bra,
           },
         ],
       },
@@ -548,7 +929,7 @@ export const adminDashboard = [
         id: 21,
         date: "2023-11-10 15:45",
         status: orderStatus[2].name,
-        total: "€80",
+        totalAmount: "€80",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -558,6 +939,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 3,
             material: materials[2].name,
+            image:col,
           },
         ],
       },
@@ -565,7 +947,7 @@ export const adminDashboard = [
         id: 22,
         date: "2023-11-20 09:20",
         status: orderStatus[3].name,
-        total: "€70",
+        totalAmount: "€70",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -575,6 +957,7 @@ export const adminDashboard = [
             price: "€15",
             quantity: 1,
             material: materials[1].name,
+            image:bo,
           },
           {
             productId: 138,
@@ -582,6 +965,7 @@ export const adminDashboard = [
             price: "€50",
             quantity: 2,
             material: materials[1].name,
+            image:bar,
           },
         ],
       },
@@ -592,15 +976,53 @@ export const adminDashboard = [
     name: "William Smith",
     email: "william@example.com",
     phone: "06 12 34 56 78",
-    address: "55 Rue du Faubourg Saint-Antoine, 75011 Paris",
+    shippingAddress: "55 Rue du Faubourg Saint-Antoine, 75011 Paris",
     totalOrders: 2,
     totalOrderValue: "€180",
+    paymentMethods: [
+    { cardType: "Visa", last4Digits: "**** 1234" },
+    { cardType: "MasterCard", last4Digits: "**** 5678" },
+  ],
+  wishlist: [
+    {
+      productId: 101,
+      name: "Product 1",
+      material: materials[2].name,
+      price: "€50",
+      image: bo,
+    },
+    {
+      productId: 105,
+      name: "Product 105",
+      material: materials[0].name,
+      price: "€30",
+      image: col,
+    },
+  ],
+  cart: [
+    {
+      productId: 102,
+      name: "Product 2",
+      material: materials[1].name,
+      price: "€25",
+      quantity: 2,
+      image: bar,
+    },
+    {
+      productId: 108,
+      name: "Product 108",
+      material: materials[3].name,
+      price: "€35",
+      quantity: 1,
+      image: bra,
+    },
+  ],
     orders: [
       {
         id: 23,
         date: "2023-12-05 14:30",
         status: orderStatus[3].name,
-        total: "€80",
+        totalAmount: "€80",
         nonTraitee: true,
         trackingNumber: "XYZ123456",
         products: [
@@ -610,6 +1032,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 3,
             material: materials[1].name,
+            image:col,
           },
         ],
       },
@@ -617,7 +1040,7 @@ export const adminDashboard = [
         id: 24,
         date: "2023-12-15 08:45",
         status: orderStatus[2].name,
-        total: "€100",
+        totalAmount: "€100",
         nonTraitee: false,
         trackingNumber: null,
         products: [
@@ -627,6 +1050,7 @@ export const adminDashboard = [
             price: "€25",
             quantity: 3,
             material: materials[1].name,
+            image:bra,
           },
         ],
       },

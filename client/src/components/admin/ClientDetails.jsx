@@ -1,24 +1,30 @@
 import React from "react";
 import OrderItem from "./OrderItem";
 import { MdEmail } from "react-icons/md";
+import AdminNotes from "./AdminNotes";
 
 const ClientDetails = ({ client, handleStatusChange }) => {
+  const handleAdminNotesUpdate = (notes) => {
+    // Mettez à jour les notes administratives dans votre logique
+    console.log("Notes administratives mises à jour :", notes);
+  };
+
   return (
     <div className="client-details">
       <h2>Informations du client</h2>
-      <p>Nom: {client.name}</p>
+      <p>Nom : {client.name}</p>
       <p className="client-details-email">
-       Email:{" "} 
+        Email :{" "}
         <a href={`mailto:${client.email}`}>
-          {client.email} <MdEmail className="icon"/>
+          {client.email} <MdEmail className="icon" />
         </a>
       </p>
-      <p>Téléphone: {client.phone}</p>
-      <p>Adresse: {client.address}</p>
+      <p>Téléphone : {client.phone}</p>
+      <p>Adresse : {client.shippingAddress}</p>
 
       <h2>Historique des commandes</h2>
-      <p>Total des commandes: {client.totalOrders}</p>
-      <p>Valeur totale des commandes: {client.totalOrderValue}</p>
+      <p>Total des commandes : {client.totalOrders}</p>
+      <p>Valeur totale des commandes : {client.totalOrderValue}</p>
 
       {client.orders.map((order) => (
         <OrderItem
@@ -28,6 +34,8 @@ const ClientDetails = ({ client, handleStatusChange }) => {
           handleStatusChange={handleStatusChange}
         />
       ))}
+
+      <AdminNotes initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
     </div>
   );
 };

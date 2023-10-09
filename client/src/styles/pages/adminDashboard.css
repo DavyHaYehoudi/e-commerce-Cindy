@@ -48,6 +48,7 @@
 .client-header span {
     flex: 1;
 }
+
 .non-traitee-badge {
     max-width: 10%;
     background-color: #ff0000;
@@ -85,11 +86,12 @@
     font-size: 18px;
 }
 
-.client-details .icon{
+.client-details .icon {
     cursor: pointer;
     font-size: 25px;
 }
-.client-details .icon:hover{
+
+.client-details .icon:hover {
     color: rgb(88, 103, 2);
 }
 
@@ -109,19 +111,33 @@
     border-radius: 5px;
     color: #fff;
 }
-.admin-order-next-step{
+
+.admin-order-next-step {
     text-align: end;
 }
-.move-to-next-step {
+
+.move-to-next-step,
+.admin-notes .add {
     background-color: black;
     color: #fff;
     border: none;
     padding: 8px;
     cursor: pointer;
-    transition: background-color 0.3s,transform 0.3s;
-  }
-  .move-to-next-step:hover {
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.move-to-next-step:hover,
+.admin-notes .add:hover {
     background-color: rgb(51, 50, 50);
     transform: translateY(-2px);
-  }
-  
+}
+.admin-notes .delete{
+    background-color: transparent;
+    border: none;
+    margin-left: 50px;
+    font-size: 18px;
+}
+.admin-notes .delete-icon:hover{
+    color: red;
+    cursor: pointer;
+}
