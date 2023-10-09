@@ -36,7 +36,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
         {previousNotes.map((note, index) => (
           <div key={index} className="previous-note">
             <span dangerouslySetInnerHTML={{ __html: note }} />
-            <button className="delete" onClick={() => handleDeleteNote(index)}>
+            <button className="admin-notes-trash-btn" onClick={() => handleDeleteNote(index)}>
               <BsTrash className="delete-icon" />{" "}
             </button>
           </div>
@@ -50,7 +50,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
       />
 
       {isNotesEmpty ? null : (
-        <button className="add" onClick={handleSaveNotes}>
+        <button className="admin-notes-add-btn" onClick={handleSaveNotes}>
           Enregistrer cette note
         </button>
       )}

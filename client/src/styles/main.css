@@ -77,6 +77,19 @@ img{
     opacity: 1;
 }
 
+/* BOUTON TOGGLE INTERFACES COMPTES ADMIN ET CLIENT */
+.account-display-toggle-btn{
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.account-display-toggle-btn:hover{
+    transform: translateY(-2px);
+}
+
 /* *{
     border: 1px red solid;
 } */

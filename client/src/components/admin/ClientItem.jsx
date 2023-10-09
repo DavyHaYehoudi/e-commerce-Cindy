@@ -13,14 +13,14 @@ const ClientItem = ({
         className="client-header"
         onClick={() => handleClientClick(client.id)}
       >
-        <span>{client.name}</span>
+        <span>{client.firstName}{" "}{client.lastName} </span>
         {client.orders.some((order) => order.nonTraitee) && (
           <span className="non-traitee-badge">Non traitée</span>
         )}
         <button>
           {clientDetails[client.id]
-            ? "Fermer les détails"
-            : "Afficher les détails"}
+            ? "Fermer"
+            : "Voir la fiche client"}
         </button>
       </div>
       {clientDetails[client.id] && (

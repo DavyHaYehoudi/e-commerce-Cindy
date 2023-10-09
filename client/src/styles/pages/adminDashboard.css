@@ -85,11 +85,19 @@
     font-size: 18px;
 }
 
+/* ICON EMAIL CLIENT */
 .client-details .icon {
     cursor: pointer;
     font-size: 25px;
+    transition: transform 0.3s;
 }
-.clientPreferenceDetails{
+
+.client-details .icon:hover {
+    transform: translateY(-2px);
+}
+
+.clientPreferenceDetails,
+.clientOrders {
     margin: 50px;
 }
 
@@ -119,38 +127,54 @@
     color: #fff;
 }
 
+
+
+.date-text {
+    font-size: 0.75rem;
+}
+
+/* GESTION DES BOUTONS CLIENT DANS LE DASHBOARD ADMIN */
 .admin-order-next-step {
     text-align: end;
 }
 
-.move-to-next-step,
-.admin-notes .add {
+.move-to-next-step {
+    background-color: white;
+    color: #333;
+    border: 2px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.move-to-next-step:hover {
+    background-color: #f1f1f1;
+}
+
+.admin-notes-add-btn {
     background-color: black;
     color: #fff;
     border: none;
     padding: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: transform 0.3s;
 }
 
 .move-to-next-step:hover,
-.admin-notes .add:hover {
-    background-color: rgb(51, 50, 50);
+.admin-notes-add-btn:hover{
     transform: translateY(-2px);
 }
 
-.admin-notes .delete {
+.admin-notes-trash-btn {
     background-color: transparent;
     border: none;
     margin-left: 50px;
     font-size: 15px;
 }
 
-.admin-notes .delete-icon:hover {
+.admin-notes-trash-btn .delete-icon:hover {
     color: red;
     cursor: pointer;
-}
-
-.date-text {
-    font-size: 0.75rem;
 }

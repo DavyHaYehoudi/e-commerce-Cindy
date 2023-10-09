@@ -1,9 +1,16 @@
-import React from "react";
-import { formatDate } from "../../helpers/formatDate";
+import React, { useState } from "react";
 import OrderItems from "./OrderItems";
+import ToggleButton from "../dumbs/ToggleButton";
+import { formatDate } from "../../helpers/formatDate";
 import { orderStatus } from "../../mocks/orderStatus";
 
 const OtherOrders = ({ orderHistory, getStatusColor }) => {
+  const [showOrderItems, setShowOrderItems] = useState(false);
+
+  const handleToggleOrderItems = () => {
+    setShowOrderItems(!showOrderItems);
+  };
+
   return (
     <div className="other-orders">
       <h3>Autres Commandes</h3>
@@ -29,15 +36,27 @@ const OtherOrders = ({ orderHistory, getStatusColor }) => {
                 № suivi de commande : {order.trackingNumber || "Non disponible"}{" "}
               </p>
             </div>
-            <OrderItems
-              products={order.products}
-              image={order.products[0].image}
+
+            <ToggleButton
+              initialText="Afficher les articles"
+              hiddenText="Fermer les articles"
+              buttonClass="account-display-toggle-btn"
+              content={
+                <OrderItems
+                  products={order.products}
+                  image={order.products[0].image}
+                />
+              }
+              onToggle={handleToggleOrderItems}
             />
-            <p>
-              Prix total : {order.totalAmount} <br /> Moyen de paiement :{" "}
-              {order.paymentMethod["cardType"]}{" "}
-              {order.paymentMethod["last4Digits"]}{" "}
-            </p>
+
+            {showOrderItems && (
+              <p>
+                Prix total : {order.totalAmount} <br /> Moyen de paiement :{" "}
+                {order.paymentMethod["cardType"]} se terminant par :{" "}
+                {order.paymentMethod["last4Digits"]}{" "}
+              </p>
+            )}
           </div>
         ))}
     </div>

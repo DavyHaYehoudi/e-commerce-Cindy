@@ -8,7 +8,8 @@ import col from "../assets/col.png";
 export const adminDashboard = [
   {
     id: 1,
-    name: "John Doe",
+    firstName:"John",
+    lastName:"Doe",
     email: "john@example.com",
     phone: "06 90 12 34 56",
     shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -118,7 +119,8 @@ export const adminDashboard = [
   },
   {
     id: 2,
-    name: "Alice Smith",
+    firstName:"Alice",
+    lastName:"Smith",
     email: "alice@example.com",
     phone: "07 89 01 23 45",
     shippingAddress: "45 Avenue des Champs-Élysées, 75008 Paris",
@@ -225,7 +227,8 @@ export const adminDashboard = [
   },
   {
     id: 3,
-    name: "Bob Johnson",
+    firstName:"Bob",
+    lastName:"Johnson",
     email: "bob@example.com",
     phone: "06 78 90 12 34",
     shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
@@ -332,7 +335,8 @@ export const adminDashboard = [
   },
   {
     id: 4,
-    name: "Eva Williams",
+    firstName:"Eva",
+    lastName:"Williams",
     email: "eva@example.com",
     phone: "07 67 89 01 23",
     shippingAddress: "22 Rue de la Pompe, 75116 Paris",
@@ -439,7 +443,8 @@ export const adminDashboard = [
   },
   {
     id: 5,
-    name: "Sophie Miller",
+    firstName:"Sophie",
+    lastName:"Miller",
     email: "sophie@example.com",
     phone: "06 56 78 90 12",
     shippingAddress: "5 Quai de la Tournelle, 75005 Paris",
@@ -565,7 +570,8 @@ export const adminDashboard = [
   },
   {
     id: 6,
-    name: "Daniel Brown",
+    firstName:"Daniel",
+    lastName:"Brown",
     email: "daniel@example.com",
     phone: "07 45 67 89 01",
     shippingAddress: "18 Avenue Montaigne, 75008 Paris",
@@ -629,7 +635,8 @@ export const adminDashboard = [
   },
   {
     id: 7,
-    name: "Emma Davis",
+    firstName:"Emma",
+    lastName:"Davis",
     email: "emma@example.com",
     phone: "06 90 12 34 56",
     shippingAddress: "30 Rue du Bac, 75007 Paris",
@@ -758,7 +765,8 @@ export const adminDashboard = [
   },
   {
     id: 8,
-    name: "David White",
+    firstName:"David",
+    lastName:"White",
     email: "david@example.com",
     phone: "06 34 56 78 90",
     shippingAddress: "10 Avenue Foch, 75116 Paris",
@@ -841,7 +849,8 @@ export const adminDashboard = [
   },
   {
     id: 9,
-    name: "Olivia Johnson",
+    firstName:"Olivia",
+    lastName:"Johnson",
     email: "olivia@example.com",
     phone: "07 23 45 67 89",
     shippingAddress: "14 Rue de Rivoli, 75001 Paris",
@@ -959,7 +968,8 @@ export const adminDashboard = [
   },
   {
     id: 10,
-    name: "William Smith",
+    firstName:"William",
+    lastName:"Smith",
     email: "william@example.com",
     phone: "06 12 34 56 78",
     shippingAddress: "55 Rue du Faubourg Saint-Antoine, 75011 Paris",

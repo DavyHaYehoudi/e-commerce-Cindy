@@ -11,10 +11,6 @@ export const userInfo = {
   email: "john@example.com",
   phone: "07 22 90 87 44",
   address: "12 rue Charles De Gaulle, 27 000 Lyon",
-  paymentMethods: [
-    { cardType: "Visa", last4Digits: "**** 1234" },
-    { cardType: "MasterCard", last4Digits: "**** 5678" },
-  ],
   wishlist: [
     {
       productId: 101,
@@ -55,6 +51,7 @@ export const userInfo = {
       date: "2023-03-10 10:20",
       status: orderStatus[2].name,
       totalAmount: "€150",
+      paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: false,
       products: [
@@ -73,6 +70,7 @@ export const userInfo = {
       date: "2023-03-07 11:40",
       status: orderStatus[1].name,
       totalAmount: "€250",
+      paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: true,
       products: [
@@ -91,6 +89,7 @@ export const userInfo = {
       date: "2023-03-10 22:20",
       status: orderStatus[0].name,
       totalAmount: "€150",
+      paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       nonTraitee: false,
       products: [
