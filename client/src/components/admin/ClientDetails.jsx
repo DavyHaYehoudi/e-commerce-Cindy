@@ -27,7 +27,11 @@ const ClientDetails = ({ client, handleStatusChange }) => {
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
       <button onClick={handleDetailsToggle}>Afficher les détails</button>
-      {showDetails && <ClientPreferencesDetails client={client} />}
+      {showDetails && (
+        <div className="clientPreferenceDetails">
+          <ClientPreferencesDetails client={client} />
+        </div>
+      )}
 
       <h2>Historique des commandes</h2>
       <p>Total des commandes : {client.totalOrders}</p>

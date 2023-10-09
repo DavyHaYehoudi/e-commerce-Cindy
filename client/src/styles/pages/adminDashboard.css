@@ -67,7 +67,6 @@
     padding: 8px;
     flex: 1;
     cursor: pointer;
-
 }
 
 .client-header button:hover {
@@ -90,9 +89,17 @@
     cursor: pointer;
     font-size: 25px;
 }
+.clientPreferenceDetails{
+    margin: 50px;
+}
 
-.client-details .icon:hover {
-    color: rgb(88, 103, 2);
+.wishlistUserViewAdmin,
+.cartUserViewAdmin {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding: 10px;
 }
 
 .admin-order-item {
@@ -131,16 +138,19 @@
     background-color: rgb(51, 50, 50);
     transform: translateY(-2px);
 }
-.admin-notes .delete{
+
+.admin-notes .delete {
     background-color: transparent;
     border: none;
     margin-left: 50px;
     font-size: 15px;
 }
-.admin-notes .delete-icon:hover{
+
+.admin-notes .delete-icon:hover {
     color: red;
     cursor: pointer;
 }
+
 .date-text {
     font-size: 0.75rem;
-  }
+}
