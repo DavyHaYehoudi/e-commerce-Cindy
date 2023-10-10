@@ -1,7 +1,7 @@
 // AdminDashboard.jsx
 import React, { useState } from "react";
 import { adminDashboard } from "../mocks/adminDashboard";
-import ClientList from "../components/admin/ClientList";
+import ClientList from "../components/admin/clientList/ClientList";
 
 const AdminDashboard = () => {
   const [clients, setClients] = useState(adminDashboard);

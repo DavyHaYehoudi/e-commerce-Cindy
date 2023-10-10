@@ -1,9 +1,9 @@
 import React from "react";
 import { MdEmail } from "react-icons/md";
 import AdminNotes from "./AdminNotes";
-import ClientPreferencesDetails from "./ClientPreferencesDetails";
-import ToggleButton from "../dumbs/ToggleButton";
-import AdminOrderItem from "./AdminOrderItem";
+import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDetails";
+import ToggleButton from "../../dumbs/ToggleButton";
+import AdminOrderItem from "../clientOrders/AdminOrderItem";
 
 const ClientDetails = ({ client, handleStatusChange }) => {
   const handleAdminNotesUpdate = (notes) => {

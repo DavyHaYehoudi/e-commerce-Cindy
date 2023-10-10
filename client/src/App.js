@@ -18,7 +18,7 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import AccountUser from "./pages/AccountUser";
 import AdminDashboard from "./pages/AdminDashboard";
-import GenerateInvoice from "./components/admin/GenerateInvoice";
+import GenerateInvoice from "./components/admin/clientOrders/GenerateInvoice";
 
 function App() {
   return (

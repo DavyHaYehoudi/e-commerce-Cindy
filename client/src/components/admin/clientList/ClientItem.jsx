@@ -1,5 +1,5 @@
 import React from "react";
-import ClientDetails from "./ClientDetails";
+import ClientDetails from "../clientPresentation/ClientDetails";
 
 const ClientItem = ({
   client,

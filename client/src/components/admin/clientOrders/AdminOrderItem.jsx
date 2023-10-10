@@ -1,6 +1,6 @@
 // AdminOrderItem.jsx
 import React, { useState } from "react";
-import { orderStatus } from "../../mocks/orderStatus";
+import { orderStatus } from "../../../mocks/orderStatus";
 import OrderHeader from "./OrderHeader";
 import OrderStatus from "./OrderStatus";
 import OrderDetails from "./OrderDetails";
@@ -44,10 +44,10 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
   const handleSendToDatabase = () => {
     setIsModified(false);
     setSendDate(new Date());
-    const dataToSend = {
-      trackingNumber: trackingNumber,
-      orderStatus: order.status,
-    };
+    // const dataToSend = {
+    //   trackingNumber: trackingNumber,
+    //   orderStatus: order.status,
+    // };
   };
 
   return (

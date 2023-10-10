@@ -1,5 +1,5 @@
 import React from "react";
-import { getStatusColor } from "../../helpers/getStatusColor";
+import { getStatusColor } from "../../../helpers/getStatusColor";
 
 const OrderStatus = ({ order }) => {
   return (

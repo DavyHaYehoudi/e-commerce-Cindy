@@ -1,10 +1,10 @@
 import React from "react";
-import { formatDate } from "../../helpers/formatDate";
-import StatusButtons from "../dumbs/StatusButton";
+import { formatDate } from "../../../helpers/formatDate";
+import StatusButtons from "../../dumbs/StatusButton";
 import { Link } from "react-router-dom";
-import { ordersMock } from "../../mocks/ordersMock";
-import { userInfo } from "../../mocks/userInfo";
-import { orderStatus } from "../../mocks/orderStatus";
+import { ordersMock } from "../../../mocks/ordersMock";
+import { userInfo } from "../../../mocks/userInfo";
+import { orderStatus } from "../../../mocks/orderStatus";
 
 const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
   return (
