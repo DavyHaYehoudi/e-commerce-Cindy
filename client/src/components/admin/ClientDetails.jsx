@@ -1,9 +1,9 @@
 import React from "react";
-import OrderItem from "./OrderItem";
 import { MdEmail } from "react-icons/md";
 import AdminNotes from "./AdminNotes";
 import ClientPreferencesDetails from "./ClientPreferencesDetails";
 import ToggleButton from "../dumbs/ToggleButton";
+import AdminOrderItem from "./AdminOrderItem";
 
 const ClientDetails = ({ client, handleStatusChange }) => {
   const handleAdminNotesUpdate = (notes) => {
@@ -46,7 +46,7 @@ const ClientDetails = ({ client, handleStatusChange }) => {
         content={
           <div className="clientOrders">
             {client.orders.map((order) => (
-              <OrderItem
+              <AdminOrderItem
                 key={order.id}
                 client={client}
                 order={order}
