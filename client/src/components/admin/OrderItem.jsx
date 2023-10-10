@@ -8,9 +8,8 @@ import { ordersMock } from "../../mocks/ordersMock";
 import { userInfo } from "../../mocks/userInfo";
 import { MdModeEditOutline } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
-import { FcCheckmark } from "react-icons/fc";
-import { MdOutlineAppRegistration } from "react-icons/md";
-import { RiPassValidFill } from "react-icons/ri";
+
+import StatusButtons from "../dumbs/StatusButton";
 
 const OrderItem = ({ client, order, handleStatusChange }) => {
   const [trackingNumber, setTrackingNumber] = useState("");
@@ -18,6 +17,7 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
   const [creationDate, setCreationDate] = useState(null);
   const [lastModifiedDate, setLastModifiedDate] = useState(null);
   const [sendDate, setSendDate] = useState(null);
+  const[isModified,setIsModified]=useState(false)
 
   const handleTrackingNumberChange = (event) => {
     setTrackingNumber(event.target.value);
@@ -29,6 +29,7 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
 
   const handleSaveTrackingNumber = () => {
     setIsEditing(false);
+    setIsModified(true)
   };
 
   const handleEditTrackingNumber = () => {
@@ -41,15 +42,18 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
     setCreationDate(null);
     setLastModifiedDate(null);
     setSendDate(null);
+    setIsModified(true)
   };
 
   const handleSendToDatabase = () => {
+    setIsModified(false)
     setSendDate(new Date());
     const dataToSend = {
       trackingNumber: trackingNumber,
       orderStatus: order.status,
     };
   };
+  
 
   return (
     <div className="admin-order-item">
@@ -65,12 +69,10 @@ const OrderItem = ({ client, order, handleStatusChange }) => {
             </button>
           </Link>
         )}
-       <FcCheckmark />
-       <MdOutlineAppRegistration />
-        <button onClick={handleSendToDatabase}>
-        <RiPassValidFill />
-        </button>
-       
+        <StatusButtons
+          isModified={isModified}
+          handleSendToDatabase={handleSendToDatabase}
+        />
       </div>
       <p>
         <span

@@ -43,6 +43,8 @@ const AdminDashboard = () => {
     // Mettez à jour l'état avec les nouvelles données
     setClients(updatedClients);
   };
+
+
   return (
     <div className="admin-dashboard">
       <ClientList
