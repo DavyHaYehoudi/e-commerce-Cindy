@@ -84,6 +84,11 @@
     margin-bottom: 10px;
     font-size: 18px;
 }
+.admin-order-item-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /* ICON EMAIL CLIENT */
 .client-details .icon {
@@ -96,6 +101,7 @@
     transform: translateY(-2px);
 }
 
+/* LES PRODUITS EN FAVORIS ET PANIERS DU CLIENT */
 .clientPreferenceDetails,
 .clientOrders {
     margin: 50px;
@@ -126,18 +132,39 @@
     border-radius: 5px;
     color: #fff;
 }
-
-
-
-.date-text {
-    font-size: 0.75rem;
+.admin-order-item h3 {
+border-top:1px solid var(--border-color)
 }
-
+/* CHAMP DU NUMERO DE SUIVI DE COMMANDE */
+.tracking-field{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 15px;
+    padding: 10px;
+}
+.tracking-field input{
+    width: 30%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+.tracking-field input:focus{
+   outline: none;
+   border: 1px solid black;
+}
+.admin-trackingNumber-dates{
+    display: flex;
+    gap: 30px;
+    line-height: 0;
+    padding-left: 10px;
+}
 /* GESTION DES BOUTONS CLIENT DANS LE DASHBOARD ADMIN */
 .admin-order-next-step {
     text-align: end;
 }
-
+/* PASSER A L ETAPE SUIVANTE WORKFLOW */
 .move-to-next-step {
     background-color: white;
     color: #333;

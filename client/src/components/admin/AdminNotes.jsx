@@ -30,7 +30,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
 
   return (
     <div className="admin-notes">
-      <h2>Notes administratives</h2>
+      <h2>Notes</h2>
 
       <div className="previous-notes">
         {previousNotes.map((note, index) => (

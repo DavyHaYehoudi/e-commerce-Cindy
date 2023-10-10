@@ -1,22 +1,16 @@
 import React from "react";
-import html2pdf from "html2pdf.js";
 import { useLocation } from "react-router-dom";
 
 const GenerateInvoice = () => {
   const location = useLocation();
-  const { user, order } = location.state || {}; 
-  console.log("location state :",location);
+  const { user, order } = location.state || {};
 
-  const handleDownloadPDF = () => {
-    const content = document.getElementById("invoice-content");
-    const options = { margin: 10, filename: "invoice.pdf", image: { type: "jpeg", quality: 0.98 } };
-    html2pdf(content, options);
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
     <div id="invoice-content">
-      {/* ... (rest of the component remains the same) */}
-
       {/* Infos du user */}
       <div className="user-info">
         <h2>Informations du client</h2>
@@ -38,6 +32,8 @@ const GenerateInvoice = () => {
 
       {/* ... (rest of the component remains the same) */}
 
+      {/* Bouton pour imprimer la facture */}
+      <button onClick={handlePrint}>Imprimer la facture</button>
     </div>
   );
 };

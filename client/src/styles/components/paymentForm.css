@@ -6,7 +6,7 @@
     max-width: 600px;
 }
 
-h2 {
+#payment-form h2 {
     margin: 10px;
     font-weight: 600;
 }
@@ -16,15 +16,15 @@ h2 {
     align-items: center;
 }
 
-label {
+#payment-form label {
     display: block;
     margin: 10px 0;
     font-size: 0.625rem;
     cursor: pointer;
 }
 
-input,
-select {
+#payment-form input,
+#payment-form select {
     width: 100%;
     padding: 15px;
     margin-bottom: 15px;
@@ -32,31 +32,31 @@ select {
     border-radius: 5px;
 }
 
-.checkbox {
+#payment-form .checkbox {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.checkbox input {
+#payment-form .checkbox input {
     margin: 10px;
     width: initial;
     cursor: pointer;
 }
 
-.address-input-container,
-.location-details {
+#payment-form .address-input-container,
+#payment-form .location-details {
     display: flex;
     gap: 10px;
 }
 
-.credit-cards {
+#payment-form .credit-cards {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.security-text {
+#payment-form .security-text {
     margin-bottom: 20px;
 }
 
