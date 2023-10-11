@@ -84,7 +84,8 @@
     margin-bottom: 10px;
     font-size: 18px;
 }
-.admin-order-item-header{
+
+.admin-order-item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,43 +128,34 @@
     margin: 5px 0;
 }
 
-.admin-order-item span {
-    padding: 5px;
-    border-radius: 5px;
-    color: #fff;
-}
 .admin-order-item h3 {
-border-top:1px solid var(--border-color)
+    border-top: 1px solid var(--border-color)
 }
+
 /* CHAMP DU NUMERO DE SUIVI DE COMMANDE */
-.tracking-field{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.tracking-field {
     border-top: 1px solid var(--border-color);
     margin-top: 15px;
     padding: 10px;
 }
-.tracking-field input{
-    width: 30%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-}
-.tracking-field input:focus{
-   outline: none;
-   border: 1px solid black;
-}
-.admin-trackingNumber-dates{
+
+.admin-tracking-number{
     display: flex;
-    gap: 30px;
-    line-height: 0;
-    padding-left: 10px;
+    gap: 20px;
+    align-items: center;
 }
+.admin-tracking-dates {
+    /* display: flex; */
+    gap: 30px;
+    /* line-height: 0; */
+    /* padding-left: 10px; */
+}
+
 /* GESTION DES BOUTONS CLIENT DANS LE DASHBOARD ADMIN */
 .admin-order-next-step {
     text-align: end;
 }
+
 /* PASSER A L ETAPE SUIVANTE WORKFLOW */
 .move-to-next-step {
     background-color: white;
@@ -180,25 +172,36 @@ border-top:1px solid var(--border-color)
     background-color: #f1f1f1;
 }
 
-.admin-notes-add-btn {
+.previous-note {
+    display: flex;
+}
+
+/* NOTES DE L'ADMIN */
+.admin-notes-textarea-add-btn {
     background-color: black;
     color: #fff;
     border: none;
+    border-radius: 5px;
     padding: 8px;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
 .move-to-next-step:hover,
-.admin-notes-add-btn:hover {
+.admin-notes-textarea-add-btn:hover {
     transform: translateY(-2px);
+}
+
+.admin-notes-textarea {
+    display: flex;
+    align-items: center;
 }
 
 .admin-notes-trash-btn {
     background-color: transparent;
     border: none;
     margin-left: 50px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .admin-notes-trash-btn .delete-icon:hover {

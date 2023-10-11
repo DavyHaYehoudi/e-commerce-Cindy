@@ -21,11 +21,18 @@
   border: 1px solid var(--border-color);
   padding: 8px;
 }
+.user-info-account input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
 .user-info-account input:focus{
   outline:none;
   border:1px solid black;
   box-shadow: 0 0 3px black;
 }
+
 .order-item-wrapper-user-account {
   border: 1px solid #ccc;
   padding: 15px;

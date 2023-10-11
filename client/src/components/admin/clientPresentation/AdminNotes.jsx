@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BsTrash } from "react-icons/bs";
+import { TbInputX } from "react-icons/tb";
+import { TbInputCheck } from "react-icons/tb";
 
 const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
   const [adminNotes, setAdminNotes] = useState(initialNotes || "");
@@ -13,7 +14,7 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
   const handleSaveNotes = () => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
-    const noteWithDate = `${adminNotes} <span class="date-text">(enregistré le ${formattedDate})</span>`;
+    const noteWithDate = `${adminNotes} <span><small>(enregistré le ${formattedDate})</small></span>`;
 
     setPreviousNotes((prevNotes) => [noteWithDate, ...prevNotes]);
   };
@@ -36,24 +37,34 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
         {previousNotes.map((note, index) => (
           <div key={index} className="previous-note">
             <span dangerouslySetInnerHTML={{ __html: note }} />
-            <button className="admin-notes-trash-btn" onClick={() => handleDeleteNote(index)}>
-              <BsTrash className="delete-icon" />{" "}
+            <button
+              className="admin-notes-trash-btn"
+              onClick={() => handleDeleteNote(index)}
+            >
+              <TbInputX className="delete-icon" />{" "}
             </button>
           </div>
         ))}
       </div>
 
-      <textarea
-        value={adminNotes}
-        onChange={handleNotesChange}
-        placeholder="Ajouter des notes..."
-      />
+      <div className="admin-notes-textarea">
+        <textarea
+          value={adminNotes}
+          onChange={handleNotesChange}
+          placeholder="Ajouter des notes..."
+        />
 
-      {isNotesEmpty ? null : (
-        <button className="admin-notes-add-btn" onClick={handleSaveNotes}>
-          Enregistrer cette note
-        </button>
-      )}
+        {isNotesEmpty ? null : (
+          <div className=" info-tooltip" aria-label="Ajouter cette note">
+            <button
+              className="admin-notes-textarea-add-btn"
+              onClick={handleSaveNotes}
+            >
+              <TbInputCheck />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -26,6 +26,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
           <input
             type="text"
             name="firstName"
+            className="account-input"
             value={editedUserData.firstName}
             onChange={handleInputChange}
           />
@@ -39,6 +40,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
           <input
             type="text"
             name="lastName"
+            className="account-input"
             value={editedUserData.lastName}
             onChange={handleInputChange}
           />
@@ -52,6 +54,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
           <input
             type="email"
             name="email"
+            className="account-input"
             value={editedUserData.email}
             onChange={handleInputChange}
           />
@@ -65,6 +68,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
           <input
             type="text"
             name="phone"
+            className="account-input"
             value={editedUserData.phone}
             onChange={handleInputChange}
           />
@@ -78,6 +82,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
           <input
             type="text"
             name="address"
+            className="account-input"
             value={editedUserData.address}
             onChange={handleInputChange}
           />

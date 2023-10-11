@@ -90,11 +90,19 @@ img{
 .account-display-toggle-btn:hover{
     transform: translateY(-2px);
 }
-/* Pour les mentions date et heure enregistrement */
-.date-text {
-    font-size: 0.75rem;
-}
 
+/* INPUTS COMPTES ADMIN ET CLIENT */
+.account-input {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+.account-input:focus{
+   outline: none;
+   border: 1px solid black;
+   box-shadow: 0 0 3px black;
+}
 /* *{
     border: 1px red solid;
 } */

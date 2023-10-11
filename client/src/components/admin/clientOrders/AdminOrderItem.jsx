@@ -1,4 +1,3 @@
-// AdminOrderItem.jsx
 import React, { useState } from "react";
 import { orderStatus } from "../../../mocks/orderStatus";
 import OrderHeader from "./OrderHeader";
@@ -36,7 +35,6 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
     setTrackingNumber("");
     setIsEditing(true);
     setCreationDate(null);
-    setLastModifiedDate(null);
     setSendDate(null);
     setIsModified(true);
   };
@@ -69,18 +67,14 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
           handleEditTrackingNumber={handleEditTrackingNumber}
           handleDeleteTrackingNumber={handleDeleteTrackingNumber}
           sendDate={sendDate}
+          creationDate={creationDate}
+          lastModifiedDate={lastModifiedDate}
         />
       )}
       <div className="admin-order-next-step">
         <button
           className="move-to-next-step"
-          onClick={() =>
-            handleStatusChange(
-              client.id,
-              order.id,
-              order.status
-            )
-          }
+          onClick={() => handleStatusChange(client.id, order.id, order.status)}
         >
           Passer à l'étape suivante
         </button>
