@@ -36,12 +36,12 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
       <div className="previous-notes">
         {previousNotes.map((note, index) => (
           <div key={index} className="previous-note">
-            <span dangerouslySetInnerHTML={{ __html: note }} />
+            <p dangerouslySetInnerHTML={{ __html: note }} ></p>
             <button
-              className="admin-notes-trash-btn"
+              className="account-btn icon-trash"
               onClick={() => handleDeleteNote(index)}
             >
-              <TbInputX className="delete-icon" />{" "}
+              <TbInputX />{" "}
             </button>
           </div>
         ))}
@@ -55,14 +55,9 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
         />
 
         {isNotesEmpty ? null : (
-          <div className=" info-tooltip" aria-label="Ajouter cette note">
-            <button
-              className="admin-notes-textarea-add-btn"
-              onClick={handleSaveNotes}
-            >
-              <TbInputCheck />
-            </button>
-          </div>
+          <button className="account-btn icon-validate" onClick={handleSaveNotes}>
+            <TbInputCheck />
+          </button>
         )}
       </div>
     </div>

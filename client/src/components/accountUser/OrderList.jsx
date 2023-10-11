@@ -37,7 +37,7 @@ const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
           <ToggleButton
             initialText="Afficher les articles"
             hiddenText="Fermer les articles"
-            buttonClass="account-display-toggle-btn"
+            buttonClass="account-btn toggle"
             content={
               <OrderItems
                 products={order.products}

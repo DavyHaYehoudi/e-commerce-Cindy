@@ -1,3 +1,4 @@
+/* ********************* START DASHBOARD VIEW ********************* */
 .admin-dashboard {
     max-width: 1200px;
     margin: 20px auto;
@@ -74,6 +75,9 @@
     color: #ecf0f1;
 }
 
+/* ********************* END DASHBOARD VIEW ********************* */
+
+/* ********************* START FICHE CLIENT VIEW ********************* */
 .client-details {
     padding: 20px;
     background-color: #fff;
@@ -85,6 +89,9 @@
     font-size: 18px;
 }
 
+/* ********************* END FICHE CLIENT VIEW ********************* */
+
+/* ********************* START COMMANDES CLIENT ********************* */
 .admin-order-item-header {
     display: flex;
     justify-content: space-between;
@@ -102,7 +109,9 @@
     transform: translateY(-2px);
 }
 
-/* LES PRODUITS EN FAVORIS ET PANIERS DU CLIENT */
+/* ********************* END COMMANDES CLIENT ********************* */
+
+/* ********************* START PREFERENCES CLIENT  ********************* */
 .clientPreferenceDetails,
 .clientOrders {
     margin: 50px;
@@ -132,31 +141,47 @@
     border-top: 1px solid var(--border-color)
 }
 
-/* CHAMP DU NUMERO DE SUIVI DE COMMANDE */
+/* ********************* END PREFERENCES CLIENT  ********************* */
+
+/* ********************* START NUMERO DE SUIVI DE COMMANDE  ********************* */
 .tracking-field {
     border-top: 1px solid var(--border-color);
     margin-top: 15px;
     padding: 10px;
 }
 
-.admin-tracking-number{
+.admin-tracking-number {
     display: flex;
     gap: 20px;
     align-items: center;
 }
-.admin-tracking-dates {
-    /* display: flex; */
-    gap: 30px;
-    /* line-height: 0; */
-    /* padding-left: 10px; */
+
+.admin-tracking-date {
+    line-height: 0.8;
 }
 
-/* GESTION DES BOUTONS CLIENT DANS LE DASHBOARD ADMIN */
-.admin-order-next-step {
-    text-align: end;
+/* ********************* END NUMERO DE SUIVI DE COMMANDE  ********************* */
+/* ********************* START ETAT FICHE ICONES  ********************* */
+.status-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-/* PASSER A L ETAPE SUIVANTE WORKFLOW */
+.status-buttons .send {
+    color: white;
+    background-color: var(--icon-validate);
+}
+
+.status-buttons .updated {
+    border: none;
+    background-color: white;
+    font-size: 25px;
+}
+
+/* ********************* END ETAT FICHE ICONES  ********************* */
+
+/* ********************* START WORKFLOW PASSER A L'ETAPE SUIVANTE  ********************* */
 .move-to-next-step {
     background-color: white;
     color: #333;
@@ -172,24 +197,23 @@
     background-color: #f1f1f1;
 }
 
+.admin-order-next-step {
+    text-align: end;
+}
+
+/* ********************* END WORKFLOW PASSER A L'ETAPE SUIVANTE  ********************* */
+
+/* ********************* START ADMIN NOTES  ********************* */
 .previous-note {
     display: flex;
+    gap: 20px;
+    padding-left: 10px;
 }
 
-/* NOTES DE L'ADMIN */
-.admin-notes-textarea-add-btn {
-    background-color: black;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.move-to-next-step:hover,
-.admin-notes-textarea-add-btn:hover {
-    transform: translateY(-2px);
+.previous-note>* {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 5px;
 }
 
 .admin-notes-textarea {
@@ -197,14 +221,4 @@
     align-items: center;
 }
 
-.admin-notes-trash-btn {
-    background-color: transparent;
-    border: none;
-    margin-left: 50px;
-    font-size: 20px;
-}
-
-.admin-notes-trash-btn .delete-icon:hover {
-    color: red;
-    cursor: pointer;
-}
+/* ********************* END ADMIN NOTES  ********************* */

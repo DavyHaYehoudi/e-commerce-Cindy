@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdModeEditOutline } from "react-icons/md";
-import { BsTrash } from "react-icons/bs";
 import { formatDate } from "../../../helpers/formatDate";
+import { TbInputX } from "react-icons/tb";
+import { TbInputCheck } from "react-icons/tb";
 
 const TrackingField = ({
   trackingNumber,
@@ -14,6 +15,26 @@ const TrackingField = ({
   creationDate,
   lastModifiedDate,
 }) => {
+  const [isModificationConfirmed, setIsModificationConfirmed] = useState(false);
+
+  const isModified =
+    lastModifiedDate && creationDate && lastModifiedDate > creationDate;
+
+  const handleSaveTrackingNumberInternal = () => {
+    handleSaveTrackingNumber();
+    setIsModificationConfirmed(true);
+  };
+
+  const handleEditTrackingNumberInternal = () => {
+    handleEditTrackingNumber();
+    setIsModificationConfirmed(false);
+  };
+
+  const handleDeleteTrackingNumberInternal = () => {
+    handleDeleteTrackingNumber();
+    setIsModificationConfirmed(false);
+  };
+
   return (
     <div className="tracking-field">
       <div className="admin-tracking-number">
@@ -23,7 +44,7 @@ const TrackingField = ({
         >
           № DE SUIVI DE COMMANDE :
         </label>
-        {isEditing ? (
+        {isEditing && (
           <>
             <input
               type="text"
@@ -34,56 +55,60 @@ const TrackingField = ({
               onChange={handleTrackingNumberChange}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  handleSaveTrackingNumber();
+                  handleSaveTrackingNumberInternal();
                 }
               }}
             />
-            <button onClick={handleSaveTrackingNumber}>Valider</button>
-          </>
-        ) : (
-          <>
             {trackingNumber && (
-              <>
-                <span>{trackingNumber}</span>
-                <button onClick={handleEditTrackingNumber}>
-                  <MdModeEditOutline />{" "}
-                </button>
-                <button onClick={handleDeleteTrackingNumber}>
-                  <BsTrash />
-                </button>
-              </>
+              <button
+                onClick={handleSaveTrackingNumberInternal}
+                className="account-btn icon-validate"
+              >
+                <TbInputCheck />{" "}
+              </button>
             )}
           </>
         )}
-      </div>
-      <div className="admin-tracking-dates">
-        {trackingNumber && (
+        {!isEditing && trackingNumber && (
           <>
-            {creationDate && (
-              <p>
-                <small> Enregistré le {formatDate(creationDate)}</small>
-              </p>
-            )}
-            {lastModifiedDate &&
-              creationDate &&
-              lastModifiedDate > creationDate && (
-                <p>
-                  <small>
-                    Dernière modification : {formatDate(lastModifiedDate)}
-                  </small>
-                </p>
-              )}
-            {sendDate && (
-              <p>
-                <small>
-                  {" "}
-                  Envoyé à la base de données le {formatDate(sendDate)}
-                </small>
-              </p>
-            )}
+            <span>{trackingNumber}</span>
+            <button onClick={handleEditTrackingNumberInternal} className="account-btn icon-edit">
+              <MdModeEditOutline />{" "}
+            </button>
+            <button onClick={handleDeleteTrackingNumberInternal} className="account-btn icon-trash">
+              <TbInputX />
+            </button>
           </>
         )}
       </div>
+      {(isModificationConfirmed ||
+        creationDate ||
+        isModified ||
+        sendDate ||
+        isEditing) && (
+        <div className="admin-tracking-dates">
+          {creationDate && isModificationConfirmed && (
+            <p className="admin-tracking-date">
+              <small> Enregistré le : {formatDate(creationDate)}</small>
+            </p>
+          )}
+          {isModified && isModificationConfirmed && (
+            <p className="admin-tracking-date">
+              <small>
+                Dernière modification : {formatDate(lastModifiedDate)}
+              </small>
+            </p>
+          )}
+          {sendDate && (
+            <p className="admin-tracking-date">
+              <small>
+                {" "}
+                Envoyé à la base de données le : {formatDate(sendDate)}
+              </small>
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -27,7 +27,7 @@ const ClientDetails = ({ client, handleStatusChange }) => {
       <ToggleButton
         initialText="Afficher ses préférences"
         hiddenText="Fermer ses préférences"
-        buttonClass="account-display-toggle-btn"
+        buttonClass="account-btn toggle"
         content={
           <div className="clientPreferenceDetails">
             <ClientPreferencesDetails client={client} />
@@ -42,7 +42,7 @@ const ClientDetails = ({ client, handleStatusChange }) => {
       <ToggleButton
         initialText="Afficher ses commandes"
         hiddenText="Fermer ses commandes"
-        buttonClass="account-display-toggle-btn"
+        buttonClass="account-btn toggle"
         content={
           <div className="clientOrders">
             {client.orders.map((order) => (

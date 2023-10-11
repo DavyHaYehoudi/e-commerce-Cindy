@@ -9,7 +9,10 @@ body {
     font-weight: var(--font-weight);
 }
 
-h1,h2,h3,h4{
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--heading-font-family);
     font-weight: var(--font-weight);
     text-transform: uppercase;
@@ -33,6 +36,7 @@ ul {
     padding: 0;
     list-style: none;
 }
+
 .btn {
     font-family: var(--text-font-family);
     cursor: pointer;
@@ -42,18 +46,20 @@ ul {
 }
 
 .btn:hover {
-   color: #FFFFFF;
-   background-position: -100% 0;
+    color: #FFFFFF;
+    background-position: -100% 0;
 }
-img{
+
+img {
     object-fit: cover;
 }
-/* INFO-BULLE */
+
+/* ********************* START INFO-BULLE TOOLTIP ********************* */
 .info-tooltip {
     position: relative;
 }
 
-.info-tooltip:hover::before{
+.info-tooltip:hover::before {
     content: attr(aria-label);
     position: absolute;
     top: -30px;
@@ -76,10 +82,10 @@ img{
 .info-tooltip:hover::before {
     opacity: 1;
 }
+/* ********************* END INFO-BULLE TOOLTIP ********************* */
 
-/* BOUTON TOGGLE INTERFACES COMPTES ADMIN ET CLIENT */
-.account-display-toggle-btn{
-    background-color: black;
+/* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
+.account-btn {
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -87,22 +93,48 @@ img{
     cursor: pointer;
     transition: transform 0.3s;
 }
-.account-display-toggle-btn:hover{
+
+.account-btn:hover {
     transform: translateY(-2px);
 }
 
-/* INPUTS COMPTES ADMIN ET CLIENT */
+/* SPECIFICITE TOGGLE */
+.toggle {
+    background-color: var(--btn-toggle);
+}
+
+/* SPECIFICITE ICONES */
+.icon-trash {
+    background-color: var(--icon-trash);
+    color: white;
+}
+
+.icon-edit {
+    color:white;
+    background-color: var(--icon-edit);
+}
+
+.icon-validate {
+    color: white;
+    background-color: var(--icon-validate);
+}
+/* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
+
+/* ********************* START INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 .account-input {
     width: 30%;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
 }
-.account-input:focus{
-   outline: none;
-   border: 1px solid black;
-   box-shadow: 0 0 3px black;
+
+.account-input:focus {
+    outline: none;
+    border: 1px solid black;
+    box-shadow: 0 0 3px black;
 }
+/* ********************* END INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */
+
 /* *{
     border: 1px red solid;
 } */

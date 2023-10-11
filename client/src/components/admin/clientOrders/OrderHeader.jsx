@@ -15,7 +15,7 @@ const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
           to={`/admin/generate-invoice/${order.id}`}
           state={{ order: ordersMock[0], user: userInfo }}
         >
-          <button className="account-display-toggle-btn">
+          <button className="account-btn toggle">
             Générer la facture
           </button>
         </Link>
