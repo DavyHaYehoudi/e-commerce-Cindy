@@ -95,7 +95,7 @@ const TrackingField = ({
           {isModified && isModificationConfirmed && (
             <p className="admin-tracking-date">
               <small>
-                Dernière modification : {formatDate(lastModifiedDate)}
+                Dernière modification le : {formatDate(lastModifiedDate)}
               </small>
             </p>
           )}
@@ -103,7 +103,7 @@ const TrackingField = ({
             <p className="admin-tracking-date">
               <small>
                 {" "}
-                Envoyé à la base de données le : {formatDate(sendDate)}
+                Envoyé au client le : {formatDate(sendDate)}
               </small>
             </p>
           )}

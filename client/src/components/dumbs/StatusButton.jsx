@@ -10,7 +10,7 @@ const StatusButtons = ({ isModified, handleSendToDatabase }) => {
       )}
       {isModified && (
         <button onClick={handleSendToDatabase} className="account-btn send">
-          Valider la fiche 
+          Valider la fiche
         </button>
       )}
     </div>

@@ -1,4 +1,3 @@
-// AdminDashboard.jsx
 import React, { useState } from "react";
 import { adminDashboard } from "../mocks/adminDashboard";
 import ClientList from "../components/admin/clientList/ClientList";

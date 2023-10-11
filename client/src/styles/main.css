@@ -105,18 +105,18 @@ img {
 
 /* SPECIFICITE ICONES */
 .icon-trash {
-    background-color: var(--icon-trash);
+    background-color: var(--trash);
     color: white;
 }
 
 .icon-edit {
     color:white;
-    background-color: var(--icon-edit);
+    background-color: var(--edit);
 }
 
 .icon-validate {
     color: white;
-    background-color: var(--icon-validate);
+    background-color: var(--validate);
 }
 /* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 

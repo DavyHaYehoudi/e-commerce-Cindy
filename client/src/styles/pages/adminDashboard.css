@@ -50,14 +50,21 @@
     flex: 1;
 }
 
-.non-traitee-badge {
+.admin-badge {
     max-width: 10%;
-    background-color: #ff0000;
     color: #fff;
     padding: 5px;
     margin-right: 10px;
     border-radius: 5px;
     text-align: center;
+}
+
+.non-traitee-badge {
+    background-color: #ff0000;
+}
+
+.modified-badge {
+    background-color: var(--edit);
 }
 
 .client-header button {
@@ -170,7 +177,7 @@
 
 .status-buttons .send {
     color: white;
-    background-color: var(--icon-validate);
+    background-color: var(--validate);
 }
 
 .status-buttons .updated {

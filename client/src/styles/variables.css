@@ -40,8 +40,8 @@
 
     /* COMPTES ADMIN ET CLIENT */
     --btn-toggle:black;
-    --icon-trash:red;
-    --icon-validate:rgb(40, 167, 69);
-    --icon-edit:orange;
+    --trash:red;
+    --validate:rgb(40, 167, 69);
+    --edit:orange;
 
 }

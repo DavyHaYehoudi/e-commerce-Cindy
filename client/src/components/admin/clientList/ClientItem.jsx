@@ -15,7 +15,10 @@ const ClientItem = ({
       >
         <span>{client.firstName}{" "}{client.lastName} </span>
         {client.orders.some((order) => order.nonTraitee) && (
-          <span className="non-traitee-badge">Non traitée</span>
+          <span className="admin-badge non-traitee-badge">Non traitée</span>
+        )}
+        {client.orders.some((order) => order.isStatusOrderModified) && (
+          <span className="admin-badge modified-badge">Modifié</span>
         )}
         <button>
           {clientDetails[client.id]

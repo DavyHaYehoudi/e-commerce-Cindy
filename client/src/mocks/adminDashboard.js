@@ -58,6 +58,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 101,
@@ -85,6 +86,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 103,
@@ -104,6 +106,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 104,
@@ -169,6 +172,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 105,
@@ -196,6 +200,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:true,
         products: [
           {
             productId: 107,
@@ -277,6 +282,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 110,
@@ -296,6 +302,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 111,
@@ -385,6 +392,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 115,
@@ -412,6 +420,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 117,
@@ -493,6 +502,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 120,
@@ -512,6 +522,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:true,
         products: [
           {
             productId: 121,
@@ -555,6 +566,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:true,
         products: [
           {
             productId: 125,
@@ -620,6 +632,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 126,
@@ -685,6 +698,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 127,
@@ -704,6 +718,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 128,
@@ -723,6 +738,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 129,
@@ -742,6 +758,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 130,
@@ -815,6 +832,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 132,
@@ -834,6 +852,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 133,
@@ -899,6 +918,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:false,
         products: [
           {
             productId: 134,
@@ -926,6 +946,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 136,
@@ -945,6 +966,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:true,
         products: [
           {
             productId: 137,
@@ -1018,6 +1040,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isStatusOrderModified:true,
         products: [
           {
             productId: 139,
@@ -1037,6 +1060,7 @@ export const adminDashboard = [
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isStatusOrderModified:false,
         products: [
           {
             productId: 140,
