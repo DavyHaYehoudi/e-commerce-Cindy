@@ -5,7 +5,7 @@ import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDeta
 import ToggleButton from "../../dumbs/ToggleButton";
 import AdminOrderItem from "../clientOrders/AdminOrderItem";
 
-const ClientDetails = ({ client, handleStatusChange }) => {
+const ClientDetails = ({ client }) => {
   const handleAdminNotesUpdate = (notes) => {
     console.log("Notes administratives mises à jour :", notes);
   };
@@ -50,7 +50,6 @@ const ClientDetails = ({ client, handleStatusChange }) => {
                 key={order.id}
                 client={client}
                 order={order}
-                handleStatusChange={handleStatusChange}
               />
             ))}
           </div>

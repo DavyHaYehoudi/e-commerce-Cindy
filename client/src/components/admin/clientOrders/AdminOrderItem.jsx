@@ -5,14 +5,16 @@ import OrderStatus from "./OrderStatus";
 import OrderDetails from "./OrderDetails";
 import OrderProductsList from "./OrderProductsList";
 import TrackingField from "./TrackingField";
+import StatusButtons from "../../dumbs/StatusButton";
+// import { useDispatch } from "react-redux";
 
-const AdminOrderItem = ({ client, order, handleStatusChange }) => {
+const AdminOrderItem = ({ order }) => {
+  // const dispatch = useDispatch()
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [creationDate, setCreationDate] = useState(null);
   const [lastModifiedDate, setLastModifiedDate] = useState(null);
   const [sendDate, setSendDate] = useState(null);
-  const [isModified, setIsModified] = useState(false);
 
   const handleTrackingNumberChange = (event) => {
     setTrackingNumber(event.target.value);
@@ -24,7 +26,6 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
 
   const handleSaveTrackingNumber = () => {
     setIsEditing(false);
-    setIsModified(true);
   };
 
   const handleEditTrackingNumber = () => {
@@ -36,11 +37,9 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
     setIsEditing(true);
     setCreationDate(null);
     setSendDate(null);
-    setIsModified(true);
   };
 
   const handleSendToDatabase = () => {
-    setIsModified(false);
     setSendDate(new Date());
     // const dataToSend = {
     //   trackingNumber: trackingNumber,
@@ -53,7 +52,6 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
       <OrderHeader
         order={order}
         handleSendToDatabase={handleSendToDatabase}
-        isModified={isModified}
       />
       <OrderStatus order={order} />
       <OrderDetails order={order} />
@@ -74,11 +72,13 @@ const AdminOrderItem = ({ client, order, handleStatusChange }) => {
       <div className="admin-order-next-step">
         <button
           className="move-to-next-step"
-          onClick={() => handleStatusChange(client.id, order.id, order.status)}
+          onClick={() => {
+          }}
         >
           Passer à l'étape suivante
         </button>
       </div>
+      <StatusButtons handleSendToDatabase={handleSendToDatabase} />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// ClientList.jsx
 import React, { useState } from "react";
 import ClientItem from "./ClientItem";
 import Pagination from "../../dumbs/Pagination";
@@ -7,7 +6,6 @@ const ClientList = ({
   clients,
   handleClientClick,
   clientDetails,
-  handleStatusChange,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
@@ -28,7 +26,6 @@ const ClientList = ({
             client={client}
             handleClientClick={handleClientClick}
             clientDetails={clientDetails}
-            handleStatusChange={handleStatusChange}
           />
         ))}
       </ul>

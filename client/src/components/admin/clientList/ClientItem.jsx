@@ -5,7 +5,6 @@ const ClientItem = ({
   client,
   handleClientClick,
   clientDetails,
-  handleStatusChange,
 }) => {
   return (
     <li>
@@ -18,7 +17,7 @@ const ClientItem = ({
           <span className="admin-badge non-traitee-badge">Non traitée</span>
         )}
         {client.orders.some((order) => order.isStatusOrderModified) && (
-          <span className="admin-badge modified-badge">Modifié</span>
+          <span className="admin-badge modified-badge">Modifiée</span>
         )}
         <button>
           {clientDetails[client.id]
@@ -29,7 +28,6 @@ const ClientItem = ({
       {clientDetails[client.id] && (
         <ClientDetails
           client={client}
-          handleStatusChange={handleStatusChange}
         />
       )}
     </li>

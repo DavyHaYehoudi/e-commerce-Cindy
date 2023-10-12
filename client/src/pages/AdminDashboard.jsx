@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { usersMock } from "../mocks/usersMock";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ClientList from "../components/admin/clientList/ClientList";
 
-const adminDashboard = () => {
-  const [clients, setClients] = useState(usersMock);
+const AdminDashboard = () => {
+  const dispatch = useDispatch();
+  const clients = useSelector((state) => state.ordersStatus);
   const [clientDetails, setClientDetails] = useState({});
+
+  useEffect(() => {
+    // charger les clients depuis une API ici
+    // dispatch(fetchClients());
+  }, [dispatch]);
 
   const handleClientClick = (clientId) => {
     setClientDetails((prevDetails) => ({
@@ -12,37 +18,6 @@ const adminDashboard = () => {
       [clientId]: !prevDetails[clientId],
     }));
   };
-  const handleStatusChange = (clientId, orderId, currentStatus) => {
-    const nextStatus =
-      currentStatus === "En attente"
-        ? "En cours de préparation"
-        : currentStatus === "En cours de préparation"
-        ? "Expédiée"
-        : currentStatus === "Expédiée"
-        ? "Annulée"
-        : "En attente";
-
-    // Mettez à jour le statut de la commande dans votre backend
-    // ...
-
-    // Pour l'exemple, nous allons mettre à jour le statut dans le mock directement
-    const updatedClients = clients.map((client) => {
-      if (client.id === clientId) {
-        const updatedOrders = client.orders.map((order) => {
-          if (order.id === orderId) {
-            return { ...order, status: nextStatus };
-          }
-          return order;
-        });
-        return { ...client, orders: updatedOrders };
-      }
-      return client;
-    });
-
-    // Mettez à jour l'état avec les nouvelles données
-    setClients(updatedClients);
-  };
-
 
   return (
     <div className="admin-dashboard">
@@ -50,10 +25,9 @@ const adminDashboard = () => {
         clients={clients}
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}
-        handleStatusChange={handleStatusChange}
       />
     </div>
   );
 };
 
-export default adminDashboard;
+export default AdminDashboard;

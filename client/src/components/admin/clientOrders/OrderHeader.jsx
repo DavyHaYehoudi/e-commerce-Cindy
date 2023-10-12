@@ -6,7 +6,7 @@ import { orderMock } from "../../../mocks/orderMock";
 import { userMock } from "../../../mocks/userMock";
 import { orderStatus } from "../../../mocks/orderStatus";
 
-const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
+const OrderHeader = ({ order, handleSendToDatabase }) => {
   return (
     <div className="admin-order-item-header">
       <p>Date de commande : {formatDate(order.date)}</p>
@@ -21,7 +21,6 @@ const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
         </Link>
       )}
       <StatusButtons
-        isModified={isModified}
         handleSendToDatabase={handleSendToDatabase}
       />
     </div>
