@@ -39,9 +39,12 @@
     --letter-spacing: 0.2em;
 
     /* COMPTES ADMIN ET CLIENT */
-    --btn-toggle:black;
-    --trash:red;
-    --validate:rgb(40, 167, 69);
-    --edit:orange;
+    --dark:black;
+    --primary:#007bff;
+    --secondary:#6c757d;
+    --success:#28a745;
+    --danger:#dc3545;
+    --warning:#ffc107;
+    --info:#17a2b8;
 
 }

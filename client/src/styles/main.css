@@ -101,23 +101,23 @@ img {
 
 /* SPECIFICITE TOGGLE */
 .toggle {
-    background-color: var(--btn-toggle);
+    background-color: var(--dark);
 }
 
 /* SPECIFICITE ICONES */
 .icon-trash {
-    background-color: var(--trash);
+    background-color: var(--danger);
     color: white;
 }
 
 .icon-edit {
     color: white;
-    background-color: var(--edit);
+    background-color: var(--warning);
 }
 
 .icon-validate {
     color: white;
-    background-color: var(--validate);
+    background-color: var(--success);
 }
 
 /* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */

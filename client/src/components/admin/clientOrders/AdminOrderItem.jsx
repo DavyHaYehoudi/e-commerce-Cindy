@@ -41,7 +41,7 @@ const AdminOrderItem = ({ order }) => {
 
   const handleSendToDatabase = () => {
     setSendDate(new Date());
-    dispatch(handleOrderStatusChange({isOrderModified:false}))
+    dispatch(handleOrderStatusChange({inProcessingOrder:false}))
     // const dataToSend = {
     //   trackingNumber: trackingNumber,
     //   orderStatus: order.status,
@@ -75,7 +75,7 @@ const AdminOrderItem = ({ order }) => {
               handleOrderStatusChange({
                 orderId: order.id,
                 isNextStatusOrder: true,
-                isOrderModified:true,
+                inProcessingOrder:true,
               })
             );
           }}

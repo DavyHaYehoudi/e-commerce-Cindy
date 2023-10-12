@@ -34,7 +34,6 @@
     background-color: #f9f9f9;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
@@ -59,11 +58,17 @@
     text-align: center;
 }
 
-.modified-badge {
-    background-color: var(--edit);
-}
 .new-order-badge{
-    background-color: #ff0000;
+    background-color: var(--danger);
+}
+.inProcessing-order-badge{
+    background-color: var(--info);
+}
+.pending-shipment-order-badge{
+    background-color: var(--warning);
+}
+.dispatched-order-badge{
+    background-color: var(--success);
 }
 
 .client-header button {
@@ -176,7 +181,7 @@
 
 .status-buttons .send {
     color: white;
-    background-color: var(--validate);
+    background-color: var(--success);
 }
 
 .status-buttons .updated {

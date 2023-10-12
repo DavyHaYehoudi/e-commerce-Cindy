@@ -58,8 +58,10 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: true,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 101,
@@ -87,8 +89,10 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 103,
@@ -108,8 +112,10 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 104,
@@ -175,8 +181,10 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 105,
@@ -204,8 +212,10 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 107,
@@ -287,8 +297,10 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 110,
@@ -308,8 +320,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 111,
@@ -399,8 +413,10 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: true,
         newOrder: true,
+        inProcessingOrder: true,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 115,
@@ -428,8 +444,10 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:false,
         products: [
           {
             productId: 117,
@@ -511,8 +529,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 120,
@@ -532,8 +552,10 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: true,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 121,
@@ -577,8 +599,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 125,
@@ -644,8 +668,10 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:false,
         products: [
           {
             productId: 126,
@@ -711,8 +737,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 127,
@@ -732,8 +760,10 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:false,
         products: [
           {
             productId: 128,
@@ -753,8 +783,10 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 129,
@@ -774,8 +806,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:false,
         products: [
           {
             productId: 130,
@@ -849,8 +883,10 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 132,
@@ -870,8 +906,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:false,
         products: [
           {
             productId: 133,
@@ -937,8 +975,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 134,
@@ -966,8 +1006,10 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 136,
@@ -987,8 +1029,10 @@ export const usersMock = [
         totalAmount: "€70",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 137,
@@ -1062,8 +1106,10 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:false,
+        dispatchedOrder:true,
         products: [
           {
             productId: 139,
@@ -1083,8 +1129,10 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 140,
@@ -1150,8 +1198,10 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 107,
@@ -1179,8 +1229,10 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: false,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 109,
@@ -1246,8 +1298,10 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 115,
@@ -1321,8 +1375,10 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 124,
@@ -1350,8 +1406,10 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 126,
@@ -1417,8 +1475,10 @@ export const usersMock = [
         totalAmount: "€210",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 138,
@@ -1438,8 +1498,10 @@ export const usersMock = [
         totalAmount: "€240",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
         trackingNumber: null,
-        isOrderModified: false,
         newOrder: true,
+        inProcessingOrder: false,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 133,
@@ -1505,8 +1567,10 @@ export const usersMock = [
         totalAmount: "€300",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isOrderModified: true,
         newOrder: true,
+        inProcessingOrder: true,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 151,
@@ -1534,8 +1598,10 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumber: null,
-        isOrderModified: true,
         newOrder: false,
+        inProcessingOrder: true,
+        pendingShipmentOrder:true,
+        dispatchedOrder:true,
         products: [
           {
             productId: 154,
