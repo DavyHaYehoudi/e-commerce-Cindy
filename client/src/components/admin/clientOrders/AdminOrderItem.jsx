@@ -5,7 +5,6 @@ import OrderStatus from "./OrderStatus";
 import OrderDetails from "./OrderDetails";
 import OrderProductsList from "./OrderProductsList";
 import TrackingField from "./TrackingField";
-import StatusButtons from "../../dumbs/StatusButton";
 import { useDispatch } from "react-redux";
 import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
 
@@ -42,6 +41,7 @@ const AdminOrderItem = ({ order }) => {
 
   const handleSendToDatabase = () => {
     setSendDate(new Date());
+    dispatch(handleOrderStatusChange({isOrderModified:false}))
     // const dataToSend = {
     //   trackingNumber: trackingNumber,
     //   orderStatus: order.status,
@@ -75,6 +75,7 @@ const AdminOrderItem = ({ order }) => {
               handleOrderStatusChange({
                 orderId: order.id,
                 isNextStatusOrder: true,
+                isOrderModified:true,
               })
             );
           }}
@@ -82,7 +83,7 @@ const AdminOrderItem = ({ order }) => {
           Passer à l'étape suivante
         </button>
       </div>
-      <StatusButtons isModified={true} handleSendToDatabase={handleSendToDatabase} />
+      
     </div>
   );
 };

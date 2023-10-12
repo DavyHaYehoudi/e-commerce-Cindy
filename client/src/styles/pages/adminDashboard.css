@@ -59,12 +59,11 @@
     text-align: center;
 }
 
-.non-traitee-badge {
-    background-color: #ff0000;
-}
-
 .modified-badge {
     background-color: var(--edit);
+}
+.new-order-badge{
+    background-color: #ff0000;
 }
 
 .client-header button {

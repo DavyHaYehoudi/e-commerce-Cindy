@@ -13,11 +13,11 @@ const ClientItem = ({
         onClick={() => handleClientClick(client.id)}
       >
         <span>{client.firstName}{" "}{client.lastName} </span>
-        {client.orders.some((order) => order.nonTraitee) && (
-          <span className="admin-badge non-traitee-badge">Non traitée</span>
-        )}
-        {client.orders.some((order) => order.isNextStatusOrder) && (
+        {client.orders.some((order) => order.isOrderModified) && (
           <span className="admin-badge modified-badge">Modifiée</span>
+        )}
+        {client.orders.some((order) => order.newOrder) && (
+          <span className="admin-badge new-order-badge">Nouvelle</span>
         )}
         <button>
           {clientDetails[client.id]
