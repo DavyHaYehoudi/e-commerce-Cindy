@@ -16,7 +16,7 @@ const ClientItem = ({
         {client.orders.some((order) => order.nonTraitee) && (
           <span className="admin-badge non-traitee-badge">Non traitée</span>
         )}
-        {client.orders.some((order) => order.isStatusOrderModified) && (
+        {client.orders.some((order) => order.isNextStatusOrder) && (
           <span className="admin-badge modified-badge">Modifiée</span>
         )}
         <button>

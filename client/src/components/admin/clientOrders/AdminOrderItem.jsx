@@ -6,10 +6,11 @@ import OrderDetails from "./OrderDetails";
 import OrderProductsList from "./OrderProductsList";
 import TrackingField from "./TrackingField";
 import StatusButtons from "../../dumbs/StatusButton";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
 
 const AdminOrderItem = ({ order }) => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [creationDate, setCreationDate] = useState(null);
@@ -49,10 +50,7 @@ const AdminOrderItem = ({ order }) => {
 
   return (
     <div className="admin-order-item">
-      <OrderHeader
-        order={order}
-        handleSendToDatabase={handleSendToDatabase}
-      />
+      <OrderHeader order={order} handleSendToDatabase={handleSendToDatabase} />
       <OrderStatus order={order} />
       <OrderDetails order={order} />
       <OrderProductsList products={order.products} />
@@ -73,12 +71,18 @@ const AdminOrderItem = ({ order }) => {
         <button
           className="move-to-next-step"
           onClick={() => {
+            dispatch(
+              handleOrderStatusChange({
+                orderId: order.id,
+                isNextStatusOrder: true,
+              })
+            );
           }}
         >
           Passer à l'étape suivante
         </button>
       </div>
-      <StatusButtons handleSendToDatabase={handleSendToDatabase} />
+      <StatusButtons isModified={true} handleSendToDatabase={handleSendToDatabase} />
     </div>
   );
 };

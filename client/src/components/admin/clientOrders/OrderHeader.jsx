@@ -20,9 +20,6 @@ const OrderHeader = ({ order, handleSendToDatabase }) => {
           </button>
         </Link>
       )}
-      <StatusButtons
-        handleSendToDatabase={handleSendToDatabase}
-      />
     </div>
   );
 };

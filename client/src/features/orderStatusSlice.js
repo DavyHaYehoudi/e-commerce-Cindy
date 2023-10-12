@@ -3,10 +3,10 @@ import { usersMock } from "../mocks/usersMock";
 import { orderStatus } from "../mocks/orderStatus";
 
 const orderStatusMap = {
-  [orderStatus[0]]: orderStatus[1],
-  [orderStatus[1]]: orderStatus[2],
-  [orderStatus[2]]: orderStatus[3],
-  [orderStatus[3]]: orderStatus[0],
+  [orderStatus[0].name]: orderStatus[1].name,
+  [orderStatus[1].name]: orderStatus[2].name,
+  [orderStatus[2].name]: orderStatus[3].name,
+  [orderStatus[3].name]: orderStatus[0].name,
 };
 
 const orderStatusSlice = createSlice({
@@ -16,31 +16,32 @@ const orderStatusSlice = createSlice({
     handleOrderStatusChange: (state, action) => {
       const {
         orderId,
-        isStatusModified,
-        isModified,
+        isNextStatusOrder,
+        isOrderModified,
         nonTraitee,
         trackingNumber,
       } = action.payload;
 
-      state = state.map((user) => {
-        user.orders = user.orders.map((order) => {
-          if (order.id === orderId) {
-            const currentStatus = order.status;
-            const nextStatus = orderStatusMap[currentStatus] || orderStatus[0];
+      return state.map((user) => {
+        return {
+          ...user,
+          orders: user.orders.map((order) => {
+            if (order.id === orderId) {
+              const currentStatus = order.status;
+              const nextStatus = orderStatusMap[currentStatus] || orderStatus[0].name;
 
-            return {
-              ...order,
-              status: nextStatus,
-              isStatusOrderModified: isStatusModified,
-              isModified: isModified,
-              nonTraitee: nonTraitee,
-              trackingNumber: trackingNumber,
-            };
-          }
-          return order;
-        });
-
-        return user;
+              return {
+                ...order,
+                status: isNextStatusOrder ? nextStatus : order.status,
+                isNextStatusOrder: isNextStatusOrder,
+                isOrderModified: isOrderModified,
+                nonTraitee: nonTraitee,
+                trackingNumber: trackingNumber,
+              };
+            }
+            return order;
+          }),
+        };
       });
     },
   },

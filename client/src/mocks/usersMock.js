@@ -54,11 +54,12 @@ export const usersMock = [
         id: 1,
         date: "2023-01-15 08:30",
         status: orderStatus[0].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:true,
         products: [
           {
             productId: 101,
@@ -82,11 +83,12 @@ export const usersMock = [
         id: 2,
         date: "2023-02-02 14:45",
         status: orderStatus[1].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 103,
@@ -102,11 +104,12 @@ export const usersMock = [
         id: 3,
         date: "2023-03-10 10:20",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 104,
@@ -168,11 +171,12 @@ export const usersMock = [
         id: 4,
         date: "2023-04-05 09:55",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 105,
@@ -196,11 +200,12 @@ export const usersMock = [
         id: 5,
         date: "2023-04-15 12:30",
         status: orderStatus[1].name,
-        isStatusOrderModified:true,
+        isNextStatusOrder:true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 107,
@@ -278,11 +283,12 @@ export const usersMock = [
         id: 6,
         date: "2023-05-01 18:45",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 110,
@@ -298,11 +304,12 @@ export const usersMock = [
         id: 7,
         date: "2023-05-10 10:00",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 111,
@@ -388,11 +395,12 @@ export const usersMock = [
         id: 8,
         date: "2023-06-02 14:20",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:true,
         products: [
           {
             productId: 115,
@@ -416,11 +424,12 @@ export const usersMock = [
         id: 9,
         date: "2023-06-15 08:00",
         status: orderStatus[1].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 117,
@@ -498,11 +507,12 @@ export const usersMock = [
         id: 10,
         date: "2023-07-05 11:30",
         status: orderStatus[0].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 120,
@@ -518,11 +528,12 @@ export const usersMock = [
         id: 11,
         date: "2023-07-15 15:45",
         status: orderStatus[2].name,
-        isStatusOrderModified:true,
+        isNextStatusOrder:true,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 121,
@@ -562,11 +573,12 @@ export const usersMock = [
         id: 12,
         date: "2023-08-02 09:20",
         status: orderStatus[3].name,
-        isStatusOrderModified:true,
+        isNextStatusOrder:true,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 125,
@@ -628,11 +640,12 @@ export const usersMock = [
         id: 13,
         date: "2023-08-10 14:30",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 126,
@@ -694,11 +707,12 @@ export const usersMock = [
         id: 14,
         date: "2023-09-01 18:45",
         status: orderStatus[0].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 127,
@@ -714,11 +728,12 @@ export const usersMock = [
         id: 15,
         date: "2023-09-10 10:00",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 128,
@@ -734,11 +749,12 @@ export const usersMock = [
         id: 16,
         date: "2023-09-20 12:00",
         status: orderStatus[1].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 129,
@@ -754,11 +770,12 @@ export const usersMock = [
         id: 17,
         date: "2023-09-25 09:30",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 130,
@@ -828,11 +845,12 @@ export const usersMock = [
         id: 18,
         date: "2023-10-05 15:15",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 132,
@@ -848,11 +866,12 @@ export const usersMock = [
         id: 19,
         date: "2023-10-15 08:45",
         status: orderStatus[3].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 133,
@@ -914,11 +933,12 @@ export const usersMock = [
         id: 20,
         date: "2023-11-01 11:30",
         status: orderStatus[0].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 134,
@@ -942,11 +962,12 @@ export const usersMock = [
         id: 21,
         date: "2023-11-10 15:45",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 136,
@@ -962,11 +983,12 @@ export const usersMock = [
         id: 22,
         date: "2023-11-20 09:20",
         status: orderStatus[3].name,
-        isStatusOrderModified:true,
+        isNextStatusOrder:true,
         totalAmount: "€70",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 137,
@@ -1036,11 +1058,12 @@ export const usersMock = [
         id: 23,
         date: "2023-12-05 14:30",
         status: orderStatus[3].name,
-        isStatusOrderModified:true,
+        isNextStatusOrder:true,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
+        isOrderModified:false,
         products: [
           {
             productId: 139,
@@ -1056,11 +1079,12 @@ export const usersMock = [
         id: 24,
         date: "2023-12-15 08:45",
         status: orderStatus[2].name,
-        isStatusOrderModified:false,
+        isNextStatusOrder:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 140,
@@ -1122,11 +1146,12 @@ export const usersMock = [
         id: 4,
         date: "2023-05-20 12:15",
         status: orderStatus[0].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€200",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 107,
@@ -1150,11 +1175,12 @@ export const usersMock = [
         id: 5,
         date: "2023-06-10 09:30",
         status: orderStatus[1].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 109,
@@ -1216,11 +1242,12 @@ export const usersMock = [
         id: 6,
         date: "2023-08-05 15:45",
         status: orderStatus[1].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 115,
@@ -1290,11 +1317,12 @@ export const usersMock = [
         id: 9,
         date: "2023-11-20 11:15",
         status: orderStatus[2].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€180",
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 124,
@@ -1318,11 +1346,12 @@ export const usersMock = [
         id: 10,
         date: "2023-12-05 09:30",
         status: orderStatus[0].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 126,
@@ -1384,11 +1413,12 @@ export const usersMock = [
         id: 11,
         date: "2023-05-15 15:45",
         status: orderStatus[1].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€210",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 138,
@@ -1404,11 +1434,12 @@ export const usersMock = [
         id: 12,
         date: "2023-06-02 08:00",
         status: orderStatus[2].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€240",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:false,
         products: [
           {
             productId: 133,
@@ -1470,11 +1501,12 @@ export const usersMock = [
         id: 21,
         date: "2023-08-10 12:30",
         status: orderStatus[0].name,
-        isStatusOrderModified: false,
+        isNextStatusOrder: false,
         totalAmount: "€300",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:true,
         products: [
           {
             productId: 151,
@@ -1498,11 +1530,12 @@ export const usersMock = [
         id: 22,
         date: "2023-09-05 16:15",
         status: orderStatus[1].name,
-        isStatusOrderModified: true,
+        isNextStatusOrder: true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         nonTraitee: false,
         trackingNumber: null,
+        isOrderModified:true,
         products: [
           {
             productId: 154,
