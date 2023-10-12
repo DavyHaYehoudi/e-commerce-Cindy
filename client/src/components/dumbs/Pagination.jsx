@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const pageNumbers = [];
@@ -12,10 +12,10 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     <nav>
       <ul className="pagination">
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <Link onClick={() => paginate(number)}  className="page-link">
+          <li key={number} className="pagination-item">
+            <NavLink onClick={() => paginate(number)} className="pagination-link" >
               {number}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>

@@ -82,6 +82,7 @@ img {
 .info-tooltip:hover::before {
     opacity: 1;
 }
+
 /* ********************* END INFO-BULLE TOOLTIP ********************* */
 
 /* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
@@ -110,7 +111,7 @@ img {
 }
 
 .icon-edit {
-    color:white;
+    color: white;
     background-color: var(--edit);
 }
 
@@ -118,6 +119,7 @@ img {
     color: white;
     background-color: var(--validate);
 }
+
 /* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 
 /* ********************* START INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */
@@ -133,7 +135,36 @@ img {
     border: 1px solid black;
     box-shadow: 0 0 3px black;
 }
+
 /* ********************* END INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */
+
+/* ********************* START PAGINATION ********************* */
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-item {
+    margin: 0 5px;
+}
+
+.pagination-link {
+    display: block;
+    padding: 10px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination-link:hover {
+    background-color: #f2f2f2;
+}
+
+/* ********************* END PAGINATION ********************* */
 
 /* *{
     border: 1px red solid;

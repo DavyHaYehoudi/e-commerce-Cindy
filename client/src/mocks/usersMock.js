@@ -5,7 +5,7 @@ import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
 
-export const adminDashboard = [
+export const usersMock = [
   {
     id: 1,
     firstName:"John",
@@ -54,11 +54,11 @@ export const adminDashboard = [
         id: 1,
         date: "2023-01-15 08:30",
         status: orderStatus[0].name,
+        isStatusOrderModified:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 101,
@@ -82,11 +82,11 @@ export const adminDashboard = [
         id: 2,
         date: "2023-02-02 14:45",
         status: orderStatus[1].name,
+        isStatusOrderModified:false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 103,
@@ -102,11 +102,11 @@ export const adminDashboard = [
         id: 3,
         date: "2023-03-10 10:20",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 104,
@@ -168,11 +168,11 @@ export const adminDashboard = [
         id: 4,
         date: "2023-04-05 09:55",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 105,
@@ -196,11 +196,11 @@ export const adminDashboard = [
         id: 5,
         date: "2023-04-15 12:30",
         status: orderStatus[1].name,
+        isStatusOrderModified:true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:true,
         products: [
           {
             productId: 107,
@@ -278,11 +278,11 @@ export const adminDashboard = [
         id: 6,
         date: "2023-05-01 18:45",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 110,
@@ -298,11 +298,11 @@ export const adminDashboard = [
         id: 7,
         date: "2023-05-10 10:00",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 111,
@@ -388,11 +388,11 @@ export const adminDashboard = [
         id: 8,
         date: "2023-06-02 14:20",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 115,
@@ -416,11 +416,11 @@ export const adminDashboard = [
         id: 9,
         date: "2023-06-15 08:00",
         status: orderStatus[1].name,
+        isStatusOrderModified:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 117,
@@ -498,11 +498,11 @@ export const adminDashboard = [
         id: 10,
         date: "2023-07-05 11:30",
         status: orderStatus[0].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 120,
@@ -518,11 +518,11 @@ export const adminDashboard = [
         id: 11,
         date: "2023-07-15 15:45",
         status: orderStatus[2].name,
+        isStatusOrderModified:true,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:true,
         products: [
           {
             productId: 121,
@@ -562,11 +562,11 @@ export const adminDashboard = [
         id: 12,
         date: "2023-08-02 09:20",
         status: orderStatus[3].name,
+        isStatusOrderModified:true,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:true,
         products: [
           {
             productId: 125,
@@ -628,11 +628,11 @@ export const adminDashboard = [
         id: 13,
         date: "2023-08-10 14:30",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 126,
@@ -694,11 +694,11 @@ export const adminDashboard = [
         id: 14,
         date: "2023-09-01 18:45",
         status: orderStatus[0].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 127,
@@ -714,11 +714,11 @@ export const adminDashboard = [
         id: 15,
         date: "2023-09-10 10:00",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 128,
@@ -734,11 +734,11 @@ export const adminDashboard = [
         id: 16,
         date: "2023-09-20 12:00",
         status: orderStatus[1].name,
+        isStatusOrderModified:false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 129,
@@ -754,11 +754,11 @@ export const adminDashboard = [
         id: 17,
         date: "2023-09-25 09:30",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 130,
@@ -828,11 +828,11 @@ export const adminDashboard = [
         id: 18,
         date: "2023-10-05 15:15",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 132,
@@ -848,11 +848,11 @@ export const adminDashboard = [
         id: 19,
         date: "2023-10-15 08:45",
         status: orderStatus[3].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 133,
@@ -914,11 +914,11 @@ export const adminDashboard = [
         id: 20,
         date: "2023-11-01 11:30",
         status: orderStatus[0].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:false,
         products: [
           {
             productId: 134,
@@ -942,11 +942,11 @@ export const adminDashboard = [
         id: 21,
         date: "2023-11-10 15:45",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 136,
@@ -962,11 +962,11 @@ export const adminDashboard = [
         id: 22,
         date: "2023-11-20 09:20",
         status: orderStatus[3].name,
+        isStatusOrderModified:true,
         totalAmount: "€70",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:true,
         products: [
           {
             productId: 137,
@@ -1036,11 +1036,11 @@ export const adminDashboard = [
         id: 23,
         date: "2023-12-05 14:30",
         status: orderStatus[3].name,
+        isStatusOrderModified:true,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: true,
         trackingNumber: "XYZ123456",
-        isStatusOrderModified:true,
         products: [
           {
             productId: 139,
@@ -1056,11 +1056,11 @@ export const adminDashboard = [
         id: 24,
         date: "2023-12-15 08:45",
         status: orderStatus[2].name,
+        isStatusOrderModified:false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified:false,
         products: [
           {
             productId: 140,
@@ -1122,11 +1122,11 @@ export const adminDashboard = [
         id: 4,
         date: "2023-05-20 12:15",
         status: orderStatus[0].name,
+        isStatusOrderModified: false,
         totalAmount: "€200",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 107,
@@ -1150,11 +1150,11 @@ export const adminDashboard = [
         id: 5,
         date: "2023-06-10 09:30",
         status: orderStatus[1].name,
+        isStatusOrderModified: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 109,
@@ -1216,11 +1216,11 @@ export const adminDashboard = [
         id: 6,
         date: "2023-08-05 15:45",
         status: orderStatus[1].name,
+        isStatusOrderModified: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 115,
@@ -1290,11 +1290,11 @@ export const adminDashboard = [
         id: 9,
         date: "2023-11-20 11:15",
         status: orderStatus[2].name,
+        isStatusOrderModified: false,
         totalAmount: "€180",
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 124,
@@ -1318,11 +1318,11 @@ export const adminDashboard = [
         id: 10,
         date: "2023-12-05 09:30",
         status: orderStatus[0].name,
+        isStatusOrderModified: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 126,
@@ -1384,11 +1384,11 @@ export const adminDashboard = [
         id: 11,
         date: "2023-05-15 15:45",
         status: orderStatus[1].name,
+        isStatusOrderModified: false,
         totalAmount: "€210",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 138,
@@ -1404,11 +1404,11 @@ export const adminDashboard = [
         id: 12,
         date: "2023-06-02 08:00",
         status: orderStatus[2].name,
+        isStatusOrderModified: false,
         totalAmount: "€240",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 133,
@@ -1470,11 +1470,11 @@ export const adminDashboard = [
         id: 21,
         date: "2023-08-10 12:30",
         status: orderStatus[0].name,
+        isStatusOrderModified: false,
         totalAmount: "€300",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: false,
         products: [
           {
             productId: 151,
@@ -1498,11 +1498,11 @@ export const adminDashboard = [
         id: 22,
         date: "2023-09-05 16:15",
         status: orderStatus[1].name,
+        isStatusOrderModified: true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         nonTraitee: false,
         trackingNumber: null,
-        isStatusOrderModified: true,
         products: [
           {
             productId: 154,

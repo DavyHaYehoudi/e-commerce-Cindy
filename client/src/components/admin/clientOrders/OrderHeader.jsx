@@ -2,8 +2,8 @@ import React from "react";
 import { formatDate } from "../../../helpers/formatDate";
 import StatusButtons from "../../dumbs/StatusButton";
 import { Link } from "react-router-dom";
-import { ordersMock } from "../../../mocks/ordersMock";
-import { userInfo } from "../../../mocks/userInfo";
+import { orderMock } from "../../../mocks/orderMock";
+import { userMock } from "../../../mocks/userMock";
 import { orderStatus } from "../../../mocks/orderStatus";
 
 const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
@@ -13,7 +13,7 @@ const OrderHeader = ({ order, handleSendToDatabase, isModified }) => {
       {order.status === orderStatus[2].name && (
         <Link
           to={`/admin/generate-invoice/${order.id}`}
-          state={{ order: ordersMock[0], user: userInfo }}
+          state={{ order: orderMock[0], user: userMock }}
         >
           <button className="account-btn toggle">
             Générer la facture

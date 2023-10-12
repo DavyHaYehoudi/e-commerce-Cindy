@@ -4,10 +4,10 @@ import DeliveredOrders from "../components/accountUser/DeliveredOrders";
 import UserInfo from "../components/accountUser/UserInfo";
 import { getStatusColor } from "../helpers/getStatusColor";
 import { orderHistoryUser } from "../mocks/orderHistoryUser";
-import { userInfo } from "../mocks/userInfo";
+import { userMock } from "../mocks/userMock";
 
 const AccountUser = () => {
-  const [userData] = useState(userInfo);
+  const [userData] = useState(userMock);
   const [orderHistory] = useState(orderHistoryUser);
 
   return (

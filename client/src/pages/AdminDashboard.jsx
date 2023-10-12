@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { adminDashboard } from "../mocks/adminDashboard";
+import { usersMock } from "../mocks/usersMock";
 import ClientList from "../components/admin/clientList/ClientList";
 
-const AdminDashboard = () => {
-  const [clients, setClients] = useState(adminDashboard);
+const adminDashboard = () => {
+  const [clients, setClients] = useState(usersMock);
   const [clientDetails, setClientDetails] = useState({});
 
   const handleClientClick = (clientId) => {
@@ -56,4 +56,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default adminDashboard;

@@ -5,7 +5,7 @@ import bra from "../assets/bra.png";
 import col from "../assets/col.png";
 import { orderStatus } from "./orderStatus";
 
-export const userInfo = {
+export const userMock = {
   id:1,
   firstName: "John",
   lastName: "Doe",
