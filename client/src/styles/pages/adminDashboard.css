@@ -16,23 +16,18 @@
 }
 
 .client-item {
+    position: relative;
     list-style: none;
     margin-bottom: 10px;
-    cursor: pointer;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .client-header {
     display: flex;
     justify-content: space-around;
-    margin: 20px;
     background-color: #f9f9f9;
-    padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -49,8 +44,20 @@
     flex: 1;
 }
 
+.client-header button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.client-header button:hover {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
 .admin-badge {
-    max-width: 10%;
+    max-width: 20%;
     color: #fff;
     padding: 5px;
     margin-right: 10px;
@@ -58,32 +65,44 @@
     text-align: center;
 }
 
-.new-order-badge{
+.newOrder-badge {
     background-color: var(--danger);
 }
-.inProcessing-order-badge{
-    background-color: var(--info);
+
+.inProcessingOrder-badge {
+    background-color: var(--primary);
 }
-.pending-shipment-order-badge{
-    background-color: var(--warning);
-}
-.dispatched-order-badge{
+
+.completedOrder-badge {
     background-color: var(--success);
 }
 
-.client-header button {
-    max-width: 30%;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 8px;
-    flex: 1;
-    cursor: pointer;
+.notification-bubble {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--warning);
 }
 
-.client-header button:hover {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 /* ********************* END DASHBOARD VIEW ********************* */

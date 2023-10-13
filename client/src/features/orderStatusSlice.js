@@ -19,8 +19,8 @@ const orderStatusSlice = createSlice({
         isNextStatusOrder,
         trackingNumber,
         inProcessingOrder,
-        pendingShipmentOrder,
-        dispatchedOrder,
+        completedOrder,
+        isClientNotified
       } = action.payload;
 
       return state.map((user) => {
@@ -38,8 +38,8 @@ const orderStatusSlice = createSlice({
                 isNextStatusOrder: isNextStatusOrder,
                 trackingNumber: trackingNumber,
                 inProcessingOrder: inProcessingOrder,
-                pendingShipmentOrder: pendingShipmentOrder,
-                dispatchedOrder:dispatchedOrder,
+                completedOrder:completedOrder,
+                isClientNotified:isClientNotified,
               };
             }
             return order;

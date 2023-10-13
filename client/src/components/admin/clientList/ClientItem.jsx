@@ -1,33 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ClientDetails from "../clientPresentation/ClientDetails";
 
+const badgeMap = {
+  newOrder: "Nouveau",
+  inProcessingOrder: "En cours de traitement",
+  completedOrder: "Complété",
+  blink: "blink",
+};
+
 const ClientItem = ({ client, handleClientClick, clientDetails }) => {
+  const [isNotificationVisible, setNotificationVisible] = useState(false);
+
+  useEffect(() => {
+    // Vérifie si au moins un item a isClientNotified à false
+    const hasUnnotifiedItems = client.orders.some((order) => !order.isClientNotified);
+    setNotificationVisible(hasUnnotifiedItems);
+  }, [client.orders]);
+
+  const renderBadge = (orderType) => {
+    if (client.orders.some((order) => order[orderType])) {
+      const badgeClass = `admin-badge ${orderType}-badge`;
+      return <span className={badgeClass}>{badgeMap[orderType]}</span>;
+    }
+
+    return null;
+  };
+
   return (
-    <li>
+    <li className={`client-item ${isNotificationVisible ? "notified" : ""}`}>
       <div className="client-header">
         <span>
           {client.firstName} {client.lastName}{" "}
         </span>
-        {client.orders.some((order) => order.newOrder) && (
-          <span className="admin-badge new-order-badge">Nouveau</span>
-        )}
-        {client.orders.some((order) => order.inProcessingOrder) && (
-          <span className="admin-badge inProcessing-order-badge">
-            En cours de traitement
-          </span>
-        )}
-        {client.orders.some((order) => order.pendingShipmentOrder) && (
-          <span className="admin-badge pending-shipment-order-badge">
-            En attente d'envoi
-          </span>
-        )}
-        {client.orders.some((order) => order.dispatchedOrder) && (
-          <span className="admin-badge dispatched-order-badge">Envoyé</span>
-        )}
+        {Object.keys(badgeMap).map((orderType) => renderBadge(orderType))}
         <button onClick={() => handleClientClick(client.id)}>
-          {clientDetails[client.id] ? "Fermer" : "Voir la fiche client"}
+          {clientDetails[client.id] ? "Fermer" : "Consulter"}
         </button>
       </div>
+      {isNotificationVisible && <div className="notification-bubble blink"></div>}
       {clientDetails[client.id] && <ClientDetails client={client} />}
     </li>
   );

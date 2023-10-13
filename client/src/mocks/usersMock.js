@@ -60,8 +60,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: false,
         products: [
           {
             productId: 101,
@@ -91,8 +91,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 103,
@@ -114,8 +114,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: false,
         products: [
           {
             productId: 104,
@@ -183,8 +183,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 105,
@@ -214,8 +214,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 107,
@@ -299,8 +299,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 110,
@@ -322,8 +322,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 111,
@@ -415,8 +415,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: true,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 115,
@@ -446,8 +446,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:false,
+        completedOrder: false,
+        isClientNotified: true,
         products: [
           {
             productId: 117,
@@ -531,8 +531,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 120,
@@ -554,8 +554,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: true,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 121,
@@ -601,8 +601,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 125,
@@ -670,8 +670,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:false,
+        completedOrder: false,
+        isClientNotified: true,
         products: [
           {
             productId: 126,
@@ -739,8 +739,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 127,
@@ -762,8 +762,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:false,
+        completedOrder: false,
+        isClientNotified: true,
         products: [
           {
             productId: 128,
@@ -785,8 +785,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 129,
@@ -808,8 +808,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:false,
+        completedOrder: false,
+        isClientNotified: true,
         products: [
           {
             productId: 130,
@@ -885,8 +885,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 132,
@@ -908,8 +908,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:false,
+        completedOrder: false,
+        isClientNotified: true,
         products: [
           {
             productId: 133,
@@ -977,8 +977,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 134,
@@ -1008,8 +1008,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 136,
@@ -1031,8 +1031,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 137,
@@ -1108,8 +1108,8 @@ export const usersMock = [
         trackingNumber: "XYZ123456",
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:false,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 139,
@@ -1131,8 +1131,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 140,
@@ -1200,8 +1200,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 107,
@@ -1231,8 +1231,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: false,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 109,
@@ -1300,8 +1300,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 115,
@@ -1377,8 +1377,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 124,
@@ -1408,8 +1408,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 126,
@@ -1477,8 +1477,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 138,
@@ -1500,8 +1500,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: false,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 133,
@@ -1569,8 +1569,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: true,
         inProcessingOrder: true,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 151,
@@ -1600,8 +1600,8 @@ export const usersMock = [
         trackingNumber: null,
         newOrder: false,
         inProcessingOrder: true,
-        pendingShipmentOrder:true,
-        dispatchedOrder:true,
+        completedOrder: true,
+        isClientNotified: true,
         products: [
           {
             productId: 154,
