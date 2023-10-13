@@ -8,7 +8,7 @@ import TrackingField from "./TrackingField";
 import { useDispatch } from "react-redux";
 import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
 
-const AdminOrderItem = ({ order }) => {
+const AdminOrderItem = ({ clientId, order,orderIndex }) => {
   const dispatch = useDispatch();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
@@ -41,7 +41,13 @@ const AdminOrderItem = ({ order }) => {
 
   const handleSendToDatabase = () => {
     setSendDate(new Date());
-    dispatch(handleOrderStatusChange({inProcessingOrder:false}))
+    dispatch(
+      handleOrderStatusChange({
+        orderId: order.id,
+        inProcessingOrder: true,
+        isClientNotified: true,
+      })
+    );
     // const dataToSend = {
     //   trackingNumber: trackingNumber,
     //   orderStatus: order.status,
@@ -50,12 +56,18 @@ const AdminOrderItem = ({ order }) => {
 
   return (
     <div className="admin-order-item">
-      <OrderHeader order={order} handleSendToDatabase={handleSendToDatabase} />
+      <OrderHeader
+        order={order}
+        orderIndex={orderIndex}
+        clientId={clientId}
+        handleSendToDatabase={handleSendToDatabase}
+      />
       <OrderStatus order={order} />
       <OrderDetails order={order} />
       <OrderProductsList products={order.products} />
       {order.status === orderStatus[2].name && (
         <TrackingField
+          orderId={order.id}
           trackingNumber={trackingNumber}
           isEditing={isEditing}
           handleTrackingNumberChange={handleTrackingNumberChange}
@@ -75,7 +87,9 @@ const AdminOrderItem = ({ order }) => {
               handleOrderStatusChange({
                 orderId: order.id,
                 isNextStatusOrder: true,
-                inProcessingOrder:true,
+                newOrder:false,
+                inProcessingOrder: true,
+                isClientNotified: false,
               })
             );
           }}
@@ -83,7 +97,6 @@ const AdminOrderItem = ({ order }) => {
           Passer à l'étape suivante
         </button>
       </div>
-      
     </div>
   );
 };

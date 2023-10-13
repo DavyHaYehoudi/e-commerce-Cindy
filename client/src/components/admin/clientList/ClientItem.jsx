@@ -4,7 +4,7 @@ import ClientDetails from "../clientPresentation/ClientDetails";
 const badgeMap = {
   newOrder: "Nouveau",
   inProcessingOrder: "En cours de traitement",
-  completedOrder: "Complété",
+  completedOrder: "Complet",
   blink: "blink",
 };
 
@@ -13,14 +13,21 @@ const ClientItem = ({ client, handleClientClick, clientDetails }) => {
 
   useEffect(() => {
     // Vérifie si au moins un item a isClientNotified à false
-    const hasUnnotifiedItems = client.orders.some((order) => !order.isClientNotified);
+    const hasUnnotifiedItems = client.orders.some(
+      (order) => !order.isClientNotified
+    );
     setNotificationVisible(hasUnnotifiedItems);
   }, [client.orders]);
 
+  
   const renderBadge = (orderType) => {
     if (client.orders.some((order) => order[orderType])) {
       const badgeClass = `admin-badge ${orderType}-badge`;
-      return <span className={badgeClass}>{badgeMap[orderType]}</span>;
+      return (
+        <span key={orderType} className={badgeClass}>
+          {badgeMap[orderType]}
+        </span>
+      );
     }
 
     return null;
@@ -37,7 +44,9 @@ const ClientItem = ({ client, handleClientClick, clientDetails }) => {
           {clientDetails[client.id] ? "Fermer" : "Consulter"}
         </button>
       </div>
-      {isNotificationVisible && <div className="notification-bubble blink"></div>}
+      {isNotificationVisible && (
+        <div className="notification-bubble blink"></div>
+      )}
       {clientDetails[client.id] && <ClientDetails client={client} />}
     </li>
   );

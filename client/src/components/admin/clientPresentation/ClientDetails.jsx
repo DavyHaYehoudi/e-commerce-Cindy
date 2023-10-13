@@ -30,7 +30,7 @@ const ClientDetails = ({ client }) => {
         buttonClass="account-btn toggle"
         content={
           <div className="clientPreferenceDetails">
-            <ClientPreferencesDetails client={client} />
+            <ClientPreferencesDetails clientId={client.id} />
           </div>
         }
       />
@@ -45,11 +45,12 @@ const ClientDetails = ({ client }) => {
         buttonClass="account-btn toggle"
         content={
           <div className="clientOrders">
-            {client.orders.map((order) => (
+            {client.orders.map((order,i) => (
               <AdminOrderItem
                 key={order.id}
-                client={client}
+                clientId={client.id}
                 order={order}
+                orderIndex={i}
               />
             ))}
           </div>

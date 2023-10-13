@@ -56,6 +56,7 @@
     background-color: #2c3e50;
     color: #ecf0f1;
 }
+
 .admin-badge {
     max-width: 20%;
     color: #fff;
@@ -198,15 +199,20 @@
     align-items: center;
 }
 
+.status-buttons .not-send {
+    color: white;
+    background-color: var(--warning);
+}
+
 .status-buttons .send {
     color: white;
     background-color: var(--success);
+    cursor: initial;
+    padding: 5px;
 }
-
-.status-buttons .updated {
-    border: none;
-    background-color: white;
-    font-size: 25px;
+.not-send-icon{
+background-color: var(--warning);
+color: white;
 }
 
 /* ********************* END ETAT FICHE ICONES  ********************* */

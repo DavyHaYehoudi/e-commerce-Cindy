@@ -61,7 +61,7 @@ export const usersMock = [
         newOrder: true,
         inProcessingOrder: false,
         completedOrder: true,
-        isClientNotified: false,
+        isClientNotified: true,
         products: [
           {
             productId: 101,
@@ -215,7 +215,7 @@ export const usersMock = [
         newOrder: true,
         inProcessingOrder: false,
         completedOrder: true,
-        isClientNotified: true,
+        isClientNotified: false,
         products: [
           {
             productId: 107,
