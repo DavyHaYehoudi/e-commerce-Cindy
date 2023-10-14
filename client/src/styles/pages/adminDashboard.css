@@ -78,6 +78,10 @@
     background-color: var(--success);
 }
 
+.status-badge {
+    background-color: var(--secondary);
+}
+
 .notification-bubble {
     position: absolute;
     top: 5px;
@@ -129,7 +133,31 @@
     align-items: center;
 }
 
-/* ICON EMAIL CLIENT */
+/* Annulation commande */
+.admin-order-item-header.order-header {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-order-item-header .orderCancelled .orderCancelled-action,
+.orderActive-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 10px;
+}
+
+.orderActive-action {
+    background-color: var(--secondary);
+}
+
+.orderCancelled-action {
+    background-color: var(--info);
+}
+
+/* Icon email client */
 .client-details .icon {
     cursor: pointer;
     font-size: 25px;
@@ -210,9 +238,10 @@
     cursor: initial;
     padding: 5px;
 }
-.not-send-icon{
-background-color: var(--warning);
-color: white;
+
+.not-send-icon {
+    color: white;
+    margin-left: 5px;
 }
 
 /* ********************* END ETAT FICHE ICONES  ********************* */

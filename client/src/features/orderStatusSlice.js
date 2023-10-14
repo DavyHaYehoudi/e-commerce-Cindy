@@ -5,8 +5,8 @@ import { orderStatus } from "../mocks/orderStatus";
 const orderStatusMap = {
   [orderStatus[0].name]: orderStatus[1].name,
   [orderStatus[1].name]: orderStatus[2].name,
-  [orderStatus[2].name]: orderStatus[3].name,
-  [orderStatus[3].name]: orderStatus[0].name,
+  [orderStatus[2].name]: orderStatus[0].name,
+ 
 };
 
 const orderStatusSlice = createSlice({
@@ -23,6 +23,8 @@ const orderStatusSlice = createSlice({
         isInProcessingOrder,
         isCompletedOrder,
         isClientNotified,
+        status,
+        lastSentDateToClient,
       } = action.payload;
 
       return state.map((user) => {
@@ -36,7 +38,7 @@ const orderStatusSlice = createSlice({
 
               return {
                 ...order,
-                status: isNextStatusOrder ? nextStatus : order.status,
+                status: isNextStatusOrder ? nextStatus : status,
                 isNextStatusOrder,
                 isNewOrder,
                 isProcessed,
@@ -44,6 +46,7 @@ const orderStatusSlice = createSlice({
                 isInProcessingOrder,
                 isCompletedOrder,
                 isClientNotified,
+                lastSentDateToClient,
               };
             }
             return order;

@@ -63,6 +63,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 101,
@@ -95,6 +96,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 103,
@@ -119,6 +121,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 104,
@@ -189,6 +192,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 105,
@@ -221,6 +225,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: false,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 107,
@@ -307,6 +312,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 110,
@@ -331,6 +337,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 111,
@@ -425,6 +432,7 @@ export const usersMock = [
         isInProcessingOrder: true,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 115,
@@ -457,6 +465,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 117,
@@ -543,6 +552,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 120,
@@ -567,6 +577,7 @@ export const usersMock = [
         isInProcessingOrder: true,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 121,
@@ -615,6 +626,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 125,
@@ -685,6 +697,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 126,
@@ -755,6 +768,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 127,
@@ -779,6 +793,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 128,
@@ -803,6 +818,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 129,
@@ -827,6 +843,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 130,
@@ -905,6 +922,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 132,
@@ -929,6 +947,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: false,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 133,
@@ -999,6 +1018,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 134,
@@ -1031,6 +1051,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 136,
@@ -1055,6 +1076,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 137,
@@ -1133,6 +1155,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 139,
@@ -1157,6 +1180,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 140,
@@ -1227,6 +1251,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 107,
@@ -1259,6 +1284,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 109,
@@ -1329,6 +1355,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 115,
@@ -1407,6 +1434,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 124,
@@ -1439,6 +1467,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 126,
@@ -1509,6 +1538,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 138,
@@ -1533,6 +1563,7 @@ export const usersMock = [
         isInProcessingOrder: false,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 133,
@@ -1603,6 +1634,7 @@ export const usersMock = [
         isInProcessingOrder: true,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 151,
@@ -1635,6 +1667,7 @@ export const usersMock = [
         isInProcessingOrder: true,
         isCompletedOrder: true,
         isClientNotified: true,
+        lastSentDateToClient:null,
         products: [
           {
             productId: 154,

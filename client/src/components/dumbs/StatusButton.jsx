@@ -1,6 +1,7 @@
 import { FcCheckmark } from "react-icons/fc";
 import { useSelector } from "react-redux";
 import { FaAddressCard } from "react-icons/fa";
+import { formatDate } from "../../helpers/formatDate";
 
 const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
   const ordersStatus = useSelector((state) => state.ordersStatus);
@@ -12,13 +13,21 @@ const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
     ordersStatus[clientIndex]?.orders[orderIndex]?.isClientNotified || false;
   const isNewOrder =
     ordersStatus[clientIndex]?.orders[orderIndex]?.isNewOrder || false;
+  const lastSentDateToClient =
+    ordersStatus[clientIndex]?.orders[orderIndex]?.lastSentDateToClient ||
+    false;
 
   return (
     <div className="status-buttons">
-      {(!isNewOrder)&&isClientNotified && (
+      {!isNewOrder && isClientNotified && (
         <>
           <span className="send">Fiche envoyée</span>
           <FcCheckmark />
+          {lastSentDateToClient && (
+            <p>
+              <small>Dernier envoi : {formatDate(lastSentDateToClient)} </small>{" "}
+            </p>
+          )}
         </>
       )}
       {!isClientNotified && (
@@ -27,9 +36,14 @@ const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
             onClick={handleSendToDatabase}
             className="account-btn not-send"
           >
-            Envoyer la fiche
+            Envoyer la fiche au client
+            <FaAddressCard className="not-send-icon" />
           </button>
-          <FaAddressCard className="not-send-icon" />
+          {lastSentDateToClient && (
+            <p>
+              <small>Dernier envoi : {formatDate(lastSentDateToClient)} </small>{" "}
+            </p>
+          )}
         </>
       )}
     </div>

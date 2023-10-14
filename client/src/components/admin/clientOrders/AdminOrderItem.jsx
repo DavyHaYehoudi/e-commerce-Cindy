@@ -5,7 +5,7 @@ import OrderStatus from "./OrderStatus";
 import OrderDetails from "./OrderDetails";
 import OrderProductsList from "./OrderProductsList";
 import TrackingField from "./TrackingField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
 
 const AdminOrderItem = ({ clientId, order, orderIndex }) => {
@@ -13,15 +13,22 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [creationDate, setCreationDate] = useState(null);
-  const [lastModifiedDate, setLastModifiedDate] = useState(null);
   const [sendDate, setSendDate] = useState(null);
+  const [lastSentDateToClient, setLastSentDateToClient] = useState(null);
+  const [updateFromStatusButton, setUpdateFromStatusButton] = useState(true);
+
+  console.log("updateFromStatusButton :", updateFromStatusButton);
+
+  const ordersStatus = useSelector(
+    (state) => state.ordersStatus.find((user) => user.id === clientId)?.orders
+  );
+  const status = ordersStatus[orderIndex]?.status;
 
   const handleTrackingNumberChange = (event) => {
     setTrackingNumber(event.target.value);
     if (!creationDate) {
       setCreationDate(new Date());
     }
-    setLastModifiedDate(new Date());
   };
 
   const handleSaveTrackingNumber = () => {
@@ -40,19 +47,25 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
   };
 
   const handleSendToDatabase = () => {
-    setSendDate(new Date());
+    const currentDate = new Date();
+    if (trackingNumber) {
+      setSendDate(currentDate);
+    }
+
     dispatch(
       handleOrderStatusChange({
         orderId: order.id,
         isInProcessingOrder: true,
         isClientNotified: true,
-        isNewOrder:false,
+        isNewOrder: false,
+        status,
+        lastSentDateToClient: updateFromStatusButton ? currentDate : null,
       })
     );
-    // const dataToSend = {
-    //   trackingNumber: trackingNumber,
-    //   orderStatus: order.status,
-    // };
+    if (updateFromStatusButton) {
+      setLastSentDateToClient(currentDate);
+      setUpdateFromStatusButton(false); 
+    }
   };
 
   return (
@@ -61,7 +74,11 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
         order={order}
         orderIndex={orderIndex}
         clientId={clientId}
-        handleSendToDatabase={handleSendToDatabase}
+        handleSendToDatabase={() => {
+          setUpdateFromStatusButton(true);
+          handleSendToDatabase();
+        }}
+        lastSentDateToClient={lastSentDateToClient}
       />
       <OrderStatus order={order} />
       <OrderDetails order={order} />
@@ -69,6 +86,8 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
       {order.status === orderStatus[2].name && (
         <TrackingField
           orderId={order.id}
+          clientId={clientId}
+          orderIndex={orderIndex}
           trackingNumber={trackingNumber}
           isEditing={isEditing}
           handleTrackingNumberChange={handleTrackingNumberChange}
@@ -77,7 +96,6 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
           handleDeleteTrackingNumber={handleDeleteTrackingNumber}
           sendDate={sendDate}
           creationDate={creationDate}
-          lastModifiedDate={lastModifiedDate}
         />
       )}
       <div className="admin-order-next-step">

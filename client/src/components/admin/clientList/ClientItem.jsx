@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ClientDetails from "../clientPresentation/ClientDetails";
+import { orderStatus } from "../../../mocks/orderStatus";
 
 const badgeMap = {
   isProcessed: "A traiter",
   isInProcessingOrder: "En cours de traitement",
   isCompletedOrder: "Complet",
+  status: orderStatus[3].name,
   blink: "blink",
 };
 
@@ -19,7 +21,12 @@ const ClientItem = ({ client, handleClientClick, clientDetails }) => {
   );
 
   const renderBadge = (orderType) => {
-    const count = ordersStatus?.filter((order) => order[orderType]).length;
+    const count = ordersStatus?.filter((order) => {
+      if (orderType === "status") {
+        return order[orderType] === badgeMap[orderType];
+      }
+      return order[orderType];
+    }).length;
 
     if (count > 0) {
       const badgeClass = `admin-badge ${orderType}-badge`;
