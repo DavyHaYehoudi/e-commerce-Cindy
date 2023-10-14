@@ -8,7 +8,7 @@ import TrackingField from "./TrackingField";
 import { useDispatch } from "react-redux";
 import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
 
-const AdminOrderItem = ({ clientId, order,orderIndex }) => {
+const AdminOrderItem = ({ clientId, order, orderIndex }) => {
   const dispatch = useDispatch();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
@@ -44,8 +44,9 @@ const AdminOrderItem = ({ clientId, order,orderIndex }) => {
     dispatch(
       handleOrderStatusChange({
         orderId: order.id,
-        inProcessingOrder: true,
+        isInProcessingOrder: true,
         isClientNotified: true,
+        isNewOrder:false,
       })
     );
     // const dataToSend = {
@@ -87,8 +88,8 @@ const AdminOrderItem = ({ clientId, order,orderIndex }) => {
               handleOrderStatusChange({
                 orderId: order.id,
                 isNextStatusOrder: true,
-                newOrder:false,
-                inProcessingOrder: true,
+                isProcessed: false,
+                isInProcessingOrder: true,
                 isClientNotified: false,
               })
             );

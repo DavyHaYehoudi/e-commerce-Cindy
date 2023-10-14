@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ClientList from "../components/admin/clientList/ClientList";
+import { handleOrderStatusChange } from "../features/orderStatusSlice";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,13 @@ const AdminDashboard = () => {
     // dispatch(fetchClients());
   }, [dispatch]);
 
+  // ouverture/fermeture rangée client
   const handleClientClick = (clientId) => {
     setClientDetails((prevDetails) => ({
       ...prevDetails,
       [clientId]: !prevDetails[clientId],
     }));
+    dispatch(handleOrderStatusChange({}))
   };
 
   return (

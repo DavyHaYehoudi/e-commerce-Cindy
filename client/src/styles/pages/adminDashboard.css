@@ -66,15 +66,15 @@
     text-align: center;
 }
 
-.newOrder-badge {
+.isProcessed-badge {
     background-color: var(--danger);
 }
 
-.inProcessingOrder-badge {
+.isInProcessingOrder-badge {
     background-color: var(--primary);
 }
 
-.completedOrder-badge {
+.isCompletedOrder-badge {
     background-color: var(--success);
 }
 

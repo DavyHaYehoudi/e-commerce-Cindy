@@ -17,10 +17,11 @@ const orderStatusSlice = createSlice({
       const {
         orderId,
         isNextStatusOrder,
-        newOrder,
+        isNewOrder,
+        isProcessed,
         trackingNumber,
-        inProcessingOrder,
-        completedOrder,
+        isInProcessingOrder,
+        isCompletedOrder,
         isClientNotified,
       } = action.payload;
 
@@ -36,12 +37,13 @@ const orderStatusSlice = createSlice({
               return {
                 ...order,
                 status: isNextStatusOrder ? nextStatus : order.status,
-                isNextStatusOrder: isNextStatusOrder,
-                newOrder:newOrder,
-                trackingNumber: trackingNumber,
-                inProcessingOrder: inProcessingOrder,
-                completedOrder:completedOrder,
-                isClientNotified:isClientNotified,
+                isNextStatusOrder,
+                isNewOrder,
+                isProcessed,
+                trackingNumber,
+                isInProcessingOrder,
+                isCompletedOrder,
+                isClientNotified,
               };
             }
             return order;

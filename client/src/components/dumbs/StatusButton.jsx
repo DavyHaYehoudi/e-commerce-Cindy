@@ -10,10 +10,12 @@ const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
   );
   const isClientNotified =
     ordersStatus[clientIndex]?.orders[orderIndex]?.isClientNotified || false;
+  const isNewOrder =
+    ordersStatus[clientIndex]?.orders[orderIndex]?.isNewOrder || false;
 
   return (
     <div className="status-buttons">
-      {isClientNotified && (
+      {(!isNewOrder)&&isClientNotified && (
         <>
           <span className="send">Fiche envoyée</span>
           <FcCheckmark />

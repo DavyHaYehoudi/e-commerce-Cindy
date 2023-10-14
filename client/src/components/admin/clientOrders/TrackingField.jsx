@@ -18,7 +18,7 @@ const TrackingField = ({
 }) => {
   const dispatch = useDispatch();
   const handleSaveTrackingNumberInternal = () => {
-    dispatch(handleOrderStatusChange({ orderId, isClientNotified: false }));
+    dispatch(handleOrderStatusChange({ orderId, isClientNotified: false,isNewOrder:false, }));
     handleSaveTrackingNumber();
   };
 
