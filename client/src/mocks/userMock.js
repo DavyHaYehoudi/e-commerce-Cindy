@@ -3,7 +3,7 @@ import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
-import { orderStatus } from "./orderStatus";
+import { orderStep } from "./orderStep";
 
 export const userMock = {
   id:1,
@@ -50,7 +50,7 @@ export const userMock = {
     {
       id: 1,
       date: "2023-03-10 10:20",
-      status: orderStatus[2].name,
+      Step: orderStep[2].name,
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -69,7 +69,7 @@ export const userMock = {
     {
       id: 2,
       date: "2023-03-07 11:40",
-      status: orderStatus[1].name,
+      Step: orderStep[1].name,
       totalAmount: "€250",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -88,7 +88,7 @@ export const userMock = {
     {
       id: 3,
       date: "2023-03-10 22:20",
-      status: orderStatus[0].name,
+      Step: orderStep[0].name,
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",

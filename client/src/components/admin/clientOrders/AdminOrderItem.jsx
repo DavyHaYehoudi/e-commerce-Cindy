@@ -1,28 +1,24 @@
 import React, { useState } from "react";
-import { orderStatus } from "../../../mocks/orderStatus";
+import { orderStep } from "../../../mocks/orderStep";
 import OrderHeader from "./OrderHeader";
-import OrderStatus from "./OrderStatus";
 import OrderDetails from "./OrderDetails";
 import OrderProductsList from "./OrderProductsList";
 import TrackingField from "./TrackingField";
-import { useDispatch, useSelector } from "react-redux";
-import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
+import {  useSelector } from "react-redux";
 
 const AdminOrderItem = ({ clientId, order, orderIndex }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isEditing, setIsEditing] = useState(true);
   const [creationDate, setCreationDate] = useState(null);
   const [sendDate, setSendDate] = useState(null);
   const [lastSentDateToClient, setLastSentDateToClient] = useState(null);
-  const [updateFromStatusButton, setUpdateFromStatusButton] = useState(true);
+  const [updateFromStepButton, setUpdateFromStepButton] = useState(true);
 
-  console.log("updateFromStatusButton :", updateFromStatusButton);
-
-  const ordersStatus = useSelector(
-    (state) => state.ordersStatus.find((user) => user.id === clientId)?.orders
+  const ordersStep = useSelector(
+    (state) => state.ordersStep.find((user) => user.id === clientId)?.orders
   );
-  const status = ordersStatus[orderIndex]?.status;
+  const step = ordersStep[orderIndex]?.step;
 
   const handleTrackingNumberChange = (event) => {
     setTrackingNumber(event.target.value);
@@ -52,19 +48,19 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
       setSendDate(currentDate);
     }
 
-    dispatch(
-      handleOrderStatusChange({
-        orderId: order.id,
-        isInProcessingOrder: true,
-        isClientNotified: true,
-        isNewOrder: false,
-        status,
-        lastSentDateToClient: updateFromStatusButton ? currentDate : null,
-      })
-    );
-    if (updateFromStatusButton) {
+    // dispatch(
+    //   orderActions({
+    //     orderId: order.id,
+    //     isInProcessingOrder: true,
+    //     isClientNotified: true,
+    //     isNewOrder: false,
+    //     step,
+    //     lastSentDateToClient: updateFromStepButton ? currentDate : null,
+    //   })
+    // );
+    if (updateFromStepButton) {
       setLastSentDateToClient(currentDate);
-      setUpdateFromStatusButton(false); 
+      setUpdateFromStepButton(false); 
     }
   };
 
@@ -74,16 +70,17 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
         order={order}
         orderIndex={orderIndex}
         clientId={clientId}
+        step={step}
         handleSendToDatabase={() => {
-          setUpdateFromStatusButton(true);
+          setUpdateFromStepButton(true);
           handleSendToDatabase();
         }}
         lastSentDateToClient={lastSentDateToClient}
       />
-      <OrderStatus order={order} />
+      
       <OrderDetails order={order} />
       <OrderProductsList products={order.products} />
-      {order.status === orderStatus[2].name && (
+      {order.step === orderStep[2].name && (
         <TrackingField
           orderId={order.id}
           clientId={clientId}
@@ -98,24 +95,6 @@ const AdminOrderItem = ({ clientId, order, orderIndex }) => {
           creationDate={creationDate}
         />
       )}
-      <div className="admin-order-next-step">
-        <button
-          className="move-to-next-step"
-          onClick={() => {
-            dispatch(
-              handleOrderStatusChange({
-                orderId: order.id,
-                isNextStatusOrder: true,
-                isProcessed: false,
-                isInProcessingOrder: true,
-                isClientNotified: false,
-              })
-            );
-          }}
-        >
-          Passer à l'étape suivante
-        </button>
-      </div>
     </div>
   );
 };

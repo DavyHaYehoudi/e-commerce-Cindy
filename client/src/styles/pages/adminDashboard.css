@@ -78,7 +78,7 @@
     background-color: var(--success);
 }
 
-.status-badge {
+.Step-badge {
     background-color: var(--secondary);
 }
 
@@ -132,29 +132,9 @@
     justify-content: space-between;
     align-items: center;
 }
-
-/* Annulation commande */
 .admin-order-item-header.order-header {
     display: flex;
-    gap: 10px;
-}
-
-.admin-order-item-header .orderCancelled .orderCancelled-action,
-.orderActive-action {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 10px;
-}
-
-.orderActive-action {
-    background-color: var(--secondary);
-}
-
-.orderCancelled-action {
-    background-color: var(--info);
+   gap: 10px;
 }
 
 /* Icon email client */
@@ -221,18 +201,18 @@
 
 /* ********************* END NUMERO DE SUIVI DE COMMANDE  ********************* */
 /* ********************* START ETAT FICHE ICONES  ********************* */
-.status-buttons {
+.Step-buttons {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.status-buttons .not-send {
+.Step-buttons .not-send {
     color: white;
     background-color: var(--warning);
 }
 
-.status-buttons .send {
+.Step-buttons .send {
     color: white;
     background-color: var(--success);
     cursor: initial;
@@ -245,28 +225,6 @@
 }
 
 /* ********************* END ETAT FICHE ICONES  ********************* */
-
-/* ********************* START WORKFLOW PASSER A L'ETAPE SUIVANTE  ********************* */
-.move-to-next-step {
-    background-color: white;
-    color: #333;
-    border: 2px solid #ddd;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.move-to-next-step:hover {
-    background-color: #f1f1f1;
-}
-
-.admin-order-next-step {
-    text-align: end;
-}
-
-/* ********************* END WORKFLOW PASSER A L'ETAPE SUIVANTE  ********************* */
 
 /* ********************* START ADMIN NOTES  ********************* */
 .previous-note {

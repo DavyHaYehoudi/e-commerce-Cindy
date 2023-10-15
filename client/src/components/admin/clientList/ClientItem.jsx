@@ -1,28 +1,28 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ClientDetails from "../clientPresentation/ClientDetails";
-import { orderStatus } from "../../../mocks/orderStatus";
+import { orderStep } from "../../../mocks/orderStep";
 
 const badgeMap = {
   isProcessed: "A traiter",
   isInProcessingOrder: "En cours de traitement",
   isCompletedOrder: "Complet",
-  status: orderStatus[3].name,
+  Step: orderStep[3].name,
   blink: "blink",
 };
 
 const ClientItem = ({ client, handleClientClick, clientDetails }) => {
-  const ordersStatus = useSelector(
-    (state) => state.ordersStatus.find((user) => user.id === client.id)?.orders
+  const ordersStep = useSelector(
+    (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
 
-  const isClientNotified = ordersStatus?.some(
+  const isClientNotified = ordersStep?.some(
     (order) => !order.isClientNotified
   );
 
   const renderBadge = (orderType) => {
-    const count = ordersStatus?.filter((order) => {
-      if (orderType === "status") {
+    const count = ordersStep?.filter((order) => {
+      if (orderType === "Step") {
         return order[orderType] === badgeMap[orderType];
       }
       return order[orderType];

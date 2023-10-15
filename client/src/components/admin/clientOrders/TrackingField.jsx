@@ -3,8 +3,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { TbInputX } from "react-icons/tb";
 import { TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../../../helpers/formatDate";
-import { useDispatch, useSelector } from "react-redux";
-import { handleOrderStatusChange } from "../../../features/orderStatusSlice";
+// import { useSelector } from "react-redux";
 
 const TrackingField = ({
   orderId,
@@ -18,14 +17,14 @@ const TrackingField = ({
   handleDeleteTrackingNumber,
   sendDate,
 }) => {
-  const dispatch = useDispatch();
-  const ordersStatus = useSelector(
-    (state) => state.ordersStatus.find((user) => user.id === clientId)?.orders
-  );
-  const status = ordersStatus[orderIndex]?.status
+  // const dispatch = useDispatch();
+  // const ordersStep = useSelector(
+  //   (state) => state.ordersStep.find((user) => user.id === clientId)?.orders
+  // );
+  // const step = ordersStep[orderIndex]?.step
 
   const handleSaveTrackingNumberInternal = () => {
-    dispatch(handleOrderStatusChange({ orderId, isClientNotified: false,isNewOrder:false,status }));
+    // dispatch(orderActions({ orderId, isClientNotified: false,isNewOrder:false,step }));
     handleSaveTrackingNumber();
   };
 

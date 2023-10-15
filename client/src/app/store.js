@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import orderStatusReducer from "../features/orderStatusSlice"
+import orderStepReducer from "../features/orderStepSlice"
 
 export const store = configureStore({
   reducer: {
-    ordersStatus:orderStatusReducer,
+    ordersStep:orderStepReducer,
   },
 })

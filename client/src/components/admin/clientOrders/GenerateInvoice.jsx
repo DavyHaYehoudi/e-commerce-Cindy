@@ -24,7 +24,7 @@ const GenerateInvoice = () => {
       <div className="order-info">
         <h2>Informations de la commande</h2>
         <p>Date de commande: {order?.date}</p>
-        <p>Statut: {order?.status}</p>
+        <p>Statut: {order?.Step}</p>
         <p>Total de la commande: {order?.totalAmount}</p>
         {/* <p>Méthode de paiement: {order?.paymentMethod.cardType} se terminant par {order?.paymentMethod.last4Digits}</p> */}
         <p>Adresse de livraison: {order?.shippingAddress}</p>

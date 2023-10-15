@@ -3,22 +3,22 @@ import { useSelector } from "react-redux";
 import { FaAddressCard } from "react-icons/fa";
 import { formatDate } from "../../helpers/formatDate";
 
-const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
-  const ordersStatus = useSelector((state) => state.ordersStatus);
+const StepButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
+  const ordersStep = useSelector((state) => state.ordersStep);
 
-  const clientIndex = ordersStatus.findIndex(
+  const clientIndex = ordersStep.findIndex(
     (client) => client.id === clientId
   );
   const isClientNotified =
-    ordersStatus[clientIndex]?.orders[orderIndex]?.isClientNotified || false;
+    ordersStep[clientIndex]?.orders[orderIndex]?.isClientNotified || false;
   const isNewOrder =
-    ordersStatus[clientIndex]?.orders[orderIndex]?.isNewOrder || false;
+    ordersStep[clientIndex]?.orders[orderIndex]?.isNewOrder || false;
   const lastSentDateToClient =
-    ordersStatus[clientIndex]?.orders[orderIndex]?.lastSentDateToClient ||
+    ordersStep[clientIndex]?.orders[orderIndex]?.lastSentDateToClient ||
     false;
 
   return (
-    <div className="status-buttons">
+    <div className="Step-buttons">
       {!isNewOrder && isClientNotified && (
         <>
           <span className="send">Fiche envoyée</span>
@@ -50,4 +50,4 @@ const StatusButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
   );
 };
 
-export default StatusButtons;
+export default StepButtons;

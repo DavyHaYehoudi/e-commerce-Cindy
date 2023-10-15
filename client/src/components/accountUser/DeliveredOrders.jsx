@@ -1,15 +1,15 @@
 import React from "react";
-import { orderStatus } from "../../mocks/orderStatus";
+import { orderStep } from "../../mocks/orderStep";
 import OrderList from "./OrderList";
 
-const DeliveredOrders = ({ orderHistory, getStatusColor }) => {
-  const filter = (order) => order.status === orderStatus[2].name;
+const DeliveredOrders = ({ orderHistory, getStepColor }) => {
+  const filter = (order) => order.Step === orderStep[2].name;
   const title = "Commandes expédiées";
 
   return (
     <OrderList
       orderHistory={orderHistory}
-      getStatusColor={getStatusColor}
+      getStepColor={getStepColor}
       filter={filter}
       title={title}
     />

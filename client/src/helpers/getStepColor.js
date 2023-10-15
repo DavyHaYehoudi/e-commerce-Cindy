@@ -1,5 +1,5 @@
-export const getStatusColor = (status) => {
-  switch (status) {
+export const getStepColor = (Step) => {
+  switch (Step) {
     case "En attente":
       return "#FFA500"; // Orange
     case "En cours de préparation":

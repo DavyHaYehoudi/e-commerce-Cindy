@@ -3,7 +3,7 @@ import OrderItems from "./OrderItems";
 import ToggleButton from "../dumbs/ToggleButton";
 import { formatDate } from "../../helpers/formatDate";
 
-const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
+const OrderList = ({ orderHistory, getStepColor, filter, title }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -15,18 +15,18 @@ const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
       <h3>{title}</h3>
       {orderHistory.filter(filter).map((order) => (
         <div key={order.id} className="order-item-wrapper-user-account">
-          <div className="date-status">
+          <div className="date-Step">
             <p>Date de commande : {formatDate(order.date)}</p>
             <p>
               <span
                 style={{
-                  backgroundColor: getStatusColor(order.status),
+                  backgroundColor: getStepColor(order.Step),
                   color: "#fff",
                   padding: "5px",
                   borderRadius: "5px",
                 }}
               >
-                {order.status}
+                {order.Step}
               </span>
             </p>
             <p>
