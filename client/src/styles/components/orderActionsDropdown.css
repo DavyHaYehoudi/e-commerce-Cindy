@@ -41,3 +41,13 @@
 .dropdown.open .dropdown-menu {
   display: block;
 }
+/* Ajoute cette classe pour cacher la dropdown lorsqu'elle est fermée */
+.dropdown-closed .dropdown-menu {
+  display: none;
+}
+
+/* Utilise cette classe pour indiquer que la dropdown est ouverte */
+.dropdown.open .dropdown-menu,
+.dropdown-closed.open .dropdown-toggle {
+  display: block;
+}

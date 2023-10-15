@@ -74,13 +74,39 @@ const orderStepSlice = createSlice({
         };
       });
     },
+    reactivateOrder:(state,action)=>{
+      const {
+        orderId,
+        isInProcessingOrder,
+        isClientNotified,
+        isProcessed,
+        step,
+      } = action.payload;
+      return state.map((user) => {
+        return {
+          ...user,
+          orders: user.orders.map((order) => {
+            if (order.id === orderId) {
+              return {
+                ...order,
+                step,
+                isProcessed,
+                isInProcessingOrder,
+                isClientNotified,
+              };
+            }
+            return order;
+          }),
+        };
+      });
+    },
     sendToClient: (state, action) => {
       // Logique pour envoyer la fiche au client
     },
   },
 });
 
-export const { moveToNextStep, cancelOrder, sendToClient } =
+export const { moveToNextStep, cancelOrder,reactivateOrder, sendToClient } =
   orderStepSlice.actions;
 
 export default orderStepSlice.reducer;
