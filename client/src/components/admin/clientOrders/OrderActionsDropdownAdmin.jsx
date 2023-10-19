@@ -7,7 +7,7 @@ import {
 } from "../../../features/orderStepSlice";
 import { orderStep } from "../../../mocks/orderStep";
 
-const OrderActionsDropdownAdmin = ({ order, step }) => {
+const OrderActionsDropdownAdmin = ({ order, step,handleSendToClient }) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const isOrderCancelled = step === orderStep[3].name;
@@ -96,7 +96,7 @@ const OrderActionsDropdownAdmin = ({ order, step }) => {
           </button>
         )}
         <div className="dropdown-separator"></div>
-        <button>Envoyer la fiche au client</button>
+        <button onClick={handleSendToClient} >Envoyer la fiche au client</button>
       </div> 
       </div>
     );

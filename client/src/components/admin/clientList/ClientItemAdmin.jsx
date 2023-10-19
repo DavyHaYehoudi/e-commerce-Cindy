@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ClientDetails from "../clientPresentation/ClientDetailsAdmin";
 import { orderStep } from "../../../mocks/orderStep";
+import ClientDetailsAdmin from "../clientPresentation/ClientDetailsAdmin";
 
 const badgeMap = {
   isProcessed: "A traiter",
@@ -52,7 +52,7 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
         </button>
       </div>
       {isClientNotified && <div className="notification-bubble blink"></div>}
-      {clientDetails[client.id] && <ClientDetails client={client} />}
+      {clientDetails[client.id] && <ClientDetailsAdmin client={client} />}
     </li>
   );
 };

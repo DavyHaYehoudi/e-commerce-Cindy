@@ -5,7 +5,7 @@ import OrderStep from "../../dumbs/OrderStep";
 const OrderHeaderAdmin = ({
   clientId,
   order,
-  handleSendToDatabase,
+  handleSendToClient,
   orderIndex,
   lastSentDateToClient,
   step,
@@ -16,7 +16,11 @@ const OrderHeaderAdmin = ({
         <span>Date de commande : {formatDate(order.date)}</span>
         <OrderStep order={order} />
       </div>
-      <OrderActionsDropdown order={order} step={step} />
+      <OrderActionsDropdown
+        order={order}
+        step={step}
+        handleSendToClient={handleSendToClient}
+      />
     </div>
   );
 };

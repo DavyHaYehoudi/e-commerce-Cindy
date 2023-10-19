@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { FaAddressCard } from "react-icons/fa";
 import { formatDate } from "../../helpers/formatDate";
 
-const StepButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
+const StepButtons = ({ clientId, handleSendToClient, orderIndex }) => {
   const ordersStep = useSelector((state) => state.ordersStep);
 
   const clientIndex = ordersStep.findIndex(
@@ -33,7 +33,7 @@ const StepButtons = ({ clientId, handleSendToDatabase, orderIndex }) => {
       {!isClientNotified && (
         <>
           <button
-            onClick={handleSendToDatabase}
+            onClick={handleSendToClient}
             className="account-btn not-send"
           >
             Envoyer la fiche au client
