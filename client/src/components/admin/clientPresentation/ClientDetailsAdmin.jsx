@@ -5,7 +5,7 @@ import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDeta
 import ToggleButton from "../../dumbs/ToggleButton";
 import AdminOrderItem from "../clientOrders/AdminOrderItem";
 
-const ClientDetails = ({ client }) => {
+const ClientDetailsAdmin = ({ client }) => {
   const handleAdminNotesUpdate = (notes) => {
     console.log("Notes administratives mises à jour :", notes);
   };
@@ -62,4 +62,4 @@ const ClientDetails = ({ client }) => {
   );
 };
 
-export default ClientDetails;
+export default ClientDetailsAdmin;

@@ -4,7 +4,7 @@ import ToggleButton from "../dumbs/ToggleButton";
 import { formatDate } from "../../helpers/formatDate";
 import OrderStep from "../dumbs/OrderStep";
 
-const OrderList = ({ orderHistory, getStepColor, filter, title }) => {
+const OrderListClient = ({ orderHistory, getStepColor, filter, title }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -52,4 +52,4 @@ const OrderList = ({ orderHistory, getStepColor, filter, title }) => {
   );
 };
 
-export default OrderList;
+export default OrderListClient;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ClientItem from "./ClientItem";
+import ClientItem from "./ClientItemAdmin";
 import Pagination from "../../dumbs/Pagination";
 
-const ClientList = ({
+const ClientListAdmin = ({
   clients,
   handleClientClick,
   clientDetails,
@@ -38,4 +38,4 @@ const ClientList = ({
   );
 };
 
-export default ClientList;
+export default ClientListAdmin;

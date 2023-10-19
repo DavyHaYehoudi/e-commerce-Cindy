@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ClientDetails from "../clientPresentation/ClientDetails";
+import ClientDetails from "../clientPresentation/ClientDetailsAdmin";
 import { orderStep } from "../../../mocks/orderStep";
 
 const badgeMap = {
@@ -11,7 +11,7 @@ const badgeMap = {
   blink: "blink",
 };
 
-const ClientItem = ({ client, handleClientClick, clientDetails }) => {
+const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
   const ordersStep = useSelector(
     (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
@@ -57,4 +57,4 @@ const ClientItem = ({ client, handleClientClick, clientDetails }) => {
   );
 };
 
-export default ClientItem;
+export default ClientItemAdmin;

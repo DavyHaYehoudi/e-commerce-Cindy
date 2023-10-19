@@ -5,7 +5,7 @@ import { TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../../../helpers/formatDate";
 // import { useSelector } from "react-redux";
 
-const TrackingField = ({
+const TrackingFieldAdmin = ({
   orderId,
   orderIndex,
   clientId,
@@ -95,4 +95,4 @@ const TrackingField = ({
   );
 };
 
-export default TrackingField;
+export default TrackingFieldAdmin;

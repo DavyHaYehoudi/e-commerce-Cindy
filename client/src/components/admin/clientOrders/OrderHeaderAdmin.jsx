@@ -2,7 +2,7 @@ import React from "react";
 import { formatDate } from "../../../helpers/formatDate";
 import OrderActionsDropdown from "./OrderActionsDropdownAdmin";
 import OrderStep from "../../dumbs/OrderStep";
-const OrderHeader = ({
+const OrderHeaderAdmin = ({
   clientId,
   order,
   handleSendToDatabase,
@@ -21,4 +21,4 @@ const OrderHeader = ({
   );
 };
 
-export default OrderHeader;
+export default OrderHeaderAdmin;

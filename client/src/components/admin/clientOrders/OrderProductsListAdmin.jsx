@@ -1,7 +1,7 @@
 import React from "react";
 import OrderProductItem from "./OrderProductItemAdmin";
 
-const OrderProductsList = ({ products }) => (
+const OrderProductsListAdmin = ({ products }) => (
   <ul>
     {products.map((product) => (
       <OrderProductItem key={product.productId} product={product} />
@@ -9,4 +9,4 @@ const OrderProductsList = ({ products }) => (
   </ul>
 );
 
-export default OrderProductsList;
+export default OrderProductsListAdmin;
