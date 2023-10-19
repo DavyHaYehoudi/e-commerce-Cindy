@@ -39,9 +39,10 @@
   margin-bottom: 20px;
 }
 
-.order-item-wrapper-user-account .date-Step{
+.order-item-wrapper-user-account .date-step{
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 .order-item-user-account {
   display: flex;

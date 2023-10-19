@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import OtherOrders from "../components/accountUser/OtherOrders";
-import DeliveredOrders from "../components/accountUser/DeliveredOrders";
+import OtherOrders from "../components/accountUser/OtherOrdersClient";
+import DeliveredOrders from "../components/accountUser/DeliveredOrdersClient";
 import UserInfo from "../components/accountUser/UserInfo";
 import { getStepColor } from "../helpers/getStepColor";
 import { orderHistoryUser } from "../mocks/orderHistoryUser";

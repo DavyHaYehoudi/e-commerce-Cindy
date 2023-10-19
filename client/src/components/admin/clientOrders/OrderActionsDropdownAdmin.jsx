@@ -36,7 +36,7 @@ const OrderActionsDropdown = ({ order, step }) => {
       dispatch(
         cancelOrder({
           orderId: order.id,
-          isInProcessingOrder: true,
+          isInProcessingOrder: false,
           isClientNotified: false,
           isNewOrder: false,
           step: orderStep[3].name,

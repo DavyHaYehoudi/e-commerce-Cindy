@@ -1,5 +1,5 @@
 import React from "react";
-import { getStepColor } from "../../../helpers/getStepColor";
+import { getStepColor } from "../../helpers/getStepColor";
 
 const orderStep = ({ order }) => {
   const StepColorStyle = {

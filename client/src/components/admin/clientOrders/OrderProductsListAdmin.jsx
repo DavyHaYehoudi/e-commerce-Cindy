@@ -1,5 +1,5 @@
 import React from "react";
-import OrderProductItem from "./OrderProductItem";
+import OrderProductItem from "./OrderProductItemAdmin";
 
 const OrderProductsList = ({ products }) => (
   <ul>

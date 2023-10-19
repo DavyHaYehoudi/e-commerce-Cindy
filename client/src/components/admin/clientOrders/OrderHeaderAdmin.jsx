@@ -1,7 +1,7 @@
 import React from "react";
 import { formatDate } from "../../../helpers/formatDate";
-import OrderActionsDropdown from "./OrderActionsDropdown";
-import OrderStep from "./OrderStep";
+import OrderActionsDropdown from "./OrderActionsDropdownAdmin";
+import OrderStep from "../../dumbs/OrderStep";
 const OrderHeader = ({
   clientId,
   order,

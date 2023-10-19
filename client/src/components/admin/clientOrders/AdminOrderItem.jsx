@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { orderStep } from "../../../mocks/orderStep";
-import OrderHeader from "./OrderHeader";
-import OrderDetails from "./OrderDetails";
-import OrderProductsList from "./OrderProductsList";
-import TrackingField from "./TrackingField";
+import OrderHeader from "./OrderHeaderAdmin";
+import OrderDetails from "./OrderDetailsAdmin";
+import OrderProductsList from "./OrderProductsListAdmin";
+import TrackingField from "./TrackingFieldAdmin";
 import {  useSelector } from "react-redux";
 
 const AdminOrderItem = ({ clientId, order, orderIndex }) => {

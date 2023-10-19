@@ -30,7 +30,7 @@ const ClientDetails = ({ client }) => {
         buttonClass="account-btn toggle"
         content={
           <div className="clientPreferenceDetails">
-            <ClientPreferencesDetails clientId={client.id} />
+            <ClientPreferencesDetails client={client} />
           </div>
         }
       />
