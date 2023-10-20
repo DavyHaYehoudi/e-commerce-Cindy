@@ -66,22 +66,6 @@
     text-align: center;
 }
 
-.isProcessed-badge {
-    background-color: var(--danger);
-}
-
-.isInProcessingOrder-badge {
-    background-color: var(--primary);
-}
-
-.isCompletedOrder-badge {
-    background-color: var(--success);
-}
-
-.Step-badge {
-    background-color: var(--secondary);
-}
-
 .notification-bubble {
     position: absolute;
     top: 5px;
@@ -89,7 +73,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--warning);
+    background-color: var(--danger);
 }
 
 .blink {

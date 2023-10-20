@@ -1,38 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { orderStep } from "../../../mocks/orderStep";
 import ClientDetailsAdmin from "../clientPresentation/ClientDetailsAdmin";
-
-const badgeMap = {
-  isProcessed: "A traiter",
-  isInProcessingOrder: "En cours de traitement",
-  isCompletedOrder: "Complet",
-  Step: orderStep[3].name,
-  blink: "blink",
-};
+import { getStepColor } from "../../../helpers/getStepColor";
 
 const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
   const ordersStep = useSelector(
     (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
 
-  const isClientNotified = ordersStep?.some(
-    (order) => !order.isClientNotified
-  );
+  const isClientNotified = ordersStep?.some((order) => !order.isClientNotified);
 
-  const renderBadge = (orderType) => {
-    const count = ordersStep?.filter((order) => {
-      if (orderType === "Step") {
-        return order[orderType] === badgeMap[orderType];
-      }
-      return order[orderType];
-    }).length;
+  const renderBadge = (step) => {
+    const count = ordersStep?.filter((order) => order.step === step).length;
 
     if (count > 0) {
-      const badgeClass = `admin-badge ${orderType}-badge`;
+      const stepColor = getStepColor(step);
+      const badgeClass = `admin-badge`;
+      const style = { backgroundColor: stepColor };
+
       return (
-        <span key={orderType} className={badgeClass}>
-          {badgeMap[orderType]} ({count})
+        <span key={step} className={badgeClass} style={style}>
+          {step} ({count})
         </span>
       );
     }
@@ -46,7 +34,11 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
         <span>
           {client.firstName} {client.lastName}{" "}
         </span>
-        {Object.keys(badgeMap).map((orderType) => renderBadge(orderType))}
+        {ordersStep &&
+          ordersStep.length > 0 &&
+          [...new Set(ordersStep.map((order) => order.step))].map((step) =>
+            renderBadge(step)
+          )}
         <button onClick={() => handleClientClick(client.id)}>
           {clientDetails[client.id] ? "Fermer" : "Consulter"}
         </button>

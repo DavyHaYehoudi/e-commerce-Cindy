@@ -1,14 +1,24 @@
-export const getStepColor = (Step) => {
-  switch (Step) {
-    case "En attente":
-      return "#FFA500"; // Orange
-    case "En cours de préparation":
-      return "#007BFF"; // Bleu
-    case "Expédiée":
-      return "#28A745"; // Vert
-    case "Annulée":
-      return "#FF0000"; // Rouge
+import { orderStep } from "../mocks/orderStep";
+
+
+export const getStepColor = (step) => {
+  switch (step) {
+    case orderStep[0].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--warning');
+    case orderStep[1].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--primary');
+    case orderStep[2].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--success');
+    case orderStep[3].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--info');
+    case orderStep[4].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--info');
+    case orderStep[5].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--success');
+    case orderStep[6].name:
+      return getComputedStyle(document.documentElement).getPropertyValue('--info');
     default:
-      return "#000000"; // Noir par défaut
+      return getComputedStyle(document.documentElement).getPropertyValue('--dark');
   }
 };
+

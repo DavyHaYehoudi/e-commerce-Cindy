@@ -2,11 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../mocks/usersMock";
 import { orderStep } from "../mocks/orderStep";
 
-const orderStepMap = {
-  [orderStep[0].name]: orderStep[1].name,
-  [orderStep[1].name]: orderStep[2].name,
-  [orderStep[2].name]: orderStep[0].name,
-};
+export const ordersStep = [
+  { id: 0, name: orderStep[0].name },
+  { id: 1, name: orderStep[1].name },
+  { id: 2, name: orderStep[2].name },
+  { id: 3, name: orderStep[3].name },
+  { id: 4, name: orderStep[4].name },
+  { id: 5, name: orderStep[5].name },
+  { id: 6, name: orderStep[6].name },
+];
+
+
 
 const orderStepSlice = createSlice({
   name: "orderActions",
@@ -16,7 +22,6 @@ const orderStepSlice = createSlice({
       const {
         orderId,
         isNextStepOrder,
-        isNewOrder,
         isInProcessingOrder,
         isClientNotified,
         isProcessed,
@@ -28,14 +33,16 @@ const orderStepSlice = createSlice({
           ...user,
           orders: user.orders.map((order) => {
             if (order.id === orderId) {
-              const currentStep = order.step;
-              const nextStep = orderStepMap[currentStep] || orderStep[0].name;
+              const currentStepIndex = ordersStep.findIndex(
+                (s) => s.name === order.step
+              );
+              const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
+              const nextStep = ordersStep[nextStepIndex].name;
 
               return {
                 ...order,
                 step: isNextStepOrder ? nextStep : step,
                 isNextStepOrder,
-                isNewOrder,
                 isProcessed,
                 isInProcessingOrder,
                 isClientNotified,
@@ -49,7 +56,6 @@ const orderStepSlice = createSlice({
     cancelOrder: (state, action) => {
       const {
         orderId,
-        isNewOrder,
         isInProcessingOrder,
         isClientNotified,
         isProcessed,
@@ -63,7 +69,6 @@ const orderStepSlice = createSlice({
               return {
                 ...order,
                 step,
-                isNewOrder,
                 isProcessed,
                 isInProcessingOrder,
                 isClientNotified,

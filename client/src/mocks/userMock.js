@@ -50,11 +50,10 @@ export const userMock = {
     {
       id: 1,
       date: "2023-03-10 10:20",
-      Step: orderStep[2].name,
+      step: orderStep[2].name,
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: false,
       products: [
         {
           productId: 104,
@@ -69,11 +68,10 @@ export const userMock = {
     {
       id: 2,
       date: "2023-03-07 11:40",
-      Step: orderStep[1].name,
+      step: orderStep[1].name,
       totalAmount: "€250",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: true,
       products: [
         {
           productId: 204,
@@ -88,11 +86,10 @@ export const userMock = {
     {
       id: 3,
       date: "2023-03-10 22:20",
-      Step: orderStep[0].name,
+      step: orderStep[0].name,
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: false,
       products: [
         {
           productId: 14,

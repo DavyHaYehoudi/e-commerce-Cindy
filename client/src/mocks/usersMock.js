@@ -58,10 +58,6 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -91,10 +87,7 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+        isReturnending:false,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -116,10 +109,6 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -187,10 +176,6 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -220,10 +205,6 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: false,
         lastSentDateToClient:null,
         products: [
@@ -307,10 +288,6 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -332,10 +309,6 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -427,10 +400,6 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: true,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -460,10 +429,7 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -547,10 +513,7 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -572,10 +535,6 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: true,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -621,10 +580,6 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -692,10 +647,8 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -763,10 +716,7 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -788,10 +738,7 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -813,10 +760,7 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -838,10 +782,7 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -917,10 +858,6 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -942,10 +879,7 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: false,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1013,10 +947,6 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1046,10 +976,6 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1071,10 +997,6 @@ export const usersMock = [
         totalAmount: "€70",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1150,10 +1072,6 @@ export const usersMock = [
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: "XYZ123456",
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1175,10 +1093,7 @@ export const usersMock = [
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: null,
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1246,10 +1161,6 @@ export const usersMock = [
         totalAmount: "€200",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1279,10 +1190,7 @@ export const usersMock = [
         totalAmount: "€150",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
+
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1350,10 +1258,6 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1429,10 +1333,6 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1462,10 +1362,6 @@ export const usersMock = [
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1533,10 +1429,6 @@ export const usersMock = [
         totalAmount: "€210",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1558,10 +1450,6 @@ export const usersMock = [
         totalAmount: "€240",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: false,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1629,10 +1517,6 @@ export const usersMock = [
         totalAmount: "€300",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumber: null,
-        isProcessed: true,
-        isNewOrder:true,
-        isInProcessingOrder: true,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1662,10 +1546,6 @@ export const usersMock = [
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumber: null,
-        isProcessed: false,
-        isNewOrder:true,
-        isInProcessingOrder: true,
-        isCompletedOrder: true,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [

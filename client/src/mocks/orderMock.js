@@ -14,7 +14,6 @@ export const orderMock= [
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: false,
       products: [
         {
           productId: 104,
@@ -34,7 +33,6 @@ export const orderMock= [
       totalAmount: "€250",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: true,
       products: [
         {
           productId: 204,
@@ -54,7 +52,6 @@ export const orderMock= [
       totalAmount: "€150",
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      nonTraitee: false,
       products: [
         {
           productId: 14,
