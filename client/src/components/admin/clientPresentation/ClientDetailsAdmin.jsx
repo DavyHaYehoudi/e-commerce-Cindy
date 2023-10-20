@@ -1,6 +1,6 @@
 import React from "react";
 import { MdEmail } from "react-icons/md";
-import AdminNotes from "./NotesAdmin";
+import NotesAdmin from "./NotesAdmin";
 import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDetails";
 import ToggleButton from "../../dumbs/ToggleButton";
 import AdminOrderItem from "../clientOrders/OrderItemAdmin";
@@ -57,7 +57,7 @@ const ClientDetailsAdmin = ({ client }) => {
         }
       />
 
-      <AdminNotes initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
+      <NotesAdmin initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
     </div>
   );
 };

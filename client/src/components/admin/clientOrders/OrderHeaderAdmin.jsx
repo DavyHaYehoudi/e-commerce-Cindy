@@ -3,11 +3,8 @@ import { formatDate } from "../../../helpers/formatDate";
 import OrderActionsDropdown from "./OrderActionsDropdownAdmin";
 import OrderStep from "../../dumbs/OrderStep";
 const OrderHeaderAdmin = ({
-  clientId,
   order,
   handleSendToClient,
-  orderIndex,
-  lastSentDateToClient,
   step,
 }) => {
   return (

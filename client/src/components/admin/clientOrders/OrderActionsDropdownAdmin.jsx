@@ -22,11 +22,9 @@ const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
     dispatch(
       moveToNextStep({
         orderId: order.id,
-        isInProcessingOrder: true,
         isClientNotified: false,
         step,
         isNextStepOrder: true,
-        isProcessed: false,
       })
     );
     setIsOpen(false);
@@ -36,10 +34,8 @@ const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
     dispatch(
       cancelOrder({
         orderId: order.id,
-        isInProcessingOrder: false,
         isClientNotified: false,
         step: orderStep[6].name,
-        isProcessed: false,
       })
     );
     setIsOpen(false);
@@ -48,10 +44,8 @@ const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
     dispatch(
       reactivateOrder({
         orderId: order.id,
-        isInProcessingOrder: true,
         isClientNotified: false,
         step: orderStep[0].name,
-        isProcessed: true,
       })
     );
     setIsOpen(false);

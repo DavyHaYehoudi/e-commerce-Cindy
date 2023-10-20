@@ -12,106 +12,74 @@ export const ordersStep = [
   { id: 6, name: orderStep[6].name },
 ];
 
+const applyOrderAction = (state, action, updateFunction) => {
+  const { orderId, isClientNotified, step, isNextStepOrder } = action.payload;
+  return state.map((user) => ({
+    ...user,
+    orders: user.orders.map((order) =>
+      order.id === orderId
+        ? updateFunction(order, step, isClientNotified, isNextStepOrder)
+        : order
+    ),
+  }));
+};
 
+const updateOrderStep = (order, step, isClientNotified) => ({
+  ...order,
+  step,
+  isClientNotified,
+});
+
+const updateMoveToNextStep = (
+  order,
+  step,
+  isClientNotified,
+  isNextStepOrder
+) => {
+  const currentStepIndex = ordersStep.findIndex((s) => s.name === order.step);
+  const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
+  const nextStep = isNextStepOrder ? ordersStep[nextStepIndex].name : step;
+
+  return {
+    ...order,
+    step: nextStep,
+    isClientNotified,
+  };
+};
 
 const orderStepSlice = createSlice({
   name: "orderActions",
   initialState: usersMock,
   reducers: {
-    moveToNextStep: (state, action) => {
-      const {
-        orderId,
-        isNextStepOrder,
-        isInProcessingOrder,
-        isClientNotified,
-        isProcessed,
-        step,
-      } = action.payload;
+    moveToNextStep: (state, action) =>
+      applyOrderAction(state, action, updateMoveToNextStep),
 
-      return state.map((user) => {
-        return {
-          ...user,
-          orders: user.orders.map((order) => {
-            if (order.id === orderId) {
-              const currentStepIndex = ordersStep.findIndex(
-                (s) => s.name === order.step
-              );
-              const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
-              const nextStep = ordersStep[nextStepIndex].name;
+    cancelOrder: (state, action) =>
+      applyOrderAction(state, action, updateOrderStep),
 
-              return {
-                ...order,
-                step: isNextStepOrder ? nextStep : step,
-                isNextStepOrder,
-                isProcessed,
-                isInProcessingOrder,
-                isClientNotified,
-              };
-            }
-            return order;
-          }),
-        };
-      });
-    },
-    cancelOrder: (state, action) => {
-      const {
-        orderId,
-        isInProcessingOrder,
+    reactivateOrder: (state, action) =>
+      applyOrderAction(state, action, updateOrderStep),
+
+    trackingNumberChange: (state, action) =>
+      applyOrderAction(state, action, (order, _, isClientNotified) => ({
+        ...order,
         isClientNotified,
-        isProcessed,
-        step,
-      } = action.payload;
-      return state.map((user) => {
-        return {
-          ...user,
-          orders: user.orders.map((order) => {
-            if (order.id === orderId) {
-              return {
-                ...order,
-                step,
-                isProcessed,
-                isInProcessingOrder,
-                isClientNotified,
-              };
-            }
-            return order;
-          }),
-        };
-      });
-    },
-    reactivateOrder:(state,action)=>{
-      const {
-        orderId,
-        isInProcessingOrder,
+      })),
+
+    sendToClient: (state, action) =>
+      applyOrderAction(state, action, (order, _, isClientNotified) => ({
+        ...order,
         isClientNotified,
-        isProcessed,
-        step,
-      } = action.payload;
-      return state.map((user) => {
-        return {
-          ...user,
-          orders: user.orders.map((order) => {
-            if (order.id === orderId) {
-              return {
-                ...order,
-                step,
-                isProcessed,
-                isInProcessingOrder,
-                isClientNotified,
-              };
-            }
-            return order;
-          }),
-        };
-      });
-    },
-    sendToClient: (state, action) => {
-      // Logique pour envoyer la fiche au client
-    },
+      })),
   },
 });
 
-export const { moveToNextStep, cancelOrder,reactivateOrder, sendToClient } =
-  orderStepSlice.actions;
+export const {
+  moveToNextStep,
+  cancelOrder,
+  reactivateOrder,
+  trackingNumberChange,
+  sendToClient,
+} = orderStepSlice.actions;
 
 export default orderStepSlice.reducer;
