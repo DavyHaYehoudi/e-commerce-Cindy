@@ -6,6 +6,8 @@ const OrderHeaderAdmin = ({
   order,
   handleSendToClient,
   step,
+  isClientNotified,
+  lastSentDateToClient,
 }) => {
   return (
     <div className="admin-order-item-header">
@@ -17,6 +19,8 @@ const OrderHeaderAdmin = ({
         order={order}
         step={step}
         handleSendToClient={handleSendToClient}
+        isClientNotified={isClientNotified}
+        lastSentDateToClient={lastSentDateToClient}
       />
     </div>
   );

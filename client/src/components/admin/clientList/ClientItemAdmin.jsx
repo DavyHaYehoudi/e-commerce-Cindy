@@ -8,7 +8,7 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
     (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
 
-  const isClientNotified = ordersStep?.some((order) => !order.isClientNotified);
+  const isAnyOrderClientNotified = ordersStep?.some((order) => !order.isClientNotified);
 
   const renderBadge = (step) => {
     const count = ordersStep?.filter((order) => order.step === step).length;
@@ -29,7 +29,7 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
   };
 
   return (
-    <li className={`client-item ${isClientNotified ? "notified" : ""}`}>
+    <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
       <div className="client-header">
         <span>
           {client.firstName} {client.lastName}{" "}
@@ -43,7 +43,7 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
           {clientDetails[client.id] ? "Fermer" : "Consulter"}
         </button>
       </div>
-      {isClientNotified && <div className="notification-bubble blink"></div>}
+      {isAnyOrderClientNotified && <div className="notification-bubble blink"></div>}
       {clientDetails[client.id] && <ClientDetailsAdmin client={client} />}
     </li>
   );

@@ -70,6 +70,7 @@ const orderStepSlice = createSlice({
       applyOrderAction(state, action, (order, _, isClientNotified) => ({
         ...order,
         isClientNotified,
+        lastSentDateToClient:new Date()
       })),
   },
 });

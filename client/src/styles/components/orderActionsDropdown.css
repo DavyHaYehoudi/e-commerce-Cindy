@@ -1,3 +1,10 @@
+.orderControlWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -41,6 +48,7 @@
 .dropdown.open .dropdown-menu {
   display: block;
 }
+
 /* Ajoute cette classe pour cacher la dropdown lorsqu'elle est fermée */
 .dropdown-closed .dropdown-menu {
   display: none;

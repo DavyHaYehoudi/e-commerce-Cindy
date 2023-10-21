@@ -6,8 +6,18 @@ import {
   reactivateOrder,
 } from "../../../features/orderStepSlice";
 import { orderStep } from "../../../mocks/orderStep";
+import { HiOutlineSquaresPlus } from "react-icons/hi2";
+import { TbUserShare } from "react-icons/tb";
+import { TbCircleCheck } from "react-icons/tb";
+import { formatDate } from "../../../helpers/formatDate";
 
-const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
+const OrderActionsDropdownAdmin = ({
+  order,
+  step,
+  handleSendToClient,
+  isClientNotified,
+  lastSentDateToClient,
+}) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const isOrderCancelled = step === orderStep[6].name;
@@ -17,35 +27,13 @@ const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleMoveToNextStep = () => {
-    console.log('step :',step);
+  const performAction = (actionType, newStep) => {
     dispatch(
-      moveToNextStep({
+      actionType({
         orderId: order.id,
         isClientNotified: false,
-        step,
+        step: newStep,
         isNextStepOrder: true,
-      })
-    );
-    setIsOpen(false);
-  };
-
-  const handleCancelOrder = () => {
-    dispatch(
-      cancelOrder({
-        orderId: order.id,
-        isClientNotified: false,
-        step: orderStep[6].name,
-      })
-    );
-    setIsOpen(false);
-  };
-  const handleReactivateOrder = () => {
-    dispatch(
-      reactivateOrder({
-        orderId: order.id,
-        isClientNotified: false,
-        step: orderStep[0].name,
       })
     );
     setIsOpen(false);
@@ -67,21 +55,43 @@ const OrderActionsDropdownAdmin = ({ order, step, handleSendToClient }) => {
 
   return (
     <div ref={dropdownRef} className={`dropdown ${isOpen ? "open" : "closed"}`}>
-      <button className="dropdown-toggle" onClick={toggleDropdown}>
-        ...
-      </button>
+      <div className="orderControlContainer">
+        <div className="orderControlWrapper">
+          {isClientNotified ? (
+            <p className="info-tooltip" aria-label="Client informé">
+              {" "}
+              <TbCircleCheck
+                style={{ color: "var(--success)", fontSize: "25px" }}
+              />
+            </p>
+          ) : (
+            <p className="info-tooltip" aria-label="Client non informé">
+              <TbUserShare
+                style={{ color: "var(--warning)", fontSize: "25px" }}
+              />
+            </p>
+          )}
+
+          <button className="account-btn toggle" onClick={toggleDropdown}>
+            <HiOutlineSquaresPlus />
+          </button>
+        </div>
+       {lastSentDateToClient&& <p><small>Dernier envoi au client :{formatDate(lastSentDateToClient)} </small>  </p>}
+      </div>
       <div className="dropdown-menu">
         {!isOrderCancelled && (
-          <button onClick={() => handleMoveToNextStep()}>
+          <button onClick={() => performAction(moveToNextStep, step)}>
             Passer à l'étape suivante
           </button>
         )}
         {isOrderCancelled ? (
-          <button onClick={() => handleReactivateOrder()}>
+          <button
+            onClick={() => performAction(reactivateOrder, orderStep[0].name)}
+          >
             Réactiver la commande
           </button>
         ) : (
-          <button onClick={() => handleCancelOrder()}>
+          <button onClick={() => performAction(cancelOrder, orderStep[6].name)}>
             Annuler la commande
           </button>
         )}

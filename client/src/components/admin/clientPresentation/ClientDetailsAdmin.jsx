@@ -3,7 +3,7 @@ import { MdEmail } from "react-icons/md";
 import NotesAdmin from "./NotesAdmin";
 import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDetails";
 import ToggleButton from "../../dumbs/ToggleButton";
-import AdminOrderItem from "../clientOrders/OrderItemAdmin";
+import OrderItemAdmin from "../clientOrders/OrderItemAdmin";
 
 const ClientDetailsAdmin = ({ client }) => {
   const handleAdminNotesUpdate = (notes) => {
@@ -46,11 +46,12 @@ const ClientDetailsAdmin = ({ client }) => {
         content={
           <div className="clientOrders">
             {client.orders.map((order,i) => (
-              <AdminOrderItem
+              <OrderItemAdmin
                 key={order.id}
                 clientId={client.id}
                 order={order}
                 orderIndex={i}
+                isClientNotified={order.isClientNotified}
               />
             ))}
           </div>

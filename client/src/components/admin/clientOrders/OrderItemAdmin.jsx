@@ -10,7 +10,7 @@ import {
   trackingNumberChange,
 } from "../../../features/orderStepSlice";
 
-const OrderItemAdmin = ({ clientId, order, orderIndex }) => {
+const OrderItemAdmin = ({ clientId, order, orderIndex, isClientNotified }) => {
   const dispatch = useDispatch();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isTrackingNumberEdited, setIsTrackingNumberEdited] = useState(false);
@@ -21,6 +21,7 @@ const OrderItemAdmin = ({ clientId, order, orderIndex }) => {
     (state) => state.ordersStep.find((user) => user.id === clientId)?.orders
   );
   const step = ordersStep[orderIndex]?.step;
+  const lastSentDateToClient = ordersStep[orderIndex]?.lastSentDateToClient;
 
   const handleTrackingNumberChange = (event) => {
     setTrackingNumber(event.target.value);
@@ -39,7 +40,12 @@ const OrderItemAdmin = ({ clientId, order, orderIndex }) => {
       setSendDate(currentDate);
     }
     setIsTrackingNumberEdited(false);
-    dispatch(sendToClient({ orderId: order.id, isClientNotified: true }));
+    dispatch(
+      sendToClient({
+        orderId: order.id,
+        isClientNotified: true,
+      })
+    );
   };
 
   return (
@@ -49,9 +55,9 @@ const OrderItemAdmin = ({ clientId, order, orderIndex }) => {
         orderIndex={orderIndex}
         clientId={clientId}
         step={step}
-        handleSendToClient={() => {
-          handleSendToClient();
-        }}
+        handleSendToClient={()=> handleSendToClient()}
+        isClientNotified={isClientNotified}
+        lastSentDateToClient={lastSentDateToClient}
       />
 
       <OrderDetailsAdmin order={order} />

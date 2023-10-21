@@ -31,7 +31,7 @@ const TrackingFieldAdmin = ({
       </div>
       {sendDate && (
         <p className="admin-tracking-date">
-          <small> Dernier envoi au client le : {formatDate(sendDate)} </small>
+          <small> Dernier envoi du numéro de suivi au client le : {formatDate(sendDate)} </small>
         </p>
       )}
     </div>
