@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import OtherOrders from "../components/accountUser/OtherOrders";
-import DeliveredOrders from "../components/accountUser/DeliveredOrders";
+import OtherOrders from "../components/accountUser/OtherOrdersClient";
+import DeliveredOrders from "../components/accountUser/DeliveredOrdersClient";
 import UserInfo from "../components/accountUser/UserInfo";
-import { getStatusColor } from "../helpers/getStatusColor";
+import { getStepColor } from "../helpers/getStepColor";
 import { orderHistoryUser } from "../mocks/orderHistoryUser";
 import { userMock } from "../mocks/userMock";
 
@@ -18,11 +18,11 @@ const AccountUser = () => {
         <div className="order-items-container">
           <OtherOrders
             orderHistory={orderHistory}
-            getStatusColor={getStatusColor}
+            getStepColor={getStepColor}
           />
           <DeliveredOrders
             orderHistory={orderHistory}
-            getStatusColor={getStatusColor}
+            getStepColor={getStepColor}
           />
         </div>
       </div>

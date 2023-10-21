@@ -1,0 +1,61 @@
+.orderControlWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background-color: #ccc;
+  margin: 5px 0;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* Ajoute cette classe pour cacher la dropdown lorsqu'elle est fermée */
+.dropdown-closed .dropdown-menu {
+  display: none;
+}
+
+/* Utilise cette classe pour indiquer que la dropdown est ouverte */
+.dropdown.open .dropdown-menu,
+.dropdown-closed.open .dropdown-toggle {
+  display: block;
+}

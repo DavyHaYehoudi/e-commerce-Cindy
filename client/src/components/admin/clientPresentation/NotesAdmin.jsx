@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TbInputX } from "react-icons/tb";
 import { TbInputCheck } from "react-icons/tb";
 
-const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
+const NotesAdmin = ({ initialNotes, onUpdateNotes }) => {
   const [adminNotes, setAdminNotes] = useState(initialNotes || "");
   const [previousNotes, setPreviousNotes] = useState([]);
 
@@ -64,4 +64,4 @@ const AdminNotes = ({ initialNotes, onUpdateNotes }) => {
   );
 };
 
-export default AdminNotes;
+export default NotesAdmin;

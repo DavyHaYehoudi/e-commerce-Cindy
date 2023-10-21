@@ -18,10 +18,12 @@ header {
 
 #numberCart {
     position: absolute;
-    background-color: var(--quantity-cart);
+    background-color: red;
     border-radius: 50%;
-    padding: 5px;
-    font-size: 0.6rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    text-align: center;
+    font-size: 0.7rem;
     top: -8px;
     right: -5px;
     color: aliceblue;

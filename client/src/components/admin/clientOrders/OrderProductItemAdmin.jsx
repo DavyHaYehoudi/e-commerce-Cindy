@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderProductItem = ({ product }) => (
+const OrderProductItemAdmin = ({ product }) => (
 <li>
   Référence: {product.productId} - {product.name} - {product.material} - {product.quantity}{" "}
   unité{product.quantity > 1 ? "s" : ""} - {product.price}
@@ -8,4 +8,4 @@ const OrderProductItem = ({ product }) => (
 
 );
 
-export default OrderProductItem;
+export default OrderProductItemAdmin;

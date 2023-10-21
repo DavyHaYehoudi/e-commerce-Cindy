@@ -1,11 +1,11 @@
 import React from "react";
 import { MdEmail } from "react-icons/md";
-import AdminNotes from "./AdminNotes";
+import NotesAdmin from "./NotesAdmin";
 import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDetails";
 import ToggleButton from "../../dumbs/ToggleButton";
-import AdminOrderItem from "../clientOrders/AdminOrderItem";
+import OrderItemAdmin from "../clientOrders/OrderItemAdmin";
 
-const ClientDetails = ({ client }) => {
+const ClientDetailsAdmin = ({ client }) => {
   const handleAdminNotesUpdate = (notes) => {
     console.log("Notes administratives mises à jour :", notes);
   };
@@ -30,7 +30,7 @@ const ClientDetails = ({ client }) => {
         buttonClass="account-btn toggle"
         content={
           <div className="clientPreferenceDetails">
-            <ClientPreferencesDetails clientId={client.id} />
+            <ClientPreferencesDetails client={client} />
           </div>
         }
       />
@@ -46,20 +46,21 @@ const ClientDetails = ({ client }) => {
         content={
           <div className="clientOrders">
             {client.orders.map((order,i) => (
-              <AdminOrderItem
+              <OrderItemAdmin
                 key={order.id}
                 clientId={client.id}
                 order={order}
                 orderIndex={i}
+                isClientNotified={order.isClientNotified}
               />
             ))}
           </div>
         }
       />
 
-      <AdminNotes initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
+      <NotesAdmin initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
     </div>
   );
 };
 
-export default ClientDetails;
+export default ClientDetailsAdmin;

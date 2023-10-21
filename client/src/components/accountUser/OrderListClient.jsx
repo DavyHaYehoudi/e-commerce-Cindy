@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import OrderItems from "./OrderItems";
+import OrderItems from "./OrderItemsClient";
 import ToggleButton from "../dumbs/ToggleButton";
 import { formatDate } from "../../helpers/formatDate";
+import OrderStep from "../dumbs/OrderStep";
 
-const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
+const OrderListClient = ({ orderHistory, getStepColor, filter, title }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -15,20 +16,11 @@ const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
       <h3>{title}</h3>
       {orderHistory.filter(filter).map((order) => (
         <div key={order.id} className="order-item-wrapper-user-account">
-          <div className="date-status">
-            <p>Date de commande : {formatDate(order.date)}</p>
-            <p>
-              <span
-                style={{
-                  backgroundColor: getStatusColor(order.status),
-                  color: "#fff",
-                  padding: "5px",
-                  borderRadius: "5px",
-                }}
-              >
-                {order.status}
-              </span>
-            </p>
+          <div className="date-step">
+            <div className="date-step date-header">
+              <span>Date de commande : {formatDate(order.date)}</span>
+              <OrderStep order={order} />
+            </div>
             <p>
               № suivi de commande : {order.trackingNumber || "Non disponible"}{" "}
             </p>
@@ -60,4 +52,4 @@ const OrderList = ({ orderHistory, getStatusColor, filter, title }) => {
   );
 };
 
-export default OrderList;
+export default OrderListClient;

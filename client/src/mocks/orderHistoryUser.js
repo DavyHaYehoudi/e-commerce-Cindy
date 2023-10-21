@@ -3,17 +3,16 @@ import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
-import { orderStatus } from "./orderStatus";
+import { orderStep } from "./orderStep";
 
 export const orderHistoryUser = [
   {
     id: 1,
     date: "2023-01-15 08:30",
-    status: orderStatus[0].name,
+    step: orderStep[0].name,
     totalAmount: "€125",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "12 Rue de la République, 75001 Paris",
-    nonTraitee: false,
     trackingNumber: null,
     products: [
       {
@@ -37,11 +36,10 @@ export const orderHistoryUser = [
   {
     id: 2,
     date: "2023-02-02 14:45",
-    status: orderStatus[1].name,
+    step: orderStep[1].name,
     totalAmount: "€160",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "24 Avenue des Gobelins, 75013 Paris",
-    nonTraitee: true,
     trackingNumber: "XYZ123456",
     products: [
       {
@@ -65,11 +63,10 @@ export const orderHistoryUser = [
   {
     id: 3,
     date: "2023-03-10 10:20",
-    status: orderStatus[2].name,
+    step: orderStep[2].name,
     totalAmount: "€120",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
-    nonTraitee: false,
     trackingNumber: null,
     products: [
       {
@@ -93,11 +90,10 @@ export const orderHistoryUser = [
   {
     id: 4,
     date: "2023-04-05 09:55",
-    status: orderStatus[3].name,
+    step: orderStep[3].name,
     totalAmount: "€120",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "32 Quai de la Tournelle, 75005 Paris",
-    nonTraitee: true,
     trackingNumber: "XYZ123456",
     products: [
       {

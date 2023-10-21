@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderDetails = ({ order }) => {
+const OrderDetailsAdmin = ({ order }) => {
   return (
     <>
       <p>Total de la commande : {order.totalAmount}</p>
@@ -12,4 +12,4 @@ const OrderDetails = ({ order }) => {
   );
 };
 
-export default OrderDetails;
+export default OrderDetailsAdmin;

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ClientList from "../components/admin/clientList/ClientList";
-import { handleOrderStatusChange } from "../features/orderStatusSlice";
+import ClientList from "../components/admin/clientList/ClientListAdmin";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.ordersStatus);
+  const clients = useSelector((state) => state.ordersStep);
   const [clientDetails, setClientDetails] = useState({});
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const AdminDashboard = () => {
       ...prevDetails,
       [clientId]: !prevDetails[clientId],
     }));
-    dispatch(handleOrderStatusChange({}))
+    // dispatch(orderActions({}))
   };
 
   return (
