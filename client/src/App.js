@@ -18,7 +18,6 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import AccountUser from "./pages/AccountUser";
 import AdminDashboard from "./pages/AdminDashboard";
-import GenerateInvoice from "./components/admin/clientOrders/GenerateInvoice";
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
       <Header />
       <Routes>
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/generate-invoice/:orderId" element={<GenerateInvoice />} />
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<AccountUser />} />
         <Route path="/account/login" element={<Login />} />
