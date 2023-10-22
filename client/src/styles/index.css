@@ -17,11 +17,11 @@
 @import "./components/productList.css";
 @import "./components/cartIem.css";
 @import "./components/trashIcon.css";
-@import "./components/orderItem.css";
+@import "./components/orderItemAdmin.css";
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
 @import "./components/colorPicker.css";
-@import "./components/orderActionsDropdown.css";
+@import "./components/orderActionsDropdownAdmin.css";
 
 /* LAYOUT */
 @import "./layout/header.css";

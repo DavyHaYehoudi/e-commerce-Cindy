@@ -13,7 +13,7 @@ export const orderHistoryUser = [
     totalAmount: "€125",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "12 Rue de la République, 75001 Paris",
-    trackingNumber: null,
+    trackingNumberAdmin: null,
     products: [
       {
         productId: 104,
@@ -40,7 +40,7 @@ export const orderHistoryUser = [
     totalAmount: "€160",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "24 Avenue des Gobelins, 75013 Paris",
-    trackingNumber: "XYZ123456",
+    trackingNumberAdmin: "XYZ123456",
     products: [
       {
         productId: 201,
@@ -67,7 +67,7 @@ export const orderHistoryUser = [
     totalAmount: "€120",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
-    trackingNumber: null,
+    trackingNumberAdmin: null,
     products: [
       {
         productId: 785,
@@ -94,7 +94,7 @@ export const orderHistoryUser = [
     totalAmount: "€120",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "32 Quai de la Tournelle, 75005 Paris",
-    trackingNumber: "XYZ123456",
+    trackingNumberAdmin: "XYZ123456",
     products: [
       {
         productId: 77,

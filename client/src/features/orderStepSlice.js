@@ -13,29 +13,23 @@ export const ordersStep = [
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
-  const { orderId, isClientNotified, step, isNextStepOrder } = action.payload;
   return state.map((user) => ({
     ...user,
     orders: user.orders.map((order) =>
-      order.id === orderId
-        ? updateFunction(order, step, isClientNotified, isNextStepOrder)
+      order.id === action.payload.orderId
+        ? updateFunction(order, action.payload)
         : order
     ),
   }));
 };
 
-const updateOrderStep = (order, step, isClientNotified) => ({
+const updateOrderStep = (order, { step, isClientNotified }) => ({
   ...order,
   step,
   isClientNotified,
 });
 
-const updateMoveToNextStep = (
-  order,
-  step,
-  isClientNotified,
-  isNextStepOrder
-) => {
+const updateMoveToNextStep = (order, { step, isClientNotified, isNextStepOrder }) => {
   const currentStepIndex = ordersStep.findIndex((s) => s.name === order.step);
   const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
   const nextStep = isNextStepOrder ? ordersStep[nextStepIndex].name : step;
@@ -60,17 +54,22 @@ const orderStepSlice = createSlice({
     reactivateOrder: (state, action) =>
       applyOrderAction(state, action, updateOrderStep),
 
-    trackingNumberChange: (state, action) =>
-      applyOrderAction(state, action, (order, _, isClientNotified) => ({
-        ...order,
-        isClientNotified,
-      })),
+    trackingNumberAdminChange: (state, action) =>
+      applyOrderAction(
+        state,
+        action,
+        (order, payload) => ({
+          ...order,
+          isClientNotified: payload.isClientNotified,
+          trackingNumberAdmin: payload.trackingNumberAdmin,
+        })
+      ),
 
     sendToClient: (state, action) =>
-      applyOrderAction(state, action, (order, _, isClientNotified) => ({
+      applyOrderAction(state, action, (order, payload) => ({
         ...order,
-        isClientNotified,
-        lastSentDateToClient:new Date()
+        isClientNotified: payload.isClientNotified,
+        lastSentDateToClient: new Date(),
       })),
   },
 });
@@ -79,7 +78,7 @@ export const {
   moveToNextStep,
   cancelOrder,
   reactivateOrder,
-  trackingNumberChange,
+  trackingNumberAdminChange,
   sendToClient,
 } = orderStepSlice.actions;
 

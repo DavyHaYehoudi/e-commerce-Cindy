@@ -3,41 +3,42 @@ import { orderStep } from "../../../mocks/orderStep";
 import OrderHeaderAdmin from "./OrderHeaderAdmin";
 import OrderDetailsAdmin from "./OrderDetailsAdmin";
 import OrderProductsListAdmin from "./OrderProductsListAdmin";
-import TrackingFieldAdmin from "./TrackingFieldAdmin";
-import { useDispatch, useSelector } from "react-redux";
+import TrackingField from "../../dumbs/TrackingField";
+import { useDispatch } from "react-redux";
 import {
   sendToClient,
-  trackingNumberChange,
+  trackingNumberAdminChange,
 } from "../../../features/orderStepSlice";
 
-const OrderItemAdmin = ({ clientId, order, orderIndex, isClientNotified }) => {
+const OrderItemAdmin = ({
+  clientId,
+  order,
+  orderIndex,
+  isClientNotified,
+  trackingNumberAdmin,
+  trackingNumberClient,
+  lastSentDateToClient,
+  step,
+}) => {
   const dispatch = useDispatch();
-  const [trackingNumber, setTrackingNumber] = useState("");
   const [isTrackingNumberEdited, setIsTrackingNumberEdited] = useState(false);
-  const [creationDate, setCreationDate] = useState(null);
-  const [sendDate, setSendDate] = useState(null);
+  const [sendTrackingNumberDate, setSendTrackingNumberDate] = useState(null);
 
-  const ordersStep = useSelector(
-    (state) => state.ordersStep.find((user) => user.id === clientId)?.orders
-  );
-  const step = ordersStep[orderIndex]?.step;
-  const lastSentDateToClient = ordersStep[orderIndex]?.lastSentDateToClient;
-
-  const handleTrackingNumberChange = (event) => {
-    setTrackingNumber(event.target.value);
+  const handleTrackingNumberAdminChange = (event) => {
     setIsTrackingNumberEdited(true);
-    if (!creationDate) {
-      setCreationDate(new Date());
-    }
     dispatch(
-      trackingNumberChange({ orderId: order.id, isClientNotified: false })
+      trackingNumberAdminChange({
+        orderId: order.id,
+        isClientNotified: false,
+        trackingNumberAdmin: event.target.value,
+      })
     );
   };
 
   const handleSendToClient = () => {
     const currentDate = new Date();
     if (isTrackingNumberEdited) {
-      setSendDate(currentDate);
+      setSendTrackingNumberDate(currentDate);
     }
     setIsTrackingNumberEdited(false);
     dispatch(
@@ -55,21 +56,26 @@ const OrderItemAdmin = ({ clientId, order, orderIndex, isClientNotified }) => {
         orderIndex={orderIndex}
         clientId={clientId}
         step={step}
-        handleSendToClient={()=> handleSendToClient()}
+        handleSendToClient={() => handleSendToClient()}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}
       />
 
       <OrderDetailsAdmin order={order} />
       <OrderProductsListAdmin products={order.products} />
-      {order.step === orderStep[2].name && (
-        <TrackingFieldAdmin
-          trackingNumber={trackingNumber}
-          isTrackingNumberEdited={isTrackingNumberEdited}
-          handleTrackingNumberChange={handleTrackingNumberChange}
-          sendDate={sendDate}
-          creationDate={creationDate}
+      {order.step !== orderStep[0].name && order.step !== orderStep[1].name && (
+        <TrackingField
+          trackingNumber={trackingNumberAdmin}
+          handleTrackingNumberChange={handleTrackingNumberAdminChange}
+          sendTrackingNumberDate={sendTrackingNumberDate}
         />
+      )}
+      {(order.step === orderStep[3].name ||
+        order.step === orderStep[4].name ||
+        order.step === orderStep[5].name) && (
+        <p>
+          <span style={{paddingLeft:"10px"}} >№ DE SUIVI DU RETOUR CLIENT :</span> {trackingNumberClient}
+        </p>
       )}
     </div>
   );

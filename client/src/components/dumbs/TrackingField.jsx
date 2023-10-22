@@ -1,21 +1,20 @@
 import React from "react";
-import { formatDate } from "../../../helpers/formatDate";
+import { formatDate } from "../../helpers/formatDate";
 
-const TrackingFieldAdmin = ({
+const TrackingField = ({
   trackingNumber,
-  isTrackingNumberEdited,
   handleTrackingNumberChange,
-  sendDate,
+  sendTrackingNumberDate,
 }) => {
 
   return (
     <div className="tracking-field">
-      <div className="admin-tracking-number">
+      <div className="tracking-number">
         <label
           htmlFor="trackingNumber"
           style={{ color: trackingNumber ? "black" : "red" }}
         >
-          № DE SUIVI DE COMMANDE :
+         № DE SUIVI DE COMMANDE :
         </label>
 
         <>
@@ -29,13 +28,13 @@ const TrackingFieldAdmin = ({
           />
         </>
       </div>
-      {sendDate && (
-        <p className="admin-tracking-date">
-          <small> Dernier envoi du numéro de suivi au client le : {formatDate(sendDate)} </small>
+      {sendTrackingNumberDate && (
+        <p className="tracking-date">
+          <small> Dernier envoi du numéro de suivi le : {formatDate(sendTrackingNumberDate)} </small>
         </p>
       )}
     </div>
   );
 };
 
-export default TrackingFieldAdmin;
+export default TrackingField;

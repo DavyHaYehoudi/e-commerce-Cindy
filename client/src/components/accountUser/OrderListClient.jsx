@@ -22,7 +22,7 @@ const OrderListClient = ({ orderHistory, getStepColor, filter, title }) => {
               <OrderStep order={order} />
             </div>
             <p>
-              № suivi de commande : {order.trackingNumber || "Non disponible"}{" "}
+              № suivi de commande : {order.trackingNumberAdmin || "Non disponible"}{" "}
             </p>
           </div>
 

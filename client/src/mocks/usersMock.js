@@ -57,7 +57,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -86,7 +87,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isReturnending:false,
         isClientNotified: true,
         lastSentDateToClient:null,
@@ -108,7 +110,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -175,7 +178,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:"ABCDEF8768Y",
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -204,7 +208,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: false,
         lastSentDateToClient:null,
         products: [
@@ -287,7 +292,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -308,7 +314,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -399,7 +406,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:"ABCDEF8768Y",
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -428,8 +436,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
-
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -512,8 +520,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
-
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -534,7 +542,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -579,7 +588,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -646,9 +656,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
-
-
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -715,8 +724,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
-
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -737,8 +746,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
-
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -759,8 +768,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€200",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
-
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -781,8 +790,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
-
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -857,7 +866,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -878,8 +888,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
-
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -946,7 +956,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -975,7 +986,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -996,7 +1008,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€70",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1071,7 +1084,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€80",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: "XYZ123456",
+        trackingNumberAdmin: "XYZ123456",
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1092,8 +1106,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€100",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
-        trackingNumber: null,
-
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1160,7 +1174,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€200",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1189,8 +1204,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€150",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
-        trackingNumber: null,
-
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1257,7 +1272,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1332,7 +1348,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€180",
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1361,7 +1378,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€120",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1428,7 +1446,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€210",
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1449,7 +1468,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€240",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1516,7 +1536,8 @@ export const usersMock = [
         isNextStepOrder: false,
         totalAmount: "€300",
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [
@@ -1545,7 +1566,8 @@ export const usersMock = [
         isNextStepOrder: true,
         totalAmount: "€180",
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
-        trackingNumber: null,
+        trackingNumberAdmin: null,
+        trackingNumberClient:null,
         isClientNotified: true,
         lastSentDateToClient:null,
         products: [

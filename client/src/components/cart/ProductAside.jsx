@@ -79,7 +79,7 @@ const ProductAside = () => {
           <br />
           Pour plus d'informations sur les livraisons et les retours,
           rendez-vous sur la page
-          <Link to="deliveries&returns">
+          <Link to="/deliveries&returns">
             {" "}
             <u> Livraisons & Retours</u>
           </Link>

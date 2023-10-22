@@ -1,6 +1,6 @@
 /* ********************* START DASHBOARD VIEW ********************* */
 .admin-dashboard {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 20px auto;
 }
 
@@ -42,6 +42,7 @@
 
 .client-header span {
     flex: 1;
+    /* white-space: nowrap; */
 }
 
 .client-header button {
@@ -133,6 +134,12 @@
     transform: translateY(-2px);
 }
 
+.orderControlContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
 /* ********************* END COMMANDES CLIENT ********************* */
 
 /* ********************* START PREFERENCES CLIENT  ********************* */
@@ -174,13 +181,13 @@
     padding: 10px;
 }
 
-.admin-tracking-number {
+.tracking-number {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.admin-tracking-date {
+.tracking-date {
     line-height: 0.8;
 }
 

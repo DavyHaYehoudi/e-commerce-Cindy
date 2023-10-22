@@ -36,7 +36,6 @@ const OrderActionsDropdownAdmin = ({
         isNextStepOrder: true,
       })
     );
-    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -56,7 +55,13 @@ const OrderActionsDropdownAdmin = ({
   return (
     <div ref={dropdownRef} className={`dropdown ${isOpen ? "open" : "closed"}`}>
       <div className="orderControlContainer">
-        <div className="orderControlWrapper">
+          {lastSentDateToClient && (
+            <p>
+              <small>
+                Dernier envoi au client : {formatDate(lastSentDateToClient)}{" "}
+              </small>{" "}
+            </p>
+          )}
           {isClientNotified ? (
             <p className="info-tooltip" aria-label="Client informé">
               {" "}
@@ -67,18 +72,15 @@ const OrderActionsDropdownAdmin = ({
           ) : (
             <p className="info-tooltip" aria-label="Client non informé">
               <TbUserShare
-                style={{ color: "var(--warning)", fontSize: "25px" }}
+                style={{ color: "var(--danger)", fontSize: "25px" }}
               />
             </p>
           )}
-
-          <button className="account-btn toggle" onClick={toggleDropdown}>
-            <HiOutlineSquaresPlus />
-          </button>
-        </div>
-       {lastSentDateToClient&& <p><small>Dernier envoi au client :{formatDate(lastSentDateToClient)} </small>  </p>}
+        <button className="account-btn toggle" onClick={toggleDropdown}>
+          <HiOutlineSquaresPlus />
+        </button>
       </div>
-      <div className="dropdown-menu">
+      <div className="dropdown-menu" onClick={()=>setIsOpen(false)} >
         {!isOrderCancelled && (
           <button onClick={() => performAction(moveToNextStep, step)}>
             Passer à l'étape suivante
@@ -96,7 +98,7 @@ const OrderActionsDropdownAdmin = ({
           </button>
         )}
         <div className="dropdown-separator"></div>
-        <button onClick={handleSendToClient}>Envoyer la fiche au client</button>
+        <button onClick={handleSendToClient}>Envoyer ces informations au client</button>
       </div>
     </div>
   );

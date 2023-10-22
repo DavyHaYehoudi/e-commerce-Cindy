@@ -1,6 +1,6 @@
 import React from "react";
 import { formatDate } from "../../../helpers/formatDate";
-import OrderActionsDropdown from "./OrderActionsDropdownAdmin";
+import OrderActionsDropdownAdmin from "./OrderActionsDropdownAdmin";
 import OrderStep from "../../dumbs/OrderStep";
 const OrderHeaderAdmin = ({
   order,
@@ -15,7 +15,7 @@ const OrderHeaderAdmin = ({
         <span>Date de commande : {formatDate(order.date)}</span>
         <OrderStep order={order} />
       </div>
-      <OrderActionsDropdown
+      <OrderActionsDropdownAdmin
         order={order}
         step={step}
         handleSendToClient={handleSendToClient}

@@ -52,6 +52,10 @@ const ClientDetailsAdmin = ({ client }) => {
                 order={order}
                 orderIndex={i}
                 isClientNotified={order.isClientNotified}
+                trackingNumberAdmin={order.trackingNumberAdmin}
+                trackingNumberClient={order.trackingNumberClient}
+                lastSentDateToClient={order.lastSentDateToClient}
+                step={order.step}
               />
             ))}
           </div>
