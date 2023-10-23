@@ -1,12 +1,11 @@
 import React from "react";
 import { MdEmail } from "react-icons/md";
-import NotesAdmin from "./NotesAdmin";
 import ClientPreferencesDetails from "../clientPreferences/ClientPreferencesDetails";
 import ToggleButton from "../../dumbs/ToggleButton";
 import OrderItemAdmin from "../clientOrders/OrderItemAdmin";
+import NotesEditor from "../../dumbs/NotesEditor";
 
 const ClientDetailsAdmin = ({ client }) => {
-
   return (
     <div className="client-details">
       <h2>Informations du client</h2>
@@ -42,7 +41,7 @@ const ClientDetailsAdmin = ({ client }) => {
         buttonClass="account-btn toggle"
         content={
           <div className="clientOrders">
-            {client.orders.map((order,i) => (
+            {client.orders.map((order, i) => (
               <OrderItemAdmin
                 key={order.id}
                 clientId={client.id}
@@ -59,7 +58,7 @@ const ClientDetailsAdmin = ({ client }) => {
         }
       />
 
-      <NotesAdmin clientId={client.id} />
+      <NotesEditor clientId={client.id} notesPropName={"notesAdmin"} />
     </div>
   );
 };
