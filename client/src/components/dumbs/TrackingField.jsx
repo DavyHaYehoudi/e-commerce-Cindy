@@ -14,7 +14,7 @@ const TrackingField = ({
           htmlFor="trackingNumber"
           style={{ color: trackingNumber ? "black" : "red" }}
         >
-         № DE SUIVI DE COMMANDE :
+         № DE SUIVI D'EXPEDITION VENDEUR :
         </label>
 
         <>

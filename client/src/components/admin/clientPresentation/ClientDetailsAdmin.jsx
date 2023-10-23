@@ -6,9 +6,6 @@ import ToggleButton from "../../dumbs/ToggleButton";
 import OrderItemAdmin from "../clientOrders/OrderItemAdmin";
 
 const ClientDetailsAdmin = ({ client }) => {
-  const handleAdminNotesUpdate = (notes) => {
-    console.log("Notes administratives mises à jour :", notes);
-  };
 
   return (
     <div className="client-details">
@@ -62,7 +59,7 @@ const ClientDetailsAdmin = ({ client }) => {
         }
       />
 
-      <NotesAdmin initialNotes="" onUpdateNotes={handleAdminNotesUpdate} />
+      <NotesAdmin clientId={client.id} />
     </div>
   );
 };

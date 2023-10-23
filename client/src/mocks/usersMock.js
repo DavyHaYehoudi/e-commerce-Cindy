@@ -15,6 +15,7 @@ export const usersMock = [
     shippingAddress: "12 Rue de la République, 75001 Paris",
     totalOrders: 3,
     totalOrderValue: "€500",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -136,6 +137,7 @@ export const usersMock = [
     shippingAddress: "45 Avenue des Champs-Élysées, 75008 Paris",
     totalOrders: 2,
     totalOrderValue: "€300",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -250,6 +252,7 @@ export const usersMock = [
     shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
     totalOrders: 2,
     totalOrderValue: "€250",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -364,6 +367,7 @@ export const usersMock = [
     shippingAddress: "22 Rue de la Pompe, 75116 Paris",
     totalOrders: 2,
     totalOrderValue: "€200",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -478,6 +482,7 @@ export const usersMock = [
     shippingAddress: "5 Quai de la Tournelle, 75005 Paris",
     totalOrders: 3,
     totalOrderValue: "€320",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -614,6 +619,7 @@ export const usersMock = [
     shippingAddress: "18 Avenue Montaigne, 75008 Paris",
     totalOrders: 1,
     totalOrderValue: "€80",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -682,6 +688,7 @@ export const usersMock = [
     shippingAddress: "30 Rue du Bac, 75007 Paris",
     totalOrders: 4,
     totalOrderValue: "€450",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -824,6 +831,7 @@ export const usersMock = [
     shippingAddress: "10 Avenue Foch, 75116 Paris",
     totalOrders: 2,
     totalOrderValue: "€180",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -914,6 +922,7 @@ export const usersMock = [
     shippingAddress: "14 Rue de Rivoli, 75001 Paris",
     totalOrders: 3,
     totalOrderValue: "€250",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -1042,6 +1051,7 @@ export const usersMock = [
     shippingAddress: "55 Rue du Faubourg Saint-Antoine, 75011 Paris",
     totalOrders: 2,
     totalOrderValue: "€180",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 101,
@@ -1132,6 +1142,7 @@ export const usersMock = [
     shippingAddress: "24 Rue de la Liberté, 75002 Paris",
     totalOrders: 5,
     totalOrderValue: "€700",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 106,
@@ -1230,6 +1241,7 @@ export const usersMock = [
     shippingAddress: "36 Avenue des Champs-Élysées, 75008 Paris",
     totalOrders: 2,
     totalOrderValue: "€300",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 114,
@@ -1306,6 +1318,7 @@ export const usersMock = [
     shippingAddress: "24 Rue du Faubourg Saint-Honoré, 75008 Paris",
     totalOrders: 4,
     totalOrderValue: "€600",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 122,
@@ -1404,6 +1417,7 @@ export const usersMock = [
     shippingAddress: "18 Avenue des Champs-Élysées, 75002 Paris",
     totalOrders: 5,
     totalOrderValue: "€750",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 135,
@@ -1494,6 +1508,7 @@ export const usersMock = [
     shippingAddress: "24 Rue de la Liberté, 75003 Paris",
     totalOrders: 7,
     totalOrderValue: "€900",
+    notesAdmin:null,
     wishlist: [
       {
         productId: 152,
