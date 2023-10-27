@@ -6,7 +6,7 @@ const Langs = () => {
     <div id="langs">
       <p id="p-fr">français</p>
       <span aria-label="Ouvrir le contenu">
-        <MdOutlineKeyboardArrowDown />
+        <MdOutlineKeyboardArrowDown aria-hidden="true" />
       </span>
     </div>
   );

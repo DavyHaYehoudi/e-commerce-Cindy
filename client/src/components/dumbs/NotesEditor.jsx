@@ -50,7 +50,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
               onClick={() => handleDeleteNote(index)}
               aria-label="Supprimer cette note"
             >
-              <TbInputX />{" "}
+              <TbInputX aria-hidden="true" />{" "}
             </button>
           </div>
         ))}
@@ -69,7 +69,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
             onClick={handleSaveNotes}
             aria-label="Ajouter cette note"
           >
-            <TbInputCheck />
+            <TbInputCheck aria-hidden="true" />
           </button>
         )}
       </div>

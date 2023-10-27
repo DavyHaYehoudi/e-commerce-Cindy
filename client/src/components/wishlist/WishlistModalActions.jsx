@@ -42,21 +42,21 @@ const WishlistModalActions = () => {
         className="info-tooltip"
         aria-label="Tout ajouter au panier"
       >
-        <FaCartArrowDown className="wishlist-icon-actions"/>
+        <FaCartArrowDown className="wishlist-icon-actions" aria-hidden="true" />
       </div>
       <div
         onClick={handleCopyEmailLink}
         className="info-tooltip"
         aria-label="Partager la liste des favoris par mail"
       >
-        <FaMailBulk className="wishlist-icon-actions"/>
+        <FaMailBulk className="wishlist-icon-actions" aria-hidden="true" />
       </div>
       <div
         onClick={handleCopyUrlLink}
         className="info-tooltip"
         aria-label="Copier le lien de la liste des favoris"
       >
-        <FaLink className="wishlist-icon-actions"/>
+        <FaLink className="wishlist-icon-actions" aria-hidden="true" />
       </div>
       <ToastContainer autoClose={2500} />
     </>

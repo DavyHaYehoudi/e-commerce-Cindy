@@ -40,7 +40,7 @@ const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
           <div className="modal-header-top">
             <h2>Mes favoris </h2>
             <button onClick={onClose} aria-label="Fermer la fenêtre" >
-              <AiOutlineCloseCircle />
+              <AiOutlineCloseCircle aria-hidden="true"/>
             </button>
           </div>
           <div className="modal-header-bottom">

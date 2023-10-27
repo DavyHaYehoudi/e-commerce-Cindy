@@ -25,7 +25,7 @@ const ProductAside = () => {
             className={`rotate ${isProductionDetailsOpen ? "rotate-open" : ""}`}
             aria-label="Ouvrir son contenu"
           >
-            <IoIosArrowUp />
+            <IoIosArrowUp aria-hidden="true" />
           </button>
         </div>
         <div
@@ -54,7 +54,7 @@ const ProductAside = () => {
             className={`rotate ${isShippingReturnsOpen ? "rotate-open" : ""}`}
             aria-label="Ouvrir le contenu"
           >
-            <IoIosArrowUp />
+            <IoIosArrowUp aria-hidden="true" />
           </button>
         </div>
         <div

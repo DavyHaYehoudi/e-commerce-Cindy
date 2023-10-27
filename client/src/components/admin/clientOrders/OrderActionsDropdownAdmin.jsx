@@ -71,7 +71,10 @@ const OrderActionsDropdownAdmin = ({
           </p>
         ) : (
           <p className="info-tooltip" aria-label="Client non informé">
-            <TbUserShare style={{ color: "var(--danger)", fontSize: "25px" }} />
+            <TbUserShare
+              style={{ color: "var(--danger)", fontSize: "25px" }}
+              aria-hidden="true"
+            />
           </p>
         )}
         <button
@@ -79,7 +82,7 @@ const OrderActionsDropdownAdmin = ({
           onClick={toggleDropdown}
           aria-label="Liste d'actions possibles"
         >
-          <HiOutlineSquaresPlus />
+          <HiOutlineSquaresPlus aria-hidden="true" />
         </button>
       </div>
       <div className="dropdown-menu" onClick={() => setIsOpen(false)}>

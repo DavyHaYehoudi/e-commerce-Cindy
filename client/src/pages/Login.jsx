@@ -42,11 +42,13 @@ const Login = () => {
                     <AiOutlineEye
                       className="password-icon"
                       onClick={() => setShowPassword(!showPassword)}
+                      aria-hidden="true"
                     />
                   ) : (
                     <AiOutlineEyeInvisible
                       className="password-icon"
                       onClick={() => setShowPassword(!showPassword)}
+                      aria-hidden="true"
                     />
                   )}
                 </div>

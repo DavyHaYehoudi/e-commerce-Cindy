@@ -14,10 +14,10 @@ const ProductList = ({ item }) => {
         <div className="collectionItem-Img" style={backgroundImageStyle}></div>
         <div className="hearts">
           <span id="emptyHeart" aria-label="Ne pas liker">
-            <AiOutlineHeart />
+            <AiOutlineHeart aria-hidden="true" />
           </span>
           <span id="fullHeart" aria-label="Liker">
-            <AiTwotoneHeart />
+            <AiTwotoneHeart aria-hidden="true" />
           </span>
         </div>
         <div className="collectionItem-Content">

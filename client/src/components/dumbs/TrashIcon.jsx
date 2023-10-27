@@ -7,7 +7,7 @@ const TrashIcon = ({ addClass }) => {
       className={`trashIcon info-tooltip ${addClass} `}
       aria-label="Supprimer l'article"
     >
-      <BsTrash />
+      <BsTrash aria-hidden="true" />
     </div>
   );
 };
