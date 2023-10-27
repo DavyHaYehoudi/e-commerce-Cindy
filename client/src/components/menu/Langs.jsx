@@ -5,7 +5,7 @@ const Langs = () => {
   return (
     <div id="langs">
       <p id="p-fr">français</p>
-      <span>
+      <span aria-label="Ouvrir le contenu">
         <MdOutlineKeyboardArrowDown />
       </span>
     </div>

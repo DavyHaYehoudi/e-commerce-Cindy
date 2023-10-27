@@ -53,7 +53,7 @@ const Register = () => {
               required
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="password-icon-container">
+            <div className="password-icon-container" aria-label="Montrer le mot de passe">
               {showPassword ? (
                 <AiOutlineEyeInvisible
                   className="password-icon"
@@ -78,7 +78,7 @@ const Register = () => {
               required
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <div className="password-icon-container">
+            <div className="password-icon-container" aria-label="Montrer le mot de passe">
               {showConfirmPassword ? (
                 <AiOutlineEyeInvisible
                   className="password-icon"

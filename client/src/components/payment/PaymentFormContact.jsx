@@ -11,7 +11,7 @@ const PaymentFormContact = ({ onUpdate }) => {
     <>
       <div className="payment-form-heading">
         <h2>Contact</h2>
-        <CiMail className="icon" />
+        <CiMail className="icon" aria-hidden="true" />
       </div>
       <input
         type="email"

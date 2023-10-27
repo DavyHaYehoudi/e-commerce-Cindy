@@ -6,12 +6,13 @@ import col from "../assets/col.png";
 import { orderStep } from "./orderStep";
 
 export const userMock = {
-  id:1,
+  id: 1,
   firstName: "John",
   lastName: "Doe",
   email: "john@example.com",
   phone: "07 22 90 87 44",
   address: "12 rue Charles De Gaulle, 27 000 Lyon",
+  notesClient: null,
   wishlist: [
     {
       productId: 101,

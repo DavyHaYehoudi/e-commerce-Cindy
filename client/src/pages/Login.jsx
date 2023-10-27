@@ -37,7 +37,7 @@ const Login = () => {
                   required
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="password-icon-container">
+                <div className="password-icon-container" aria-label="Montrer le mot de passe">
                   {showPassword ? (
                     <AiOutlineEye
                       className="password-icon"

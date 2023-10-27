@@ -14,23 +14,35 @@ const NavIcons = ({ onClickHeart }) => {
             to="account/login"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <AiOutlineUser className="navlink-icon" />
+            <AiOutlineUser
+              className="navlink-icon"
+              aria-label="Icône pour accéder au compte client"
+            />
           </NavLink>
         </li>
         <li>
-          <button onClick={onClickHeart}>
-            <AiOutlineHeart className="navlink-icon"/>
+          <button
+            onClick={onClickHeart}
+            aria-label="Icône pour accéder aux favoris"
+          >
+            <AiOutlineHeart className="navlink-icon" />
           </button>
         </li>
         <li>
-          <IoSearchOutline className="navlink-icon"/>
+          <IoSearchOutline
+            className="navlink-icon"
+            aria-label="Icône pour accéder à la barre de recherche"
+          />
         </li>
         <li id="iconCart">
           <NavLink
             to="cart"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            <AiOutlineShopping className="navlink-icon"/>
+            <AiOutlineShopping
+              className="navlink-icon"
+              aria-label="Icône pour accéder au panier"
+            />
           </NavLink>
           <span id="numberCart">1</span>
         </li>

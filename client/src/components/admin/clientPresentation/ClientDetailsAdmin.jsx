@@ -14,7 +14,7 @@ const ClientDetailsAdmin = ({ client }) => {
       <p className="client-details-email">
         Email :{" "}
         <a href={`mailto:${client.email}`}>
-          {client.email} <MdEmail className="icon" />
+          {client.email} <MdEmail className="icon" aria-label="Email du client" />
         </a>
       </p>
       <p>Téléphone : {client.phone}</p>

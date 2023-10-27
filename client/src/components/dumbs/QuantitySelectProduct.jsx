@@ -16,11 +16,11 @@ const QuantitySelectProduct = () => {
 
   return (
     <div className="quantity-select">
-      <button onClick={handleDecrement}>
+      <button onClick={handleDecrement} aria-label="Soustraire un article" >
         <FaMinus className="quantity-icon"/>
       </button>
       <span>{quantity}</span>
-      <button onClick={handleIncrement}>
+      <button onClick={handleIncrement} aria-label="Ajouter un article">
         <FaPlus className="quantity-icon"/>
       </button>
     </div>

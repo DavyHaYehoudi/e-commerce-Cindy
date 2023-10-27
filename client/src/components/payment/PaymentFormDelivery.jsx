@@ -15,7 +15,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
     <>
       <div className="payment-form-heading">
         <h2>Livraison</h2>
-        <PiTruckThin className="icon"/>
+        <PiTruckThin className="icon" aria-hidden="true" />
       </div>
       <select
         id="country"

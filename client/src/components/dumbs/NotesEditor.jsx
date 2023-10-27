@@ -48,6 +48,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
             <button
               className="account-btn icon-trash"
               onClick={() => handleDeleteNote(index)}
+              aria-label="Supprimer cette note"
             >
               <TbInputX />{" "}
             </button>
@@ -66,6 +67,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
           <button
             className="account-btn icon-validate"
             onClick={handleSaveNotes}
+            aria-label="Ajouter cette note"
           >
             <TbInputCheck />
           </button>

@@ -33,7 +33,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
     <div className={`offcanvas ${show ? "show" : ""}`}>
       <div className="offcanvas-heading">
         <h2>VOTRE PANIER</h2>
-        <button onClick={handleClose}>
+        <button onClick={handleClose} aria-label="Fermer la fenêtre">
           <TfiClose />
         </button>
       </div>

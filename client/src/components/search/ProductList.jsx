@@ -13,10 +13,10 @@ const ProductList = ({ item }) => {
       <Link to={productLink} state={{ product: { item } }}>
         <div className="collectionItem-Img" style={backgroundImageStyle}></div>
         <div className="hearts">
-          <span id="emptyHeart">
+          <span id="emptyHeart" aria-label="Ne pas liker">
             <AiOutlineHeart />
           </span>
-          <span id="fullHeart">
+          <span id="fullHeart" aria-label="Liker">
             <AiTwotoneHeart />
           </span>
         </div>

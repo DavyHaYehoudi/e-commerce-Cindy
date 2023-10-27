@@ -55,32 +55,34 @@ const OrderActionsDropdownAdmin = ({
   return (
     <div ref={dropdownRef} className={`dropdown ${isOpen ? "open" : "closed"}`}>
       <div className="orderControlContainer">
-          {lastSentDateToClient && (
-            <p>
-              <small>
-                Dernier envoi au client : {formatDate(lastSentDateToClient)}{" "}
-              </small>{" "}
-            </p>
-          )}
-          {isClientNotified ? (
-            <p className="info-tooltip" aria-label="Client informé">
-              {" "}
-              <TbCircleCheck
-                style={{ color: "var(--success)", fontSize: "25px" }}
-              />
-            </p>
-          ) : (
-            <p className="info-tooltip" aria-label="Client non informé">
-              <TbUserShare
-                style={{ color: "var(--danger)", fontSize: "25px" }}
-              />
-            </p>
-          )}
-        <button className="account-btn toggle" onClick={toggleDropdown}>
+        {lastSentDateToClient && (
+          <p>
+            <small>
+              Dernier envoi au client : {formatDate(lastSentDateToClient)}{" "}
+            </small>{" "}
+          </p>
+        )}
+        {isClientNotified ? (
+          <p className="info-tooltip" aria-label="Client informé">
+            {" "}
+            <TbCircleCheck
+              style={{ color: "var(--success)", fontSize: "25px" }}
+            />
+          </p>
+        ) : (
+          <p className="info-tooltip" aria-label="Client non informé">
+            <TbUserShare style={{ color: "var(--danger)", fontSize: "25px" }} />
+          </p>
+        )}
+        <button
+          className="account-btn toggle"
+          onClick={toggleDropdown}
+          aria-label="Liste d'actions possibles"
+        >
           <HiOutlineSquaresPlus />
         </button>
       </div>
-      <div className="dropdown-menu" onClick={()=>setIsOpen(false)} >
+      <div className="dropdown-menu" onClick={() => setIsOpen(false)}>
         {!isOrderCancelled && (
           <button onClick={() => performAction(moveToNextStep, step)}>
             Passer à l'étape suivante
@@ -98,7 +100,9 @@ const OrderActionsDropdownAdmin = ({
           </button>
         )}
         <div className="dropdown-separator"></div>
-        <button onClick={handleSendToClient}>Envoyer ces informations au client</button>
+        <button onClick={handleSendToClient}>
+          Envoyer ces informations au client
+        </button>
       </div>
     </div>
   );

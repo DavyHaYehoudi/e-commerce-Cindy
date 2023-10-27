@@ -2,15 +2,15 @@ import React from "react";
 import { CiMoneyCheck1 } from "react-icons/ci";
 import paymentCard from "../../assets/paymentCard.png";
 
-const PaymentFormCard = ({onUpdate} ) => {
-    const handleChange = (e) => {
-        onUpdate({ [e.target.name]: e.target.value });
-      };
+const PaymentFormCard = ({ onUpdate }) => {
+  const handleChange = (e) => {
+    onUpdate({ [e.target.name]: e.target.value });
+  };
   return (
     <>
       <div className="payment-form-heading">
         <h2>Paiement</h2>
-        <CiMoneyCheck1 className="icon"/>
+        <CiMoneyCheck1 className="icon" aria-hidden="true" />
       </div>
       <p>Toutes les transactions sont sécurisées et chiffrées.</p>
       <div className="credit-cards">

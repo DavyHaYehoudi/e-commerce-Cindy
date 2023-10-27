@@ -23,6 +23,7 @@ const ProductAside = () => {
           <p>CONSEILS D'ENTRETIEN</p>
           <button
             className={`rotate ${isProductionDetailsOpen ? "rotate-open" : ""}`}
+            aria-label="Ouvrir son contenu"
           >
             <IoIosArrowUp />
           </button>
@@ -51,6 +52,7 @@ const ProductAside = () => {
           <p>LIVRAISON & RETOUR</p>
           <button
             className={`rotate ${isShippingReturnsOpen ? "rotate-open" : ""}`}
+            aria-label="Ouvrir le contenu"
           >
             <IoIosArrowUp />
           </button>
