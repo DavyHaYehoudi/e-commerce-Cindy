@@ -25,6 +25,7 @@ const Register = () => {
           type="text"
           value={firstName}
           required
+          aria-required="true"
           onChange={(e) => setFirstName(e.target.value)}
         />
 
@@ -33,6 +34,7 @@ const Register = () => {
           type="text"
           value={lastName}
           required
+          aria-required="true"
           onChange={(e) => setLastName(e.target.value)}
         />
         <label>Email * :</label>
@@ -41,6 +43,7 @@ const Register = () => {
           value={email}
           autoFocus
           required
+          aria-required="true"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -51,6 +54,7 @@ const Register = () => {
               type={showPassword ? "text" : "password"}
               value={password}
               required
+              aria-required="true"
               onChange={(e) => setPassword(e.target.value)}
             />
             <div
@@ -81,6 +85,7 @@ const Register = () => {
               type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               required
+              aria-required="true"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <div

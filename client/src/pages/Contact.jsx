@@ -59,6 +59,7 @@ const Contact = () => {
             placeholder="NOM *"
             autoFocus
             required
+            aria-required="true"
           />
           <input
             type="text"
@@ -72,6 +73,7 @@ const Contact = () => {
             name="tel"
             placeholder="TELEPHONE *"
             required
+            aria-required="true"
           />
           <textarea
             id="message"

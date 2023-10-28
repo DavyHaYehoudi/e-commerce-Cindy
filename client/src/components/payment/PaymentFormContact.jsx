@@ -19,6 +19,7 @@ const PaymentFormContact = ({ onUpdate }) => {
         name="email"
         placeholder="Adresse e-mail *"
         required
+        aria-required="true"
         onChange={handleChange}
       />
     </>

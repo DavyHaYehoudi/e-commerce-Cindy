@@ -3,9 +3,12 @@ import { NavLink } from "react-router-dom";
 
 const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
   return (
-    <nav id="navMenu" role="navigation">
+    <nav id="navMenu" role="navigation" aria-label="navigation principale">
       <ul>
-        <li onMouseEnter={() => handleMenuEnter("display1")}>
+        <li
+          onMouseEnter={() => handleMenuEnter("display1")}
+          aria-haspopup="true"
+        >
           <NavLink
             to="menu-tab/forTheDay"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -13,7 +16,10 @@ const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
             Pour un jour unique
           </NavLink>
         </li>
-        <li onMouseEnter={() => handleMenuEnter("display2")}>
+        <li
+          onMouseEnter={() => handleMenuEnter("display2")}
+          aria-haspopup="true"
+        >
           <NavLink
             to="menu-tab/forEveryday"
             className={({ isActive }) => (isActive ? "active" : "")}

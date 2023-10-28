@@ -43,6 +43,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="firstname"
             placeholder="Prénom *"
             required
+            aria-required="true"
             onChange={handleChange}
           />
           <input
@@ -51,6 +52,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="last-name"
             placeholder="Nom *"
             required
+            aria-required="true"
           />
         </div>
         <input
@@ -59,6 +61,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           name="address"
           placeholder="Adresse *"
           required
+          aria-required="true"
           onChange={handleChange}
         />
         <input
@@ -75,6 +78,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="postal-code"
             placeholder="Code postal *"
             required
+            aria-required="true"
             onChange={handleChange}
           />
           <input
@@ -83,6 +87,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="city"
             placeholder="Ville *"
             required
+            aria-required="true"
             onChange={handleChange}
           />
         </div>

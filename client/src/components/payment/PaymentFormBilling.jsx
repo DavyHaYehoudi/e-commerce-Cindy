@@ -60,6 +60,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             name="billingFirstName"
             placeholder="Prénom *"
             required
+            aria-required="true"
             onChange={(e) =>
               handleBillingChange("billingFirstName", e.target.value)
             }
@@ -70,6 +71,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             name="billingLastName"
             placeholder="Nom *"
             required
+            aria-required="true"
             onChange={(e) =>
               handleBillingChange("billingLastName", e.target.value)
             }
@@ -80,6 +82,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             name="billingAddress"
             placeholder="Adresse *"
             required
+            aria-required="true"
             onChange={(e) =>
               handleBillingChange("billingAddress", e.target.value)
             }
@@ -99,6 +102,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             name="billingPostalCode"
             placeholder="Code postal *"
             required
+            aria-required="true"
             onChange={(e) =>
               handleBillingChange("billingPostalCode", e.target.value)
             }
@@ -109,6 +113,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             name="billingCity"
             placeholder="Ville *"
             required
+            aria-required="true"
             onChange={(e) => handleBillingChange("billingCity", e.target.value)}
           />
         </div>

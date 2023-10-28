@@ -25,6 +25,7 @@ const Login = () => {
               value={email}
               autoFocus
               required
+              aria-required="true"
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -35,6 +36,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   required
+                  aria-required="true"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="password-icon-container" aria-label="Montrer le mot de passe">

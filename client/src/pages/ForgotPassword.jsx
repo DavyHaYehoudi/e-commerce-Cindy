@@ -23,6 +23,7 @@ const ForgotPassword = () => {
               value={email}
               autoFocus
               required
+              aria-required="true"
               onChange={(e) => setEmail(e.target.value)}
             />
 
