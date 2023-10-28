@@ -19,7 +19,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <h2>Inscription</h2>
-      <form role="form">
+      <form>
         <label>Prénom * :</label>
         <input
           type="text"

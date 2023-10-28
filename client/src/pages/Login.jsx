@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>{forgotPassword ? "Réinitialiser le mot de passe" : "Connexion"}</h2>
-      <form role="form">
+      <form>
         {!forgotPassword && (
           <>
             <label>Email * :</label>

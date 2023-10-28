@@ -29,7 +29,7 @@ const Contact = () => {
           sécurisées
         </span>
       </p>
-      <form id="contact-form-box" role="form" ref={form}>
+      <form id="contact-form-box"  ref={form}>
         {/* {spinActiv && <Spin />} */}
         {successForm.success && (
           <p className="successForm">

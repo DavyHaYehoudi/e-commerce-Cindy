@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
   return (
-    <nav id="navMenu" role="navigation" aria-label="navigation principale">
+    <nav id="navMenu" role="navigation" >
       <ul>
         <li
           onMouseEnter={() => handleMenuEnter("display1")}
-          aria-haspopup="true"
+          
         >
           <NavLink
             to="menu-tab/forTheDay"
@@ -18,7 +18,7 @@ const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
         </li>
         <li
           onMouseEnter={() => handleMenuEnter("display2")}
-          aria-haspopup="true"
+          
         >
           <NavLink
             to="menu-tab/forEveryday"
