@@ -5,7 +5,7 @@ import instagram from "../assets/instagram.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer>
+    <footer role="contentinfo" >
       <div className="footer-contain-top">
         <div className="col">
           <h3>BOUTIQUE</h3>
