@@ -14,7 +14,7 @@ const ForgotPassword = () => {
   return (
     <div className="forgot-password-container">
       <h2>Mot de passe oublié</h2>
-      <form>
+      <form role="form">
         {!resetSent && (
           <>
             <label>Email * :</label>

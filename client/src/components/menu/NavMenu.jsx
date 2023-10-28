@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
   return (
-    <nav id="navMenu">
+    <nav id="navMenu" role="navigation">
       <ul>
         <li onMouseEnter={() => handleMenuEnter("display1")}>
           <NavLink

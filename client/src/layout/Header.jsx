@@ -4,7 +4,7 @@ import HeaderWrapper from "./HeaderWrapper";
 
 const Header = () => {
   return (
-    <header>
+    <header role="banner" >
       <FreeShippingBanner />
       <HeaderWrapper />
     </header>

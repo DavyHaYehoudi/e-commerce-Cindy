@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const NavIcons = ({ onClickHeart }) => {
   return (
-    <nav id="navIcons">
+    <nav id="navIcons" role="navigation">
       <ul>
         <li>
           <NavLink
