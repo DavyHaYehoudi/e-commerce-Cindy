@@ -32,6 +32,7 @@ export const usersMock = [
         image: col,
       },
     ],
+    // wishlist:null,
     cart: [
       {
         productId: 102,
@@ -127,6 +128,7 @@ export const usersMock = [
         ],
       },
     ],
+    // orders:null,
   },
   {
     id: 2,
