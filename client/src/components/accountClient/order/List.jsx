@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import OrderItems from "./Item";
+import Item from "./Item";
 import ToggleButton from "../../../shared/ToggleButton";
 import { formatDate } from "../../../helpers/formatDate";
 import OrderStep from "../../../shared/OrderStep";
+import { orderStep } from "../../../mocks/orderStep";
+import TrackingField from "../../../shared/TrackingField";
 
-const List = ({ orderHistory, getStepColor, filter, title }) => {
+const List = ({ orderHistory, filter, title }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -22,7 +24,8 @@ const List = ({ orderHistory, getStepColor, filter, title }) => {
               <OrderStep order={order} />
             </div>
             <p>
-              № suivi de commande : {order.trackingNumberAdmin || "Non disponible"}{" "}
+              № suivi de commande :{" "}
+              {order.trackingNumberAdmin || "Non disponible"}{" "}
             </p>
           </div>
 
@@ -31,9 +34,9 @@ const List = ({ orderHistory, getStepColor, filter, title }) => {
             hiddenText="Fermer les articles"
             buttonClass="account-btn toggle"
             content={
-              <OrderItems
+              <Item
                 products={order.products}
-                image={order.products[0].image}
+                isReturnProduct={order.step === orderStep[3].name}
               />
             }
             onToggle={handleToggleOrderItems}

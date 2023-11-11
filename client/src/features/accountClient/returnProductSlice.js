@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { usersMock } from "../../mocks/usersMock";
 import { orderStep } from "../../mocks/orderStep";
+import { orderHistoryUser } from "../../mocks/orderHistoryUser";
 
 export const ordersStep = [
   { id: 0, name: orderStep[0].name },
@@ -11,10 +11,10 @@ export const ordersStep = [
   { id: 5, name: orderStep[5].name },
   { id: 6, name: orderStep[6].name },
 ];
-
+const applyOrderAction=()=>{}
 const returnProductSlice = createSlice({
   name: "returnProduct",
-  initialState: usersMock,
+  initialState: orderHistoryUser,
   reducers: {
     trackingNumberAdminChange: (state, action) =>
       applyOrderAction(

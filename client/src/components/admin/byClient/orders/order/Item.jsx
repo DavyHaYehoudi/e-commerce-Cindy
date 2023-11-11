@@ -68,6 +68,7 @@ const Item = ({
           trackingNumber={trackingNumberAdmin}
           handleTrackingNumberChange={handleTrackingNumberAdminChange}
           sendTrackingNumberDate={sendTrackingNumberDate}
+          isAdmin={true}
         />
       )}
       {(order.step === orderStep[3].name ||

@@ -5,6 +5,7 @@ const TrackingField = ({
   trackingNumber,
   handleTrackingNumberChange,
   sendTrackingNumberDate,
+  isAdmin,
 }) => {
 
   return (
@@ -14,7 +15,7 @@ const TrackingField = ({
           htmlFor="trackingNumber"
           style={{ color: trackingNumber ? "black" : "red" }}
         >
-         № DE SUIVI D'EXPEDITION VENDEUR :
+         {isAdmin ? "№ DE SUIVI D'EXPEDITION VENDEUR :" : "№ DE SUIVI DU RETOUR DU PRODUIT :"}
         </label>
 
         <>

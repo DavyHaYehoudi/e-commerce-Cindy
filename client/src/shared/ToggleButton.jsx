@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ToggleButton = ({ initialText, hiddenText, content,buttonClass }) => {
+const ToggleButton = ({ initialText, hiddenText, content, buttonClass }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleToggle = () => {

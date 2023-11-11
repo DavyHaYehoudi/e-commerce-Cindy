@@ -9,7 +9,7 @@ export const orderHistoryUser = [
   {
     id: 1,
     date: "2023-01-15 08:30",
-    step: orderStep[0].name,
+    step: orderStep[3].name,
     totalAmount: "€125",
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -22,6 +22,7 @@ export const orderHistoryUser = [
         quantity: 2,
         material: materials[0].name,
         image: bo,
+        trackingNumberClient:"RET098",
       },
       {
         productId: 105,
@@ -30,6 +31,7 @@ export const orderHistoryUser = [
         quantity: 1,
         material: materials[1].name,
         image: bar,
+        trackingNumberClient:null,
       },
     ],
   },
@@ -49,6 +51,7 @@ export const orderHistoryUser = [
         quantity: 3,
         material: materials[2].name,
         image: bra,
+        trackingNumberClient:null,
       },
       {
         productId: 204,
@@ -57,6 +60,7 @@ export const orderHistoryUser = [
         quantity: 1,
         material: materials[3].name,
         image: col,
+        trackingNumberClient:null,
       },
     ],
   },
@@ -76,6 +80,7 @@ export const orderHistoryUser = [
         quantity: 2,
         material: materials[0].name,
         image: bo,
+        trackingNumberClient:null,
       },
       {
         productId: 980,
@@ -84,6 +89,7 @@ export const orderHistoryUser = [
         quantity: 1,
         material: materials[1].name,
         image: bra,
+        trackingNumberClient:null,
       },
     ],
   },
@@ -103,6 +109,7 @@ export const orderHistoryUser = [
         quantity: 1,
         material: materials[2].name,
         image: bar,
+        trackingNumberClient:null,
       },
       {
         productId: 98,
@@ -111,6 +118,7 @@ export const orderHistoryUser = [
         quantity: 2,
         material: materials[3].name,
         image: col,
+        trackingNumberClient:null,
       },
     ],
   },

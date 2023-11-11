@@ -3,12 +3,12 @@ import OtherOrders from "../components/accountClient/order/OtherOrders";
 import DeliveredOrders from "../components/accountClient/order/Delivered";
 import UserInfo from "../components/accountClient/info/UserInfo";
 import { getStepColor } from "../helpers/getStepColor";
-import { orderHistoryUser } from "../mocks/orderHistoryUser";
 import { userMock } from "../mocks/userMock";
+import { useSelector } from "react-redux";
 
 const AccountClient = () => {
   const [userData] = useState(userMock);
-  const [orderHistory] = useState(orderHistoryUser);
+  const orderHistory = useSelector((state) => state.returnProduct);
 
   return (
     <div className="user-profile-container">
