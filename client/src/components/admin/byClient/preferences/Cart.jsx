@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CartUserViewAdmin = ({ item }) => {
+const Cart = ({ item }) => {
   return (
     <div className="cartUserViewAdmin">
       <div>
@@ -19,4 +19,4 @@ const CartUserViewAdmin = ({ item }) => {
   );
 };
 
-export default CartUserViewAdmin;
+export default Cart;

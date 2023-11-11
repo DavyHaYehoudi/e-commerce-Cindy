@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
-import { formatDate } from "../../helpers/formatDate";
-import { addNote, deleteNote } from "../../features/notesSlice";
+import { formatDate } from "../helpers/formatDate";
+import { addNote, deleteNote } from "../features/admin/notesSlice";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");

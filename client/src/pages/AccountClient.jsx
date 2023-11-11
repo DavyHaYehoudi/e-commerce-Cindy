@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import OtherOrders from "../components/accountUser/OtherOrdersClient";
-import DeliveredOrders from "../components/accountUser/DeliveredOrdersClient";
-import UserInfo from "../components/accountUser/UserInfo";
+import OtherOrders from "../components/accountClient/order/OtherOrders";
+import DeliveredOrders from "../components/accountClient/order/Delivered";
+import UserInfo from "../components/accountClient/info/UserInfo";
 import { getStepColor } from "../helpers/getStepColor";
 import { orderHistoryUser } from "../mocks/orderHistoryUser";
 import { userMock } from "../mocks/userMock";
 
-const AccountUser = () => {
+const AccountClient = () => {
   const [userData] = useState(userMock);
   const [orderHistory] = useState(orderHistoryUser);
 
@@ -30,4 +30,4 @@ const AccountUser = () => {
   );
 };
 
-export default AccountUser;
+export default AccountClient;

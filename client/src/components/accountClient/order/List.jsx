@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import OrderItems from "./OrderItemsClient";
-import ToggleButton from "../dumbs/ToggleButton";
-import { formatDate } from "../../helpers/formatDate";
-import OrderStep from "../dumbs/OrderStep";
+import OrderItems from "./Item";
+import ToggleButton from "../../../shared/ToggleButton";
+import { formatDate } from "../../../helpers/formatDate";
+import OrderStep from "../../../shared/OrderStep";
 
-const OrderListClient = ({ orderHistory, getStepColor, filter, title }) => {
+const List = ({ orderHistory, getStepColor, filter, title }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -52,4 +52,4 @@ const OrderListClient = ({ orderHistory, getStepColor, filter, title }) => {
   );
 };
 
-export default OrderListClient;
+export default List;

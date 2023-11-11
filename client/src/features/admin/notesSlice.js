@@ -1,6 +1,6 @@
 // notesSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { usersMock } from "../mocks/usersMock";
+import { usersMock } from "../../mocks/usersMock";
 
 const notesSlice = createSlice({
     name: "notes",

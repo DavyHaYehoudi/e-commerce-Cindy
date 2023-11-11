@@ -1,8 +1,8 @@
 import React from "react";
-import { orderStep } from "../../mocks/orderStep";
-import OrderList from "./OrderListClient";
+import { orderStep } from "../../../mocks/orderStep";
+import OrderList from "./List";
 
-const DeliveredOrdersClient = ({ orderHistory, getStepColor }) => {
+const Delivered = ({ orderHistory, getStepColor }) => {
   const filter = (order) => order.step === orderStep[2].name;
   const title = "Commandes expédiées";
 
@@ -16,4 +16,4 @@ const DeliveredOrdersClient = ({ orderHistory, getStepColor }) => {
   );
 };
 
-export default DeliveredOrdersClient;
+export default Delivered;

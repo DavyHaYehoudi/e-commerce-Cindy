@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { orderStep } from "../../../mocks/orderStep";
-import OrderHeaderAdmin from "./OrderHeaderAdmin";
-import OrderDetailsAdmin from "./OrderDetailsAdmin";
-import OrderProductsListAdmin from "./OrderProductsListAdmin";
-import TrackingField from "../../../shared/TrackingField";
+import { orderStep } from "../../../../../mocks/orderStep";
+import Header from "./Header";
+import Details from "./Details";
+import List from "../product/List";
+import TrackingField from "../../../../../shared/TrackingField";
 import { useDispatch } from "react-redux";
 import {
   sendToClient,
   trackingNumberAdminChange,
-} from "../../../features/admin/orderStepSlice";
+} from "../../../../../features/admin/orderStepSlice";
 
-const OrderItemAdmin = ({
+const Item = ({
   clientId,
   order,
   orderIndex,
@@ -51,7 +51,7 @@ const OrderItemAdmin = ({
 
   return (
     <div className="admin-order-item">
-      <OrderHeaderAdmin
+      <Header
         order={order}
         orderIndex={orderIndex}
         clientId={clientId}
@@ -61,8 +61,8 @@ const OrderItemAdmin = ({
         lastSentDateToClient={lastSentDateToClient}
       />
 
-      <OrderDetailsAdmin order={order} />
-      <OrderProductsListAdmin products={order.products} />
+      <Details order={order} />
+      <List products={order.products} />
       {order.step !== orderStep[0].name && order.step !== orderStep[1].name && (
         <TrackingField
           trackingNumber={trackingNumberAdmin}
@@ -81,4 +81,4 @@ const OrderItemAdmin = ({
   );
 };
 
-export default OrderItemAdmin;
+export default Item;

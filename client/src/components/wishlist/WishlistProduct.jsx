@@ -1,5 +1,5 @@
 import React from "react";
-import TrashIcon from "../dumbs/TrashIcon";
+import TrashIcon from "../../shared/TrashIcon";
 import WishlistProductContent from "./WishlistProductContent";
 
 

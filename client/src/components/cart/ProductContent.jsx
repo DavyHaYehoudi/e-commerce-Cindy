@@ -1,9 +1,9 @@
 import React from "react";
 import ImageCarousel from "./ImageCarousel";
-import QuantitySelectProduct from "../dumbs/QuantitySelectProduct";
-import ProductMeta from "../dumbs/ProductMeta";
-import FavoriteButton from "../dumbs/FavoriteButton";
-import AddToCartButton from "../dumbs/AddToCartButton";
+import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
+import ProductMeta from "../../shared/ProductMeta";
+import FavoriteButton from "../../shared/FavoriteButton";
+import AddToCartButton from "../../shared/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
 
 const ProductContent = ({ state, handleCartShow }) => {

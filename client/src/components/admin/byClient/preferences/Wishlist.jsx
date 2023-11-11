@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const WishlistUserViewAdmin = ({ item }) => {
+const Wishlist = ({ item }) => {
   return (
     <div className="wishlistUserViewAdmin">
       <div>
@@ -19,4 +19,4 @@ const WishlistUserViewAdmin = ({ item }) => {
   );
 };
 
-export default WishlistUserViewAdmin;
+export default Wishlist;

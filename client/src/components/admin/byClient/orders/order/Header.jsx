@@ -1,8 +1,8 @@
 import React from "react";
-import { formatDate } from "../../../helpers/formatDate";
-import OrderActionsDropdownAdmin from "./OrderActionsDropdownAdmin";
-import OrderStep from "../../dumbs/OrderStep";
-const OrderHeaderAdmin = ({
+import { formatDate } from "../../../../../helpers/formatDate";
+import ActionsDropdown from "../ActionsDropdown";
+import OrderStep from "../../../../../shared/OrderStep";
+const Header = ({
   order,
   handleSendToClient,
   step,
@@ -15,7 +15,7 @@ const OrderHeaderAdmin = ({
         <span>Date de commande : {formatDate(order.date)}</span>
         <OrderStep order={order} />
       </div>
-      <OrderActionsDropdownAdmin
+      <ActionsDropdown
         order={order}
         step={step}
         handleSendToClient={handleSendToClient}
@@ -26,4 +26,4 @@ const OrderHeaderAdmin = ({
   );
 };
 
-export default OrderHeaderAdmin;
+export default Header;

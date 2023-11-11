@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderItemsClient = ({ products }) => {
+const Item = ({ products }) => {
   return (
     <div className="order-items-user-account">
       {products.map((product) => (
@@ -30,4 +30,4 @@ const OrderItemsClient = ({ products }) => {
   );
 };
 
-export default OrderItemsClient;
+export default Item;

@@ -4,14 +4,14 @@ import {
   cancelOrder,
   moveToNextStep,
   reactivateOrder,
-} from "../../../features/orderStepSlice";
-import { orderStep } from "../../../mocks/orderStep";
+} from "../../../../features/admin/orderStepSlice";
+import { orderStep } from "../../../../mocks/orderStep";
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
 import { TbCircleCheck } from "react-icons/tb";
-import { formatDate } from "../../../helpers/formatDate";
+import { formatDate } from "../../../../helpers/formatDate";
 
-const OrderActionsDropdownAdmin = ({
+const ActionsDropdown = ({
   order,
   step,
   handleSendToClient,
@@ -111,4 +111,4 @@ const OrderActionsDropdownAdmin = ({
   );
 };
 
-export default OrderActionsDropdownAdmin;
+export default ActionsDropdown;

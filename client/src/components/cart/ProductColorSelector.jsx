@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ColorPicker from "../dumbs/ColorPicker";
+import ColorPicker from "../../shared/ColorPicker";
 import { materials } from "../../mocks/materials";
 
 const ProductColorSelector = () => {

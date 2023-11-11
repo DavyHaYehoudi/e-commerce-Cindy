@@ -1,6 +1,6 @@
 import React from "react";
-import facebook from "../../assets/facebook.png";
-import instagram from "../../assets/instagram.png";
+import facebook from "../assets/facebook.png";
+import instagram from "../assets/instagram.png";
 import { ToastContainer, toast } from "react-toastify";
 
 const ProductMeta = () => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Pagination from "../../dumbs/Pagination";
-import ClientItemAdmin from "./ClientItemAdmin";
+import Pagination from "../../../../shared/Pagination";
+import Item from "./Item";
 
-const ClientListAdmin = ({
+const List = ({
   clients,
   handleClientClick,
   clientDetails,
@@ -21,7 +21,7 @@ const ClientListAdmin = ({
       <h2>Liste des clients</h2>
       <ul>
         {currentItems.map((client) => (
-          <ClientItemAdmin
+          <Item
             key={client.id}
             client={client}
             handleClientClick={handleClientClick}
@@ -38,4 +38,4 @@ const ClientListAdmin = ({
   );
 };
 
-export default ClientListAdmin;
+export default List;

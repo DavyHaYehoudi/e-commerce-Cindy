@@ -16,7 +16,7 @@ import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
-import AccountUser from "./pages/AccountUser";
+import AccountClient from "./pages/AccountClient";
 import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/" element={<Home />} />
-        <Route path="/account" element={<AccountUser />} />
+        <Route path="/account" element={<AccountClient />} />
         <Route path="/account/login" element={<Login />} />
         <Route path="account/register" element={<Register />} />
         <Route path="account/forgot-password" element={<ForgotPassword />} />

@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ClientDetailsAdmin from "../clientPresentation/ClientDetailsAdmin";
-import { getStepColor } from "../../../helpers/getStepColor";
+import { getStepColor } from "../../../../helpers/getStepColor";
+import Infos from "../presentation/Infos";
 
-const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
+const ListItem = ({ client, handleClientClick, clientDetails }) => {
   const ordersStep = useSelector(
     (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
@@ -44,9 +44,9 @@ const ClientItemAdmin = ({ client, handleClientClick, clientDetails }) => {
         </button>
       </div>
       {isAnyOrderClientNotified && <div className="notification-bubble blink"></div>}
-      {clientDetails[client.id] && <ClientDetailsAdmin client={client} />}
+      {clientDetails[client.id] && <Infos client={client} />}
     </li>
   );
 };
 
-export default ClientItemAdmin;
+export default ListItem;

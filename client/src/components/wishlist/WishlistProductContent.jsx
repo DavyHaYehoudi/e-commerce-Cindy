@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../dumbs/AddToCartButton";
+import AddToCartButton from "../../shared/AddToCartButton";
 
 const WishlistProductContent = ({ product }) => {
   const handleAddToCart = (productId) => {
