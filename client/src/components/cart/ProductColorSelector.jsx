@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ColorPicker from "../../shared/ColorPicker";
-import { materials } from "../../mocks/materials";
+import { materials } from "../../constants/materials";
 
 const ProductColorSelector = () => {
   const [selectedProductColor, setSelectedProductColor] =

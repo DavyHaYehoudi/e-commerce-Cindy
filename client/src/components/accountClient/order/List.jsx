@@ -3,10 +3,9 @@ import Item from "./Item";
 import ToggleButton from "../../../shared/ToggleButton";
 import { formatDate } from "../../../helpers/formatDate";
 import OrderStep from "../../../shared/OrderStep";
-import { orderStep } from "../../../mocks/orderStep";
-import TrackingField from "../../../shared/TrackingField";
+import { orderStep } from "../../../constants/orderStep";
 
-const List = ({ orderHistory, filter, title }) => {
+const List = ({ orderHistory, filter }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
 
   const handleToggleOrderItems = () => {
@@ -15,7 +14,6 @@ const List = ({ orderHistory, filter, title }) => {
 
   return (
     <div className="other-orders">
-      <h3>{title}</h3>
       {orderHistory.filter(filter).map((order) => (
         <div key={order.id} className="order-item-wrapper-user-account">
           <div className="date-step">

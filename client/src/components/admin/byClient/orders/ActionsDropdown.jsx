@@ -5,7 +5,7 @@ import {
   moveToNextStep,
   reactivateOrder,
 } from "../../../../features/admin/orderStepSlice";
-import { orderStep } from "../../../../mocks/orderStep";
+import { orderStep } from "../../../../constants/orderStep";
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
 import { TbCircleCheck } from "react-icons/tb";

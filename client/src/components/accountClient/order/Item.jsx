@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TrackingField from "../../../shared/TrackingField";
 
-const Item = ({ products,isReturnProduct }) => {
+const Item = ({ products, isReturnProduct }) => {
   return (
     <div className="order-items-user-account">
       {products.map((product) => (
@@ -25,7 +25,7 @@ const Item = ({ products,isReturnProduct }) => {
               />
             </Link>
           </div>
-          {isReturnProduct&& <TrackingField isAdmin={false} />}
+          {isReturnProduct && <TrackingField isAdmin={false} />}
         </div>
       ))}
     </div>

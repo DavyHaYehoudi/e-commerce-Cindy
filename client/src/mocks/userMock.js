@@ -1,9 +1,9 @@
-import { materials } from "./materials";
+import { materials } from "../constants/materials";
 import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
-import { orderStep } from "./orderStep";
+import { orderStep } from "../constants/orderStep";
 
 export const userMock = {
   id: 1,

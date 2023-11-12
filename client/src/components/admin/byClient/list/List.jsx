@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import Pagination from "../../../../shared/Pagination";
 import Item from "./Item";
 
-const List = ({
-  clients,
-  handleClientClick,
-  clientDetails,
-}) => {
+const List = ({ clients, handleClientClick, clientDetails }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 

@@ -1,5 +1,5 @@
-import { materials } from "./materials";
-import { orderStep } from "./orderStep";
+import { materials } from "../constants/materials";
+import { orderStep } from "../constants/orderStep";
 import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";

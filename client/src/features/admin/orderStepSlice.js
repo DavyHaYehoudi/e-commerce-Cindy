@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../../mocks/usersMock";
-import { orderStep } from "../../mocks/orderStep";
+import { orderStep } from "../../constants/orderStep";
 
 export const ordersStep = [
   { id: 0, name: orderStep[0].name },

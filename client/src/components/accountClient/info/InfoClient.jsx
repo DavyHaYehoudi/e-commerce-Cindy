@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const UserInfo = ({ userData, onSaveChanges }) => {
+const InfoClient = ({ dataClient, onSaveChanges }) => {
   const [isEditing, setEditing] = useState(false);
-  const [editedUserData, setEditedUserData] = useState({ ...userData });
+  const [editedUserData, setEditedUserData] = useState({ ...dataClient });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +31,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          userData.firstName
+          dataClient.firstName
         )}
       </p>
       <p>
@@ -45,7 +45,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          userData.lastName
+          dataClient.lastName
         )}
       </p>
       <p>
@@ -59,7 +59,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          userData.email
+          dataClient.email
         )}
       </p>
       <p>
@@ -73,7 +73,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          userData.phone
+          dataClient.phone
         )}
       </p>
       <p>
@@ -87,7 +87,7 @@ const UserInfo = ({ userData, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          userData.address
+          dataClient.address
         )}
       </p>
       {isEditing ? (
@@ -101,4 +101,4 @@ const UserInfo = ({ userData, onSaveChanges }) => {
   );
 };
 
-export default UserInfo;
+export default InfoClient;

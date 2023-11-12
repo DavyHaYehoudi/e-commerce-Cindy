@@ -1,4 +1,4 @@
-import { orderStep } from "../mocks/orderStep";
+import { orderStep } from "../constants/orderStep";
 
 
 export const getStepColor = (step) => {

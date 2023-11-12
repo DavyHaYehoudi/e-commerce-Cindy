@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { orderStep } from "../../../../../mocks/orderStep";
+import { orderStep } from "../../../../../constants/orderStep";
 import Header from "./Header";
 import Details from "./Details";
 import List from "../product/List";

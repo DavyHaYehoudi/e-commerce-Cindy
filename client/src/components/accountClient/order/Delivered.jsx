@@ -1,5 +1,5 @@
 import React from "react";
-import { orderStep } from "../../../mocks/orderStep";
+import { orderStep } from "../../../constants/orderStep";
 import List from "./List";
 
 const Delivered = ({ orderHistory, getStepColor }) => {

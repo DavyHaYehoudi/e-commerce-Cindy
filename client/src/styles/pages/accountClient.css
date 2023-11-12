@@ -10,26 +10,71 @@
 .order-history {
   margin-right: 30px;
 }
+
 .order-history {
   flex: 1.5;
 }
-.user-info-account{
-  flex:0.5;
+
+.tabs-history {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
 }
-.user-info-account button{
+
+.tabs-history h3 {
+  cursor: pointer;
+}
+
+.tabs-history h3 {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  color: var(--text-color);
+  overflow: hidden;
+  font-size: var(--nav-menu-text-fontSize);
+  letter-spacing: var(--letter-spacing);
+}
+
+.tabs-history h3::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--nav-menu-color);
+  transition: width 0.3s ease;
+}
+
+.tabs-history h3:hover::before {
+  width: 100%;
+}
+
+.tabs-history h3.active {
+  color: var(--text-golden);
+}
+
+.user-info-account {
+  flex: 0.5;
+}
+
+.user-info-account button {
   width: 100%;
   border: 1px solid var(--border-color);
   padding: 8px;
 }
-.user-info-account input{
+
+.user-info-account input {
   width: 100%;
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
 }
-.user-info-account input:focus{
-  outline:none;
-  border:1px solid black;
+
+.user-info-account input:focus {
+  outline: none;
+  border: 1px solid black;
   box-shadow: 0 0 3px black;
 }
 
@@ -39,11 +84,12 @@
   margin-bottom: 20px;
 }
 
-.order-item-wrapper-user-account .date-step{
+.order-item-wrapper-user-account .date-step {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
+
 .order-item-user-account {
   display: flex;
   justify-content: space-between;
@@ -59,11 +105,6 @@
 .delivered-orders,
 .other-orders {
   margin-bottom: 30px;
-}
-
-.delivered-orders h3,
-.other-orders h3 {
-  margin-bottom: 15px;
 }
 
 .user-info-account p {
