@@ -5,8 +5,8 @@ import notesReducer from "../features/admin/notesSlice";
 import returnProductReducer from "../features/accountClient/returnProductSlice";
 
 const rootReducer = (state, action) => {
-    // const isAdmin =true
-    const isAdmin =false
+    const isAdmin =true
+    // const isAdmin =false
   if (isAdmin) {
     return combineReducers({
       ordersStep: orderStepReducer,

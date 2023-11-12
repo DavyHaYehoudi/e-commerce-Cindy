@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { getStepColor } from "../../../../helpers/getStepColor";
 import Infos from "../presentation/Infos";
 
-const ListItem = ({ client, handleClientClick, clientDetails }) => {
+const Item = ({ client, handleClientClick, clientDetails }) => {
   const ordersStep = useSelector(
     (state) => state.ordersStep.find((user) => user.id === client.id)?.orders
   );
@@ -49,4 +49,4 @@ const ListItem = ({ client, handleClientClick, clientDetails }) => {
   );
 };
 
-export default ListItem;
+export default Item;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ClientList from "../components/admin/byClient/list/List";
+import List from "../components/admin/byClient/list/List";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-dashboard">
-      <ClientList
+      <List
         clients={clients}
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}
