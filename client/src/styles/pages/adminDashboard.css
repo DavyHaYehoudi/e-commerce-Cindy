@@ -237,3 +237,42 @@
 }
 
 /* ********************* END ADMIN NOTES  ********************* */
+/* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
+#products-container .product-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#products-container .actions-list {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: none;
+}
+
+#products-container .product-content-details {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+#products-container .product-content.open .actions-list {
+    display: block;
+    padding: 5px;
+    margin: 10px;
+}
+
+#products-container .actions-list li:hover {
+    background-color: #ddd;
+}
+
+#products-container .product-tag {
+    color: white;
+    background-color: var(--secondary);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */

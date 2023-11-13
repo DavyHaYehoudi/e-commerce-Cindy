@@ -63,6 +63,11 @@ export const userMock = {
           quantity: 2,
           material: materials[1].name,
           image: bo,
+          productActions: {
+            exchange: false,
+            refund: true,
+            generateCredit: "Avoir N 45698TUIRUG79847",
+          },
         },
       ],
     },
@@ -81,6 +86,11 @@ export const userMock = {
           quantity: 1,
           material: materials[0].name,
           image: col,
+          productActions: {
+            exchange: false,
+            refund: true,
+            generateCredit: "Avoir N 45698TUIRUG79847",
+          },
         },
       ],
     },
@@ -99,6 +109,11 @@ export const userMock = {
           quantity: 1,
           material: materials[3].name,
           image: bra,
+          productActions: {
+            exchange: false,
+            refund: true,
+            generateCredit: "Avoir N 45698TUIRUG79847",
+          },
         },
         {
           productId: 15,
@@ -107,6 +122,11 @@ export const userMock = {
           quantity: 1,
           material: materials[2].name,
           image: bar,
+          productActions: {
+            exchange: false,
+            refund: true,
+            generateCredit: "Avoir N 45698TUIRUG79847",
+          },
         },
       ],
     },

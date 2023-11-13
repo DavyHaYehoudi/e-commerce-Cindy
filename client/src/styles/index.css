@@ -21,7 +21,7 @@
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
 @import "./components/colorPicker.css";
-@import "./components/orderActionsDropdownAdmin.css";
+@import "./components/orderActionsDropdown.css";
 
 /* LAYOUT */
 @import "./layout/header.css";

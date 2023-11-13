@@ -5,8 +5,10 @@ const Details = ({ order }) => {
     <>
       <p>Total de la commande : {order.totalAmount}</p>
       <p>
-        {order.paymentMethod["cardType"]} se terminant par :{" "}
-        {order.paymentMethod["last4Digits"]}{" "}
+        <small>
+          {order.paymentMethod["cardType"]} se terminant par :{" "}
+          {order.paymentMethod["last4Digits"]}{" "}
+        </small>
       </p>
     </>
   );

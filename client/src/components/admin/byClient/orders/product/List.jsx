@@ -1,11 +1,18 @@
 import React from "react";
-import OrderItem from "./Item";
+import Item from "./Item";
 
-const List = ({ products }) => (
-  <ul>
-    {products.map((product) => (
-      <OrderItem key={product.productId} product={product} />
-    ))}
+const List = ({ products, clientId, orderId }) => (
+  <ul id="products-container">
+    <small>
+      {products.map((product) => (
+        <Item
+          key={product.productId}
+          product={product}
+          clientId={clientId}
+          orderId={orderId}
+        />
+      ))}
+    </small>
   </ul>
 );
 

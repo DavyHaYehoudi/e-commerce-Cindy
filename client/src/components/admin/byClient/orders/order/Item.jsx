@@ -62,7 +62,7 @@ const Item = ({
       />
 
       <Details order={order} />
-      <List products={order.products} />
+      <List products={order.products} clientId={clientId} orderId={order.id} />
       {order.step !== orderStep[0].name && order.step !== orderStep[1].name && (
         <TrackingField
           trackingNumber={trackingNumberAdmin}
@@ -75,7 +75,10 @@ const Item = ({
         order.step === orderStep[4].name ||
         order.step === orderStep[5].name) && (
         <p>
-          <span style={{paddingLeft:"10px"}} >№ DE SUIVI DU RETOUR CLIENT :</span> {trackingNumberClient}
+          <span style={{ paddingLeft: "10px" }}>
+            № DE SUIVI DU RETOUR CLIENT :
+          </span>{" "}
+          {trackingNumberClient}
         </p>
       )}
     </div>

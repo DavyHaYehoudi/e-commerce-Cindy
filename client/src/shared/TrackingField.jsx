@@ -24,7 +24,7 @@ const TrackingField = ({
             id="trackingNumber"
             placeholder="Entrer le numéro de suivi"
             className="account-input"
-            value={trackingNumber}
+            value={trackingNumber ||""}
             onChange={handleTrackingNumberChange}
           />
         </>
