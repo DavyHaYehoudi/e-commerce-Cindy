@@ -39,7 +39,9 @@ const NotesEditor = ({ clientId, notesPropName }) => {
 
   return (
     <div className="notes-editor">
-      <h2>Notes</h2>
+      <h2>
+        <u>Notes</u>{" "}
+      </h2>
 
       <div className="previous-notes">
         {notes.map((note, index) => (

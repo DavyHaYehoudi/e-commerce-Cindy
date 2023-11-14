@@ -8,7 +8,9 @@ import NotesEditor from "../../../../shared/NotesEditor";
 const Infos = ({ client }) => {
   return (
     <div className="client-details">
-      <h2>Informations du client</h2>
+      <h2>
+        <u> Informations du client</u>
+      </h2>
       <p>Prénom : {client.firstName}</p>
       <p>Nom : {client.lastName}</p>
       <p className="client-details-email">
@@ -20,7 +22,6 @@ const Infos = ({ client }) => {
       </p>
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
-
       {client.wishlist && (
         <ToggleButton
           initialText="Afficher ses préférences"
@@ -36,7 +37,9 @@ const Infos = ({ client }) => {
 
       {client.orders && (
         <>
-          <h2>Historique des commandes</h2>
+          <h2>
+            <u>Historique des commandes</u>{" "}
+          </h2>
           <p>Total des commandes : {client.totalOrders}</p>
           <p>Valeur totale des commandes : {client.totalOrderValue}</p>
           <ToggleButton

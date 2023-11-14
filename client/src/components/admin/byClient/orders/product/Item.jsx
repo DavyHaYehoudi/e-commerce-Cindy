@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateNoteContent } from "../../../../../features/admin/productActionsSlice";
+import { FaEllipsisVertical } from "react-icons/fa6";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
 const Item = ({ product, clientId, orderId }) => {
+  console.log('coucou');
   const { productId, name, material, quantity, price, image, productActions } =
     product;
   const dispatch = useDispatch();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
-  const [noteContent, setNoteContent] = useState(
-    productActions.addNoteProduct || ""
+  const noteContent = useSelector((state) =>
+    state.productActions
+      .find((user) => user.id === clientId)
+      ?.orders.find((order) => order.id === orderId)
+      ?.products.find((prod) => prod.id === product.id)
+      ?.productActions.addNoteProduct
   );
+
   const isTagProducExisted =
     productActions.exchange ||
     productActions.refund ||
     productActions.generateCredit;
-    
+
   const toggleActions = () => {
     setIsActionsOpen(!isActionsOpen);
   };
@@ -24,7 +32,6 @@ const Item = ({ product, clientId, orderId }) => {
     console.log(`Action selected: ${action}`);
   };
   const handleNoteProduct = (e) => {
-    setNoteContent(e.target.value);
     dispatch(
       updateNoteContent({
         clientId,
@@ -37,7 +44,7 @@ const Item = ({ product, clientId, orderId }) => {
 
   return (
     <li className={`product-content ${isActionsOpen ? "open" : ""}`}>
-      <div className="product-content-details" onClick={toggleActions}>
+      <div className="product-content-details">
         <span>
           Référence: {productId} - {name} - {material} - {quantity} unité
           {quantity > 1 ? "s" : ""} - {price}{" "}
@@ -51,6 +58,10 @@ const Item = ({ product, clientId, orderId }) => {
               ? "REMBOURSEMENT"
               : productActions.generateCredit}
           </small>
+        </span>
+        <span className="action-icon" onClick={toggleActions}>
+          {" "}
+          {isActionsOpen ? <FaEllipsisVertical /> : <IoEllipsisHorizontal />}
         </span>
       </div>
       {isActionsOpen && (

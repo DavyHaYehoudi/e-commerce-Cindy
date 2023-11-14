@@ -242,7 +242,10 @@
     padding: 10px;
     border: 1px dotted black;
     margin: 20px;
-    cursor: pointer;
+}
+#products-container .action-icon {
+   font-size: 20px;
+   cursor: pointer;
 }
 
 #products-container .actions-list {
@@ -254,7 +257,7 @@
 #products-container .product-content-details {
     display: flex;
     align-items: center;
-    gap: 50px;
+    justify-content: space-between;
 }
 
 #products-container .product-content.open .actions-list {
