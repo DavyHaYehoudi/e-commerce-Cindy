@@ -4,6 +4,7 @@ import orderStepReducer from "../features/admin/orderStepSlice";
 import notesReducer from "../features/admin/notesSlice";
 import returnProductReducer from "../features/accountClient/returnProductSlice";
 import productActionsReducer from "../features/admin/productActionsSlice";
+import productsReducer from "../features/admin/productsSlice";
 
 const rootReducer = (state, action) => {
   return combineReducers({
@@ -11,6 +12,8 @@ const rootReducer = (state, action) => {
     notes: notesReducer,
     productActions: productActionsReducer,
     client: returnProductReducer,
+    products:productsReducer,
+
   })(state, action);
 };
 // const rootReducer = (state, action) => {

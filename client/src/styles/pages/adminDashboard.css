@@ -253,6 +253,9 @@
     border: 1px solid #ddd;
     display: none;
 }
+#products-container .actions-list li {
+    cursor: pointer;
+}
 
 #products-container .product-content-details {
     display: flex;

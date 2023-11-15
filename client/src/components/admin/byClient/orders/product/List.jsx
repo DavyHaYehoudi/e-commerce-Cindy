@@ -8,7 +8,6 @@ const List = ({ products, clientId, orderId }) => (
         <Item
           key={product.productId}
           product={product}
-          productIndex={index}
           clientId={clientId}
           orderId={orderId}
         />
