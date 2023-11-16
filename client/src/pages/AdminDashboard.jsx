@@ -4,7 +4,7 @@ import List from "../components/admin/byClient/list/List";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.ordersStep);
+  const clients = useSelector((state) => state.clients);
   const [clientDetails, setClientDetails] = useState({});
 
   useEffect(() => {

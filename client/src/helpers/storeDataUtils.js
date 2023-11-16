@@ -41,7 +41,7 @@ export const getProductProperties = (productId, state) => {
     };
   }
 
-  return null;
+  return {};
 };
 
 export const getProductStateInfo = (state, clientId, orderId, productId) => {

@@ -5,6 +5,7 @@ import notesReducer from "../features/admin/notesSlice";
 import returnProductReducer from "../features/accountClient/returnProductSlice";
 import productActionsReducer from "../features/admin/productActionsSlice";
 import productsReducer from "../features/admin/productsSlice";
+import clientsReducer from "../features/admin/clientsSlice"
 
 const rootReducer = (state, action) => {
   return combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = (state, action) => {
     productActions: productActionsReducer,
     client: returnProductReducer,
     products:productsReducer,
+    clients:clientsReducer
 
   })(state, action);
 };

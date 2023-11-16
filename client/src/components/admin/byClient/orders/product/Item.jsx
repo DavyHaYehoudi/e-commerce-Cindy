@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import ToggleButton from "../../../../../shared/ToggleButton";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  processProduct,
-  updateNoteContent,
-} from "../../../../../features/admin/productActionsSlice";
+import { processProduct } from "../../../../../features/admin/productActionsSlice";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import * as actions from "../../../../../constants/productActions";
@@ -12,6 +8,7 @@ import {
   getProductStateInfo,
   getProductProperties,
 } from "../../../../../helpers/storeDataUtils";
+import ToggleButtonNote from "./ToggleButtonNote";
 
 const Item = ({ product, clientId, orderId }) => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);
@@ -21,7 +18,11 @@ const Item = ({ product, clientId, orderId }) => {
   const productsState = useSelector((state) => state.products);
   const productActionsState = useSelector((state) => state.productActions);
 
-  const { productId, material, quantity, productActions } = product;
+  const { productId, material, quantity } = product;
+  const { reference, name, pricing, image } = getProductProperties(
+    productId,
+    productsState
+  );
   const { productState, noteContent, isTagProductExisted } =
     getProductStateInfo(productActionsState, clientId, orderId, productId);
 
@@ -49,37 +50,18 @@ const Item = ({ product, clientId, orderId }) => {
         );
         break;
       default:
-        console.log("");
+        console.log("Error action clic");
     }
-  };
-
-  const handleNoteProduct = (e) => {
-    dispatch(
-      updateNoteContent({
-        clientId,
-        productId,
-        orderId,
-        content: e.target.value,
-      })
-    );
   };
 
   return (
     <li className={`product-content ${isActionsOpen ? "open" : ""}`}>
       <div className="product-content-details">
         <span>
-          Référence : {getProductProperties(productId, productsState).reference}{" "}
-          - {getProductProperties(productId, productsState).name} - {material} -{" "}
-          {quantity} unité
-          {quantity > 1 ? "s" : ""} -{" "}
-          {getProductProperties(productId, productsState).pricing.currentPrice}{" "}
-          {"€"}{" "}
+          Référence : {reference} - {name} - {material} - {quantity} unité
+          {quantity > 1 ? "s" : ""} - {pricing.currentPrice} {"€"}{" "}
         </span>
-        <img
-          src={getProductProperties(productId, productsState).image}
-          alt={getProductProperties(productId, productsState).name}
-          width="50px"
-        />
+        <img src={image} alt={name} width="50px" />
         <span className={isTagProductExisted ? "product-tag" : ""}>
           <small>
             {productState.exchange
@@ -111,22 +93,14 @@ const Item = ({ product, clientId, orderId }) => {
           </li>
         </ul>
       )}
-      {(productActions.addNoteProduct || isAddNote) && (
-        <ToggleButton
-          initialText="note"
-          hiddenText="Fermer"
-          buttonClass="account-btn toggle"
-          content={
-            <p>
-              <textarea
-                className="product-note"
-                value={noteContent}
-                onChange={(e) => handleNoteProduct(e)}
-              >
-                {" "}
-              </textarea>
-            </p>
-          }
+      {(productState.addNoteProduct || isAddNote) && (
+        <ToggleButtonNote
+          isAddNote={isAddNote}
+          setIsAddNote={setIsAddNote}
+          noteContent={noteContent}
+          clientId={clientId}
+          productId={productId}
+          orderId={orderId}
         />
       )}
     </li>
