@@ -1,8 +1,4 @@
 import { materials } from "../constants/materials";
-import bo from "../assets/bo.png";
-import bar from "../assets/bar.png";
-import bra from "../assets/bra.png";
-import col from "../assets/col.png";
 import { orderStep } from "../constants/orderStep";
 
 export const userMock = {
@@ -15,36 +11,24 @@ export const userMock = {
   notesClient: null,
   wishlist: [
     {
-      productId: 101,
-      name: "Product 1",
+      productId: 1,
       material: materials[2].name,
-      price: "€50",
-      image: bo,
     },
     {
-      productId: 105,
-      name: "Product 105",
+      productId: 5,
       material: materials[0].name,
-      price: "€30",
-      image: col,
     },
   ],
   cart: [
     {
-      productId: 102,
-      name: "Product 2",
+      productId: 2,
       material: materials[1].name,
-      price: "€25",
       quantity: 2,
-      image: bar,
     },
     {
-      productId: 108,
-      name: "Product 108",
+      productId: 8,
       material: materials[3].name,
-      price: "€35",
       quantity: 1,
-      image: bra,
     },
   ],
   orders: [
@@ -57,12 +41,9 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 104,
-          name: "Product 4",
-          price: "€75",
+          productId: 4,
           quantity: 2,
           material: materials[1].name,
-          image: bo,
           productActions: {
             exchange: false,
             refund: true,
@@ -80,12 +61,9 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 204,
-          name: "Product 40",
-          price: "€250",
+          productId: 14,
           quantity: 1,
           material: materials[0].name,
-          image: col,
           productActions: {
             exchange: false,
             refund: true,
@@ -103,12 +81,9 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 14,
-          name: "Product 19",
-          price: "€75",
+          productId: 16,
           quantity: 1,
           material: materials[3].name,
-          image: bra,
           productActions: {
             exchange: false,
             refund: true,
@@ -116,12 +91,9 @@ export const userMock = {
           },
         },
         {
-          productId: 15,
-          name: "Product 23",
-          price: "€75",
+          productId: 9,
           quantity: 1,
           material: materials[2].name,
-          image: bar,
           productActions: {
             exchange: false,
             refund: true,

@@ -1,9 +1,5 @@
 import { materials } from "../constants/materials";
 import { orderStep } from "../constants/orderStep";
-import bo from "../assets/bo.png";
-import bar from "../assets/bar.png";
-import bra from "../assets/bra.png";
-import col from "../assets/col.png";
 
 export const usersMock = [
   {
@@ -19,36 +15,24 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     // wishlist:null,
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -66,26 +50,19 @@ export const usersMock = [
         products: [
           {
             productId: 1,
-            name: "Product 1",
-            price: "€50",
             quantity: 2,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: true,
               refund: false,
               generateCredit: null,
-              addNoteProduct:
-                "",
+              addNoteProduct: "",
             },
           },
           {
             productId: 2,
-            name: "Product 2",
-            price: "€25",
             quantity: 1,
             material: materials[3].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: true,
@@ -110,11 +87,8 @@ export const usersMock = [
         products: [
           {
             productId: 3,
-            name: "Product 3",
-            price: "€100",
             quantity: 1,
             material: materials[2].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -139,11 +113,8 @@ export const usersMock = [
         products: [
           {
             productId: 4,
-            name: "Product 4",
-            price: "€75",
             quantity: 2,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -169,35 +140,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -215,11 +174,8 @@ export const usersMock = [
         products: [
           {
             productId: 5,
-            name: "Product 105",
-            price: "€30",
             quantity: 2,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -229,11 +185,8 @@ export const usersMock = [
           },
           {
             productId: 6,
-            name: "Product 106",
-            price: "€45",
             quantity: 1,
             material: materials[3].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -258,11 +211,8 @@ export const usersMock = [
         products: [
           {
             productId: 7,
-            name: "Product 107",
-            price: "€20",
             quantity: 3,
             material: materials[2].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -272,11 +222,8 @@ export const usersMock = [
           },
           {
             productId: 8,
-            name: "Product 108",
-            price: "€35",
             quantity: 2,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -287,11 +234,8 @@ export const usersMock = [
           },
           {
             productId: 9,
-            name: "Product 109",
-            price: "€50",
             quantity: 1,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -317,35 +261,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -363,11 +295,8 @@ export const usersMock = [
         products: [
           {
             productId: 10,
-            name: "Product 110",
-            price: "€25",
             quantity: 4,
             material: materials[0].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -392,11 +321,8 @@ export const usersMock = [
         products: [
           {
             productId: 11,
-            name: "Product 111",
-            price: "€30",
             quantity: 2,
             material: materials[2].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -407,11 +333,8 @@ export const usersMock = [
           },
           {
             productId: 12,
-            name: "Product 112",
-            price: "€15",
             quantity: 1,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -422,11 +345,8 @@ export const usersMock = [
           },
           {
             productId: 13,
-            name: "Product 113",
-            price: "€40",
             quantity: 3,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -437,11 +357,8 @@ export const usersMock = [
           },
           {
             productId: 14,
-            name: "Product 114",
-            price: "€20",
             quantity: 2,
             material: materials[0].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -467,35 +384,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -513,11 +418,8 @@ export const usersMock = [
         products: [
           {
             productId: 15,
-            name: "Product 115",
-            price: "€25",
             quantity: 1,
             material: materials[2].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -528,11 +430,8 @@ export const usersMock = [
           },
           {
             productId: 16,
-            name: "Product 116",
-            price: "€40",
             quantity: 2,
             material: materials[2].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -557,11 +456,8 @@ export const usersMock = [
         products: [
           {
             productId: 17,
-            name: "Product 117",
-            price: "€30",
             quantity: 3,
             material: materials[1].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -572,11 +468,8 @@ export const usersMock = [
           },
           {
             productId: 18,
-            name: "Product 118",
-            price: "€15",
             quantity: 1,
             material: materials[0].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -587,11 +480,8 @@ export const usersMock = [
           },
           {
             productId: 19,
-            name: "Product 119",
-            price: "€50",
             quantity: 2,
             material: materials[1].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -617,35 +507,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -663,11 +541,8 @@ export const usersMock = [
         products: [
           {
             productId: 20,
-            name: "Product 120",
-            price: "€35",
             quantity: 4,
             material: materials[3].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -692,11 +567,8 @@ export const usersMock = [
         products: [
           {
             productId: 1,
-            name: "Product 121",
-            price: "€20",
             quantity: 2,
             material: materials[1].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -707,11 +579,8 @@ export const usersMock = [
           },
           {
             productId: 2,
-            name: "Product 122",
-            price: "€25",
             quantity: 1,
             material: materials[2].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -722,11 +591,8 @@ export const usersMock = [
           },
           {
             productId: 3,
-            name: "Product 123",
-            price: "€45",
             quantity: 3,
             material: materials[3].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -737,11 +603,8 @@ export const usersMock = [
           },
           {
             productId: 4,
-            name: "Product 124",
-            price: "€30",
             quantity: 2,
             material: materials[3].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -766,11 +629,8 @@ export const usersMock = [
         products: [
           {
             productId: 5,
-            name: "Product 125",
-            price: "€40",
             quantity: 1,
             material: materials[3].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -796,35 +656,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -842,11 +690,8 @@ export const usersMock = [
         products: [
           {
             productId: 6,
-            name: "Product 126",
-            price: "€35",
             quantity: 3,
             material: materials[0].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -872,35 +717,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -918,11 +751,8 @@ export const usersMock = [
         products: [
           {
             productId: 7,
-            name: "Product 127",
-            price: "€15",
             quantity: 1,
             material: materials[0].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -947,11 +777,8 @@ export const usersMock = [
         products: [
           {
             productId: 8,
-            name: "Product 128",
-            price: "€50",
             quantity: 2,
             material: materials[0].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -976,11 +803,8 @@ export const usersMock = [
         products: [
           {
             productId: 9,
-            name: "Product 129",
-            price: "€25",
             quantity: 4,
             material: materials[2].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1005,11 +829,8 @@ export const usersMock = [
         products: [
           {
             productId: 10,
-            name: "Product 130",
-            price: "€30",
             quantity: 2,
             material: materials[0].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1020,11 +841,8 @@ export const usersMock = [
           },
           {
             productId: 11,
-            name: "Product 131",
-            price: "€20",
             quantity: 1,
             material: materials[0].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1050,35 +868,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -1096,11 +902,8 @@ export const usersMock = [
         products: [
           {
             productId: 12,
-            name: "Product 132",
-            price: "€45",
             quantity: 3,
             material: materials[2].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1125,11 +928,8 @@ export const usersMock = [
         products: [
           {
             productId: 13,
-            name: "Product 133",
-            price: "€25",
             quantity: 2,
             material: materials[2].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1155,35 +955,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -1201,11 +989,8 @@ export const usersMock = [
         products: [
           {
             productId: 14,
-            name: "Product 134",
-            price: "€30",
             quantity: 1,
             material: materials[2].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1216,11 +1001,8 @@ export const usersMock = [
           },
           {
             productId: 15,
-            name: "Product 135",
-            price: "€40",
             quantity: 2,
             material: materials[2].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1245,11 +1027,8 @@ export const usersMock = [
         products: [
           {
             productId: 16,
-            name: "Product 136",
-            price: "€25",
             quantity: 3,
             material: materials[2].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1274,11 +1053,8 @@ export const usersMock = [
         products: [
           {
             productId: 17,
-            name: "Product 137",
-            price: "€15",
             quantity: 1,
             material: materials[1].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1289,11 +1065,8 @@ export const usersMock = [
           },
           {
             productId: 18,
-            name: "Product 138",
-            price: "€50",
             quantity: 2,
             material: materials[1].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1319,35 +1092,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 1,
-        name: "Product 1",
         material: materials[2].name,
-        price: "€50",
-        image: bo,
       },
       {
         productId: 5,
-        name: "Product 105",
         material: materials[0].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 2,
-        name: "Product 2",
         material: materials[1].name,
-        price: "€25",
         quantity: 2,
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 108",
         material: materials[3].name,
-        price: "€35",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -1365,11 +1126,8 @@ export const usersMock = [
         products: [
           {
             productId: 19,
-            name: "Product 139",
-            price: "€25",
             quantity: 3,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1394,11 +1152,8 @@ export const usersMock = [
         products: [
           {
             productId: 20,
-            name: "Product 140",
-            price: "€25",
             quantity: 3,
             material: materials[1].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1424,35 +1179,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 16,
-        name: "Product 6",
         material: materials[1].name,
-        price: "€70",
-        image: col,
       },
       {
         productId: 10,
-        name: "Product 110",
         material: materials[3].name,
-        price: "€40",
-        image: bra,
       },
     ],
     cart: [
       {
         productId: 7,
-        name: "Product 7",
         material: materials[2].name,
-        price: "€35",
         quantity: 3,
-        image: bo,
       },
       {
         productId: 12,
-        name: "Product 112",
         material: materials[0].name,
-        price: "€45",
         quantity: 1,
-        image: bar,
       },
     ],
     orders: [
@@ -1470,11 +1213,8 @@ export const usersMock = [
         products: [
           {
             productId: 20,
-            name: "Product 7",
-            price: "€35",
             quantity: 3,
             material: materials[2].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1485,11 +1225,8 @@ export const usersMock = [
           },
           {
             productId: 1,
-            name: "Product 8",
-            price: "€20",
             quantity: 2,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1514,11 +1251,8 @@ export const usersMock = [
         products: [
           {
             productId: 2,
-            name: "Product 9",
-            price: "€80",
             quantity: 1,
             material: materials[3].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1544,35 +1278,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 14,
-        name: "Product 14",
         material: materials[0].name,
-        price: "€90",
-        image: bar,
       },
       {
         productId: 18,
-        name: "Product 118",
         material: materials[2].name,
-        price: "€30",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 15,
-        name: "Product 15",
         material: materials[3].name,
-        price: "€50",
         quantity: 1,
-        image: bra,
       },
       {
         productId: 20,
-        name: "Product 120",
         material: materials[1].name,
-        price: "€20",
         quantity: 3,
-        image: bo,
       },
     ],
     orders: [
@@ -1590,11 +1312,8 @@ export const usersMock = [
         products: [
           {
             productId: 3,
-            name: "Product 15",
-            price: "€50",
             quantity: 1,
             material: materials[3].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1605,11 +1324,8 @@ export const usersMock = [
           },
           {
             productId: 4,
-            name: "Product 16",
-            price: "€70",
             quantity: 2,
             material: materials[2].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1635,35 +1351,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 12,
-        name: "Product 22",
         material: materials[1].name,
-        price: "€120",
-        image: col,
       },
       {
         productId: 15,
-        name: "Product 125",
         material: materials[3].name,
-        price: "€40",
-        image: bar,
       },
     ],
     cart: [
       {
         productId: 14,
-        name: "Product 24",
         material: materials[0].name,
-        price: "€80",
         quantity: 1,
-        image: bo,
       },
       {
         productId: 18,
-        name: "Product 128",
         material: materials[2].name,
-        price: "€40",
         quantity: 2,
-        image: bra,
       },
     ],
     orders: [
@@ -1681,11 +1385,8 @@ export const usersMock = [
         products: [
           {
             productId: 5,
-            name: "Product 24",
-            price: "€80",
             quantity: 1,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1696,11 +1397,8 @@ export const usersMock = [
           },
           {
             productId: 6,
-            name: "Product 125",
-            price: "€40",
             quantity: 2,
             material: materials[3].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1725,11 +1423,8 @@ export const usersMock = [
         products: [
           {
             productId: 7,
-            name: "Product 26",
-            price: "€60",
             quantity: 2,
             material: materials[1].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,
@@ -1755,35 +1450,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 15,
-        name: "Product 35",
         material: materials[2].name,
-        price: "€150",
-        image: col,
       },
       {
         productId: 19,
-        name: "Product 139",
         material: materials[0].name,
-        price: "€45",
-        image: bra,
       },
     ],
     cart: [
       {
         productId: 12,
-        name: "Product 32",
         material: materials[1].name,
-        price: "€90",
         quantity: 2,
-        image: bo,
       },
       {
         productId: 6,
-        name: "Product 142",
         material: materials[3].name,
-        price: "€60",
         quantity: 1,
-        image: bar,
       },
     ],
     orders: [
@@ -1801,11 +1484,8 @@ export const usersMock = [
         products: [
           {
             productId: 8,
-            name: "Product 38",
-            price: "€120",
             quantity: 1,
             material: materials[3].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1830,11 +1510,8 @@ export const usersMock = [
         products: [
           {
             productId: 9,
-            name: "Product 33",
-            price: "€80",
             quantity: 3,
             material: materials[0].name,
-            image: bra,
             productActions: {
               exchange: false,
               refund: false,
@@ -1860,35 +1537,23 @@ export const usersMock = [
     wishlist: [
       {
         productId: 12,
-        name: "Product 52",
         material: materials[1].name,
-        price: "€180",
-        image: bar,
       },
       {
         productId: 16,
-        name: "Product 156",
         material: materials[2].name,
-        price: "€60",
-        image: col,
       },
     ],
     cart: [
       {
         productId: 7,
-        name: "Product 47",
         material: materials[0].name,
-        price: "€120",
         quantity: 2,
-        image: bo,
       },
       {
         productId: 4,
-        name: "Product 162",
         material: materials[3].name,
-        price: "€40",
         quantity: 1,
-        image: bra,
       },
     ],
     orders: [
@@ -1906,11 +1571,8 @@ export const usersMock = [
         products: [
           {
             productId: 10,
-            name: "Product 51",
-            price: "€150",
             quantity: 1,
             material: materials[0].name,
-            image: bo,
             productActions: {
               exchange: false,
               refund: false,
@@ -1921,11 +1583,8 @@ export const usersMock = [
           },
           {
             productId: 11,
-            name: "Product 52",
-            price: "€150",
             quantity: 1,
             material: materials[1].name,
-            image: bar,
             productActions: {
               exchange: false,
               refund: false,
@@ -1950,11 +1609,8 @@ export const usersMock = [
         products: [
           {
             productId: 12,
-            name: "Product 54",
-            price: "€90",
             quantity: 2,
             material: materials[2].name,
-            image: col,
             productActions: {
               exchange: false,
               refund: false,

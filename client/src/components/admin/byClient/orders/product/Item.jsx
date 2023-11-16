@@ -8,37 +8,21 @@ import {
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import * as actions from "../../../../../constants/productActions";
+import {
+  getProductStateInfo,
+  getProductProperties,
+} from "../../../../../helpers/storeDataUtils";
 
 const Item = ({ product, clientId, orderId }) => {
-  console.log("coucou");
-  const dispatch = useDispatch();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
   const [isAddNote, setIsAddNote] = useState(false);
 
-  const { productId, name, material, quantity, productActions } = product;
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
 
-  const productRef = useSelector((state) =>
-    state.products.find((prod) => prod.id === productId)
-  );
-
-  const productState =useSelector(state=>state.productActions
-    .find((user) => user.id === clientId)
-    ?.orders.find((order) => order.id === orderId)
-    ?.products.find((prod) => prod.id === product.id)?.productActions
-    )
-  const noteContent = useSelector(
-    (state) =>
-      state.productActions
-        .find((user) => user.id === clientId)
-        ?.orders.find((order) => order.id === orderId)
-        ?.products.find((prod) => prod.id === product.id)?.productActions
-        .addNoteProduct
-  );
-
-  const isTagProducExisted =
-    productState.exchange ||
-    productState.refund ||
-    productState.generateCredit;
+  const { productId, material, quantity, productActions } = product;
+  const { productState, noteContent, isTagProductExisted } =
+    getProductStateInfo(state, clientId, orderId, product.id);
 
   const toggleActions = () => {
     setIsActionsOpen(!isActionsOpen);
@@ -46,7 +30,7 @@ const Item = ({ product, clientId, orderId }) => {
 
   const handleActionClick = (action) => {
     switch (action) {
-      case "addNoteProduct":
+      case actions.ADD_NOTE:
         setIsAddNote(!isAddNote);
         break;
       case actions.EXCHANGE:
@@ -83,12 +67,19 @@ const Item = ({ product, clientId, orderId }) => {
     <li className={`product-content ${isActionsOpen ? "open" : ""}`}>
       <div className="product-content-details">
         <span>
-          Référence: {productRef.reference} - {productRef.name} - {material} -{" "}
+          Référence : {getProductProperties(productId, state).reference} -{" "}
+          {getProductProperties(productId, state).name} - {material} -{" "}
           {quantity} unité
-          {quantity > 1 ? "s" : ""} - {productRef.pricing.currentPrice} {"€"}{" "}
+          {quantity > 1 ? "s" : ""} -{" "}
+          {getProductProperties(productId, state).pricing.currentPrice}{" "}
+          {"€"}{" "}
         </span>
-        <img src={productRef.image} alt={name} width="50px" />
-        <span className={isTagProducExisted ? "product-tag" : ""}>
+        <img
+          src={getProductProperties(productId, state).image}
+          alt={getProductProperties(productId, state).name}
+          width="50px"
+        />
+        <span className={isTagProductExisted ? "product-tag" : ""}>
           <small>
             {productState.exchange
               ? "ECHANGE"
@@ -111,7 +102,7 @@ const Item = ({ product, clientId, orderId }) => {
           <li onClick={() => handleActionClick(actions.GENERATE_CREDIT)}>
             Générer un avoir
           </li>
-          <li onClick={() => handleActionClick("addNoteProduct")}>
+          <li onClick={() => handleActionClick(actions.ADD_NOTE)}>
             Ajouter une note
           </li>
           <li onClick={() => handleActionClick(actions.CANCEL_MENTION)}>

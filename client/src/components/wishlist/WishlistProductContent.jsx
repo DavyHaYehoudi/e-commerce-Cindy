@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../../shared/AddToCartButton";
+import { useSelector } from "react-redux";
+import { getProductProperties } from "../../helpers/storeDataUtils";
 
 const WishlistProductContent = ({ product }) => {
+  const state = useSelector((state) => state);
+
   const handleAddToCart = (productId) => {
     console.log(`Ajouter au panier : ${productId}`);
   };
@@ -12,10 +16,10 @@ const WishlistProductContent = ({ product }) => {
         className="modal-product-image info-tooltip"
         aria-label="Revenir à l'article"
       >
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product.productId}`}>
           <img
-            src={product.image}
-            alt={product.title}
+            src={getProductProperties(product.productId, state).image}
+            alt={getProductProperties(product.productId, state).name}
             width="100px"
             height="150px"
           />
@@ -23,13 +27,18 @@ const WishlistProductContent = ({ product }) => {
       </div>
 
       <div className="modal-product-details">
-        <h3>{product.title}</h3>
+        <h3>{getProductProperties(product.productId, state).name}</h3>
         <p>{product.material}</p>
-        <p className="price">{product.price}</p>
+        <p className="price">
+          {
+            getProductProperties(product.productId, state).pricing
+              .currentPrice
+          }
+        </p>
         <div className="modal-product-actions">
           <AddToCartButton
             className="btn"
-            onClick={() => handleAddToCart(product.id)}
+            onClick={() => handleAddToCart(product.productId)}
             buttonText="Ajouter au panier"
           />
         </div>

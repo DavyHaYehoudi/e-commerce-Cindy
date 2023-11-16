@@ -3,13 +3,13 @@ import TrashIcon from "../../shared/TrashIcon";
 import WishlistProductContent from "./WishlistProductContent";
 
 
-const WishlistProduct = ({ product }) => {
+const WishlistProduct = ({ product, }) => {
   const handleDelete = () => {
     console.log("delete");
   };
 
   return (
-    <div key={product.id} className="modal-product-row">
+    <div key={product.productId} className="modal-product-row">
       <WishlistProductContent product={product} />
       <div className="modal-product-remove" onClick={handleDelete}>
         <TrashIcon />

@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import MegaMenu from "../components/menu/MegaMenu";
 import logo from "../assets/logo.png";
 import WishlistModal from "../components/wishlist/WishlistModal";
+import { useSelector } from "react-redux";
 
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
   const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
+  const favoriteProducts = useSelector(state=>state.client.wishlist)
 
   const handleMenuEnter = (section) => {
     setMegaMenuSection(section);
@@ -57,7 +59,7 @@ const HeaderWrapper = () => {
       <WishlistModal
         isOpen={isWishlistModalOpen}
         onClose={handleCloseWishlistModal}
-        // favoriteProducts={/* Passer votre liste de produits favoris ici */}
+        favoriteProducts={favoriteProducts}
       />
     </div>
   );

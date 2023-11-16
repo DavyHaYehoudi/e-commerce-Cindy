@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/formatDate";
 import { addNote, deleteNote } from "../features/admin/notesSlice";
+import { getNotesEditorInfo } from "../helpers/storeDataUtils";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
   const dispatch = useDispatch();
+  const state = useSelector((state) => state);
 
-  const user = useSelector((state) =>
-    state.notes.find((user) => user.id === clientId)
-  );
-  const notes = user?.[notesPropName] || [];
+  const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
 
   const handleNotesChange = (e) => {
     setCurrentNote(e.target.value);
