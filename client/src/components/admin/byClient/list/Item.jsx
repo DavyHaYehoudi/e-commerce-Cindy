@@ -4,7 +4,7 @@ import Infos from "../presentation/Infos";
 import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.ordersStep);
   const { ordersStep, isAnyOrderClientNotified, renderBadge } = getClientItemInfo(state, client);
 
   return (

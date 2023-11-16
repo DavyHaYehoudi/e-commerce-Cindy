@@ -41,7 +41,6 @@ const productActionsSlice = createSlice({
     processProduct: (state, action) => {
       const { clientId, productId, orderId, process, creditValue } =
         action.payload;
-
       return state.map((user) => {
         if (user.id === clientId) {
           return {

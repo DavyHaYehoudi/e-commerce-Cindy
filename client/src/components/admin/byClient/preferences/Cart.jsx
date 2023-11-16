@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getProductProperties } from "../../../../helpers/storeDataUtils";
 
 const Cart = ({ productId, productCart }) => {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.products);
   return (
     <div className="cartUserViewAdmin">
       <div>

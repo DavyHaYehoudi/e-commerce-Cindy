@@ -1,7 +1,7 @@
 import { getStepColor } from "./getStepColor";
 
 export const getProductProperties = (productId, state) => {
-  const product = state.products.find((product) => product.id === productId);
+  const product = state.find((product) => product.id === productId);
 
   if (product) {
     const {
@@ -45,28 +45,32 @@ export const getProductProperties = (productId, state) => {
 };
 
 export const getProductStateInfo = (state, clientId, orderId, productId) => {
-  const productState = state.productActions
+  const productState = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
-    ?.products.find((prod) => prod.id === productId)?.productActions;
+    ?.products.find((prod) => prod.productId === productId)?.productActions;
 
   const noteContent = productState?.addNoteProduct;
   const isTagProductExisted =
-    productState?.exchange || productState?.refund || productState?.generateCredit;
+    productState?.exchange ||
+    productState?.refund ||
+    productState?.generateCredit;
 
   return { productState, noteContent, isTagProductExisted };
 };
 
 export const getNotesEditorInfo = (state, clientId, notesPropName) => {
-  const user = state.notes.find((user) => user.id === clientId);
+  const user = state.find((user) => user.id === clientId);
   const notes = user?.[notesPropName] || [];
 
   return { user, notes };
 };
 
 export const getClientItemInfo = (state, client) => {
-  const ordersStep = state.ordersStep.find((user) => user.id === client.id)?.orders;
-  const isAnyOrderClientNotified = ordersStep?.some((order) => !order.isClientNotified);
+  const ordersStep = state.find((user) => user.id === client.id)?.orders;
+  const isAnyOrderClientNotified = ordersStep?.some(
+    (order) => !order.isClientNotified
+  );
 
   const renderBadge = (step) => {
     const count = ordersStep?.filter((order) => order.step === step).length;

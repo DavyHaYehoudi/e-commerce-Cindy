@@ -18,11 +18,12 @@ const Item = ({ product, clientId, orderId }) => {
   const [isAddNote, setIsAddNote] = useState(false);
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const productsState = useSelector((state) => state.products);
+  const productActionsState = useSelector((state) => state.productActions);
 
   const { productId, material, quantity, productActions } = product;
   const { productState, noteContent, isTagProductExisted } =
-    getProductStateInfo(state, clientId, orderId, product.id);
+    getProductStateInfo(productActionsState, clientId, orderId, productId);
 
   const toggleActions = () => {
     setIsActionsOpen(!isActionsOpen);
@@ -67,16 +68,16 @@ const Item = ({ product, clientId, orderId }) => {
     <li className={`product-content ${isActionsOpen ? "open" : ""}`}>
       <div className="product-content-details">
         <span>
-          Référence : {getProductProperties(productId, state).reference} -{" "}
-          {getProductProperties(productId, state).name} - {material} -{" "}
+          Référence : {getProductProperties(productId, productsState).reference}{" "}
+          - {getProductProperties(productId, productsState).name} - {material} -{" "}
           {quantity} unité
           {quantity > 1 ? "s" : ""} -{" "}
-          {getProductProperties(productId, state).pricing.currentPrice}{" "}
+          {getProductProperties(productId, productsState).pricing.currentPrice}{" "}
           {"€"}{" "}
         </span>
         <img
-          src={getProductProperties(productId, state).image}
-          alt={getProductProperties(productId, state).name}
+          src={getProductProperties(productId, productsState).image}
+          alt={getProductProperties(productId, productsState).name}
           width="50px"
         />
         <span className={isTagProductExisted ? "product-tag" : ""}>

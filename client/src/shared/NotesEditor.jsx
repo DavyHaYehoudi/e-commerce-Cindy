@@ -8,7 +8,7 @@ import { getNotesEditorInfo } from "../helpers/storeDataUtils";
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.notes);
 
   const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
 

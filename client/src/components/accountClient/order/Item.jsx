@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../helpers/storeDataUtils";
 
 const Item = ({ products, isReturnProduct }) => {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.products);
 
   return (
     <div className="order-items-user-account">
