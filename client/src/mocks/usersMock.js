@@ -65,8 +65,8 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: true,
-              generateCredit: null,
+              refund: false,
+              generateCredit: "456JHUIRJNBdfdf",
               addNoteProduct: null,
             },
           },

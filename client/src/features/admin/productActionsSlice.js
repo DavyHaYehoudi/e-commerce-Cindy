@@ -55,18 +55,10 @@ const productActionsSlice = createSlice({
 
                       switch (process) {
                         case actions.REFUND:
-                          updatedProductActions = {
-                            ...updatedProductActions,
-                            refund: true,
-                            exchange: false,
-                            generateCredit: null,
-                          };
-                          break;
                         case actions.EXCHANGE:
                           updatedProductActions = {
                             ...updatedProductActions,
-                            refund: false,
-                            exchange: true,
+                            [process]: !updatedProductActions[process],
                             generateCredit: null,
                           };
                           break;
@@ -78,19 +70,10 @@ const productActionsSlice = createSlice({
                             generateCredit: creditValue,
                           };
                           break;
-                        case actions.CANCEL_MENTION:
-                          updatedProductActions = {
-                            ...updatedProductActions,
-                            refund: false,
-                            exchange: false,
-                            generateCredit:null,
-                          };
-                          break;
                         default:
                           console.log("Error clic actions redux store");
                           break;
                       }
-
                       return {
                         ...product,
                         productActions: updatedProductActions,

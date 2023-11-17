@@ -255,6 +255,7 @@
 }
 #products-container .actions-list li {
     cursor: pointer;
+    padding-left: 5px;
 }
 
 #products-container .product-content-details {
@@ -272,7 +273,37 @@
 #products-container .actions-list li:hover {
     background-color: #ddd;
 }
+#products-container .actions-list li.active{
+    color: var(--danger);
+}
 
+#generateCreditField{
+  margin-left: 30px;
+  width: 150px;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  /* border-radius: 5px; */
+}
+#generateCreditField:focus{
+    outline: none;
+    border: 1px solid black;
+    box-shadow: 0 0 3px black;
+}
+.actions-list  button{
+    color: whitesmoke;
+    background-color: var(--success);
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+.actions-list .btn1 {
+    background-color: var(--success);
+  }
+.actions-list .btn2 {
+    background-color: var(--danger);
+  }
 #products-container .product-tag {
     color: white;
     background-color: var(--secondary);
