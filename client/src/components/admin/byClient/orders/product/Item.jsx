@@ -9,10 +9,13 @@ import {
   getProductProperties,
 } from "../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "./ToggleButtonNote";
+import ConfirmationModal from "../../../../../shared/confirmationModal";
 
 const Item = ({ product, clientId, orderId }) => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);
   const [isAddNote, setIsAddNote] = useState(false);
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(null);
 
   const dispatch = useDispatch();
   const productsState = useSelector((state) => state.products);
@@ -26,6 +29,8 @@ const Item = ({ product, clientId, orderId }) => {
   const { productState, noteContent, isTagProductExisted } =
     getProductStateInfo(productActionsState, clientId, orderId, productId);
 
+  const isCreditValue = productState.generateCredit;
+
   const toggleActions = () => {
     setIsActionsOpen(!isActionsOpen);
   };
@@ -35,23 +40,65 @@ const Item = ({ product, clientId, orderId }) => {
       case actions.ADD_NOTE:
         setIsAddNote(!isAddNote);
         break;
+      case actions.GENERATE_CREDIT:
+        handleGenerateCredit();
+        break;
       case actions.EXCHANGE:
       case actions.REFUND:
-      case actions.GENERATE_CREDIT:
       case actions.CANCEL_MENTION:
-        dispatch(
-          processProduct({
-            clientId,
-            productId,
-            orderId,
-            process: action,
-            creditValue: "coucou",
-          })
-        );
+        handleCreditAction(action);
         break;
       default:
         console.log("Error action clic");
     }
+  };
+
+  const handleGenerateCredit = () => {
+    dispatch(
+      processProduct({
+        clientId,
+        productId,
+        orderId,
+        process: actions.GENERATE_CREDIT,
+        creditValue: "coucou",
+      })
+    );
+  };
+
+  const handleCreditAction = (action) => {
+    if (isCreditValue !== null) {
+      setIsConfirmationVisible(true);
+      setConfirmAction(action);
+    } else {
+      dispatch(
+        processProduct({
+          clientId,
+          productId,
+          orderId,
+          process: action,
+        })
+      );
+    }
+  };
+
+  const handleConfirmation = () => {
+    setIsConfirmationVisible(false);
+    if (confirmAction) {
+      dispatch(
+        processProduct({
+          clientId,
+          productId,
+          orderId,
+          process: confirmAction,
+        })
+      );
+      setConfirmAction(null);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsConfirmationVisible(false);
+    setConfirmAction(null);
   };
 
   return (
@@ -92,6 +139,13 @@ const Item = ({ product, clientId, orderId }) => {
             Annuler la mention
           </li>
         </ul>
+      )}
+      {isConfirmationVisible && (
+        <ConfirmationModal
+          message="⚠️ Cette action supprimera définitivement l'avoir que vous avez généré."
+          handleConfirmation={handleConfirmation}
+          handleCancel={handleCancel}
+        />
       )}
       {(productState.addNoteProduct || isAddNote) && (
         <ToggleButtonNote

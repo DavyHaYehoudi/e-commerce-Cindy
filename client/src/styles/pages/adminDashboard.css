@@ -294,20 +294,5 @@
     cursor: pointer;
     color: var(--danger);
 }
-#products-container .confirmation-popup button{
- margin: 10px;
- border: none;
- border-radius: 5px;
- padding: 5px;
- cursor: pointer;
-}
-#products-container .confirmation-popup button:nth-child(2){
- color: whitesmoke;
- background-color: var(--danger);
-}
-#products-container .confirmation-popup button:nth-child(3){
- color: whitesmoke;
- background-color: var(--success);
-}
 
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */

@@ -84,7 +84,26 @@ img {
 }
 
 /* ********************* END INFO-BULLE TOOLTIP ********************* */
+/* ********************* START CONFIRMATION POPUP ********************* */
+.confirmation-popup button {
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
 
+.confirmation-popup button:nth-child(2) {
+    color: whitesmoke;
+    background-color: var(--danger);
+}
+
+.confirmation-popup button:nth-child(3) {
+    color: whitesmoke;
+    background-color: var(--success);
+}
+
+/* ********************* END CONFIRMATION POPUP ********************* */
 /* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 .account-btn {
     color: #fff;

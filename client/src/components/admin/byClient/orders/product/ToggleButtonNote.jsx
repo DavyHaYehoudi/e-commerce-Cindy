@@ -4,6 +4,7 @@ import ToggleButton from "../../../../../shared/ToggleButton";
 import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { updateNoteContent } from "../../../../../features/admin/productActionsSlice";
+import ConfirmationModal from "../../../../../shared/confirmationModal";
 
 const ToggleButtonNote = ({
   isAddNote,
@@ -78,11 +79,11 @@ const ToggleButtonNote = ({
         }
       />
       {isConfirmationVisible && (
-        <div className="confirmation-popup">
-          <span>Voulez-vous vraiment supprimer cette note ?</span>
-          <button onClick={handleConfirmation}>Oui</button>
-          <button onClick={handleCancel}>Non</button>
-        </div>
+        <ConfirmationModal
+          handleConfirmation={handleConfirmation}
+          handleCancel={handleCancel}
+          message="Voulez-vous vraiment supprimer cette note ?"
+        />
       )}
     </>
   );

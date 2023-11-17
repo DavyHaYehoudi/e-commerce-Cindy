@@ -59,10 +59,7 @@ const productActionsSlice = createSlice({
                             ...updatedProductActions,
                             refund: true,
                             exchange: false,
-                            generateCredit:
-                              updatedProductActions.generateCredit !== null
-                                ? null
-                                : updatedProductActions.generateCredit,
+                            generateCredit: null,
                           };
                           break;
                         case actions.EXCHANGE:
@@ -70,15 +67,14 @@ const productActionsSlice = createSlice({
                             ...updatedProductActions,
                             refund: false,
                             exchange: true,
-                            generateCredit:
-                              updatedProductActions.generateCredit !== null
-                                ? null
-                                : updatedProductActions.generateCredit,
+                            generateCredit: null,
                           };
                           break;
                         case actions.GENERATE_CREDIT:
                           updatedProductActions = {
                             ...updatedProductActions,
+                            refund: false,
+                            exchange: false,
                             generateCredit: creditValue,
                           };
                           break;
@@ -87,15 +83,11 @@ const productActionsSlice = createSlice({
                             ...updatedProductActions,
                             refund: false,
                             exchange: false,
-                            generateCredit:
-                              updatedProductActions.generateCredit !== null
-                                ? null
-                                : updatedProductActions.generateCredit,
+                            generateCredit:null,
                           };
-                          // Ajoute ici la logique pour le message de confirmation si nécessaire
                           break;
                         default:
-                          // Aucune action spécifique, ne rien changer
+                          console.log("Error clic actions redux store");
                           break;
                       }
 
