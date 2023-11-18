@@ -27,11 +27,15 @@ const ItemHeader = ({
       <img src={image} alt={name} width="50px" />
       <span className={isTagProductExisted ? "product-tag" : ""}>
         <small>
-          {productState.exchange
-            ? "ECHANGE"
-            : productState.refund
-            ? "REMBOURSEMENT"
-            : productState.generateCredit}
+          {productState.exchange && "ECHANGE"}
+          {productState.refund && "REMBOURSEMENT"}
+          {productState.generateCredit &&
+            `AVOIR N ${productState.generateCredit}`}
+        </small>
+        <small>{productState.refund && "REMBOURSEMENT"}</small>
+        <small>
+          {productState.generateCredit &&
+            `AVOIR N ${productState.generateCredit}`}
         </small>
       </span>
       <span className="action-icon" onClick={toggleActions}>

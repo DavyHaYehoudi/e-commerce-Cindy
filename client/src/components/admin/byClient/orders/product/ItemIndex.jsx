@@ -7,7 +7,7 @@ import ConfirmationModal from "../../../../../shared/confirmationModal";
 import ItemHeader from "./ItemHeader";
 import ItemActions from "./ItemActions";
 
-const Item = ({ product, clientId, orderId }) => {
+const ItemIndex = ({ product, clientId, orderId }) => {
   const dispatch = useDispatch();
   const [isActionsOpen, setIsActionsOpen] = useState(false);
   const [isAddNote, setIsAddNote] = useState(false);
@@ -15,6 +15,11 @@ const Item = ({ product, clientId, orderId }) => {
   const [confirmAction, setConfirmAction] = useState(null);
   const [activeLi, setActiveLi] = useState(null);
   const [isGenerateCredit, setIsGenerateCredit] = useState(false);
+  const [isRefund,setIsRefund]=useState(false);
+  const [isExchange,setIsExchange]=useState(false);
+  const [creditAmount, setCreditAmount] = useState("");
+  const [refundAmount, setRefundAmount] =useState("")
+  const [exchangeAmount,setExchangeAmount]=useState("")
 
   const productActionsState = useSelector((state) => state.productActions);
 
@@ -22,8 +27,6 @@ const Item = ({ product, clientId, orderId }) => {
 
   const { productState, noteContent, isTagProductExisted } =
     getProductStateInfo(productActionsState, clientId, orderId, productId);
-
-  const isCreditValue = productState.generateCredit;
 
   const toggleActions = () => {
     setIsActionsOpen(!isActionsOpen);
@@ -42,7 +45,8 @@ const Item = ({ product, clientId, orderId }) => {
       );
       setConfirmAction(null);
       setIsGenerateCredit(false);
-    }
+      setCreditAmount("")
+        }
   };
 
   const handleCancel = () => {
@@ -68,16 +72,25 @@ const Item = ({ product, clientId, orderId }) => {
           clientId={clientId}
           productId={productId}
           orderId={orderId}
-          isCreditValue={isCreditValue}
           activeLi={activeLi}
           setActiveLi={setActiveLi}
           isGenerateCredit={isGenerateCredit}
+          setIsGenerateCredit={setIsGenerateCredit}
+          isRefund={isRefund}
+          setIsRefund={setIsRefund}
+          isExchange={isExchange}
+          setIsExchange={setIsExchange}
           isAddNote={isAddNote}
           setIsAddNote={setIsAddNote}
-          setIsGenerateCredit={setIsGenerateCredit}
           setIsConfirmationVisible={setIsConfirmationVisible}
           setConfirmAction={setConfirmAction}
           productState={productState}
+          creditAmount={creditAmount}
+          setCreditAmount={setCreditAmount}
+          refundAmount={refundAmount}
+          setRefundAmount={setRefundAmount}
+          exchangeAmount={exchangeAmount}
+          setExchangeAmount={setExchangeAmount}
         />
       )}
       {isConfirmationVisible && (
@@ -101,4 +114,4 @@ const Item = ({ product, clientId, orderId }) => {
   );
 };
 
-export default Item;
+export default ItemIndex;

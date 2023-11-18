@@ -59,14 +59,11 @@ const productActionsSlice = createSlice({
                           updatedProductActions = {
                             ...updatedProductActions,
                             [process]: !updatedProductActions[process],
-                            generateCredit: null,
                           };
                           break;
                         case actions.GENERATE_CREDIT:
                           updatedProductActions = {
                             ...updatedProductActions,
-                            refund: false,
-                            exchange: false,
                             generateCredit: creditValue,
                           };
                           break;

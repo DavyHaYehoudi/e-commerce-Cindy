@@ -1,11 +1,11 @@
 import React from "react";
-import Item from "./Item";
+import ItemIndex from "./ItemIndex";
 
 const List = ({ products, clientId, orderId }) => (
   <ul id="products-container">
     <small>
       {products.map((product) => (
-        <Item
+        <ItemIndex
           key={product.productId}
           product={product}
           clientId={clientId}

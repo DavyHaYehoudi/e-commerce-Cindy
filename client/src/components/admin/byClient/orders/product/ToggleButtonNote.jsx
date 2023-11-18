@@ -1,4 +1,3 @@
-// ToggleButtonNote.js
 import React, { useState } from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { BsTrash } from "react-icons/bs";
@@ -7,7 +6,6 @@ import { updateNoteContent } from "../../../../../features/admin/productActionsS
 import ConfirmationModal from "../../../../../shared/confirmationModal";
 
 const ToggleButtonNote = ({
-  isAddNote,
   setIsAddNote,
   noteContent,
   orderId,

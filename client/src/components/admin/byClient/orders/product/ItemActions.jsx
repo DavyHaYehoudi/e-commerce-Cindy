@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { processProduct } from "../../../../../features/admin/productActionsSlice";
 import * as actions from "../../../../../constants/productActions";
 import { useDispatch } from "react-redux";
+import ItemActionsDetails from "./ItemActionsDetails";
 
 const ItemActions = ({
   clientId,
   productId,
   orderId,
-  isCreditValue,
   isGenerateCredit,
+  setIsGenerateCredit,
+  isRefund,
+  setIsRefund,
+  isExchange,
+  setIsExchange,
   activeLi,
   setActiveLi,
   isAddNote,
   setIsAddNote,
-  setIsGenerateCredit,
   setIsConfirmationVisible,
   setConfirmAction,
   productState,
+  creditAmount,
+  setCreditAmount,
+  refundAmount,
+  setRefundAmount,
+  exchangeAmount,
+  setExchangeAmount,
 }) => {
   const dispatch = useDispatch();
-  const [creditAmount, setCreditAmount] = useState("");
 
   const handleActionClick = (action) => {
     setActiveLi(action);
@@ -28,168 +37,158 @@ const ItemActions = ({
         setIsAddNote(!isAddNote);
         break;
       case actions.GENERATE_CREDIT:
-        if (creditAmount) {
-          return handleGenerateCredit();
+        if (productState[action]) {
+          setIsConfirmationVisible(true);
+          setConfirmAction(action);
+        } else {
+          setIsGenerateCredit(true);
+          if (creditAmount) {
+            handleGenerateCredit();
+          }
         }
         break;
       case actions.EXCHANGE:
+        if (productState[action]) {
+          handleCreditAction(action);
+        } else {
+          setIsExchange(true);
+          if (exchangeAmount) {
+            handleCreditAction(action);
+          }
+        }
+        break;
       case actions.REFUND:
-        handleCreditAction(action);
+        if (productState[action]) {
+          handleCreditAction(action);
+        } else {
+          setIsRefund(true);
+          if (refundAmount) {
+            handleCreditAction(action);
+          }
+        }
         break;
       default:
         console.log("Error action clic");
     }
   };
-  const handleGenerateCredit = () => {
+
+  const handleCreditAction = (action) => {
     dispatch(
       processProduct({
         clientId,
         productId,
         orderId,
-        process: actions.GENERATE_CREDIT,
-        creditValue: creditAmount,
+        process: action,
       })
     );
+    if (action === actions.REFUND) {
+      setIsRefund(false);
+      setRefundAmount("");
+    }
+    if (action === actions.EXCHANGE) {
+      setIsExchange(false);
+      setExchangeAmount("");
+    }
   };
-
-  const handleCancelCreditAmount = () => {
+  const handleGenerateCredit = () => {
+    const creditValue = productState.generateCredit ? null : creditAmount;
     dispatch(
       processProduct({
         clientId,
         productId,
         orderId,
         process: actions.GENERATE_CREDIT,
-        creditValue: null,
+        creditValue,
       })
     );
     setIsGenerateCredit(false);
     setCreditAmount("");
   };
-  const handleCreditAction = (action) => {
-    if (isCreditValue !== null) {
-      setIsConfirmationVisible(true);
-      setConfirmAction(action);
-    } else {
-      dispatch(
-        processProduct({
-          clientId,
-          productId,
-          orderId,
-          process: action,
-        })
-      );
-    }
+
+  const handleConfirmEntry = (e, action) => {
+    e.stopPropagation();
+    handleActionClick(action);
   };
-  const handleClicGenerateCreditLine = () => {
-    setIsGenerateCredit(true);
-    setActiveLi(actions.GENERATE_CREDIT);
-  };
-  const handleCreditAmount = (e) => {
-    setCreditAmount(e.target.value);
-  };
-  const handleCancelAction = (action) => {
+  const handleCancelEntry = (e, action) => {
+    e.stopPropagation();
     switch (action) {
-      case actions.GENERATE_CREDIT:
-        dispatch(
-          processProduct({
-            clientId,
-            productId,
-            orderId,
-            process: actions.GENERATE_CREDIT,
-            creditValue: null,
-          })
-        );
-        setIsGenerateCredit(false);
-    setCreditAmount("");
-        break;
       case actions.EXCHANGE:
+        setIsExchange(false);
+        setExchangeAmount("");
+        break;
       case actions.REFUND:
-        dispatch(
-          processProduct({
-            clientId,
-            productId,
-            orderId,
-            process: action,
-            [action]: !productState[action],
-          })
-        );
+        setIsRefund(false);
+        setRefundAmount("");
+        break;
+      case actions.GENERATE_CREDIT:
+        setIsGenerateCredit(false);
+        setCreditAmount("");
         break;
       default:
-        console.log("error in handleCancleAction");
+        console.log("Error in handleCancelEntry");
     }
   };
-
+  const handleChangeInputValue = (e, action) => {
+    switch (action) {
+      case actions.EXCHANGE:
+        setExchangeAmount(e.target.value);
+        break;
+      case actions.REFUND:
+        setRefundAmount(e.target.value);
+        break;
+      case actions.GENERATE_CREDIT:
+        setCreditAmount(e.target.value);
+        break;
+      default:
+        console.log("Error in handleChangeInputValue");
+    }
+  };
   return (
     <ul className="actions-list">
-      {productState.exchange ? (
-        <li
-          className={activeLi === actions.EXCHANGE ? "active" : ""}
-          onClick={() => handleCancelAction(actions.EXCHANGE)}
-        >
-          Annuler l'échange
-        </li>
-      ) : (
-        <li
-          className={activeLi === actions.EXCHANGE ? "active" : ""}
-          onClick={() => handleActionClick(actions.EXCHANGE)}
-        >
-          Echange
-        </li>
-      )}
-      {productState.refund ? (
-        <li
-          className={activeLi === actions.REFUND ? "active" : ""}
-          onClick={() => handleCancelAction(actions.REFUND)}
-        >
-          Annuler le remboursement
-        </li>
-      ) : (
-        <li
-          className={activeLi === actions.REFUND ? "active" : ""}
-          onClick={() => handleActionClick(actions.REFUND)}
-        >
-          Remboursement
-        </li>
-      )}
+      <ItemActionsDetails
+        activeLi={activeLi}
+        action={actions.EXCHANGE}
+        label={actions.EXCHANGE_LABEL}
+        handleActionClick={handleActionClick}
+        productState={productState}
+        handleConfirmEntry={handleConfirmEntry}
+        handleCancelEntry={handleCancelEntry}
+        isActionSelected={isExchange}
+        inputValue={exchangeAmount}
+        handleChangeInputValue={handleChangeInputValue}
+        placeholderValue="Nombre d'articles à échanger"
+        textCancel="Annuler l'échange"
+      />
 
-      {productState.generateCredit ? (
-        <li
-          className={activeLi === actions.GENERATE_CREDIT ? "active" : ""}
-          onClick={() => handleCancelCreditAmount()}
-        >
-          Annuler l'avoir
-        </li>
-      ) : (
-        <>
-          <li
-            className={activeLi === actions.GENERATE_CREDIT ? "active" : ""}
-            onClick={() => handleClicGenerateCreditLine()}
-          >
-            Générer un avoir
-            {isGenerateCredit && (
-              <>
-                <input
-                  type="number"
-                  id="generateCreditField"
-                  value={creditAmount}
-                  onChange={(e) => handleCreditAmount(e)}
-                  placeholder="Montant de l'avoir"
-                />
+      <ItemActionsDetails
+        activeLi={activeLi}
+        action={actions.REFUND}
+        label={actions.REFUND_LABEL}
+        handleActionClick={handleActionClick}
+        productState={productState}
+        handleConfirmEntry={handleConfirmEntry}
+        handleCancelEntry={handleCancelEntry}
+        isActionSelected={isRefund}
+        inputValue={refundAmount}
+        handleChangeInputValue={handleChangeInputValue}
+        placeholderValue="Nombre d'articles à rembourser"
+        textCancel="Annuler le remboursement"
+      />
+      <ItemActionsDetails
+        activeLi={activeLi}
+        action={actions.GENERATE_CREDIT}
+        label={actions.CREDIT_LABEL}
+        handleActionClick={handleActionClick}
+        productState={productState}
+        handleConfirmEntry={handleConfirmEntry}
+        handleCancelEntry={handleCancelEntry}
+        isActionSelected={isGenerateCredit}
+        inputValue={creditAmount}
+        handleChangeInputValue={handleChangeInputValue}
+        placeholderValue="Montant de l'avoir"
+        textCancel="Annuler l'avoir en cours"
+      />
 
-                <button
-                  className="btn1"
-                  onClick={() => handleActionClick(actions.GENERATE_CREDIT)}
-                >
-                  Valider
-                </button>
-                <button className="btn2" onClick={() => setCreditAmount("")}>
-                  Annuler
-                </button>
-              </>
-            )}
-          </li>
-        </>
-      )}
       <li
         className={activeLi === actions.ADD_NOTE ? "active" : ""}
         onClick={() => handleActionClick(actions.ADD_NOTE)}
