@@ -47,7 +47,7 @@ export const userMock = {
           productActions: {
             exchange: false,
             refund: true,
-            generateCredit: "Avoir N 45698TUIRUG79847",
+            credit: "Avoir N 45698TUIRUG79847",
           },
         },
       ],
@@ -67,7 +67,7 @@ export const userMock = {
           productActions: {
             exchange: false,
             refund: true,
-            generateCredit: "Avoir N 45698TUIRUG79847",
+            credit: "Avoir N 45698TUIRUG79847",
           },
         },
       ],
@@ -87,7 +87,7 @@ export const userMock = {
           productActions: {
             exchange: false,
             refund: true,
-            generateCredit: "Avoir N 45698TUIRUG79847",
+            credit: "Avoir N 45698TUIRUG79847",
           },
         },
         {
@@ -97,7 +97,7 @@ export const userMock = {
           productActions: {
             exchange: false,
             refund: true,
-            generateCredit: "Avoir N 45698TUIRUG79847",
+            credit: "Avoir N 45698TUIRUG79847",
           },
         },
       ],

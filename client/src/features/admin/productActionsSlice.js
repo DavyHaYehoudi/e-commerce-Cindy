@@ -23,7 +23,7 @@ const productActionsSlice = createSlice({
                         ...product,
                         productActions: {
                           ...product.productActions,
-                          addNoteProduct: content,
+                          note: content,
                         },
                       };
                     }
@@ -61,10 +61,11 @@ const productActionsSlice = createSlice({
                             [process]: !updatedProductActions[process],
                           };
                           break;
-                        case actions.GENERATE_CREDIT:
+                        case actions.CREDIT:
+                          console.log("valeur de creditValue dans le slice :",creditValue);
                           updatedProductActions = {
                             ...updatedProductActions,
-                            generateCredit: creditValue,
+                            credit: creditValue,
                           };
                           break;
                         default:

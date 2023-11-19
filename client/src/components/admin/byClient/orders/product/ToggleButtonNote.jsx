@@ -6,7 +6,7 @@ import { updateNoteContent } from "../../../../../features/admin/productActionsS
 import ConfirmationModal from "../../../../../shared/confirmationModal";
 
 const ToggleButtonNote = ({
-  setIsAddNote,
+  setProductActions,
   noteContent,
   orderId,
   clientId,
@@ -40,7 +40,7 @@ const ToggleButtonNote = ({
     );
 
     setIsConfirmationVisible(false);
-    setIsAddNote(false);
+    setProductActions((prevState)=>({...prevState,isAddNote:false}))
   };
 
   const handleCancel = () => {

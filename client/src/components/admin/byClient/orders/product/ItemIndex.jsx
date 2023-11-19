@@ -9,17 +9,23 @@ import ItemActions from "./ItemActions";
 
 const ItemIndex = ({ product, clientId, orderId }) => {
   const dispatch = useDispatch();
-  const [isActionsOpen, setIsActionsOpen] = useState(false);
-  const [isAddNote, setIsAddNote] = useState(false);
-  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
-  const [confirmAction, setConfirmAction] = useState(null);
-  const [activeLi, setActiveLi] = useState(null);
-  const [isGenerateCredit, setIsGenerateCredit] = useState(false);
-  const [isRefund,setIsRefund]=useState(false);
-  const [isExchange,setIsExchange]=useState(false);
-  const [creditAmount, setCreditAmount] = useState("");
-  const [refundAmount, setRefundAmount] =useState("")
-  const [exchangeAmount,setExchangeAmount]=useState("")
+  const [interaction, setInteraction] = useState({
+    isActionsOpen: false,
+    activeLi: null,
+  });
+  const [confirmation, setConfirmation] = useState({
+    isConfirmationVisible: false,
+    confirmAction: null,
+  });
+  const [productActions, setProductActions] = useState({
+    isAddNote: false,
+    isAddCredit: false,
+    isAddRefund: false,
+    isAddExchange: false,
+    creditAmount: "",
+    refundAmount: "",
+    exchangeAmount: "",
+  });
 
   const productActionsState = useSelector((state) => state.productActions);
 
@@ -29,81 +35,85 @@ const ItemIndex = ({ product, clientId, orderId }) => {
     getProductStateInfo(productActionsState, clientId, orderId, productId);
 
   const toggleActions = () => {
-    setIsActionsOpen(!isActionsOpen);
+    setInteraction((prevState) => ({
+      ...prevState,
+      isActionsOpen: !prevState.isActionsOpen,
+    }));
   };
 
   const handleConfirmation = () => {
-    setIsConfirmationVisible(false);
-    if (confirmAction) {
+    setConfirmation((prevState) => ({
+      ...prevState,
+      isConfirmationVisible: false,
+    }));
+    if (confirmation.confirmAction) {
       dispatch(
         processProduct({
           clientId,
           productId,
           orderId,
-          process: confirmAction,
+          process: confirmation.confirmAction,
+          creditValue:null
         })
       );
-      setConfirmAction(null);
-      setIsGenerateCredit(false);
-      setCreditAmount("")
-        }
+      setConfirmation((prevState) => ({ ...prevState, confirmAction: null }));
+      setProductActions((prevState) => ({
+        ...prevState,
+        isAddCredit: false,
+        creditAmount: "" 
+      }));
+    }
   };
 
   const handleCancel = () => {
-    setIsConfirmationVisible(false);
-    setConfirmAction(null);
-    setActiveLi(null);
+    setConfirmation((prevState) => ({
+      ...prevState,
+      isConfirmationVisible: false,
+      confirmAction: null
+    }));
+    setInteraction((prevState) => ({
+      ...prevState,
+      activeLi: null,
+    }));
   };
 
   return (
-    <li className={`product-content ${isActionsOpen ? "open" : ""}`}>
+    <li
+      className={`product-content ${interaction.isActionsOpen ? "open" : ""}`}
+    >
       <ItemHeader
         product={product}
         toggleActions={toggleActions}
-        isActionsOpen={isActionsOpen}
+        interaction={interaction}
         material={material}
         quantity={quantity}
         productId={productId}
         isTagProductExisted={isTagProductExisted}
         productState={productState}
       />
-      {isActionsOpen && (
+      {interaction.isActionsOpen && (
         <ItemActions
           clientId={clientId}
           productId={productId}
           orderId={orderId}
-          activeLi={activeLi}
-          setActiveLi={setActiveLi}
-          isGenerateCredit={isGenerateCredit}
-          setIsGenerateCredit={setIsGenerateCredit}
-          isRefund={isRefund}
-          setIsRefund={setIsRefund}
-          isExchange={isExchange}
-          setIsExchange={setIsExchange}
-          isAddNote={isAddNote}
-          setIsAddNote={setIsAddNote}
-          setIsConfirmationVisible={setIsConfirmationVisible}
-          setConfirmAction={setConfirmAction}
+          interaction={interaction}
+          setInteraction={setInteraction}
+          productActions={productActions}
+          setProductActions={setProductActions}
+          setConfirmation={setConfirmation}
           productState={productState}
-          creditAmount={creditAmount}
-          setCreditAmount={setCreditAmount}
-          refundAmount={refundAmount}
-          setRefundAmount={setRefundAmount}
-          exchangeAmount={exchangeAmount}
-          setExchangeAmount={setExchangeAmount}
         />
       )}
-      {isConfirmationVisible && (
+      {confirmation.isConfirmationVisible && (
         <ConfirmationModal
           message="⚠️ Cette action supprimera définitivement l'avoir."
           handleConfirmation={handleConfirmation}
           handleCancel={handleCancel}
         />
       )}
-      {(productState.addNoteProduct || isAddNote) && (
+      {(productState.note || productActions.isAddNote) && (
         <ToggleButtonNote
-          isAddNote={isAddNote}
-          setIsAddNote={setIsAddNote}
+          setProductActions={setProductActions}
           noteContent={noteContent}
           clientId={clientId}
           productId={productId}

@@ -6,7 +6,7 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 
 const ItemHeader = ({
   toggleActions,
-  isActionsOpen,
+  interaction,
   isTagProductExisted,
   productState,
   material,
@@ -29,18 +29,18 @@ const ItemHeader = ({
         <small>
           {productState.exchange && "ECHANGE"}
           {productState.refund && "REMBOURSEMENT"}
-          {productState.generateCredit &&
-            `AVOIR N ${productState.generateCredit}`}
+          {productState.credit &&
+            `AVOIR N ${productState.credit}`}
         </small>
         <small>{productState.refund && "REMBOURSEMENT"}</small>
         <small>
-          {productState.generateCredit &&
-            `AVOIR N ${productState.generateCredit}`}
+          {productState.credit &&
+            `AVOIR N ${productState.credit}`}
         </small>
       </span>
       <span className="action-icon" onClick={toggleActions}>
         {" "}
-        {isActionsOpen ? <FaEllipsisVertical /> : <IoEllipsisHorizontal />}
+        {interaction.isActionsOpen ? <FaEllipsisVertical /> : <IoEllipsisHorizontal />}
       </span>
     </div>
   );

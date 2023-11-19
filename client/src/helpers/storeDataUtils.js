@@ -50,11 +50,11 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
     ?.orders.find((order) => order.id === orderId)
     ?.products.find((prod) => prod.productId === productId)?.productActions;
 
-  const noteContent = productState?.addNoteProduct;
+  const noteContent = productState?.note;
   const isTagProductExisted =
     productState?.exchange ||
     productState?.refund ||
-    productState?.generateCredit;
+    productState?.credit;
 
   return { productState, noteContent, isTagProductExisted };
 };

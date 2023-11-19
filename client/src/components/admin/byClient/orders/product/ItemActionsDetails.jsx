@@ -1,7 +1,7 @@
 import React from "react";
 
 const ItemActionsDetails = ({
-  activeLi,
+  interaction,
   action,
   label,
   handleActionClick,
@@ -16,7 +16,7 @@ const ItemActionsDetails = ({
 }) => {
   return (
     <li
-      className={activeLi === action ? "active" : ""}
+      className={interaction.activeLi === action ? "active" : ""}
       onClick={() => handleActionClick(action)}
     >
       {productState[action] ? textCancel : label}

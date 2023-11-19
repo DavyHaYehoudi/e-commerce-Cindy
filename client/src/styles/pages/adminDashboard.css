@@ -255,9 +255,14 @@
 }
 #products-container .actions-list li {
     cursor: pointer;
-    padding-left: 5px;
+    padding: 0 5px;
 }
-
+#products-container .actions-list li:hover {
+    background-color: #ddd;
+}
+#products-container .actions-list li.active{
+    color: var(--danger);
+}
 #products-container .product-content-details {
     display: flex;
     align-items: center;
@@ -272,15 +277,6 @@
     margin: 10px;
 }
 
-#products-container .actions-list li {
-    padding: 5px;
-}
-#products-container .actions-list li:hover {
-    background-color: #ddd;
-}
-#products-container .actions-list li.active{
-    color: var(--danger);
-}
 
 .productActionInput{
   margin-left: 30px;
