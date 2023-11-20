@@ -1,10 +1,10 @@
 import React from "react";
-import { getProductProperties } from "../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 
-const ItemHeader = ({
+const Header = ({
   toggleActions,
   interaction,
   isTagProductExisted,
@@ -46,4 +46,4 @@ const ItemHeader = ({
   );
 };
 
-export default ItemHeader;
+export default Header;

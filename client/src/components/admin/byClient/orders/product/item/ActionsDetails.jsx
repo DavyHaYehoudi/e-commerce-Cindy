@@ -1,6 +1,6 @@
 import React from "react";
 
-const ItemActionsDetails = ({
+const ActionsDetails = ({
   interaction,
   action,
   label,
@@ -54,4 +54,4 @@ const ItemActionsDetails = ({
   );
 };
 
-export default ItemActionsDetails;
+export default ActionsDetails;

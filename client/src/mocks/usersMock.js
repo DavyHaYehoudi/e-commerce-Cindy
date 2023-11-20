@@ -53,8 +53,8 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: true,
-              refund: false,
+              exchange: "1",
+              refund: null,
               credit: null,
               note: "",
             },
@@ -65,7 +65,7 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "456JHUIRJNBdfdf",
               note: null,
             },
@@ -91,10 +91,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
             },
           },
         ],
@@ -117,7 +117,7 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: null,
               note: null,
             },
@@ -178,7 +178,7 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: null,
               note: null,
             },
@@ -189,10 +189,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -215,7 +215,7 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note: null,
             },
@@ -226,10 +226,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -238,10 +238,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -299,10 +299,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -325,10 +325,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -337,10 +337,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -349,10 +349,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -361,10 +361,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -422,10 +422,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -434,10 +434,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -460,10 +460,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -472,10 +472,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -484,10 +484,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -545,10 +545,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -571,10 +571,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -583,10 +583,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -595,10 +595,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -607,10 +607,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -633,10 +633,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -694,10 +694,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -755,10 +755,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -781,10 +781,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -807,10 +807,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -833,10 +833,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -845,10 +845,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -906,10 +906,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -932,10 +932,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -993,10 +993,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1005,10 +1005,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1031,10 +1031,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1057,10 +1057,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1069,10 +1069,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1130,10 +1130,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1156,10 +1156,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1217,10 +1217,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1229,10 +1229,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1255,10 +1255,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1316,10 +1316,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1328,10 +1328,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1389,10 +1389,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1401,10 +1401,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1427,10 +1427,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1488,10 +1488,10 @@ export const usersMock = [
             material: materials[3].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1514,10 +1514,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1575,10 +1575,10 @@ export const usersMock = [
             material: materials[0].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1587,10 +1587,10 @@ export const usersMock = [
             material: materials[1].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1613,10 +1613,10 @@ export const usersMock = [
             material: materials[2].name,
             productActions: {
               exchange: false,
-              refund: false,
+              refund: null,
               credit: "AVOIR N 45698TUIRUG79847",
               note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! Nisi, quis obcaecati doloremque necessitatibus eos quaerat quisquam ad voluptatum excepturi maxime suscipit praesentium et expedita nesciunt ipsa doloribus molestiae omnis laboriosam enim quae sapiente dicta officiis eum ipsum. Aut, suscipit? Quos, illo veritatis ipsum tempora omnis perspiciatis quae facilis, in nulla corporis ducimus, non culpa voluptatem ab eligendi commodi labore rem laborum voluptas quisquam nisi repellat? Architecto facilis dignissimos sapiente ea porro. Animi, porro accusamus sapiente ea aut dignissimos rem. Veniam, assumenda. Harum, velit. Totam, numquam adipisci?",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],

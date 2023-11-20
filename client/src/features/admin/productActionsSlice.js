@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../../mocks/usersMock";
-import * as actions from "../../constants/productActions";
 
 const productActionsSlice = createSlice({
   name: "productActions",
   initialState: usersMock,
   reducers: {
-    updateNoteContent: (state, action) => {
-      const { clientId, productId, orderId, content } = action.payload;
+    updateActionContent: (state, action) => {
+      const { clientId, productId, orderId, updatedProperty,productActionContent } = action.payload;
 
       return state.map((user) => {
         if (user.id === clientId) {
@@ -23,7 +22,7 @@ const productActionsSlice = createSlice({
                         ...product,
                         productActions: {
                           ...product.productActions,
-                          note: content,
+                          [updatedProperty]: productActionContent,
                         },
                       };
                     }
@@ -38,59 +37,10 @@ const productActionsSlice = createSlice({
         return user;
       });
     },
-    processProduct: (state, action) => {
-      const { clientId, productId, orderId, process, creditValue } =
-        action.payload;
-      return state.map((user) => {
-        if (user.id === clientId) {
-          return {
-            ...user,
-            orders: user.orders.map((order) => {
-              if (order.id === orderId) {
-                return {
-                  ...order,
-                  products: order.products.map((product) => {
-                    if (product.productId === productId) {
-                      let updatedProductActions = { ...product.productActions };
-
-                      switch (process) {
-                        case actions.REFUND:
-                        case actions.EXCHANGE:
-                          updatedProductActions = {
-                            ...updatedProductActions,
-                            [process]: !updatedProductActions[process],
-                          };
-                          break;
-                        case actions.CREDIT:
-                          console.log("valeur de creditValue dans le slice :",creditValue);
-                          updatedProductActions = {
-                            ...updatedProductActions,
-                            credit: creditValue,
-                          };
-                          break;
-                        default:
-                          console.log("Error clic actions redux store");
-                          break;
-                      }
-                      return {
-                        ...product,
-                        productActions: updatedProductActions,
-                      };
-                    }
-                    return product;
-                  }),
-                };
-              }
-              return order;
-            }),
-          };
-        }
-        return user;
-      });
-    },
+  
   },
 });
 
-export const { updateNoteContent, processProduct } =
+export const { updateActionContent } =
   productActionsSlice.actions;
 export default productActionsSlice.reducer;
