@@ -45,8 +45,8 @@ export const userMock = {
           quantity: 2,
           material: materials[1].name,
           productActions: {
-            exchange: false,
-            refund: true,
+            exchange: null,
+            refund: "2",
             credit: "Avoir N 45698TUIRUG79847",
           },
         },
@@ -65,8 +65,8 @@ export const userMock = {
           quantity: 1,
           material: materials[0].name,
           productActions: {
-            exchange: false,
-            refund: true,
+            exchange: "1",
+            refund: null,
             credit: "Avoir N 45698TUIRUG79847",
           },
         },
@@ -85,8 +85,8 @@ export const userMock = {
           quantity: 1,
           material: materials[3].name,
           productActions: {
-            exchange: false,
-            refund: true,
+            exchange: null,
+            refund: "1",
             credit: "Avoir N 45698TUIRUG79847",
           },
         },
@@ -95,8 +95,8 @@ export const userMock = {
           quantity: 1,
           material: materials[2].name,
           productActions: {
-            exchange: false,
-            refund: true,
+            exchange: null,
+            refund: null,
             credit: "Avoir N 45698TUIRUG79847",
           },
         },
