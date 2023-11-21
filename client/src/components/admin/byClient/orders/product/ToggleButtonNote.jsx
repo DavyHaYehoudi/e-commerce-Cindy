@@ -1,41 +1,22 @@
 import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import * as actions from "../../../../../constants/productActions";
 
-const ToggleButtonNote = ({
-  handleChangeInputValue,
-  noteContent,
-  handleConfirmEntry,
-  handleCancelEntry,
-}) => {
+const ToggleButtonNote = ({ productState, handleChangeNoteValue }) => {
   return (
     <ToggleButton
-      initialText="note"
+      initialText="Note"
       hiddenText="Fermer"
       buttonClass="account-btn toggle"
       content={
-        <>
+        <div>
           <textarea
             className="product-note"
-            value={noteContent || ""}
-            onChange={(e) => handleChangeInputValue(e, actions.NOTE)}
+            value={productState.note || ""}
+            onChange={(e) => handleChangeNoteValue(e)}
           >
             {" "}
           </textarea>
-          <button
-            className="btn1"
-            onClick={(e) => handleConfirmEntry(e, actions.NOTE)}
-          >
-            Valider
-          </button>
-
-          <button
-            className="btn2"
-            onClick={(e) => handleCancelEntry(e, actions.NOTE)}
-          >
-            Annuler
-          </button>
-        </>
+        </div>
       }
     />
   );

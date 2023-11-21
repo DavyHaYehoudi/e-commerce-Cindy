@@ -32,7 +32,7 @@ const Main = ({ product, clientId, orderId }) => {
     isAddCredit: false,
     isAddRefund: false,
     isAddExchange: false,
-    noteContent: "",
+    noteContent: productState.note,
     creditContent: "",
     refundContent: "",
     exchangeContent: "",
@@ -89,15 +89,16 @@ const Main = ({ product, clientId, orderId }) => {
           handleCancel={actionsHandler.handleCancel}
         />
       )}
-      {productActions.isAddNote && (
+      {
         <ToggleButtonNote
+          productState={productState}
           setProductActions={setProductActions}
           noteContent={productActions.noteContent}
-          handleChangeInputValue={actionsHandler.handleChangeInputValue}
+          handleChangeNoteValue={actionsHandler.handleChangeNoteValue}
           handleConfirmEntry={actionsHandler.handleConfirmEntry}
           handleCancelEntry={actionsHandler.handleCancelEntry}
         />
-      )}
+      }
     </li>
   );
 };

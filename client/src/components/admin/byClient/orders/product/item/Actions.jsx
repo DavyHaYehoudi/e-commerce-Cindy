@@ -20,12 +20,11 @@ const Actions = ({
     creditContent,
     refundContent,
     exchangeContent,
-    noteContent,
   } = productActions;
 
   const handleActionClick = (action) => {
     setInteraction((prevState) => ({ ...prevState, activeLi: action }));
-    console.log("productState[action] :",productState[action]);
+    console.log("productState[action] :", productState[action]);
     // Si la propriété a une value c'est donc un click pour annulation
     if (productState[action]) {
       setConfirmation((prevState) => ({
@@ -93,13 +92,6 @@ const Actions = ({
         creditContent,
         "Montant de l'avoir"
       )}
-
-      <li
-        className={interaction.activeLi === actions.NOTE ? "active" : ""}
-        onClick={() => handleActionClick(actions.NOTE)}
-      >
-        {noteContent ? "ANNULER LA NOTE" : actions.NOTE_LABEL} 
-      </li>
     </ul>
   );
 };

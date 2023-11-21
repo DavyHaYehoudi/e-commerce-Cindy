@@ -13,7 +13,9 @@ const ActionsHandler = ({
   orderId,
 }) => {
   const dispatch = useDispatch();
+
   const { confirmAction } = confirmation;
+
   const updateProductActions = (confirmAction) => {
     const dynamicProductActions = {
       ...Object.fromEntries(
@@ -28,7 +30,7 @@ const ActionsHandler = ({
       ...dynamicProductActions,
     }));
   };
-
+  // Confirmation avant annulation d'un champ déjà mémorisé
   const handleConfirmation = () => {
     if (confirmAction) {
       dispatch(
@@ -48,7 +50,7 @@ const ActionsHandler = ({
       }));
     }
   };
-
+  // Simple annulation d'une saisie non encore mémorisée
   const handleCancel = () => {
     setConfirmation((prevState) => ({
       ...prevState,
@@ -60,13 +62,12 @@ const ActionsHandler = ({
       activeLi: null,
     }));
   };
-
+  // Champs des actions de la liste (Remboursement,Echange et Avoir)
   const handleChangeInputValue = (e, action) => {
     const propertyMap = {
       [actions.EXCHANGE]: "exchangeContent",
       [actions.REFUND]: "refundContent",
       [actions.CREDIT]: "creditContent",
-      [actions.NOTE]: "noteContent",
     };
 
     const contentKey = propertyMap[action];
@@ -79,6 +80,7 @@ const ActionsHandler = ({
       [contentKey]: e.target.value,
     }));
   };
+  // Validation ou annulation pour une simple saisie
   const handleButtonAction = (e, action, isValidate) => {
     e.stopPropagation();
     const propertyMap = {
@@ -88,7 +90,6 @@ const ActionsHandler = ({
       },
       [actions.REFUND]: { contentKey: "refundContent", flagKey: "isAddRefund" },
       [actions.CREDIT]: { contentKey: "creditContent", flagKey: "isAddCredit" },
-      [actions.NOTE]: { contentKey: "noteContent", flagKey: "isAddNote" },
     };
 
     const { contentKey, flagKey } = propertyMap[action] || {};
@@ -128,6 +129,20 @@ const ActionsHandler = ({
   const handleCancelEntry = (e, action) => {
     handleButtonAction(e, action, false);
   };
+
+  // Champ des notes
+  const handleChangeNoteValue = (e) => {
+    dispatch(
+      updateActionContent({
+        clientId,
+        productId,
+        orderId,
+        updatedProperty: actions.NOTE,
+        productActionContent: e.target.value,
+      })
+    );
+  };
+
   return {
     handleConfirmation,
     handleCancel,
@@ -135,6 +150,7 @@ const ActionsHandler = ({
     handleButtonAction,
     handleConfirmEntry,
     handleCancelEntry,
+    handleChangeNoteValue,
   };
 };
 

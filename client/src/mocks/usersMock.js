@@ -56,7 +56,7 @@ export const usersMock = [
               exchange: "1",
               refund: null,
               credit: null,
-              note: "",
+              note: "Desm notes",
             },
           },
           {
