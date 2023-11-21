@@ -1,6 +1,7 @@
 import * as actions from "../../../../../../constants/productActions";
 import { useDispatch } from "react-redux";
 import { updateActionContent } from "../../../../../../features/admin/productActionsSlice";
+import { generateRandomCode } from "../../../../../../helpers/creditCode";
 
 const ActionsHandler = ({
   confirmation,
@@ -33,6 +34,26 @@ const ActionsHandler = ({
   };
   // Confirmation d'une annulation de champ
   const handleConfirmation = () => {
+    if (confirmAction === actions.CREDIT) {
+      setProductActions((prevState) => ({
+        ...prevState,
+        isAddCredit: false,
+        creditContent: { amount: null, dateExpire: null, code: null },
+      }));
+      setConfirmation((prevState) => ({
+        ...prevState,
+        isConfirmationVisible: false,
+      }));
+      return dispatch(
+        updateActionContent({
+          clientId,
+          productId,
+          orderId,
+          updatedProperty: "credit",
+          productActionContent: { amount: null, dateExpire: null, code: null },
+        })
+      );
+    }
     if (confirmAction) {
       dispatch(
         updateActionContent({
@@ -76,19 +97,6 @@ const ActionsHandler = ({
   };
   // Champ pour la date de validite de l'avoir
   const handleChangeInputDate = (e) => {
-    dispatch(
-      updateActionContent({
-        clientId,
-        productId,
-        orderId,
-        updatedProperty: actions.CREDIT,
-        productActionContent: {
-          amount: productActions.creditContent["amount"],
-          dateExpire: e.target.value,
-          code: "89",
-        },
-      })
-    );
     setProductActions((prevState) => ({
       ...prevState,
       creditContent: {
@@ -103,21 +111,22 @@ const ActionsHandler = ({
     const { amount, dateExpire } = productActions.creditContent;
 
     const selectedDate = new Date(dateExpire);
-
     const currentDate = new Date();
+    const validityDate = selectedDate > currentDate;
 
-    if (selectedDate > currentDate) {
-      console.log("La date est valide.");
-    } else {
-      console.log("Veuillez sélectionner une date ultérieure.");
-    }
-
-    if (amount && dateExpire && amount.trim() !== "") {
+    if (!isValidate) {
+      setProductActions((prevState) => ({
+        ...prevState,
+        isAddCredit: false,
+        creditContent: { amount: null, dateExpire: null, code: null },
+      }));
+    } else if (amount && dateExpire && validityDate && amount.trim() !== "") {
+      const code = generateRandomCode()
       const productActionContent = isValidate
         ? {
             amount: productActions.creditContent.amount,
             dateExpire: productActions.creditContent?.dateExpire,
-            code: "90",
+            code,
           }
         : "";
       dispatch(
@@ -129,6 +138,10 @@ const ActionsHandler = ({
           productActionContent,
         })
       );
+      setProductActions((prevState) => ({
+        ...prevState,
+        isAddCredit: false,
+      }));
     }
   };
   // ******************************** END GESTION DE L' AVOIR ********************************

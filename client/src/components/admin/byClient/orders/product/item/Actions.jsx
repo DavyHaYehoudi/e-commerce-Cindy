@@ -24,7 +24,6 @@ const Actions = ({
     refundContent,
     exchangeContent,
   } = productActions;
-console.log("credit content :",creditContent);
   const handleActionClick = (action) => {
     setInteraction((prevState) => ({ ...prevState, activeLi: action }));
     // Si la propriété a une value c'est donc un click pour annulation

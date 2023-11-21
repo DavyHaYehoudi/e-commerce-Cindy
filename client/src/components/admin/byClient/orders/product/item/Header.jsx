@@ -3,6 +3,7 @@ import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
+import { formatDate } from "../../../../../../helpers/formatDate";
 
 const Header = ({
   toggleActions,
@@ -18,6 +19,7 @@ const Header = ({
     productId,
     productsState
   );
+  const { exchange, refund, credit } = productState;
   return (
     <div className="product-content-details">
       <span>
@@ -26,31 +28,25 @@ const Header = ({
       </span>
       <img src={image} alt={name} width="50px" />
       <ul>
-        <li
-          className={
-            isTagProductExisted && productState.exchange ? "product-tag" : ""
-          }
-        >
-          {productState.exchange && `ECHANGE  (${productState.exchange})`}
+        <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
+          {exchange && `ECHANGE  (${exchange})`}
+        </li>
+        <li className={isTagProductExisted && refund ? "product-tag" : ""}>
+          {refund && `REMBOURSEMENT (${refund})`}
         </li>
         <li
-          className={
-            isTagProductExisted && productState.refund ? "product-tag" : ""
-          }
+          className={isTagProductExisted && credit.amount ? "product-tag" : ""}
         >
-          {productState.refund && `REMBOURSEMENT (${productState.refund})`}
-        </li>
-        <li
-          className={
-            isTagProductExisted && productState.credit ? "product-tag" : ""
-          }
-        >
-          {productState.credit && `AVOIR (${productState.credit}) Nᴼ
-`}
+          {credit.amount && (
+            <ul>
+              <li>AVOIR ({credit.amount}) </li>
+              <li> Nᴼ {credit.code} </li>
+              <li>Valable jusqu'au {formatDate(credit.dateExpire)}</li>
+            </ul>
+          )}
         </li>
       </ul>
       <span className="action-icon" onClick={toggleActions}>
-
         {" "}
         {interaction.isActionsOpen ? (
           <FaEllipsisVertical />
