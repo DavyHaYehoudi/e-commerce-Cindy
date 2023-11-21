@@ -1,9 +1,12 @@
 import React from "react";
 import * as actions from "../../../../../../constants/productActions";
 import ActionsDetails from "./ActionsDetails";
+import CreditAction from "./CreditAction";
 
 const Actions = ({
-  handleChangeInputValue,
+  handleChangeInputQuantity,
+  handleChangeInputDate,
+  handleChangeInputCreditAmount,
   handleConfirmEntry,
   handleCancelEntry,
   interaction,
@@ -21,10 +24,9 @@ const Actions = ({
     refundContent,
     exchangeContent,
   } = productActions;
-
+console.log("credit content :",creditContent);
   const handleActionClick = (action) => {
     setInteraction((prevState) => ({ ...prevState, activeLi: action }));
-    console.log("productState[action] :", productState[action]);
     // Si la propriété a une value c'est donc un click pour annulation
     if (productState[action]) {
       setConfirmation((prevState) => ({
@@ -44,6 +46,24 @@ const Actions = ({
       setProductActions(updatedProductActions);
     }
   };
+  const handleCreditAction =(action)=>{
+    setInteraction((prevState) => ({ ...prevState, activeLi: action }));
+    // Si la propriété a une value c'est donc un click pour annulation
+    if (productState[action].amount) {
+      setConfirmation((prevState) => ({
+        ...prevState,
+        isConfirmationVisible: true,
+        confirmAction: action,
+      }));
+      // Sinon, c'est pour attribuer une value à la propriété
+    } else {
+      const updatedProductActions = {
+        ...productActions,
+        isAddCredit: action === actions.CREDIT,
+      };
+      setProductActions(updatedProductActions);
+    }
+  }
 
   const generateItemActionsDetailsComponent = (
     action,
@@ -62,8 +82,10 @@ const Actions = ({
         handleConfirmEntry={handleConfirmEntry}
         handleCancelEntry={handleCancelEntry}
         isActionSelected={isAddAction}
-        inputValue={actionContent}
-        handleChangeInputValue={handleChangeInputValue}
+        inputQuantityValue={actionContent}
+        inputDateValue={actionContent?.dateExpire}
+        handleChangeInputQuantity={handleChangeInputQuantity}
+        handleChangeInputDate={handleChangeInputDate}
         placeholderValue={placeholder}
         textCancel={`ANNULER ${label}`}
       />
@@ -85,13 +107,22 @@ const Actions = ({
         refundContent,
         "Nombre d'articles à rembourser"
       )}
-      {generateItemActionsDetailsComponent(
-        actions.CREDIT,
-        actions.CREDIT_LABEL,
-        isAddCredit,
-        creditContent,
-        "Montant de l'avoir"
-      )}
+      <CreditAction
+        interaction={interaction}
+        action={actions.CREDIT}
+        label={actions.CREDIT_LABEL}
+        handleCreditAction={handleCreditAction}
+        productState={productState}
+        handleConfirmEntry={handleConfirmEntry}
+        handleCancelEntry={handleCancelEntry}
+        isActionSelected={isAddCredit}
+        inputCreditAmount={creditContent.amount}
+        inputDateValue={creditContent.dateExpire}
+        handleChangeInputCreditAmount={handleChangeInputCreditAmount}
+        handleChangeInputDate={handleChangeInputDate}
+        placeholderValue="Montant de l'avoir"
+        textCancel="ANNULER L'AVOIR"
+      />
     </ul>
   );
 };

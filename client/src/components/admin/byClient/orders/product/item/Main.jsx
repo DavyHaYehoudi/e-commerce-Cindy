@@ -33,7 +33,7 @@ const Main = ({ product, clientId, orderId }) => {
     isAddRefund: false,
     isAddExchange: false,
     noteContent: productState.note,
-    creditContent: "",
+    creditContent: productState.credit,
     refundContent: "",
     exchangeContent: "",
   });
@@ -71,7 +71,9 @@ const Main = ({ product, clientId, orderId }) => {
       />
       {interaction.isActionsOpen && (
         <Actions
-          handleChangeInputValue={actionsHandler.handleChangeInputValue}
+          handleChangeInputQuantity={actionsHandler.handleChangeInputQuantity}
+          handleChangeInputDate={actionsHandler.handleChangeInputDate}
+          handleChangeInputCreditAmount={actionsHandler.handleChangeInputCreditAmount}
           handleConfirmEntry={actionsHandler.handleConfirmEntry}
           handleCancelEntry={actionsHandler.handleCancelEntry}
           interaction={interaction}

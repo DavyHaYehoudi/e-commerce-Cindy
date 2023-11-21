@@ -243,9 +243,10 @@
     border: 1px dotted black;
     margin: 20px;
 }
+
 #products-container .action-icon {
-   font-size: 20px;
-   cursor: pointer;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 #products-container .actions-list {
@@ -253,16 +254,20 @@
     border: 1px solid #ddd;
     display: none;
 }
+
 #products-container .actions-list li {
     cursor: pointer;
     padding: 0 5px;
 }
+
 #products-container .actions-list li:hover {
     background-color: #ddd;
 }
-#products-container .actions-list li.active{
+
+#products-container .actions-list li.active {
     color: var(--danger);
 }
+
 #products-container .product-content-details {
     display: flex;
     align-items: center;
@@ -277,19 +282,24 @@
     margin: 10px;
 }
 
-
-.productActionInput{
-  margin-left: 30px;
-  width: 250px;
-  padding: 5px;
-  border: 1px solid var(--border-color);
+.productActionInput {
+    width: 250px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    margin-left: 20px;
 }
-.productActionInput:focus{
+
+.productActionInput+label {
+    margin-left: 20px;
+}
+
+.productActionInput:focus {
     outline: none;
     border: 1px solid black;
     box-shadow: 0 0 3px black;
 }
-.actions-list  button{
+
+.actions-list button {
     color: whitesmoke;
     background-color: var(--success);
     border: none;
@@ -298,29 +308,37 @@
     margin-left: 5px;
     border-radius: 5px;
 }
+
 .actions-list .btn1 {
     background-color: var(--success);
-  }
+}
+
 .actions-list .btn2 {
     background-color: var(--danger);
-  }
+}
+
 #products-container .product-tag {
     color: white;
     background-color: var(--secondary);
     border: none;
     padding: 5px;
     border-radius: 5px;
+    margin: 5px;
 }
-#trashNoteProduct{
+
+#trashNoteProduct {
     margin-left: 20px;
 }
+
 #trashNoteProduct.info-tooltip:hover::before {
     top: -60px;
     right: 0;
 }
+
 #trashNoteProduct.info-tooltip:hover::before {
     opacity: 1;
 }
+
 #trashNoteProduct:hover {
     cursor: pointer;
     color: var(--danger);

@@ -67,7 +67,11 @@ export const userMock = {
           productActions: {
             exchange: "1",
             refund: null,
-            credit: "Avoir N 45698TUIRUG79847",
+            credit: {
+              amount: 10,
+              code: "456JHUIRJNBdfdf",
+              dateExpire: "2023-04-05 09:55",
+            },
           },
         },
       ],
@@ -87,7 +91,7 @@ export const userMock = {
           productActions: {
             exchange: null,
             refund: "1",
-            credit: "Avoir N 45698TUIRUG79847",
+            credit: null,
           },
         },
         {
@@ -97,7 +101,11 @@ export const userMock = {
           productActions: {
             exchange: null,
             refund: null,
-            credit: "Avoir N 45698TUIRUG79847",
+            credit: {
+              amount: 25,
+              code: "456JHUIRJNBdfdf",
+              dateExpire: "2024-08-10 09:55",
+            },
           },
         },
       ],

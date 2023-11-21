@@ -1,13 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../../mocks/usersMock";
+import * as actions from "../../constants/productActions";
 
 const productActionsSlice = createSlice({
   name: "productActions",
   initialState: usersMock,
   reducers: {
     updateActionContent: (state, action) => {
-      const { clientId, productId, orderId, updatedProperty,productActionContent } = action.payload;
+      const {
+        clientId,
+        productId,
+        orderId,
+        updatedProperty,
+        productActionContent,
+      } = action.payload;
 
+      console.log("productActionContent :", productActionContent);
       return state.map((user) => {
         if (user.id === clientId) {
           return {
@@ -18,6 +26,19 @@ const productActionsSlice = createSlice({
                   ...order,
                   products: order.products.map((product) => {
                     if (product.productId === productId) {
+                      if (updatedProperty === actions.CREDIT) {
+                        return {
+                          ...product,
+                          productActions: {
+                            ...product.productActions,
+                            [updatedProperty]: {
+                              amount: productActionContent.amount,
+                              code: productActionContent.code,
+                              dateExpire: productActionContent.dateExpire,
+                            },
+                          },
+                        };
+                      }
                       return {
                         ...product,
                         productActions: {
@@ -37,10 +58,8 @@ const productActionsSlice = createSlice({
         return user;
       });
     },
-  
   },
 });
 
-export const { updateActionContent } =
-  productActionsSlice.actions;
+export const { updateActionContent } = productActionsSlice.actions;
 export default productActionsSlice.reducer;

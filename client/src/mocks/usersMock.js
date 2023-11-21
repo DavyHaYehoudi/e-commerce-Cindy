@@ -55,7 +55,11 @@ export const usersMock = [
             productActions: {
               exchange: "1",
               refund: null,
-              credit: null,
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
               note: "Desm notes",
             },
           },
@@ -66,7 +70,11 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "456JHUIRJNBdfdf",
+              credit: {
+                amount: null,
+                code: null,
+                dateExpire:null,
+              },
               note: null,
             },
           },
@@ -92,9 +100,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+              credit: {
+                amount: 7,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
             },
           },
         ],
@@ -118,7 +129,11 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: null,
+              credit: {
+                amount: null,
+                code: null,
+                dateExpire:null,
+              },
               note: null,
             },
           },
@@ -179,7 +194,11 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: null,
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
               note: null,
             },
           },
@@ -190,9 +209,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 20,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -216,7 +238,11 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
               note: null,
             },
           },
@@ -227,9 +253,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -239,9 +268,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -300,9 +332,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -326,9 +361,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -338,9 +376,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -350,9 +391,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -362,9 +406,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -423,9 +470,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -435,9 +485,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -461,9 +514,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -473,9 +529,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -485,9 +544,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -546,9 +608,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -572,9 +637,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -584,9 +652,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -596,9 +667,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -608,9 +682,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -634,9 +711,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -695,9 +775,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -756,9 +839,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -782,9 +868,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -808,9 +897,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -834,9 +926,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -846,9 +941,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -907,9 +1005,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -933,9 +1034,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -994,9 +1098,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1006,9 +1113,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1032,9 +1142,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1058,9 +1171,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1070,9 +1186,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1131,9 +1250,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1157,9 +1279,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1218,9 +1343,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1230,9 +1358,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1256,9 +1387,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1317,9 +1451,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1329,9 +1466,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1390,9 +1530,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1402,9 +1545,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1428,9 +1574,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1489,9 +1638,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1515,9 +1667,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1576,9 +1731,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
           {
@@ -1588,9 +1746,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],
@@ -1614,9 +1775,12 @@ export const usersMock = [
             productActions: {
               exchange: false,
               refund: null,
-              credit: "AVOIR N 45698TUIRUG79847",
-              note:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
+              credit: {
+                amount: 10,
+                code: "456JHUIRJNBdfdf",
+                dateExpire: "2023-04-05 09:55",
+              },
+              note: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis provident animi odio, cumque quae explicabo eius unde blanditiis repellendus ullam alias culpa! ",
             },
           },
         ],

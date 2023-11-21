@@ -25,22 +25,38 @@ const Header = ({
         {quantity > 1 ? "s" : ""} - {pricing.currentPrice} {"€"}{" "}
       </span>
       <img src={image} alt={name} width="50px" />
-      <span className={isTagProductExisted ? "product-tag" : ""}>
-        <small>
-          {productState.exchange && "ECHANGE"}
-          {productState.refund && "REMBOURSEMENT"}
-          {productState.credit &&
-            `AVOIR N ${productState.credit}`}
-        </small>
-        <small>{productState.refund && "REMBOURSEMENT"}</small>
-        <small>
-          {productState.credit &&
-            `AVOIR N ${productState.credit}`}
-        </small>
-      </span>
+      <ul>
+        <li
+          className={
+            isTagProductExisted && productState.exchange ? "product-tag" : ""
+          }
+        >
+          {productState.exchange && `ECHANGE  (${productState.exchange})`}
+        </li>
+        <li
+          className={
+            isTagProductExisted && productState.refund ? "product-tag" : ""
+          }
+        >
+          {productState.refund && `REMBOURSEMENT (${productState.refund})`}
+        </li>
+        <li
+          className={
+            isTagProductExisted && productState.credit ? "product-tag" : ""
+          }
+        >
+          {productState.credit && `AVOIR (${productState.credit}) Nᴼ
+`}
+        </li>
+      </ul>
       <span className="action-icon" onClick={toggleActions}>
+
         {" "}
-        {interaction.isActionsOpen ? <FaEllipsisVertical /> : <IoEllipsisHorizontal />}
+        {interaction.isActionsOpen ? (
+          <FaEllipsisVertical />
+        ) : (
+          <IoEllipsisHorizontal />
+        )}
       </span>
     </div>
   );

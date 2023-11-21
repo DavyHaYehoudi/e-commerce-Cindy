@@ -1,38 +1,54 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-const ActionsDetails = ({
+const CreditAction = ({
   interaction,
   action,
   label,
-  handleActionClick,
+  handleCreditAction,
   productState,
   handleConfirmEntry,
   handleCancelEntry,
   isActionSelected,
-  inputQuantityValue,
-  handleChangeInputQuantity,
+  inputCreditAmount,
+  inputDateValue,
+  handleChangeInputCreditAmount,
+  handleChangeInputDate,
   placeholderValue,
   textCancel,
 }) => {
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
-      onClick={() => handleActionClick(action)}
+      onClick={() => handleCreditAction(action)}
     >
-      {productState[action] ? textCancel : label}
+      {productState[action].amount ? textCancel : label}
 
       {isActionSelected && (
         <>
           <input
             type="number"
+            id="amountCreditField"
             className="productActionInput"
-            value={inputQuantityValue || ""}
+            value={inputCreditAmount || ""}
             min="0"
             onChange={(e) => {
-              handleChangeInputQuantity(e, action);
+              handleChangeInputCreditAmount(e);
             }}
             onClick={(e) => e.stopPropagation()}
             placeholder={placeholderValue}
+          />
+
+          <label htmlFor="dateExpireField">Valable jusqu'au :</label>
+          <input
+            type="date"
+            id="dateExpireField"
+            className="productActionInput"
+            value={inputDateValue || ""}
+            onChange={(e) => {
+              handleChangeInputDate(e, action);
+            }}
+            onClick={(e) => e.stopPropagation()}
+            placeholder="Choisir une date de fin de validité"
           />
 
           <button
@@ -54,4 +70,4 @@ const ActionsDetails = ({
   );
 };
 
-export default ActionsDetails;
+export default CreditAction;

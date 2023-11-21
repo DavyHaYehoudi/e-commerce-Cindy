@@ -14,6 +14,7 @@ const ActionsHandler = ({
 }) => {
   const dispatch = useDispatch();
 
+  // ******************************** START CONFIRMATION D'ANNULATION ********************************
   const { confirmAction } = confirmation;
 
   const updateProductActions = (confirmAction) => {
@@ -30,7 +31,7 @@ const ActionsHandler = ({
       ...dynamicProductActions,
     }));
   };
-  // Confirmation avant annulation d'un champ déjà mémorisé
+  // Confirmation d'une annulation de champ
   const handleConfirmation = () => {
     if (confirmAction) {
       dispatch(
@@ -50,7 +51,7 @@ const ActionsHandler = ({
       }));
     }
   };
-  // Simple annulation d'une saisie non encore mémorisée
+  // Infirmer l'annulation
   const handleCancel = () => {
     setConfirmation((prevState) => ({
       ...prevState,
@@ -62,17 +63,86 @@ const ActionsHandler = ({
       activeLi: null,
     }));
   };
-  // Champs des actions de la liste (Remboursement,Echange et Avoir)
-  const handleChangeInputValue = (e, action) => {
+
+  // ******************************** END CONFIRMATION D'ANNULATION ********************************
+
+  // ******************************** START GESTION DE L' AVOIR ********************************
+  // Champ du montant de l'avoir
+  const handleChangeInputCreditAmount = (e) => {
+    setProductActions((prevState) => ({
+      ...prevState,
+      creditContent: { ...prevState.creditContent, amount: e.target.value },
+    }));
+  };
+  // Champ pour la date de validite de l'avoir
+  const handleChangeInputDate = (e) => {
+    dispatch(
+      updateActionContent({
+        clientId,
+        productId,
+        orderId,
+        updatedProperty: actions.CREDIT,
+        productActionContent: {
+          amount: productActions.creditContent["amount"],
+          dateExpire: e.target.value,
+          code: "89",
+        },
+      })
+    );
+    setProductActions((prevState) => ({
+      ...prevState,
+      creditContent: {
+        ...prevState.creditContent,
+        dateExpire: e.target.value,
+      },
+    }));
+  };
+  const handleButtonCreditAction = (e, action, isValidate) => {
+    e.stopPropagation();
+
+    const { amount, dateExpire } = productActions.creditContent;
+
+    const selectedDate = new Date(dateExpire);
+
+    const currentDate = new Date();
+
+    if (selectedDate > currentDate) {
+      console.log("La date est valide.");
+    } else {
+      console.log("Veuillez sélectionner une date ultérieure.");
+    }
+
+    if (amount && dateExpire && amount.trim() !== "") {
+      const productActionContent = isValidate
+        ? {
+            amount: productActions.creditContent.amount,
+            dateExpire: productActions.creditContent?.dateExpire,
+            code: "90",
+          }
+        : "";
+      dispatch(
+        updateActionContent({
+          clientId,
+          productId,
+          orderId,
+          updatedProperty: action,
+          productActionContent,
+        })
+      );
+    }
+  };
+  // ******************************** END GESTION DE L' AVOIR ********************************
+
+  // ******************************** START ECHANGE - REMBOURSEMENT ********************************
+  const handleChangeInputQuantity = (e, action) => {
     const propertyMap = {
       [actions.EXCHANGE]: "exchangeContent",
       [actions.REFUND]: "refundContent",
-      [actions.CREDIT]: "creditContent",
     };
 
     const contentKey = propertyMap[action];
     if (!contentKey) {
-      console.log("Error in handleChangeInputValue");
+      console.log("Error in handleChangeInputQuantity");
       return;
     }
     setProductActions((prevState) => ({
@@ -80,7 +150,6 @@ const ActionsHandler = ({
       [contentKey]: e.target.value,
     }));
   };
-  // Validation ou annulation pour une simple saisie
   const handleButtonAction = (e, action, isValidate) => {
     e.stopPropagation();
     const propertyMap = {
@@ -89,14 +158,15 @@ const ActionsHandler = ({
         flagKey: "isAddExchange",
       },
       [actions.REFUND]: { contentKey: "refundContent", flagKey: "isAddRefund" },
-      [actions.CREDIT]: { contentKey: "creditContent", flagKey: "isAddCredit" },
     };
 
     const { contentKey, flagKey } = propertyMap[action] || {};
     if (!contentKey || !flagKey) return;
+
     const productActionContent = isValidate
       ? productActions[contentKey] || ""
       : "";
+
     // Ne permettre une validation de saisie si value non vide
     if (productActions[contentKey].trim() !== "" || !isValidate) {
       const dynamicProperties = isValidate
@@ -120,16 +190,25 @@ const ActionsHandler = ({
     }
   };
 
+  // ******************************** END ECHANGE - REMBOURSEMENT ********************************
+  // ******************************** START BOUTONS VALIDER / ANNULER ********************************
   // Bouton valider
   const handleConfirmEntry = (e, action) => {
+    if (action === actions.CREDIT) {
+      return handleButtonCreditAction(e, action, true);
+    }
     handleButtonAction(e, action, true);
   };
 
   // Bouton annuler
   const handleCancelEntry = (e, action) => {
+    if (action === actions.CREDIT) {
+      return handleButtonCreditAction(e, action, false);
+    }
     handleButtonAction(e, action, false);
   };
-
+  // ******************************** END BOUTONS VALIDER / ANNULER ********************************
+  // ******************************** START NOTES ********************************
   // Champ des notes
   const handleChangeNoteValue = (e) => {
     dispatch(
@@ -142,11 +221,13 @@ const ActionsHandler = ({
       })
     );
   };
-
+  // ******************************** END NOTES ********************************
   return {
     handleConfirmation,
     handleCancel,
-    handleChangeInputValue,
+    handleChangeInputQuantity,
+    handleChangeInputDate,
+    handleChangeInputCreditAmount,
     handleButtonAction,
     handleConfirmEntry,
     handleCancelEntry,
