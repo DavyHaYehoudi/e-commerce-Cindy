@@ -12,12 +12,14 @@ const ActionsHandler = ({
   clientId,
   productId,
   orderId,
+  articleNumber,
+  setEntryError,
+  productState,
 }) => {
   const dispatch = useDispatch();
 
   // ******************************** START CONFIRMATION D'ANNULATION ********************************
   const { confirmAction } = confirmation;
-
   const updateProductActions = (confirmAction) => {
     const dynamicProductActions = {
       ...Object.fromEntries(
@@ -44,6 +46,7 @@ const ActionsHandler = ({
         ...prevState,
         isConfirmationVisible: false,
       }));
+      setEntryError("");
       return dispatch(
         updateActionContent({
           clientId,
@@ -87,7 +90,7 @@ const ActionsHandler = ({
 
   // ******************************** END CONFIRMATION D'ANNULATION ********************************
 
-  // ******************************** START GESTION DE L' AVOIR ********************************
+  // ******************************** START GESTION DE L'AVOIR ********************************
   // Champ du montant de l'avoir
   const handleChangeInputCreditAmount = (e) => {
     setProductActions((prevState) => ({
@@ -108,8 +111,8 @@ const ActionsHandler = ({
   const handleButtonCreditAction = (e, action, isValidate) => {
     e.stopPropagation();
 
-    const { amount, dateExpire } = productActions.creditContent;
-
+    let { amount, dateExpire } = productActions.creditContent;
+    amount = parseInt(amount);
     const selectedDate = new Date(dateExpire);
     const currentDate = new Date();
     const validityDate = selectedDate > currentDate;
@@ -120,8 +123,19 @@ const ActionsHandler = ({
         isAddCredit: false,
         creditContent: { amount: null, dateExpire: null, code: null },
       }));
-    } else if (amount && dateExpire && validityDate && amount.trim() !== "") {
-      const code = generateRandomCode()
+      setEntryError("");
+    } else if (!amount > 0 || !validityDate) {
+      if (!amount > 0 && !validityDate) {
+        setEntryError(
+          "⚠️ Le montant de l'avoir et une date de validité ultérieure doivent être définis."
+        );
+      } else if (!amount > 0 && validityDate) {
+        setEntryError("⚠️ Un montant doit être défini.");
+      } else if (amount > 0 && !validityDate) {
+        setEntryError("⚠️ Une date ultérieure doit être définie.");
+      }
+    } else if (amount > 0 && validityDate) {
+      const code = generateRandomCode();
       const productActionContent = isValidate
         ? {
             amount: productActions.creditContent.amount,
@@ -142,9 +156,10 @@ const ActionsHandler = ({
         ...prevState,
         isAddCredit: false,
       }));
+      setEntryError("");
     }
   };
-  // ******************************** END GESTION DE L' AVOIR ********************************
+  // ******************************** END GESTION DE L'AVOIR ********************************
 
   // ******************************** START ECHANGE - REMBOURSEMENT ********************************
   const handleChangeInputQuantity = (e, action) => {
@@ -165,6 +180,26 @@ const ActionsHandler = ({
   };
   const handleButtonAction = (e, action, isValidate) => {
     e.stopPropagation();
+
+    const exchangeValue = productState.exchange
+      ? parseInt(productState.exchange)
+      : productActions.exchangeContent !== ""
+      ? parseInt(productActions.exchangeContent)
+      : 0;
+    const refundValue = productState.refund
+      ? parseInt(productState.refund)
+      : productActions.refundContent !== ""
+      ? parseInt(productActions.refundContent)
+      : 0;
+    const articleLimitNumber = Number(exchangeValue) + Number(refundValue);
+    const articleAllowedNumber = articleNumber - articleLimitNumber;
+    const checkArticleNumber = articleAllowedNumber >= 0;
+    if (!checkArticleNumber) {
+      setEntryError(
+        `⚠️ Le nombre maximal d'articles (${articleNumber}) est dépassé ! `
+      );
+    }
+
     const propertyMap = {
       [actions.EXCHANGE]: {
         contentKey: "exchangeContent",
@@ -180,12 +215,7 @@ const ActionsHandler = ({
       ? productActions[contentKey] || ""
       : "";
 
-    // Ne permettre une validation de saisie si value non vide
-    if (productActions[contentKey].trim() !== "" || !isValidate) {
-      const dynamicProperties = isValidate
-        ? { [contentKey]: "", [flagKey]: false }
-        : { [flagKey]: false, [contentKey]: "" };
-
+    if (isValidate && productActions[contentKey] >0 && checkArticleNumber) {
       dispatch(
         updateActionContent({
           clientId,
@@ -195,6 +225,12 @@ const ActionsHandler = ({
           productActionContent,
         })
       );
+      setEntryError("")
+    }
+    if (!isValidate || productActions[contentKey] !== "") {
+      const dynamicProperties = isValidate
+        ? { [contentKey]: "", [flagKey]: false }
+        : { [flagKey]: false, [contentKey]: "" };
 
       setProductActions((prevState) => ({
         ...prevState,

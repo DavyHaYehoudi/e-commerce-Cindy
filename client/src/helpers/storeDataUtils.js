@@ -52,11 +52,23 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
 
   const noteContent = productState?.note;
   const isTagProductExisted =
-    productState?.exchange ||
-    productState?.refund ||
-    productState?.credit;
+    productState?.exchange || productState?.refund || productState?.credit;
 
   return { productState, noteContent, isTagProductExisted };
+};
+export const getArticleNumberByProduct = (
+  state,
+  clientId,
+  orderId,
+  productId
+) => {
+  const productState = state
+    .find((user) => user.id === clientId)
+    ?.orders.find((order) => order.id === orderId)
+    ?.products.find((prod) => prod.productId === productId);
+
+  const articleNumber = parseInt(productState?.quantity);
+  return { articleNumber };
 };
 
 export const getNotesEditorInfo = (state, clientId, notesPropName) => {

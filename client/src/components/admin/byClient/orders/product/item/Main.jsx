@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getProductStateInfo } from "../../../../../../helpers/storeDataUtils";
+import { getArticleNumberByProduct, getProductStateInfo } from "../../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "../ToggleButtonNote";
 import ConfirmationModal from "../../../../../../shared/confirmationModal";
 import Header from "./Header";
@@ -16,8 +16,12 @@ const Main = ({ product, clientId, orderId }) => {
     orderId,
     productId
   );
+  const {articleNumber} = getArticleNumberByProduct(productActionsState,
+    clientId,
+    orderId,
+    productId)
 
-  const [interaction, setInteraction] = useState({
+    const [interaction, setInteraction] = useState({
     isActionsOpen: false,
     activeLi: null,
   });
@@ -26,6 +30,7 @@ const Main = ({ product, clientId, orderId }) => {
     confirmAction: null,
   });
   const { isConfirmationVisible } = confirmation;
+  const[entryError,setEntryError]=useState(false)
 
   const [productActions, setProductActions] = useState({
     isAddNote: productState.note,
@@ -47,12 +52,15 @@ const Main = ({ product, clientId, orderId }) => {
   const actionsHandler = ActionsHandler({
     confirmation,
     productActions,
-    setProductActions,
-    setConfirmation,
-    setInteraction,
     clientId,
     productId,
     orderId,
+    articleNumber,
+    productState,
+    setProductActions,
+    setConfirmation,
+    setInteraction,
+    setEntryError,
   });
 
   return (
@@ -91,6 +99,7 @@ const Main = ({ product, clientId, orderId }) => {
           handleCancel={actionsHandler.handleCancel}
         />
       )}
+      {entryError&& <p className="error-message">{entryError}</p>}
       {
         <ToggleButtonNote
           productState={productState}

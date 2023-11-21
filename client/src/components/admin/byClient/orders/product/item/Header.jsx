@@ -23,7 +23,7 @@ const Header = ({
   return (
     <div className="product-content-details">
       <span>
-        Référence : {reference} - {name} - {material} - {quantity} unité
+        Référence : {reference} - {name} - {material} - {quantity} article
         {quantity > 1 ? "s" : ""} - {pricing.currentPrice} {"€"}{" "}
       </span>
       <img src={image} alt={name} width="50px" />

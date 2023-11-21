@@ -15,7 +15,6 @@ const productActionsSlice = createSlice({
         productActionContent,
       } = action.payload;
 
-      console.log("productActionContent :", productActionContent);
       return state.map((user) => {
         if (user.id === clientId) {
           return {
