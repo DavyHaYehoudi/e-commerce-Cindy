@@ -1,7 +1,15 @@
 import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 
-const ToggleButtonNote = ({ productState, handleChangeNoteValue }) => {
+const ToggleButtonNote = ({
+  productState,
+  handleChangeNoteValue,
+  dispatch,
+  clientId,
+  productId,
+  orderId,
+  actions,
+}) => {
   return (
     <ToggleButton
       initialText="Note"
@@ -12,7 +20,11 @@ const ToggleButtonNote = ({ productState, handleChangeNoteValue }) => {
           <textarea
             className="product-note"
             value={productState.note || ""}
-            onChange={(e) => handleChangeNoteValue(e)}
+            onChange={(e) =>
+              handleChangeNoteValue(
+                e, dispatch, clientId, productId, orderId, actions
+              )
+            }
           >
             {" "}
           </textarea>

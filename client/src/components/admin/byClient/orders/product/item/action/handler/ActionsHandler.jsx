@@ -1,14 +1,11 @@
-import * as actions from "../../../../../../constants/productActions";
+import * as actions from "../../../../../../../../constants/productActions";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../features/admin/productActionsSlice";
-import { generateRandomCode } from "../../../../../../helpers/creditCode";
+import { updateActionContent } from "../../../../../../../../features/admin/productActionsSlice";
+import { generateRandomCode } from "../../../../../../../../helpers/creditCode";
 
 const ActionsHandler = ({
-  confirmation,
   productActions,
   setProductActions,
-  setConfirmation,
-  setInteraction,
   clientId,
   productId,
   orderId,
@@ -19,74 +16,74 @@ const ActionsHandler = ({
   const dispatch = useDispatch();
 
   // ******************************** START CONFIRMATION D'ANNULATION ********************************
-  const { confirmAction } = confirmation;
-  const updateProductActions = (confirmAction) => {
-    const dynamicProductActions = {
-      ...Object.fromEntries(
-        Object.entries(productActions).map(([key, value]) => [
-          key,
-          key.startsWith("isAdd") ? key === confirmAction : value,
-        ])
-      ),
-    };
-    setProductActions((prevState) => ({
-      ...prevState,
-      ...dynamicProductActions,
-    }));
-  };
-  // Confirmation d'une annulation de champ
-  const handleConfirmation = () => {
-    if (confirmAction === actions.CREDIT) {
-      setProductActions((prevState) => ({
-        ...prevState,
-        isAddCredit: false,
-        creditContent: { amount: null, dateExpire: null, code: null },
-      }));
-      setConfirmation((prevState) => ({
-        ...prevState,
-        isConfirmationVisible: false,
-      }));
-      setEntryError("");
-      return dispatch(
-        updateActionContent({
-          clientId,
-          productId,
-          orderId,
-          updatedProperty: "credit",
-          productActionContent: { amount: null, dateExpire: null, code: null },
-        })
-      );
-    }
-    if (confirmAction) {
-      dispatch(
-        updateActionContent({
-          clientId,
-          productId,
-          orderId,
-          updatedProperty: confirmAction,
-          productActionContent: null,
-        })
-      );
-      updateProductActions(confirmAction);
-      setConfirmation((prevState) => ({
-        ...prevState,
-        confirmAction: null,
-        isConfirmationVisible: false,
-      }));
-    }
-  };
-  // Infirmer l'annulation
-  const handleCancel = () => {
-    setConfirmation((prevState) => ({
-      ...prevState,
-      isConfirmationVisible: false,
-      confirmAction: null,
-    }));
-    setInteraction((prevState) => ({
-      ...prevState,
-      activeLi: null,
-    }));
-  };
+  // const { confirmAction } = confirmation;
+  // const updateProductActions = (confirmAction) => {
+  //   const dynamicProductActions = {
+  //     ...Object.fromEntries(
+  //       Object.entries(productActions).map(([key, value]) => [
+  //         key,
+  //         key.startsWith("isAdd") ? key === confirmAction : value,
+  //       ])
+  //     ),
+  //   };
+  //   setProductActions((prevState) => ({
+  //     ...prevState,
+  //     ...dynamicProductActions,
+  //   }));
+  // };
+  // // Confirmation d'une annulation de champ
+  // const handleConfirmation = () => {
+  //   if (confirmAction === actions.CREDIT) {
+  //     setProductActions((prevState) => ({
+  //       ...prevState,
+  //       isAddCredit: false,
+  //       creditContent: { amount: null, dateExpire: null, code: null },
+  //     }));
+  //     setConfirmation((prevState) => ({
+  //       ...prevState,
+  //       isConfirmationVisible: false,
+  //     }));
+  //     setEntryError("");
+  //     return dispatch(
+  //       updateActionContent({
+  //         clientId,
+  //         productId,
+  //         orderId,
+  //         updatedProperty: "credit",
+  //         productActionContent: { amount: null, dateExpire: null, code: null },
+  //       })
+  //     );
+  //   }
+  //   if (confirmAction) {
+  //     dispatch(
+  //       updateActionContent({
+  //         clientId,
+  //         productId,
+  //         orderId,
+  //         updatedProperty: confirmAction,
+  //         productActionContent: null,
+  //       })
+  //     );
+  //     updateProductActions(confirmAction);
+  //     setConfirmation((prevState) => ({
+  //       ...prevState,
+  //       confirmAction: null,
+  //       isConfirmationVisible: false,
+  //     }));
+  //   }
+  // };
+  // // Infirmer l'annulation
+  // const handleCancel = () => {
+  //   setConfirmation((prevState) => ({
+  //     ...prevState,
+  //     isConfirmationVisible: false,
+  //     confirmAction: null,
+  //   }));
+  //   setInteraction((prevState) => ({
+  //     ...prevState,
+  //     activeLi: null,
+  //   }));
+  // };
 
   // ******************************** END CONFIRMATION D'ANNULATION ********************************
 
@@ -215,7 +212,7 @@ const ActionsHandler = ({
       ? productActions[contentKey] || ""
       : "";
 
-    if (isValidate && productActions[contentKey] >0 && checkArticleNumber) {
+    if (isValidate && productActions[contentKey] > 0 && checkArticleNumber) {
       dispatch(
         updateActionContent({
           clientId,
@@ -225,7 +222,7 @@ const ActionsHandler = ({
           productActionContent,
         })
       );
-      setEntryError("")
+      setEntryError("");
     }
     if (!isValidate || productActions[contentKey] !== "") {
       const dynamicProperties = isValidate
@@ -272,8 +269,6 @@ const ActionsHandler = ({
   };
   // ******************************** END NOTES ********************************
   return {
-    handleConfirmation,
-    handleCancel,
     handleChangeInputQuantity,
     handleChangeInputDate,
     handleChangeInputCreditAmount,

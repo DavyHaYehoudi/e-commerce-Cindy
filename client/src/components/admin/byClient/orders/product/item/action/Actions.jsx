@@ -1,5 +1,5 @@
 import React from "react";
-import * as actions from "../../../../../../constants/productActions";
+import * as actions from "../../../../../../../constants/productActions";
 import ActionsDetails from "./ActionsDetails";
 import CreditAction from "./CreditAction";
 
