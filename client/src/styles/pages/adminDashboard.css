@@ -237,6 +237,11 @@
 }
 
 /* ********************* END ADMIN NOTES  ********************* */
+/* ********************* ADD TOTAL SORTIES ********************* */
+.outBloc{
+    text-align: end;
+}
+/* ********************* ENDTOTAL SORTIES ********************* */
 /* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
 #products-container .product-content {
     padding: 10px;
@@ -247,6 +252,7 @@
 #products-container .action-icon {
     font-size: 20px;
     cursor: pointer;
+    text-align:end;
 }
 
 #products-container .actions-list {

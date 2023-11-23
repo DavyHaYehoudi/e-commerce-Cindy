@@ -1,3 +1,5 @@
+import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
+
 export const handleChangeInputQuantity = (
   e,
   action,
@@ -16,7 +18,7 @@ export const handleChangeInputQuantity = (
   }
   setProductActions((prevState) => ({
     ...prevState,
-    [contentKey]: e.target.value,
+    [contentKey]: parseInt(e.target.value),
   }));
 };
 export const handleValidateEntry = (
@@ -36,17 +38,11 @@ export const handleValidateEntry = (
 ) => {
   e.stopPropagation();
 
-  const exchangeValue = productState.exchange
-    ? parseInt(productState.exchange)
-    : productActions.exchangeContent !== ""
-    ? parseInt(productActions.exchangeContent)
-    : 0;
-  const refundValue = productState.refund
-    ? parseInt(productState.refund)
-    : productActions.refundContent !== ""
-    ? parseInt(productActions.refundContent)
-    : 0;
-  const articleLimitNumber = Number(exchangeValue) + Number(refundValue);
+  const exchangeValue =
+    productState.exchange ?? productActions.exchangeContent ?? 0;
+  const refundValue = productState.refund ?? productActions.refundContent ?? 0;
+
+  const articleLimitNumber = exchangeValue + refundValue;
   const articleAllowedNumber = articleNumber - articleLimitNumber;
   const checkArticleNumber = articleAllowedNumber >= 0;
   if (!checkArticleNumber) {
@@ -78,9 +74,16 @@ export const handleValidateEntry = (
         productActionContent,
       })
     );
+    dispatch(
+      updateTotalsInOut({
+        clientId,
+        orderId,
+        outTotal: "amount",
+      })
+    );
     setEntryError("");
   }
-  if (productActions[contentKey] !== "") {
+  if (productActions[contentKey]) {
     const dynamicProperties = { [contentKey]: "", [flagKey]: false };
     setProductActions((prevState) => ({
       ...prevState,

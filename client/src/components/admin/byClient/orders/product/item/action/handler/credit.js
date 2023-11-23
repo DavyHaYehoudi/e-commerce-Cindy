@@ -1,4 +1,6 @@
-// Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler 
+import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
+
+// Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
   action,
   setInteraction,
@@ -29,7 +31,10 @@ export const handleCredit = (
 export const handleChangeInputCreditAmount = (e, setProductActions) => {
   setProductActions((prevState) => ({
     ...prevState,
-    creditContent: { ...prevState.creditContent, amount: e.target.value },
+    creditContent: {
+      ...prevState.creditContent,
+      amount: parseInt(e.target.value),
+    },
   }));
 };
 // Champ pour la date de validité de l'avoir
@@ -54,7 +59,8 @@ export const handleConfirmCreditEntry = (
   clientId,
   productId,
   orderId,
-  updateActionContent
+  updateActionContent,
+  productPrice
 ) => {
   e.stopPropagation();
   let { amount, dateExpire } = productActions.creditContent;
@@ -89,11 +95,22 @@ export const handleConfirmCreditEntry = (
         productActionContent,
       })
     );
+    dispatch(
+      updateTotalsInOut({
+        clientId,
+        orderId,
+        outTotal: amount,
+      })
+    );
     setProductActions((prevState) => ({
       ...prevState,
       isAddCredit: false,
     }));
-    setEntryError("");
+    if (amount > productPrice) {
+      setEntryError("⚠️ Le montant de l'avoir est supérieur au total d'achat.");
+    } else {
+      setEntryError("");
+    }
   }
 };
 // Bouton d'annulation du champ de l'avoir

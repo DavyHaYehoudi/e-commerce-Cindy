@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";
+import {
+  formatPrice,
+  sumPriceArticle,
+} from "../../../../../../helpers/formatPrice";
 
 const Header = ({
   interaction,
@@ -21,40 +25,67 @@ const Header = ({
   );
   const { exchange, refund, credit } = productState;
   return (
-    <div className="product-content-details">
-      <span>
-        Référence : {reference} - {name} - {material} - {quantity} article
-        {quantity > 1 ? "s" : ""} - {pricing.currentPrice} {"€"}{" "}
-      </span>
-      <img src={image} alt={name} width="50px" />
-      <ul>
-        <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
-          {exchange && `ECHANGE  (${exchange})`}
-        </li>
-        <li className={isTagProductExisted && refund ? "product-tag" : ""}>
-          {refund && `REMBOURSEMENT (${refund})`}
-        </li>
-        <li
-          className={isTagProductExisted && credit.amount ? "product-tag" : ""}
-        >
-          {credit.amount && (
-            <ul>
-              <li>AVOIR ({credit.amount}) </li>
-              <li> Nᴼ {credit.code} </li>
-              <li>Valable jusqu'au {formatDate(credit.dateExpire)}</li>
-            </ul>
-          )}
-        </li>
-      </ul>
-      <span className="action-icon" onClick={toggleActions}>
+    <>
+     <p className="action-icon" onClick={toggleActions}>
         {" "}
         {interaction.isActionsOpen ? (
           <FaEllipsisVertical />
         ) : (
           <IoEllipsisHorizontal />
         )}
-      </span>
+      </p>
+    <div className="product-content-details">
+      <div>
+        <p>
+          {name} {material}
+        </p>
+        <p className="pricing inPricing">
+          {quantity} article
+          {quantity > 1 ? "s" : ""} -{" "}
+          {sumPriceArticle(quantity, pricing.currentPrice)}
+        </p>
+        <p>Référence : {reference}</p>
+      </div>
+      <img src={image} alt={name} width="150px" />
+      <ul>
+        <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
+          {exchange && (
+            <>
+            <span>ECHANGE :</span>{" "}
+            <span>({exchange} article{exchange > 1 ? "s" : ""}) </span>
+            </>
+          )}
+        </li>
+        <li className={isTagProductExisted && refund ? "product-tag" : ""}>
+          {refund && (
+            <>
+              <span>REMBOURSEMENT :</span>{" "}
+              <span className="pricing outPricing">
+                {sumPriceArticle(parseInt(refund), pricing.currentPrice)}
+              </span>
+            </>
+          )}
+        </li>
+        <li
+          className={isTagProductExisted && credit.amount ? "product-tag" : ""}
+        >
+          {credit.amount && (
+            <ul>
+              <li>
+                AVOIR :{" "}
+                <span className="pricing outPricing">
+                {" "}  {formatPrice(credit.amount)}
+                </span>
+              </li>
+              <li> Nᴼ {credit.code} </li>
+              <li>Valable jusqu'au {formatDate(credit.dateExpire)}</li>
+            </ul>
+          )}
+        </li>
+      </ul>
+     
     </div>
+    </>
   );
 };
 

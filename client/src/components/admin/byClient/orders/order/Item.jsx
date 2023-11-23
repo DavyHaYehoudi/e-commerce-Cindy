@@ -61,7 +61,7 @@ const Item = ({
         lastSentDateToClient={lastSentDateToClient}
       />
 
-      <Details order={order} />
+      <Details order={order} clientId={clientId} orderId={order.id} />
       <List products={order.products} clientId={clientId} orderId={order.id} />
       {order.step !== orderStep[0].name && order.step !== orderStep[1].name && (
         <TrackingField

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProductProperties } from "../../../../helpers/storeDataUtils";
+import { formatPrice } from "../../../../helpers/formatPrice";
 
 const Cart = ({ productId, productCart }) => {
   const state = useSelector((state) => state.products);
@@ -12,7 +13,7 @@ const Cart = ({ productId, productCart }) => {
         <p>Name : {getProductProperties(productId, state).name}</p>
         <p>Material : {productCart.material}</p>
         <p>
-          Price : {getProductProperties(productId, state).pricing.currentPrice}
+          Price : {formatPrice(getProductProperties(productId, state).pricing.currentPrice) }
         </p>
       </div>
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">

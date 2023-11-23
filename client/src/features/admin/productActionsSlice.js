@@ -57,8 +57,33 @@ const productActionsSlice = createSlice({
         return user;
       });
     },
+    updateTotalsInOut: (state, action) => {
+      const {
+        clientId,
+        orderId,
+        outTotal,
+      } = action.payload;
+
+      return state.map((user) => {
+        if (user.id === clientId) {
+          return {
+            ...user,
+            orders: user.orders.map((order) => {
+              if (order.id === orderId) {
+                return {
+                  ...order,
+                  outTotalAmount: outTotal, 
+                };
+              }
+              return order;
+            }),
+          };
+        }
+        return user;
+      });
+    },
   },
 });
 
-export const { updateActionContent } = productActionsSlice.actions;
+export const { updateActionContent, updateTotalsInOut } = productActionsSlice.actions;
 export default productActionsSlice.reducer;

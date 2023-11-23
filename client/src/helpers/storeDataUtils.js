@@ -1,5 +1,12 @@
 import { getStepColor } from "./getStepColor";
 
+export const getOrderInfo = (state, clientId, orderId) => {
+  const order = state
+  .find((user) => user.id === clientId)
+  ?.orders.find((order) => order.id === orderId)
+  return order;
+};
+
 export const getProductProperties = (productId, state) => {
   const product = state.find((product) => product.id === productId);
 

@@ -86,7 +86,20 @@ img {
 .info-tooltip:hover::before {
     opacity: 1;
 }
-
+/* ********************* START AFFICHAGE PRIX ********************* */
+.pricing{
+    padding: 2px 4px;
+    border: none;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+.inPricing{
+    color: var(--success)
+}
+.outPricing{
+    color: var(--danger);
+}
+/* ********************* END AFFICHAGE PRIX ********************* */
 /* ********************* END INFO-BULLE TOOLTIP ********************* */
 /* ********************* START CONFIRMATION POPUP ********************* */
 .confirmation-popup button {

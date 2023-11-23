@@ -36,7 +36,7 @@ export const userMock = {
       id: 1,
       date: "2023-03-10 10:20",
       step: orderStep[2].name,
-      totalAmount: "€150",
+      inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
@@ -56,7 +56,7 @@ export const userMock = {
       id: 2,
       date: "2023-03-07 11:40",
       step: orderStep[1].name,
-      totalAmount: "€250",
+      inTotalAmount: 250,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
@@ -80,7 +80,7 @@ export const userMock = {
       id: 3,
       date: "2023-03-10 22:20",
       step: orderStep[0].name,
-      totalAmount: "€150",
+      inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [

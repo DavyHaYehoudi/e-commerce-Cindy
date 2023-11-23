@@ -7,8 +7,9 @@ import {
   handleCredit,
 } from "./handler/credit";
 import { updateActionContent } from "../../../../../../../features/admin/productActionsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { generateRandomCode } from "../../../../../../../helpers/creditCode";
+import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
 
 const Credit = ({
   interaction,
@@ -31,6 +32,8 @@ const Credit = ({
   setInteraction,
 }) => {
   const dispatch = useDispatch();
+  const productsState = useSelector((state) => state.products);
+  const productPrice = getProductProperties(productId,productsState).pricing.currentPrice
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
@@ -90,7 +93,8 @@ const Credit = ({
                 clientId,
                 productId,
                 orderId,
-                updateActionContent
+                updateActionContent,
+                productPrice
               )
             }
           >

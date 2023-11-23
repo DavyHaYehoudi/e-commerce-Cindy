@@ -9,6 +9,7 @@ import Header from "./Header";
 import List from "./action/List";
 import * as actions from "../../../../../../constants/productActions";
 import { useSelector } from "react-redux";
+import Totals from "./Totals";
 
 const Main = ({ product, clientId, orderId }) => {
   const { productId, material, quantity } = product;
@@ -44,8 +45,8 @@ const Main = ({ product, clientId, orderId }) => {
     isAddExchange: false,
     noteContent: productState.note,
     creditContent: productState.credit,
-    refundContent: "",
-    exchangeContent: "",
+    refundContent: null,
+    exchangeContent: null,
   });
 
   const toggleActions = () => {
@@ -108,6 +109,7 @@ const Main = ({ product, clientId, orderId }) => {
           actions={actions}
         />
       }
+      <Totals productState={productState} productId={productId} />
     </li>
   );
 };

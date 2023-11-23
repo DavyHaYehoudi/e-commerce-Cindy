@@ -10,7 +10,7 @@ export const usersMock = [
     phone: "06 90 12 34 56",
     shippingAddress: "12 Rue de la République, 75001 Paris",
     totalOrders: 3,
-    totalOrderValue: "€500",
+    totalOrderValue: 325,
     notesAdmin: ["des notes pour le client", "Encore des notes pour ce client"],
     wishlist: [
       {
@@ -41,7 +41,8 @@ export const usersMock = [
         date: "2023-01-15 08:30",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€150",
+        inTotalAmount: 220,
+        outTotalAmount:17,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -53,7 +54,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: "1",
+              exchange: 1,
               refund: null,
               credit: {
                 amount: 10,
@@ -68,7 +69,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: null,
@@ -85,7 +86,8 @@ export const usersMock = [
         date: "2023-02-02 14:45",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€200",
+        inTotalAmount: 25,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -98,7 +100,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 7,
@@ -115,7 +117,8 @@ export const usersMock = [
         date: "2023-03-10 10:20",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€150",
+        inTotalAmount: 80,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -127,7 +130,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: null,
@@ -150,7 +153,7 @@ export const usersMock = [
     phone: "07 89 01 23 45",
     shippingAddress: "45 Avenue des Champs-Élysées, 75008 Paris",
     totalOrders: 2,
-    totalOrderValue: "€300",
+    totalOrderValue: 385,
     notesAdmin: null,
     wishlist: [
       {
@@ -180,7 +183,8 @@ export const usersMock = [
         date: "2023-04-05 09:55",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€120",
+        inTotalAmount: 155,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: "ABCDEF8768Y",
@@ -192,7 +196,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -207,7 +211,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 20,
@@ -224,7 +228,8 @@ export const usersMock = [
         date: "2023-04-15 12:30",
         step: orderStep[1].name,
         isNextStepOrder: true,
-        totalAmount: "€180",
+        inTotalAmount: 230,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -236,7 +241,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -251,7 +256,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -266,7 +271,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -288,7 +293,7 @@ export const usersMock = [
     phone: "06 78 90 12 34",
     shippingAddress: "8 Rue du Faubourg Saint-Honoré, 75008 Paris",
     totalOrders: 2,
-    totalOrderValue: "€250",
+    totalOrderValue: 302,
     notesAdmin: null,
     wishlist: [
       {
@@ -318,7 +323,8 @@ export const usersMock = [
         date: "2023-05-01 18:45",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€150",
+        inTotalAmount: 112,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -330,7 +336,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -347,7 +353,8 @@ export const usersMock = [
         date: "2023-05-10 10:00",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 190,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -359,7 +366,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -374,7 +381,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -389,7 +396,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -404,7 +411,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -426,7 +433,7 @@ export const usersMock = [
     phone: "07 67 89 01 23",
     shippingAddress: "22 Rue de la Pompe, 75116 Paris",
     totalOrders: 2,
-    totalOrderValue: "€200",
+    totalOrderValue: 269,
     notesAdmin: null,
     wishlist: [
       {
@@ -456,7 +463,8 @@ export const usersMock = [
         date: "2023-06-02 14:20",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€120",
+        inTotalAmount: 58,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: "ABCDEF8768Y",
@@ -468,7 +476,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -483,7 +491,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -500,7 +508,8 @@ export const usersMock = [
         date: "2023-06-15 08:00",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€80",
+        inTotalAmount: 211,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -512,7 +521,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -527,7 +536,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -542,7 +551,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -564,7 +573,7 @@ export const usersMock = [
     phone: "06 56 78 90 12",
     shippingAddress: "5 Quai de la Tournelle, 75005 Paris",
     totalOrders: 3,
-    totalOrderValue: "€320",
+    totalOrderValue: 503,
     notesAdmin: null,
     wishlist: [
       {
@@ -594,7 +603,8 @@ export const usersMock = [
         date: "2023-07-05 11:30",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 128,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -606,7 +616,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -623,7 +633,8 @@ export const usersMock = [
         date: "2023-07-15 15:45",
         step: orderStep[2].name,
         isNextStepOrder: true,
-        totalAmount: "€120",
+        inTotalAmount: 375,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -635,7 +646,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -650,7 +661,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -665,7 +676,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -680,7 +691,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -697,7 +708,8 @@ export const usersMock = [
         date: "2023-08-02 09:20",
         step: orderStep[3].name,
         isNextStepOrder: true,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -709,7 +721,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -731,7 +743,7 @@ export const usersMock = [
     phone: "07 45 67 89 01",
     shippingAddress: "18 Avenue Montaigne, 75008 Paris",
     totalOrders: 1,
-    totalOrderValue: "€80",
+    totalOrderValue: 105,
     notesAdmin: null,
     wishlist: [
       {
@@ -761,7 +773,8 @@ export const usersMock = [
         date: "2023-08-10 14:30",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€80",
+        inTotalAmount: 105,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -773,7 +786,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -795,7 +808,7 @@ export const usersMock = [
     phone: "06 90 12 34 56",
     shippingAddress: "30 Rue du Bac, 75007 Paris",
     totalOrders: 4,
-    totalOrderValue: "€450",
+    totalOrderValue: 450,
     notesAdmin: null,
     wishlist: [
       {
@@ -825,7 +838,8 @@ export const usersMock = [
         date: "2023-09-01 18:45",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -837,7 +851,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -854,7 +868,8 @@ export const usersMock = [
         date: "2023-09-10 10:00",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€150",
+        inTotalAmount: 150,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -866,7 +881,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -883,7 +898,8 @@ export const usersMock = [
         date: "2023-09-20 12:00",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€200",
+        inTotalAmount: 200,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -895,7 +911,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -912,7 +928,8 @@ export const usersMock = [
         date: "2023-09-25 09:30",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -924,7 +941,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -939,7 +956,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -961,7 +978,7 @@ export const usersMock = [
     phone: "06 34 56 78 90",
     shippingAddress: "10 Avenue Foch, 75116 Paris",
     totalOrders: 2,
-    totalOrderValue: "€180",
+    totalOrderValue: 180,
     notesAdmin: null,
     wishlist: [
       {
@@ -991,7 +1008,8 @@ export const usersMock = [
         date: "2023-10-05 15:15",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€80",
+        inTotalAmount: 80,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -1003,7 +1021,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1020,7 +1038,8 @@ export const usersMock = [
         date: "2023-10-15 08:45",
         step: orderStep[3].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1032,7 +1051,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1054,7 +1073,7 @@ export const usersMock = [
     phone: "07 23 45 67 89",
     shippingAddress: "14 Rue de Rivoli, 75001 Paris",
     totalOrders: 3,
-    totalOrderValue: "€250",
+    totalOrderValue: 250,
     notesAdmin: null,
     wishlist: [
       {
@@ -1084,7 +1103,8 @@ export const usersMock = [
         date: "2023-11-01 11:30",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -1096,7 +1116,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1111,7 +1131,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1128,7 +1148,8 @@ export const usersMock = [
         date: "2023-11-10 15:45",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€80",
+        inTotalAmount: 80,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1140,7 +1161,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1157,7 +1178,8 @@ export const usersMock = [
         date: "2023-11-20 09:20",
         step: orderStep[3].name,
         isNextStepOrder: true,
-        totalAmount: "€70",
+        inTotalAmount: 70,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -1169,7 +1191,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1184,7 +1206,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1206,7 +1228,7 @@ export const usersMock = [
     phone: "06 12 34 56 78",
     shippingAddress: "55 Rue du Faubourg Saint-Antoine, 75011 Paris",
     totalOrders: 2,
-    totalOrderValue: "€180",
+    totalOrderValue: 180,
     notesAdmin: null,
     wishlist: [
       {
@@ -1236,7 +1258,8 @@ export const usersMock = [
         date: "2023-12-05 14:30",
         step: orderStep[3].name,
         isNextStepOrder: true,
-        totalAmount: "€80",
+        inTotalAmount: 80,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: "XYZ123456",
         trackingNumberClient: null,
@@ -1248,7 +1271,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1265,7 +1288,8 @@ export const usersMock = [
         date: "2023-12-15 08:45",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€100",
+        inTotalAmount: 100,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1277,7 +1301,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1299,7 +1323,7 @@ export const usersMock = [
     phone: "06 90 23 45 67",
     shippingAddress: "24 Rue de la Liberté, 75002 Paris",
     totalOrders: 5,
-    totalOrderValue: "€700",
+    totalOrderValue: 700,
     notesAdmin: null,
     wishlist: [
       {
@@ -1329,7 +1353,8 @@ export const usersMock = [
         date: "2023-05-20 12:15",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€200",
+        inTotalAmount: 200,
+        outTotalAmount:null,
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1341,7 +1366,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1356,7 +1381,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1373,7 +1398,8 @@ export const usersMock = [
         date: "2023-06-10 09:30",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€150",
+        inTotalAmount: 150,
+        outTotalAmount:null,
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1385,7 +1411,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1407,7 +1433,7 @@ export const usersMock = [
     phone: "06 90 34 56 78",
     shippingAddress: "36 Avenue des Champs-Élysées, 75008 Paris",
     totalOrders: 2,
-    totalOrderValue: "€300",
+    totalOrderValue: 300,
     notesAdmin: null,
     wishlist: [
       {
@@ -1437,7 +1463,8 @@ export const usersMock = [
         date: "2023-08-05 15:45",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€120",
+        inTotalAmount: 120,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1449,7 +1476,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1464,7 +1491,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1486,7 +1513,7 @@ export const usersMock = [
     phone: "06 90 78 90 12",
     shippingAddress: "24 Rue du Faubourg Saint-Honoré, 75008 Paris",
     totalOrders: 4,
-    totalOrderValue: "€600",
+    totalOrderValue: 600,
     notesAdmin: null,
     wishlist: [
       {
@@ -1516,7 +1543,8 @@ export const usersMock = [
         date: "2023-11-20 11:15",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€180",
+        inTotalAmount: 180,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1528,7 +1556,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1543,7 +1571,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1560,7 +1588,8 @@ export const usersMock = [
         date: "2023-12-05 09:30",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€120",
+        inTotalAmount: 120,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1572,7 +1601,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1594,7 +1623,7 @@ export const usersMock = [
     phone: "06 90 45 67 89",
     shippingAddress: "18 Avenue des Champs-Élysées, 75002 Paris",
     totalOrders: 5,
-    totalOrderValue: "€750",
+    totalOrderValue: 750,
     notesAdmin: null,
     wishlist: [
       {
@@ -1624,7 +1653,8 @@ export const usersMock = [
         date: "2023-05-15 15:45",
         step: orderStep[1].name,
         isNextStepOrder: false,
-        totalAmount: "€210",
+        inTotalAmount: 210,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1636,7 +1666,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1653,7 +1683,8 @@ export const usersMock = [
         date: "2023-06-02 08:00",
         step: orderStep[2].name,
         isNextStepOrder: false,
-        totalAmount: "€240",
+        inTotalAmount: 240,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1665,7 +1696,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1687,7 +1718,7 @@ export const usersMock = [
     phone: "06 90 78 90 12",
     shippingAddress: "24 Rue de la Liberté, 75003 Paris",
     totalOrders: 7,
-    totalOrderValue: "€900",
+    totalOrderValue: 900,
     notesAdmin: null,
     wishlist: [
       {
@@ -1717,7 +1748,8 @@ export const usersMock = [
         date: "2023-08-10 12:30",
         step: orderStep[0].name,
         isNextStepOrder: false,
-        totalAmount: "€300",
+        inTotalAmount: 300,
+        outTotalAmount:null,
         paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1729,7 +1761,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1744,7 +1776,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,
@@ -1761,7 +1793,8 @@ export const usersMock = [
         date: "2023-09-05 16:15",
         step: orderStep[1].name,
         isNextStepOrder: true,
-        totalAmount: "€180",
+        inTotalAmount: 180,
+        outTotalAmount:null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,
@@ -1773,7 +1806,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             productActions: {
-              exchange: false,
+              exchange: null,
               refund: null,
               credit: {
                 amount: 10,

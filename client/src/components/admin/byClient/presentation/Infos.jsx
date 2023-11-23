@@ -4,6 +4,7 @@ import Details from "../preferences/Details";
 import ToggleButton from "../../../../shared/ToggleButton";
 import Item from "../orders/order/Item";
 import NotesEditor from "../../../../shared/NotesEditor";
+import { formatPrice } from "../../../../helpers/formatPrice";
 
 const Infos = ({ client }) => {
   return (
@@ -41,7 +42,13 @@ const Infos = ({ client }) => {
             <u>Historique des commandes</u>{" "}
           </h2>
           <p>Total des commandes : {client.totalOrders}</p>
-          <p>Valeur totale des commandes : {client.totalOrderValue}</p>
+          <p>
+            Valeur totale des commandes :{" "}
+            <span className="pricing inPricing">
+              {" "}
+              {formatPrice(client.totalOrderValue)}
+            </span>
+          </p>
           <ToggleButton
             initialText="Afficher ses commandes"
             hiddenText="Fermer ses commandes"
