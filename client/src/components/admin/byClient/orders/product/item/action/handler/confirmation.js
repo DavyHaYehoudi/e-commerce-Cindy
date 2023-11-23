@@ -1,17 +1,18 @@
 import { updateActionContent } from "../../../../../../../../features/admin/productActionsSlice";
 
 // Confirmation d'une annulation de champ
-export const handleConfirmation = ( confirmation,
+export const handleConfirmation = (
+  confirmation,
   productActions,
-  setProductActions,
   actions,
-  setConfirmation,
-  setEntryError,
   clientId,
   productId,
   orderId,
   dispatch,
-  ) => {
+  setConfirmation,
+  setEntryError,
+  setProductActions
+) => {
   const { confirmAction } = confirmation;
   const updateProductActions = (confirmAction) => {
     const dynamicProductActions = {
@@ -68,7 +69,7 @@ export const handleConfirmation = ( confirmation,
 };
 
 // Infirmer l'annulation
-export const handleCancel = (setConfirmation,setInteraction) => {
+export const handleCancel = (setConfirmation, setInteraction) => {
   setConfirmation((prevState) => ({
     ...prevState,
     isConfirmationVisible: false,

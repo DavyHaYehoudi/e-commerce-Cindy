@@ -6,18 +6,11 @@ import {
 import ToggleButtonNote from "../ToggleButtonNote";
 import ConfirmationModal from "../../../../../../shared/confirmationModal";
 import Header from "./Header";
-import Actions from "./action/Actions";
+import List from "./action/List";
 import * as actions from "../../../../../../constants/productActions";
-import ActionsHandler from "./action/handler/ActionsHandler";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleCancel,
-  handleConfirmation,
-} from "./action/handler/confirmation";
-import { handleChangeNoteValue } from "./action/handler/notes";
+import { useSelector } from "react-redux";
 
 const Main = ({ product, clientId, orderId }) => {
-  const dispatch = useDispatch();
   const { productId, material, quantity } = product;
   const productActionsState = useSelector((state) => state.productActions);
   const { productState, isTagProductExisted } = getProductStateInfo(
@@ -61,85 +54,58 @@ const Main = ({ product, clientId, orderId }) => {
       isActionsOpen: !prevState.isActionsOpen,
     }));
   };
-  const actionsHandler = ActionsHandler({
-    confirmation,
-    productActions,
-    clientId,
-    productId,
-    orderId,
-    articleNumber,
-    productState,
-    setProductActions,
-    setConfirmation,
-    setInteraction,
-    setEntryError,
-  });
 
   return (
     <li
       className={`product-content ${interaction.isActionsOpen ? "open" : ""}`}
     >
       <Header
-        product={product}
-        toggleActions={toggleActions}
         interaction={interaction}
         material={material}
         quantity={quantity}
         productId={productId}
         isTagProductExisted={isTagProductExisted}
         productState={productState}
+        toggleActions={toggleActions}
       />
       {interaction.isActionsOpen && (
-        <Actions
-          handleChangeInputQuantity={actionsHandler.handleChangeInputQuantity}
-          handleChangeInputDate={actionsHandler.handleChangeInputDate}
-          handleChangeInputCreditAmount={
-            actionsHandler.handleChangeInputCreditAmount
-          }
-          handleConfirmEntry={actionsHandler.handleConfirmEntry}
-          handleCancelEntry={actionsHandler.handleCancelEntry}
+        <List
           interaction={interaction}
-          setInteraction={setInteraction}
           productActions={productActions}
+          productState={productState}
+          clientId={clientId}
+          orderId={orderId}
+          productId={productId}
+          articleNumber={articleNumber}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
-          productState={productState}
+          setInteraction={setInteraction}
+          setEntryError={setEntryError}
         />
       )}
       {isConfirmationVisible && (
         <ConfirmationModal
           message="⚠️ Cette action entraîne une suppression définitive !"
-          handleConfirmation={() =>
-            handleConfirmation(
-              confirmation,
-              productActions,
-              setProductActions,
-              actions,
-              setConfirmation,
-              setEntryError,
-              clientId,
-              productId,
-              orderId,
-              dispatch
-            )
-          }
-          handleCancel={() => handleCancel(setConfirmation, setInteraction)}
+          confirmation={confirmation}
+          productActions={productActions}
+          actions={actions}
+          clientId={clientId}
+          productId={productId}
+          orderId={orderId}
+          setProductActions={setProductActions}
+          setConfirmation={setConfirmation}
+          setEntryError={setEntryError}
+          setInteraction={setInteraction}
         />
       )}
       {entryError && <p className="error-message">{entryError}</p>}
       {
         <ToggleButtonNote
-          dispatch={dispatch}
+          productState={productState}
           clientId={clientId}
           productId={productId}
           orderId={orderId}
           actions={actions}
-          productState={productState}
-          setProductActions={setProductActions}
-          noteContent={productActions.noteContent}
-          handleChangeNoteValue={handleChangeNoteValue}
-          handleConfirmEntry={actionsHandler.handleConfirmEntry}
-          handleCancelEntry={actionsHandler.handleCancelEntry}
         />
       }
     </li>

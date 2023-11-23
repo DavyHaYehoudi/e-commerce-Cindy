@@ -6,13 +6,13 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";
 
 const Header = ({
-  toggleActions,
   interaction,
-  isTagProductExisted,
-  productState,
   material,
   quantity,
   productId,
+  isTagProductExisted,
+  productState,
+  toggleActions,
 }) => {
   const productsState = useSelector((state) => state.products);
   const { reference, name, pricing, image } = getProductProperties(

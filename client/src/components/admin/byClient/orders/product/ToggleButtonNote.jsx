@@ -1,15 +1,16 @@
 import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
+import { useDispatch } from "react-redux";
+import { handleChangeNoteValue } from "./item/action/handler/notes";
 
 const ToggleButtonNote = ({
   productState,
-  handleChangeNoteValue,
-  dispatch,
   clientId,
   productId,
   orderId,
   actions,
 }) => {
+  const dispatch = useDispatch();
   return (
     <ToggleButton
       initialText="Note"
@@ -22,7 +23,12 @@ const ToggleButtonNote = ({
             value={productState.note || ""}
             onChange={(e) =>
               handleChangeNoteValue(
-                e, dispatch, clientId, productId, orderId, actions
+                e,
+                dispatch,
+                clientId,
+                productId,
+                orderId,
+                actions
               )
             }
           >
