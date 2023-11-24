@@ -3,7 +3,7 @@ import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 import {
   formatPrice,
-} from "../../../../../../helpers/formatPrice";
+} from "../../../../../../helpers/prices";
 
 const Totals = ({ productState, productId }) => {
   const productsState = useSelector((state) => state.products);
@@ -14,7 +14,7 @@ const Totals = ({ productState, productId }) => {
   const isOut = (refundTotal + creditTotal) > 0
   return (isOut &&
     <div className="outBloc">
-      Total des sorties :
+      Sortie :
       <span className="pricing outPricing">
         {formatPrice(refundTotal * productPrice + creditTotal)}
       </span>{" "}

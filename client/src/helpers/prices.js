@@ -1,3 +1,4 @@
+
 export function formatPrice(number) {
     // Vérifier si le nombre est un entier ou a des décimales
     const isInteger = Number.isInteger(number);

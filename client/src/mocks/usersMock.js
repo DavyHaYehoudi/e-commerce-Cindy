@@ -42,7 +42,7 @@ export const usersMock = [
         step: orderStep[0].name,
         isNextStepOrder: false,
         inTotalAmount: 220,
-        outTotalAmount:17,
+        outTotalAmount:10,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumberAdmin: null,
         trackingNumberClient: null,

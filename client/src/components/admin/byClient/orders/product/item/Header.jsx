@@ -1,13 +1,12 @@
 import React from "react";
 import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
-import { useSelector } from "react-redux";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";
 import {
   formatPrice,
   sumPriceArticle,
-} from "../../../../../../helpers/formatPrice";
+} from "../../../../../../helpers/prices";
 
 const Header = ({
   interaction,
@@ -16,9 +15,9 @@ const Header = ({
   productId,
   isTagProductExisted,
   productState,
+  productsState,
   toggleActions,
 }) => {
-  const productsState = useSelector((state) => state.products);
   const { reference, name, pricing, image } = getProductProperties(
     productId,
     productsState

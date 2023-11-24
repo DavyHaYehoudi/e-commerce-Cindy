@@ -4,6 +4,7 @@ import {
   handleConfirmation,
 } from "../components/admin/byClient/orders/product/item/action/handler/confirmation";
 import { useDispatch } from "react-redux";
+import { getProductProperties } from "../helpers/storeDataUtils";
 
 const ConfirmationModal = ({
   message,
@@ -13,12 +14,16 @@ const ConfirmationModal = ({
   clientId,
   productId,
   orderId,
+  productsState,
+  productState,
   setProductActions,
   setConfirmation,
   setEntryError,
   setInteraction,
 }) => {
   const dispatch = useDispatch();
+  const productPrice = getProductProperties(productId, productsState).pricing
+    .currentPrice;
   return (
     <div className="confirmation-popup">
       <span>{message}</span>
@@ -32,6 +37,8 @@ const ConfirmationModal = ({
             productId,
             orderId,
             dispatch,
+            productPrice,
+            productState,
             setConfirmation,
             setEntryError,
             setProductActions

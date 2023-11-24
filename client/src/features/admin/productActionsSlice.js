@@ -58,11 +58,7 @@ const productActionsSlice = createSlice({
       });
     },
     updateTotalsInOut: (state, action) => {
-      const {
-        clientId,
-        orderId,
-        outTotal,
-      } = action.payload;
+      const { clientId, orderId, amount, movement } = action.payload;
 
       return state.map((user) => {
         if (user.id === clientId) {
@@ -70,10 +66,17 @@ const productActionsSlice = createSlice({
             ...user,
             orders: user.orders.map((order) => {
               if (order.id === orderId) {
-                return {
-                  ...order,
-                  outTotalAmount: outTotal, 
-                };
+                if (movement === "out") {
+                  return {
+                    ...order,
+                    outTotalAmount: order.outTotalAmount + amount,
+                  };
+                } else if (movement === "outCancel") {
+                  return {
+                    ...order,
+                    outTotalAmount: order.outTotalAmount - amount,
+                  };
+                }
               }
               return order;
             }),
@@ -85,5 +88,6 @@ const productActionsSlice = createSlice({
   },
 });
 
-export const { updateActionContent, updateTotalsInOut } = productActionsSlice.actions;
+export const { updateActionContent, updateTotalsInOut } =
+  productActionsSlice.actions;
 export default productActionsSlice.reducer;

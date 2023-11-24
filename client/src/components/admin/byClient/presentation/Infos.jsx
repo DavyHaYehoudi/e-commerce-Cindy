@@ -4,7 +4,7 @@ import Details from "../preferences/Details";
 import ToggleButton from "../../../../shared/ToggleButton";
 import Item from "../orders/order/Item";
 import NotesEditor from "../../../../shared/NotesEditor";
-import { formatPrice } from "../../../../helpers/formatPrice";
+import { formatPrice } from "../../../../helpers/prices";
 
 const Infos = ({ client }) => {
   return (

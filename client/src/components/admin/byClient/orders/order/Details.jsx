@@ -1,5 +1,5 @@
 import React from "react";
-import { formatPrice } from "../../../../../helpers/formatPrice";
+import { formatPrice } from "../../../../../helpers/prices";
 import { getOrderInfo } from "../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 
@@ -15,14 +15,14 @@ const Details = ({ order, clientId, orderId }) => {
           {formatPrice(order.inTotalAmount)}
         </span>
       </p>
-      {outTotalAmount && (
+      {outTotalAmount &&  outTotalAmount > 0 ?(
         <p>
           Total des sorties :{" "}
           <span className="pricing outPricing">
             {formatPrice(outTotalAmount)}{" "}
           </span>
         </p>
-      )}
+      ):""}
 
       <p>
         <small>

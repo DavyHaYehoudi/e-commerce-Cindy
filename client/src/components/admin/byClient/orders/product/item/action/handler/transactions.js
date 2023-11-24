@@ -34,7 +34,8 @@ export const handleValidateEntry = (
   clientId,
   productId,
   orderId,
-  setProductActions
+  setProductActions,
+  productPrice
 ) => {
   e.stopPropagation();
 
@@ -74,13 +75,16 @@ export const handleValidateEntry = (
         productActionContent,
       })
     );
-    dispatch(
-      updateTotalsInOut({
-        clientId,
-        orderId,
-        outTotal: "amount",
-      })
-    );
+    if (action === actions.REFUND) {
+      dispatch(
+        updateTotalsInOut({
+          clientId,
+          orderId,
+          amount: productActions.refundContent * productPrice,
+          movement: "out",
+        })
+      );
+    }
     setEntryError("");
   }
   if (productActions[contentKey]) {

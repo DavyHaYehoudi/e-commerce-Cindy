@@ -7,6 +7,7 @@ import {
   handleValidateEntry,
 } from "./handler/transactions";
 import { handleActionClick } from "./handler/item";
+import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
 
 const Transaction = ({
   interaction,
@@ -19,6 +20,7 @@ const Transaction = ({
   orderId,
   textCancel,
   productState,
+  productsState,
   isActionSelected,
   inputQuantityValue,
   productActions,
@@ -29,6 +31,8 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
+  const productPrice = getProductProperties(productId, productsState).pricing
+    .currentPrice;
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
@@ -76,7 +80,8 @@ const Transaction = ({
                 clientId,
                 productId,
                 orderId,
-                setProductActions
+                setProductActions,
+                productPrice
               )
             }
           >

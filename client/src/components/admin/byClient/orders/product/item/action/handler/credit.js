@@ -99,7 +99,8 @@ export const handleConfirmCreditEntry = (
       updateTotalsInOut({
         clientId,
         orderId,
-        outTotal: amount,
+        amount,
+        movement :"out"
       })
     );
     setProductActions((prevState) => ({

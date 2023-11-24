@@ -13,6 +13,7 @@ import Totals from "./Totals";
 
 const Main = ({ product, clientId, orderId }) => {
   const { productId, material, quantity } = product;
+  const productsState = useSelector((state) => state.products);
   const productActionsState = useSelector((state) => state.productActions);
   const { productState, isTagProductExisted } = getProductStateInfo(
     productActionsState,
@@ -67,6 +68,7 @@ const Main = ({ product, clientId, orderId }) => {
         productId={productId}
         isTagProductExisted={isTagProductExisted}
         productState={productState}
+        productsState={productsState}
         toggleActions={toggleActions}
       />
       {interaction.isActionsOpen && (
@@ -74,6 +76,7 @@ const Main = ({ product, clientId, orderId }) => {
           interaction={interaction}
           productActions={productActions}
           productState={productState}
+          productsState={productsState}
           clientId={clientId}
           orderId={orderId}
           productId={productId}
@@ -93,6 +96,8 @@ const Main = ({ product, clientId, orderId }) => {
           clientId={clientId}
           productId={productId}
           orderId={orderId}
+          productsState={productsState}
+          productState={productState}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
           setEntryError={setEntryError}

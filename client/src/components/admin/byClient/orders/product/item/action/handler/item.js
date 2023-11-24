@@ -12,6 +12,7 @@ export const generateItemTransactionComponent = (
   productId,
   orderId,
   productState,
+  productsState,
   productActions,
   articleNumber,
   setEntryError,
@@ -31,6 +32,7 @@ export const generateItemTransactionComponent = (
       orderId={orderId}
       textCancel={`ANNULER ${label}`}
       productState={productState}
+      productsState={productsState}
       isActionSelected={isActionSelected}
       inputQuantityValue={inputQuantityValue}
       productActions={productActions}

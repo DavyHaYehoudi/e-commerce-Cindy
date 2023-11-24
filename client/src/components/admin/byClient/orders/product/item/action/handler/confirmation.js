@@ -1,4 +1,7 @@
-import { updateActionContent } from "../../../../../../../../features/admin/productActionsSlice";
+import {
+  updateActionContent,
+  updateTotalsInOut,
+} from "../../../../../../../../features/admin/productActionsSlice";
 
 // Confirmation d'une annulation de champ
 export const handleConfirmation = (
@@ -9,6 +12,8 @@ export const handleConfirmation = (
   productId,
   orderId,
   dispatch,
+  productPrice,
+  productState,
   setConfirmation,
   setEntryError,
   setProductActions
@@ -39,6 +44,14 @@ export const handleConfirmation = (
       isConfirmationVisible: false,
     }));
     setEntryError("");
+    dispatch(
+      updateTotalsInOut({
+        clientId,
+        orderId,
+        amount: productState.credit.amount,
+        movement: "outCancel",
+      })
+    );
     return dispatch(
       updateActionContent({
         clientId,
@@ -65,6 +78,16 @@ export const handleConfirmation = (
       confirmAction: null,
       isConfirmationVisible: false,
     }));
+  }
+  if (confirmAction === actions.REFUND) {
+    dispatch(
+      updateTotalsInOut({
+        clientId,
+        orderId,
+        amount: productState.refund * productPrice,
+        movement: "outCancel",
+      })
+    );
   }
 };
 
