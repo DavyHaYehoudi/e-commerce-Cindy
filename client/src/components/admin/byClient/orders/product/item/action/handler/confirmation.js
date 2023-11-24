@@ -1,3 +1,4 @@
+import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
 import {
   updateActionContent,
   updateTotalsInOut,
@@ -52,6 +53,7 @@ export const handleConfirmation = (
         movement: "outCancel",
       })
     );
+    dispatch(articleAction({clientId, orderId}));
     return dispatch(
       updateActionContent({
         clientId,
@@ -79,6 +81,7 @@ export const handleConfirmation = (
       isConfirmationVisible: false,
     }));
   }
+  dispatch(articleAction({clientId, orderId}));
   if (confirmAction === actions.REFUND) {
     dispatch(
       updateTotalsInOut({

@@ -5,25 +5,36 @@ import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {
   const state = useSelector((state) => state.ordersStep);
-  const { ordersStep, isAnyOrderClientNotified, renderBadge } = getClientItemInfo(state, client);
+  const { orders, isAnyOrderClientNotified, renderBadge } = getClientItemInfo(
+    state,
+    client
+  );
 
   return (
-    <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
+    <li
+      className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}
+      onClick={() => handleClientClick(client.id)}
+    >
       <div className="client-header">
         <span>
           {client.firstName} {client.lastName}{" "}
         </span>
-        {ordersStep &&
-          ordersStep.length > 0 &&
-          [...new Set(ordersStep.map((order) => order.step))].map((step) =>
-            renderBadge(step).stepBadge
+        {orders &&
+          orders.length > 0 &&
+          [...new Set(orders.map((order) => order.step))].map(
+            (step) => renderBadge(step).stepBadge
           )}
-        <button onClick={() => handleClientClick(client.id)}>
-          {clientDetails[client.id] ? "Fermer" : "Consulter"}
-        </button>
       </div>
-      {isAnyOrderClientNotified && <div className="notification-bubble blink"></div>}
-      {clientDetails[client.id] && <Infos client={client} />}
+      {isAnyOrderClientNotified && (
+        <div className="notification-bubble blink"></div>
+      )}
+      {clientDetails[client.id] && (
+        <Infos
+          client={client}
+          orders={orders}
+          handleClientClick={handleClientClick}
+        />
+      )}
     </li>
   );
 };

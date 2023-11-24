@@ -1,3 +1,4 @@
+import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
 import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
 
 export const handleChangeInputQuantity = (
@@ -85,6 +86,7 @@ export const handleValidateEntry = (
         })
       );
     }
+    dispatch(articleAction({clientId, orderId}));
     setEntryError("");
   }
   if (productActions[contentKey]) {

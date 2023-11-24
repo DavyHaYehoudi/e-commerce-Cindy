@@ -46,8 +46,12 @@ export const userMock = {
           material: materials[1].name,
           productActions: {
             exchange: null,
-            refund: "2",
-            credit: "Avoir N 45698TUIRUG79847",
+            refund: 2,
+            credit: {
+              amount: 20,
+              code: "456JHUIRJNBdfdf",
+              dateExpire: "2023-04-05 09:55",
+            },
           },
         },
       ],
@@ -65,7 +69,7 @@ export const userMock = {
           quantity: 1,
           material: materials[0].name,
           productActions: {
-            exchange: "1",
+            exchange: 1,
             refund: null,
             credit: {
               amount: 10,
@@ -90,8 +94,12 @@ export const userMock = {
           material: materials[3].name,
           productActions: {
             exchange: null,
-            refund: "1",
-            credit: null,
+            refund: 1,
+            credit: {
+              amount: 20,
+              code: "456JHUIRJNBdfdf",
+              dateExpire: "2023-04-05 09:55",
+            },
           },
         },
         {

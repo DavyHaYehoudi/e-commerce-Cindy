@@ -13,14 +13,18 @@ export const ordersStep = [
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
-  return state.map((user) => ({
-    ...user,
-    orders: user.orders.map((order) =>
-      order.id === action.payload.orderId
-        ? updateFunction(order, action.payload)
-        : order
-    ),
-  }));
+  return state.map((user) =>
+    user.id === action.payload.clientId
+      ? {
+          ...user,
+          orders: user.orders.map((order) =>
+            order.id === action.payload.orderId
+              ? updateFunction(order, action.payload)
+              : order
+          ),
+        }
+      : user
+  );
 };
 
 const updateOrderStep = (order, { step, isClientNotified }) => ({
@@ -29,7 +33,10 @@ const updateOrderStep = (order, { step, isClientNotified }) => ({
   isClientNotified,
 });
 
-const updateMoveToNextStep = (order, { step, isClientNotified, isNextStepOrder }) => {
+const updateMoveToNextStep = (
+  order,
+  { step, isClientNotified, isNextStepOrder }
+) => {
   const currentStepIndex = ordersStep.findIndex((s) => s.name === order.step);
   const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
   const nextStep = isNextStepOrder ? ordersStep[nextStepIndex].name : step;
@@ -40,6 +47,10 @@ const updateMoveToNextStep = (order, { step, isClientNotified, isNextStepOrder }
     isClientNotified,
   };
 };
+const updateIsClientNotified = (order) => ({
+  ...order,
+  isClientNotified: false,
+});
 
 const orderStepSlice = createSlice({
   name: "orderActions",
@@ -55,15 +66,11 @@ const orderStepSlice = createSlice({
       applyOrderAction(state, action, updateOrderStep),
 
     trackingNumberAdminChange: (state, action) =>
-      applyOrderAction(
-        state,
-        action,
-        (order, payload) => ({
-          ...order,
-          isClientNotified: payload.isClientNotified,
-          trackingNumberAdmin: payload.trackingNumberAdmin,
-        })
-      ),
+      applyOrderAction(state, action, (order, payload) => ({
+        ...order,
+        isClientNotified: payload.isClientNotified,
+        trackingNumberAdmin: payload.trackingNumberAdmin,
+      })),
 
     sendToClient: (state, action) =>
       applyOrderAction(state, action, (order, payload) => ({
@@ -71,6 +78,8 @@ const orderStepSlice = createSlice({
         isClientNotified: payload.isClientNotified,
         lastSentDateToClient: new Date(),
       })),
+    articleAction: (state, action) =>
+      applyOrderAction(state, action, updateIsClientNotified),
   },
 });
 
@@ -80,6 +89,7 @@ export const {
   reactivateOrder,
   trackingNumberAdminChange,
   sendToClient,
+  articleAction,
 } = orderStepSlice.actions;
 
 export default orderStepSlice.reducer;

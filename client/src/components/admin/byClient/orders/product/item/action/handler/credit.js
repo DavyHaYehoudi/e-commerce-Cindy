@@ -1,3 +1,4 @@
+import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
 import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
@@ -100,9 +101,10 @@ export const handleConfirmCreditEntry = (
         clientId,
         orderId,
         amount,
-        movement :"out"
+        movement: "out",
       })
     );
+    dispatch(articleAction({clientId, orderId}));
     setProductActions((prevState) => ({
       ...prevState,
       isAddCredit: false,

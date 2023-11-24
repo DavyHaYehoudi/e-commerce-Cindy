@@ -22,6 +22,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
+    cursor: pointer;
 }
 
 .client-header {
@@ -102,13 +103,24 @@
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: initial;
 }
 
 .client-details h2 {
     margin-bottom: 10px;
     font-size: 18px;
 }
-
+.close-client-details{
+    text-align: end;
+}
+.close-client-details span{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: whitesmoke;
+    background-color: var(--secondary);
+    cursor: pointer;
+} 
 /* ********************* END FICHE CLIENT VIEW ********************* */
 
 /* ********************* START COMMANDES CLIENT ********************* */

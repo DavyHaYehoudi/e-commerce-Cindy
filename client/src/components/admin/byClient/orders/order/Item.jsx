@@ -43,6 +43,7 @@ const Item = ({
     setIsTrackingNumberEdited(false);
     dispatch(
       sendToClient({
+        clientId,
         orderId: order.id,
         isClientNotified: true,
       })

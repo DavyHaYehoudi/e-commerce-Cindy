@@ -6,9 +6,9 @@ import Item from "../orders/order/Item";
 import NotesEditor from "../../../../shared/NotesEditor";
 import { formatPrice } from "../../../../helpers/prices";
 
-const Infos = ({ client }) => {
+const Infos = ({ client, orders, handleClientClick }) => {
   return (
-    <div className="client-details">
+    <div className="client-details" onClick={(e) => e.stopPropagation()}>
       <h2>
         <u> Informations du client</u>
       </h2>
@@ -36,7 +36,7 @@ const Infos = ({ client }) => {
         />
       )}
 
-      {client.orders && (
+      {orders && (
         <>
           <h2>
             <u>Historique des commandes</u>{" "}
@@ -55,7 +55,7 @@ const Infos = ({ client }) => {
             buttonClass="account-btn toggle"
             content={
               <div className="orders">
-                {client.orders.map((order, i) => (
+                {orders.map((order, i) => (
                   <Item
                     key={order.id}
                     clientId={client.id}
@@ -75,6 +75,9 @@ const Infos = ({ client }) => {
       )}
 
       <NotesEditor clientId={client.id} notesPropName={"notesAdmin"} />
+      <div className="close-client-details">
+        <span onClick={() => handleClientClick(client.id)}>Fermer</span>
+      </div>
     </div>
   );
 };

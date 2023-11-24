@@ -86,13 +86,13 @@ export const getNotesEditorInfo = (state, clientId, notesPropName) => {
 };
 
 export const getClientItemInfo = (state, client) => {
-  const ordersStep = state.find((user) => user.id === client.id)?.orders;
-  const isAnyOrderClientNotified = ordersStep?.some(
+  const orders = state.find((user) => user.id === client.id)?.orders;
+  const isAnyOrderClientNotified = orders?.some(
     (order) => !order.isClientNotified
   );
 
   const renderBadge = (step) => {
-    const count = ordersStep?.filter((order) => order.step === step).length;
+    const count = orders?.filter((order) => order.step === step).length;
 
     if (count > 0) {
       const stepColor = getStepColor(step);
@@ -111,5 +111,5 @@ export const getClientItemInfo = (state, client) => {
     return { stepBadge: null };
   };
 
-  return { ordersStep, isAnyOrderClientNotified, renderBadge };
+  return { orders, isAnyOrderClientNotified, renderBadge };
 };

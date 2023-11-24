@@ -14,6 +14,7 @@ import { formatDate } from "../../../../../helpers/formatDate";
 const ActionsDropdown = ({
   order,
   step,
+  clientId,
   handleSendToClient,
   isClientNotified,
   lastSentDateToClient,
@@ -30,6 +31,7 @@ const ActionsDropdown = ({
   const performAction = (actionType, newStep) => {
     dispatch(
       actionType({
+        clientId,
         orderId: order.id,
         isClientNotified: false,
         step: newStep,
