@@ -6,8 +6,15 @@ import Item from "../orders/order/Item";
 import NotesEditor from "../../../../shared/NotesEditor";
 import { formatPrice } from "../../../../helpers/prices";
 import Summary from "../orders/order/summary";
+import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
+import { useSelector } from "react-redux";
 
 const Infos = ({ client, orders, handleClientClick }) => {
+  const state = useSelector((state) => state.ordersStep);
+  const { renderBadge } = getClientItemInfo(
+    state,
+    client
+  );
   return (
     <div className="client-details" onClick={(e) => e.stopPropagation()}>
       <h2>
@@ -25,17 +32,21 @@ const Infos = ({ client, orders, handleClientClick }) => {
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
       {client.wishlist && (
-        <ToggleButton
-          initialText="Afficher ses préférences"
-          hiddenText="Fermer ses préférences"
-          buttonClass="account-btn toggle"
-          content={
-            <div className="clientPreferenceDetails">
-              <Details client={client} />
-            </div>
-          }
-        />
+        <div className="wishlist-container">
+
+          <ToggleButton
+            initialText="Afficher les préférences"
+            hiddenText="Fermer les préférences"
+            buttonClass="account-btn toggle"
+            content={
+              <div className="clientPreferenceDetails">
+                <Details client={client} />
+              </div>
+            }
+          />
+        </div>
       )}
+      <hr></hr>
 
       {orders && (
         <>
@@ -43,16 +54,25 @@ const Infos = ({ client, orders, handleClientClick }) => {
             <u>Historique des commandes</u>{" "}
           </h2>
           <p>Total des commandes : {client.totalOrders}</p>
-          <p>
+          <div  className="client-details-orders-info">
             Valeur totale des commandes :{" "}
             <span className="pricing inPricing">
               {" "}
               {formatPrice(client.totalOrderValue)}
             </span>
-          </p>
+            <p className="client-details-orders-badge">
+              {orders &&
+                orders.length > 0 &&
+                [...new Set(orders.map((order) => order.step))].map(
+                  (step) => renderBadge(step).stepBadge
+                )}
+            </p>
+          </div>
+          <div className="orders-container">
+
           <ToggleButton
-            initialText="Afficher ses commandes"
-            hiddenText="Fermer ses commandes"
+            initialText="Afficher les commandes"
+            hiddenText="Fermer les commandes"
             buttonClass="account-btn toggle"
             content={
               <div className="orders">
@@ -81,6 +101,8 @@ const Infos = ({ client, orders, handleClientClick }) => {
               </div>
             }
           />
+          </div>
+          <hr></hr>
         </>
       )}
 

@@ -106,13 +106,15 @@ const Main = ({ product, clientId, orderId }) => {
       )}
       {entryError && <p className="error-message">{entryError}</p>}
       {
-        <ToggleButtonNote
-          productState={productState}
-          clientId={clientId}
-          productId={productId}
-          orderId={orderId}
-          actions={actions}
-        />
+        <div className="product-note-container">
+          <ToggleButtonNote
+            productState={productState}
+            clientId={clientId}
+            productId={productId}
+            orderId={orderId}
+            actions={actions}
+          />
+        </div>
       }
       <Totals productState={productState} productId={productId} />
     </li>

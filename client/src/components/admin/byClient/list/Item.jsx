@@ -5,29 +5,21 @@ import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {
   const state = useSelector((state) => state.ordersStep);
-  const { orders, isAnyOrderClientNotified, renderBadge } = getClientItemInfo(
-    state,
-    client
-  );
+  const { orders, isAnyOrderClientNotified } = getClientItemInfo(state, client);
 
   return (
-    <li
-      className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}
-      onClick={() => handleClientClick(client.id)}
-    >
+    <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
       <div className="client-header">
-        <span>
+        <p
+          className="client-header-clic"
+          onClick={() => handleClientClick(client.id)}
+        >
           {client.firstName} {client.lastName}{" "}
-        </span>
-        {orders &&
-          orders.length > 0 &&
-          [...new Set(orders.map((order) => order.step))].map(
-            (step) => renderBadge(step).stepBadge
+          {isAnyOrderClientNotified && (
+            <span className="notification-bubble-list blink"></span>
           )}
+        </p>
       </div>
-      {isAnyOrderClientNotified && (
-        <div className="notification-bubble-list blink"></div>
-      )}
       {clientDetails[client.id] && (
         <Infos
           client={client}

@@ -22,7 +22,6 @@
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
-    cursor: pointer;
 }
 
 .client-header {
@@ -33,17 +32,14 @@
     transition: background-color 0.3s;
 }
 
-/* .client-header:nth-child(odd) {
-    background-color: #fff;
-} */
+.client-header-clic {
+    position: relative;
+}
 
-/* .client-header:hover {
+.client-header-clic:hover {
     background-color: #e0e0e0;
-} */
-
-.client-header span {
-    flex: 1;
-    /* white-space: nowrap; */
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .client-header button {
@@ -60,24 +56,26 @@
 }
 
 .admin-badge {
-    max-width: 20%;
+    /* max-width: 20%; */
     color: #fff;
     padding: 5px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     border-radius: 5px;
     text-align: center;
+    font-size: 0.75rem;
 }
 
-.notification-bubble-list{
+.notification-bubble-list {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: -15px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: var(--danger);
 }
-.notification-bubble-order  {
+
+.notification-bubble-order {
     position: absolute;
     top: 0;
     right: -10px;
@@ -131,6 +129,23 @@
     color: whitesmoke;
     background-color: var(--secondary);
     cursor: pointer;
+}
+
+.client-details-orders-info {
+    display: flex;
+    align-items: center;
+}
+
+.client-details-orders-badge {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.orders-container,
+.wishlist-container {
+    text-align: center;
+    margin: 20px;
 }
 
 /* ********************* END FICHE CLIENT VIEW ********************* */
@@ -378,3 +393,7 @@
 }
 
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */
+/* ********************* START NOTES PRODUCT  ********************* */
+.product-note-container{
+    margin: 20px;
+}

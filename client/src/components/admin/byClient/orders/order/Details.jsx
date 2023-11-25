@@ -23,13 +23,6 @@ const Details = ({ order, clientId, orderId }) => {
           </span>
         </p>
       ):""}
-
-      <p>
-        <small>
-          {order.paymentMethod["cardType"]} se terminant par :{" "}
-          {order.paymentMethod["last4Digits"]}{" "}
-        </small>
-      </p>
     </>
   );
 };

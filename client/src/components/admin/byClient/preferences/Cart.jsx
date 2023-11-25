@@ -9,11 +9,11 @@ const Cart = ({ productId, productCart }) => {
   return (
     <div className="cartUserViewAdmin">
       <div>
-        <p>Product ID : {getProductProperties(productId, state).id}</p>
-        <p>Name : {getProductProperties(productId, state).name}</p>
-        <p>Material : {productCart.material}</p>
+        <p>Référence : {getProductProperties(productId, state).reference}</p>
+        <p>Nom : {getProductProperties(productId, state).name}</p>
+        <p>Matériau : {productCart.material}</p>
         <p>
-          Price : {formatPrice(getProductProperties(productId, state).pricing.currentPrice) }
+          Prix : {formatPrice(getProductProperties(productId, state).pricing.currentPrice) }
         </p>
       </div>
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
