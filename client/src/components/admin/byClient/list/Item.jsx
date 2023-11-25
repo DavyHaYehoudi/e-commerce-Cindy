@@ -26,7 +26,7 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
           )}
       </div>
       {isAnyOrderClientNotified && (
-        <div className="notification-bubble blink"></div>
+        <div className="notification-bubble-list blink"></div>
       )}
       {clientDetails[client.id] && (
         <Infos

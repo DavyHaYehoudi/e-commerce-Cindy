@@ -12,6 +12,7 @@ const productActionsSlice = createSlice({
         productId,
         orderId,
         updatedProperty,
+        isClientNotified,
         productActionContent,
       } = action.payload;
 
@@ -28,6 +29,7 @@ const productActionsSlice = createSlice({
                       if (updatedProperty === actions.CREDIT) {
                         return {
                           ...product,
+                          isClientNotified,
                           productActions: {
                             ...product.productActions,
                             [updatedProperty]: {
@@ -40,6 +42,7 @@ const productActionsSlice = createSlice({
                       }
                       return {
                         ...product,
+                        isClientNotified,
                         productActions: {
                           ...product.productActions,
                           [updatedProperty]: productActionContent,
@@ -85,9 +88,36 @@ const productActionsSlice = createSlice({
         return user;
       });
     },
+    updateIsClientNotifiedProduct: (state, action) => {
+      const { clientId, orderId } = action.payload;
+
+      return state.map((user) => {
+        if (user.id === clientId) {
+          return {
+            ...user,
+            orders: user.orders.map((order) => {
+              if (order.id === orderId) {
+                return {
+                  ...order,
+                  products: order.products.map((product) => ({
+                    ...product,
+                    isClientNotified: true,
+                  })),
+                };
+              }
+              return order;
+            }),
+          };
+        }
+        return user;
+      });
+    },
   },
 });
 
-export const { updateActionContent, updateTotalsInOut } =
-  productActionsSlice.actions;
+export const {
+  updateActionContent,
+  updateTotalsInOut,
+  updateIsClientNotifiedProduct,
+} = productActionsSlice.actions;
 export default productActionsSlice.reducer;

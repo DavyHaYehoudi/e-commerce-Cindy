@@ -5,6 +5,7 @@ import ToggleButton from "../../../../shared/ToggleButton";
 import Item from "../orders/order/Item";
 import NotesEditor from "../../../../shared/NotesEditor";
 import { formatPrice } from "../../../../helpers/prices";
+import Summary from "../orders/order/summary";
 
 const Infos = ({ client, orders, handleClientClick }) => {
   return (
@@ -56,16 +57,25 @@ const Infos = ({ client, orders, handleClientClick }) => {
             content={
               <div className="orders">
                 {orders.map((order, i) => (
-                  <Item
+                  <Summary
                     key={order.id}
+                    initialText={`commande ${i + 1}`}
+                    hiddenText={`Fermer la commande ${i + 1}`}
+                    buttonClass="account-btn toggle order"
                     clientId={client.id}
-                    order={order}
-                    orderIndex={i}
-                    isClientNotified={order.isClientNotified}
-                    trackingNumberAdmin={order.trackingNumberAdmin}
-                    trackingNumberClient={order.trackingNumberClient}
-                    lastSentDateToClient={order.lastSentDateToClient}
-                    step={order.step}
+                    orderId={order.id}
+                    content={
+                      <Item
+                        clientId={client.id}
+                        order={order}
+                        orderIndex={i}
+                        isClientNotified={order.isClientNotified}
+                        trackingNumberAdmin={order.trackingNumberAdmin}
+                        trackingNumberClient={order.trackingNumberClient}
+                        lastSentDateToClient={order.lastSentDateToClient}
+                        step={order.step}
+                      />
+                    }
                   />
                 ))}
               </div>

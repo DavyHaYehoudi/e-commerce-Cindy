@@ -53,13 +53,14 @@ export const handleConfirmation = (
         movement: "outCancel",
       })
     );
-    dispatch(articleAction({clientId, orderId}));
+    dispatch(articleAction({ clientId, orderId }));
     return dispatch(
       updateActionContent({
         clientId,
         productId,
         orderId,
         updatedProperty: "credit",
+        isClientNotified: false,
         productActionContent: { amount: null, dateExpire: null, code: null },
       })
     );
@@ -71,6 +72,7 @@ export const handleConfirmation = (
         productId,
         orderId,
         updatedProperty: confirmAction,
+        isClientNotified: false,
         productActionContent: null,
       })
     );
@@ -81,7 +83,7 @@ export const handleConfirmation = (
       isConfirmationVisible: false,
     }));
   }
-  dispatch(articleAction({clientId, orderId}));
+  dispatch(articleAction({ clientId, orderId }));
   if (confirmAction === actions.REFUND) {
     dispatch(
       updateTotalsInOut({

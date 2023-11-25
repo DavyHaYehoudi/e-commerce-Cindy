@@ -100,7 +100,6 @@ img {
     color: var(--danger);
 }
 /* ********************* END AFFICHAGE PRIX ********************* */
-/* ********************* END INFO-BULLE TOOLTIP ********************* */
 /* ********************* START CONFIRMATION POPUP ********************* */
 .confirmation-popup button {
     margin: 10px;

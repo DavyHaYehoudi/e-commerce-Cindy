@@ -33,13 +33,13 @@
     transition: background-color 0.3s;
 }
 
-.client-header:nth-child(odd) {
+/* .client-header:nth-child(odd) {
     background-color: #fff;
-}
+} */
 
-.client-header:hover {
+/* .client-header:hover {
     background-color: #e0e0e0;
-}
+} */
 
 .client-header span {
     flex: 1;
@@ -68,10 +68,19 @@
     text-align: center;
 }
 
-.notification-bubble {
+.notification-bubble-list{
     position: absolute;
     top: 5px;
     right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--danger);
+}
+.notification-bubble-order  {
+    position: absolute;
+    top: 0;
+    right: -10px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -110,20 +119,29 @@
     margin-bottom: 10px;
     font-size: 18px;
 }
-.close-client-details{
+
+.close-client-details {
     text-align: end;
 }
-.close-client-details span{
+
+.close-client-details span {
     border: none;
     border-radius: 5px;
     padding: 5px;
     color: whitesmoke;
     background-color: var(--secondary);
     cursor: pointer;
-} 
+}
+
 /* ********************* END FICHE CLIENT VIEW ********************* */
 
 /* ********************* START COMMANDES CLIENT ********************* */
+.account-btn.toggle.order {
+    position: relative;
+    margin: 5px 0;
+    background-color: var(--secondary);
+}
+
 .admin-order-item-header {
     display: flex;
     justify-content: space-between;
@@ -250,9 +268,10 @@
 
 /* ********************* END ADMIN NOTES  ********************* */
 /* ********************* ADD TOTAL SORTIES ********************* */
-.outBloc{
+.outBloc {
     text-align: end;
 }
+
 /* ********************* ENDTOTAL SORTIES ********************* */
 /* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
 #products-container .product-content {
@@ -264,7 +283,7 @@
 #products-container .action-icon {
     font-size: 20px;
     cursor: pointer;
-    text-align:end;
+    text-align: end;
 }
 
 #products-container .actions-list {
@@ -276,10 +295,6 @@
 #products-container .actions-list li {
     cursor: pointer;
     padding: 0 5px;
-}
-
-#products-container .actions-list li:hover {
-    background-color: #ddd;
 }
 
 #products-container .actions-list li.active {

@@ -16,6 +16,7 @@ const Header = ({
         <span>Date de commande : {formatDate(order.date)}</span>
         <OrderStep order={order} />
       </div>
+      
       <ActionsDropdown
         order={order}
         step={step}

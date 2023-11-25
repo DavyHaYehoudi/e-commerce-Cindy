@@ -1,12 +1,14 @@
 import { getStepColor } from "./getStepColor";
 
+// Informations relatives à une commande en particulier
 export const getOrderInfo = (state, clientId, orderId) => {
   const order = state
-  .find((user) => user.id === clientId)
-  ?.orders.find((order) => order.id === orderId)
+    .find((user) => user.id === clientId)
+    ?.orders.find((order) => order.id === orderId);
   return order;
 };
 
+// Toutes les propriétés du modèle produit
 export const getProductProperties = (productId, state) => {
   const product = state.find((product) => product.id === productId);
 
@@ -51,18 +53,29 @@ export const getProductProperties = (productId, state) => {
   return {};
 };
 
+// Informations relatives aux produits, que ce soit sur plusieurs produits d'une même commande ou bien sur un produit en particulier
 export const getProductStateInfo = (state, clientId, orderId, productId) => {
   const productState = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     ?.products.find((prod) => prod.productId === productId)?.productActions;
 
+  const isAnyProductClientNotified = state
+    .find((user) => user.id === clientId)
+    ?.orders.find((order) => order.id === orderId)
+    .products?.some((product) => !product.isClientNotified);
+
   const noteContent = productState?.note;
   const isTagProductExisted =
     productState?.exchange || productState?.refund || productState?.credit;
-
-  return { productState, noteContent, isTagProductExisted };
+  return {
+    productState,
+    noteContent,
+    isTagProductExisted,
+    isAnyProductClientNotified,
+  };
 };
+// Nombre de mêmes articles achetés dans la même commande
 export const getArticleNumberByProduct = (
   state,
   clientId,
@@ -78,6 +91,7 @@ export const getArticleNumberByProduct = (
   return { articleNumber };
 };
 
+// Récupération du contenu des notes
 export const getNotesEditorInfo = (state, clientId, notesPropName) => {
   const user = state.find((user) => user.id === clientId);
   const notes = user?.[notesPropName] || [];
@@ -85,6 +99,7 @@ export const getNotesEditorInfo = (state, clientId, notesPropName) => {
   return { user, notes };
 };
 
+// Informations relatives aux commandes : total par catégorie - client notifié des changements
 export const getClientItemInfo = (state, client) => {
   const orders = state.find((user) => user.id === client.id)?.orders;
   const isAnyOrderClientNotified = orders?.some(

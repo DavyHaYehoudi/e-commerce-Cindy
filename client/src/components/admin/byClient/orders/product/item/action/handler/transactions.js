@@ -73,6 +73,7 @@ export const handleValidateEntry = (
         productId,
         orderId,
         updatedProperty: action,
+        isClientNotified:false,
         productActionContent,
       })
     );

@@ -93,6 +93,7 @@ export const handleConfirmCreditEntry = (
         productId,
         orderId,
         updatedProperty: action,
+        isClientNotified:false,
         productActionContent,
       })
     );
