@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  getArticleNumberByProduct,
+  getProductDetails,
   getProductStateInfo,
 } from "../../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "../ToggleButtonNote";
@@ -21,7 +21,7 @@ const Main = ({ product, clientId, orderId }) => {
     orderId,
     productId
   );
-  const { articleNumber } = getArticleNumberByProduct(
+  const { articleNumber } = getProductDetails(
     productActionsState,
     clientId,
     orderId,

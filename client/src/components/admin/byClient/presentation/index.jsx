@@ -1,8 +1,8 @@
 import React from "react";
 import { MdEmail } from "react-icons/md";
-import Details from "../preferences/Details";
+import Details from "../preferences";
 import ToggleButton from "../../../../shared/ToggleButton";
-import Item from "../orders/order/Item";
+import Item from "../orders/order";
 import NotesEditor from "../../../../shared/NotesEditor";
 import { formatPrice } from "../../../../helpers/prices";
 import Summary from "../orders/order/summary";

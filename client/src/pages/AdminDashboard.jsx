@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import List from "../components/admin/byClient/list/List";
+import List from "../components/admin/byClient/list";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Infos from "../presentation/Infos";
+import Infos from "../presentation";
 import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {

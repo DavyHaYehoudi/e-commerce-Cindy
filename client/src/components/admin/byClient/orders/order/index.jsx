@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { orderStep } from "../../../../../constants/orderStep";
 import Header from "./Header";
 import Details from "./Details";
-import List from "../product/List";
+import List from "../product";
 import TrackingField from "../../../../../shared/TrackingField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   sendToClient,
   trackingNumberAdminChange,
 } from "../../../../../features/admin/orderStepSlice";
+import { getTrackingNumberList } from "../../../../../helpers/storeDataUtils";
+import TrackingFieldMain from "./trackingField";
 
 const Item = ({
   clientId,
@@ -16,19 +18,24 @@ const Item = ({
   orderIndex,
   isClientNotified,
   trackingNumberAdmin,
-  trackingNumberClient,
   lastSentDateToClient,
   step,
 }) => {
-  const dispatch = useDispatch();
   const [isTrackingNumberEdited, setIsTrackingNumberEdited] = useState(false);
   const [sendTrackingNumberDate, setSendTrackingNumberDate] = useState(null);
+  const dispatch = useDispatch();
+  const trackingNumberData = useSelector((state) => state.trackingNumber);
+  const trackingNumberList = getTrackingNumberList(
+    trackingNumberData,
+    clientId,
+    order?.id
+  );
 
   const handleTrackingNumberAdminChange = (event) => {
     setIsTrackingNumberEdited(true);
     dispatch(
       trackingNumberAdminChange({
-        orderId: order.id,
+        orderId: order?.id,
         isClientNotified: false,
         trackingNumberAdmin: event.target.value,
       })
@@ -44,7 +51,7 @@ const Item = ({
     dispatch(
       sendToClient({
         clientId,
-        orderId: order.id,
+        orderId: order?.id,
         isClientNotified: true,
       })
     );
@@ -62,26 +69,21 @@ const Item = ({
         lastSentDateToClient={lastSentDateToClient}
       />
 
-      <Details order={order} clientId={clientId} orderId={order.id} />
-      <List products={order.products} clientId={clientId} orderId={order.id} />
-      {order.step !== orderStep[0].name && order.step !== orderStep[1].name && (
-        <TrackingField
-          trackingNumber={trackingNumberAdmin}
-          handleTrackingNumberChange={handleTrackingNumberAdminChange}
-          sendTrackingNumberDate={sendTrackingNumberDate}
-          isAdmin={true}
-        />
-      )}
-      {(order.step === orderStep[3].name ||
-        order.step === orderStep[4].name ||
-        order.step === orderStep[5].name) && (
-        <p>
-          <span style={{ paddingLeft: "10px" }}>
-            № DE SUIVI DU RETOUR CLIENT :
-          </span>{" "}
-          {trackingNumberClient}
-        </p>
-      )}
+      <Details order={order} clientId={clientId} orderId={order?.id} />
+      <List
+        products={order?.products}
+        clientId={clientId}
+        orderId={order?.id}
+      />
+      <TrackingFieldMain
+        trackingNumberList={trackingNumberList}
+        products={order?.products}
+        clientId={clientId}
+        orderId={order.id}
+        trackingNumberAdmin={trackingNumberAdmin}
+        handleTrackingNumberAdminChange={handleTrackingNumberAdminChange}
+        sendTrackingNumberDate={sendTrackingNumberDate}
+      />
     </div>
   );
 };

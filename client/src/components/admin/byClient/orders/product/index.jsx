@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "./item/Main";
+import Main from "./item";
 
 const List = ({ products, clientId, orderId }) => (
   <ul id="products-container">

@@ -8,7 +8,7 @@ export const getOrderInfo = (state, clientId, orderId) => {
   return order;
 };
 
-// Toutes les propriétés du modèle produit
+// Toutes les propriétés du modèle produit en général
 export const getProductProperties = (productId, state) => {
   const product = state.find((product) => product.id === productId);
 
@@ -52,8 +52,8 @@ export const getProductProperties = (productId, state) => {
 
   return {};
 };
-
-// Informations relatives aux produits, que ce soit sur plusieurs produits d'une même commande ou bien sur un produit en particulier
+// ************* Informations sur les caractéristiques du produit : matériau, les actions en cas de retour, quantité d'articles *************
+// productActions
 export const getProductStateInfo = (state, clientId, orderId, productId) => {
   const productState = state
     .find((user) => user.id === clientId)
@@ -75,20 +75,16 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
     isAnyProductClientNotified,
   };
 };
-// Nombre de mêmes articles achetés dans la même commande
-export const getArticleNumberByProduct = (
-  state,
-  clientId,
-  orderId,
-  productId
-) => {
+// Nombre d'articles et matériau
+export const getProductDetails = (state, clientId, orderId, productId) => {
   const productState = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     ?.products.find((prod) => prod.productId === productId);
 
   const articleNumber = parseInt(productState?.quantity);
-  return { articleNumber };
+  const material = productState?.material;
+  return { articleNumber, material };
 };
 
 // Récupération du contenu des notes
@@ -127,4 +123,11 @@ export const getClientItemInfo = (state, client) => {
   };
 
   return { orders, isAnyOrderClientNotified, renderBadge };
+};
+// Récupération des numéros de suivi par commande
+export const getTrackingNumberList = (state, clientId, orderId) => {
+  const trackingNumberList = state
+    .find((user) => user.id === clientId)
+    ?.orders?.find((order) => order.id === orderId)?.trackingNumber;
+  return trackingNumberList;
 };
