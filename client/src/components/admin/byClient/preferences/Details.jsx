@@ -6,24 +6,30 @@ const Details = ({ client }) => {
   return (
     <div>
       <div>
-        Sa liste de favoris 😉 :{" "}
-        {client.wishlist.map((item) => (
+        <p>
+          <u>Sa liste de favoris</u> 😉 :{" "}
+        </p>
+
+        {client?.wishlist?.map((item) => (
           <Wishlist
             key={item.productId}
             productId={item.productId}
             productCart={item}
           />
-        ))}
+        )) || <p>La liste des favoris est vide</p>}
       </div>
       <div>
-        Son panier 🤫 :{" "}
-        {client.cart.map((item) => (
+        <p>
+          <u>Son panier</u> 🤫 :{" "}
+        </p>
+
+        {client?.cart?.map((item) => (
           <Cart
             key={item.productId}
             productId={item.productId}
             productCart={item}
           />
-        ))}
+        )) || <p>Le panier est vide</p>}
       </div>
     </div>
   );

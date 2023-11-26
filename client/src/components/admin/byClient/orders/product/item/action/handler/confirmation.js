@@ -49,7 +49,7 @@ export const handleConfirmation = (
       updateTotalsInOut({
         clientId,
         orderId,
-        amount: productState.credit.amount,
+        amount: productState?.credit?.amount,
         movement: "outCancel",
       })
     );
@@ -89,7 +89,7 @@ export const handleConfirmation = (
       updateTotalsInOut({
         clientId,
         orderId,
-        amount: productState.refund * productPrice,
+        amount: productState?.refund * productPrice,
         movement: "outCancel",
       })
     );

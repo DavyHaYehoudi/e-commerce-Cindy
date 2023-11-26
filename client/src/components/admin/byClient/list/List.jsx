@@ -16,7 +16,7 @@ const List = ({ clients, handleClientClick, clientDetails }) => {
     <div className="client-list">
       <h2>Liste des clients</h2>
       <ul>
-        {currentItems.map((client) => (
+        {currentItems?.map((client) => (
           <Item
             key={client.id}
             client={client}

@@ -31,7 +31,6 @@ const Infos = ({ client, orders, handleClientClick }) => {
       </p>
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
-      {client.wishlist && (
         <div className="wishlist-container">
 
           <ToggleButton
@@ -45,7 +44,6 @@ const Infos = ({ client, orders, handleClientClick }) => {
             }
           />
         </div>
-      )}
       <hr></hr>
 
       {orders && (

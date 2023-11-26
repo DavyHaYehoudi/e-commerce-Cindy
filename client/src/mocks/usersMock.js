@@ -35,6 +35,7 @@ export const usersMock = [
         quantity: 1,
       },
     ],
+    // cart:null,
     orders: [
       {
         id: 1,
@@ -64,6 +65,7 @@ export const usersMock = [
               },
               note: "Desm notes",
             },
+            // productActions:null,
           },
           {
             productId: 2,
@@ -82,6 +84,7 @@ export const usersMock = [
             },
           },
         ],
+        // products:null,
       },
       {
         id: 2,

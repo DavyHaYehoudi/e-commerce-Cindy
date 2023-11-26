@@ -70,13 +70,13 @@ const List = ({
       )}
       <Credit
         interaction={interaction}
-        action={actions.CREDIT}
+        action={actions?.CREDIT}
         actions={actions}
-        label={actions.CREDIT_LABEL}
+        label={actions?.CREDIT_LABEL}
         productState={productState}
         isActionSelected={isAddCredit}
-        inputCreditAmount={creditContent.amount}
-        inputDateValue={creditContent.dateExpire}
+        inputCreditAmount={creditContent?.amount}
+        inputDateValue={creditContent?.dateExpire}
         productActions={productActions}
         placeholderValue="Montant de l'avoir"
         textCancel="ANNULER L'AVOIR"

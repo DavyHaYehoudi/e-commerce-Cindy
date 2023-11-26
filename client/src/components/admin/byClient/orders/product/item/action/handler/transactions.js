@@ -41,8 +41,8 @@ export const handleValidateEntry = (
   e.stopPropagation();
 
   const exchangeValue =
-    productState.exchange ?? productActions.exchangeContent ?? 0;
-  const refundValue = productState.refund ?? productActions.refundContent ?? 0;
+    productState?.exchange ?? productActions?.exchangeContent ?? 0;
+  const refundValue = productState?.refund ?? productActions?.refundContent ?? 0;
 
   const articleLimitNumber = exchangeValue + refundValue;
   const articleAllowedNumber = articleNumber - articleLimitNumber;

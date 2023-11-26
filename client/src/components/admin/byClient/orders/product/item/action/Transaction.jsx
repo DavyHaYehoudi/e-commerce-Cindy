@@ -48,7 +48,7 @@ const Transaction = ({
         )
       }
     >
-      {productState[action] ? textCancel : label}
+      {productState?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>

@@ -42,7 +42,7 @@ const List = ({ orderHistory, filter }) => {
 
           {showOrderItems && (
             <p>
-              Prix total : {order.inTotalAmount} <br /> Moyen de paiement :{" "}
+              Prix total : {order.inTotalAmount ||"Total NC"} <br /> Moyen de paiement :{" "}
               {order.paymentMethod["cardType"]} se terminant par :{" "}
               {order.paymentMethod["last4Digits"]}{" "}
             </p>

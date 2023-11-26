@@ -12,7 +12,7 @@ const Details = ({ order, clientId, orderId }) => {
         Total de la commande :
         <span className="pricing inPricing">
           {" "}
-          {formatPrice(order.inTotalAmount)}
+          {order.inTotalAmount?formatPrice(order.inTotalAmount):"Total NC"}
         </span>
       </p>
       {outTotalAmount &&  outTotalAmount > 0 ?(

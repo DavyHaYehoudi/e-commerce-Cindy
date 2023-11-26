@@ -22,7 +22,7 @@ const Header = ({
     productId,
     productsState
   );
-  const { exchange, refund, credit } = productState;
+  const { exchange, refund, credit } = productState ??{} ;
   return (
     <>
      <p className="action-icon" onClick={toggleActions}>
@@ -66,18 +66,18 @@ const Header = ({
           )}
         </li>
         <li
-          className={isTagProductExisted && credit.amount ? "product-tag" : ""}
+          className={isTagProductExisted && credit?.amount ? "product-tag" : ""}
         >
-          {credit.amount && (
+          {credit?.amount && (
             <ul>
               <li>
                 AVOIR :{" "}
                 <span className="pricing outPricing">
-                {" "}  {formatPrice(credit.amount)}
+                {" "}  {formatPrice(credit?.amount)}
                 </span>
               </li>
-              <li> Nᴼ {credit.code} </li>
-              <li>Valable jusqu'au {formatDate(credit.dateExpire)}</li>
+              <li> Nᴼ {credit?.code} </li>
+              <li>Valable jusqu'au {formatDate(credit?.dateExpire)}</li>
             </ul>
           )}
         </li>

@@ -49,7 +49,7 @@ const Credit = ({
         )
       }
     >
-      {productState[action].amount ? textCancel : label}
+      {productState?.[action]?.amount ? textCancel : label}
 
       {isActionSelected && (
         <>

@@ -40,12 +40,12 @@ const Main = ({ product, clientId, orderId }) => {
   const [entryError, setEntryError] = useState(false);
 
   const [productActions, setProductActions] = useState({
-    isAddNote: productState.note,
+    isAddNote: productState?.note,
     isAddCredit: false,
     isAddRefund: false,
     isAddExchange: false,
-    noteContent: productState.note,
-    creditContent: productState.credit,
+    noteContent: productState?.note,
+    creditContent: productState?.credit,
     refundContent: null,
     exchangeContent: null,
   });

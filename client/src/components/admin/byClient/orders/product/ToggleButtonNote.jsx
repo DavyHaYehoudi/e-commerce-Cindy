@@ -20,7 +20,7 @@ const ToggleButtonNote = ({
         <div>
           <textarea
             className="product-note"
-            value={productState.note || ""}
+            value={productState?.note || ""}
             onChange={(e) =>
               handleChangeNoteValue(
                 e,

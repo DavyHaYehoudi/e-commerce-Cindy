@@ -16,7 +16,6 @@
 }
 
 .client-item {
-    position: relative;
     list-style: none;
     margin-bottom: 10px;
     padding: 10px;
@@ -25,8 +24,6 @@
 }
 
 .client-header {
-    display: flex;
-    justify-content: space-around;
     background-color: #f9f9f9;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -34,6 +31,8 @@
 
 .client-header-clic {
     position: relative;
+    text-align: center;
+
 }
 
 .client-header-clic:hover {
@@ -200,6 +199,8 @@
     align-items: center;
     border-top: 1px solid var(--border-color);
     padding: 10px;
+    text-align: initial;
+
 }
 
 .admin-order-item {
@@ -320,6 +321,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-align: initial;
+
 }
 
 #products-container .product-content.open .actions-list {
@@ -373,6 +376,10 @@
     border-radius: 5px;
     margin: 5px;
 }
+#products-container .product-note-container{
+    margin: 20px;
+    text-align: initial;
+}
 
 #trashNoteProduct {
     margin-left: 20px;
@@ -393,7 +400,3 @@
 }
 
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */
-/* ********************* START NOTES PRODUCT  ********************* */
-.product-note-container{
-    margin: 20px;
-}

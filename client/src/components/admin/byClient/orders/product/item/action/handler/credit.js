@@ -13,7 +13,7 @@ export const handleCredit = (
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productState[action].amount) {
+  if (productState[action]?.amount) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,

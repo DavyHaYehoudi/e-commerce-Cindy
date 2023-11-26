@@ -4,7 +4,7 @@ import Main from "./item/Main";
 const List = ({ products, clientId, orderId }) => (
   <ul id="products-container">
     <small>
-      {products.map((product) => (
+      {products?.map((product) => (
         <Main
           key={product.productId}
           product={product}

@@ -58,7 +58,7 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
   const productState = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
-    ?.products.find((prod) => prod.productId === productId)?.productActions;
+    ?.products?.find((prod) => prod.productId === productId)?.productActions;
 
   const isAnyProductClientNotified = state
     .find((user) => user.id === clientId)
