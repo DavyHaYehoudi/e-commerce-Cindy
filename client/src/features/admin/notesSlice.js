@@ -7,27 +7,27 @@ const notesSlice = createSlice({
   initialState: usersMock,
   reducers: {
     addNote: (state, action) => {
-      const { clientId, content } = action.payload;
+      const { clientId, id, content, date } = action.payload;
       const userIndex = state.findIndex((user) => user.id === clientId);
 
       if (userIndex !== -1) {
         state[userIndex] = {
           ...state[userIndex],
           notesAdmin: state[userIndex].notesAdmin
-            ? [...state[userIndex].notesAdmin, content]
-            : [content],
+            ? [...state[userIndex].notesAdmin, { id, content, date }]
+            : [{ id, content, date }],
         };
       }
     },
     deleteNote: (state, action) => {
-      const { clientId, noteIndex } = action.payload;
+      const { clientId, noteId } = action.payload;
       const userIndex = state.findIndex((user) => user.id === clientId);
 
       if (userIndex !== -1 && state[userIndex].notesAdmin) {
         state[userIndex] = {
           ...state[userIndex],
           notesAdmin: state[userIndex].notesAdmin.filter(
-            (_, index) => index !== noteIndex
+            (note) => note.id !== noteId
           ),
         };
       }

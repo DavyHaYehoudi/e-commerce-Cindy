@@ -21,7 +21,7 @@ const TrackingFieldMain = ({
         sendTrackingNumberDate={sendTrackingNumberDate}
         isAdmin={true}
       />
-      {(trackingNumberList ?? []).length > 0 &&
+      {(trackingNumberList ?? []) &&
         trackingNumberList.map((item) =>
           item.isAdmin ? (
             <TrackingFieldAdmin
@@ -36,7 +36,7 @@ const TrackingFieldMain = ({
               isAdmin={true}
             />
           ) : (
-            <TrackingFieldClient trackingNumberListItem={item} />
+            <TrackingFieldClient key={item.id} trackingNumberListItem={item} />
           )
         )}
       <div></div>

@@ -4,6 +4,7 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import TrackingField from "../../../../../shared/TrackingField";
+import Listing from "./trackingField/Listing";
 import { useDispatch, useSelector } from "react-redux";
 import {
   sendToClient,
@@ -75,7 +76,7 @@ const Item = ({
         clientId={clientId}
         orderId={order?.id}
       />
-      <TrackingFieldMain
+      {/* <TrackingFieldMain
         trackingNumberList={trackingNumberList}
         products={order?.products}
         clientId={clientId}
@@ -83,6 +84,11 @@ const Item = ({
         trackingNumberAdmin={trackingNumberAdmin}
         handleTrackingNumberAdminChange={handleTrackingNumberAdminChange}
         sendTrackingNumberDate={sendTrackingNumberDate}
+      /> */}
+      <Listing
+        trackingNumberList={trackingNumberList}
+        clientId={clientId}
+        orderId={order?.id}
       />
     </div>
   );

@@ -4,6 +4,7 @@ import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/formatDate";
 import { addNote, deleteNote } from "../features/admin/notesSlice";
 import { getNotesEditorInfo } from "../helpers/storeDataUtils";
+import { v4 as uuidv4 } from "uuid";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
@@ -17,21 +18,26 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   };
 
   const handleSaveNotes = () => {
+    const noteId = uuidv4();
     const currentDate = new Date();
-    const noteWithDate = `${currentNote.trim()} <span><small>(${formatDate(
-      currentDate
-    )})</small></span>`;
+    // const noteWithDate = `${currentNote.trim()} <span><small>(${formatDate(
+    //   currentDate
+    // )})</small></span>`;
 
     dispatch(
-      addNote({ clientId, content: noteWithDate, propName: notesPropName })
+      addNote({
+        clientId,
+        id: noteId,
+        content: currentNote,
+        propName: notesPropName,
+        date: currentDate,
+      })
     );
     setCurrentNote("");
   };
 
-  const handleDeleteNote = (index) => {
-    dispatch(
-      deleteNote({ clientId, noteIndex: index, propName: notesPropName })
-    );
+  const handleDeleteNote = (noteId) => {
+    dispatch(deleteNote({ clientId, noteId, propName: notesPropName }));
   };
 
   const isNotesEmpty = currentNote.length === 0;
@@ -43,12 +49,14 @@ const NotesEditor = ({ clientId, notesPropName }) => {
       </h2>
 
       <div className="previous-notes">
-        {notes.map((note, index) => (
-          <div key={index} className="previous-note">
-            <p dangerouslySetInnerHTML={{ __html: note }}></p>
+        {notes.map((note) => (
+          <div key={note.id} className="previous-note">
+            <p>
+              {note.content} {" "}<small>{formatDate(note.date)}</small> {" "}
+            </p>
             <button
               className="account-btn icon-trash"
-              onClick={() => handleDeleteNote(index)}
+              onClick={() => handleDeleteNote(note.id)}
               aria-label="Supprimer cette note"
             >
               <TbInputX aria-hidden="true" />{" "}
