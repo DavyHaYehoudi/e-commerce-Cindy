@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import {
   getProductDetails,
   getProductProperties,
+  getProductStateInfo,
 } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 
-const ArticleNumberByProduct = ({
-  trackingNumberListItem,
-  products,
-  clientId,
-  orderId,
-}) => {
+const ArticleNumberByProduct = ({ clientId, orderId }) => {
   const [checkboxStates, setCheckboxStates] = useState({});
   const [inputArticleNumber, setInputArticleNumber] = useState("");
   const productsStore = useSelector((state) => state.products);
@@ -22,45 +18,67 @@ const ArticleNumberByProduct = ({
       [id]: !checkboxStates[id],
     });
   };
+
   const handleChangeInputArticleNumber = (e) => {
     setInputArticleNumber(e.target.value);
   };
 
+  const { productsByOrder } = getProductStateInfo(
+    productActions,
+    clientId,
+    orderId
+  );
+
   return (
     <div>
-    {trackingNumberListItem?.products?.map((productTracking, i) => (
-      <div className="articleNumberByProduct-container" key={i}>
-        <input
-          type="checkbox"
-          id={productTracking.id}
-          checked={checkboxStates[productTracking.id] || false}
-          onChange={() => handleCheckboxChange(productTracking.id)}
-        />
-        <label htmlFor={productTracking.id}>
-          {getProductProperties(productTracking.id, productsStore).name}
-          {products?.map((p, j) => {
-            const details = getProductDetails(productActions, clientId, orderId, p.productId);
-            return (
-              <div key={j}>
-                <span>material: {details.material}</span>
-                <span>articleNumber: {details.articleNumber}</span>
-                {details.articleNumber > 1 && (
+      {productsByOrder?.map((product) => {
+        const details = getProductDetails(
+          productActions,
+          clientId,
+          orderId,
+          product.productId
+        );
+        const properties = getProductProperties(
+          product.productId,
+          productsStore
+        );
+
+        return (
+          <div
+            className="articleNumberByProduct-container"
+            key={product.productId}
+          >
+            <input
+              type="checkbox"
+              id={product.productId}
+              checked={checkboxStates[product.productId] || false}
+              onChange={() => handleCheckboxChange(product.productId)}
+            />
+            <label htmlFor={product.productId}>
+              <div
+                className="articleNumberByProduct-description"
+                key={product.productId}
+              >
+                <span>{properties.name}</span>
+                <span>{details.material}</span>
+                {details.articleNumber > 1 ? (
                   <input
                     type="number"
-                    className="productActionInput"
+                    id="articleNumberInput"
                     value={inputArticleNumber}
                     min="0"
                     onChange={handleChangeInputArticleNumber}
-                    placeholder="Nombre d'articles"
+                    placeholder="Nombre d'articles à définir"
                   />
+                ) : (
+                  <span>1 article</span>
                 )}
               </div>
-            );
-          })}
-        </label>
-      </div>
-    ))}
-  </div>
+            </label>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

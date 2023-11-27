@@ -204,7 +204,7 @@
 .admin-order-item {
     margin-bottom: 20px;
     padding: 10px;
-    border: 2px solid black;
+    border: 2px solid var(--dark);
     background-color: #f9f9f9;
 }
 
@@ -219,37 +219,106 @@
 /* ********************* END PREFERENCES CLIENT  ********************* */
 
 /* ********************* START NUMERO DE SUIVI DE COMMANDE  ********************* */
-/* .trackingFieldMain-Container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-.trackingNumberList{
+.trackingNumberList {
     text-align: initial;
 }
-.trackingNumberAdminItem{
-    border: 1px dotted black;
+.addTrackingNumberBtn{
+    display: inline-block;
+    background-color: var(--dark);
+    color: whitesmoke;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 5px;
     padding: 5px;
-    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
-.articleNumberByProduct-container{
-display: flex;
-gap: 10px;}
-/* .tracking-field {
-    border-top: 1px solid var(--border-color);
-    margin-top: 15px;
-    padding: 10px;
+.addTrackingNumberBtn:hover{
+    transform: translateY(-2px);
+}
+.trackingNumberAdminItem {
+    position: relative;
+    border: 1px dotted var(--success);
+    padding: 5px;
+    margin: 20px;
 }
 
-.tracking-number {
+.trackingNumberValue {
+    border: 1px solid var(--border-color);
+    padding: 5px;
+}
+
+.trackingNumberAdminItem .description span {
+    margin-right: 20px;
+}
+
+.adminTrackingItemTrashConfirm {
+    text-align: center;
+}
+
+.adminTrackingItemTrashConfirm button,
+.AdminTrackingNumberCreate-validate button {
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.adminTrackingItemTrashConfirm .btn-confirm,
+.AdminTrackingNumberCreate-validate .btn-confirm {
+    background-color: var(--success);
+}
+
+.adminTrackingItemTrashConfirm .btn-cancel,
+.AdminTrackingNumberCreate-validate .btn-cancel {
+    background-color: var(--danger);
+}
+
+.account-btn.icon-trash.trackingNumber {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.articleNumberByProduct-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.articleNumberByProduct-description {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.AdminTrackingNumberCreate {
     display: flex;
     gap: 20px;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 3px var(--dark);
 }
 
-.tracking-date {
-    line-height: 0.8;
-} */
+#trackingNumberInput,
+#articleNumberInput {
+    width: 300px;
+    border: 1px solid var(--border-color);
+    padding: 5px;
+}
+
+#trackingNumberInput:focus,
+#articleNumberInput:focus {
+    outline: none;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 3px var(--dark);
+}
 
 /* ********************* END NUMERO DE SUIVI DE COMMANDE  ********************* */
 /* ********************* START ETAT FICHE ICONES  ********************* */
@@ -307,7 +376,7 @@ gap: 10px;}
 /* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
 #products-container .product-content {
     padding: 10px;
-    border: 1px dotted black;
+    border: 1px dotted var(--dark);
     margin: 20px;
 }
 
@@ -361,8 +430,8 @@ gap: 10px;}
 
 .productActionInput:focus {
     outline: none;
-    border: 1px solid black;
-    box-shadow: 0 0 3px black;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 3px var(--dark);
 }
 
 .actions-list button {
@@ -391,7 +460,8 @@ gap: 10px;}
     border-radius: 5px;
     margin: 5px;
 }
-#products-container .product-note-container{
+
+#products-container .product-note-container {
     margin: 20px;
     text-align: initial;
 }

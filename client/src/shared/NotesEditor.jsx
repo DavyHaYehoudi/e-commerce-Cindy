@@ -20,10 +20,6 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   const handleSaveNotes = () => {
     const noteId = uuidv4();
     const currentDate = new Date();
-    // const noteWithDate = `${currentNote.trim()} <span><small>(${formatDate(
-    //   currentDate
-    // )})</small></span>`;
-
     dispatch(
       addNote({
         clientId,

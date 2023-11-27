@@ -6,20 +6,52 @@ const trackingNumberSlice = createSlice({
   initialState: usersMock,
   reducers: {
     addTrackingNumber: (state, action) => {
-        const { clientId, content } = action.payload;
-        const userIndex = state.findIndex((user) => user.id === clientId);
-  
-        if (userIndex !== -1) {
-          state[userIndex] = {
-            ...state[userIndex],
-            notesAdmin: state[userIndex].notesAdmin
-              ? [...state[userIndex].notesAdmin, content]
-              : [content],
-          };
-        }
-      },
+      const { userId, orderId, trackingNumber } = action.payload;
+
+      const updatedState = state.map((user) =>
+        user.id === userId
+          ? {
+              ...user,
+              orders: user.orders.map((order) =>
+                order.id === orderId
+                  ? {
+                      ...order,
+                      trackingNumber: [...order.trackingNumber, trackingNumber],
+                    }
+                  : order
+              ),
+            }
+          : user
+      );
+
+      return updatedState;
+    },
+    deleteTrackingNumber: (state, action) => {
+      const { clientId, orderId, trackingNumberId } = action.payload;
+
+      const updatedState = state.map((user) =>
+        user.id === clientId
+          ? {
+              ...user,
+              orders: user.orders.map((order) =>
+                order.id === orderId
+                  ? {
+                      ...order,
+                      trackingNumber: order.trackingNumber.filter(
+                        (tn) => tn.id !== trackingNumberId
+                      ),
+                    }
+                  : order
+              ),
+            }
+          : user
+      );
+
+      return updatedState;
+    },
   },
 });
 
-export const {addTrackingNumber } = trackingNumberSlice.actions;
+export const { addTrackingNumber, deleteTrackingNumber } =
+  trackingNumberSlice.actions;
 export default trackingNumberSlice.reducer;

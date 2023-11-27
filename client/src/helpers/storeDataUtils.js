@@ -64,15 +64,19 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     .products?.some((product) => !product.isClientNotified);
+  
+  const productsByOrder = state.find((user) => user.id === clientId)
+  ?.orders.find((order) => order.id === orderId)?.products;
 
   const noteContent = productState?.note;
   const isTagProductExisted =
     productState?.exchange || productState?.refund || productState?.credit;
   return {
     productState,
+    isAnyProductClientNotified,
+    productsByOrder,
     noteContent,
     isTagProductExisted,
-    isAnyProductClientNotified,
   };
 };
 // Nombre d'articles et matériau

@@ -24,11 +24,12 @@ const ProductListItem = ({
 
   return (
     <small>
-      <li key={product.id}>
-        <span>{productProperties.name}{" "} </span>
+      <li className="description" key={product.id}>
+        <span>- {productProperties.name} </span>
         <span>{details.material}</span>
         <span>
-        {" "} {details.articleNumber} article{details.articleNumber > 1 ? "s" : ""}
+          {" "}
+          {details.articleNumber} article{details.articleNumber > 1 ? "s" : ""}
         </span>
       </li>
     </small>

@@ -1,47 +1,40 @@
 import React from "react";
-import TrackingField from "../../../../../../shared/TrackingField";
-import TrackingFieldAdmin from "./TrackingFieldAdmin";
-import TrackingFieldClient from "./TrackingFieldClient";
+import { useSelector } from "react-redux";
+import AdminTrackingItem from "./AdminTrackingItem";
+import ClientTrackingItem from "./ClientTrackingItem";
+import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
 
-const TrackingFieldMain = ({
-  trackingNumberList,
-  products,
-  clientId,
-  orderId,
-  trackingNumberAdmin,
-  handleTrackingNumberAdminChange,
-  sendTrackingNumberDate,
-}) => {
+const Listing = ({ trackingNumberList, clientId, orderId }) => {
+  const productsStore = useSelector((state) => state.products);
+  const productActions = useSelector((state) => state.productActions);
+  const handleValidate = () => {};
+  const handleCancel = () => {};
+
   return (
-    <div className="trackingFieldMain-Container">
-      <p>Ajouter un numéro de suivi</p>
-      <TrackingField
-        trackingNumber={trackingNumberAdmin}
-        handleTrackingNumberChange={handleTrackingNumberAdminChange}
-        sendTrackingNumberDate={sendTrackingNumberDate}
-        isAdmin={true}
+    <div className="trackingNumberList">
+      <p  className="addTrackingNumberBtn">Ajouter un numéro de suivi</p>
+      <AdminTrackingNumberCreate
+        clientId={clientId}
+        orderId={orderId}
+        handleValidate={handleValidate}
+        handleCancel={handleCancel}
       />
-      {(trackingNumberList ?? []) &&
-        trackingNumberList.map((item) =>
-          item.isAdmin ? (
-            <TrackingFieldAdmin
-              key={item.id}
-              trackingNumberListItem={item}
-              products={products}
-              clientId={clientId}
-              orderId={orderId}
-              trackingNumber={trackingNumberAdmin}
-              handleTrackingNumberChange={handleTrackingNumberAdminChange}
-              sendTrackingNumberDate={sendTrackingNumberDate}
-              isAdmin={true}
-            />
-          ) : (
-            <TrackingFieldClient key={item.id} trackingNumberListItem={item} />
-          )
-        )}
-      <div></div>
+      {(trackingNumberList ?? []).map((item) =>
+        item.isAdmin ? (
+          <AdminTrackingItem
+            key={item.id}
+            item={item}
+            clientId={clientId}
+            orderId={orderId}
+            productsStore={productsStore}
+            productActions={productActions}
+          />
+        ) : (
+          <ClientTrackingItem key={item.id} item={item} />
+        )
+      )}
     </div>
   );
 };
 
-export default TrackingFieldMain;
+export default Listing;
