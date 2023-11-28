@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   getProductDetails,
   getProductProperties,
@@ -6,21 +6,28 @@ import {
 } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 
-const ArticleNumberByProduct = ({ clientId, orderId }) => {
-  const [checkboxStates, setCheckboxStates] = useState({});
-  const [inputArticleNumber, setInputArticleNumber] = useState("");
+const ArticleNumberByProduct = ({
+  clientId,
+  orderId,
+  setSelectedProducts,
+  articleNumberRefs,
+  checkboxStates,
+  setCheckboxStates,
+}) => {
   const productsStore = useSelector((state) => state.products);
   const productActions = useSelector((state) => state.productActions);
 
-  const handleCheckboxChange = (id) => {
-    setCheckboxStates({
-      ...checkboxStates,
-      [id]: !checkboxStates[id],
-    });
-  };
+  const handleCheckboxChange = (id, productId) => {
+    setCheckboxStates((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
 
-  const handleChangeInputArticleNumber = (e) => {
-    setInputArticleNumber(e.target.value);
+    setSelectedProducts((prev) =>
+      checkboxStates[id]
+        ? prev.filter((prevId) => prevId !== productId)
+        : [...prev, productId]
+    );
   };
 
   const { productsByOrder } = getProductStateInfo(
@@ -52,26 +59,25 @@ const ArticleNumberByProduct = ({ clientId, orderId }) => {
               type="checkbox"
               id={product.productId}
               checked={checkboxStates[product.productId] || false}
-              onChange={() => handleCheckboxChange(product.productId)}
+              onChange={() =>
+                handleCheckboxChange(product.productId, product.productId)
+              }
             />
             <label htmlFor={product.productId}>
-              <div
-                className="articleNumberByProduct-description"
-                key={product.productId}
-              >
+              <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
                 <span>{details.material}</span>
-                {details.articleNumber > 1 ? (
+                {details.articleNumber > 1 && (
                   <input
                     type="number"
                     id="articleNumberInput"
-                    value={inputArticleNumber}
                     min="0"
-                    onChange={handleChangeInputArticleNumber}
+                    max={details.articleNumber}
                     placeholder="Nombre d'articles à définir"
+                    ref={(el) =>
+                      (articleNumberRefs.current[product.productId] = el)
+                    }
                   />
-                ) : (
-                  <span>1 article</span>
                 )}
               </div>
             </label>

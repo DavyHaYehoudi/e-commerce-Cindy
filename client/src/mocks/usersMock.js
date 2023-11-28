@@ -99,7 +99,6 @@ export const usersMock = [
             value: "JNFDNDM987MND*",
             date: "2023-01-15 08:30",
             products: [
-              { id: "sggggggg6666", productId: 1, articlesNumber: 2 },
               { id: "sdfg222uuuhreh", productId: 2, articlesNumber: 1 },
             ],
           },

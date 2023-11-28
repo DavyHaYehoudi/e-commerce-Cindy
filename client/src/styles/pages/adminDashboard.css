@@ -221,26 +221,43 @@
 /* ********************* START NUMERO DE SUIVI DE COMMANDE  ********************* */
 .trackingNumberList {
     text-align: initial;
+    max-width: 800px;
+    margin: auto;
 }
-.addTrackingNumberBtn{
-    display: inline-block;
+
+.addTrackingNumberBtn {
     background-color: var(--dark);
     color: whitesmoke;
     font-size: 0.85rem;
     border: none;
     border-radius: 5px;
     padding: 5px;
+    margin-left: 20px;
     cursor: pointer;
     transition: transform 0.3s;
 }
-.addTrackingNumberBtn:hover{
+
+.addTrackingNumberBtn:hover {
     transform: translateY(-2px);
 }
-.trackingNumberAdminItem {
+
+.trackingNumber {
     position: relative;
-    border: 1px dotted var(--success);
-    padding: 5px;
+    padding: 10px;
     margin: 20px;
+}
+
+.trackingNumberAdminItem {
+    border: 3px solid var(--success);
+}
+
+.trackingNumberClientItem {
+    border: 3px solid var(--info);
+}
+
+.trackingNumberClientItem .header {
+    display: flex;
+    justify-content: space-between;
 }
 
 .trackingNumberValue {
@@ -248,16 +265,19 @@
     padding: 5px;
 }
 
-.trackingNumberAdminItem .description span {
+.trackingNumberAdminItem .description span,
+.trackingNumberClientItem .description span {
     margin-right: 20px;
 }
 
-.adminTrackingItemTrashConfirm {
+.adminTrackingItemTrashConfirm,
+.trackingNumberClientItem-validate {
     text-align: center;
 }
 
 .adminTrackingItemTrashConfirm button,
-.AdminTrackingNumberCreate-validate button {
+.AdminTrackingNumberCreate-validate button,
+.trackingNumberClientItem-validate button {
     margin: 10px;
     border: none;
     border-radius: 5px;
@@ -267,12 +287,14 @@
 }
 
 .adminTrackingItemTrashConfirm .btn-confirm,
-.AdminTrackingNumberCreate-validate .btn-confirm {
+.AdminTrackingNumberCreate-validate .btn-confirm,
+.trackingNumberClientItem-validate .btn-confirm {
     background-color: var(--success);
 }
 
 .adminTrackingItemTrashConfirm .btn-cancel,
-.AdminTrackingNumberCreate-validate .btn-cancel {
+.AdminTrackingNumberCreate-validate .btn-cancel,
+.trackingNumberClientItem-validate .btn-cancel {
     background-color: var(--danger);
 }
 
@@ -291,7 +313,7 @@
 .articleNumberByProduct-description {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .AdminTrackingNumberCreate {
@@ -308,7 +330,7 @@
 
 #trackingNumberInput,
 #articleNumberInput {
-    width: 300px;
+    width: 250px;
     border: 1px solid var(--border-color);
     padding: 5px;
 }

@@ -24,7 +24,7 @@ const AdminTrackingItem = ({
     );
   };
   return (
-    <div className="trackingNumberAdminItem">
+    <div className="trackingNumber trackingNumberAdminItem">
       <div className="header">
         <p>
           <u>Numéro de suivi d'envoi</u>  : <span className="trackingNumberValue" >{item.value}</span> {" "}
