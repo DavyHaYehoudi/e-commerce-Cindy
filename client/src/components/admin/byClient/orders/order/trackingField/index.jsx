@@ -56,19 +56,18 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
           />
         ) : (
           <ClientTrackingItem
-          key={item.id}
-          item={item}
-          clientId={clientId}
-          orderId={orderId}
-          setSelectedProducts={setSelectedProducts}
-          articleNumberRefs={articleNumberRefs}
-          checkboxStates={checkboxStates}
-          setCheckboxStates={setCheckboxStates}
-          error={error}
-          setError={setError}
-          selectedProducts={selectedProducts}
-          dispatch={dispatch}
-          productsStore={productsStore}
+            key={item.id}
+            item={item}
+            clientId={clientId}
+            orderId={orderId}
+            setSelectedProducts={setSelectedProducts}
+            checkboxStates={checkboxStates}
+            setCheckboxStates={setCheckboxStates}
+            error={error}
+            setError={setError}
+            selectedProducts={selectedProducts}
+            dispatch={dispatch}
+            productsStore={productsStore}
             productActions={productActions}
           />
         )

@@ -10,9 +10,10 @@ const ArticleNumberByProduct = ({
   clientId,
   orderId,
   setSelectedProducts,
-  articleNumberRefs,
   checkboxStates,
   setCheckboxStates,
+  articleNumber,
+  setArticleNumber
 }) => {
   const productsStore = useSelector((state) => state.products);
   const productActions = useSelector((state) => state.productActions);
@@ -28,6 +29,12 @@ const ArticleNumberByProduct = ({
         ? prev.filter((prevId) => prevId !== productId)
         : [...prev, productId]
     );
+  };
+  const handleNumberChange = (productId, value) => {
+    setArticleNumber((prev) => ({
+      ...prev,
+      [productId]: value,
+    }));
   };
 
   const { productsByOrder } = getProductStateInfo(
@@ -74,8 +81,9 @@ const ArticleNumberByProduct = ({
                     min="0"
                     max={details.articleNumber}
                     placeholder="Nombre d'articles à définir"
-                    ref={(el) =>
-                      (articleNumberRefs.current[product.productId] = el)
+                    value={articleNumber[product.productId] || ""}
+                    onChange={(e) =>
+                      handleNumberChange(product.productId, e.target.value)
                     }
                   />
                 )}

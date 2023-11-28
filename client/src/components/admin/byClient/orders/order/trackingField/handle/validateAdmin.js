@@ -1,7 +1,7 @@
-import { addAdminTrackingNumber, updatedClientTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
+import { addAdminTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
 import { v4 as uuidv4 } from "uuid";
 
-export const handleValidateAdminTrackingNumber = (
+export const handleValidate = (
   trackingInfo,
   setError,
   selectedProducts,
@@ -66,7 +66,7 @@ export const handleValidateAdminTrackingNumber = (
   });
 };
 
-export const handleCancelAdminTrackingNumber = (
+export const handleCancel = (
   setTrackingInfo,
   setSelectedProducts,
   setError,
@@ -86,45 +86,4 @@ export const handleCancelAdminTrackingNumber = (
   });
 };
 
-export const handleValidateClientTrackingNumber = (
-  item,
-  setError,
-  selectedProducts,
-  articleNumberRefs,
-  dispatch,
-  clientId,
-  orderId,
-  setSelectedProducts,
-  setCheckboxStates
-) => {
-  setError(null);
-  let productsInfo = [];
 
-  selectedProducts.forEach((productId) => {
-    const articlesNumber = articleNumberRefs.current[productId]?.value || 1;
-
-    productsInfo.push({
-      id: uuidv4(),
-      productId,
-      articlesNumber,
-    });
-  });
-  dispatch(
-    updatedClientTrackingNumber({
-      clientId,
-      orderId,
-      trackingNumber: {
-        id:item.id,
-        products: productsInfo,
-      },
-    })
-  );
-  setSelectedProducts([]);
-  setCheckboxStates({});
-  Object.values(articleNumberRefs.current).forEach((ref) => {
-    if (ref) {
-      ref.value = "";
-    }
-  });
-};
-export const handleCancelClientTrackingNumber = () => {};

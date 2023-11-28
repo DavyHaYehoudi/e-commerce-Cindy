@@ -3,9 +3,9 @@ import { formatDate } from "../../../../../../helpers/formatDate";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { MdEdit } from "react-icons/md";
 import {
-  handleCancelClientTrackingNumber,
-  handleValidateClientTrackingNumber,
-} from "./handle/validate";
+  handleCancel,
+  handleValidate,
+} from "./handle/validateClient";
 import ProductListItem from "./ProductListItem";
 
 const ClientTrackingItem = ({
@@ -13,7 +13,6 @@ const ClientTrackingItem = ({
   clientId,
   orderId,
   setSelectedProducts,
-  articleNumberRefs,
   checkboxStates,
   setCheckboxStates,
   error,
@@ -24,9 +23,12 @@ const ClientTrackingItem = ({
   productActions,
 }) => {
   const [isEdited, setIsEdited] = useState(false);
+  const [articleNumber, setArticleNumber] = useState({});
+
   const handleEdition = () => {
     setIsEdited(!isEdited);
   };
+
   return (
     <div className="trackingNumber trackingNumberClientItem" key={item.id}>
       <div className="header">
@@ -50,6 +52,7 @@ const ClientTrackingItem = ({
             product={product}
             clientId={clientId}
             orderId={orderId}
+            articleNumber={product.articlesNumber}
             productsStore={productsStore}
             productActions={productActions}
           />
@@ -61,20 +64,21 @@ const ClientTrackingItem = ({
             clientId={clientId}
             orderId={orderId}
             setSelectedProducts={setSelectedProducts}
-            articleNumberRefs={articleNumberRefs}
             checkboxStates={checkboxStates}
             setCheckboxStates={setCheckboxStates}
+            articleNumber={articleNumber}
+            setArticleNumber={setArticleNumber}
           />
           {error && <p className="error-message">{error}</p>}
           <div className="trackingNumberClientItem-validate">
             <button
               className="btn-confirm"
               onClick={() =>
-                handleValidateClientTrackingNumber(
+                handleValidate(
                   item,
                   setError,
                   selectedProducts,
-                  articleNumberRefs,
+                  articleNumber,
                   dispatch,
                   clientId,
                   orderId,
@@ -88,9 +92,9 @@ const ClientTrackingItem = ({
             <button
               className="btn-cancel"
               onClick={() =>
-                handleCancelClientTrackingNumber(
+                handleCancel(
                   setSelectedProducts,
-                  articleNumberRefs,
+                  articleNumber,
                   setError,
                   setCheckboxStates
                 )

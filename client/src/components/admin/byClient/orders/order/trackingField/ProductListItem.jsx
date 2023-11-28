@@ -8,6 +8,7 @@ const ProductListItem = ({
   product,
   clientId,
   orderId,
+  articleNumber,
   productsStore,
   productActions,
 }) => {
@@ -23,13 +24,13 @@ const ProductListItem = ({
   );
 
   return (
-    <small>
-      <li className="description" key={product.id}>
+    <small key={product.id}>
+      <li className="description">
         <span>- {productProperties.name} </span>
         <span>{details.material}</span>
         <span>
           {" "}
-          {details.articleNumber} article{details.articleNumber > 1 ? "s" : ""}
+          {articleNumber || 1} article{articleNumber > 1 ? "s" : ""}
         </span>
       </li>
     </small>

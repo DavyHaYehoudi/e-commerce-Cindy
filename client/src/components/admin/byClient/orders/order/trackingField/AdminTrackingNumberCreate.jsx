@@ -1,5 +1,5 @@
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
-import { handleCancelAdminTrackingNumber, handleValidateAdminTrackingNumber } from "./handle/validate";
+import { handleCancel, handleValidate } from "./handle/validateAdmin";
 
 const AdminTrackingNumberCreate = ({
   clientId,
@@ -53,7 +53,7 @@ const AdminTrackingNumberCreate = ({
         {error && <p className="error-message">{error}</p>}
         <button
           onClick={() =>
-            handleValidateAdminTrackingNumber(
+            handleValidate(
               trackingInfo,
               setError,
               selectedProducts,
@@ -73,7 +73,7 @@ const AdminTrackingNumberCreate = ({
         </button>
         <button
           onClick={() =>
-            handleCancelAdminTrackingNumber(
+            handleCancel(
               setTrackingInfo,
               setSelectedProducts,
               setError,

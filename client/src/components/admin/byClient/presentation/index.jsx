@@ -11,10 +11,7 @@ import { useSelector } from "react-redux";
 
 const Infos = ({ client, orders, handleClientClick }) => {
   const state = useSelector((state) => state.ordersStep);
-  const { renderBadge } = getClientItemInfo(
-    state,
-    client
-  );
+  const { renderBadge } = getClientItemInfo(state, client);
   return (
     <div className="client-details" onClick={(e) => e.stopPropagation()}>
       <h2>
@@ -31,19 +28,18 @@ const Infos = ({ client, orders, handleClientClick }) => {
       </p>
       <p>Téléphone : {client.phone}</p>
       <p>Adresse : {client.shippingAddress}</p>
-        <div className="wishlist-container">
-
-          <ToggleButton
-            initialText="Afficher les préférences"
-            hiddenText="Fermer les préférences"
-            buttonClass="account-btn toggle"
-            content={
-              <div className="clientPreferenceDetails">
-                <Details client={client} />
-              </div>
-            }
-          />
-        </div>
+      <div className="wishlist-container">
+        <ToggleButton
+          initialText="Afficher les préférences"
+          hiddenText="Fermer les préférences"
+          buttonClass="account-btn toggle"
+          content={
+            <div className="clientPreferenceDetails">
+              <Details client={client} />
+            </div>
+          }
+        />
+      </div>
       <hr></hr>
 
       {orders && (
@@ -52,7 +48,7 @@ const Infos = ({ client, orders, handleClientClick }) => {
             <u>Historique des commandes</u>{" "}
           </h2>
           <p>Total des commandes : {client.totalOrders}</p>
-          <div  className="client-details-orders-info">
+          <div className="client-details-orders-info">
             Valeur totale des commandes :{" "}
             <span className="pricing inPricing">
               {" "}
@@ -67,38 +63,40 @@ const Infos = ({ client, orders, handleClientClick }) => {
             </p>
           </div>
           <div className="orders-container">
-
-          <ToggleButton
-            initialText="Afficher les commandes"
-            hiddenText="Fermer les commandes"
-            buttonClass="account-btn toggle"
-            content={
-              <div className="orders">
-                {orders.map((order, i) => (
-                  <Summary
-                    key={order.id}
-                    initialText={`commande ${i + 1}`}
-                    hiddenText={`Fermer la commande ${i + 1}`}
-                    buttonClass="account-btn toggle order"
-                    clientId={client.id}
-                    orderId={order.id}
-                    content={
-                      <Item
+            <ToggleButton
+              initialText="Afficher les commandes"
+              hiddenText="Fermer les commandes"
+              buttonClass="account-btn toggle"
+              content={
+                <div className="orders">
+                  {orders.map((order, i) => (
+                    
+                      <Summary
+                        key={order.id}
+                        initialText={`commande ${i + 1}`}
+                        hiddenText={`Fermer la commande ${i + 1}`}
+                        buttonClass="account-btn toggle order"
                         clientId={client.id}
-                        order={order}
-                        orderIndex={i}
-                        isClientNotified={order.isClientNotified}
-                        trackingNumberAdmin={order.trackingNumberAdmin}
-                        trackingNumberClient={order.trackingNumberClient}
-                        lastSentDateToClient={order.lastSentDateToClient}
-                        step={order.step}
+                        orderId={order.id}
+                        content={
+                          <Item
+                            clientId={client.id}
+                            order={order}
+                            orderIndex={i}
+                            isClientNotified={order.isClientNotified}
+                            trackingNumberAdmin={order.trackingNumberAdmin}
+                            trackingNumberClient={order.trackingNumberClient}
+                            lastSentDateToClient={order.lastSentDateToClient}
+                            step={order.step}
+                          />
+                        }
                       />
-                    }
-                  />
-                ))}
-              </div>
-            }
-          />
+                      
+                      ))}
+                      {/* <span>{renderBadge(order.step).stepBadge}</span> */}
+                </div>
+              }
+            />
           </div>
           <hr></hr>
         </>
