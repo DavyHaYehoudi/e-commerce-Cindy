@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
@@ -10,14 +10,68 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
   const [checkboxStates, setCheckboxStates] = useState({});
   const [error, setError] = useState(null);
   const [trackingInfo, setTrackingInfo] = useState({
-    number: "",
+    trackingField: "",
     date: "",
+  });
+
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [checking, setChecking] = useState({
+    quantity: false,
+    number: false,
+    date: false,
   });
 
   const dispatch = useDispatch();
   const productsStore = useSelector((state) => state.products);
   const productActions = useSelector((state) => state.productActions);
-  const articleNumberRefs = useRef({});
+
+  const handleCheckQuantity = (inputValues, product) => {
+    let isQuantityValid = true;
+    setError("");
+    Object.entries(inputValues).forEach(([produit, value]) => {
+      const numericValue = parseInt(value, 10);
+      const numericMaxQuantity = product.quantity;
+
+      if (isNaN(numericValue) || numericValue > numericMaxQuantity) {
+        setError(
+          `⚠️ Le nombre maximum d'articles pour cette ligne (${numericMaxQuantity}) a été dépassé !`
+        );
+        isQuantityValid = false;
+      }
+    });
+    setChecking((prev) => ({ ...prev, quantity: isQuantityValid }));
+    updateFormValidation();
+    return isQuantityValid
+  };
+
+  const handleTrackingNumber = (value) => {
+    setError("");
+    if (!value.trim()) {
+      setError("⚠️ Le champ du numéro de suivi ne peut pas être vide.");
+    } else {
+      setChecking((prev) => ({ ...prev, number: true }));
+    }
+    updateFormValidation();
+  };
+  const handleTrackingDate = (value) => {
+    setError("");
+    if (!value) {
+      setError("⚠️ Veuillez choisir une date d'envoi.");
+    } else {
+      setChecking((prev) => ({ ...prev, date: true }));
+    }
+    updateFormValidation();
+  };
+  const updateFormValidation = () => {
+    setChecking((prev) => {
+      const allChecksPassed = Object.values(prev).every((check) => check);
+      setIsFormValid(allChecksPassed);
+      return prev;
+    });
+  };
+  useEffect(() => {
+    updateFormValidation();
+  }, [checking]);
 
   return (
     <div className="trackingNumberList">
@@ -32,20 +86,26 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
           clientId={clientId}
           orderId={orderId}
           trackingInfo={trackingInfo}
-          setTrackingInfo={setTrackingInfo}
-          setSelectedProducts={setSelectedProducts}
-          articleNumberRefs={articleNumberRefs}
+          error={error}
+          isFormValid={isFormValid}
+          dispatch={dispatch}
+          productsStore={productsStore}
+          productActions={productActions}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
-          error={error}
           setError={setError}
           selectedProducts={selectedProducts}
           setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
-          dispatch={dispatch}
+          setTrackingInfo={setTrackingInfo}
+          setSelectedProducts={setSelectedProducts}
+          setChecking={setChecking}
+          handleCheckQuantity={handleCheckQuantity}
+          handleTrackingNumber={handleTrackingNumber}
+          handleTrackingDate={handleTrackingDate}
         />
       )}
       {(trackingNumberList ?? []).map((item) =>
-        item.isAdmin ? (
+        item?.isAdmin ? (
           <AdminTrackingItem
             key={item.id}
             item={item}
@@ -60,15 +120,17 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
             item={item}
             clientId={clientId}
             orderId={orderId}
-            setSelectedProducts={setSelectedProducts}
             checkboxStates={checkboxStates}
-            setCheckboxStates={setCheckboxStates}
             error={error}
-            setError={setError}
             selectedProducts={selectedProducts}
             dispatch={dispatch}
+            isFormValid={isFormValid}
             productsStore={productsStore}
             productActions={productActions}
+            setCheckboxStates={setCheckboxStates}
+            setError={setError}
+            setSelectedProducts={setSelectedProducts}
+            handleCheckQuantity={handleCheckQuantity}
           />
         )
       )}

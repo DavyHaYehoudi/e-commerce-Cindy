@@ -1,47 +1,31 @@
 import { addAdminTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
 import { v4 as uuidv4 } from "uuid";
+import { articlesNumberCheck } from "./articlesNumberCheck";
 
 export const handleValidate = (
   trackingInfo,
   setError,
   selectedProducts,
   setTrackingNumberBoxOpen,
-  articleNumberRefs,
   dispatch,
   clientId,
   orderId,
+  articleNumber,
+  setArticleNumber,
   setTrackingInfo,
   setSelectedProducts,
-  setCheckboxStates
+  setCheckboxStates,
+  setChecking
 ) => {
-  if (!trackingInfo.number.trim()) {
-    setError("⚠️ Le champ du numéro de suivi ne peut pas être vide.");
-    return;
-  }
+  const { productsInfo } = articlesNumberCheck(selectedProducts, articleNumber);
 
-  if (!trackingInfo.date) {
-    setError("⚠️ Veuillez choisir une date d'envoi.");
-    return;
-  }
-  if (selectedProducts.length === 0) {
-    setError("⚠️ Veuillez cocher au moins une case.");
-    return;
-  }
+  // if (selectedProducts.length === 0) {
+  //   setError("⚠️ Veuillez cocher au moins une case.");
+  //   return;
+  // }
   setError(null);
   setTrackingNumberBoxOpen(false);
   const trackingNumberId = uuidv4();
-  let productsInfo = [];
-
-  selectedProducts.forEach((productId) => {
-    const articlesNumber = articleNumberRefs.current[productId]?.value || 1;
-
-    productsInfo.push({
-      id: uuidv4(),
-      productId,
-      articlesNumber,
-    });
-  });
-
   dispatch(
     addAdminTrackingNumber({
       clientId,
@@ -49,21 +33,18 @@ export const handleValidate = (
       trackingNumber: {
         id: trackingNumberId,
         isAdmin: true,
-        value: trackingInfo.number,
+        value: trackingInfo.trackingField,
         date: trackingInfo.date,
         products: productsInfo,
       },
     })
   );
 
-  setTrackingInfo({ number: "", date: "" });
+  setTrackingInfo({ trackingField: "", date: "" });
   setSelectedProducts([]);
   setCheckboxStates({});
-  Object.values(articleNumberRefs.current).forEach((ref) => {
-    if (ref) {
-      ref.value = "";
-    }
-  });
+  setArticleNumber({});
+  setChecking({ quantity: false, number: false, date: false });
 };
 
 export const handleCancel = (
@@ -72,18 +53,14 @@ export const handleCancel = (
   setError,
   setCheckboxStates,
   setTrackingNumberBoxOpen,
-  articleNumberRefs
+  setArticleNumber,
+  setChecking
 ) => {
   setTrackingInfo({ number: "", date: "" });
   setSelectedProducts([]);
   setError(null);
   setCheckboxStates({});
   setTrackingNumberBoxOpen(false);
-  Object.values(articleNumberRefs.current).forEach((ref) => {
-    if (ref) {
-      ref.value = "";
-    }
-  });
+  setArticleNumber({});
+  setChecking({ quantity: false, number: false, date: false });
 };
-
-

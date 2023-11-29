@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { handleCancel, handleValidate } from "./handle/validateAdmin";
 
@@ -5,17 +6,24 @@ const AdminTrackingNumberCreate = ({
   clientId,
   orderId,
   trackingInfo,
+  error,
+  dispatch,
+  checkboxStates,
+  isFormValid,
+  productsStore,
+  productActions,
+  setError,
   setTrackingInfo,
   setSelectedProducts,
-  articleNumberRefs,
-  checkboxStates,
   setCheckboxStates,
-  error,
-  setError,
   selectedProducts,
   setTrackingNumberBoxOpen,
-  dispatch,
+  setChecking,
+  handleCheckQuantity,
+  handleTrackingNumber,
+  handleTrackingDate,
 }) => {
+  const [articleNumber, setArticleNumber] = useState({});
   return (
     <div className="AdminTrackingNumberCreate">
       <div className="trackingNumber-content">
@@ -24,10 +32,11 @@ const AdminTrackingNumberCreate = ({
           type="text"
           id="trackingNumberInput"
           placeholder="Entrer le numéro de suivi"
-          value={trackingInfo.number}
+          value={trackingInfo.trackingField}
           onChange={(e) =>
-            setTrackingInfo({ ...trackingInfo, number: e.target.value })
+            setTrackingInfo({ ...trackingInfo, trackingField: e.target.value })
           }
+          onBlur={(e) => handleTrackingNumber(e.target.value)}
         />
       </div>
       <label htmlFor="trackingNumberInputDate">
@@ -40,14 +49,20 @@ const AdminTrackingNumberCreate = ({
         onChange={(e) =>
           setTrackingInfo({ ...trackingInfo, date: e.target.value })
         }
+        onBlur={(e) => handleTrackingDate(e.target.value)}
       />
       <ArticleNumberByProduct
         clientId={clientId}
         orderId={orderId}
-        setSelectedProducts={setSelectedProducts}
-        articleNumberRefs={articleNumberRefs}
         checkboxStates={checkboxStates}
+        productsStore={productsStore}
+        productActions={productActions}
+        articleNumber={articleNumber}
+        setArticleNumber={setArticleNumber}
+        setSelectedProducts={setSelectedProducts}
         setCheckboxStates={setCheckboxStates}
+        setError={setError}
+        handleCheckQuantity={handleCheckQuantity}
       />
       <div className="AdminTrackingNumberCreate-validate">
         {error && <p className="error-message">{error}</p>}
@@ -58,16 +73,19 @@ const AdminTrackingNumberCreate = ({
               setError,
               selectedProducts,
               setTrackingNumberBoxOpen,
-              articleNumberRefs,
               dispatch,
               clientId,
               orderId,
+              articleNumber,
+              setArticleNumber,
               setTrackingInfo,
               setSelectedProducts,
-              setCheckboxStates
+              setCheckboxStates,
+              setChecking
             )
           }
           className="btn-confirm"
+          disabled={!isFormValid}
         >
           Valider
         </button>
@@ -79,7 +97,8 @@ const AdminTrackingNumberCreate = ({
               setError,
               setCheckboxStates,
               setTrackingNumberBoxOpen,
-              articleNumberRefs
+              setArticleNumber,
+              setChecking
             )
           }
           className="btn-cancel"

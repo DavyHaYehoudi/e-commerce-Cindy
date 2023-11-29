@@ -1,46 +1,58 @@
-import {updatedClientTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
-import { v4 as uuidv4 } from "uuid";
+import { updatedClientTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
+import { articlesNumberCheck } from "./articlesNumberCheck";
 
 export const handleValidate = (
-    item,
-    setError,
-    selectedProducts,
-    articleNumber,
-    dispatch,
-    clientId,
-    orderId,
-    setSelectedProducts,
-    setCheckboxStates
-  ) => {
-    setError(null);
-    let productsInfo = [];
-  
-    selectedProducts.forEach((productId) => {
-        // articleNumber&&(articleNumber[product.productId]||1)
-      const articlesNumber = articleNumber[productId] || 1;
-  
-      productsInfo.push({
-        id: uuidv4(),
-        productId,
-        articlesNumber,
-      });
-    });
-    dispatch(
-      updatedClientTrackingNumber({
-        clientId,
-        orderId,
-        trackingNumber: {
-          id:item.id,
-          products: productsInfo,
-        },
-      })
+  item,
+  setError,
+  selectedProducts,
+  articleNumber,
+  dispatch,
+  clientId,
+  orderId,
+  setSelectedProducts,
+  setCheckboxStates,
+  setArticleNumber,
+  setIsEdited
+) => {
+
+  const { productsInfo, articlesNumberMaxExceed, articlesNumberMax } =
+    articlesNumberCheck(selectedProducts, articleNumber);
+  if (articlesNumberMaxExceed) {
+    setError(
+      `⚠️ Le nombre maximum d'articles (${articlesNumberMax}) a été dépassé !`
     );
-    setSelectedProducts([]);
-    setCheckboxStates({});
-    // Object.values(articleNumberRefs.current).forEach((ref) => {
-    //   if (ref) {
-    //     ref.value = "";
-    //   }
-    // });
-  };
-  export const handleCancel = () => {};
+    return;
+  }
+  if (selectedProducts.length === 0) {
+    setError("⚠️ Veuillez cocher au moins une case.");
+    return;
+  }
+  dispatch(
+    updatedClientTrackingNumber({
+      clientId,
+      orderId,
+      trackingNumber: {
+        id: item.id,
+        products: productsInfo,
+      },
+    })
+  );
+  setError(null);
+  setSelectedProducts([]);
+  setCheckboxStates({});
+  setIsEdited(false);
+  setArticleNumber({});
+};
+export const handleCancel = (
+  setSelectedProducts,
+  setError,
+  setCheckboxStates,
+  setArticleNumber,
+  setIsEdited
+) => {
+  setSelectedProducts([]);
+  setError(null);
+  setCheckboxStates({});
+  setIsEdited(false);
+  setArticleNumber({});
+};

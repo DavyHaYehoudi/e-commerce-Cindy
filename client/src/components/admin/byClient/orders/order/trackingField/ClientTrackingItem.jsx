@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { formatDate } from "../../../../../../helpers/formatDate";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { MdEdit } from "react-icons/md";
-import {
-  handleCancel,
-  handleValidate,
-} from "./handle/validateClient";
+import { handleCancel, handleValidate } from "./handle/validateClient";
 import ProductListItem from "./ProductListItem";
 
 const ClientTrackingItem = ({
   item,
   clientId,
   orderId,
-  setSelectedProducts,
   checkboxStates,
-  setCheckboxStates,
   error,
-  setError,
   selectedProducts,
   dispatch,
+  isFormValid,
   productsStore,
   productActions,
+  setError,
+  setSelectedProducts,
+  setCheckboxStates,
+  handleCheckQuantity,
 }) => {
   const [isEdited, setIsEdited] = useState(false);
   const [articleNumber, setArticleNumber] = useState({});
@@ -63,11 +62,15 @@ const ClientTrackingItem = ({
           <ArticleNumberByProduct
             clientId={clientId}
             orderId={orderId}
-            setSelectedProducts={setSelectedProducts}
-            checkboxStates={checkboxStates}
-            setCheckboxStates={setCheckboxStates}
             articleNumber={articleNumber}
+            checkboxStates={checkboxStates}
+            productsStore={productsStore}
+            productActions={productActions}
+            setCheckboxStates={setCheckboxStates}
+            setSelectedProducts={setSelectedProducts}
             setArticleNumber={setArticleNumber}
+            setError={setError}
+            handleCheckQuantity={handleCheckQuantity}
           />
           {error && <p className="error-message">{error}</p>}
           <div className="trackingNumberClientItem-validate">
@@ -83,9 +86,12 @@ const ClientTrackingItem = ({
                   clientId,
                   orderId,
                   setSelectedProducts,
-                  setCheckboxStates
+                  setCheckboxStates,
+                  setArticleNumber,
+                  setIsEdited
                 )
               }
+              disabled={!isFormValid}
             >
               Valider
             </button>
@@ -94,9 +100,10 @@ const ClientTrackingItem = ({
               onClick={() =>
                 handleCancel(
                   setSelectedProducts,
-                  articleNumber,
                   setError,
-                  setCheckboxStates
+                  setCheckboxStates,
+                  setArticleNumber,
+                  setIsEdited
                 )
               }
             >

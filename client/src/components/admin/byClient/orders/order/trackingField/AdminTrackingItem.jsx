@@ -32,12 +32,13 @@ const AdminTrackingItem = ({
         </p>
       </div>
       <ul className="products">
-        {item.products.map((product) => (
+        {item?.products?.map((product) => (
           <ProductListItem
             key={product.id}
             product={product}
             clientId={clientId}
             orderId={orderId}
+            articleNumber={product.articlesNumber}
             productsStore={productsStore}
             productActions={productActions}
           />
@@ -62,9 +63,10 @@ const AdminTrackingItem = ({
       )}
       <button
         className="account-btn icon-trash trackingNumber"
+        onClick={() => setIsTrashConfirm(true)}
         aria-label="Supprimer ce numéro de suivi"
       >
-        <TbInputX onClick={() => setIsTrashConfirm(true)} aria-hidden="true" />{" "}
+        <TbInputX  aria-hidden="true" />{" "}
       </button>
     </div>
   );

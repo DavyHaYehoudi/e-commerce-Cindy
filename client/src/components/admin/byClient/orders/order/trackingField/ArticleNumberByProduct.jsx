@@ -1,23 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  getProductDetails,
   getProductProperties,
   getProductStateInfo,
 } from "../../../../../../helpers/storeDataUtils";
-import { useSelector } from "react-redux";
 
 const ArticleNumberByProduct = ({
   clientId,
   orderId,
-  setSelectedProducts,
   checkboxStates,
-  setCheckboxStates,
   articleNumber,
-  setArticleNumber
+  productsStore,
+  productActions,
+  setCheckboxStates,
+  setSelectedProducts,
+  setArticleNumber,
+  handleCheckQuantity,
 }) => {
-  const productsStore = useSelector((state) => state.products);
-  const productActions = useSelector((state) => state.productActions);
-
+  const [inputValues, setInputValues] = useState({});
   const handleCheckboxChange = (id, productId) => {
     setCheckboxStates((prev) => ({
       ...prev,
@@ -30,8 +29,12 @@ const ArticleNumberByProduct = ({
         : [...prev, productId]
     );
   };
-  const handleNumberChange = (productId, value) => {
+  const handleNumberChange = (productId, value, articlesNumberMax) => {
     setArticleNumber((prev) => ({
+      ...prev,
+      [productId]: { value, articlesNumberMax },
+    }));
+    setInputValues((prev) => ({
       ...prev,
       [productId]: value,
     }));
@@ -46,12 +49,6 @@ const ArticleNumberByProduct = ({
   return (
     <div>
       {productsByOrder?.map((product) => {
-        const details = getProductDetails(
-          productActions,
-          clientId,
-          orderId,
-          product.productId
-        );
         const properties = getProductProperties(
           product.productId,
           productsStore
@@ -73,18 +70,23 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product.productId}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{details.material}</span>
-                {details.articleNumber > 1 && (
+                <span>{product.material}</span>
+                {product.quantity > 1 && (
                   <input
                     type="number"
                     id="articleNumberInput"
                     min="0"
-                    max={details.articleNumber}
+                    max={product.quantity}
                     placeholder="Nombre d'articles à définir"
-                    value={articleNumber[product.productId] || ""}
+                    value={articleNumber[product.productId]?.value ?? ""}
                     onChange={(e) =>
-                      handleNumberChange(product.productId, e.target.value)
+                      handleNumberChange(
+                        product.productId,
+                        e.target.value,
+                        product.quantity
+                      )
                     }
+                    onBlur={() => handleCheckQuantity(inputValues, product)}
                   />
                 )}
               </div>
