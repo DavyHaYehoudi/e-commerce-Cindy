@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   cancelOrder,
@@ -22,7 +22,6 @@ const ActionsDropdown = ({
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const isOrderCancelled = step === orderStep[6].name;
-  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -40,22 +39,8 @@ const ActionsDropdown = ({
     );
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("click", handleClickOutside);
-
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div ref={dropdownRef} className={`dropdown ${isOpen ? "open" : "closed"}`}>
+    <div className={`dropdown ${isOpen ? "open" : "closed"}`}>
       <div className="orderControlContainer">
         {lastSentDateToClient && (
           <p>

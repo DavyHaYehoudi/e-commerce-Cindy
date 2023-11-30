@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatPrice } from "../../../../helpers/prices";
 import { renderBadge } from "./handle/badges";
 import Item from "../orders/order";
@@ -10,6 +10,8 @@ const Orders = ({
   setSelectedOrderId,
   selectedOrderId,
 }) => {
+  const [isOrderOpened, setIsOrderOpened] = useState(false);
+  const [stepSelected, setStepSelected] = useState("");
   return (
     orders && (
       <>
@@ -28,7 +30,9 @@ const Orders = ({
               orders.length > 0 &&
               [...new Set(orders.map((order) => order.step))].map(
                 (step, index) => {
-                    const orderId = orders.find((order) => order.step === step)?.id;
+                  const orderId = orders.find(
+                    (order) => order.step === step
+                  )?.id;
                   const orderIds = orders
                     .filter((order) => order.step === step)
                     .map((order) => order.id);
@@ -42,7 +46,10 @@ const Orders = ({
                           client,
                           setSelectedOrderId,
                           orderIds,
-                          orderId
+                          orderId,
+                          setIsOrderOpened,
+                          stepSelected,
+                          setStepSelected
                         ).stepBadge
                       }
                     </li>
@@ -54,7 +61,7 @@ const Orders = ({
         <div className="orders-container">
           <div className="orders">
             <div className="orders">
-              {selectedOrderId && (
+              {selectedOrderId && isOrderOpened && (
                 <div className="selected-items">
                   {orders
                     .filter((order) => selectedOrderId.includes(order.id))

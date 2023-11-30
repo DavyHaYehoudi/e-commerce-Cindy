@@ -7,7 +7,10 @@ export const renderBadge = (
   client,
   setSelectedOrderId,
   orderIds,
-  orderId
+  orderId,
+  setIsOrderOpened,
+  stepSelected,
+  setStepSelected
 ) => {
   const orders = ordersStore.find((user) => user.id === client.id)?.orders;
   const count = orders?.filter((order) => order.step === step).length;
@@ -18,7 +21,11 @@ export const renderBadge = (
     const style = { backgroundColor: stepColor };
 
     const handleClick = () => {
+      setIsOrderOpened((prevIsOrderOpened) =>
+        step === stepSelected ? !prevIsOrderOpened : true
+      );
       setSelectedOrderId(orderIds);
+      setStepSelected((prevStep) => (prevStep === step ? "" : step));
     };
 
     const isClientNotifiedForThisOrder = getOrderInfo(
