@@ -15,14 +15,20 @@ export const handleValidate = (
   setTrackingInfo,
   setSelectedProducts,
   setCheckboxStates,
-  setChecking
+  setIsFormValid
 ) => {
+  const { trackingField, date } = trackingInfo;
+  if (!trackingField.trim()) {
+    setError("⚠️ Veuillez définir un numéro de suivi.");
+    return;
+  }
+  if (!date) {
+    setError("⚠️ Veuillez choisir une date d'envoi.");
+    return;
+  }
+
   const { productsInfo } = articlesNumberCheck(selectedProducts, articleNumber);
 
-  // if (selectedProducts.length === 0) {
-  //   setError("⚠️ Veuillez cocher au moins une case.");
-  //   return;
-  // }
   setError(null);
   setTrackingNumberBoxOpen(false);
   const trackingNumberId = uuidv4();
@@ -33,8 +39,8 @@ export const handleValidate = (
       trackingNumber: {
         id: trackingNumberId,
         isAdmin: true,
-        value: trackingInfo.trackingField,
-        date: trackingInfo.date,
+        value: trackingField,
+        date: date,
         products: productsInfo,
       },
     })
@@ -44,7 +50,7 @@ export const handleValidate = (
   setSelectedProducts([]);
   setCheckboxStates({});
   setArticleNumber({});
-  setChecking({ quantity: false, number: false, date: false });
+  setIsFormValid(false);
 };
 
 export const handleCancel = (
@@ -54,13 +60,13 @@ export const handleCancel = (
   setCheckboxStates,
   setTrackingNumberBoxOpen,
   setArticleNumber,
-  setChecking
+  setIsFormValid
 ) => {
-  setTrackingInfo({ number: "", date: "" });
+  setTrackingInfo({ trackingField: "", date: "" });
   setSelectedProducts([]);
   setError(null);
   setCheckboxStates({});
   setTrackingNumberBoxOpen(false);
   setArticleNumber({});
-  setChecking({ quantity: false, number: false, date: false });
+  setIsFormValid(false);
 };

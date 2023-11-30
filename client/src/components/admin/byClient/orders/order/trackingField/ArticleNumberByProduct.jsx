@@ -3,6 +3,7 @@ import {
   getProductProperties,
   getProductStateInfo,
 } from "../../../../../../helpers/storeDataUtils";
+import { handleCheckQuantity } from "./handle/articlesNumberCheck";
 
 const ArticleNumberByProduct = ({
   clientId,
@@ -14,9 +15,11 @@ const ArticleNumberByProduct = ({
   setCheckboxStates,
   setSelectedProducts,
   setArticleNumber,
-  handleCheckQuantity,
+  setError,
+  setIsFormValid,
 }) => {
   const [inputValues, setInputValues] = useState({});
+
   const handleCheckboxChange = (id, productId) => {
     setCheckboxStates((prev) => ({
       ...prev,
@@ -86,7 +89,16 @@ const ArticleNumberByProduct = ({
                         product.quantity
                       )
                     }
-                    onBlur={() => handleCheckQuantity(inputValues, product)}
+                    onBlur={() =>
+                      handleCheckQuantity(
+                        inputValues,
+                        productActions,
+                        clientId,
+                        orderId,
+                        setError,
+                        setIsFormValid
+                      )
+                    }
                   />
                 )}
               </div>

@@ -12,17 +12,11 @@ export const handleValidate = (
   setSelectedProducts,
   setCheckboxStates,
   setArticleNumber,
-  setIsEdited
+  setIsEdited,
+  setIsFormValid
 ) => {
+  const { productsInfo } = articlesNumberCheck(selectedProducts, articleNumber);
 
-  const { productsInfo, articlesNumberMaxExceed, articlesNumberMax } =
-    articlesNumberCheck(selectedProducts, articleNumber);
-  if (articlesNumberMaxExceed) {
-    setError(
-      `⚠️ Le nombre maximum d'articles (${articlesNumberMax}) a été dépassé !`
-    );
-    return;
-  }
   if (selectedProducts.length === 0) {
     setError("⚠️ Veuillez cocher au moins une case.");
     return;
@@ -42,17 +36,20 @@ export const handleValidate = (
   setCheckboxStates({});
   setIsEdited(false);
   setArticleNumber({});
+  setIsFormValid(false);
 };
 export const handleCancel = (
   setSelectedProducts,
   setError,
   setCheckboxStates,
   setArticleNumber,
-  setIsEdited
+  setIsEdited,
+  setIsFormValid
 ) => {
   setSelectedProducts([]);
   setError(null);
   setCheckboxStates({});
   setIsEdited(false);
   setArticleNumber({});
+  setIsFormValid(false);
 };

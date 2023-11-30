@@ -1,18 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
+import { getProductDetails } from "../../../../../../../helpers/storeDataUtils";
 export const articlesNumberCheck = (selectedProducts, articleNumber) => {
   let productsInfo = [];
   let articlesNumber;
-  let articlesNumberMax;
-  let articlesNumberMaxExceed = false;
 
   selectedProducts.forEach((productId) => {
     const productData = articleNumber[productId] || {
       value: 0,
-      articlesNumberMax: 1,
     };
 
     articlesNumber = productData.value || 1;
-    articlesNumberMax = productData.articlesNumberMax || 1;
 
     productsInfo.push({
       id: uuidv4(),
@@ -21,9 +18,33 @@ export const articlesNumberCheck = (selectedProducts, articleNumber) => {
     });
   });
 
-  if (articlesNumber > articlesNumberMax) {
-    articlesNumberMaxExceed = true;
-  }
+  return { productsInfo };
+};
+export const handleCheckQuantity = (
+  inputValues,
+  productActions,
+  clientId,
+  orderId,
+  setError,
+  setIsFormValid
+) => {
+  let isQuantityValid = true;
+  setError("");
+  Object.entries(inputValues).forEach(([productId, value]) => {
+    const maxQuantity = getProductDetails(
+      productActions,
+      clientId,
+      orderId,
+      parseInt(productId)
+    ).articleNumber;
+    const numericValue = parseInt(value, 10);
 
-  return { productsInfo, articlesNumberMaxExceed, articlesNumberMax };
+    if (numericValue > maxQuantity) {
+      setError(
+        `⚠️ Le nombre maximum d'articles pour cette ligne (${maxQuantity}) a été dépassé !`
+      );
+      isQuantityValid = false;
+    }
+  });
+  setIsFormValid(isQuantityValid);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
@@ -15,63 +15,11 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
-  const [checking, setChecking] = useState({
-    quantity: false,
-    number: false,
-    date: false,
-  });
+  console.log('isFormValid:', isFormValid)
 
   const dispatch = useDispatch();
   const productsStore = useSelector((state) => state.products);
   const productActions = useSelector((state) => state.productActions);
-
-  const handleCheckQuantity = (inputValues, product) => {
-    let isQuantityValid = true;
-    setError("");
-    Object.entries(inputValues).forEach(([produit, value]) => {
-      const numericValue = parseInt(value, 10);
-      const numericMaxQuantity = product.quantity;
-
-      if (isNaN(numericValue) || numericValue > numericMaxQuantity) {
-        setError(
-          `⚠️ Le nombre maximum d'articles pour cette ligne (${numericMaxQuantity}) a été dépassé !`
-        );
-        isQuantityValid = false;
-      }
-    });
-    setChecking((prev) => ({ ...prev, quantity: isQuantityValid }));
-    updateFormValidation();
-    return isQuantityValid
-  };
-
-  const handleTrackingNumber = (value) => {
-    setError("");
-    if (!value.trim()) {
-      setError("⚠️ Le champ du numéro de suivi ne peut pas être vide.");
-    } else {
-      setChecking((prev) => ({ ...prev, number: true }));
-    }
-    updateFormValidation();
-  };
-  const handleTrackingDate = (value) => {
-    setError("");
-    if (!value) {
-      setError("⚠️ Veuillez choisir une date d'envoi.");
-    } else {
-      setChecking((prev) => ({ ...prev, date: true }));
-    }
-    updateFormValidation();
-  };
-  const updateFormValidation = () => {
-    setChecking((prev) => {
-      const allChecksPassed = Object.values(prev).every((check) => check);
-      setIsFormValid(allChecksPassed);
-      return prev;
-    });
-  };
-  useEffect(() => {
-    updateFormValidation();
-  }, [checking]);
 
   return (
     <div className="trackingNumberList">
@@ -98,10 +46,7 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
           setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
           setTrackingInfo={setTrackingInfo}
           setSelectedProducts={setSelectedProducts}
-          setChecking={setChecking}
-          handleCheckQuantity={handleCheckQuantity}
-          handleTrackingNumber={handleTrackingNumber}
-          handleTrackingDate={handleTrackingDate}
+          setIsFormValid={setIsFormValid}
         />
       )}
       {(trackingNumberList ?? []).map((item) =>
@@ -130,7 +75,7 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
             setCheckboxStates={setCheckboxStates}
             setError={setError}
             setSelectedProducts={setSelectedProducts}
-            handleCheckQuantity={handleCheckQuantity}
+            setIsFormValid={setIsFormValid}
           />
         )
       )}

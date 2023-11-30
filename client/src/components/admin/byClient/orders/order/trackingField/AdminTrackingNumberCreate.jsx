@@ -8,8 +8,8 @@ const AdminTrackingNumberCreate = ({
   trackingInfo,
   error,
   dispatch,
-  checkboxStates,
   isFormValid,
+  checkboxStates,
   productsStore,
   productActions,
   setError,
@@ -18,10 +18,7 @@ const AdminTrackingNumberCreate = ({
   setCheckboxStates,
   selectedProducts,
   setTrackingNumberBoxOpen,
-  setChecking,
-  handleCheckQuantity,
-  handleTrackingNumber,
-  handleTrackingDate,
+  setIsFormValid,
 }) => {
   const [articleNumber, setArticleNumber] = useState({});
   return (
@@ -36,7 +33,6 @@ const AdminTrackingNumberCreate = ({
           onChange={(e) =>
             setTrackingInfo({ ...trackingInfo, trackingField: e.target.value })
           }
-          onBlur={(e) => handleTrackingNumber(e.target.value)}
         />
       </div>
       <label htmlFor="trackingNumberInputDate">
@@ -49,7 +45,6 @@ const AdminTrackingNumberCreate = ({
         onChange={(e) =>
           setTrackingInfo({ ...trackingInfo, date: e.target.value })
         }
-        onBlur={(e) => handleTrackingDate(e.target.value)}
       />
       <ArticleNumberByProduct
         clientId={clientId}
@@ -62,7 +57,7 @@ const AdminTrackingNumberCreate = ({
         setSelectedProducts={setSelectedProducts}
         setCheckboxStates={setCheckboxStates}
         setError={setError}
-        handleCheckQuantity={handleCheckQuantity}
+        setIsFormValid={setIsFormValid}
       />
       <div className="AdminTrackingNumberCreate-validate">
         {error && <p className="error-message">{error}</p>}
@@ -81,11 +76,11 @@ const AdminTrackingNumberCreate = ({
               setTrackingInfo,
               setSelectedProducts,
               setCheckboxStates,
-              setChecking
+              setIsFormValid
             )
           }
-          className="btn-confirm"
           disabled={!isFormValid}
+          className={isFormValid ? "btn-confirm" : "noValid"}
         >
           Valider
         </button>
@@ -98,7 +93,7 @@ const AdminTrackingNumberCreate = ({
               setCheckboxStates,
               setTrackingNumberBoxOpen,
               setArticleNumber,
-              setChecking
+              setIsFormValid
             )
           }
           className="btn-cancel"

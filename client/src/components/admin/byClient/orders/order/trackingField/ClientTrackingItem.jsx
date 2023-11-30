@@ -19,7 +19,7 @@ const ClientTrackingItem = ({
   setError,
   setSelectedProducts,
   setCheckboxStates,
-  handleCheckQuantity,
+  setIsFormValid,
 }) => {
   const [isEdited, setIsEdited] = useState(false);
   const [articleNumber, setArticleNumber] = useState({});
@@ -70,12 +70,12 @@ const ClientTrackingItem = ({
             setSelectedProducts={setSelectedProducts}
             setArticleNumber={setArticleNumber}
             setError={setError}
-            handleCheckQuantity={handleCheckQuantity}
+            setIsFormValid={setIsFormValid}
           />
           {error && <p className="error-message">{error}</p>}
           <div className="trackingNumberClientItem-validate">
             <button
-              className="btn-confirm"
+              className={isFormValid ? "btn-confirm" : "noValid"}
               onClick={() =>
                 handleValidate(
                   item,
@@ -88,7 +88,8 @@ const ClientTrackingItem = ({
                   setSelectedProducts,
                   setCheckboxStates,
                   setArticleNumber,
-                  setIsEdited
+                  setIsEdited,
+                  setIsFormValid
                 )
               }
               disabled={!isFormValid}
@@ -103,7 +104,8 @@ const ClientTrackingItem = ({
                   setError,
                   setCheckboxStates,
                   setArticleNumber,
-                  setIsEdited
+                  setIsEdited,
+                  setIsFormValid
                 )
               }
             >

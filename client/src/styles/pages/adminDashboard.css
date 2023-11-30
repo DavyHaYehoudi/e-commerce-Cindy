@@ -283,19 +283,20 @@
     border-radius: 5px;
     color: whitesmoke;
     padding: 5px;
-    cursor: pointer;
 }
 
 .adminTrackingItemTrashConfirm .btn-confirm,
 .AdminTrackingNumberCreate-validate .btn-confirm,
 .trackingNumberClientItem-validate .btn-confirm {
     background-color: var(--success);
+    cursor: pointer;
 }
 
 .adminTrackingItemTrashConfirm .btn-cancel,
 .AdminTrackingNumberCreate-validate .btn-cancel,
 .trackingNumberClientItem-validate .btn-cancel {
     background-color: var(--danger);
+    cursor: pointer;
 }
 
 .account-btn.icon-trash.trackingNumber {

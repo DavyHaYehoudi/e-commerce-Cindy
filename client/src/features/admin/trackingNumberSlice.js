@@ -51,7 +51,7 @@ const trackingNumberSlice = createSlice({
     },
     updatedClientTrackingNumber: (state, action) => {
       const { clientId, orderId, trackingNumber } = action.payload;
-  
+
       const updatedState = state.map((user) =>
         user.id === clientId
           ? {
@@ -61,7 +61,9 @@ const trackingNumberSlice = createSlice({
                   ? {
                       ...order,
                       trackingNumber: order.trackingNumber.map((tn) =>
-                        tn.id === trackingNumber.id ? { ...tn, ...trackingNumber } : tn
+                        tn.id === trackingNumber.id
+                          ? { ...tn, ...trackingNumber }
+                          : tn
                       ),
                     }
                   : order
@@ -69,7 +71,7 @@ const trackingNumberSlice = createSlice({
             }
           : user
       );
-  
+
       return updatedState;
     },
   },
