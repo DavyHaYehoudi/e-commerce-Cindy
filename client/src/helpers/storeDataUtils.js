@@ -1,5 +1,3 @@
-import { getStepColor } from "./getStepColor";
-
 // Informations relatives à une commande en particulier
 export const getOrderInfo = (state, clientId, orderId) => {
   const order = state
@@ -64,9 +62,10 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     .products?.some((product) => !product.isClientNotified);
-  
-  const productsByOrder = state.find((user) => user.id === clientId)
-  ?.orders.find((order) => order.id === orderId)?.products;
+
+  const productsByOrder = state
+    .find((user) => user.id === clientId)
+    ?.orders.find((order) => order.id === orderId)?.products;
 
   const noteContent = productState?.note;
   const isTagProductExisted =
@@ -105,28 +104,7 @@ export const getClientItemInfo = (state, client) => {
   const isAnyOrderClientNotified = orders?.some(
     (order) => !order.isClientNotified
   );
-
-  const renderBadge = (step) => {
-    const count = orders?.filter((order) => order.step === step).length;
-
-    if (count > 0) {
-      const stepColor = getStepColor(step);
-      const badgeClass = `admin-badge`;
-      const style = { backgroundColor: stepColor };
-
-      return {
-        stepBadge: (
-          <span key={step} className={badgeClass} style={style}>
-            {step} ({count})
-          </span>
-        ),
-      };
-    }
-
-    return { stepBadge: null };
-  };
-
-  return { orders, isAnyOrderClientNotified, renderBadge };
+  return { orders, isAnyOrderClientNotified };
 };
 // Récupération des numéros de suivi par commande
 export const getTrackingNumberList = (state, clientId, orderId) => {

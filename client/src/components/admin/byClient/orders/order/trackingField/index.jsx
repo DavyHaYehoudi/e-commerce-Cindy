@@ -15,7 +15,6 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
-  console.log('isFormValid:', isFormValid)
 
   const dispatch = useDispatch();
   const productsStore = useSelector((state) => state.products);

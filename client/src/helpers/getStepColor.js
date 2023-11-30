@@ -16,7 +16,7 @@ export const getStepColor = (step) => {
     case orderStep[5].name:
       return getComputedStyle(document.documentElement).getPropertyValue('--success');
     case orderStep[6].name:
-      return getComputedStyle(document.documentElement).getPropertyValue('--info');
+      return getComputedStyle(document.documentElement).getPropertyValue('--danger');
     default:
       return getComputedStyle(document.documentElement).getPropertyValue('--dark');
   }

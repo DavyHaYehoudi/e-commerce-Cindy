@@ -3,9 +3,10 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTrackingNumberList } from "../../../../../helpers/storeDataUtils";
 import ToggleButton from "../../../../../shared/ToggleButton";
+import { sendToClient } from "../../../../../features/admin/orderStepSlice";
 
 const Item = ({
   clientId,
@@ -15,12 +16,22 @@ const Item = ({
   lastSentDateToClient,
   step,
 }) => {
+  const dispatch = useDispatch();
   const trackingNumberData = useSelector((state) => state.trackingNumber);
   const trackingNumberList = getTrackingNumberList(
     trackingNumberData,
     clientId,
     order?.id
   );
+  const handleSendToClient = () => {
+    dispatch(
+      sendToClient({
+        clientId,
+        orderId: order?.id,
+        isClientNotified: true,
+      })
+    );
+  };
 
   return (
     <div className="admin-order-item">
@@ -31,6 +42,7 @@ const Item = ({
         step={step}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}
+        handleSendToClient={handleSendToClient}
       />
 
       <Details order={order} clientId={clientId} orderId={order?.id} />
