@@ -1,5 +1,5 @@
 import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
-import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
+import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
@@ -7,7 +7,7 @@ export const handleCredit = (
   setInteraction,
   productState,
   setConfirmation,
-  productActions,
+  productsActions,
   actions,
   setProductActions
 ) => {
@@ -22,7 +22,7 @@ export const handleCredit = (
     // Sinon, c'est pour attribuer une value à la propriété
   } else {
     const updatedProductActions = {
-      ...productActions,
+      ...productsActions,
       isAddCredit: action === actions.CREDIT,
     };
     setProductActions(updatedProductActions);
@@ -52,7 +52,7 @@ export const handleChangeInputCreditDate = (e, setProductActions) => {
 export const handleConfirmCreditEntry = (
   e,
   action,
-  productActions,
+  productsActions,
   setProductActions,
   setEntryError,
   generateRandomCode,
@@ -64,7 +64,7 @@ export const handleConfirmCreditEntry = (
   productPrice
 ) => {
   e.stopPropagation();
-  let { amount, dateExpire } = productActions.creditContent;
+  let { amount, dateExpire } = productsActions.creditContent;
   amount = parseInt(amount);
   const selectedDate = new Date(dateExpire);
   const currentDate = new Date();
@@ -83,8 +83,8 @@ export const handleConfirmCreditEntry = (
   } else if (amount > 0 && validityDate) {
     const code = generateRandomCode();
     const productActionContent = {
-      amount: productActions.creditContent.amount,
-      dateExpire: productActions.creditContent?.dateExpire,
+      amount: productsActions.creditContent.amount,
+      dateExpire: productsActions.creditContent?.dateExpire,
       code,
     };
     dispatch(

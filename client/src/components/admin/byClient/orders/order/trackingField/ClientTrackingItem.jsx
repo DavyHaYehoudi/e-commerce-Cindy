@@ -14,8 +14,8 @@ const ClientTrackingItem = ({
   selectedProducts,
   dispatch,
   isFormValid,
-  productsStore,
-  productActions,
+  productStore,
+  productsActionsStore,
   setError,
   setSelectedProducts,
   setCheckboxStates,
@@ -52,8 +52,8 @@ const ClientTrackingItem = ({
             clientId={clientId}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
+            productsActionsStore={productsActionsStore}
           />
         ))}
       </ul>
@@ -64,8 +64,8 @@ const ClientTrackingItem = ({
             orderId={orderId}
             articleNumber={articleNumber}
             checkboxStates={checkboxStates}
-            productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
+            productsActionsStore={productsActionsStore}
             setCheckboxStates={setCheckboxStates}
             setSelectedProducts={setSelectedProducts}
             setArticleNumber={setArticleNumber}

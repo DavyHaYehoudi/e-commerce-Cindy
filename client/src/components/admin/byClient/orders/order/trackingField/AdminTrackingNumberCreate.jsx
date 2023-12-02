@@ -10,8 +10,8 @@ const AdminTrackingNumberCreate = ({
   dispatch,
   isFormValid,
   checkboxStates,
-  productsStore,
-  productActions,
+  productStore,
+  productsActionsStore,
   setError,
   setTrackingInfo,
   setSelectedProducts,
@@ -50,8 +50,8 @@ const AdminTrackingNumberCreate = ({
         clientId={clientId}
         orderId={orderId}
         checkboxStates={checkboxStates}
-        productsStore={productsStore}
-        productActions={productActions}
+        productStore={productStore}
+        productsActionsStore={productsActionsStore}
         articleNumber={articleNumber}
         setArticleNumber={setArticleNumber}
         setSelectedProducts={setSelectedProducts}

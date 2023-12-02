@@ -1,13 +1,13 @@
 import React from "react";
-import * as actions from "../../../../../../../constants/productActions";
+import * as actions from "../../../../../../../constants/productsActions";
 import Credit from "./Credit";
 import { generateItemTransactionComponent } from "./handler/item";
 
 const List = ({
   interaction,
-  productActions,
+  productsActions,
   productState,
-  productsState,
+  productStore,
   clientId,
   orderId,
   productId,
@@ -24,7 +24,7 @@ const List = ({
     creditContent,
     refundContent,
     exchangeContent,
-  } = productActions;
+  } = productsActions;
 
   return (
     <ul className="actions-list">
@@ -40,8 +40,8 @@ const List = ({
         productId,
         orderId,
         productState,
-        productsState,
-        productActions,
+        productStore,
+        productsActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -60,8 +60,8 @@ const List = ({
         productId,
         orderId,
         productState,
-        productsState,
-        productActions,
+        productStore,
+        productsActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -77,7 +77,7 @@ const List = ({
         isActionSelected={isAddCredit}
         inputCreditAmount={creditContent?.amount}
         inputDateValue={creditContent?.dateExpire}
-        productActions={productActions}
+        productsActions={productsActions}
         placeholderValue="Montant de l'avoir"
         textCancel="ANNULER L'AVOIR"
         clientId={clientId}

@@ -9,12 +9,12 @@ import { getProductProperties } from "../helpers/storeDataUtils";
 const ConfirmationModal = ({
   message,
   confirmation,
-  productActions,
+  productsActions,
   actions,
   clientId,
   productId,
   orderId,
-  productsState,
+  productStore,
   productState,
   setProductActions,
   setConfirmation,
@@ -22,7 +22,7 @@ const ConfirmationModal = ({
   setInteraction,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productId, productsState).pricing
+  const productPrice = getProductProperties(productId, productStore).pricing
     .currentPrice;
   return (
     <div className="confirmation-popup">
@@ -31,7 +31,7 @@ const ConfirmationModal = ({
         onClick={() =>
           handleConfirmation(
             confirmation,
-            productActions,
+            productsActions,
             actions,
             clientId,
             productId,

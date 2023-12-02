@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../features/admin/productActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsActionsSlice";
 import {
   handleCancelEntry,
   handleChangeInputQuantity,
@@ -23,7 +23,7 @@ const Transaction = ({
   productsState,
   isActionSelected,
   inputQuantityValue,
-  productActions,
+  productsActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -41,7 +41,7 @@ const Transaction = ({
           action,
           productState,
           setConfirmation,
-          productActions,
+          productsActions,
           actions,
           setProductActions,
           setInteraction
@@ -72,7 +72,7 @@ const Transaction = ({
                 action,
                 actions,
                 productState,
-                productActions,
+                productsActions,
                 articleNumber,
                 setEntryError,
                 dispatch,

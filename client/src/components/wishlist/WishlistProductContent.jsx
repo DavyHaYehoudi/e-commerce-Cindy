@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getProductProperties } from "../../helpers/storeDataUtils";
 
 const WishlistProductContent = ({ product }) => {
-  const state = useSelector((state) => state.products);
+  const state = useSelector((state) => state.product);
 
   const handleAddToCart = (productId) => {
     console.log(`Ajouter au panier : ${productId}`);

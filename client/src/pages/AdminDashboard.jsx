@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import List from "../components/admin/byClient/list";
 
 const AdminDashboard = () => {
-  const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients);
   const [clientDetails, setClientDetails] = useState({});
+  const dispatch = useDispatch();
+  const clientsStore = useSelector((state) => state.clients);
+  const ordersActionsStore = useSelector((state) => state.ordersActions);
 
   useEffect(() => {
     // charger les clients depuis une API ici
@@ -24,7 +25,8 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <List
-        clients={clients}
+        clientsStore={clientsStore}
+        ordersActionsStore={ordersActionsStore}
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}
       />

@@ -5,7 +5,7 @@ import { getProductProperties } from "../../../../helpers/storeDataUtils";
 import { formatPrice } from "../../../../helpers/prices";
 
 const Wishlist = ({ productId, productCart }) => {
-  const state = useSelector((state) => state.products);
+  const state = useSelector((state) => state.product);
   return (
     <div className="wishlistUserViewAdmin">
       <div>

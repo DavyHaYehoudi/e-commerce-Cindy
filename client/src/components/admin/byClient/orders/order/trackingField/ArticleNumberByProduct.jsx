@@ -10,8 +10,8 @@ const ArticleNumberByProduct = ({
   orderId,
   checkboxStates,
   articleNumber,
-  productsStore,
-  productActions,
+  productStore,
+  productsActionsStore,
   setCheckboxStates,
   setSelectedProducts,
   setArticleNumber,
@@ -31,6 +31,11 @@ const ArticleNumberByProduct = ({
         ? prev.filter((prevId) => prevId !== productId)
         : [...prev, productId]
     );
+    if (!checkboxStates[id] && articleNumber[productId]?.value > 1) {
+      setIsFormValid(false);
+    } else {
+      setIsFormValid(true);
+    }
   };
   const handleNumberChange = (productId, value, articlesNumberMax) => {
     setArticleNumber((prev) => ({
@@ -44,7 +49,7 @@ const ArticleNumberByProduct = ({
   };
 
   const { productsByOrder } = getProductStateInfo(
-    productActions,
+    productsActionsStore,
     clientId,
     orderId
   );
@@ -54,7 +59,7 @@ const ArticleNumberByProduct = ({
       {productsByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productId,
-          productsStore
+          productStore
         );
 
         return (
@@ -92,11 +97,12 @@ const ArticleNumberByProduct = ({
                     onBlur={() =>
                       handleCheckQuantity(
                         inputValues,
-                        productActions,
+                        productsActionsStore,
                         clientId,
                         orderId,
                         setError,
-                        setIsFormValid
+                        setIsFormValid,
+                        checkboxStates
                       )
                     }
                   />

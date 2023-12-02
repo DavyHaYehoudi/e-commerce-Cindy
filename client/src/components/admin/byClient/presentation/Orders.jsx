@@ -6,7 +6,7 @@ import Item from "../orders/order";
 const Orders = ({
   orders,
   client,
-  ordersStore,
+  ordersActionsStore,
   setSelectedOrderId,
   selectedOrderId,
 }) => {
@@ -41,7 +41,7 @@ const Orders = ({
                     <li key={index}>
                       {
                         renderBadge(
-                          ordersStore,
+                          ordersActionsStore,
                           step,
                           client,
                           setSelectedOrderId,

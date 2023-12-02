@@ -1,28 +1,32 @@
 import React from "react";
 import { formatPrice } from "../../../../../helpers/prices";
 import { getOrderInfo } from "../../../../../helpers/storeDataUtils";
-import { useSelector } from "react-redux";
 
-const Details = ({ order, clientId, orderId }) => {
-  const state = useSelector((state) => state.productActions);
-  const { outTotalAmount } = getOrderInfo(state, clientId, orderId);
+const Details = ({ order, clientId, orderId, productsActionsStore }) => {
+  const { outTotalAmount } = getOrderInfo(
+    productsActionsStore,
+    clientId,
+    orderId
+  );
   return (
     <>
       <p>
         Total de la commande :
         <span className="pricing inPricing">
           {" "}
-          {order.inTotalAmount?formatPrice(order.inTotalAmount):"Total NC"}
+          {order.inTotalAmount ? formatPrice(order.inTotalAmount) : "Total NC"}
         </span>
       </p>
-      {outTotalAmount &&  outTotalAmount > 0 ?(
+      {outTotalAmount && outTotalAmount > 0 ? (
         <p>
           Total des sorties :{" "}
           <span className="pricing outPricing">
             {formatPrice(outTotalAmount)}{" "}
           </span>
         </p>
-      ):""}
+      ) : (
+        ""
+      )}
     </>
   );
 };

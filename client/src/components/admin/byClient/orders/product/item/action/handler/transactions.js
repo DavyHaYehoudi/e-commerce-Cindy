@@ -1,5 +1,5 @@
 import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
-import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
+import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
 
 export const handleChangeInputQuantity = (
   e,
@@ -27,7 +27,7 @@ export const handleValidateEntry = (
   action,
   actions,
   productState,
-  productActions,
+  productsActions,
   articleNumber,
   setEntryError,
   dispatch,
@@ -41,8 +41,8 @@ export const handleValidateEntry = (
   e.stopPropagation();
 
   const exchangeValue =
-    productState?.exchange ?? productActions?.exchangeContent ?? 0;
-  const refundValue = productState?.refund ?? productActions?.refundContent ?? 0;
+    productState?.exchange ?? productsActions?.exchangeContent ?? 0;
+  const refundValue = productState?.refund ?? productsActions?.refundContent ?? 0;
 
   const articleLimitNumber = exchangeValue + refundValue;
   const articleAllowedNumber = articleNumber - articleLimitNumber;
@@ -64,9 +64,9 @@ export const handleValidateEntry = (
   const { contentKey, flagKey } = propertyMap[action] || {};
   if (!contentKey || !flagKey) return;
 
-  const productActionContent = productActions[contentKey] || "";
+  const productActionContent = productsActions[contentKey] || "";
 
-  if (productActions[contentKey] > 0 && checkArticleNumber) {
+  if (productsActions[contentKey] > 0 && checkArticleNumber) {
     dispatch(
       updateActionContent({
         clientId,
@@ -82,7 +82,7 @@ export const handleValidateEntry = (
         updateTotalsInOut({
           clientId,
           orderId,
-          amount: productActions.refundContent * productPrice,
+          amount: productsActions.refundContent * productPrice,
           movement: "out",
         })
       );
@@ -90,7 +90,7 @@ export const handleValidateEntry = (
     dispatch(articleAction({clientId, orderId}));
     setEntryError("");
   }
-  if (productActions[contentKey]) {
+  if (productsActions[contentKey]) {
     const dynamicProperties = { [contentKey]: "", [flagKey]: false };
     setProductActions((prevState) => ({
       ...prevState,

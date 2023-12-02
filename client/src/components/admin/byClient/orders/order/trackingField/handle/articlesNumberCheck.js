@@ -22,17 +22,23 @@ export const articlesNumberCheck = (selectedProducts, articleNumber) => {
 };
 export const handleCheckQuantity = (
   inputValues,
-  productActions,
+  productsActionsStore,
   clientId,
   orderId,
   setError,
-  setIsFormValid
+  setIsFormValid,
+  checkboxStates
 ) => {
   let isQuantityValid = true;
   setError("");
+  if (Object.entries(checkboxStates).length === 0) {
+    setError(`⚠️ Veuillez cocher une case`);
+    isQuantityValid = false;
+    return;
+  }
   Object.entries(inputValues).forEach(([productId, value]) => {
     const maxQuantity = getProductDetails(
-      productActions,
+      productsActionsStore,
       clientId,
       orderId,
       parseInt(productId)

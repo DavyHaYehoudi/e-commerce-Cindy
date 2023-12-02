@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../../mocks/usersMock";
-import * as actions from "../../constants/productActions";
+import * as actions from "../../constants/productsActions";
 
-const productActionsSlice = createSlice({
-  name: "productActions",
+const productsActionsSlice = createSlice({
+  name: "productsActions",
   initialState: usersMock,
   reducers: {
     updateActionContent: (state, action) => {
@@ -30,8 +30,8 @@ const productActionsSlice = createSlice({
                         return {
                           ...product,
                           isClientNotified,
-                          productActions: {
-                            ...product.productActions,
+                          productsActions: {
+                            ...product.productsActions,
                             [updatedProperty]: {
                               amount: productActionContent.amount,
                               code: productActionContent.code,
@@ -43,8 +43,8 @@ const productActionsSlice = createSlice({
                       return {
                         ...product,
                         isClientNotified,
-                        productActions: {
-                          ...product.productActions,
+                        productsActions: {
+                          ...product.productsActions,
                           [updatedProperty]: productActionContent,
                         },
                       };
@@ -119,5 +119,5 @@ export const {
   updateActionContent,
   updateTotalsInOut,
   updateIsClientNotifiedProduct,
-} = productActionsSlice.actions;
-export default productActionsSlice.reducer;
+} = productsActionsSlice.actions;
+export default productsActionsSlice.reducer;

@@ -17,9 +17,11 @@ const Item = ({
   step,
 }) => {
   const dispatch = useDispatch();
-  const trackingNumberData = useSelector((state) => state.trackingNumber);
+  const productsActionsStore = useSelector((state) => state.productsActions);
+  const trackingNumberStore = useSelector((state) => state.trackingNumber);
+
   const trackingNumberList = getTrackingNumberList(
-    trackingNumberData,
+    trackingNumberStore,
     clientId,
     order?.id
   );
@@ -45,11 +47,17 @@ const Item = ({
         handleSendToClient={handleSendToClient}
       />
 
-      <Details order={order} clientId={clientId} orderId={order?.id} />
+      <Details
+        order={order}
+        clientId={clientId}
+        orderId={order?.id}
+        productsActionsStore={productsActionsStore}
+      />
       <List
         products={order?.products}
         clientId={clientId}
         orderId={order?.id}
+        productsActionsStore={productsActionsStore}
       />
 
       <ToggleButton
@@ -61,6 +69,7 @@ const Item = ({
             trackingNumberList={trackingNumberList}
             clientId={clientId}
             orderId={order?.id}
+            productsActionsStore={productsActionsStore}
           />
         }
       />

@@ -4,7 +4,12 @@ import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
 import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
 
-const Listing = ({ trackingNumberList, clientId, orderId }) => {
+const Listing = ({
+  trackingNumberList,
+  clientId,
+  orderId,
+  productsActionsStore,
+}) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [checkboxStates, setCheckboxStates] = useState({});
@@ -17,8 +22,7 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const dispatch = useDispatch();
-  const productsStore = useSelector((state) => state.products);
-  const productActions = useSelector((state) => state.productActions);
+  const productStore = useSelector((state) => state.product);
 
   return (
     <div className="trackingNumberList">
@@ -36,8 +40,8 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
           error={error}
           isFormValid={isFormValid}
           dispatch={dispatch}
-          productsStore={productsStore}
-          productActions={productActions}
+          productStore={productStore}
+          productsActionsStore={productsActionsStore}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
           setError={setError}
@@ -55,8 +59,8 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
             item={item}
             clientId={clientId}
             orderId={orderId}
-            productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
+            productsActionsStore={productsActionsStore}
           />
         ) : (
           <ClientTrackingItem
@@ -69,8 +73,8 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
             selectedProducts={selectedProducts}
             dispatch={dispatch}
             isFormValid={isFormValid}
-            productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
+            productsActionsStore={productsActionsStore}
             setCheckboxStates={setCheckboxStates}
             setError={setError}
             setSelectedProducts={setSelectedProducts}

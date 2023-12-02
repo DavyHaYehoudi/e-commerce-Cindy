@@ -6,7 +6,7 @@ import {
   handleConfirmCreditEntry,
   handleCredit,
 } from "./handler/credit";
-import { updateActionContent } from "../../../../../../../features/admin/productActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsActionsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { generateRandomCode } from "../../../../../../../helpers/creditCode";
 import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
@@ -20,7 +20,7 @@ const Credit = ({
   isActionSelected,
   inputCreditAmount,
   inputDateValue,
-  productActions,
+  productsActions,
   placeholderValue,
   textCancel,
   clientId,
@@ -32,7 +32,7 @@ const Credit = ({
   setInteraction,
 }) => {
   const dispatch = useDispatch();
-  const productsState = useSelector((state) => state.products);
+  const productsState = useSelector((state) => state.product);
   const productPrice = getProductProperties(productId,productsState).pricing.currentPrice
   return (
     <li
@@ -43,7 +43,7 @@ const Credit = ({
           setInteraction,
           productState,
           setConfirmation,
-          productActions,
+          productsActions,
           actions,
           setProductActions
         )
@@ -85,7 +85,7 @@ const Credit = ({
               handleConfirmCreditEntry(
                 e,
                 action,
-                productActions,
+                productsActions,
                 setProductActions,
                 setEntryError,
                 generateRandomCode,

@@ -6,8 +6,8 @@ import {
 } from "../../../../../../helpers/prices";
 
 const Totals = ({ productState, productId }) => {
-  const productsState = useSelector((state) => state.products);
-  const productPrice = getProductProperties(productId, productsState).pricing
+  const productStore = useSelector((state) => state.product);
+  const productPrice = getProductProperties(productId, productStore).pricing
     .currentPrice;
   const refundTotal = productState?.refund || 0;
   const creditTotal = productState?.credit?.amount || 0;

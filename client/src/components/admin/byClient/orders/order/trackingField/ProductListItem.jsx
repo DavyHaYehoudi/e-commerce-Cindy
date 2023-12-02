@@ -9,18 +9,18 @@ const ProductListItem = ({
   clientId,
   orderId,
   articleNumber,
-  productsStore,
-  productActions,
+  productStore,
+  productsActionsStore,
 }) => {
   const details = getProductDetails(
-    productActions,
+    productsActionsStore,
     clientId,
     orderId,
     product.productId
   );
   const productProperties = getProductProperties(
     product.productId,
-    productsStore
+    productStore
   );
 
   return (

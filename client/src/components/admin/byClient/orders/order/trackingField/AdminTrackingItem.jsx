@@ -9,8 +9,8 @@ const AdminTrackingItem = ({
   item,
   clientId,
   orderId,
-  productsStore,
-  productActions,
+  productStore,
+  productsActionsStore,
 }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
@@ -39,8 +39,8 @@ const AdminTrackingItem = ({
             clientId={clientId}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
+            productsActionsStore={productsActionsStore}
           />
         ))}
       </ul>

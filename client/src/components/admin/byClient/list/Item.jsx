@@ -1,11 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Infos from "../presentation";
 import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
 
-const Item = ({ client, handleClientClick, clientDetails }) => {
-  const state = useSelector((state) => state.ordersStep);
-  const { orders, isAnyOrderClientNotified } = getClientItemInfo(state, client);
+const Item = ({
+  client,
+  ordersActionsStore,
+  handleClientClick,
+  clientDetails,
+}) => {
+  const { orders, isAnyOrderClientNotified } = getClientItemInfo(
+    ordersActionsStore,
+    client
+  );
 
   return (
     <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
@@ -24,6 +30,7 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
         <Infos
           client={client}
           orders={orders}
+          ordersActionsStore={ordersActionsStore}
           handleClientClick={handleClientClick}
         />
       )}

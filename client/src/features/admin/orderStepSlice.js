@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { usersMock } from "../../mocks/usersMock";
 import { orderStep } from "../../constants/orderStep";
 
-export const ordersStep = [
+export const ordersActions = [
   { id: 0, name: orderStep[0].name },
   { id: 1, name: orderStep[1].name },
   { id: 2, name: orderStep[2].name },
@@ -37,9 +37,9 @@ const updateMoveToNextStep = (
   order,
   { step, isClientNotified, isNextStepOrder }
 ) => {
-  const currentStepIndex = ordersStep.findIndex((s) => s.name === order.step);
-  const nextStepIndex = (currentStepIndex + 1) % ordersStep.length;
-  const nextStep = isNextStepOrder ? ordersStep[nextStepIndex].name : step;
+  const currentStepIndex = ordersActions.findIndex((s) => s.name === order.step);
+  const nextStepIndex = (currentStepIndex + 1) % ordersActions.length;
+  const nextStep = isNextStepOrder ? ordersActions[nextStepIndex].name : step;
 
   return {
     ...order,

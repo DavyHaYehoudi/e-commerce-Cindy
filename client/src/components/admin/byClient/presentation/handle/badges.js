@@ -2,7 +2,7 @@ import { getStepColor } from "../../../../../helpers/getStepColor";
 import { getOrderInfo } from "../../../../../helpers/storeDataUtils";
 
 export const renderBadge = (
-  ordersStore,
+  ordersActionsStore,
   step,
   client,
   setSelectedOrderId,
@@ -12,7 +12,7 @@ export const renderBadge = (
   stepSelected,
   setStepSelected
 ) => {
-  const orders = ordersStore.find((user) => user.id === client.id)?.orders;
+  const orders = ordersActionsStore.find((user) => user.id === client.id)?.orders;
   const count = orders?.filter((order) => order.step === step).length;
 
   if (count > 0) {
@@ -29,7 +29,7 @@ export const renderBadge = (
     };
 
     const isClientNotifiedForThisOrder = getOrderInfo(
-      ordersStore,
+      ordersActionsStore,
       client.id,
       orderId
     ).isClientNotified;

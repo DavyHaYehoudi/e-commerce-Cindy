@@ -7,22 +7,22 @@ import ToggleButtonNote from "../ToggleButtonNote";
 import ConfirmationModal from "../../../../../../shared/confirmationModal";
 import Header from "./Header";
 import List from "./action/List";
-import * as actions from "../../../../../../constants/productActions";
+import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
 
-const Main = ({ product, clientId, orderId }) => {
+const Main = ({ product, clientId, orderId, productsActionsStore }) => {
   const { productId, material, quantity } = product;
-  const productsState = useSelector((state) => state.products);
-  const productActionsState = useSelector((state) => state.productActions);
+  const productStore = useSelector((state) => state.product);
+
   const { productState, isTagProductExisted } = getProductStateInfo(
-    productActionsState,
+    productsActionsStore,
     clientId,
     orderId,
     productId
   );
   const { articleNumber } = getProductDetails(
-    productActionsState,
+    productsActionsStore,
     clientId,
     orderId,
     productId
@@ -39,7 +39,7 @@ const Main = ({ product, clientId, orderId }) => {
   const { isConfirmationVisible } = confirmation;
   const [entryError, setEntryError] = useState(false);
 
-  const [productActions, setProductActions] = useState({
+  const [productsActions, setProductActions] = useState({
     isAddNote: productState?.note,
     isAddCredit: false,
     isAddRefund: false,
@@ -68,15 +68,15 @@ const Main = ({ product, clientId, orderId }) => {
         productId={productId}
         isTagProductExisted={isTagProductExisted}
         productState={productState}
-        productsState={productsState}
+        productStore={productStore}
         toggleActions={toggleActions}
       />
       {interaction.isActionsOpen && (
         <List
           interaction={interaction}
-          productActions={productActions}
+          productsActions={productsActions}
           productState={productState}
-          productsState={productsState}
+          productStore={productStore}
           clientId={clientId}
           orderId={orderId}
           productId={productId}
@@ -91,12 +91,12 @@ const Main = ({ product, clientId, orderId }) => {
         <ConfirmationModal
           message="⚠️ Cette action entraîne une suppression définitive !"
           confirmation={confirmation}
-          productActions={productActions}
+          productsActions={productsActions}
           actions={actions}
           clientId={clientId}
           productId={productId}
           orderId={orderId}
-          productsState={productsState}
+          productStore={productStore}
           productState={productState}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}

@@ -1,7 +1,7 @@
 import React from "react";
 import Main from "./item";
 
-const List = ({ products, clientId, orderId }) => (
+const List = ({ products, clientId, orderId, productsActionsStore }) => (
   <ul id="products-container">
     <small>
       {products?.map((product) => (
@@ -10,6 +10,7 @@ const List = ({ products, clientId, orderId }) => (
           product={product}
           clientId={clientId}
           orderId={orderId}
+          productsActionsStore={productsActionsStore}
         />
       ))}
     </small>

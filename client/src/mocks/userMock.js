@@ -44,7 +44,7 @@ export const userMock = {
           productId: 4,
           quantity: 2,
           material: materials[1].name,
-          productActions: {
+          productsActions: {
             exchange: null,
             refund: 2,
             credit: {
@@ -68,7 +68,7 @@ export const userMock = {
           productId: 14,
           quantity: 1,
           material: materials[0].name,
-          productActions: {
+          productsActions: {
             exchange: 1,
             refund: null,
             credit: {
@@ -92,7 +92,7 @@ export const userMock = {
           productId: 16,
           quantity: 1,
           material: materials[3].name,
-          productActions: {
+          productsActions: {
             exchange: null,
             refund: 1,
             credit: {
@@ -106,7 +106,7 @@ export const userMock = {
           productId: 9,
           quantity: 1,
           material: materials[2].name,
-          productActions: {
+          productsActions: {
             exchange: null,
             refund: null,
             credit: {

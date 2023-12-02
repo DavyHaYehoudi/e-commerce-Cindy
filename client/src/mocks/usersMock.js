@@ -128,7 +128,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: 1,
               refund: null,
               credit: {
@@ -138,14 +138,14 @@ export const usersMock = [
               },
               note: "Desm notes",
             },
-            // productActions:null,
+            // productsActions:null,
           },
           {
             productId: 2,
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -168,7 +168,6 @@ export const usersMock = [
         outTotalAmount: null,
         paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
         trackingNumber: [],
-        isReturnending: false,
         isClientNotified: true,
         lastSentDateToClient: null,
         products: [
@@ -177,7 +176,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -207,7 +206,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -274,7 +273,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -290,7 +289,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -379,7 +378,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -395,7 +394,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -411,7 +410,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -476,7 +475,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -506,7 +505,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -522,7 +521,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -538,7 +537,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -554,7 +553,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -620,7 +619,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -636,7 +635,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -666,7 +665,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -682,7 +681,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -698,7 +697,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -763,7 +762,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -793,7 +792,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -809,7 +808,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -825,7 +824,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -841,7 +840,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -871,7 +870,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -936,7 +935,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1001,7 +1000,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1031,7 +1030,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1061,7 +1060,7 @@ export const usersMock = [
             quantity: 4,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1091,7 +1090,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1107,7 +1106,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1172,7 +1171,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1202,7 +1201,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1267,7 +1266,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1283,7 +1282,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1313,7 +1312,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1343,7 +1342,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1359,7 +1358,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1424,7 +1423,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1454,7 +1453,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1519,7 +1518,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1535,7 +1534,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1565,7 +1564,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1630,7 +1629,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1646,7 +1645,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1711,7 +1710,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1727,7 +1726,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1757,7 +1756,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1822,7 +1821,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[3].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1852,7 +1851,7 @@ export const usersMock = [
             quantity: 3,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1917,7 +1916,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[0].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1933,7 +1932,7 @@ export const usersMock = [
             quantity: 1,
             material: materials[1].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {
@@ -1963,7 +1962,7 @@ export const usersMock = [
             quantity: 2,
             material: materials[2].name,
             isClientNotified: true,
-            productActions: {
+            productsActions: {
               exchange: null,
               refund: null,
               credit: {

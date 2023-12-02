@@ -13,7 +13,7 @@ export const generateItemTransactionComponent = (
   orderId,
   productState,
   productsState,
-  productActions,
+  productsActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -35,7 +35,7 @@ export const generateItemTransactionComponent = (
       productsState={productsState}
       isActionSelected={isActionSelected}
       inputQuantityValue={inputQuantityValue}
-      productActions={productActions}
+      productsActions={productsActions}
       articleNumber={articleNumber}
       setEntryError={setEntryError}
       handleActionClick={handleActionClick}
@@ -50,7 +50,7 @@ export const handleActionClick = (
   action,
   productState,
   setConfirmation,
-  productActions,
+  productsActions,
   actions,
   setProductActions,
   setInteraction
@@ -66,7 +66,7 @@ export const handleActionClick = (
     // Sinon, c'est pour attribuer une value à la propriété
   } else {
     const updatedProductActions = {
-      ...productActions,
+      ...productsActions,
       isAddCredit: action === actions.CREDIT,
       isAddRefund: action === actions.REFUND,
       isAddExchange: action === actions.EXCHANGE,

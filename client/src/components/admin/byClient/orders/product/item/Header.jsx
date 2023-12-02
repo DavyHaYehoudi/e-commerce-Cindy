@@ -15,12 +15,12 @@ const Header = ({
   productId,
   isTagProductExisted,
   productState,
-  productsState,
+  productStore,
   toggleActions,
 }) => {
   const { reference, name, pricing, image } = getProductProperties(
     productId,
-    productsState
+    productStore
   );
   const { exchange, refund, credit } = productState ??{} ;
   return (

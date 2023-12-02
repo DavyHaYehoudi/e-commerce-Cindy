@@ -51,12 +51,12 @@ export const getProductProperties = (productId, state) => {
   return {};
 };
 // ************* Informations sur les caractéristiques du produit : matériau, les actions en cas de retour, quantité d'articles *************
-// productActions
+// productsActions
 export const getProductStateInfo = (state, clientId, orderId, productId) => {
   const productState = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
-    ?.products?.find((prod) => prod.productId === productId)?.productActions;
+    ?.products?.find((prod) => prod.productId === productId)?.productsActions;
 
   const isAnyProductClientNotified = state
     .find((user) => user.id === clientId)

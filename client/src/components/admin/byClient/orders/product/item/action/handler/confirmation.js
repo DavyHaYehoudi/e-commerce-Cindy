@@ -2,12 +2,12 @@ import { articleAction } from "../../../../../../../../features/admin/orderStepS
 import {
   updateActionContent,
   updateTotalsInOut,
-} from "../../../../../../../../features/admin/productActionsSlice";
+} from "../../../../../../../../features/admin/productsActionsSlice";
 
 // Confirmation d'une annulation de champ
 export const handleConfirmation = (
   confirmation,
-  productActions,
+  productsActions,
   actions,
   clientId,
   productId,
@@ -23,7 +23,7 @@ export const handleConfirmation = (
   const updateProductActions = (confirmAction) => {
     const dynamicProductActions = {
       ...Object.fromEntries(
-        Object.entries(productActions).map(([key, value]) => [
+        Object.entries(productsActions).map(([key, value]) => [
           key,
           key.startsWith("isAdd") ? key === confirmAction : value,
         ])
