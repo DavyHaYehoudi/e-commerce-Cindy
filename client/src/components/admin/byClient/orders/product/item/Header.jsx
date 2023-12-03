@@ -1,5 +1,5 @@
 import React from "react";
-import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";

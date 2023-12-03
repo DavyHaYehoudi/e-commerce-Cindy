@@ -4,9 +4,9 @@ import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrackingNumberList } from "../../../../../helpers/storeDataUtils";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { sendToClient } from "../../../../../features/admin/ordersSlice";
+import { getTrackingNumberList } from "../../../../../helpers/selectors/order";
 
 const Item = ({
   client,
@@ -19,7 +19,6 @@ const Item = ({
   step,
 }) => {
   const dispatch = useDispatch();
-  const productsActionsStore = useSelector((state) => state.productsActions);
   const trackingNumberStore = useSelector((state) => state.trackingNumber);
 
   const trackingNumberList = getTrackingNumberList(
@@ -57,7 +56,6 @@ const Item = ({
       <List
         client={client}
         orderId={order?.id}
-        productsActionsStore={productsActionsStore}
         ordersStore={ordersStore}
         productsStore={productsStore}
       />
@@ -71,7 +69,6 @@ const Item = ({
             trackingNumberList={trackingNumberList}
             client={client}
             orderId={order?.id}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
           />

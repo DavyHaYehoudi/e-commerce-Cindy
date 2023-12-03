@@ -13,3 +13,10 @@ export const getClientinfo = (ordersStore, client) => {
   );
   return { orders, isAnyOrderClientNotified };
 };
+
+export const getNotesEditorInfo = (state, clientId, notesPropName) => {
+    const user = state.find((user) => user.id === clientId);
+    const notes = user?.[notesPropName] || [];
+  
+    return { user, notes };
+  };

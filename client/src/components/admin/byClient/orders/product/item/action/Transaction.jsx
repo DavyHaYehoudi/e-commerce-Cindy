@@ -7,7 +7,7 @@ import {
   handleValidateEntry,
 } from "./handler/transactions";
 import { handleActionClick } from "./handler/item";
-import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../../helpers/selectors/product";
 
 const Transaction = ({
   interaction,

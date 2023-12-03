@@ -8,7 +8,6 @@ const Listing = ({
   trackingNumberList,
   client,
   orderId,
-  productsActionsStore,
   ordersStore,
   productsStore
 }) => {
@@ -43,7 +42,6 @@ const Listing = ({
           isFormValid={isFormValid}
           dispatch={dispatch}
           productStore={productStore}
-          productsActionsStore={productsActionsStore}
           ordersStore={ordersStore}
           productsStore={productsStore}
           checkboxStates={checkboxStates}
@@ -63,7 +61,6 @@ const Listing = ({
             item={item}
             client={client}
             orderId={orderId}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
             productStore={productStore}
@@ -79,7 +76,6 @@ const Listing = ({
             selectedProducts={selectedProducts}
             dispatch={dispatch}
             isFormValid={isFormValid}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
             productStore={productStore}

@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import {
-  getProductDetails,
-  getProductsInfo,
-} from "../../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "../ToggleButtonNote";
 import ConfirmationModal from "../../../../../../shared/confirmationModal";
 import Header from "./Header";
@@ -10,27 +6,21 @@ import List from "./action/List";
 import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
 
 const Main = ({
   product,
   client,
   orderId,
-  productsActionsStore,
   ordersStore,
   productsStore,
 }) => {
   const { productId, material, quantity } = product;
   const productStore = useSelector((state) => state.product);
 
-  const { productsInfo, isTagProductExisted } = getProductsInfo(
+  const { productsInfo, isTagProductExisted,articleNumber } = getProductsInfo(
     ordersStore,
     productsStore,
-    orderId,
-    productId
-  );
-  const { articleNumber } = getProductDetails(
-    productsActionsStore,
-    client.id,
     orderId,
     productId
   );

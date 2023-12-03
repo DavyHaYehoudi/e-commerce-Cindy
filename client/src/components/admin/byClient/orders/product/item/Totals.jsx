@@ -1,9 +1,9 @@
 import React from "react";
-import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
 import { useSelector } from "react-redux";
 import {
   formatPrice,
 } from "../../../../../../helpers/prices";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
 
 const Totals = ({ productsInfo, productId }) => {
   const productStore = useSelector((state) => state.product);

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TrackingField from "../../../shared/TrackingField";
 import { useSelector } from "react-redux";
-import { getProductProperties } from "../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../helpers/selectors/product";
 
 const Item = ({ products, isReturnProduct }) => {
   const state = useSelector((state) => state.product);

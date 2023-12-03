@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import {
-  getProductProperties,
-  getProductsInfo,
-} from "../../../../../../helpers/storeDataUtils";
 import { handleCheckQuantity } from "./handle/articlesNumberCheck";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
 
 const ArticleNumberByProduct = ({
-  client,
   orderId,
   checkboxStates,
   articleNumber,
   productStore,
-  productsActionsStore,
   ordersStore,
   productsStore,
   setCheckboxStates,
@@ -55,11 +51,6 @@ const ArticleNumberByProduct = ({
     productsStore,
     orderId
   );
-  // const { productsByOrder } = getProductsInfo(
-  //   productsActionsStore,
-  //   clientId,
-  //   orderId
-  // );
 
   return (
     <div>
@@ -104,8 +95,8 @@ const ArticleNumberByProduct = ({
                     onBlur={() =>
                       handleCheckQuantity(
                         inputValues,
-                        productsActionsStore,
-                        client.id,
+                        ordersStore,
+                        productsStore,
                         orderId,
                         setError,
                         setIsFormValid,

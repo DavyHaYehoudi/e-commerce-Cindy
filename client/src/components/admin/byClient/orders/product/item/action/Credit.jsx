@@ -9,7 +9,7 @@ import {
 import { updateActionContent } from "../../../../../../../features/admin/productsActionsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { generateRandomCode } from "../../../../../../../helpers/creditCode";
-import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../../helpers/selectors/product";
 
 const Credit = ({
   interaction,

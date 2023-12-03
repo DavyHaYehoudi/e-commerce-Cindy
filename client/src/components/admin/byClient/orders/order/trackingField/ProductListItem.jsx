@@ -1,21 +1,18 @@
 import React from "react";
-import {
-  getProductDetails,
-  getProductProperties,
-} from "../../../../../../helpers/storeDataUtils";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
 
 const ProductListItem = ({
   product,
-  client,
   orderId,
   articleNumber,
+  ordersStore,
+  productsStore,
   productStore,
-  productsActionsStore,
-  productsStore
 }) => {
-  const details = getProductDetails(
-    productsActionsStore,
-    client.id,
+  const details = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId,
     product.productId
   );

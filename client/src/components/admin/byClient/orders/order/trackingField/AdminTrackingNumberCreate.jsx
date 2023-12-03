@@ -11,7 +11,6 @@ const AdminTrackingNumberCreate = ({
   isFormValid,
   checkboxStates,
   productStore,
-  productsActionsStore,
   ordersStore,
   productsStore,
   setError,
@@ -52,7 +51,6 @@ const AdminTrackingNumberCreate = ({
         client={client}
         orderId={orderId}
         checkboxStates={checkboxStates}
-        productsActionsStore={productsActionsStore}
         ordersStore={ordersStore}
         productsStore={productsStore}
         productStore={productStore}

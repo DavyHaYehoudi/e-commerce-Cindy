@@ -15,7 +15,6 @@ const ClientTrackingItem = ({
   dispatch,
   isFormValid,
   productStore,
-  productsActionsStore,
   ordersStore,
   productsStore,
   setError,
@@ -54,7 +53,6 @@ const ClientTrackingItem = ({
             client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
             productStore={productStore}
@@ -68,7 +66,6 @@ const ClientTrackingItem = ({
             orderId={orderId}
             articleNumber={articleNumber}
             checkboxStates={checkboxStates}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
             productStore={productStore}

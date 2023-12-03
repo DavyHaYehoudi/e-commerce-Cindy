@@ -10,7 +10,6 @@ const AdminTrackingItem = ({
   client,
   orderId,
   productStore,
-  productsActionsStore,
   ordersStore,
   productsStore
 }) => {
@@ -41,7 +40,6 @@ const AdminTrackingItem = ({
             client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
             productStore={productStore}

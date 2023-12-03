@@ -5,7 +5,6 @@ import { getProductsInfo } from "../../../../../helpers/selectors/products";
 const List = ({
   client,
   orderId,
-  productsActionsStore,
   ordersStore,
   productsStore,
 }) => {
@@ -23,7 +22,6 @@ const List = ({
             product={product}
             client={client}
             orderId={orderId}
-            productsActionsStore={productsActionsStore}
             ordersStore={ordersStore}
             productsStore={productsStore}
           />
