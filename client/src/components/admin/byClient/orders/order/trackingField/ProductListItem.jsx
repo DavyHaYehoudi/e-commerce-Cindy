@@ -6,15 +6,16 @@ import {
 
 const ProductListItem = ({
   product,
-  clientId,
+  client,
   orderId,
   articleNumber,
   productStore,
   productsActionsStore,
+  productsStore
 }) => {
   const details = getProductDetails(
     productsActionsStore,
-    clientId,
+    client.id,
     orderId,
     product.productId
   );

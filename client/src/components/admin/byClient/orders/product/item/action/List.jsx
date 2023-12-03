@@ -6,9 +6,9 @@ import { generateItemTransactionComponent } from "./handler/item";
 const List = ({
   interaction,
   productsActions,
-  productState,
+  productsInfo,
   productStore,
-  clientId,
+  client,
   orderId,
   productId,
   articleNumber,
@@ -36,10 +36,10 @@ const List = ({
         "Nombre d'articles à échanger",
         actions,
         interaction,
-        clientId,
+        client.id,
         productId,
         orderId,
-        productState,
+        productsInfo,
         productStore,
         productsActions,
         articleNumber,
@@ -56,10 +56,10 @@ const List = ({
         "Nombre d'articles à rembourser",
         actions,
         interaction,
-        clientId,
+        client.id,
         productId,
         orderId,
-        productState,
+        productsInfo,
         productStore,
         productsActions,
         articleNumber,
@@ -73,14 +73,14 @@ const List = ({
         action={actions?.CREDIT}
         actions={actions}
         label={actions?.CREDIT_LABEL}
-        productState={productState}
+        productsInfo={productsInfo}
         isActionSelected={isAddCredit}
         inputCreditAmount={creditContent?.amount}
         inputDateValue={creditContent?.dateExpire}
         productsActions={productsActions}
         placeholderValue="Montant de l'avoir"
         textCancel="ANNULER L'AVOIR"
-        clientId={clientId}
+        client={client}
         productId={productId}
         orderId={orderId}
         setProductActions={setProductActions}

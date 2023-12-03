@@ -14,7 +14,7 @@ const Header = ({
   quantity,
   productId,
   isTagProductExisted,
-  productState,
+  productsInfo,
   productStore,
   toggleActions,
 }) => {
@@ -22,7 +22,7 @@ const Header = ({
     productId,
     productStore
   );
-  const { exchange, refund, credit } = productState ??{} ;
+  const { exchange, refund, credit } = productsInfo ??{} ;
   return (
     <>
      <p className="action-icon" onClick={toggleActions}>

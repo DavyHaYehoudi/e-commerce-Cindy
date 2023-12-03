@@ -16,14 +16,14 @@ const Credit = ({
   action,
   actions,
   label,
-  productState,
+  productsInfo,
   isActionSelected,
   inputCreditAmount,
   inputDateValue,
   productsActions,
   placeholderValue,
   textCancel,
-  clientId,
+  client,
   productId,
   orderId,
   setProductActions,
@@ -41,7 +41,7 @@ const Credit = ({
         handleCredit(
           action,
           setInteraction,
-          productState,
+          productsInfo,
           setConfirmation,
           productsActions,
           actions,
@@ -49,7 +49,7 @@ const Credit = ({
         )
       }
     >
-      {productState?.[action]?.amount ? textCancel : label}
+      {productsInfo?.[action]?.amount ? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -90,7 +90,7 @@ const Credit = ({
                 setEntryError,
                 generateRandomCode,
                 dispatch,
-                clientId,
+                client.id,
                 productId,
                 orderId,
                 updateActionContent,

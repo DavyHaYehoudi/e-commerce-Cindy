@@ -1,15 +1,17 @@
 import React from "react";
 import Infos from "../presentation";
-import { getClientItemInfo } from "../../../../helpers/storeDataUtils";
+import { getClientinfo } from "../../../../helpers/selectors/client";
 
 const Item = ({
   client,
-  ordersActionsStore,
+  ordersStore,
+  productsStore,
   handleClientClick,
   clientDetails,
 }) => {
-  const { orders, isAnyOrderClientNotified } = getClientItemInfo(
-    ordersActionsStore,
+
+  const { orders, isAnyOrderClientNotified } = getClientinfo(
+    ordersStore,
     client
   );
 
@@ -30,7 +32,8 @@ const Item = ({
         <Infos
           client={client}
           orders={orders}
-          ordersActionsStore={ordersActionsStore}
+          ordersStore={ordersStore}
+          productsStore={productsStore}
           handleClientClick={handleClientClick}
         />
       )}

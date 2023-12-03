@@ -1,4 +1,4 @@
-import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
+import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
 import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
 
 export const handleChangeInputQuantity = (
@@ -26,7 +26,7 @@ export const handleValidateEntry = (
   e,
   action,
   actions,
-  productState,
+  productsInfo,
   productsActions,
   articleNumber,
   setEntryError,
@@ -41,8 +41,8 @@ export const handleValidateEntry = (
   e.stopPropagation();
 
   const exchangeValue =
-    productState?.exchange ?? productsActions?.exchangeContent ?? 0;
-  const refundValue = productState?.refund ?? productsActions?.refundContent ?? 0;
+    productsInfo?.exchange ?? productsActions?.exchangeContent ?? 0;
+  const refundValue = productsInfo?.refund ?? productsActions?.refundContent ?? 0;
 
   const articleLimitNumber = exchangeValue + refundValue;
   const articleAllowedNumber = articleNumber - articleLimitNumber;

@@ -11,7 +11,7 @@ export const generateItemTransactionComponent = (
   clientId,
   productId,
   orderId,
-  productState,
+  productsInfo,
   productsState,
   productsActions,
   articleNumber,
@@ -31,7 +31,7 @@ export const generateItemTransactionComponent = (
       productId={productId}
       orderId={orderId}
       textCancel={`ANNULER ${label}`}
-      productState={productState}
+      productsInfo={productsInfo}
       productsState={productsState}
       isActionSelected={isActionSelected}
       inputQuantityValue={inputQuantityValue}
@@ -48,7 +48,7 @@ export const generateItemTransactionComponent = (
 
 export const handleActionClick = (
   action,
-  productState,
+  productsInfo,
   setConfirmation,
   productsActions,
   actions,
@@ -57,7 +57,7 @@ export const handleActionClick = (
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productState?.[action]) {
+  if (productsInfo?.[action]) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,

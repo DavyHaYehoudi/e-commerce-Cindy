@@ -4,7 +4,8 @@ import Item from "./Item";
 
 const List = ({
   clientsStore,
-  ordersActionsStore,
+  ordersStore,
+  productsStore,
   handleClientClick,
   clientDetails,
 }) => {
@@ -25,7 +26,8 @@ const List = ({
           <Item
             key={client.id}
             client={client}
-            ordersActionsStore={ordersActionsStore}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
             handleClientClick={handleClientClick}
             clientDetails={clientDetails}
           />

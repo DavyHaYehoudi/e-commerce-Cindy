@@ -5,7 +5,13 @@ import ToggleButton from "../../../../shared/ToggleButton";
 import NotesEditor from "../../../../shared/NotesEditor";
 import Orders from "./Orders";
 
-const Infos = ({ client, orders, ordersActionsStore, handleClientClick }) => {
+const Infos = ({
+  client,
+  orders,
+  ordersStore,
+  productsStore,
+  handleClientClick,
+}) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   return (
@@ -40,7 +46,8 @@ const Infos = ({ client, orders, ordersActionsStore, handleClientClick }) => {
       <Orders
         client={client}
         orders={orders}
-        ordersActionsStore={ordersActionsStore}
+        ordersStore={ordersStore}
+        productsStore={productsStore}
         setSelectedOrderId={setSelectedOrderId}
         selectedOrderId={selectedOrderId}
       />

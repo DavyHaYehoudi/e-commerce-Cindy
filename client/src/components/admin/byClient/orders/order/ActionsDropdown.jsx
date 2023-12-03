@@ -4,7 +4,7 @@ import {
   cancelOrder,
   moveToNextStep,
   reactivateOrder,
-} from "../../../../../features/admin/orderStepSlice";
+} from "../../../../../features/admin/ordersSlice";
 import { orderStep } from "../../../../../constants/orderStep";
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
@@ -14,7 +14,7 @@ import { formatDate } from "../../../../../helpers/formatDate";
 const ActionsDropdown = ({
   order,
   step,
-  clientId,
+  client,
   handleSendToClient,
   isClientNotified,
   lastSentDateToClient,
@@ -30,7 +30,7 @@ const ActionsDropdown = ({
   const performAction = (actionType, newStep) => {
     dispatch(
       actionType({
-        clientId,
+        clientId:client.id,
         orderId: order.id,
         isClientNotified: false,
         step: newStep,

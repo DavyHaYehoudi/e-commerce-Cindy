@@ -6,7 +6,8 @@ const AdminDashboard = () => {
   const [clientDetails, setClientDetails] = useState({});
   const dispatch = useDispatch();
   const clientsStore = useSelector((state) => state.clients);
-  const ordersActionsStore = useSelector((state) => state.ordersActions);
+  const ordersStore = useSelector((state) => state.orders);
+  const productsStore = useSelector((state) => state.products);
 
   useEffect(() => {
     // charger les clients depuis une API ici
@@ -26,7 +27,8 @@ const AdminDashboard = () => {
     <div className="admin-dashboard">
       <List
         clientsStore={clientsStore}
-        ordersActionsStore={ordersActionsStore}
+        ordersStore={ordersStore}
+        productsStore={productsStore}
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}
       />

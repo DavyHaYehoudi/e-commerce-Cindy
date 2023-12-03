@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   getProductDetails,
-  getProductStateInfo,
+  getProductsInfo,
 } from "../../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "../ToggleButtonNote";
 import ConfirmationModal from "../../../../../../shared/confirmationModal";
@@ -11,19 +11,26 @@ import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
 
-const Main = ({ product, clientId, orderId, productsActionsStore }) => {
+const Main = ({
+  product,
+  client,
+  orderId,
+  productsActionsStore,
+  ordersStore,
+  productsStore,
+}) => {
   const { productId, material, quantity } = product;
   const productStore = useSelector((state) => state.product);
 
-  const { productState, isTagProductExisted } = getProductStateInfo(
-    productsActionsStore,
-    clientId,
+  const { productsInfo, isTagProductExisted } = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId,
     productId
   );
   const { articleNumber } = getProductDetails(
     productsActionsStore,
-    clientId,
+    client.id,
     orderId,
     productId
   );
@@ -40,12 +47,12 @@ const Main = ({ product, clientId, orderId, productsActionsStore }) => {
   const [entryError, setEntryError] = useState(false);
 
   const [productsActions, setProductActions] = useState({
-    isAddNote: productState?.note,
+    isAddNote: productsInfo?.note,
     isAddCredit: false,
     isAddRefund: false,
     isAddExchange: false,
-    noteContent: productState?.note,
-    creditContent: productState?.credit,
+    noteContent: productsInfo?.note,
+    creditContent: productsInfo?.credit,
     refundContent: null,
     exchangeContent: null,
   });
@@ -67,7 +74,7 @@ const Main = ({ product, clientId, orderId, productsActionsStore }) => {
         quantity={quantity}
         productId={productId}
         isTagProductExisted={isTagProductExisted}
-        productState={productState}
+        productsInfo={productsInfo}
         productStore={productStore}
         toggleActions={toggleActions}
       />
@@ -75,9 +82,9 @@ const Main = ({ product, clientId, orderId, productsActionsStore }) => {
         <List
           interaction={interaction}
           productsActions={productsActions}
-          productState={productState}
+          productsInfo={productsInfo}
           productStore={productStore}
-          clientId={clientId}
+          client={client}
           orderId={orderId}
           productId={productId}
           articleNumber={articleNumber}
@@ -93,11 +100,11 @@ const Main = ({ product, clientId, orderId, productsActionsStore }) => {
           confirmation={confirmation}
           productsActions={productsActions}
           actions={actions}
-          clientId={clientId}
+          client={client}
           productId={productId}
           orderId={orderId}
           productStore={productStore}
-          productState={productState}
+          productsInfo={productsInfo}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
           setEntryError={setEntryError}
@@ -108,15 +115,15 @@ const Main = ({ product, clientId, orderId, productsActionsStore }) => {
       {
         <div className="product-note-container">
           <ToggleButtonNote
-            productState={productState}
-            clientId={clientId}
+            productsInfo={productsInfo}
+            client={client}
             productId={productId}
             orderId={orderId}
             actions={actions}
           />
         </div>
       }
-      <Totals productState={productState} productId={productId} />
+      <Totals productsInfo={productsInfo} productId={productId} />
     </li>
   );
 };

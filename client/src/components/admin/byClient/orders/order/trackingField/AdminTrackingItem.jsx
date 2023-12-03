@@ -7,17 +7,19 @@ import { deleteTrackingNumber } from "../../../../../../features/admin/trackingN
 
 const AdminTrackingItem = ({
   item,
-  clientId,
+  client,
   orderId,
   productStore,
   productsActionsStore,
+  ordersStore,
+  productsStore
 }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
   const handleConfirmCancel = (trackingNumberId) => {
     dispatch(
       deleteTrackingNumber({
-        clientId,
+        clientId:client.id,
         orderId,
         trackingNumberId,
       })
@@ -36,11 +38,13 @@ const AdminTrackingItem = ({
           <ProductListItem
             key={product.id}
             product={product}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            productStore={productStore}
             productsActionsStore={productsActionsStore}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
+            productStore={productStore}
           />
         ))}
       </ul>

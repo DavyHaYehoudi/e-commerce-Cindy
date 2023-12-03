@@ -6,7 +6,7 @@ const Header = ({
   order,
   handleSendToClient,
   step,
-  clientId,
+  client,
   isClientNotified,
   lastSentDateToClient,
 }) => {
@@ -20,7 +20,7 @@ const Header = ({
       <ActionsDropdown
         order={order}
         step={step}
-        clientId={clientId}
+        client={client}
         handleSendToClient={handleSendToClient}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}

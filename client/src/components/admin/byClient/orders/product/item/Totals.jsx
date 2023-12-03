@@ -5,12 +5,12 @@ import {
   formatPrice,
 } from "../../../../../../helpers/prices";
 
-const Totals = ({ productState, productId }) => {
+const Totals = ({ productsInfo, productId }) => {
   const productStore = useSelector((state) => state.product);
   const productPrice = getProductProperties(productId, productStore).pricing
     .currentPrice;
-  const refundTotal = productState?.refund || 0;
-  const creditTotal = productState?.credit?.amount || 0;
+  const refundTotal = productsInfo?.refund || 0;
+  const creditTotal = productsInfo?.credit?.amount || 0;
   const isOut = (refundTotal + creditTotal) > 0
   return (isOut &&
     <div className="outBloc">

@@ -1,6 +1,5 @@
 // rootReducer.js
 import { combineReducers } from "redux";
-import orderStepReducer from "../features/admin/orderStepSlice";
 import notesReducer from "../features/admin/notesSlice";
 import returnProductReducer from "../features/accountClient/returnProductSlice";
 import productsActionsReducer from "../features/admin/productsActionsSlice";
@@ -16,7 +15,6 @@ const rootReducer = (state, action) => {
     orders:ordersReducer,
     products: productsReducer,
     product: productReducer,
-    ordersActions: orderStepReducer,
     productsActions: productsActionsReducer,
     trackingNumber: trackingNumberReducer,
     notes: notesReducer,

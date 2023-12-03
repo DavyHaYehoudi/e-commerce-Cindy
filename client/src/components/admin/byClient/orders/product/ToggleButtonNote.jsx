@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { handleChangeNoteValue } from "./item/action/handler/notes";
 
 const ToggleButtonNote = ({
-  productState,
-  clientId,
+  productsInfo,
+  client,
   productId,
   orderId,
   actions,
@@ -20,12 +20,12 @@ const ToggleButtonNote = ({
         <div>
           <textarea
             className="product-note"
-            value={productState?.note || ""}
+            value={productsInfo?.note || ""}
             onChange={(e) =>
               handleChangeNoteValue(
                 e,
                 dispatch,
-                clientId,
+                client.id,
                 productId,
                 orderId,
                 actions

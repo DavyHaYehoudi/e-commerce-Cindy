@@ -1,11 +1,11 @@
-import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
+import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
 import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
   action,
   setInteraction,
-  productState,
+  productsInfo,
   setConfirmation,
   productsActions,
   actions,
@@ -13,7 +13,7 @@ export const handleCredit = (
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productState[action]?.amount) {
+  if (productsInfo[action]?.amount) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,

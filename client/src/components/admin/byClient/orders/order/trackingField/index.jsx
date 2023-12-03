@@ -6,9 +6,11 @@ import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
 
 const Listing = ({
   trackingNumberList,
-  clientId,
+  client,
   orderId,
   productsActionsStore,
+  ordersStore,
+  productsStore
 }) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -34,7 +36,7 @@ const Listing = ({
       </button>
       {trackingNumberBoxOpen && (
         <AdminTrackingNumberCreate
-          clientId={clientId}
+          client={client}
           orderId={orderId}
           trackingInfo={trackingInfo}
           error={error}
@@ -42,6 +44,8 @@ const Listing = ({
           dispatch={dispatch}
           productStore={productStore}
           productsActionsStore={productsActionsStore}
+          ordersStore={ordersStore}
+          productsStore={productsStore}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
           setError={setError}
@@ -57,24 +61,28 @@ const Listing = ({
           <AdminTrackingItem
             key={item.id}
             item={item}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
-            productStore={productStore}
             productsActionsStore={productsActionsStore}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
+            productStore={productStore}
           />
         ) : (
           <ClientTrackingItem
             key={item.id}
             item={item}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             checkboxStates={checkboxStates}
             error={error}
             selectedProducts={selectedProducts}
             dispatch={dispatch}
             isFormValid={isFormValid}
-            productStore={productStore}
             productsActionsStore={productsActionsStore}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
+            productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setError={setError}
             setSelectedProducts={setSelectedProducts}

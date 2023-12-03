@@ -52,8 +52,8 @@ export const getProductProperties = (productId, state) => {
 };
 // ************* Informations sur les caractéristiques du produit : matériau, les actions en cas de retour, quantité d'articles *************
 // productsActions
-export const getProductStateInfo = (state, clientId, orderId, productId) => {
-  const productState = state
+export const getProductsInfo = (state, clientId, orderId, productId) => {
+  const productsInfo = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     ?.products?.find((prod) => prod.productId === productId)?.productsActions;
@@ -67,11 +67,11 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)?.products;
 
-  const noteContent = productState?.note;
+  const noteContent = productsInfo?.note;
   const isTagProductExisted =
-    productState?.exchange || productState?.refund || productState?.credit;
+    productsInfo?.exchange || productsInfo?.refund || productsInfo?.credit;
   return {
-    productState,
+    productsInfo,
     isAnyProductClientNotified,
     productsByOrder,
     noteContent,
@@ -80,13 +80,13 @@ export const getProductStateInfo = (state, clientId, orderId, productId) => {
 };
 // Nombre d'articles et matériau
 export const getProductDetails = (state, clientId, orderId, productId) => {
-  const productState = state
+  const productsInfo = state
     .find((user) => user.id === clientId)
     ?.orders.find((order) => order.id === orderId)
     ?.products.find((prod) => prod.productId === productId);
 
-  const articleNumber = parseInt(productState?.quantity);
-  const material = productState?.material;
+  const articleNumber = parseInt(productsInfo?.quantity);
+  const material = productsInfo?.material;
   return { articleNumber, material };
 };
 
@@ -99,7 +99,7 @@ export const getNotesEditorInfo = (state, clientId, notesPropName) => {
 };
 
 // Informations relatives aux commandes : total par catégorie - client notifié des changements
-export const getClientItemInfo = (state, client) => {
+export const getClientinfo = (state, client) => {
   const orders = state.find((user) => user.id === client.id)?.orders;
   const isAnyOrderClientNotified = orders?.some(
     (order) => !order.isClientNotified

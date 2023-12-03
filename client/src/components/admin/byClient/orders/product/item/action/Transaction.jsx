@@ -19,7 +19,7 @@ const Transaction = ({
   productId,
   orderId,
   textCancel,
-  productState,
+  productsInfo,
   productsState,
   isActionSelected,
   inputQuantityValue,
@@ -39,7 +39,7 @@ const Transaction = ({
       onClick={() =>
         handleActionClick(
           action,
-          productState,
+          productsInfo,
           setConfirmation,
           productsActions,
           actions,
@@ -48,7 +48,7 @@ const Transaction = ({
         )
       }
     >
-      {productState?.[action] ? textCancel : label}
+      {productsInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -71,7 +71,7 @@ const Transaction = ({
                 e,
                 action,
                 actions,
-                productState,
+                productsInfo,
                 productsActions,
                 articleNumber,
                 setEntryError,

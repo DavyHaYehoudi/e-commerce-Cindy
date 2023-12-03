@@ -1,13 +1,9 @@
 import React from "react";
 import { formatPrice } from "../../../../../helpers/prices";
-import { getOrderInfo } from "../../../../../helpers/storeDataUtils";
+import { getOrderInfo } from "../../../../../helpers/selectors/order";
 
-const Details = ({ order, clientId, orderId, productsActionsStore }) => {
-  const { outTotalAmount } = getOrderInfo(
-    productsActionsStore,
-    clientId,
-    orderId
-  );
+const Details = ({ order, orderId, ordersStore }) => {
+  const { outTotalAmount } = getOrderInfo(ordersStore, orderId);
   return (
     <>
       <p>

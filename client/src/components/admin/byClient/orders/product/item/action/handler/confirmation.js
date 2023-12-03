@@ -1,4 +1,4 @@
-import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
+import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
 import {
   updateActionContent,
   updateTotalsInOut,
@@ -14,7 +14,7 @@ export const handleConfirmation = (
   orderId,
   dispatch,
   productPrice,
-  productState,
+  productsInfo,
   setConfirmation,
   setEntryError,
   setProductActions
@@ -49,7 +49,7 @@ export const handleConfirmation = (
       updateTotalsInOut({
         clientId,
         orderId,
-        amount: productState?.credit?.amount,
+        amount: productsInfo?.credit?.amount,
         movement: "outCancel",
       })
     );
@@ -89,7 +89,7 @@ export const handleConfirmation = (
       updateTotalsInOut({
         clientId,
         orderId,
-        amount: productState?.refund * productPrice,
+        amount: productsInfo?.refund * productPrice,
         movement: "outCancel",
       })
     );

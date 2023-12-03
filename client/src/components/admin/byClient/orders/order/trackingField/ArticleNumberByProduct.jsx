@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import {
   getProductProperties,
-  getProductStateInfo,
+  getProductsInfo,
 } from "../../../../../../helpers/storeDataUtils";
 import { handleCheckQuantity } from "./handle/articlesNumberCheck";
 
 const ArticleNumberByProduct = ({
-  clientId,
+  client,
   orderId,
   checkboxStates,
   articleNumber,
   productStore,
   productsActionsStore,
+  ordersStore,
+  productsStore,
   setCheckboxStates,
   setSelectedProducts,
   setArticleNumber,
@@ -48,11 +50,16 @@ const ArticleNumberByProduct = ({
     }));
   };
 
-  const { productsByOrder } = getProductStateInfo(
-    productsActionsStore,
-    clientId,
+  const { productsByOrder } = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId
   );
+  // const { productsByOrder } = getProductsInfo(
+  //   productsActionsStore,
+  //   clientId,
+  //   orderId
+  // );
 
   return (
     <div>
@@ -98,7 +105,7 @@ const ArticleNumberByProduct = ({
                       handleCheckQuantity(
                         inputValues,
                         productsActionsStore,
-                        clientId,
+                        client.id,
                         orderId,
                         setError,
                         setIsFormValid,

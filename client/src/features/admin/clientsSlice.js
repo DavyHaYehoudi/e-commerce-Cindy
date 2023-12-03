@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { usersMock } from "../../mocks/usersMock";
+import { clientsMock } from "../../mocks/clientsMock";
 
 const clientsSlice = createSlice({
   name: "clients",
-  initialState: usersMock,
+  initialState: clientsMock,
   reducers: {
     
   },

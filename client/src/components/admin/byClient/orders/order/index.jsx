@@ -6,12 +6,14 @@ import Listing from "./trackingField";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrackingNumberList } from "../../../../../helpers/storeDataUtils";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { sendToClient } from "../../../../../features/admin/orderStepSlice";
+import { sendToClient } from "../../../../../features/admin/ordersSlice";
 
 const Item = ({
-  clientId,
+  client,
   order,
   orderIndex,
+  ordersStore,
+  productsStore,
   isClientNotified,
   lastSentDateToClient,
   step,
@@ -22,13 +24,13 @@ const Item = ({
 
   const trackingNumberList = getTrackingNumberList(
     trackingNumberStore,
-    clientId,
+    client.id,
     order?.id
   );
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
-        clientId,
+        clientId:client.id,
         orderId: order?.id,
         isClientNotified: true,
       })
@@ -40,7 +42,7 @@ const Item = ({
       <Header
         order={order}
         orderIndex={orderIndex}
-        clientId={clientId}
+        client={client}
         step={step}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}
@@ -49,15 +51,15 @@ const Item = ({
 
       <Details
         order={order}
-        clientId={clientId}
         orderId={order?.id}
-        productsActionsStore={productsActionsStore}
+        ordersStore={ordersStore}
       />
       <List
-        products={order?.products}
-        clientId={clientId}
+        client={client}
         orderId={order?.id}
         productsActionsStore={productsActionsStore}
+        ordersStore={ordersStore}
+        productsStore={productsStore}
       />
 
       <ToggleButton
@@ -67,9 +69,11 @@ const Item = ({
         content={
           <Listing
             trackingNumberList={trackingNumberList}
-            clientId={clientId}
+            client={client}
             orderId={order?.id}
             productsActionsStore={productsActionsStore}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
           />
         }
       />
