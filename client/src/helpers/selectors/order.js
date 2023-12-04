@@ -3,10 +3,9 @@ export const getOrderInfo = (state, orderId) => {
   return order;
 };
 
-export const getTrackingNumberList = (state, clientId, orderId) => {
-    const trackingNumberList = state
-      .find((user) => user.id === clientId)
-      ?.orders?.find((order) => order.id === orderId)?.trackingNumber;
-    return trackingNumberList;
-  };
-  
+export const getTrackingNumberList = (state, orderId) => {
+  const trackingNumberList = state.find(
+    (order) => order.id === orderId
+  )?.trackingNumber;
+  return trackingNumberList;
+};

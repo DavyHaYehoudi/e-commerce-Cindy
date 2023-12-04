@@ -1,5 +1,4 @@
-import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
-import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
+import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
 
 export const handleChangeInputQuantity = (
   e,
@@ -69,9 +68,7 @@ export const handleValidateEntry = (
   if (productsActions[contentKey] > 0 && checkArticleNumber) {
     dispatch(
       updateActionContent({
-        clientId,
         productId,
-        orderId,
         updatedProperty: action,
         isClientNotified:false,
         productActionContent,
@@ -79,8 +76,7 @@ export const handleValidateEntry = (
     );
     if (action === actions.REFUND) {
       dispatch(
-        updateTotalsInOut({
-          clientId,
+        totalsInOut({
           orderId,
           amount: productsActions.refundContent * productPrice,
           movement: "out",

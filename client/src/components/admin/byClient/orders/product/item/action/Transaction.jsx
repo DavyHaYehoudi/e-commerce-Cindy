@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../features/admin/productsActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import {
   handleCancelEntry,
   handleChangeInputQuantity,
@@ -57,6 +57,7 @@ const Transaction = ({
             className="productActionInput"
             value={inputQuantityValue || ""}
             min="0"
+            max={articleNumber}
             onChange={(e) => {
               handleChangeInputQuantity(e, action, actions, setProductActions);
             }}

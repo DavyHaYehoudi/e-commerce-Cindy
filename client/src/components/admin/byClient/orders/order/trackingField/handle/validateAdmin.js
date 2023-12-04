@@ -1,4 +1,4 @@
-import { addAdminTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
+import { addAdminTrackingNumber } from "../../../../../../../features/admin/ordersSlice";
 import { v4 as uuidv4 } from "uuid";
 import { articlesNumberCheck } from "./articlesNumberCheck";
 
@@ -8,7 +8,6 @@ export const handleValidate = (
   selectedProducts,
   setTrackingNumberBoxOpen,
   dispatch,
-  clientId,
   orderId,
   articleNumber,
   setArticleNumber,
@@ -34,7 +33,6 @@ export const handleValidate = (
   const trackingNumberId = uuidv4();
   dispatch(
     addAdminTrackingNumber({
-      clientId,
       orderId,
       trackingNumber: {
         id: trackingNumberId,

@@ -3,7 +3,7 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { sendToClient } from "../../../../../features/admin/ordersSlice";
 import { getTrackingNumberList } from "../../../../../helpers/selectors/order";
@@ -19,10 +19,9 @@ const Item = ({
   step,
 }) => {
   const dispatch = useDispatch();
-  const trackingNumberStore = useSelector((state) => state.trackingNumber);
 
   const trackingNumberList = getTrackingNumberList(
-    trackingNumberStore,
+    ordersStore,
     client.id,
     order?.id
   );

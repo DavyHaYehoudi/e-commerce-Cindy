@@ -25,9 +25,7 @@ const ToggleButtonNote = ({
               handleChangeNoteValue(
                 e,
                 dispatch,
-                client.id,
                 productId,
-                orderId,
                 actions
               )
             }

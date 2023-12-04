@@ -1,8 +1,7 @@
-import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
+import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
 import {
   updateActionContent,
-  updateTotalsInOut,
-} from "../../../../../../../../features/admin/productsActionsSlice";
+} from "../../../../../../../../features/admin/productsSlice";
 
 // Confirmation d'une annulation de champ
 export const handleConfirmation = (
@@ -46,8 +45,7 @@ export const handleConfirmation = (
     }));
     setEntryError("");
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      totalsInOut({
         orderId,
         amount: productsInfo?.credit?.amount,
         movement: "outCancel",
@@ -56,9 +54,7 @@ export const handleConfirmation = (
     dispatch(articleAction({ clientId, orderId }));
     return dispatch(
       updateActionContent({
-        clientId,
         productId,
-        orderId,
         updatedProperty: "credit",
         isClientNotified: false,
         productActionContent: { amount: null, dateExpire: null, code: null },
@@ -86,8 +82,7 @@ export const handleConfirmation = (
   dispatch(articleAction({ clientId, orderId }));
   if (confirmAction === actions.REFUND) {
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      totalsInOut({
         orderId,
         amount: productsInfo?.refund * productPrice,
         movement: "outCancel",

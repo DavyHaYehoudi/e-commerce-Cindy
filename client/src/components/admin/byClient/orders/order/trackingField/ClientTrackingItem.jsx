@@ -86,7 +86,6 @@ const ClientTrackingItem = ({
                   selectedProducts,
                   articleNumber,
                   dispatch,
-                  client.id,
                   orderId,
                   setSelectedProducts,
                   setCheckboxStates,

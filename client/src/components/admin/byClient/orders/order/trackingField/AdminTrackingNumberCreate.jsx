@@ -71,7 +71,6 @@ const AdminTrackingNumberCreate = ({
               selectedProducts,
               setTrackingNumberBoxOpen,
               dispatch,
-              client.id,
               orderId,
               articleNumber,
               setArticleNumber,

@@ -12,20 +12,6 @@ export const ordersActions = [
   { id: 6, name: orderStep[6].name },
 ];
 
-// const applyOrderAction = (state, action, updateFunction) => {
-//   return state.map((user) =>
-//     user.id === action.payload.clientId
-//       ? {
-//           ...user,
-//           orders: user.orders.map((order) =>
-//             order.id === action.payload.orderId
-//               ? updateFunction(order, action.payload)
-//               : order
-//           ),
-//         }
-//       : user
-//   );
-// };
 const applyOrderAction = (state, action, updateFunction) => {
   return state.map((order) =>
     order.id === action.payload.orderId
@@ -43,7 +29,9 @@ const updateMoveToNextStep = (
   order,
   { step, isClientNotified, isNextStepOrder }
 ) => {
-  const currentStepIndex = ordersActions.findIndex((s) => s.name === order.step);
+  const currentStepIndex = ordersActions.findIndex(
+    (s) => s.name === order.step
+  );
   const nextStepIndex = (currentStepIndex + 1) % ordersActions.length;
   const nextStep = isNextStepOrder ? ordersActions[nextStepIndex].name : step;
 
@@ -56,6 +44,31 @@ const updateMoveToNextStep = (
 const updateIsClientNotified = (order) => ({
   ...order,
   isClientNotified: false,
+});
+const updateTotalsInOut = (order, { amount, movement }) => ({
+  ...order,
+  outTotalAmount:
+    movement === "out"
+      ? order.outTotalAmount + amount
+      : order.outTotalAmount - amount,
+});
+const trackingNumberAddAdmin = (order, { trackingNumber }) => ({
+  ...order,
+  trackingNumber: [...order.trackingNumber, trackingNumber],
+});
+
+const trackingNumberDelete = (order, { trackingNumberId }) => ({
+  ...order,
+  trackingNumber: order.trackingNumber.filter(
+    (tn) => tn.id !== trackingNumberId
+  ),
+});
+
+const trackingNumberUpdatedClient = (order, { trackingNumber }) => ({
+  ...order,
+  trackingNumber: order.trackingNumber.map((tn) =>
+    tn.id === trackingNumber.id ? { ...tn, ...trackingNumber } : tn
+  ),
 });
 
 const ordersSlice = createSlice({
@@ -71,13 +84,6 @@ const ordersSlice = createSlice({
     reactivateOrder: (state, action) =>
       applyOrderAction(state, action, updateOrderStep),
 
-    trackingNumberAdminChange: (state, action) =>
-      applyOrderAction(state, action, (order, payload) => ({
-        ...order,
-        isClientNotified: payload.isClientNotified,
-        trackingNumberAdmin: payload.trackingNumberAdmin,
-      })),
-
     sendToClient: (state, action) =>
       applyOrderAction(state, action, (order, payload) => ({
         ...order,
@@ -86,6 +92,18 @@ const ordersSlice = createSlice({
       })),
     articleAction: (state, action) =>
       applyOrderAction(state, action, updateIsClientNotified),
+
+    totalsInOut: (state, action) =>
+      applyOrderAction(state, action, updateTotalsInOut),
+
+    addAdminTrackingNumber: (state, action) =>
+      applyOrderAction(state, action, trackingNumberAddAdmin),
+
+    deleteTrackingNumber: (state, action) =>
+      applyOrderAction(state, action, trackingNumberDelete),
+
+    updatedClientTrackingNumber: (state, action) =>
+      applyOrderAction(state, action, trackingNumberUpdatedClient),
   },
 });
 
@@ -93,9 +111,12 @@ export const {
   moveToNextStep,
   cancelOrder,
   reactivateOrder,
-  trackingNumberAdminChange,
   sendToClient,
   articleAction,
+  totalsInOut,
+  addAdminTrackingNumber,
+  deleteTrackingNumber,
+  updatedClientTrackingNumber,
 } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

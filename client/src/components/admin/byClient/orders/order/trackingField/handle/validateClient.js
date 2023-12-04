@@ -1,4 +1,4 @@
-import { updatedClientTrackingNumber } from "../../../../../../../features/admin/trackingNumberSlice";
+import { updatedClientTrackingNumber } from "../../../../../../../features/admin/ordersSlice";
 import { articlesNumberCheck } from "./articlesNumberCheck";
 
 export const handleValidate = (
@@ -7,7 +7,6 @@ export const handleValidate = (
   selectedProducts,
   articleNumber,
   dispatch,
-  clientId,
   orderId,
   setSelectedProducts,
   setCheckboxStates,
@@ -23,7 +22,6 @@ export const handleValidate = (
   }
   dispatch(
     updatedClientTrackingNumber({
-      clientId,
       orderId,
       trackingNumber: {
         id: item.id,

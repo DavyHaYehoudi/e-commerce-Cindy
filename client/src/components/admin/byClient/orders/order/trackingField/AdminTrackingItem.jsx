@@ -3,7 +3,7 @@ import { formatDate } from "../../../../../../helpers/formatDate";
 import ProductListItem from "./ProductListItem";
 import { TbInputX } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import { deleteTrackingNumber } from "../../../../../../features/admin/trackingNumberSlice";
+import { deleteTrackingNumber } from "../../../../../../features/admin/ordersSlice";
 
 const AdminTrackingItem = ({
   item,
@@ -18,7 +18,6 @@ const AdminTrackingItem = ({
   const handleConfirmCancel = (trackingNumberId) => {
     dispatch(
       deleteTrackingNumber({
-        clientId:client.id,
         orderId,
         trackingNumberId,
       })

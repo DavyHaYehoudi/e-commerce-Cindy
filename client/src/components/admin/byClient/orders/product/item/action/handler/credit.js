@@ -1,5 +1,4 @@
-import { articleAction } from "../../../../../../../../features/admin/ordersSlice";
-import { updateTotalsInOut } from "../../../../../../../../features/admin/productsActionsSlice";
+import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
@@ -89,17 +88,14 @@ export const handleConfirmCreditEntry = (
     };
     dispatch(
       updateActionContent({
-        clientId,
         productId,
-        orderId,
         updatedProperty: action,
         isClientNotified:false,
         productActionContent,
       })
     );
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      totalsInOut({
         orderId,
         amount,
         movement: "out",

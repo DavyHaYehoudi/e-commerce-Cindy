@@ -6,7 +6,7 @@ import {
   handleConfirmCreditEntry,
   handleCredit,
 } from "./handler/credit";
-import { updateActionContent } from "../../../../../../../features/admin/productsActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { generateRandomCode } from "../../../../../../../helpers/creditCode";
 import { getProductProperties } from "../../../../../../../helpers/selectors/product";
