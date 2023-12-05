@@ -8,6 +8,7 @@ const productsSlice = createSlice({
   reducers: {
     updateActionContent: (state, action) => {
       const {
+        creditContent,
         productId,
         updatedProperty,
         isClientNotified,
@@ -22,11 +23,7 @@ const productsSlice = createSlice({
               isClientNotified,
               productsActions: {
                 ...product.productsActions,
-                [updatedProperty]: {
-                  amount: productActionContent.amount,
-                  code: productActionContent.code,
-                  dateExpire: productActionContent.dateExpire,
-                },
+                [updatedProperty]: creditContent,
               },
             };
           }

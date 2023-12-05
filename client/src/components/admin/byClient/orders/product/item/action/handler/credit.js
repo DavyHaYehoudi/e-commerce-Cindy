@@ -1,4 +1,8 @@
-import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
+import { addCredit } from "../../../../../../../../features/admin/creditsSlice";
+import {
+  articleAction,
+  totalsInOut,
+} from "../../../../../../../../features/admin/ordersSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
@@ -12,7 +16,7 @@ export const handleCredit = (
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productsInfo[action]?.amount) {
+  if (productsInfo[action]) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,
@@ -54,11 +58,11 @@ export const handleConfirmCreditEntry = (
   productsActions,
   setProductActions,
   setEntryError,
-  generateRandomCode,
   dispatch,
   clientId,
   productId,
   orderId,
+  products,
   updateActionContent,
   productPrice
 ) => {
@@ -80,20 +84,22 @@ export const handleConfirmCreditEntry = (
       setEntryError("⚠️ Une date ultérieure doit être définie.");
     }
   } else if (amount > 0 && validityDate) {
-    const code = generateRandomCode();
-    const productActionContent = {
-      amount: productsActions.creditContent.amount,
-      dateExpire: productsActions.creditContent?.dateExpire,
-      code,
-    };
     dispatch(
-      updateActionContent({
-        productId,
-        updatedProperty: action,
-        isClientNotified:false,
-        productActionContent,
+      addCredit({
+        productsId: products.id,
+        amount: productsActions.creditContent.amount,
+        dateExpire: productsActions.creditContent?.dateExpire,
       })
     );
+    dispatch(
+      updateActionContent({
+        creditContent:products.id,
+        productId,
+        updatedProperty: action,
+        isClientNotified: false,
+      })
+    );
+ 
     dispatch(
       totalsInOut({
         orderId,
@@ -101,7 +107,7 @@ export const handleConfirmCreditEntry = (
         movement: "out",
       })
     );
-    dispatch(articleAction({clientId, orderId}));
+    dispatch(articleAction({ clientId, orderId }));
     setProductActions((prevState) => ({
       ...prevState,
       isAddCredit: false,

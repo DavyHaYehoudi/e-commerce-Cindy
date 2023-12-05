@@ -11,6 +11,7 @@ const List = ({
   client,
   orderId,
   productId,
+  products,
   articleNumber,
   setProductActions,
   setConfirmation,
@@ -83,6 +84,7 @@ const List = ({
         client={client}
         productId={productId}
         orderId={orderId}
+        products={products}
         setProductActions={setProductActions}
         setEntryError={setEntryError}
         setConfirmation={setConfirmation}

@@ -1,3 +1,4 @@
+import { deleteCredit } from "../../../../../../../../features/admin/creditsSlice";
 import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
 import {
   updateActionContent,
@@ -11,6 +12,8 @@ export const handleConfirmation = (
   clientId,
   productId,
   orderId,
+  products,
+  amount,
   dispatch,
   productPrice,
   productsInfo,
@@ -47,19 +50,21 @@ export const handleConfirmation = (
     dispatch(
       totalsInOut({
         orderId,
-        amount: productsInfo?.credit?.amount,
+        amount,
         movement: "outCancel",
       })
     );
     dispatch(articleAction({ clientId, orderId }));
+    dispatch(deleteCredit({productsId:products.id}))
     return dispatch(
       updateActionContent({
+        creditContent:null,
         productId,
         updatedProperty: "credit",
         isClientNotified: false,
-        productActionContent: { amount: null, dateExpire: null, code: null },
       })
     );
+
   }
   if (confirmAction) {
     dispatch(

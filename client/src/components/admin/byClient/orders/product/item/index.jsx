@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import ToggleButtonNote from "../ToggleButtonNote";
-import ConfirmationModal from "../../../../../../shared/confirmationModal";
+import ConfirmationModal from "../../../../../../shared/ConfirmationModal";
 import Header from "./Header";
 import List from "./action/List";
 import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
 import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
 
-const Main = ({
-  product,
-  client,
-  orderId,
-  ordersStore,
-  productsStore,
-}) => {
-  const { productId, material, quantity } = product;
+const Main = ({ products, client, orderId, ordersStore, productsStore }) => {
+  const { productId, material, quantity } = products;
   const productStore = useSelector((state) => state.product);
+  const creditsStore = useSelector((state) => state.credits);
+  const {amount}=getCreditsInfo(creditsStore,products.id)
 
-  const { productsInfo, isTagProductExisted,articleNumber } = getProductsInfo(
+  const { productsInfo, isTagProductExisted, articleNumber } = getProductsInfo(
     ordersStore,
     productsStore,
     orderId,
@@ -63,6 +60,7 @@ const Main = ({
         material={material}
         quantity={quantity}
         productId={productId}
+        products={products}
         isTagProductExisted={isTagProductExisted}
         productsInfo={productsInfo}
         productStore={productStore}
@@ -77,6 +75,7 @@ const Main = ({
           client={client}
           orderId={orderId}
           productId={productId}
+          products={products}
           articleNumber={articleNumber}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
@@ -93,6 +92,8 @@ const Main = ({
           client={client}
           productId={productId}
           orderId={orderId}
+          products={products}
+          amount={amount}
           productStore={productStore}
           productsInfo={productsInfo}
           setProductActions={setProductActions}
@@ -113,7 +114,11 @@ const Main = ({
           />
         </div>
       }
-      <Totals productsInfo={productsInfo} productId={productId} />
+      <Totals
+        productsInfo={productsInfo}
+        productId={productId}
+        products={products}
+      />
     </li>
   );
 };

@@ -9,29 +9,29 @@ export const userMock = {
   notesClient: null,
   wishlist: [
     {
-      productId: 1,
+      productId: "1mongoDb",
       material: 2,
     },
     {
-      productId: 5,
+      productId: "5mongoDb",
       material: 0,
     },
   ],
   cart: [
     {
-      productId: 2,
+      productId: "2mongoDb",
       material: 1,
       quantity: 2,
     },
     {
-      productId: 8,
+      productId: "8mongoDb",
       material: 3,
       quantity: 1,
     },
   ],
   orders: [
     {
-      id: 1,
+      id: "1mongoDb",
       date: "2023-03-10 10:20",
       step: 2,
       inTotalAmount: 150,
@@ -39,7 +39,7 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 4,
+          productId: "4mongoDb",
           quantity: 2,
           material: 1,
           productsActions: {
@@ -55,7 +55,7 @@ export const userMock = {
       ],
     },
     {
-      id: 2,
+      id: "2mongoDb",
       date: "2023-03-07 11:40",
       step: 1,
       inTotalAmount: 250,
@@ -63,7 +63,7 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 14,
+          productId: "14mongoDb",
           quantity: 1,
           material: 0,
           productsActions: {
@@ -79,7 +79,7 @@ export const userMock = {
       ],
     },
     {
-      id: 3,
+      id: "3mongoDb",
       date: "2023-03-10 22:20",
       step: 0,
       inTotalAmount: 150,
@@ -87,7 +87,7 @@ export const userMock = {
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 16,
+          productId: "16mongoDb",
           quantity: 1,
           material: 3,
           productsActions: {
@@ -101,7 +101,7 @@ export const userMock = {
           },
         },
         {
-          productId: 9,
+          productId: "9mongoDb",
           quantity: 1,
           material: 2,
           productsActions: {

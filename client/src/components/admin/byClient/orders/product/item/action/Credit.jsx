@@ -8,7 +8,6 @@ import {
 } from "./handler/credit";
 import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { generateRandomCode } from "../../../../../../../helpers/creditCode";
 import { getProductProperties } from "../../../../../../../helpers/selectors/product";
 
 const Credit = ({
@@ -26,6 +25,7 @@ const Credit = ({
   client,
   productId,
   orderId,
+  products,
   setProductActions,
   setEntryError,
   setConfirmation,
@@ -49,7 +49,7 @@ const Credit = ({
         )
       }
     >
-      {productsInfo?.[action]?.amount ? textCancel : label}
+      {productsInfo?.[action]? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -88,11 +88,11 @@ const Credit = ({
                 productsActions,
                 setProductActions,
                 setEntryError,
-                generateRandomCode,
                 dispatch,
                 client.id,
                 productId,
                 orderId,
+                products,
                 updateActionContent,
                 productPrice
               )

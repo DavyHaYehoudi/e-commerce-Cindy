@@ -1,7 +1,7 @@
 
 export const clientsMock = [
   {
-    id: 1,
+    id: "1mongoDb",
     firstName: "John",
     lastName: "Doe",
     email: "john@example.com",
@@ -23,31 +23,31 @@ export const clientsMock = [
     ],
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     // wishlist:null,
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [1,2,3],
+    orders: ["1mongoDb","2mongoDb","3mongoDb"],
   },
   {
-    id: 2,
+    id: "2mongoDb",
     firstName: "Alice",
     lastName: "Smith",
     email: "alice@example.com",
@@ -58,30 +58,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [4,5],
+    orders: ["4mongoDb","5mongoDb"],
   },
   {
-    id: 3,
+    id: "3mongoDb",
     firstName: "Bob",
     lastName: "Johnson",
     email: "bob@example.com",
@@ -92,30 +92,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [6,7],
+    orders: ["6mongoDb","7mongoDb"],
   },
   {
-    id: 4,
+    id: "4mongoDb",
     firstName: "Eva",
     lastName: "Williams",
     email: "eva@example.com",
@@ -126,30 +126,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [8,9],
+    orders: ["8mongoDb","9mongoDb"],
   },
   {
-    id: 5,
+    id: "5mongoDb",
     firstName: "Sophie",
     lastName: "Miller",
     email: "sophie@example.com",
@@ -160,30 +160,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [10,11,12],
+    orders: ["10mongoDb","11mongoDb","12mongoDb"],
   },
   {
-    id: 6,
+    id: "6mongoDb",
     firstName: "Daniel",
     lastName: "Brown",
     email: "daniel@example.com",
@@ -194,30 +194,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [13],
+    orders: ["13mongoDb"],
   },
   {
-    id: 7,
+    id: "7mongoDb",
     firstName: "Emma",
     lastName: "Davis",
     email: "emma@example.com",
@@ -228,30 +228,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [14,15,16,17],
+    orders: ["14mongoDb","15mongoDb","16mongoDb","17mongoDb"],
   },
   {
-    id: 8,
+    id: "8mongoDb",
     firstName: "David",
     lastName: "White",
     email: "david@example.com",
@@ -262,30 +262,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [18,19],
+    orders: ["18mongoDb","19mongoDb"],
   },
   {
-    id: 9,
+    id: "9mongoDb",
     firstName: "Olivia",
     lastName: "Johnson",
     email: "olivia@example.com",
@@ -296,30 +296,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [20,21,22],
+    orders: ["20mongoDb","21mongoDb","22mongoDb"],
   },
   {
-    id: 10,
+    id: "10mongoDb",
     firstName: "William",
     lastName: "Smith",
     email: "william@example.com",
@@ -330,30 +330,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 1,
+        productId:"1mongoDb",
         material: 2,
       },
       {
-        productId: 5,
+        productId:"5mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 2,
+        productId:"2mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [23,24],
+    orders: ["23mongoDb","24mongoDb"],
   },
   {
-    id: 11,
+    id: "11mongoDb",
     firstName: "Jane",
     lastName: "Smith",
     email: "jane@example.com",
@@ -364,30 +364,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 16,
+        productId:"16mongoDb",
         material: 1,
       },
       {
-        productId: 10,
+        productId:"10mongoDb",
         material: 3,
       },
     ],
     cart: [
       {
-        productId: 7,
+        productId:"7mongoDb",
         material: 2,
         quantity: 3,
       },
       {
-        productId: 12,
+        productId:"12mongoDb",
         material: 0,
         quantity: 1,
       },
     ],
-    orders: [25,26],
+    orders: ["25mongoDb","26mongoDb"],
   },
   {
-    id: 12,
+    id: "12mongoDb",
     firstName: "Alex",
     lastName: "Johnson",
     email: "alex@example.com",
@@ -398,30 +398,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 14,
+        productId:"14mongoDb",
         material: 0,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 2,
       },
     ],
     cart: [
       {
-        productId: 15,
+        productId:"15mongoDb",
         material: 3,
         quantity: 1,
       },
       {
-        productId: 20,
+        productId:"20mongoDb",
         material: 1,
         quantity: 3,
       },
     ],
-    orders: [27,28],
+    orders: ["27mongoDb","28mongoDb"],
   },
   {
-    id: 13,
+    id: "13mongoDb",
     firstName: "Emily",
     lastName: "Williams",
     email: "emily@example.com",
@@ -432,30 +432,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 12,
+        productId:"12mongoDb",
         material: 1,
       },
       {
-        productId: 15,
+        productId:"15mongoDb",
         material: 3,
       },
     ],
     cart: [
       {
-        productId: 14,
+        productId:"14mongoDb",
         material: 0,
         quantity: 1,
       },
       {
-        productId: 18,
+        productId:"18mongoDb",
         material: 2,
         quantity: 2,
       },
     ],
-    orders: [29,30],
+    orders: ["29mongoDb","30mongoDb"],
   },
   {
-    id: 14,
+    id: "14mongoDb",
     firstName: "Sophie",
     lastName: "Johnson",
     email: "sophie@example.com",
@@ -466,30 +466,30 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 15,
+        productId:"15mongoDb",
         material: 2,
       },
       {
-        productId: 19,
+        productId:"19mongoDb",
         material: 0,
       },
     ],
     cart: [
       {
-        productId: 12,
+        productId:"12mongoDb",
         material: 1,
         quantity: 2,
       },
       {
-        productId: 6,
+        productId:"6mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [31,32,33],
+    orders: ["31mongoDb","32mongoDb","33mongoDb"],
   },
   {
-    id: 15,
+    id: "15mongoDb",
     firstName: "Emma",
     lastName: "Smith",
     email: "emma@example.com",
@@ -500,26 +500,26 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId: 12,
+        productId: "12mongoDb",
         material: 1,
       },
       {
-        productId: 16,
+        productId: "16mongoDb",
         material: 2,
       },
     ],
     cart: [
       {
-        productId: 7,
+        productId:"7mongoDb",
         material: 0,
         quantity: 2,
       },
       {
-        productId: 4,
+        productId:"4mongoDb",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: [34],
+    orders: ["34mongoDb"],
   },
 ];

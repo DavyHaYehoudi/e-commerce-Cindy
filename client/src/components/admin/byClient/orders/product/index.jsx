@@ -16,10 +16,10 @@ const List = ({
   return (
     <ul id="products-container">
       <small>
-        {products?.map((product) => (
+        {products?.map((products) => (
           <Main
-            key={product.productId}
-            product={product}
+            key={products.productId}
+            products={products}
             client={client}
             orderId={orderId}
             ordersStore={ordersStore}

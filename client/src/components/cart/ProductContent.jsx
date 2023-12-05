@@ -5,6 +5,7 @@ import ProductMeta from "../../shared/ProductMeta";
 import FavoriteButton from "../../shared/FavoriteButton";
 import AddToCartButton from "../../shared/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
+import { formatPrice } from "../../helpers/prices";
 
 const ProductContent = ({ state, handleCartShow }) => {
 
@@ -27,8 +28,8 @@ const ProductContent = ({ state, handleCartShow }) => {
           <FavoriteButton />
         </div>
         <div className="prices">
-          <span className="price">€{price} EUR</span>
-          <span className="oldPrice">€{oldPrice} EUR</span>
+          <span className="price">{formatPrice(price)}</span>
+          <span className="oldPrice">{formatPrice(oldPrice)}</span>
         </div>
         <div className="product-color-selector">
           <ProductColorSelector />

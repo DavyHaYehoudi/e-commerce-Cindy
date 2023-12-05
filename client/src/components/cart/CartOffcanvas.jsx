@@ -6,6 +6,7 @@ import bra from "../../assets/bra.png";
 import col from "../../assets/col.png";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import {formatPrice} from "../../helpers/prices"
 
 const CartOffcanvas = ({ show, handleClose }) => {
   const cartsMock = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];
@@ -47,7 +48,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
       {carts.length > 0 && (
         <div className="fixed-bottom-content">
           <p>
-            TOTAL DES ARTICLES : <b>€250</b>
+            TOTAL DES ARTICLES : <b>{formatPrice(250)} </b>
           </p>
           <div>
             <Link to="/cart">

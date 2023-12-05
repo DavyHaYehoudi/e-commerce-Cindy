@@ -4,6 +4,7 @@ import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../helpers/selectors/product";
 import { getMaterialProperty } from "../../helpers/constants/materials";
+import { formatPrice } from "../../helpers/prices";
 
 const WishlistProductContent = ({ product }) => {
   const state = useSelector((state) => state.product);
@@ -29,12 +30,11 @@ const WishlistProductContent = ({ product }) => {
 
       <div className="modal-product-details">
         <h3>{getProductProperties(product.productId, state).name}</h3>
-        <p>{getMaterialProperty(product.material).name }</p>
+        <p>{getMaterialProperty(product.material).name}</p>
         <p className="price">
-          {
-            getProductProperties(product.productId, state).pricing
-              .currentPrice
-          }
+          {formatPrice(
+            getProductProperties(product.productId, state).pricing.currentPrice
+          )}
         </p>
         <div className="modal-product-actions">
           <AddToCartButton

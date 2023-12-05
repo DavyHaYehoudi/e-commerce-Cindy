@@ -4,6 +4,7 @@ import TrackingField from "../../../shared/TrackingField";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../helpers/selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
+import { formatPrice } from "../../../helpers/prices";
 
 const Item = ({ products, isReturnProduct }) => {
   const state = useSelector((state) => state.product);
@@ -22,7 +23,7 @@ const Item = ({ products, isReturnProduct }) => {
               <p>Nom du produit : {name}</p>
               <p>Matériau : {getMaterialProperty(product.material).name}</p>
               <p>Quantité : {product.quantity}</p>
-              <p>Prix unitaire : {pricing.currentPrice}</p>
+              <p>Prix unitaire : {formatPrice(pricing.currentPrice)}</p>
             </div>
             <div
               className="image-container info-tooltip"

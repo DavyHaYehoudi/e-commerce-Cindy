@@ -1,5 +1,6 @@
 import React from "react";
 import OrderItem from "./OrderItem";
+import { formatPrice } from "../../helpers/prices";
 
 const ShoppingCartContent = ({carts} ) => {
   return (
@@ -14,7 +15,7 @@ const ShoppingCartContent = ({carts} ) => {
         <OrderItem cart={cart} key={i} />
       ))}
       <div className="shoppingCart-total">
-        TOTAL : <b>€942,00 EUR</b>
+        TOTAL : <b>{formatPrice(717)} </b>
       </div>
     </div>
   );

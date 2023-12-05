@@ -5,7 +5,7 @@ import col from "../assets/col.png";
 
 export const productMock = [
   {
-    id: 1,
+    id: "1mongoDb",
     reference: "QER2345OIJD",
     category: "Jewelry",
     releaseDate: "2023-11-01",
@@ -33,7 +33,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 2,
+    id: "2mongoDb",
     reference: "ABC123XYZ",
     category: "Clothing",
     releaseDate: "2023-10-15",
@@ -61,7 +61,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 3,
+    id: "3mongoDb",
     reference: "ABC123XYZ",
     category: "Hair Accessories",
     releaseDate: "2023-10-20",
@@ -88,7 +88,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 4,
+    id: "4mongoDb",
     reference: "DEF567LMN",
     category: "Bracelets",
     releaseDate: "2023-11-05",
@@ -116,7 +116,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 5,
+    id: "5mongoDb",
     reference: "GHI789JKL",
     category: "Necklaces",
     releaseDate: "2023-11-10",
@@ -143,7 +143,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 6,
+    id: "6mongoDb",
     reference: "MNO456PQR",
     category: "Hair Accessories",
     releaseDate: "2023-11-02",
@@ -170,7 +170,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 7,
+    id: "7mongoDb",
     reference: "STU012VWX",
     category: "Hair Accessories",
     releaseDate: "2023-11-08",
@@ -197,7 +197,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 8,
+    id: "8mongoDb",
     reference: "YZA345BCD",
     category: "Earrings",
     releaseDate: "2023-11-06",
@@ -224,7 +224,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 9,
+    id: "9mongoDb",
     reference: "EFG678HIJ",
     category: "Hair Accessories",
     releaseDate: "2023-11-12",
@@ -251,7 +251,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 10,
+    id: "10mongoDb",
     reference: "KLM901NOP",
     category: "Bracelets",
     releaseDate: "2023-11-10",
@@ -279,7 +279,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 11,
+    id: "11mongoDb",
     reference: "PQR234STU",
     category: "Brooches",
     releaseDate: "2023-11-18",
@@ -306,7 +306,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 12,
+    id: "12mongoDb",
     reference: "UVW567XYZ",
     category: "Earrings",
     releaseDate: "2023-11-15",
@@ -333,7 +333,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 13,
+    id: "13mongoDb",
     reference: "XYZ890ABC",
     category: "Hair Accessories",
     releaseDate: "2023-11-25",
@@ -360,7 +360,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 14,
+    id: "14mongoDb",
     reference: "BCD123EFG",
     category: "Bracelets",
     releaseDate: "2023-11-22",
@@ -388,7 +388,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 15,
+    id: "15mongoDb",
     reference: "EFG456HIJ",
     category: "Earrings",
     releaseDate: "2023-11-30",
@@ -415,7 +415,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 16,
+    id: "16mongoDb",
     reference: "HIJ789KLM",
     category: "Hair Accessories",
     releaseDate: "2023-11-28",
@@ -442,7 +442,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 17,
+    id: "17mongoDb",
     reference: "LMN012OPQ",
     category: "Necklaces",
     releaseDate: "2023-12-05",
@@ -469,7 +469,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 18,
+    id: "18mongoDb",
     reference: "OPQ345RST",
     category: "Hair Accessories",
     releaseDate: "2023-12-01",
@@ -496,7 +496,7 @@ export const productMock = [
     isNew: true,
   },
   {
-    id: 19,
+    id: "19mongoDb",
     reference: "RST678UVW",
     category: "Bracelets",
     releaseDate: "2023-12-10",
@@ -524,7 +524,7 @@ export const productMock = [
     isNew: false,
   },
   {
-    id: 20,
+    id: "20mongoDb",
     reference: "UVW890XYZ",
     category: "Earrings",
     releaseDate: "2023-12-08",

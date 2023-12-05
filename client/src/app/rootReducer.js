@@ -5,14 +5,16 @@ import ordersReducer from "../features/admin/ordersSlice";
 import productsReducer from "../features/admin/productsSlice";
 import productReducer from "../features/admin/productSlice";
 import clientsReducer from "../features/admin/clientsSlice";
+import creditsReducer from "../features/admin/creditsSlice";
 
 const rootReducer = (state, action) => {
   return combineReducers({
     clients: clientsReducer,
-    orders:ordersReducer,
+    orders: ordersReducer,
     products: productsReducer,
     product: productReducer,
     client: returnProductReducer,
+    credits: creditsReducer,
   })(state, action);
 };
 // const rootReducer = (state, action) => {
