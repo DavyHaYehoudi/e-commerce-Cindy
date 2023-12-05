@@ -1,4 +1,3 @@
-import { materials } from "../constants/materials";
 
 export const clientsMock = [
   {
@@ -25,23 +24,23 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     // wishlist:null,
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -60,22 +59,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -94,22 +93,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -128,22 +127,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -162,22 +161,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -196,22 +195,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -230,22 +229,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -264,22 +263,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -298,22 +297,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -332,22 +331,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 1,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 5,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 2,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 18,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -366,22 +365,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 16,
-        material: materials[1].name,
+        material: 1,
       },
       {
         productId: 10,
-        material: materials[3].name,
+        material: 3,
       },
     ],
     cart: [
       {
         productId: 7,
-        material: materials[2].name,
+        material: 2,
         quantity: 3,
       },
       {
         productId: 12,
-        material: materials[0].name,
+        material: 0,
         quantity: 1,
       },
     ],
@@ -400,22 +399,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 14,
-        material: materials[0].name,
+        material: 0,
       },
       {
         productId: 18,
-        material: materials[2].name,
+        material: 2,
       },
     ],
     cart: [
       {
         productId: 15,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
       {
         productId: 20,
-        material: materials[1].name,
+        material: 1,
         quantity: 3,
       },
     ],
@@ -434,22 +433,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 12,
-        material: materials[1].name,
+        material: 1,
       },
       {
         productId: 15,
-        material: materials[3].name,
+        material: 3,
       },
     ],
     cart: [
       {
         productId: 14,
-        material: materials[0].name,
+        material: 0,
         quantity: 1,
       },
       {
         productId: 18,
-        material: materials[2].name,
+        material: 2,
         quantity: 2,
       },
     ],
@@ -468,22 +467,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 15,
-        material: materials[2].name,
+        material: 2,
       },
       {
         productId: 19,
-        material: materials[0].name,
+        material: 0,
       },
     ],
     cart: [
       {
         productId: 12,
-        material: materials[1].name,
+        material: 1,
         quantity: 2,
       },
       {
         productId: 6,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],
@@ -502,22 +501,22 @@ export const clientsMock = [
     wishlist: [
       {
         productId: 12,
-        material: materials[1].name,
+        material: 1,
       },
       {
         productId: 16,
-        material: materials[2].name,
+        material: 2,
       },
     ],
     cart: [
       {
         productId: 7,
-        material: materials[0].name,
+        material: 0,
         quantity: 2,
       },
       {
         productId: 4,
-        material: materials[3].name,
+        material: 3,
         quantity: 1,
       },
     ],

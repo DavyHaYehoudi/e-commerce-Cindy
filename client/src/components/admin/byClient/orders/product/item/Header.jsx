@@ -7,6 +7,7 @@ import {
   formatPrice,
   sumPriceArticle,
 } from "../../../../../../helpers/prices";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const Header = ({
   interaction,
@@ -36,7 +37,7 @@ const Header = ({
     <div className="product-content-details">
       <div>
         <p>
-          {name} {material}
+          {name} {getMaterialProperty(material).name }
         </p>
         <p className="pricing inPricing">
           {quantity} article

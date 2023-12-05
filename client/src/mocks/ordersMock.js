@@ -1,10 +1,9 @@
-import { orderStep } from "../constants/orderStep";
 
 export const ordersMock = [
   {
     id: 1,
     date: "2023-01-15 08:30",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 220,
     outTotalAmount: 10,
@@ -77,10 +76,10 @@ export const ordersMock = [
   {
     id: 2,
     date: "2023-02-02 14:45",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 25,
-    outTotalAmount: null,
+    outTotalAmount: 7,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     isClientNotified: true,
@@ -90,7 +89,7 @@ export const ordersMock = [
   {
     id: 3,
     date: "2023-03-10 10:20",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 80,
     outTotalAmount: null,
@@ -103,10 +102,10 @@ export const ordersMock = [
   {
     id: 4,
     date: "2023-04-05 09:55",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 155,
-    outTotalAmount: null,
+    outTotalAmount: 30,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     trackingNumberClient: "ABCDEF8768Y",
@@ -117,7 +116,7 @@ export const ordersMock = [
   {
     id: 5,
     date: "2023-04-15 12:30",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: true,
     inTotalAmount: 230,
     outTotalAmount: null,
@@ -187,10 +186,10 @@ export const ordersMock = [
   {
     id: 6,
     date: "2023-05-01 18:45",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 112,
-    outTotalAmount: null,
+    outTotalAmount: 10,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     isClientNotified: true,
@@ -200,7 +199,7 @@ export const ordersMock = [
   {
     id: 7,
     date: "2023-05-10 10:00",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 190,
     outTotalAmount: null,
@@ -213,10 +212,10 @@ export const ordersMock = [
   {
     id: 8,
     date: "2023-06-02 14:20",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 58,
-    outTotalAmount: null,
+    outTotalAmount: 5,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     trackingNumberClient: "ABCDEF8768Y",
@@ -227,7 +226,7 @@ export const ordersMock = [
   {
     id: 9,
     date: "2023-06-15 08:00",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 211,
     outTotalAmount: null,
@@ -240,10 +239,10 @@ export const ordersMock = [
   {
     id: 10,
     date: "2023-07-05 11:30",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 128,
-    outTotalAmount: null,
+    outTotalAmount: 11,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     isClientNotified: true,
@@ -253,10 +252,10 @@ export const ordersMock = [
   {
     id: 11,
     date: "2023-07-15 15:45",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: true,
     inTotalAmount: 375,
-    outTotalAmount: null,
+    outTotalAmount: 17,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     isClientNotified: true,
@@ -266,7 +265,7 @@ export const ordersMock = [
   {
     id: 12,
     date: "2023-08-02 09:20",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: true,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -279,7 +278,7 @@ export const ordersMock = [
   {
     id: 13,
     date: "2023-08-10 14:30",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 105,
     outTotalAmount: null,
@@ -292,7 +291,7 @@ export const ordersMock = [
   {
     id: 14,
     date: "2023-09-01 18:45",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -305,7 +304,7 @@ export const ordersMock = [
   {
     id: 15,
     date: "2023-09-10 10:00",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 150,
     outTotalAmount: null,
@@ -318,7 +317,7 @@ export const ordersMock = [
   {
     id: 16,
     date: "2023-09-20 12:00",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 200,
     outTotalAmount: null,
@@ -331,7 +330,7 @@ export const ordersMock = [
   {
     id: 17,
     date: "2023-09-25 09:30",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -344,7 +343,7 @@ export const ordersMock = [
   {
     id: 18,
     date: "2023-10-05 15:15",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 80,
     outTotalAmount: null,
@@ -357,7 +356,7 @@ export const ordersMock = [
   {
     id: 19,
     date: "2023-10-15 08:45",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: false,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -370,7 +369,7 @@ export const ordersMock = [
   {
     id: 20,
     date: "2023-11-01 11:30",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -383,7 +382,7 @@ export const ordersMock = [
   {
     id: 21,
     date: "2023-11-10 15:45",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 80,
     outTotalAmount: null,
@@ -396,7 +395,7 @@ export const ordersMock = [
   {
     id: 22,
     date: "2023-11-20 09:20",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: true,
     inTotalAmount: 70,
     outTotalAmount: null,
@@ -409,7 +408,7 @@ export const ordersMock = [
   {
     id: 23,
     date: "2023-12-05 14:30",
-    step: orderStep[3].name,
+    step: 3,
     isNextStepOrder: true,
     inTotalAmount: 80,
     outTotalAmount: null,
@@ -422,7 +421,7 @@ export const ordersMock = [
   {
     id: 24,
     date: "2023-12-15 08:45",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 100,
     outTotalAmount: null,
@@ -435,7 +434,7 @@ export const ordersMock = [
   {
     id: 25,
     date: "2023-05-20 12:15",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 200,
     outTotalAmount: null,
@@ -448,7 +447,7 @@ export const ordersMock = [
   {
     id: 26,
     date: "2023-06-10 09:30",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 150,
     outTotalAmount: null,
@@ -461,7 +460,7 @@ export const ordersMock = [
   {
     id: 27,
     date: "2023-08-05 15:45",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 120,
     outTotalAmount: null,
@@ -474,7 +473,7 @@ export const ordersMock = [
   {
     id: 28,
     date: "2023-11-20 11:15",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 180,
     outTotalAmount: null,
@@ -487,7 +486,7 @@ export const ordersMock = [
   {
     id: 29,
     date: "2023-12-05 09:30",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 120,
     outTotalAmount: null,
@@ -500,7 +499,7 @@ export const ordersMock = [
   {
     id: 30,
     date: "2023-05-15 15:45",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: false,
     inTotalAmount: 210,
     outTotalAmount: null,
@@ -513,7 +512,7 @@ export const ordersMock = [
   {
     id: 31,
     date: "2023-06-02 08:00",
-    step: orderStep[2].name,
+    step: 2,
     isNextStepOrder: false,
     inTotalAmount: 240,
     outTotalAmount: null,
@@ -526,7 +525,7 @@ export const ordersMock = [
   {
     id: 32,
     date: "2023-08-10 12:30",
-    step: orderStep[0].name,
+    step: 0,
     isNextStepOrder: false,
     inTotalAmount: 300,
     outTotalAmount: null,
@@ -539,7 +538,7 @@ export const ordersMock = [
   {
     id: 33,
     date: "2023-09-05 16:15",
-    step: orderStep[1].name,
+    step: 1,
     isNextStepOrder: true,
     inTotalAmount: 180,
     outTotalAmount: null,

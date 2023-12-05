@@ -1,5 +1,3 @@
-import { materials } from "../constants/materials";
-import { orderStep } from "../constants/orderStep";
 
 export const userMock = {
   id: 1,
@@ -12,22 +10,22 @@ export const userMock = {
   wishlist: [
     {
       productId: 1,
-      material: materials[2].name,
+      material: 2,
     },
     {
       productId: 5,
-      material: materials[0].name,
+      material: 0,
     },
   ],
   cart: [
     {
       productId: 2,
-      material: materials[1].name,
+      material: 1,
       quantity: 2,
     },
     {
       productId: 8,
-      material: materials[3].name,
+      material: 3,
       quantity: 1,
     },
   ],
@@ -35,7 +33,7 @@ export const userMock = {
     {
       id: 1,
       date: "2023-03-10 10:20",
-      step: orderStep[2].name,
+      step: 2,
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -43,7 +41,7 @@ export const userMock = {
         {
           productId: 4,
           quantity: 2,
-          material: materials[1].name,
+          material: 1,
           productsActions: {
             exchange: null,
             refund: 2,
@@ -59,7 +57,7 @@ export const userMock = {
     {
       id: 2,
       date: "2023-03-07 11:40",
-      step: orderStep[1].name,
+      step: 1,
       inTotalAmount: 250,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -67,7 +65,7 @@ export const userMock = {
         {
           productId: 14,
           quantity: 1,
-          material: materials[0].name,
+          material: 0,
           productsActions: {
             exchange: 1,
             refund: null,
@@ -83,7 +81,7 @@ export const userMock = {
     {
       id: 3,
       date: "2023-03-10 22:20",
-      step: orderStep[0].name,
+      step: 0,
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
@@ -91,7 +89,7 @@ export const userMock = {
         {
           productId: 16,
           quantity: 1,
-          material: materials[3].name,
+          material: 3,
           productsActions: {
             exchange: null,
             refund: 1,
@@ -105,7 +103,7 @@ export const userMock = {
         {
           productId: 9,
           quantity: 1,
-          material: materials[2].name,
+          material: 2,
           productsActions: {
             exchange: null,
             refund: null,

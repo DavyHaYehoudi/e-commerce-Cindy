@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../helpers/selectors/product";
+import { getMaterialProperty } from "../../helpers/constants/materials";
 
 const WishlistProductContent = ({ product }) => {
   const state = useSelector((state) => state.product);
@@ -28,7 +29,7 @@ const WishlistProductContent = ({ product }) => {
 
       <div className="modal-product-details">
         <h3>{getProductProperties(product.productId, state).name}</h3>
-        <p>{product.material}</p>
+        <p>{getMaterialProperty(product.material).name }</p>
         <p className="price">
           {
             getProductProperties(product.productId, state).pricing

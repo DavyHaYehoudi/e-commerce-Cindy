@@ -1,6 +1,7 @@
 import React from "react";
 import { getProductsInfo } from "../../../../../../helpers/selectors/products";
 import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const ProductListItem = ({
   product,
@@ -20,12 +21,11 @@ const ProductListItem = ({
     product.productId,
     productStore
   );
-
   return (
     <small key={product.id}>
       <li className="description">
         <span>- {productProperties.name} </span>
-        <span>{details.material}</span>
+        <span>{getMaterialProperty(details.material).name}</span>
         <span>
           {" "}
           {articleNumber || 1} article{articleNumber > 1 ? "s" : ""}

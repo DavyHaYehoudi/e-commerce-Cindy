@@ -1,4 +1,3 @@
-import { materials } from "../constants/materials";
 import bo from "../assets/bo.png";
 import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
@@ -14,12 +13,7 @@ export const productMock = [
     image: bo,
     description:
       "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur.",
-    materials: [
-      materials[0].name,
-      materials[1].name,
-      materials[2].name,
-      materials[3].name,
-    ],
+    materials: [0, 1, 2, 3],
     promotion: {
       amount: "10%",
       startDate: "2023-11-15",
@@ -47,7 +41,7 @@ export const productMock = [
     image: bar,
     description:
       "Une robe élégante parfaite pour les soirées spéciales. Confortable et stylée.",
-    materials: [materials[2].name, materials[3].name],
+    materials: [2,3],
     promotion: {
       amount: "15%",
       startDate: "2023-10-20",
@@ -75,7 +69,7 @@ export const productMock = [
     image: col,
     description:
       "Un peigne élégant en cristal pour ajouter une touche de glamour à votre coiffure.",
-    materials: [materials[2].name, materials[3].name],
+    materials: [2,3],
     promotion: {
       amount: "15%",
       startDate: "2023-11-01",
@@ -130,7 +124,7 @@ export const productMock = [
     image: bo,
     description:
       "Un collier de perles classique qui ajoute une touche d'élégance à n'importe quelle tenue.",
-    materials: [materials[0].name, materials[2].name],
+    materials: [0,2],
     promotion: {
       amount: "12%",
       startDate: "2023-11-15",
@@ -157,7 +151,7 @@ export const productMock = [
     image: bar,
     description:
       "Une broche scintillante en strass pour ajouter une touche de glamour à votre coiffure.",
-    materials: [materials[1].name],
+    materials: [1],
     promotion: {
       amount: "10%",
       startDate: "2023-11-05",
@@ -211,7 +205,7 @@ export const productMock = [
     image: bra,
     description:
       "Des boucles d'oreilles pendantes chic et modernes pour compléter votre look avec style.",
-    materials: [materials[1].name, materials[3].name],
+    materials: [1,3],
     promotion: {
       amount: "20%",
       startDate: "2023-11-10",
@@ -238,7 +232,7 @@ export const productMock = [
     image: col,
     description:
       "Un peigne vintage orné de détails élégants pour ajouter une touche rétro à votre coiffure.",
-    materials: [materials[1].name, materials[2].name],
+    materials: [1,2],
     promotion: {
       amount: "15%",
       startDate: "2023-11-15",
@@ -265,7 +259,7 @@ export const productMock = [
     image: bo,
     description:
       "Un bracelet en cuir tressé avec une fermeture magnétique pour un look décontracté et tendance.",
-    materials: [materials[0].name, materials[3].name],
+    materials: [0,3],
     promotion: {
       amount: "10%",
       startDate: "2023-11-15",
@@ -293,7 +287,7 @@ export const productMock = [
     image: bar,
     description:
       "Une élégante broche florale en argent pour ajouter une touche de délicatesse à vos tenues.",
-    materials: [materials[2].name, materials[3].name],
+    materials: [2,3],
     promotion: {
       amount: "12%",
       startDate: "2023-11-20",
@@ -320,7 +314,7 @@ export const productMock = [
     image: bra,
     description:
       "Des boucles d'oreilles pendantes en perles pour un look sophistiqué et raffiné.",
-    materials: [materials[0].name, materials[2].name],
+    materials: [0,2],
     promotion: {
       amount: "18%",
       startDate: "2023-11-18",
@@ -374,7 +368,7 @@ export const productMock = [
     image: bo,
     description:
       "Un bracelet jonc en argent avec des détails ciselés pour une allure élégante au quotidien.",
-    materials: [materials[2].name, materials[3].name],
+    materials: [2,3],
     promotion: {
       amount: "15%",
       startDate: "2023-11-25",
@@ -402,7 +396,7 @@ export const productMock = [
     image: bar,
     description:
       "Des boucles d'oreilles créoles en argent pour un look moderne et élégant.",
-    materials: [materials[1].name, materials[3].name],
+    materials: [1,3],
     promotion: {
       amount: "10%",
       startDate: "2023-12-01",
@@ -429,7 +423,7 @@ export const productMock = [
     image: bra,
     description:
       "Un pin à cheveux élégant en perles pour rehausser votre coiffure avec une touche de sophistication.",
-    materials: [materials[0].name, materials[2].name],
+    materials: [0,2],
     promotion: {
       amount: "",
       startDate: "",
@@ -456,7 +450,7 @@ export const productMock = [
     image: col,
     description:
       "Un collier pendentif en cristal pour ajouter une touche de glamour à vos tenues de soirée.",
-    materials: [materials[2].name, materials[3].name],
+    materials: [2,3],
     promotion: {
       amount: "15%",
       startDate: "2023-12-08",
@@ -483,7 +477,7 @@ export const productMock = [
     image: bo,
     description:
       "Un serre-tête floral avec des détails délicats pour une coiffure féminine et romantique.",
-    materials: [materials[0].name, materials[1].name],
+    materials: [0,1],
     promotion: {
       amount: "10%",
       startDate: "2023-12-05",
@@ -510,7 +504,7 @@ export const productMock = [
     image: bar,
     description:
       "Un bracelet charm en perles pour exprimer votre style unique et personnel.",
-    materials: [materials[1].name, materials[2].name],
+    materials: [1,2],
     promotion: {
       amount: "8%",
       startDate: "2023-12-12",
@@ -538,7 +532,7 @@ export const productMock = [
     image: bra,
     description:
       "Des boucles d'oreilles pendantes en argent pour un look élégant et intemporel.",
-    materials: [materials[0].name, materials[3].name],
+    materials: [0,3],
     promotion: {
       amount: "12%",
       startDate: "2023-12-10",

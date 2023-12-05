@@ -1,21 +1,20 @@
-import { orderStep } from "../constants/orderStep";
 
 
 export const getStepColor = (step) => {
   switch (step) {
-    case orderStep[0].name:
+    case 0:
       return getComputedStyle(document.documentElement).getPropertyValue('--warning');
-    case orderStep[1].name:
+    case 1:
       return getComputedStyle(document.documentElement).getPropertyValue('--primary');
-    case orderStep[2].name:
+    case 2:
       return getComputedStyle(document.documentElement).getPropertyValue('--success');
-    case orderStep[3].name:
+    case 3:
       return getComputedStyle(document.documentElement).getPropertyValue('--info');
-    case orderStep[4].name:
+    case 4:
       return getComputedStyle(document.documentElement).getPropertyValue('--info');
-    case orderStep[5].name:
+    case 5:
       return getComputedStyle(document.documentElement).getPropertyValue('--success');
-    case orderStep[6].name:
+    case 6:
       return getComputedStyle(document.documentElement).getPropertyValue('--danger');
     default:
       return getComputedStyle(document.documentElement).getPropertyValue('--dark');

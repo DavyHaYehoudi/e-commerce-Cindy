@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { handleCheckQuantity } from "./handle/articlesNumberCheck";
 import { getProductsInfo } from "../../../../../../helpers/selectors/products";
 import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const ArticleNumberByProduct = ({
   orderId,
@@ -76,7 +77,7 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product.productId}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{product.material}</span>
+                <span>{getMaterialProperty(product.material).name }</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"

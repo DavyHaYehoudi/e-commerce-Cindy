@@ -1,3 +1,4 @@
+import { getOrderStepProperty } from "../../../../../helpers/constants/orderStep";
 import { getStepColor } from "../../../../../helpers/getStepColor";
 import { getOrderInfo } from "../../../../../helpers/selectors/order";
 
@@ -12,7 +13,6 @@ export const renderBadge = (
   stepSelected,
   setStepSelected
 ) => {
-
   const count = orders?.filter((order) => order.step === step).length;
 
   if (count > 0) {
@@ -37,10 +37,10 @@ export const renderBadge = (
       stepBadge: (
         <>
           <span className={badgeClass} style={style} onClick={handleClick}>
-            {step} ({count})
+            {getOrderStepProperty(step).name} ({count})
             {!isClientNotifiedForThisOrder && (
               <span className="notification-bubble-order blink"></span>
-            )}         
+            )}
           </span>
         </>
       ),

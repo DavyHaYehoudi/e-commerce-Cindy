@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ordersMock } from "../../mocks/ordersMock";
-import { orderStep } from "../../constants/orderStep";
 
 export const ordersActions = [
-  { id: 0, name: orderStep[0].name },
-  { id: 1, name: orderStep[1].name },
-  { id: 2, name: orderStep[2].name },
-  { id: 3, name: orderStep[3].name },
-  { id: 4, name: orderStep[4].name },
-  { id: 5, name: orderStep[5].name },
-  { id: 6, name: orderStep[6].name },
+  { id: 0, number: 0 },
+  { id: 1, number: 1 },
+  { id: 2, number: 2 },
+  { id: 3, number: 3 },
+  { id: 4, number: 4 },
+  { id: 5, number: 5 },
+  { id: 6, number: 6 },
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
@@ -25,15 +24,22 @@ const updateOrderStep = (order, { step, isClientNotified }) => ({
   isClientNotified,
 });
 
+const sendToTheClient = (order, payload) => ({
+  ...order,
+  isClientNotified: payload.isClientNotified,
+  lastSentDateToClient: new Date().toISOString(),
+});
+
 const updateMoveToNextStep = (
   order,
   { step, isClientNotified, isNextStepOrder }
 ) => {
   const currentStepIndex = ordersActions.findIndex(
-    (s) => s.name === order.step
+    (s) => s.number === order.step
   );
+
   const nextStepIndex = (currentStepIndex + 1) % ordersActions.length;
-  const nextStep = isNextStepOrder ? ordersActions[nextStepIndex].name : step;
+  const nextStep = isNextStepOrder ? ordersActions[nextStepIndex].number : step;
 
   return {
     ...order,
@@ -85,11 +91,8 @@ const ordersSlice = createSlice({
       applyOrderAction(state, action, updateOrderStep),
 
     sendToClient: (state, action) =>
-      applyOrderAction(state, action, (order, payload) => ({
-        ...order,
-        isClientNotified: payload.isClientNotified,
-        lastSentDateToClient: new Date(),
-      })),
+      applyOrderAction(state, action, sendToTheClient),
+      
     articleAction: (state, action) =>
       applyOrderAction(state, action, updateIsClientNotified),
 
