@@ -1,19 +1,22 @@
-import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
-import { updateTotalsInOut } from "../../../../../../../../features/admin/productActionsSlice";
+import { addCredit } from "../../../../../../../../features/admin/creditsSlice";
+import {
+  articleAction,
+  totalsInOut,
+} from "../../../../../../../../features/admin/ordersSlice";
 
 // Au clic sur l'item avoir, déterminer si c'est pour le générer ou l'annuler
 export const handleCredit = (
   action,
   setInteraction,
-  productState,
+  productsInfo,
   setConfirmation,
-  productActions,
+  productsActions,
   actions,
   setProductActions
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productState[action]?.amount) {
+  if (productsInfo[action]) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,
@@ -22,7 +25,7 @@ export const handleCredit = (
     // Sinon, c'est pour attribuer une value à la propriété
   } else {
     const updatedProductActions = {
-      ...productActions,
+      ...productsActions,
       isAddCredit: action === actions.CREDIT,
     };
     setProductActions(updatedProductActions);
@@ -52,19 +55,19 @@ export const handleChangeInputCreditDate = (e, setProductActions) => {
 export const handleConfirmCreditEntry = (
   e,
   action,
-  productActions,
+  productsActions,
   setProductActions,
   setEntryError,
-  generateRandomCode,
   dispatch,
   clientId,
   productId,
   orderId,
+  products,
   updateActionContent,
   productPrice
 ) => {
   e.stopPropagation();
-  let { amount, dateExpire } = productActions.creditContent;
+  let { amount, dateExpire } = productsActions.creditContent;
   amount = parseInt(amount);
   const selectedDate = new Date(dateExpire);
   const currentDate = new Date();
@@ -81,31 +84,30 @@ export const handleConfirmCreditEntry = (
       setEntryError("⚠️ Une date ultérieure doit être définie.");
     }
   } else if (amount > 0 && validityDate) {
-    const code = generateRandomCode();
-    const productActionContent = {
-      amount: productActions.creditContent.amount,
-      dateExpire: productActions.creditContent?.dateExpire,
-      code,
-    };
     dispatch(
-      updateActionContent({
-        clientId,
-        productId,
-        orderId,
-        updatedProperty: action,
-        isClientNotified:false,
-        productActionContent,
+      addCredit({
+        productsId: products.id,
+        amount: productsActions.creditContent.amount,
+        dateExpire: productsActions.creditContent?.dateExpire,
       })
     );
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      updateActionContent({
+        creditContent:products.id,
+        productId,
+        updatedProperty: action,
+        isClientNotified: false,
+      })
+    );
+ 
+    dispatch(
+      totalsInOut({
         orderId,
         amount,
         movement: "out",
       })
     );
-    dispatch(articleAction({clientId, orderId}));
+    dispatch(articleAction({ clientId, orderId }));
     setProductActions((prevState) => ({
       ...prevState,
       isAddCredit: false,

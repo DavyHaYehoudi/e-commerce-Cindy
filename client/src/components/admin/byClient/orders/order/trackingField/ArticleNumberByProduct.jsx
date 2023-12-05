@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import {
-  getProductProperties,
-  getProductStateInfo,
-} from "../../../../../../helpers/storeDataUtils";
 import { handleCheckQuantity } from "./handle/articlesNumberCheck";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const ArticleNumberByProduct = ({
-  clientId,
   orderId,
   checkboxStates,
   articleNumber,
+  productStore,
+  ordersStore,
   productsStore,
-  productActions,
   setCheckboxStates,
   setSelectedProducts,
   setArticleNumber,
@@ -31,6 +30,11 @@ const ArticleNumberByProduct = ({
         ? prev.filter((prevId) => prevId !== productId)
         : [...prev, productId]
     );
+    if (!checkboxStates[id] && articleNumber[productId]?.value > 1) {
+      setIsFormValid(false);
+    } else {
+      setIsFormValid(true);
+    }
   };
   const handleNumberChange = (productId, value, articlesNumberMax) => {
     setArticleNumber((prev) => ({
@@ -43,9 +47,9 @@ const ArticleNumberByProduct = ({
     }));
   };
 
-  const { productsByOrder } = getProductStateInfo(
-    productActions,
-    clientId,
+  const { productsByOrder } = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId
   );
 
@@ -54,7 +58,7 @@ const ArticleNumberByProduct = ({
       {productsByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productId,
-          productsStore
+          productStore
         );
 
         return (
@@ -73,7 +77,7 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product.productId}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{product.material}</span>
+                <span>{getMaterialProperty(product.material).name }</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"
@@ -92,11 +96,12 @@ const ArticleNumberByProduct = ({
                     onBlur={() =>
                       handleCheckQuantity(
                         inputValues,
-                        productActions,
-                        clientId,
+                        ordersStore,
+                        productsStore,
                         orderId,
                         setError,
-                        setIsFormValid
+                        setIsFormValid,
+                        checkboxStates
                       )
                     }
                   />

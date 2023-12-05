@@ -3,13 +3,16 @@ import { MdEmail } from "react-icons/md";
 import Details from "../preferences";
 import ToggleButton from "../../../../shared/ToggleButton";
 import NotesEditor from "../../../../shared/NotesEditor";
-import { useSelector } from "react-redux";
 import Orders from "./Orders";
 
-const Infos = ({ client, orders, handleClientClick }) => {
+const Infos = ({
+  client,
+  orders,
+  ordersStore,
+  productsStore,
+  handleClientClick,
+}) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-
-  const ordersStore = useSelector((state) => state.ordersStep);
 
   return (
     <div className="client-details" onClick={(e) => e.stopPropagation()}>
@@ -41,9 +44,10 @@ const Infos = ({ client, orders, handleClientClick }) => {
       </div>
       <hr></hr>
       <Orders
-        orders={orders}
         client={client}
+        orders={orders}
         ordersStore={ordersStore}
+        productsStore={productsStore}
         setSelectedOrderId={setSelectedOrderId}
         selectedOrderId={selectedOrderId}
       />

@@ -3,30 +3,32 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useDispatch, useSelector } from "react-redux";
-import { getTrackingNumberList } from "../../../../../helpers/storeDataUtils";
+import { useDispatch } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { sendToClient } from "../../../../../features/admin/orderStepSlice";
+import { sendToClient } from "../../../../../features/admin/ordersSlice";
+import { getTrackingNumberList } from "../../../../../helpers/selectors/order";
 
 const Item = ({
-  clientId,
+  client,
   order,
   orderIndex,
+  ordersStore,
+  productsStore,
   isClientNotified,
   lastSentDateToClient,
   step,
 }) => {
   const dispatch = useDispatch();
-  const trackingNumberData = useSelector((state) => state.trackingNumber);
+
   const trackingNumberList = getTrackingNumberList(
-    trackingNumberData,
-    clientId,
+    ordersStore,
+    client.id,
     order?.id
   );
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
-        clientId,
+        clientId:client.id,
         orderId: order?.id,
         isClientNotified: true,
       })
@@ -38,18 +40,23 @@ const Item = ({
       <Header
         order={order}
         orderIndex={orderIndex}
-        clientId={clientId}
+        client={client}
         step={step}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}
         handleSendToClient={handleSendToClient}
       />
 
-      <Details order={order} clientId={clientId} orderId={order?.id} />
-      <List
-        products={order?.products}
-        clientId={clientId}
+      <Details
+        order={order}
         orderId={order?.id}
+        ordersStore={ordersStore}
+      />
+      <List
+        client={client}
+        orderId={order?.id}
+        ordersStore={ordersStore}
+        productsStore={productsStore}
       />
 
       <ToggleButton
@@ -59,8 +66,10 @@ const Item = ({
         content={
           <Listing
             trackingNumberList={trackingNumberList}
-            clientId={clientId}
+            client={client}
             orderId={order?.id}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
           />
         }
       />

@@ -1,5 +1,3 @@
-import { materials } from "../constants/materials";
-import { orderStep } from "../constants/orderStep";
 
 export const userMock = {
   id: 1,
@@ -11,40 +9,40 @@ export const userMock = {
   notesClient: null,
   wishlist: [
     {
-      productId: 1,
-      material: materials[2].name,
+      productId: "1mongoDb",
+      material: 2,
     },
     {
-      productId: 5,
-      material: materials[0].name,
+      productId: "5mongoDb",
+      material: 0,
     },
   ],
   cart: [
     {
-      productId: 2,
-      material: materials[1].name,
+      productId: "2mongoDb",
+      material: 1,
       quantity: 2,
     },
     {
-      productId: 8,
-      material: materials[3].name,
+      productId: "8mongoDb",
+      material: 3,
       quantity: 1,
     },
   ],
   orders: [
     {
-      id: 1,
+      id: "1mongoDb",
       date: "2023-03-10 10:20",
-      step: orderStep[2].name,
+      step: 2,
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 4,
+          productId: "4mongoDb",
           quantity: 2,
-          material: materials[1].name,
-          productActions: {
+          material: 1,
+          productsActions: {
             exchange: null,
             refund: 2,
             credit: {
@@ -57,18 +55,18 @@ export const userMock = {
       ],
     },
     {
-      id: 2,
+      id: "2mongoDb",
       date: "2023-03-07 11:40",
-      step: orderStep[1].name,
+      step: 1,
       inTotalAmount: 250,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 14,
+          productId: "14mongoDb",
           quantity: 1,
-          material: materials[0].name,
-          productActions: {
+          material: 0,
+          productsActions: {
             exchange: 1,
             refund: null,
             credit: {
@@ -81,18 +79,18 @@ export const userMock = {
       ],
     },
     {
-      id: 3,
+      id: "3mongoDb",
       date: "2023-03-10 22:20",
-      step: orderStep[0].name,
+      step: 0,
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
       products: [
         {
-          productId: 16,
+          productId: "16mongoDb",
           quantity: 1,
-          material: materials[3].name,
-          productActions: {
+          material: 3,
+          productsActions: {
             exchange: null,
             refund: 1,
             credit: {
@@ -103,10 +101,10 @@ export const userMock = {
           },
         },
         {
-          productId: 9,
+          productId: "9mongoDb",
           quantity: 1,
-          material: materials[2].name,
-          productActions: {
+          material: 2,
+          productsActions: {
             exchange: null,
             refund: null,
             credit: {

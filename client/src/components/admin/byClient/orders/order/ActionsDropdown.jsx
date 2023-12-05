@@ -4,8 +4,7 @@ import {
   cancelOrder,
   moveToNextStep,
   reactivateOrder,
-} from "../../../../../features/admin/orderStepSlice";
-import { orderStep } from "../../../../../constants/orderStep";
+} from "../../../../../features/admin/ordersSlice";
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
 import { TbCircleCheck } from "react-icons/tb";
@@ -14,14 +13,14 @@ import { formatDate } from "../../../../../helpers/formatDate";
 const ActionsDropdown = ({
   order,
   step,
-  clientId,
+  client,
   handleSendToClient,
   isClientNotified,
   lastSentDateToClient,
 }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const isOrderCancelled = step === orderStep[6].name;
+  const isOrderCancelled = step === 6;
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -30,7 +29,7 @@ const ActionsDropdown = ({
   const performAction = (actionType, newStep) => {
     dispatch(
       actionType({
-        clientId,
+        clientId: client.id,
         orderId: order.id,
         isClientNotified: false,
         step: newStep,
@@ -79,13 +78,11 @@ const ActionsDropdown = ({
           </button>
         )}
         {isOrderCancelled ? (
-          <button
-            onClick={() => performAction(reactivateOrder, orderStep[0].name)}
-          >
+          <button onClick={() => performAction(reactivateOrder, 0)}>
             Réactiver la commande
           </button>
         ) : (
-          <button onClick={() => performAction(cancelOrder, orderStep[6].name)}>
+          <button onClick={() => performAction(cancelOrder, 6)}>
             Annuler la commande
           </button>
         )}

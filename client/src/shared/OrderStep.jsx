@@ -1,7 +1,8 @@
 import React from "react";
 import { getStepColor } from "../helpers/getStepColor";
+import { getOrderStepProperty } from "../helpers/constants/orderStep";
 
-const orderStep = ({ order }) => {
+const OrderStep = ({ order }) => {
   const StepColorStyle = {
     backgroundColor: getStepColor(order.step),
     color: "#fff",
@@ -11,9 +12,9 @@ const orderStep = ({ order }) => {
 
   return (
     <p>
-      <span style={StepColorStyle}>{order.step}</span>
+      <span style={StepColorStyle}>{getOrderStepProperty(order.step).name}</span>
     </p>
   );
 };
 
-export default orderStep;
+export default OrderStep;

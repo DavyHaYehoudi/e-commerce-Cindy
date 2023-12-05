@@ -4,25 +4,27 @@ import {
   handleConfirmation,
 } from "../components/admin/byClient/orders/product/item/action/handler/confirmation";
 import { useDispatch } from "react-redux";
-import { getProductProperties } from "../helpers/storeDataUtils";
+import { getProductProperties } from "../helpers/selectors/product";
 
 const ConfirmationModal = ({
   message,
   confirmation,
-  productActions,
+  productsActions,
   actions,
-  clientId,
+  client,
   productId,
   orderId,
-  productsState,
-  productState,
+  products,
+  amount,
+  productStore,
+  productsInfo,
   setProductActions,
   setConfirmation,
   setEntryError,
   setInteraction,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productId, productsState).pricing
+  const productPrice = getProductProperties(productId, productStore).pricing
     .currentPrice;
   return (
     <div className="confirmation-popup">
@@ -31,14 +33,16 @@ const ConfirmationModal = ({
         onClick={() =>
           handleConfirmation(
             confirmation,
-            productActions,
+            productsActions,
             actions,
-            clientId,
+            client.id,
             productId,
             orderId,
+            products,
+            amount,
             dispatch,
             productPrice,
-            productState,
+            productsInfo,
             setConfirmation,
             setEntryError,
             setProductActions

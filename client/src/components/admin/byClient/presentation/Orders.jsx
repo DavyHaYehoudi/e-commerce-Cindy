@@ -5,8 +5,9 @@ import Item from "../orders/order";
 
 const Orders = ({
   orders,
-  client,
   ordersStore,
+  productsStore,
+  client,
   setSelectedOrderId,
   selectedOrderId,
 }) => {
@@ -42,8 +43,8 @@ const Orders = ({
                       {
                         renderBadge(
                           ordersStore,
+                          orders,
                           step,
-                          client,
                           setSelectedOrderId,
                           orderIds,
                           orderId,
@@ -68,9 +69,11 @@ const Orders = ({
                     .map((order, i) => (
                       <Item
                         key={i}
-                        clientId={client.id}
+                        client={client}
                         order={order}
                         orderIndex={i}
+                        ordersStore={ordersStore}
+                        productsStore={productsStore}
                         isClientNotified={order.isClientNotified}
                         trackingNumberAdmin={order.trackingNumberAdmin}
                         trackingNumberClient={order.trackingNumberClient}

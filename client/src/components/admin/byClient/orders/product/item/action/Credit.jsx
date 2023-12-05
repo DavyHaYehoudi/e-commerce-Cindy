@@ -6,33 +6,33 @@ import {
   handleConfirmCreditEntry,
   handleCredit,
 } from "./handler/credit";
-import { updateActionContent } from "../../../../../../../features/admin/productActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { generateRandomCode } from "../../../../../../../helpers/creditCode";
-import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../../helpers/selectors/product";
 
 const Credit = ({
   interaction,
   action,
   actions,
   label,
-  productState,
+  productsInfo,
   isActionSelected,
   inputCreditAmount,
   inputDateValue,
-  productActions,
+  productsActions,
   placeholderValue,
   textCancel,
-  clientId,
+  client,
   productId,
   orderId,
+  products,
   setProductActions,
   setEntryError,
   setConfirmation,
   setInteraction,
 }) => {
   const dispatch = useDispatch();
-  const productsState = useSelector((state) => state.products);
+  const productsState = useSelector((state) => state.product);
   const productPrice = getProductProperties(productId,productsState).pricing.currentPrice
   return (
     <li
@@ -41,15 +41,15 @@ const Credit = ({
         handleCredit(
           action,
           setInteraction,
-          productState,
+          productsInfo,
           setConfirmation,
-          productActions,
+          productsActions,
           actions,
           setProductActions
         )
       }
     >
-      {productState?.[action]?.amount ? textCancel : label}
+      {productsInfo?.[action]? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -85,14 +85,14 @@ const Credit = ({
               handleConfirmCreditEntry(
                 e,
                 action,
-                productActions,
+                productsActions,
                 setProductActions,
                 setEntryError,
-                generateRandomCode,
                 dispatch,
-                clientId,
+                client.id,
                 productId,
                 orderId,
+                products,
                 updateActionContent,
                 productPrice
               )

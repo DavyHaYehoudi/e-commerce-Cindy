@@ -4,7 +4,13 @@ import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
 import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
 
-const Listing = ({ trackingNumberList, clientId, orderId }) => {
+const Listing = ({
+  trackingNumberList,
+  client,
+  orderId,
+  ordersStore,
+  productsStore
+}) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [checkboxStates, setCheckboxStates] = useState({});
@@ -17,8 +23,7 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const dispatch = useDispatch();
-  const productsStore = useSelector((state) => state.products);
-  const productActions = useSelector((state) => state.productActions);
+  const productStore = useSelector((state) => state.product);
 
   return (
     <div className="trackingNumberList">
@@ -30,14 +35,15 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
       </button>
       {trackingNumberBoxOpen && (
         <AdminTrackingNumberCreate
-          clientId={clientId}
+          client={client}
           orderId={orderId}
           trackingInfo={trackingInfo}
           error={error}
           isFormValid={isFormValid}
           dispatch={dispatch}
+          productStore={productStore}
+          ordersStore={ordersStore}
           productsStore={productsStore}
-          productActions={productActions}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
           setError={setError}
@@ -53,24 +59,26 @@ const Listing = ({ trackingNumberList, clientId, orderId }) => {
           <AdminTrackingItem
             key={item.id}
             item={item}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
+            ordersStore={ordersStore}
             productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
           />
         ) : (
           <ClientTrackingItem
             key={item.id}
             item={item}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             checkboxStates={checkboxStates}
             error={error}
             selectedProducts={selectedProducts}
             dispatch={dispatch}
             isFormValid={isFormValid}
+            ordersStore={ordersStore}
             productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setError={setError}
             setSelectedProducts={setSelectedProducts}

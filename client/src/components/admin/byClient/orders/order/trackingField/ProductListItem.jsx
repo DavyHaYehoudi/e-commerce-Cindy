@@ -1,33 +1,31 @@
 import React from "react";
-import {
-  getProductDetails,
-  getProductProperties,
-} from "../../../../../../helpers/storeDataUtils";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const ProductListItem = ({
   product,
-  clientId,
   orderId,
   articleNumber,
+  ordersStore,
   productsStore,
-  productActions,
+  productStore,
 }) => {
-  const details = getProductDetails(
-    productActions,
-    clientId,
+  const details = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId,
     product.productId
   );
   const productProperties = getProductProperties(
     product.productId,
-    productsStore
+    productStore
   );
-
   return (
     <small key={product.id}>
       <li className="description">
         <span>- {productProperties.name} </span>
-        <span>{details.material}</span>
+        <span>{getMaterialProperty(details.material).name}</span>
         <span>
           {" "}
           {articleNumber || 1} article{articleNumber > 1 ? "s" : ""}

@@ -3,15 +3,16 @@ import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { handleCancel, handleValidate } from "./handle/validateAdmin";
 
 const AdminTrackingNumberCreate = ({
-  clientId,
+  client,
   orderId,
   trackingInfo,
   error,
   dispatch,
   isFormValid,
   checkboxStates,
+  productStore,
+  ordersStore,
   productsStore,
-  productActions,
   setError,
   setTrackingInfo,
   setSelectedProducts,
@@ -47,11 +48,12 @@ const AdminTrackingNumberCreate = ({
         }
       />
       <ArticleNumberByProduct
-        clientId={clientId}
+        client={client}
         orderId={orderId}
         checkboxStates={checkboxStates}
+        ordersStore={ordersStore}
         productsStore={productsStore}
-        productActions={productActions}
+        productStore={productStore}
         articleNumber={articleNumber}
         setArticleNumber={setArticleNumber}
         setSelectedProducts={setSelectedProducts}
@@ -69,7 +71,6 @@ const AdminTrackingNumberCreate = ({
               selectedProducts,
               setTrackingNumberBoxOpen,
               dispatch,
-              clientId,
               orderId,
               articleNumber,
               setArticleNumber,

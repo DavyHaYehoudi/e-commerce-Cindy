@@ -1,31 +1,37 @@
 import React from "react";
-import { getProductProperties } from "../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../helpers/selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";
-import {
-  formatPrice,
-  sumPriceArticle,
-} from "../../../../../../helpers/prices";
+import { formatPrice, sumPriceArticle } from "../../../../../../helpers/prices";
+import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
+import { useSelector } from "react-redux";
 
 const Header = ({
   interaction,
   material,
   quantity,
   productId,
+  products,
   isTagProductExisted,
-  productState,
-  productsState,
+  productsInfo,
+  productStore,
   toggleActions,
 }) => {
+  const creditsStore = useSelector((state) => state.credits);
+  const { amount, code, dateExpire } = getCreditsInfo(
+    creditsStore,
+    products.id
+  );
   const { reference, name, pricing, image } = getProductProperties(
     productId,
-    productsState
+    productStore
   );
-  const { exchange, refund, credit } = productState ??{} ;
+  const { exchange, refund, credit } = productsInfo ?? {};
   return (
     <>
-     <p className="action-icon" onClick={toggleActions}>
+      <p className="action-icon" onClick={toggleActions}>
         {" "}
         {interaction.isActionsOpen ? (
           <FaEllipsisVertical />
@@ -33,57 +39,57 @@ const Header = ({
           <IoEllipsisHorizontal />
         )}
       </p>
-    <div className="product-content-details">
-      <div>
-        <p>
-          {name} {material}
-        </p>
-        <p className="pricing inPricing">
-          {quantity} article
-          {quantity > 1 ? "s" : ""} -{" "}
-          {sumPriceArticle(quantity, pricing.currentPrice)}
-        </p>
-        <p>Référence : {reference}</p>
-      </div>
-      <img src={image} alt={name} width="150px" />
-      <ul>
-        <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
-          {exchange && (
-            <>
-            <span>ECHANGE :</span>{" "}
-            <span>({exchange} article{exchange > 1 ? "s" : ""}) </span>
-            </>
-          )}
-        </li>
-        <li className={isTagProductExisted && refund ? "product-tag" : ""}>
-          {refund && (
-            <>
-              <span>REMBOURSEMENT :</span>{" "}
-              <span className="pricing outPricing">
-                {sumPriceArticle(parseInt(refund), pricing.currentPrice)}
-              </span>
-            </>
-          )}
-        </li>
-        <li
-          className={isTagProductExisted && credit?.amount ? "product-tag" : ""}
-        >
-          {credit?.amount && (
-            <ul>
-              <li>
-                AVOIR :{" "}
-                <span className="pricing outPricing">
-                {" "}  {formatPrice(credit?.amount)}
+      <div className="product-content-details">
+        <div>
+          <p>
+            {name} {getMaterialProperty(material).name}
+          </p>
+          <p className="pricing inPricing">
+            {quantity} article
+            {quantity > 1 ? "s" : ""} -{" "}
+            {sumPriceArticle(quantity, pricing.currentPrice)}
+          </p>
+          <p>Référence : {reference}</p>
+        </div>
+        <img src={image} alt={name} width="150px" />
+        <ul>
+          <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
+            {exchange && (
+              <>
+                <span>ECHANGE :</span>{" "}
+                <span>
+                  ({exchange} article{exchange > 1 ? "s" : ""}){" "}
                 </span>
-              </li>
-              <li> Nᴼ {credit?.code} </li>
-              <li>Valable jusqu'au {formatDate(credit?.dateExpire)}</li>
-            </ul>
-          )}
-        </li>
-      </ul>
-     
-    </div>
+              </>
+            )}
+          </li>
+          <li className={isTagProductExisted && refund ? "product-tag" : ""}>
+            {refund && (
+              <>
+                <span>REMBOURSEMENT :</span>{" "}
+                <span className="pricing outPricing">
+                  {sumPriceArticle(parseInt(refund), pricing.currentPrice)}
+                </span>
+              </>
+            )}
+          </li>
+          <li className={isTagProductExisted && credit ? "product-tag" : ""}>
+            {credit && (
+              <ul>
+                <li>
+                  AVOIR :{" "}
+                  <span className="pricing outPricing">
+                    {" "}
+                    {formatPrice(amount)}
+                  </span>
+                </li>
+                <li> Nᴼ {code} </li>
+                <li>Valable jusqu'au {formatDate(dateExpire)}</li>
+              </ul>
+            )}
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

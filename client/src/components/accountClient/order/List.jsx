@@ -4,6 +4,7 @@ import ToggleButton from "../../../shared/ToggleButton";
 import { formatDate } from "../../../helpers/formatDate";
 import OrderStep from "../../../shared/OrderStep";
 import { orderStep } from "../../../constants/orderStep";
+import { getOrderStepProperty } from "../../../helpers/constants/orderStep";
 
 const List = ({ orderHistory, filter }) => {
   const [showOrderItems, setShowOrderItems] = useState(false);
@@ -34,7 +35,7 @@ const List = ({ orderHistory, filter }) => {
             content={
               <Item
                 products={order.products}
-                isReturnProduct={order.step === orderStep[3].name}
+                isReturnProduct={getOrderStepProperty(order.step).name  === orderStep[3].name}
               />
             }
             onToggle={handleToggleOrderItems}

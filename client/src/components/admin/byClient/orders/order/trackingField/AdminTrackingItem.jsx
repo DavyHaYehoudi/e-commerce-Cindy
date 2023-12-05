@@ -3,21 +3,21 @@ import { formatDate } from "../../../../../../helpers/formatDate";
 import ProductListItem from "./ProductListItem";
 import { TbInputX } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import { deleteTrackingNumber } from "../../../../../../features/admin/trackingNumberSlice";
+import { deleteTrackingNumber } from "../../../../../../features/admin/ordersSlice";
 
 const AdminTrackingItem = ({
   item,
-  clientId,
+  client,
   orderId,
-  productsStore,
-  productActions,
+  productStore,
+  ordersStore,
+  productsStore
 }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
   const handleConfirmCancel = (trackingNumberId) => {
     dispatch(
       deleteTrackingNumber({
-        clientId,
         orderId,
         trackingNumberId,
       })
@@ -36,11 +36,12 @@ const AdminTrackingItem = ({
           <ProductListItem
             key={product.id}
             product={product}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
+            ordersStore={ordersStore}
             productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
           />
         ))}
       </ul>

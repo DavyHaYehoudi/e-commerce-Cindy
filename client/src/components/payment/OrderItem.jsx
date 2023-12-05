@@ -1,6 +1,7 @@
 import React from "react";
 import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
 import { Link } from "react-router-dom";
+import { formatPrice } from "../../helpers/prices";
 
 const OrderItem = ({ cart }) => {
   return (
@@ -18,14 +19,14 @@ const OrderItem = ({ cart }) => {
           <div className="orderItem-name">
             Le fameux titre qui peut parfois être long
           </div>
-          <div className="orderItem-price">€239,00</div>
+          <div className="orderItem-price">{formatPrice(239)} </div>
         </div>
       </div>
       <div className="orderItem-quantity">
         <QuantitySelectProduct />
         <p className="orderItem-delete">supprimer</p>
       </div>
-      <div className="orderItem-total">€239,00</div>
+      <div className="orderItem-total">{formatPrice(239)} </div>
     </div>
   );
 };

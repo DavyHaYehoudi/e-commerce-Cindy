@@ -1,29 +1,23 @@
 import React, { useState } from "react";
-import {
-  getProductDetails,
-  getProductStateInfo,
-} from "../../../../../../helpers/storeDataUtils";
 import ToggleButtonNote from "../ToggleButtonNote";
-import ConfirmationModal from "../../../../../../shared/confirmationModal";
+import ConfirmationModal from "../../../../../../shared/ConfirmationModal";
 import Header from "./Header";
 import List from "./action/List";
-import * as actions from "../../../../../../constants/productActions";
+import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
+import { getProductsInfo } from "../../../../../../helpers/selectors/products";
+import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
 
-const Main = ({ product, clientId, orderId }) => {
-  const { productId, material, quantity } = product;
-  const productsState = useSelector((state) => state.products);
-  const productActionsState = useSelector((state) => state.productActions);
-  const { productState, isTagProductExisted } = getProductStateInfo(
-    productActionsState,
-    clientId,
-    orderId,
-    productId
-  );
-  const { articleNumber } = getProductDetails(
-    productActionsState,
-    clientId,
+const Main = ({ products, client, orderId, ordersStore, productsStore }) => {
+  const { productId, material, quantity } = products;
+  const productStore = useSelector((state) => state.product);
+  const creditsStore = useSelector((state) => state.credits);
+  const {amount}=getCreditsInfo(creditsStore,products.id)
+
+  const { productsInfo, isTagProductExisted, articleNumber } = getProductsInfo(
+    ordersStore,
+    productsStore,
     orderId,
     productId
   );
@@ -39,13 +33,13 @@ const Main = ({ product, clientId, orderId }) => {
   const { isConfirmationVisible } = confirmation;
   const [entryError, setEntryError] = useState(false);
 
-  const [productActions, setProductActions] = useState({
-    isAddNote: productState?.note,
+  const [productsActions, setProductActions] = useState({
+    isAddNote: productsInfo?.note,
     isAddCredit: false,
     isAddRefund: false,
     isAddExchange: false,
-    noteContent: productState?.note,
-    creditContent: productState?.credit,
+    noteContent: productsInfo?.note,
+    creditContent: productsInfo?.credit,
     refundContent: null,
     exchangeContent: null,
   });
@@ -66,20 +60,22 @@ const Main = ({ product, clientId, orderId }) => {
         material={material}
         quantity={quantity}
         productId={productId}
+        products={products}
         isTagProductExisted={isTagProductExisted}
-        productState={productState}
-        productsState={productsState}
+        productsInfo={productsInfo}
+        productStore={productStore}
         toggleActions={toggleActions}
       />
       {interaction.isActionsOpen && (
         <List
           interaction={interaction}
-          productActions={productActions}
-          productState={productState}
-          productsState={productsState}
-          clientId={clientId}
+          productsActions={productsActions}
+          productsInfo={productsInfo}
+          productStore={productStore}
+          client={client}
           orderId={orderId}
           productId={productId}
+          products={products}
           articleNumber={articleNumber}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
@@ -91,13 +87,15 @@ const Main = ({ product, clientId, orderId }) => {
         <ConfirmationModal
           message="⚠️ Cette action entraîne une suppression définitive !"
           confirmation={confirmation}
-          productActions={productActions}
+          productsActions={productsActions}
           actions={actions}
-          clientId={clientId}
+          client={client}
           productId={productId}
           orderId={orderId}
-          productsState={productsState}
-          productState={productState}
+          products={products}
+          amount={amount}
+          productStore={productStore}
+          productsInfo={productsInfo}
           setProductActions={setProductActions}
           setConfirmation={setConfirmation}
           setEntryError={setEntryError}
@@ -108,15 +106,19 @@ const Main = ({ product, clientId, orderId }) => {
       {
         <div className="product-note-container">
           <ToggleButtonNote
-            productState={productState}
-            clientId={clientId}
+            productsInfo={productsInfo}
+            client={client}
             productId={productId}
             orderId={orderId}
             actions={actions}
           />
         </div>
       }
-      <Totals productState={productState} productId={productId} />
+      <Totals
+        productsInfo={productsInfo}
+        productId={productId}
+        products={products}
+      />
     </li>
   );
 };

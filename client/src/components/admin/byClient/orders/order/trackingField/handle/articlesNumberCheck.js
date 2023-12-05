@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { getProductDetails } from "../../../../../../../helpers/storeDataUtils";
+import { getProductsInfo } from "../../../../../../../helpers/selectors/products";
 export const articlesNumberCheck = (selectedProducts, articleNumber) => {
   let productsInfo = [];
   let articlesNumber;
@@ -22,18 +22,24 @@ export const articlesNumberCheck = (selectedProducts, articleNumber) => {
 };
 export const handleCheckQuantity = (
   inputValues,
-  productActions,
-  clientId,
+  ordersStore,
+  productsStore,
   orderId,
   setError,
-  setIsFormValid
+  setIsFormValid,
+  checkboxStates
 ) => {
   let isQuantityValid = true;
   setError("");
+  if (Object.entries(checkboxStates).length === 0) {
+    setError(`⚠️ Veuillez cocher une case`);
+    isQuantityValid = false;
+    return;
+  }
   Object.entries(inputValues).forEach(([productId, value]) => {
-    const maxQuantity = getProductDetails(
-      productActions,
-      clientId,
+    const maxQuantity = getProductsInfo(
+      ordersStore,
+  productsStore,
       orderId,
       parseInt(productId)
     ).articleNumber;

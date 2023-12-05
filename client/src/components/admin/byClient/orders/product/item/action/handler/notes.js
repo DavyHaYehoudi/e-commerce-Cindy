@@ -1,11 +1,9 @@
-import { updateActionContent } from "../../../../../../../../features/admin/productActionsSlice";
+import { updateActionContent } from "../../../../../../../../features/admin/productsSlice";
 
-export const handleChangeNoteValue = (e, dispatch, clientId, productId, orderId, actions) => {
+export const handleChangeNoteValue = (e, dispatch, productId, actions) => {
   dispatch(
     updateActionContent({
-      clientId,
       productId,
-      orderId,
       updatedProperty: actions.NOTE,
       productActionContent: e.target.value,
     })

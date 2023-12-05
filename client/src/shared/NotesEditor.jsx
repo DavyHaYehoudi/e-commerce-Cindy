@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/formatDate";
-import { addNote, deleteNote } from "../features/admin/notesSlice";
-import { getNotesEditorInfo } from "../helpers/storeDataUtils";
+import { addNote, deleteNote } from "../features/admin/clientsSlice";
 import { v4 as uuidv4 } from "uuid";
+import { getNotesEditorInfo } from "../helpers/selectors/client";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.notes);
+  const state = useSelector((state) => state.clients);
 
   const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
 

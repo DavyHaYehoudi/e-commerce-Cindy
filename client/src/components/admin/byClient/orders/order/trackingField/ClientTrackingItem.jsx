@@ -7,15 +7,16 @@ import ProductListItem from "./ProductListItem";
 
 const ClientTrackingItem = ({
   item,
-  clientId,
+  client,
   orderId,
   checkboxStates,
   error,
   selectedProducts,
   dispatch,
   isFormValid,
+  productStore,
+  ordersStore,
   productsStore,
-  productActions,
   setError,
   setSelectedProducts,
   setCheckboxStates,
@@ -49,23 +50,25 @@ const ClientTrackingItem = ({
           <ProductListItem
             key={product.id}
             product={product}
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
+            ordersStore={ordersStore}
             productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
           />
         ))}
       </ul>
       {isEdited && (
         <>
           <ArticleNumberByProduct
-            clientId={clientId}
+            client={client}
             orderId={orderId}
             articleNumber={articleNumber}
             checkboxStates={checkboxStates}
+            ordersStore={ordersStore}
             productsStore={productsStore}
-            productActions={productActions}
+            productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setSelectedProducts={setSelectedProducts}
             setArticleNumber={setArticleNumber}
@@ -83,7 +86,6 @@ const ClientTrackingItem = ({
                   selectedProducts,
                   articleNumber,
                   dispatch,
-                  clientId,
                   orderId,
                   setSelectedProducts,
                   setCheckboxStates,

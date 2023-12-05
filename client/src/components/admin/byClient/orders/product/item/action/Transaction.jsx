@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../features/admin/productActionsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import {
   handleCancelEntry,
   handleChangeInputQuantity,
   handleValidateEntry,
 } from "./handler/transactions";
 import { handleActionClick } from "./handler/item";
-import { getProductProperties } from "../../../../../../../helpers/storeDataUtils";
+import { getProductProperties } from "../../../../../../../helpers/selectors/product";
 
 const Transaction = ({
   interaction,
@@ -19,11 +19,11 @@ const Transaction = ({
   productId,
   orderId,
   textCancel,
-  productState,
+  productsInfo,
   productsState,
   isActionSelected,
   inputQuantityValue,
-  productActions,
+  productsActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -39,16 +39,16 @@ const Transaction = ({
       onClick={() =>
         handleActionClick(
           action,
-          productState,
+          productsInfo,
           setConfirmation,
-          productActions,
+          productsActions,
           actions,
           setProductActions,
           setInteraction
         )
       }
     >
-      {productState?.[action] ? textCancel : label}
+      {productsInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -57,6 +57,7 @@ const Transaction = ({
             className="productActionInput"
             value={inputQuantityValue || ""}
             min="0"
+            max={articleNumber}
             onChange={(e) => {
               handleChangeInputQuantity(e, action, actions, setProductActions);
             }}
@@ -71,8 +72,8 @@ const Transaction = ({
                 e,
                 action,
                 actions,
-                productState,
-                productActions,
+                productsInfo,
+                productsActions,
                 articleNumber,
                 setEntryError,
                 dispatch,

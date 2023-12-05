@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import Pagination from "../../../../shared/Pagination";
 import Item from "./Item";
 
-const List = ({ clients, handleClientClick, clientDetails }) => {
+const List = ({
+  clientsStore,
+  ordersStore,
+  productsStore,
+  handleClientClick,
+  clientDetails,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = clients.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = clientsStore.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -20,6 +26,8 @@ const List = ({ clients, handleClientClick, clientDetails }) => {
           <Item
             key={client.id}
             client={client}
+            ordersStore={ordersStore}
+            productsStore={productsStore}
             handleClientClick={handleClientClick}
             clientDetails={clientDetails}
           />
@@ -27,7 +35,7 @@ const List = ({ clients, handleClientClick, clientDetails }) => {
       </ul>
       <Pagination
         itemsPerPage={itemsPerPage}
-        totalItems={clients.length}
+        totalItems={clientsStore.length}
         paginate={paginate}
       />
     </div>

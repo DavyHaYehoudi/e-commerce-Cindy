@@ -1,20 +1,22 @@
-import { articleAction } from "../../../../../../../../features/admin/orderStepSlice";
+import { deleteCredit } from "../../../../../../../../features/admin/creditsSlice";
+import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
 import {
   updateActionContent,
-  updateTotalsInOut,
-} from "../../../../../../../../features/admin/productActionsSlice";
+} from "../../../../../../../../features/admin/productsSlice";
 
 // Confirmation d'une annulation de champ
 export const handleConfirmation = (
   confirmation,
-  productActions,
+  productsActions,
   actions,
   clientId,
   productId,
   orderId,
+  products,
+  amount,
   dispatch,
   productPrice,
-  productState,
+  productsInfo,
   setConfirmation,
   setEntryError,
   setProductActions
@@ -23,7 +25,7 @@ export const handleConfirmation = (
   const updateProductActions = (confirmAction) => {
     const dynamicProductActions = {
       ...Object.fromEntries(
-        Object.entries(productActions).map(([key, value]) => [
+        Object.entries(productsActions).map(([key, value]) => [
           key,
           key.startsWith("isAdd") ? key === confirmAction : value,
         ])
@@ -46,24 +48,23 @@ export const handleConfirmation = (
     }));
     setEntryError("");
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      totalsInOut({
         orderId,
-        amount: productState?.credit?.amount,
+        amount,
         movement: "outCancel",
       })
     );
     dispatch(articleAction({ clientId, orderId }));
+    dispatch(deleteCredit({productsId:products.id}))
     return dispatch(
       updateActionContent({
-        clientId,
+        creditContent:null,
         productId,
-        orderId,
         updatedProperty: "credit",
         isClientNotified: false,
-        productActionContent: { amount: null, dateExpire: null, code: null },
       })
     );
+
   }
   if (confirmAction) {
     dispatch(
@@ -86,10 +87,9 @@ export const handleConfirmation = (
   dispatch(articleAction({ clientId, orderId }));
   if (confirmAction === actions.REFUND) {
     dispatch(
-      updateTotalsInOut({
-        clientId,
+      totalsInOut({
         orderId,
-        amount: productState?.refund * productPrice,
+        amount: productsInfo?.refund * productPrice,
         movement: "outCancel",
       })
     );
