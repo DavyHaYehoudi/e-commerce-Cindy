@@ -58,6 +58,7 @@ const updateTotalsInOut = (order, { amount, movement }) => ({
       ? order.outTotalAmount + amount
       : order.outTotalAmount - amount,
 });
+
 const trackingNumberAddAdmin = (order, { trackingNumber }) => ({
   ...order,
   trackingNumber: [...order.trackingNumber, trackingNumber],
@@ -92,7 +93,7 @@ const ordersSlice = createSlice({
 
     sendToClient: (state, action) =>
       applyOrderAction(state, action, sendToTheClient),
-      
+
     articleAction: (state, action) =>
       applyOrderAction(state, action, updateIsClientNotified),
 
@@ -101,7 +102,7 @@ const ordersSlice = createSlice({
 
     addAdminTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberAddAdmin),
-
+      
     deleteTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberDelete),
 

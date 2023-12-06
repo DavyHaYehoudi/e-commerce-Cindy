@@ -11,6 +11,7 @@ const Orders = ({
   setSelectedOrderId,
   selectedOrderId,
 }) => {
+  console.log("selectedOrderId :",selectedOrderId);
   const [isOrderOpened, setIsOrderOpened] = useState(false);
   const [stepSelected, setStepSelected] = useState("");
   return (
@@ -75,8 +76,6 @@ const Orders = ({
                         ordersStore={ordersStore}
                         productsStore={productsStore}
                         isClientNotified={order.isClientNotified}
-                        trackingNumberAdmin={order.trackingNumberAdmin}
-                        trackingNumberClient={order.trackingNumberClient}
                         lastSentDateToClient={order.lastSentDateToClient}
                         step={order.step}
                       />

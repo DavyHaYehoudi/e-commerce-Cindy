@@ -4,6 +4,7 @@ export const getOrderInfo = (state, orderId) => {
 };
 
 export const getTrackingNumberList = (state, orderId) => {
+  console.log("orderId dans la fonction :",orderId);
   const trackingNumberList = state.find(
     (order) => order.id === orderId
   )?.trackingNumber;

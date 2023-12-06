@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getProductsInfo } from "../../../../../../../helpers/selectors/products";
+
 export const articlesNumberCheck = (selectedProducts, articleNumber) => {
   let productsInfo = [];
   let articlesNumber;
@@ -20,6 +21,7 @@ export const articlesNumberCheck = (selectedProducts, articleNumber) => {
 
   return { productsInfo };
 };
+
 export const handleCheckQuantity = (
   inputValues,
   ordersStore,
@@ -39,9 +41,9 @@ export const handleCheckQuantity = (
   Object.entries(inputValues).forEach(([productId, value]) => {
     const maxQuantity = getProductsInfo(
       ordersStore,
-  productsStore,
+      productsStore,
       orderId,
-      parseInt(productId)
+      productId,
     ).articleNumber;
     const numericValue = parseInt(value, 10);
 

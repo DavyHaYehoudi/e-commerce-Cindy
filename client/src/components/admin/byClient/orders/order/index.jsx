@@ -22,9 +22,9 @@ const Item = ({
 
   const trackingNumberList = getTrackingNumberList(
     ordersStore,
-    client.id,
     order?.id
   );
+  console.log("trackingNumberList:",trackingNumberList);
   const handleSendToClient = () => {
     dispatch(
       sendToClient({

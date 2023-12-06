@@ -14,6 +14,7 @@ const Item = ({
     ordersStore,
     client
   );
+  console.log("orders dnas Item de list :",orders);
 
   return (
     <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
