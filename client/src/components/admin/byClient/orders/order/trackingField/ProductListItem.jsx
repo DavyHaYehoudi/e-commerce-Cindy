@@ -1,6 +1,6 @@
 import React from "react";
-import { getProductsInfo } from "../../../../../../helpers/selectors/products";
-import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getProductsInfo } from "../../../../../../selectors/products";
+import { getProductProperties } from "../../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 
 const ProductListItem = ({

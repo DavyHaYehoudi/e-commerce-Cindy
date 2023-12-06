@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { getProductsInfo } from "../../../../../../../helpers/selectors/products";
+import { getProductsInfo } from "../../../../../../../selectors/products";
 
 export const articlesNumberCheck = (selectedProducts, articleNumber) => {
   let productsInfo = [];

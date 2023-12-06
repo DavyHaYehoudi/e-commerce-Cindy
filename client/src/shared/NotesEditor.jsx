@@ -4,7 +4,7 @@ import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/formatDate";
 import { addNote, deleteNote } from "../features/admin/clientsSlice";
 import { v4 as uuidv4 } from "uuid";
-import { getNotesEditorInfo } from "../helpers/selectors/client";
+import { getNotesEditorInfo } from "../selectors/client";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");

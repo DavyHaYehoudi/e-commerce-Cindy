@@ -1,6 +1,6 @@
 import React from "react";
 import { formatPrice } from "../../../../../helpers/prices";
-import { getOrderInfo } from "../../../../../helpers/selectors/order";
+import { getOrderInfo } from "../../../../../selectors/order";
 
 const Details = ({ order, orderId, ordersStore }) => {
   const { outTotalAmount } = getOrderInfo(ordersStore, orderId);

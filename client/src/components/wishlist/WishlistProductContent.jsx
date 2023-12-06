@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
-import { getProductProperties } from "../../helpers/selectors/product";
+import { getProductProperties } from "../../selectors/product";
 import { getMaterialProperty } from "../../helpers/constants/materials";
 import { formatPrice } from "../../helpers/prices";
 

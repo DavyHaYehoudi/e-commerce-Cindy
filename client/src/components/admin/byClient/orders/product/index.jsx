@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "./item";
-import { getProductsInfo } from "../../../../../helpers/selectors/products";
+import { getProductsInfo } from "../../../../../selectors/products";
 
 const List = ({
   client,

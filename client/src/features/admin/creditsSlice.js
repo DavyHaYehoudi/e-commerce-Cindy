@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { creditsMock } from "../../mocks/credits";
+import { creditsMock } from "../../mocks/creditsMock";
 import { generateRandomCode } from "../../helpers/creditCode";
 
 const creditsSlice = createSlice({

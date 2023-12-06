@@ -1,11 +1,11 @@
 import React from "react";
-import { getProductProperties } from "../../../../../../helpers/selectors/product";
+import { getProductProperties } from "../../../../../../selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/formatDate";
 import { formatPrice, sumPriceArticle } from "../../../../../../helpers/prices";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
-import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
+import { getCreditsInfo } from "../../../../../../selectors/credits";
 import { useSelector } from "react-redux";
 
 const Header = ({

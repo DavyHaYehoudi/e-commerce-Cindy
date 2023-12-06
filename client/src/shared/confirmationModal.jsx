@@ -4,7 +4,7 @@ import {
   handleConfirmation,
 } from "../components/admin/byClient/orders/product/item/action/handler/confirmation";
 import { useDispatch } from "react-redux";
-import { getProductProperties } from "../helpers/selectors/product";
+import { getProductProperties } from "../selectors/product";
 
 const ConfirmationModal = ({
   message,

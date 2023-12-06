@@ -1,6 +1,6 @@
 import { getOrderStepProperty } from "../../../../../helpers/constants/orderStep";
 import { getStepColor } from "../../../../../helpers/getStepColor";
-import { getOrderInfo } from "../../../../../helpers/selectors/order";
+import { getOrderInfo } from "../../../../../selectors/order";
 
 export const renderBadge = (
   ordersStore,

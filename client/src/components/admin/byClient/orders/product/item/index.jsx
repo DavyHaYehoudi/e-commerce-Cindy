@@ -6,8 +6,8 @@ import List from "./action/List";
 import * as actions from "../../../../../../constants/productsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
-import { getProductsInfo } from "../../../../../../helpers/selectors/products";
-import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
+import { getProductsInfo } from "../../../../../../selectors/products";
+import { getCreditsInfo } from "../../../../../../selectors/credits";
 
 const Main = ({ products, client, orderId, ordersStore, productsStore }) => {
   const { productId, material, quantity } = products;

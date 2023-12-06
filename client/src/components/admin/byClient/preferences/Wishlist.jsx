@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../helpers/prices";
-import { getProductProperties } from "../../../../helpers/selectors/product";
+import { getProductProperties } from "../../../../selectors/product";
 import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const Wishlist = ({ productId, productCart }) => {

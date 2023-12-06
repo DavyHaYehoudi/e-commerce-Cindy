@@ -1,6 +1,6 @@
 import React from "react";
 import Infos from "../presentation";
-import { getClientinfo } from "../../../../helpers/selectors/client";
+import { getClientinfo } from "../../../../selectors/client";
 
 const Item = ({
   client,
@@ -14,7 +14,6 @@ const Item = ({
     ordersStore,
     client
   );
-  console.log("orders dnas Item de list :",orders);
 
   return (
     <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { formatPrice } from "../../../../../../helpers/prices";
-import { getProductProperties } from "../../../../../../helpers/selectors/product";
-import { getCreditsInfo } from "../../../../../../helpers/selectors/credits";
+import { getProductProperties } from "../../../../../../selectors/product";
+import { getCreditsInfo } from "../../../../../../selectors/credits";
 
 const Totals = ({ productsInfo, productId, products }) => {
   const productStore = useSelector((state) => state.product);

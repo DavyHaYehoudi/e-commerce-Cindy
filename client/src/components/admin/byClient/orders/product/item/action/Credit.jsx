@@ -8,7 +8,7 @@ import {
 } from "./handler/credit";
 import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductProperties } from "../../../../../../../helpers/selectors/product";
+import { getProductProperties } from "../../../../../../../selectors/product";
 
 const Credit = ({
   interaction,
