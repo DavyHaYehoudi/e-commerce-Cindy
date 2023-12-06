@@ -1,20 +1,12 @@
 import React from "react";
 import Infos from "../presentation";
-import { getClientinfo } from "../../../../selectors/client";
+import { getClientInfo } from "../../../../selectors/client";
+import { useSelector } from "react-redux";
 
-const Item = ({
-  client,
-  ordersStore,
-  productsStore,
-  handleClientClick,
-  clientDetails,
-}) => {
-
-  const { orders, isAnyOrderClientNotified } = getClientinfo(
-    ordersStore,
-    client
+const Item = ({ client, handleClientClick, clientDetails }) => {
+  const { orders, isAnyOrderClientNotified } = useSelector((state) =>
+    getClientInfo(state, { client })
   );
-
   return (
     <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
       <div className="client-header">
@@ -32,8 +24,6 @@ const Item = ({
         <Infos
           client={client}
           orders={orders}
-          ordersStore={ordersStore}
-          productsStore={productsStore}
           handleClientClick={handleClientClick}
         />
       )}

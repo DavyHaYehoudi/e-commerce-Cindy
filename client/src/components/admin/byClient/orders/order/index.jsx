@@ -3,7 +3,7 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { sendToClient } from "../../../../../features/admin/ordersSlice";
 import { getTrackingNumberList } from "../../../../../selectors/order";
@@ -12,19 +12,17 @@ const Item = ({
   client,
   order,
   orderIndex,
-  ordersStore,
-  productsStore,
   isClientNotified,
   lastSentDateToClient,
   step,
 }) => {
   const dispatch = useDispatch();
-
+  const ordersStore = useSelector((state) => state.orders);
   const trackingNumberList = getTrackingNumberList(
     ordersStore,
     order?.id
   );
-  console.log("trackingNumberList:",trackingNumberList);
+
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
@@ -50,13 +48,10 @@ const Item = ({
       <Details
         order={order}
         orderId={order?.id}
-        ordersStore={ordersStore}
       />
       <List
         client={client}
         orderId={order?.id}
-        ordersStore={ordersStore}
-        productsStore={productsStore}
       />
 
       <ToggleButton
@@ -68,8 +63,6 @@ const Item = ({
             trackingNumberList={trackingNumberList}
             client={client}
             orderId={order?.id}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
           />
         }
       />

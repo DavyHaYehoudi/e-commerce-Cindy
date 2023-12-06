@@ -1,9 +1,12 @@
 import React from "react";
 import { formatPrice } from "../../../../../helpers/prices";
 import { getOrderInfo } from "../../../../../selectors/order";
+import { useSelector } from "react-redux";
 
-const Details = ({ order, orderId, ordersStore }) => {
+const Details = ({ order, orderId  }) => {
+  const ordersStore = useSelector((state) => state.orders);
   const { outTotalAmount } = getOrderInfo(ordersStore, orderId);
+
   return (
     <>
       <p>

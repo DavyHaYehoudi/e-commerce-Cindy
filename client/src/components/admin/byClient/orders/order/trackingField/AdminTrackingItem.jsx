@@ -10,8 +10,6 @@ const AdminTrackingItem = ({
   client,
   orderId,
   productStore,
-  ordersStore,
-  productsStore
 }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
@@ -39,8 +37,6 @@ const AdminTrackingItem = ({
             client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
           />
         ))}

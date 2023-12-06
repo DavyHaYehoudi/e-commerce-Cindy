@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Pagination from "../../../../shared/Pagination";
 import Item from "./Item";
+import { useSelector } from "react-redux";
 
 const List = ({
-  clientsStore,
-  ordersStore,
-  productsStore,
   handleClientClick,
   clientDetails,
 }) => {
+  const clientsStore = useSelector((state) => state.clients);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
@@ -26,8 +26,6 @@ const List = ({
           <Item
             key={client.id}
             client={client}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             handleClientClick={handleClientClick}
             clientDetails={clientDetails}
           />

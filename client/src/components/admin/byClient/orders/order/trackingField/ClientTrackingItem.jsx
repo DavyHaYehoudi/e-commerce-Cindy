@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { formatDate } from "../../../../../../helpers/formatDate";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { MdEdit } from "react-icons/md";
-import { handleCancel, handleValidate } from "./handle/validateClient";
 import ProductListItem from "./ProductListItem";
+import useClientTrackingItem from "./hooks/useClientTrackingItem";
 
 const ClientTrackingItem = ({
   item,
@@ -15,15 +15,25 @@ const ClientTrackingItem = ({
   dispatch,
   isFormValid,
   productStore,
-  ordersStore,
-  productsStore,
   setError,
   setSelectedProducts,
   setCheckboxStates,
   setIsFormValid,
 }) => {
-  const [isEdited, setIsEdited] = useState(false);
-  const [articleNumber, setArticleNumber] = useState({});
+  const {
+    setArticleNumber,
+    articleNumber,
+    setIsEdited,
+    handleValidate,
+    isEdited,
+    handleCancel,
+  } = useClientTrackingItem({
+    dispatch,
+    setError,
+    setSelectedProducts,
+    setCheckboxStates,
+    setIsFormValid,
+  });
 
   const handleEdition = () => {
     setIsEdited(!isEdited);
@@ -53,8 +63,6 @@ const ClientTrackingItem = ({
             client={client}
             orderId={orderId}
             articleNumber={product.articlesNumber}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
           />
         ))}
@@ -66,8 +74,6 @@ const ClientTrackingItem = ({
             orderId={orderId}
             articleNumber={articleNumber}
             checkboxStates={checkboxStates}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setSelectedProducts={setSelectedProducts}
@@ -80,37 +86,13 @@ const ClientTrackingItem = ({
             <button
               className={isFormValid ? "btn-confirm" : "noValid"}
               onClick={() =>
-                handleValidate(
-                  item,
-                  setError,
-                  selectedProducts,
-                  articleNumber,
-                  dispatch,
-                  orderId,
-                  setSelectedProducts,
-                  setCheckboxStates,
-                  setArticleNumber,
-                  setIsEdited,
-                  setIsFormValid
-                )
+                handleValidate(item, selectedProducts, articleNumber, orderId)
               }
               disabled={!isFormValid}
             >
               Valider
             </button>
-            <button
-              className="btn-cancel"
-              onClick={() =>
-                handleCancel(
-                  setSelectedProducts,
-                  setError,
-                  setCheckboxStates,
-                  setArticleNumber,
-                  setIsEdited,
-                  setIsFormValid
-                )
-              }
-            >
+            <button className="btn-cancel" onClick={handleCancel}>
               Annuler
             </button>
           </div>

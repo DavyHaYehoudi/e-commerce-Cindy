@@ -8,8 +8,6 @@ const Listing = ({
   trackingNumberList,
   client,
   orderId,
-  ordersStore,
-  productsStore
 }) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -42,8 +40,6 @@ const Listing = ({
           isFormValid={isFormValid}
           dispatch={dispatch}
           productStore={productStore}
-          ordersStore={ordersStore}
-          productsStore={productsStore}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
           setError={setError}
@@ -61,8 +57,6 @@ const Listing = ({
             item={item}
             client={client}
             orderId={orderId}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
           />
         ) : (
@@ -76,8 +70,6 @@ const Listing = ({
             selectedProducts={selectedProducts}
             dispatch={dispatch}
             isFormValid={isFormValid}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setError={setError}

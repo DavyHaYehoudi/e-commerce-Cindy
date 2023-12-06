@@ -1,6 +1,5 @@
-import { useState } from "react";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
-import { handleCancel, handleValidate } from "./handle/validateAdmin";
+import useAdminTrackingNumberCreate from "./hooks/useAdminTrackingNumberCreate";
 
 const AdminTrackingNumberCreate = ({
   client,
@@ -11,8 +10,6 @@ const AdminTrackingNumberCreate = ({
   isFormValid,
   checkboxStates,
   productStore,
-  ordersStore,
-  productsStore,
   setError,
   setTrackingInfo,
   setSelectedProducts,
@@ -21,7 +18,16 @@ const AdminTrackingNumberCreate = ({
   setTrackingNumberBoxOpen,
   setIsFormValid,
 }) => {
-  const [articleNumber, setArticleNumber] = useState({});
+  const { articleNumber, setArticleNumber, handleValidate, handleCancel } =
+    useAdminTrackingNumberCreate({
+      dispatch,
+      setError,
+      setSelectedProducts,
+      setCheckboxStates,
+      setTrackingInfo,
+      setTrackingNumberBoxOpen,
+      setIsFormValid,
+    });
   return (
     <div className="AdminTrackingNumberCreate">
       <div className="trackingNumber-content">
@@ -51,8 +57,6 @@ const AdminTrackingNumberCreate = ({
         client={client}
         orderId={orderId}
         checkboxStates={checkboxStates}
-        ordersStore={ordersStore}
-        productsStore={productsStore}
         productStore={productStore}
         articleNumber={articleNumber}
         setArticleNumber={setArticleNumber}
@@ -67,17 +71,9 @@ const AdminTrackingNumberCreate = ({
           onClick={() =>
             handleValidate(
               trackingInfo,
-              setError,
               selectedProducts,
-              setTrackingNumberBoxOpen,
-              dispatch,
               orderId,
-              articleNumber,
-              setArticleNumber,
-              setTrackingInfo,
-              setSelectedProducts,
-              setCheckboxStates,
-              setIsFormValid
+              articleNumber
             )
           }
           disabled={!isFormValid}
@@ -85,20 +81,7 @@ const AdminTrackingNumberCreate = ({
         >
           Valider
         </button>
-        <button
-          onClick={() =>
-            handleCancel(
-              setTrackingInfo,
-              setSelectedProducts,
-              setError,
-              setCheckboxStates,
-              setTrackingNumberBoxOpen,
-              setArticleNumber,
-              setIsFormValid
-            )
-          }
-          className="btn-cancel"
-        >
+        <button onClick={() => handleCancel()} className="btn-cancel">
           Annuler
         </button>
       </div>

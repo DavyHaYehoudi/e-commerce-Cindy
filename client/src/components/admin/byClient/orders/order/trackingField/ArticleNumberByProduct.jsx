@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { handleCheckQuantity } from "./handle/articlesNumberCheck";
 import { getProductsInfo } from "../../../../../../selectors/products";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+import { useSelector } from "react-redux";
+import useCheckQuantity from "./hooks/useCheckQuantity";
 
 const ArticleNumberByProduct = ({
   orderId,
   checkboxStates,
   articleNumber,
   productStore,
-  ordersStore,
-  productsStore,
   setCheckboxStates,
   setSelectedProducts,
   setArticleNumber,
@@ -18,6 +17,7 @@ const ArticleNumberByProduct = ({
   setIsFormValid,
 }) => {
   const [inputValues, setInputValues] = useState({});
+  const { handleCheckQuantity } = useCheckQuantity();
 
   const handleCheckboxChange = (id, productId) => {
     setCheckboxStates((prev) => ({
@@ -46,7 +46,8 @@ const ArticleNumberByProduct = ({
       [productId]: value,
     }));
   };
-
+  const ordersStore = useSelector((state) => state.orders);
+  const productsStore = useSelector((state) => state.products);
   const { productsByOrder } = getProductsInfo(
     ordersStore,
     productsStore,
@@ -77,7 +78,7 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product.productId}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{getMaterialProperty(product.material).name }</span>
+                <span>{getMaterialProperty(product.material).name}</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"
@@ -99,9 +100,9 @@ const ArticleNumberByProduct = ({
                         ordersStore,
                         productsStore,
                         orderId,
+                        checkboxStates,
                         setError,
-                        setIsFormValid,
-                        checkboxStates
+                        setIsFormValid
                       )
                     }
                   />

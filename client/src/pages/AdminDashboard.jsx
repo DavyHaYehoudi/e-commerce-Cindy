@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import List from "../components/admin/byClient/list";
 
 const AdminDashboard = () => {
   const [clientDetails, setClientDetails] = useState({});
   const dispatch = useDispatch();
-  const clientsStore = useSelector((state) => state.clients);
-  const ordersStore = useSelector((state) => state.orders);
-  const productsStore = useSelector((state) => state.products);
 
   useEffect(() => {
     // charger les clients depuis une API ici
@@ -26,9 +23,6 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <List
-        clientsStore={clientsStore}
-        ordersStore={ordersStore}
-        productsStore={productsStore}
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}
       />
