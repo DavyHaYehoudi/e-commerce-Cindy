@@ -8,8 +8,6 @@ import Orders from "./Orders";
 const Infos = ({
   client,
   orders,
-  ordersStore,
-  productsStore,
   handleClientClick,
 }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
@@ -46,8 +44,6 @@ const Infos = ({
       <Orders
         client={client}
         orders={orders}
-        ordersStore={ordersStore}
-        productsStore={productsStore}
         setSelectedOrderId={setSelectedOrderId}
         selectedOrderId={selectedOrderId}
       />

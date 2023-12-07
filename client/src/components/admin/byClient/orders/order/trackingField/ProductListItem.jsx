@@ -2,15 +2,16 @@ import React from "react";
 import { getProductsInfo } from "../../../../../../selectors/products";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+import { useSelector } from "react-redux";
 
 const ProductListItem = ({
   product,
   orderId,
   articleNumber,
-  ordersStore,
-  productsStore,
   productStore,
 }) => {
+  const ordersStore = useSelector((state) => state.orders);
+  const productsStore = useSelector((state) => state.products);
   const details = getProductsInfo(
     ordersStore,
     productsStore,

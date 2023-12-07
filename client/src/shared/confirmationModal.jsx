@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  handleCancel,
-  handleConfirmation,
-} from "../components/admin/byClient/orders/product/item/action/handler/confirmation";
-import { useDispatch } from "react-redux";
 import { getProductProperties } from "../selectors/product";
+import useConfirmation from "../components/admin/byClient/orders/product/item/action/hooks/useConfirmation";
 
 const ConfirmationModal = ({
   message,
@@ -23,37 +19,32 @@ const ConfirmationModal = ({
   setEntryError,
   setInteraction,
 }) => {
-  const dispatch = useDispatch();
   const productPrice = getProductProperties(productId, productStore).pricing
     .currentPrice;
+  const { isConfirmed, handleConfirmation, handleCancel } = useConfirmation({
+    confirmation,
+    productsActions,
+    actions,
+    clientId: client.id,
+    productId,
+    orderId,
+    products,
+    amount,
+    productPrice,
+    productsInfo,
+    setProductActions,
+    setConfirmation,
+    setEntryError,
+    setInteraction,
+  });
+
   return (
     <div className="confirmation-popup">
       <span>{message}</span>
-      <button
-        onClick={() =>
-          handleConfirmation(
-            confirmation,
-            productsActions,
-            actions,
-            client.id,
-            productId,
-            orderId,
-            products,
-            amount,
-            dispatch,
-            productPrice,
-            productsInfo,
-            setConfirmation,
-            setEntryError,
-            setProductActions
-          )
-        }
-      >
+      <button onClick={handleConfirmation} disabled={isConfirmed}>
         Confirmer
       </button>
-      <button onClick={() => handleCancel(setConfirmation, setInteraction)}>
-        Annuler
-      </button>
+      <button onClick={handleCancel}>Annuler</button>
     </div>
   );
 };

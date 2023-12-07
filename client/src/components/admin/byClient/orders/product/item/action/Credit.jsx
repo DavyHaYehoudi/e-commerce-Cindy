@@ -1,14 +1,11 @@
 import React from "react";
-import {
-  handleCancelCreditEntry,
-  handleChangeInputCreditAmount,
-  handleChangeInputCreditDate,
-  handleConfirmCreditEntry,
-  handleCredit,
-} from "./handler/credit";
-import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../../../../../selectors/product";
+import { useCreditHandler } from "./hooks/credit/useCreditHandler";
+import { useCreditAmountHandler } from "./hooks/credit/useCreditAmountHandler";
+import { useCreditDateHandler } from "./hooks/credit/useCreditDateHandler";
+import { useConfirmCreditEntryHandler } from "./hooks/credit/useConfirmCreditEntryHandler";
+import { useCancelCreditEntryHandler } from "./hooks/credit/useCancelCreditEntryHandler";
 
 const Credit = ({
   interaction,
@@ -31,25 +28,32 @@ const Credit = ({
   setConfirmation,
   setInteraction,
 }) => {
-  const dispatch = useDispatch();
   const productsState = useSelector((state) => state.product);
-  const productPrice = getProductProperties(productId,productsState).pricing.currentPrice
+  const productPrice = getProductProperties(productId, productsState).pricing
+    .currentPrice;
+  const { handleCredit } = useCreditHandler(
+    actions,
+    setInteraction,
+    setConfirmation,
+    setProductActions,
+    productsInfo,
+    productsActions
+  );
+  const { handleChangeInputCreditAmount } =
+    useCreditAmountHandler(setProductActions);
+  const { handleChangeInputCreditDate } =
+    useCreditDateHandler(setProductActions);
+  const { handleConfirmCreditEntry } = useConfirmCreditEntryHandler();
+  const { handleCancelCreditEntry } = useCancelCreditEntryHandler(
+    setProductActions,
+    setEntryError
+  );
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
-      onClick={() =>
-        handleCredit(
-          action,
-          setInteraction,
-          productsInfo,
-          setConfirmation,
-          productsActions,
-          actions,
-          setProductActions
-        )
-      }
+      onClick={() => handleCredit(action)}
     >
-      {productsInfo?.[action]? textCancel : label}
+      {productsInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -60,7 +64,7 @@ const Credit = ({
             value={inputCreditAmount || ""}
             min="0"
             onChange={(e) => {
-              handleChangeInputCreditAmount(e, setProductActions);
+              handleChangeInputCreditAmount(e);
             }}
             onClick={(e) => e.stopPropagation()}
             placeholder={placeholderValue}
@@ -73,7 +77,7 @@ const Credit = ({
             className="productActionInput"
             value={inputDateValue || ""}
             onChange={(e) => {
-              handleChangeInputCreditDate(e, setProductActions);
+              handleChangeInputCreditDate(e);
             }}
             onClick={(e) => e.stopPropagation()}
             placeholder="Choisir une date de fin de validité"
@@ -88,12 +92,10 @@ const Credit = ({
                 productsActions,
                 setProductActions,
                 setEntryError,
-                dispatch,
                 client.id,
                 productId,
                 orderId,
                 products,
-                updateActionContent,
                 productPrice
               )
             }
@@ -101,12 +103,7 @@ const Credit = ({
             Valider
           </button>
 
-          <button
-            className="btn2"
-            onClick={(e) =>
-              handleCancelCreditEntry(e, setProductActions, setEntryError)
-            }
-          >
+          <button className="btn2" onClick={(e) => handleCancelCreditEntry(e)}>
             Annuler
           </button>
         </>

@@ -10,7 +10,6 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => state.clients);
-
   const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
 
   const handleNotesChange = (e) => {
@@ -19,7 +18,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
 
   const handleSaveNotes = () => {
     const noteId = uuidv4();
-    const currentDate = new Date();
+    const currentDate = new Date().toISOString();
     dispatch(
       addNote({
         clientId,
@@ -45,7 +44,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
       </h2>
 
       <div className="previous-notes">
-        {notes.map((note) => (
+        {notes?.map((note) => (
           <div key={note.id} className="previous-note">
             <p>
               {note.content} {" "}<small>{formatDate(note.date)}</small> {" "}

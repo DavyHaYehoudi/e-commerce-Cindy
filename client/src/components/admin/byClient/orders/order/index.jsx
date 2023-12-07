@@ -3,7 +3,7 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { sendToClient } from "../../../../../features/admin/ordersSlice";
 import { getTrackingNumberList } from "../../../../../selectors/order";
@@ -12,23 +12,19 @@ const Item = ({
   client,
   order,
   orderIndex,
-  ordersStore,
-  productsStore,
   isClientNotified,
   lastSentDateToClient,
   step,
 }) => {
   const dispatch = useDispatch();
-
-  const trackingNumberList = getTrackingNumberList(
-    ordersStore,
-    order?.id
+  const trackingNumberList = useSelector((state) =>
+    getTrackingNumberList(state, order?.id)
   );
-  console.log("trackingNumberList:",trackingNumberList);
+
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
-        clientId:client.id,
+        clientId: client.id,
         orderId: order?.id,
         isClientNotified: true,
       })
@@ -47,17 +43,8 @@ const Item = ({
         handleSendToClient={handleSendToClient}
       />
 
-      <Details
-        order={order}
-        orderId={order?.id}
-        ordersStore={ordersStore}
-      />
-      <List
-        client={client}
-        orderId={order?.id}
-        ordersStore={ordersStore}
-        productsStore={productsStore}
-      />
+      <Details order={order} orderId={order?.id} />
+      <List client={client} orderId={order?.id} />
 
       <ToggleButton
         initialText="Suivis"
@@ -68,8 +55,6 @@ const Item = ({
             trackingNumberList={trackingNumberList}
             client={client}
             orderId={order?.id}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
           />
         }
       />

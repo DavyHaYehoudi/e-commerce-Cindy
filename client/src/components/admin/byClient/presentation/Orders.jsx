@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { formatPrice } from "../../../../helpers/prices";
-import { renderBadge } from "./handle/badges";
 import Item from "../orders/order";
+import useBadges from "./hooks/useBadges";
 
-const Orders = ({
-  orders,
-  ordersStore,
-  productsStore,
-  client,
-  setSelectedOrderId,
-  selectedOrderId,
-}) => {
-  console.log("selectedOrderId :",selectedOrderId);
-  const [isOrderOpened, setIsOrderOpened] = useState(false);
-  const [stepSelected, setStepSelected] = useState("");
+const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
+  const { isOrderOpened, renderBadge } = useBadges(
+    orders,
+    setSelectedOrderId
+  );
+
   return (
     orders && (
       <>
@@ -40,21 +35,7 @@ const Orders = ({
                     .map((order) => order.id);
 
                   return (
-                    <li key={index}>
-                      {
-                        renderBadge(
-                          ordersStore,
-                          orders,
-                          step,
-                          setSelectedOrderId,
-                          orderIds,
-                          orderId,
-                          setIsOrderOpened,
-                          stepSelected,
-                          setStepSelected
-                        ).stepBadge
-                      }
-                    </li>
+                    <li key={index}>{renderBadge(step, orderIds, orderId)}</li>
                   );
                 }
               )}
@@ -73,8 +54,6 @@ const Orders = ({
                         client={client}
                         order={order}
                         orderIndex={i}
-                        ordersStore={ordersStore}
-                        productsStore={productsStore}
                         isClientNotified={order.isClientNotified}
                         lastSentDateToClient={order.lastSentDateToClient}
                         step={order.step}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
 import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
@@ -8,8 +8,6 @@ const Listing = ({
   trackingNumberList,
   client,
   orderId,
-  ordersStore,
-  productsStore
 }) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -22,7 +20,6 @@ const Listing = ({
 
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const dispatch = useDispatch();
   const productStore = useSelector((state) => state.product);
 
   return (
@@ -40,10 +37,7 @@ const Listing = ({
           trackingInfo={trackingInfo}
           error={error}
           isFormValid={isFormValid}
-          dispatch={dispatch}
           productStore={productStore}
-          ordersStore={ordersStore}
-          productsStore={productsStore}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
           setError={setError}
@@ -61,8 +55,6 @@ const Listing = ({
             item={item}
             client={client}
             orderId={orderId}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
           />
         ) : (
@@ -74,10 +66,7 @@ const Listing = ({
             checkboxStates={checkboxStates}
             error={error}
             selectedProducts={selectedProducts}
-            dispatch={dispatch}
             isFormValid={isFormValid}
-            ordersStore={ordersStore}
-            productsStore={productsStore}
             productStore={productStore}
             setCheckboxStates={setCheckboxStates}
             setError={setError}
