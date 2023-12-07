@@ -17,16 +17,14 @@ const Item = ({
   step,
 }) => {
   const dispatch = useDispatch();
-  const ordersStore = useSelector((state) => state.orders);
-  const trackingNumberList = getTrackingNumberList(
-    ordersStore,
-    order?.id
+  const trackingNumberList = useSelector((state) =>
+    getTrackingNumberList(state, order?.id)
   );
 
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
-        clientId:client.id,
+        clientId: client.id,
         orderId: order?.id,
         isClientNotified: true,
       })
@@ -45,14 +43,8 @@ const Item = ({
         handleSendToClient={handleSendToClient}
       />
 
-      <Details
-        order={order}
-        orderId={order?.id}
-      />
-      <List
-        client={client}
-        orderId={order?.id}
-      />
+      <Details order={order} orderId={order?.id} />
+      <List client={client} orderId={order?.id} />
 
       <ToggleButton
         initialText="Suivis"

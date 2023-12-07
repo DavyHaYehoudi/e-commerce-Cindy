@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { updatedClientTrackingNumber } from "../../../../../../../features/admin/ordersSlice";
 import { articlesNumberCheck } from "../handle/articlesNumberCheck";
+import { useDispatch } from "react-redux";
 
 const useClientTrackingItem = ({
-  dispatch,
   setError,
   setSelectedProducts,
   setCheckboxStates,
@@ -11,6 +11,7 @@ const useClientTrackingItem = ({
 }) => {
   const [articleNumber, setArticleNumber] = useState({});
   const [isEdited, setIsEdited] = useState(false);
+  const dispatch = useDispatch();
   const handleValidate = (item, selectedProducts, articleNumber, orderId) => {
     const { productsInfo } = articlesNumberCheck(
       selectedProducts,

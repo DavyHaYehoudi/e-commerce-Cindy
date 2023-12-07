@@ -3,9 +3,10 @@ import { formatPrice } from "../../../../../helpers/prices";
 import { getOrderInfo } from "../../../../../selectors/order";
 import { useSelector } from "react-redux";
 
-const Details = ({ order, orderId  }) => {
-  const ordersStore = useSelector((state) => state.orders);
-  const { outTotalAmount } = getOrderInfo(ordersStore, orderId);
+const Details = ({ order, orderId }) => {
+  const { outTotalAmount } = useSelector((state) =>
+    getOrderInfo(state, orderId)
+  );
 
   return (
     <>

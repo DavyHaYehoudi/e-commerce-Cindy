@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCredit } from "../../../../../../../../features/admin/creditsSlice";
-import {
-  articleAction,
-  totalsInOut,
-} from "../../../../../../../../features/admin/ordersSlice";
-import { updateActionContent } from "../../../../../../../../features/admin/productsSlice";
+import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
+import {  updateActionContent } from "../../../../../../../../features/admin/productsSlice";
 
 const useConfirmation = ({
   confirmation,

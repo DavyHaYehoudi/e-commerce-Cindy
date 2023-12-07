@@ -1,13 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
-import {
-  handleCancelEntry,
-  handleChangeInputQuantity,
-  handleValidateEntry,
-} from "./handler/transactions";
 import { handleActionClick } from "./handler/item";
 import { getProductProperties } from "../../../../../../../selectors/product";
+import { useInputQuantityHandler } from "./hooks/transaction/useInputQuantityHandler";
+import { useValidateEntryHandler } from "./hooks/transaction/useValidateEntryHandler";
+import { useCancelEntryHandler } from "./hooks/transaction/useCancelEntryHandler";
 
 const Transaction = ({
   interaction,
@@ -33,6 +31,23 @@ const Transaction = ({
   const dispatch = useDispatch();
   const productPrice = getProductProperties(productId, productsState).pricing
     .currentPrice;
+  const { handleChangeInputQuantity } = useInputQuantityHandler(
+    actions,
+    setProductActions
+  );
+  const { handleValidateEntry } = useValidateEntryHandler(
+    actions,
+    productsInfo,
+    productsActions,
+    articleNumber,
+    setEntryError,
+    dispatch,
+    updateActionContent
+  );
+  const { handleCancelEntry } = useCancelEntryHandler(
+    actions,
+    setProductActions
+  );
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
@@ -59,7 +74,7 @@ const Transaction = ({
             min="0"
             max={articleNumber}
             onChange={(e) => {
-              handleChangeInputQuantity(e, action, actions, setProductActions);
+              handleChangeInputQuantity(e, action, actions);
             }}
             onClick={(e) => e.stopPropagation()}
             placeholder={placeholderValue}
@@ -71,13 +86,6 @@ const Transaction = ({
               handleValidateEntry(
                 e,
                 action,
-                actions,
-                productsInfo,
-                productsActions,
-                articleNumber,
-                setEntryError,
-                dispatch,
-                updateActionContent,
                 clientId,
                 productId,
                 orderId,
@@ -91,15 +99,7 @@ const Transaction = ({
 
           <button
             className="btn2"
-            onClick={(e) =>
-              handleCancelEntry(
-                e,
-                setEntryError,
-                setProductActions,
-                action,
-                actions
-              )
-            }
+            onClick={(e) => handleCancelEntry(e, setEntryError, action)}
           >
             Annuler
           </button>

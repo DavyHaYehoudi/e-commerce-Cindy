@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
 import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
@@ -20,7 +20,6 @@ const Listing = ({
 
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const dispatch = useDispatch();
   const productStore = useSelector((state) => state.product);
 
   return (
@@ -38,7 +37,6 @@ const Listing = ({
           trackingInfo={trackingInfo}
           error={error}
           isFormValid={isFormValid}
-          dispatch={dispatch}
           productStore={productStore}
           checkboxStates={checkboxStates}
           setCheckboxStates={setCheckboxStates}
@@ -68,7 +66,6 @@ const Listing = ({
             checkboxStates={checkboxStates}
             error={error}
             selectedProducts={selectedProducts}
-            dispatch={dispatch}
             isFormValid={isFormValid}
             productStore={productStore}
             setCheckboxStates={setCheckboxStates}

@@ -1,40 +1,23 @@
 import { useState } from "react";
-import { getStepColor } from "../../../../../helpers/getStepColor";
-import { getOrderStepProperty } from "../../../../../helpers/constants/orderStep";
-import { getOrderInfo } from "../../../../../selectors/order";
+import Badge from "../Badge";
 
-const useBadges = (ordersStore, orders, setSelectedOrderId) => {
+const useBadges = (orders, setSelectedOrderId) => {
   const [isOrderOpened, setIsOrderOpened] = useState(false);
-  const [stepSelected, setStepSelected] = useState("");
+  const [,setStepSelected] = useState("");
 
   const renderBadge = (step, orderIds, orderId) => {
     const count = orders?.filter((order) => order.step === step).length;
-
     if (count > 0) {
-      const stepColor = getStepColor(step);
-      const badgeClass = `admin-badge`;
-      const style = { backgroundColor: stepColor };
-
-      const handleClick = () => {
-        setIsOrderOpened((prevIsOrderOpened) =>
-          step === stepSelected ? !prevIsOrderOpened : true
-        );
-        setSelectedOrderId(orderIds);
-        setStepSelected((prevStep) => (prevStep === step ? "" : step));
-      };
-
-      const isClientNotifiedForThisOrder = getOrderInfo(
-        ordersStore,
-        orderId
-      ).isClientNotified;
-
       return (
-        <span className={badgeClass} style={style} onClick={handleClick}>
-          {getOrderStepProperty(step).name} ({count})
-          {!isClientNotifiedForThisOrder && (
-            <span className="notification-bubble-order blink"></span>
-          )}
-        </span>
+        <Badge
+          step={step}
+          orderIds={orderIds}
+          orderId={orderId}
+          count={count}
+          setSelectedOrderId={setSelectedOrderId}
+          setStepSelected={setStepSelected}
+          setIsOrderOpened={setIsOrderOpened}
+        />
       );
     }
 

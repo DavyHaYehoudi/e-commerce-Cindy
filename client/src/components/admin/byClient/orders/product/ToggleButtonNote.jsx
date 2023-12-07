@@ -1,16 +1,9 @@
 import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { useDispatch } from "react-redux";
-import { handleChangeNoteValue } from "./item/action/handler/notes";
+import { useNoteValueHandler } from "./item/action/hooks/useNoteValueHandler";
 
-const ToggleButtonNote = ({
-  productsInfo,
-  client,
-  productId,
-  orderId,
-  actions,
-}) => {
-  const dispatch = useDispatch();
+const ToggleButtonNote = ({ productsInfo, productId, actions }) => {
+  const { handleChangeNoteValue } = useNoteValueHandler(productId, actions);
   return (
     <ToggleButton
       initialText="Note"
@@ -21,14 +14,7 @@ const ToggleButtonNote = ({
           <textarea
             className="product-note"
             value={productsInfo?.note || ""}
-            onChange={(e) =>
-              handleChangeNoteValue(
-                e,
-                dispatch,
-                productId,
-                actions
-              )
-            }
+            onChange={handleChangeNoteValue}
           >
             {" "}
           </textarea>

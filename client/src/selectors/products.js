@@ -1,29 +1,27 @@
-import { getOrderInfo } from "./order";
-
 export const getProductsInfo = (
   ordersStore,
   productsStore,
   orderId,
   productId
 ) => {
-  const order = getOrderInfo(ordersStore, orderId);
+  const order = ordersStore?.find((item) => item.id === orderId);
 
-  const productsInfo = productsStore.find(
+  const productsInfo = productsStore?.find(
     (ps) => ps.productId === productId
   )?.productsActions;
-  const articleNumber = productsStore.find(
+  const articleNumber = productsStore?.find(
     (ps) => ps.productId === productId
   )?.quantity;
-  const material = productsStore.find(
+  const material = productsStore?.find(
     (ps) => ps.productId === productId
   )?.material;
 
-  const isAnyProductClientNotified = order.products
+  const isAnyProductClientNotified = order?.products
 
     ?.map((p) => productsStore.find((ps) => ps.id === p)?.isClientNotified)
     .some((notified) => !notified);
 
-  const productsByOrder = order.products?.map((p) =>
+  const productsByOrder = order?.products?.map((p) =>
     productsStore.find((ps) => ps.id === p)
   );
 

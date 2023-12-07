@@ -6,7 +6,6 @@ const AdminTrackingNumberCreate = ({
   orderId,
   trackingInfo,
   error,
-  dispatch,
   isFormValid,
   checkboxStates,
   productStore,
@@ -20,7 +19,6 @@ const AdminTrackingNumberCreate = ({
 }) => {
   const { articleNumber, setArticleNumber, handleValidate, handleCancel } =
     useAdminTrackingNumberCreate({
-      dispatch,
       setError,
       setSelectedProducts,
       setCheckboxStates,

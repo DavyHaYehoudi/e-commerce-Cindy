@@ -12,7 +12,6 @@ const ClientTrackingItem = ({
   checkboxStates,
   error,
   selectedProducts,
-  dispatch,
   isFormValid,
   productStore,
   setError,
@@ -28,7 +27,6 @@ const ClientTrackingItem = ({
     isEdited,
     handleCancel,
   } = useClientTrackingItem({
-    dispatch,
     setError,
     setSelectedProducts,
     setCheckboxStates,

@@ -1,13 +1,10 @@
 import React from "react";
 import { formatPrice } from "../../../../helpers/prices";
 import Item from "../orders/order";
-import { useSelector } from "react-redux";
 import useBadges from "./hooks/useBadges";
 
 const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
-  const ordersStore = useSelector((state) => state.orders);
   const { isOrderOpened, renderBadge } = useBadges(
-    ordersStore,
     orders,
     setSelectedOrderId
   );
