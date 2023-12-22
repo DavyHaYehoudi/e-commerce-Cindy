@@ -6,7 +6,7 @@ import bra from "../../assets/bra.png";
 import col from "../../assets/col.png";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import {formatPrice} from "../../helpers/prices"
+import {formatPrice} from "../../helpers/utils/prices"
 
 const CartOffcanvas = ({ show, handleClose }) => {
   const cartsMock = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];

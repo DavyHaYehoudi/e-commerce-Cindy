@@ -3,12 +3,9 @@ import Main from "./item";
 import { getProductsInfo } from "../../../../../selectors/products";
 import { useSelector } from "react-redux";
 
-const List = ({
-  client,
-  orderId,
-}) => {
-  const ordersStore = useSelector((state) => state.orders);
-  const productsStore = useSelector((state) => state.products);
+const List = ({ client, orderId }) => {
+  const ordersStore = useSelector((state) => state?.orders?.data);
+  const productsStore = useSelector((state) => state?.products?.data);
 
   const products = getProductsInfo(
     ordersStore,

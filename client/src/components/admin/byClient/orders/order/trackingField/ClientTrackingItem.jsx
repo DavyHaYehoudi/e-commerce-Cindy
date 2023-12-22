@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../../../../../../helpers/formatDate";
+import { formatDate } from "../../../../../../helpers/utils/formatDate";
 import ArticleNumberByProduct from "./ArticleNumberByProduct";
 import { MdEdit } from "react-icons/md";
 import ProductListItem from "./ProductListItem";

@@ -2,8 +2,8 @@ import React from "react";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
-import { formatDate } from "../../../../../../helpers/formatDate";
-import { formatPrice, sumPriceArticle } from "../../../../../../helpers/prices";
+import { formatDate } from "../../../../../../helpers/utils/formatDate";
+import { formatPrice, sumPriceArticle } from "../../../../../../helpers/utils/prices";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { getCreditsInfo } from "../../../../../../selectors/credits";
 import { useSelector } from "react-redux";
@@ -49,7 +49,7 @@ const Header = ({
           </p>
           <p>Référence : {reference}</p>
         </div>
-        <img src={image} alt={name} width="150px" />
+        <img src={`/photos/${image}`} alt={name} width="150px" />
         <ul>
           <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
             {exchange && (

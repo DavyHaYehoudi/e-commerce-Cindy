@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectOrdersStore = (state) => state.orders;
+const selectOrdersStore = (state) => state?.orders?.data;
 const selectOrderId = (_, orderId) => orderId;
 
 export const getOrderInfo = createSelector(

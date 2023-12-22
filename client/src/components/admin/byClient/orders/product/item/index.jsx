@@ -11,12 +11,13 @@ import { getCreditsInfo } from "../../../../../../selectors/credits";
 
 const Main = ({ products, client, orderId }) => {
   const { productId, material, quantity } = products;
-  const productStore = useSelector((state) => state.product);
+  const ordersStore = useSelector((state) => state?.orders?.data);
+  const productsStore = useSelector((state) => state?.products?.data);
+  const productStore = useSelector((state) => state?.product?.data);
   const { amount } = useSelector((state) =>
     getCreditsInfo(state, { productId: products.id })
   );
-  const ordersStore = useSelector((state) => state.orders);
-  const productsStore = useSelector((state) => state.products);
+
   const { productsInfo, isTagProductExisted, articleNumber } = getProductsInfo(
     ordersStore,
     productsStore,

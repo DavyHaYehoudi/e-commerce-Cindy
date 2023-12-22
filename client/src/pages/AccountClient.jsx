@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import OtherOrders from "../components/accountClient/order/OtherOrders";
 import DeliveredOrders from "../components/accountClient/order/Delivered";
 import InfoClient from "../components/accountClient/info/InfoClient";
-import { getStepColor } from "../helpers/getStepColor";
+import { getStepColor } from "../helpers/utils/getStepColor";
 import { useSelector } from "react-redux";
+import useFetchSlice from "../selectors/useFetchSlice";
 
 const AccountClient = () => {
-  const orderHistory = useSelector((state) => state.client.orders);
-  const dataClient = useSelector((state) => state.client);
-  const [isActive, setIsActive] = useState(null); 
+  const orderHistory = useSelector((state) => state?.client?.data?.orders);
+  const dataClient = useSelector((state) => state?.client?.data?.client);
+  const [isActive, setIsActive] = useState(null);
 
   const handleTabClick = (tab) => {
     setIsActive(tab);
   };
+
+  useFetchSlice("client", "1mongoDb");
+  useFetchSlice("product");
 
   return (
     <div className="user-profile-container">
@@ -36,10 +40,16 @@ const AccountClient = () => {
 
         <div className="order-items-container">
           {isActive === "enCours" && (
-            <OtherOrders orderHistory={orderHistory} getStepColor={getStepColor} />
+            <OtherOrders
+              orderHistory={orderHistory}
+              getStepColor={getStepColor}
+            />
           )}
           {isActive === "expediees" && (
-            <DeliveredOrders orderHistory={orderHistory} getStepColor={getStepColor} />
+            <DeliveredOrders
+              orderHistory={orderHistory}
+              getStepColor={getStepColor}
+            />
           )}
         </div>
       </div>

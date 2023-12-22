@@ -1,6 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ordersMock } from "../../mocks/ordersMock";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { customFetch } from "../../helpers/services/customFetch";
+import { handleFetchError } from "../../helpers/services/handleFetchError";
+// import { ordersMock } from "../../mocks/ordersMock";
 
+const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
+  try {
+    return customFetch("orders");
+  } catch (error) {
+    handleFetchError(error);
+  }
+});
 export const ordersActions = [
   { id: 0, number: 0 },
   { id: 1, number: 1 },
@@ -12,7 +21,7 @@ export const ordersActions = [
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
-  return state.map((order) =>
+  state.data= state.data.map((order) =>
     order.id === action.payload.orderId
       ? updateFunction(order, action.payload)
       : order
@@ -80,7 +89,7 @@ const trackingNumberUpdatedClient = (order, { trackingNumber }) => ({
 
 const ordersSlice = createSlice({
   name: "orderActions",
-  initialState: ordersMock,
+  initialState: { data: [], status: "idle", error: null },
   reducers: {
     moveToNextStep: (state, action) =>
       applyOrderAction(state, action, updateMoveToNextStep),
@@ -109,6 +118,21 @@ const ordersSlice = createSlice({
     updatedClientTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberUpdatedClient),
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOrders.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchOrders.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        state.data = action.payload;
+      })
+      .addCase(fetchOrders.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const {
@@ -122,5 +146,5 @@ export const {
   deleteTrackingNumber,
   updatedClientTrackingNumber,
 } = ordersSlice.actions;
-
+export { fetchOrders };
 export default ordersSlice.reducer;

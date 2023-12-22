@@ -5,7 +5,7 @@ import ProductMeta from "../../shared/ProductMeta";
 import FavoriteButton from "../../shared/FavoriteButton";
 import AddToCartButton from "../../shared/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
-import { formatPrice } from "../../helpers/prices";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const ProductContent = ({ state, handleCartShow }) => {
 

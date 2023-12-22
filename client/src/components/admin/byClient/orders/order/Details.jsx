@@ -1,5 +1,5 @@
 import React from "react";
-import { formatPrice } from "../../../../../helpers/prices";
+import { formatPrice } from "../../../../../helpers/utils/prices";
 import { getOrderInfo } from "../../../../../selectors/order";
 import { useSelector } from "react-redux";
 

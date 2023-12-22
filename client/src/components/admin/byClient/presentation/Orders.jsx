@@ -1,5 +1,5 @@
 import React from "react";
-import { formatPrice } from "../../../../helpers/prices";
+import { formatPrice } from "../../../../helpers/utils/prices";
 import Item from "../orders/order";
 import useBadges from "./hooks/useBadges";
 

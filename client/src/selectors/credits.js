@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectCreditsStore = (state) => state.credits;
+const selectCreditsStore = (state) => state.credits.data;
 const selectProductId = (_, props) => props.productId;
 
 export const getCreditsInfo = createSelector(

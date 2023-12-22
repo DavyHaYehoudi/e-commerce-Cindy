@@ -4,10 +4,10 @@ import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../selectors/product";
 import { getMaterialProperty } from "../../helpers/constants/materials";
-import { formatPrice } from "../../helpers/prices";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const WishlistProductContent = ({ product }) => {
-  const state = useSelector((state) => state.product);
+  const state = useSelector((state) => state?.product?.data);
 
   const handleAddToCart = (productId) => {
     console.log(`Ajouter au panier : ${productId}`);
@@ -20,7 +20,7 @@ const WishlistProductContent = ({ product }) => {
       >
         <Link to={`/products/${product.productId}`}>
           <img
-            src={getProductProperties(product.productId, state).image}
+            src={`/photos/${getProductProperties(product.productId, state).image}`}
             alt={getProductProperties(product.productId, state).name}
             width="100px"
             height="150px"
@@ -33,7 +33,7 @@ const WishlistProductContent = ({ product }) => {
         <p>{getMaterialProperty(product.material).name}</p>
         <p className="price">
           {formatPrice(
-            getProductProperties(product.productId, state).pricing.currentPrice
+            getProductProperties(product.productId, state)?.pricing?.currentPrice
           )}
         </p>
         <div className="modal-product-actions">

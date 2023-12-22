@@ -31,7 +31,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          dataClient.firstName
+          dataClient?.firstName
         )}
       </p>
       <p>
@@ -45,7 +45,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          dataClient.lastName
+          dataClient?.lastName
         )}
       </p>
       <p>
@@ -59,7 +59,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          dataClient.email
+          dataClient?.email
         )}
       </p>
       <p>
@@ -73,7 +73,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          dataClient.phone
+          dataClient?.phone
         )}
       </p>
       <p>
@@ -87,7 +87,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
             onChange={handleInputChange}
           />
         ) : (
-          dataClient.address
+          dataClient?.address
         )}
       </p>
       {isEditing ? (
@@ -95,7 +95,9 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
           Enregistrer les modifications
         </button>
       ) : (
-        <button className="btn" onClick={() => setEditing(true)}>Modifier les Informations</button>
+        <button className="btn" onClick={() => setEditing(true)}>
+          Modifier les Informations
+        </button>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getStepColor } from "../../../../helpers/getStepColor";
+import { getStepColor } from "../../../../helpers/utils/getStepColor";
 import { getOrderStepProperty } from "../../../../helpers/constants/orderStep";
 import { getOrderInfo } from "../../../../selectors/order";
 
