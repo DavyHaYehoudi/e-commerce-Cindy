@@ -1,6 +1,6 @@
 import React from "react";
 import OrderItem from "./OrderItem";
-import { formatPrice } from "../../helpers/prices";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const ShoppingCartContent = ({carts} ) => {
   return (

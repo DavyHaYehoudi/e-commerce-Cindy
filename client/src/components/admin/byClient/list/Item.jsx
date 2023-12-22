@@ -7,6 +7,7 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
   const { orders, isAnyOrderClientNotified } = useSelector((state) =>
     getClientInfo(state, { client })
   );
+
   return (
     <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
       <div className="client-header">

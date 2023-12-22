@@ -18,11 +18,11 @@ export const getProductsInfo = (
 
   const isAnyProductClientNotified = order?.products
 
-    ?.map((p) => productsStore.find((ps) => ps.id === p)?.isClientNotified)
+    ?.map((p) => productsStore?.find((ps) => ps.id === p)?.isClientNotified)
     .some((notified) => !notified);
 
   const productsByOrder = order?.products?.map((p) =>
-    productsStore.find((ps) => ps.id === p)
+    productsStore?.find((ps) => ps.id === p)
   );
 
   const noteContent = productsInfo?.note;

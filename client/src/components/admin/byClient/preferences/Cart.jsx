@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../../../../helpers/prices";
+import { formatPrice } from "../../../../helpers/utils/prices";
 import { getProductProperties } from "../../../../selectors/product";
 import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const Cart = ({ productId, productCart }) => {
-  const state = useSelector((state) => state.product);
+  const state = useSelector((state) => state?.product?.data);
   return (
     <div className="cartUserViewAdmin">
       <div>
@@ -20,7 +20,7 @@ const Cart = ({ productId, productCart }) => {
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>
           <img
-            src={getProductProperties(productId, state).image}
+            src={`/photos/${getProductProperties(productId, state).image}`}
             alt={getProductProperties(productId, state).name}
             width="100px"
             height="100px"

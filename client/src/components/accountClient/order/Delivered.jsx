@@ -4,7 +4,8 @@ import List from "./List";
 import { getOrderStepProperty } from "../../../helpers/constants/orderStep";
 
 const Delivered = ({ orderHistory, getStepColor }) => {
-  const filter = (order) =>getOrderStepProperty(order.step).name  === orderStep[2].name;
+  const filter = (order) =>
+    getOrderStepProperty(order.step).name === orderStep[2].name;
   const title = "Commandes expédiées";
 
   return (

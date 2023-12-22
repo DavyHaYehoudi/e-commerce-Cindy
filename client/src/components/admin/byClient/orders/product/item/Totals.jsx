@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { formatPrice } from "../../../../../../helpers/prices";
+import { formatPrice } from "../../../../../../helpers/utils/prices";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getCreditsInfo } from "../../../../../../selectors/credits";
 
 const Totals = ({ productsInfo, productId, products }) => {
-  const productStore = useSelector((state) => state.product);
+  const productStore = useSelector((state) => state?.product?.data);
   const creditTotal =
     useSelector((state) => getCreditsInfo(state, { productId: products.id }))
       .amount || 0;

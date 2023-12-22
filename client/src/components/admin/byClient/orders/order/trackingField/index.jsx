@@ -4,11 +4,7 @@ import AdminTrackingItem from "./AdminTrackingItem";
 import ClientTrackingItem from "./ClientTrackingItem";
 import AdminTrackingNumberCreate from "./AdminTrackingNumberCreate";
 
-const Listing = ({
-  trackingNumberList,
-  client,
-  orderId,
-}) => {
+const Listing = ({ trackingNumberList, client, orderId }) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [checkboxStates, setCheckboxStates] = useState({});
@@ -20,7 +16,7 @@ const Listing = ({
 
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const productStore = useSelector((state) => state.product);
+  const productStore = useSelector((state) => state?.product?.data);
 
   return (
     <div className="trackingNumberList">

@@ -1,6 +1,6 @@
 // rootReducer.js
 import { combineReducers } from "redux";
-import returnProductReducer from "../features/accountClient/returnProductSlice";
+import clientReducer from "../features/accountClient/clientSlice";
 import ordersReducer from "../features/admin/ordersSlice";
 import productsReducer from "../features/admin/productsSlice";
 import productReducer from "../features/admin/productSlice";
@@ -13,8 +13,8 @@ const rootReducer = (state, action) => {
     orders: ordersReducer,
     products: productsReducer,
     product: productReducer,
-    client: returnProductReducer,
     credits: creditsReducer,
+    client: clientReducer,
   })(state, action);
 };
 // const rootReducer = (state, action) => {

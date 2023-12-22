@@ -28,7 +28,7 @@ const Credit = ({
   setConfirmation,
   setInteraction,
 }) => {
-  const productsState = useSelector((state) => state.product);
+  const productsState = useSelector((state) => state?.product?.data);
   const productPrice = getProductProperties(productId, productsState).pricing
     .currentPrice;
   const { handleCredit } = useCreditHandler(

@@ -1,7 +1,7 @@
 import React from "react";
 import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../../helpers/prices";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const OrderItem = ({ cart }) => {
   return (

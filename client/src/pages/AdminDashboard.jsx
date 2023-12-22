@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import List from "../components/admin/byClient/list";
+import useFetchSlice from "../selectors/useFetchSlice";
 
 const AdminDashboard = () => {
   const [clientDetails, setClientDetails] = useState({});
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // charger les clients depuis une API ici
-    // dispatch(fetchClients());
-  }, [dispatch]);
-
+  useFetchSlice("clients");
+  useFetchSlice("orders");
+  useFetchSlice("products");
+  useFetchSlice("product");
+  useFetchSlice("credits");
+  
   // ouverture/fermeture rangée client
   const handleClientClick = (clientId) => {
     setClientDetails((prevDetails) => ({

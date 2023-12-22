@@ -3,19 +3,14 @@ import Pagination from "../../../../shared/Pagination";
 import Item from "./Item";
 import { useSelector } from "react-redux";
 
-const List = ({
-  handleClientClick,
-  clientDetails,
-}) => {
-  const clientsStore = useSelector((state) => state.clients);
-
+const List = ({ handleClientClick, clientDetails }) => {
+  const clientsStore = useSelector((state) => state?.clients?.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = clientsStore.slice(indexOfFirstItem, indexOfLastItem);
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (

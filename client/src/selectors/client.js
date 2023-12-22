@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectOrdersStore = (state) => state.orders;
+const selectOrdersStore = (state) => state?.orders?.data;
 const selectClient = (_, props) => props.client;
 
 export const getClientInfo = createSelector(
@@ -9,12 +9,11 @@ export const getClientInfo = createSelector(
     if (!client) {
       return { orders: [], isAnyOrderClientNotified: true };
     }
-
-    const orders = client.orders.map((orderId) =>
+    const orders = client?.orders?.map((orderId) =>
       ordersStore.find((order) => order.id === orderId)
     );
 
-    const isAnyOrderClientNotified = orders.some(
+    const isAnyOrderClientNotified = orders?.some(
       (order) => !ordersStore.find((oa) => oa.id === order.id)?.isClientNotified
     );
 
@@ -23,7 +22,7 @@ export const getClientInfo = createSelector(
 );
 
 export const getNotesEditorInfo = (state, clientId, notesPropName) => {
-  const user = state.find((user) => user.id === clientId);
+  const user = state?.find((user) => user.id === clientId);
   const notes = user?.[notesPropName] || [];
 
   return { user, notes };

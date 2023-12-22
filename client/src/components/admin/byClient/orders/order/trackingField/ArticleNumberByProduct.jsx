@@ -46,8 +46,8 @@ const ArticleNumberByProduct = ({
       [productId]: value,
     }));
   };
-  const ordersStore = useSelector((state) => state.orders);
-  const productsStore = useSelector((state) => state.products);
+  const ordersStore = useSelector((state) => state?.orders?.data);
+  const productsStore = useSelector((state) => state?.products?.data);
   const { productsByOrder } = getProductsInfo(
     ordersStore,
     productsStore,

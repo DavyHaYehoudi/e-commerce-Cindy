@@ -11,7 +11,9 @@ import { useSelector } from "react-redux";
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
   const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
-  const favoriteProducts = useSelector(state=>state.client.wishlist)
+  const favoriteProducts = useSelector(
+    (state) => state?.client?.data?.client?.wishlist
+  );
 
   const handleMenuEnter = (section) => {
     setMegaMenuSection(section);

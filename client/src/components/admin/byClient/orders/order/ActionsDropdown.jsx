@@ -8,7 +8,7 @@ import {
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
 import { TbCircleCheck } from "react-icons/tb";
-import { formatDate } from "../../../../../helpers/formatDate";
+import { formatDate } from "../../../../../helpers/utils/formatDate";
 
 const ActionsDropdown = ({
   order,
