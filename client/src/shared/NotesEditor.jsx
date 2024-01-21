@@ -40,7 +40,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   return (
     <div className="notes-editor">
       <h2>
-        <u>Notes</u>{" "}
+        <span className="underline">Notes</span>{" "}
       </h2>
 
       <div className="previous-notes">

@@ -122,7 +122,7 @@ export const ordersMock = [
   {
     id: "5mongoDb",
     date: "2023-04-15 12:30",
-    step: 1,
+    step: 4,
     isNextStepOrder: true,
     inTotalAmount: 230,
     outTotalAmount: null,
@@ -192,7 +192,7 @@ export const ordersMock = [
   {
     id: "6mongoDb",
     date: "2023-05-01 18:45",
-    step: 2,
+    step: 5,
     isNextStepOrder: false,
     inTotalAmount: 112,
     outTotalAmount: 10,
@@ -205,7 +205,7 @@ export const ordersMock = [
   {
     id: "7mongoDb",
     date: "2023-05-10 10:00",
-    step: 3,
+    step: 6,
     isNextStepOrder: false,
     inTotalAmount: 190,
     outTotalAmount: null,
@@ -218,7 +218,7 @@ export const ordersMock = [
   {
     id: "8mongoDb",
     date: "2023-06-02 14:20",
-    step: 3,
+    step: 6,
     isNextStepOrder: false,
     inTotalAmount: 58,
     outTotalAmount: 5,

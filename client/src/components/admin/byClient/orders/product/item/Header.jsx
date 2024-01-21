@@ -3,7 +3,10 @@ import { getProductProperties } from "../../../../../../selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../helpers/utils/formatDate";
-import { formatPrice, sumPriceArticle } from "../../../../../../helpers/utils/prices";
+import {
+  formatPrice,
+  sumPriceArticle,
+} from "../../../../../../helpers/utils/prices";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { getCreditsInfo } from "../../../../../../selectors/credits";
 import { useSelector } from "react-redux";
@@ -20,8 +23,8 @@ const Header = ({
   toggleActions,
 }) => {
   const { amount, code, dateExpire } = useSelector((state) =>
-  getCreditsInfo(state, { productId: products.id })
-);
+    getCreditsInfo(state, { productId: products.id })
+  );
   const { reference, name, pricing, image } = getProductProperties(
     productId,
     productStore
@@ -29,7 +32,11 @@ const Header = ({
   const { exchange, refund, credit } = productsInfo ?? {};
   return (
     <>
-      <p className="action-icon" onClick={toggleActions}>
+      <p
+        className="action-icon"
+        onClick={toggleActions}
+        data-testid="header-component"
+      >
         {" "}
         {interaction.isActionsOpen ? (
           <FaEllipsisVertical />
@@ -40,12 +47,12 @@ const Header = ({
       <div className="product-content-details">
         <div>
           <p>
-            {name} {getMaterialProperty(material).name}
+            {name} {getMaterialProperty(material)?.name}
           </p>
           <p className="pricing inPricing">
             {quantity} article
             {quantity > 1 ? "s" : ""} -{" "}
-            {sumPriceArticle(quantity, pricing.currentPrice)}
+            {sumPriceArticle(quantity, pricing?.currentPrice)}
           </p>
           <p>Référence : {reference}</p>
         </div>

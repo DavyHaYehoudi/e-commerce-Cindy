@@ -5,19 +5,26 @@ import { useSelector } from "react-redux";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {
   const { orders, isAnyOrderClientNotified } = useSelector((state) =>
-    getClientInfo(state, { client })
+  getClientInfo(state, { client })
   );
 
   return (
-    <li className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}>
+    <li
+      className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}
+      data-testid={`client-row-${client.id}`}
+    >
       <div className="client-header">
         <p
           className="client-header-clic"
           onClick={() => handleClientClick(client.id)}
+          data-testid={`client-name-${client.id}`}
         >
-          {client.firstName} {client.lastName}{" "}
+          {client.firstName + " " +client.lastName}
           {isAnyOrderClientNotified && (
-            <span className="notification-bubble-list blink"></span>
+            <span
+              className="notification-bubble-list blink"
+              data-testid="notification-bubble"
+            ></span>
           )}
         </p>
       </div>

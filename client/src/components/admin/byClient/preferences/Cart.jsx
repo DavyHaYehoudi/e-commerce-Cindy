@@ -8,13 +8,13 @@ import { getMaterialProperty } from "../../../../helpers/constants/materials";
 const Cart = ({ productId, productCart }) => {
   const state = useSelector((state) => state?.product?.data);
   return (
-    <div className="cartUserViewAdmin">
+    <div className="cartUserViewAdmin" data-testid={`cart-item-${productId}`} >
       <div>
         <p>Référence : {getProductProperties(productId, state).reference}</p>
-        <p>Nom : {getProductProperties(productId, state).name}</p>
-        <p>Matériau : {getMaterialProperty(productCart.material).name }</p>
+        <p>Nom : {getProductProperties(productId, state)?.name}</p>
+        <p>Matériau : {getMaterialProperty(productCart.material)?.name }</p>
         <p>
-          Prix : {formatPrice(getProductProperties(productId, state).pricing.currentPrice) }
+          Prix : {formatPrice(getProductProperties(productId, state).pricing?.currentPrice) }
         </p>
       </div>
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">

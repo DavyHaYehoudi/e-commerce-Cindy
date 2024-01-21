@@ -22,7 +22,7 @@ const ProductListItem = ({ product, orderId, articleNumber, productStore }) => {
     <small key={product.id}>
       <li className="description">
         <span>- {productProperties.name} </span>
-        <span>{getMaterialProperty(details.material).name}</span>
+        <span>{getMaterialProperty(details.material)?.name}</span>
         <span>
           {" "}
           {articleNumber || 1} article{articleNumber > 1 ? "s" : ""}

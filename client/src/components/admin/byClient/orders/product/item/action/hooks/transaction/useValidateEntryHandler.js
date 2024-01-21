@@ -9,6 +9,7 @@ export const useValidateEntryHandler = (
   dispatch,
   updateActionContent,
 ) => {
+
   const handleValidateEntry = (
     e,
     action,
@@ -21,10 +22,9 @@ export const useValidateEntryHandler = (
     e.stopPropagation();
 
     const exchangeValue =
-      productsInfo?.exchange ?? productsActions?.exchangeContent ?? 0;
+    productsInfo?.exchange ?? productsActions?.exchangeContent ?? 0;
     const refundValue =
-      productsInfo?.refund ?? productsActions?.refundContent ?? 0;
-
+    productsInfo?.refund ?? productsActions?.refundContent ?? 0;
     const articleLimitNumber = exchangeValue + refundValue;
     const articleAllowedNumber = articleNumber - articleLimitNumber;
     const checkArticleNumber = articleAllowedNumber >= 0;

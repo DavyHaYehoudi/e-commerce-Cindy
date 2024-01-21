@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   useFetchSlice("products");
   useFetchSlice("product");
   useFetchSlice("credits");
-  
+
   // ouverture/fermeture rangée client
   const handleClientClick = (clientId) => {
     setClientDetails((prevDetails) => ({
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
+    <div className="admin-dashboard" data-testid="admin-dashboard">
       <List
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}

@@ -55,7 +55,7 @@ const ArticleNumberByProduct = ({
   );
 
   return (
-    <div>
+    <div data-testid="articleNumberByProduct">
       {productsByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productId,

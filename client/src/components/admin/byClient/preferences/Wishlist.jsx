@@ -9,7 +9,7 @@ const Wishlist = ({ productId, productCart }) => {
   const state = useSelector((state) => state?.product?.data);
 
   return (
-    <div className="wishlistUserViewAdmin">
+    <div className="wishlistUserViewAdmin" data-testid={`wishlist-item-${productId}`} >
       <div>
         <p>Référence : {getProductProperties(productId, state)?.reference}</p>
         <p>Nom : {getProductProperties(productId, state)?.name}</p>

@@ -4,25 +4,13 @@ import { getStepColor } from "../../../../helpers/utils/getStepColor";
 import { getOrderStepProperty } from "../../../../helpers/constants/orderStep";
 import { getOrderInfo } from "../../../../selectors/order";
 
-const Badge = ({
-  step,
-  orderIds,
-  orderId,
-  count,
-  setSelectedOrderId,
-  setStepSelected,
-  setIsOrderOpened,
-}) => {
+const Badge = ({ step, orderIds, orderId, count, setSelectedOrderId }) => {
   const stepColor = getStepColor(step);
   const badgeClass = `admin-badge`;
   const style = { backgroundColor: stepColor };
 
   const handleClick = () => {
-    setIsOrderOpened((prevIsOrderOpened) =>
-      step === setStepSelected ? !prevIsOrderOpened : true
-    );
     setSelectedOrderId(orderIds);
-    setStepSelected((prevStep) => (prevStep === step ? "" : step));
   };
 
   const isClientNotifiedForThisOrder = useSelector((state) => {
@@ -32,9 +20,12 @@ const Badge = ({
 
   return (
     <span className={badgeClass} style={style} onClick={handleClick}>
-      {getOrderStepProperty(step).name} ({count})
+      {getOrderStepProperty(step)?.name} ({count})
       {!isClientNotifiedForThisOrder && (
-        <span className="notification-bubble-order blink"></span>
+        <span
+          className="notification-bubble-order blink"
+          data-testid="notification-bubble"
+        ></span>
       )}
     </span>
   );

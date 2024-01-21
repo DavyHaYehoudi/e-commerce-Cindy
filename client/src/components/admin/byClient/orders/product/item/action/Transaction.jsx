@@ -29,8 +29,8 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productId, productsState).pricing
-    .currentPrice;
+  const productPrice = getProductProperties(productId, productsState)?.pricing
+    ?.currentPrice;
   const { handleChangeInputQuantity } = useInputQuantityHandler(
     actions,
     setProductActions
@@ -62,6 +62,7 @@ const Transaction = ({
           setInteraction
         )
       }
+      data-testid="transaction-component"
     >
       {productsInfo?.[action] ? textCancel : label}
 

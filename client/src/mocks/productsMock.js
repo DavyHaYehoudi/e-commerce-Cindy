@@ -1,5 +1,5 @@
 
-export const productsMock = [
+const productsMock = [
   {
     id: "1mongoDb",
     productId: "1mongoDb",

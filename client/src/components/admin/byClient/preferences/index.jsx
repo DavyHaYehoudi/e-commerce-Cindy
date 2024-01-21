@@ -7,29 +7,36 @@ const Details = ({ client }) => {
     <div>
       <div>
         <p>
-          <u>Sa liste de favoris</u> 😉 :{" "}
+          <span className="underline">Sa liste de favoris</span> 😉 :{" "}
         </p>
-
-        {client?.wishlist?.map((item) => (
-          <Wishlist
-            key={item.productId}
-            productId={item.productId}
-            productCart={item}
-          />
-        )) || <p>La liste des favoris est vide</p>}
+        {client?.wishlist?.length > 0 ? (
+          client.wishlist.map((item) => (
+            <Wishlist
+              key={item.productId}
+              productId={item.productId}
+              productCart={item}
+            />
+          ))
+        ) : (
+          <p>La liste des favoris est vide</p>
+        )}
       </div>
       <div>
         <p>
-          <u>Son panier</u> 🤫 :{" "}
+          <span className="underline">Son panier</span> 🤫 :{" "}
         </p>
 
-        {client?.cart?.map((item) => (
-          <Cart
-            key={item.productId}
-            productId={item.productId}
-            productCart={item}
-          />
-        )) || <p>Le panier est vide</p>}
+        {client?.cart?.length > 0 ? (
+          client?.cart?.map((item) => (
+            <Cart
+              key={item.productId}
+              productId={item.productId}
+              productCart={item}
+            />
+          ))
+        ) : (
+          <p>Le panier est vide</p>
+        )}
       </div>
     </div>
   );

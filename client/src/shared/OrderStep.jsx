@@ -12,7 +12,9 @@ const OrderStep = ({ order }) => {
 
   return (
     <p>
-      <span style={StepColorStyle}>{getOrderStepProperty(order.step).name}</span>
+      <span style={StepColorStyle} data-testid="order-step">
+        {getOrderStepProperty(order.step)?.name}
+      </span>
     </p>
   );
 };

@@ -1,4 +1,4 @@
-export const creditsMock = [
+const creditsMock = [
     {
         id:"idMongoDbGenerate",
         productsId:"1mongoDb",

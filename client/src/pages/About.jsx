@@ -43,7 +43,7 @@ const About = () => {
       </section>
 
       <section className="noralya-section">
-        <img src={profil} alt=""/>
+        <img src={profil} alt="profil"/>
         <h2>NORALYA</h2>
         <p>
           Certains me demandent parfois la signification du nom de mon Atelier.

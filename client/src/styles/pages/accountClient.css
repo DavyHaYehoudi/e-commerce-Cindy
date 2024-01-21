@@ -81,13 +81,16 @@
 .order-item-wrapper-user-account {
   border: 1px solid #ccc;
   padding: 15px;
-  margin-bottom: 20px;
 }
 
-.order-item-wrapper-user-account .date-step {
+.order-item-wrapper-user-account .header .date-step{
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 10px;
+}
+.order-item-wrapper-user-account .header{
+  margin-bottom: 20px;
 }
 
 .order-item-user-account {
@@ -113,4 +116,22 @@
 
 .user-info-account b {
   text-transform: uppercase;
+}
+.other-orders .trackingNumber{
+  text-align: center;
+}
+.addTrackingNumberClientBtn{
+  background-color: var(--success);
+  margin: 20px 0;
+}
+.ClientTrackingNumberCreate {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid var(--info);
+  box-shadow: 0 0 3px var(--info);
 }
