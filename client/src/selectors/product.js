@@ -1,5 +1,5 @@
 export const getProductProperties = (productId, state) => {
-  const product = state.find((product) => product.id === productId);
+  const product = state?.find((product) => product.id === productId);
 
   if (product) {
     const {

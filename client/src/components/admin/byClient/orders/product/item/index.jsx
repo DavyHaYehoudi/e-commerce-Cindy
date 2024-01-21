@@ -57,6 +57,7 @@ const Main = ({ products, client, orderId }) => {
   return (
     <li
       className={`product-content ${interaction.isActionsOpen ? "open" : ""}`}
+      data-testid ={`product-content-${productId}`}
     >
       <Header
         interaction={interaction}

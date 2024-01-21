@@ -12,7 +12,33 @@ const fetchClient = createAsyncThunk("client/fetchClient", async (clientId) => {
 const clientSlice = createSlice({
   name: "client",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {},
+  reducers: {
+    deleteTrackingNumber: (state, action) => {
+      state.data.orders = state?.data?.orders?.map((order) =>
+        order.id === action.payload.orderId
+          ? {
+              ...order,
+              trackingNumber: order.trackingNumber.filter(
+                (tn) => tn.id !== action.payload.trackingNumberId
+              ),
+            }
+          : order
+      );
+    },
+    addClientTrackingNumber: (state, action) => {
+      state.data.orders = state?.data?.orders?.map((order) =>
+        order.id === action.payload.orderId
+          ? {
+              ...order,
+              trackingNumber: [
+                ...order.trackingNumber,
+                action.payload.trackingNumber,
+              ],
+            }
+          : order
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchClient.pending, (state) => {
@@ -29,5 +55,6 @@ const clientSlice = createSlice({
       });
   },
 });
+export const { deleteTrackingNumber,addClientTrackingNumber } = clientSlice.actions;
 export { fetchClient };
 export default clientSlice.reducer;

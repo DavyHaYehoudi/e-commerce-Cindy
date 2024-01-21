@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TrackingField from "../../../shared/TrackingField";
+// import TrackingField from "../../../shared/TrackingField";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
@@ -11,7 +11,7 @@ const Item = ({ products, isReturnProduct }) => {
   const productsStore = useSelector((state) => state?.client?.data?.products);
 
   return (
-    <div className="order-items-user-account">
+    <div className="order-items-user-account" data-testid="order-items-user-account">
       {products &&
         productsStore &&
         productsStore
@@ -44,7 +44,7 @@ const Item = ({ products, isReturnProduct }) => {
                     />
                   </Link>
                 </div>
-                {isReturnProduct && <TrackingField isAdmin={false} />}
+                {/* {isReturnProduct && <TrackingField isAdmin={false} />} */}
               </div>
             );
           })}

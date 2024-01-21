@@ -1,5 +1,5 @@
 
-export const clientsMock = [
+ const clientsMock = [
   {
     id: "1mongoDb",
     firstName: "John",

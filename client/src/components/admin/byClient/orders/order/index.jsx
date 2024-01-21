@@ -30,9 +30,8 @@ const Item = ({
       })
     );
   };
-
   return (
-    <div className="admin-order-item">
+    <div className="admin-order-item" data-testid={`item-component-${order.id}`}> 
       <Header
         order={order}
         orderIndex={orderIndex}

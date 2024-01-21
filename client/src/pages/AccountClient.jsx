@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import useFetchSlice from "../selectors/useFetchSlice";
 
 const AccountClient = () => {
-  const orderHistory = useSelector((state) => state?.client?.data?.orders);
   const dataClient = useSelector((state) => state?.client?.data?.client);
+  const orderHistory = useSelector((state) => state?.client?.data?.orders);
   const [isActive, setIsActive] = useState(null);
 
   const handleTabClick = (tab) => {
@@ -19,7 +19,7 @@ const AccountClient = () => {
   useFetchSlice("product");
 
   return (
-    <div className="user-profile-container">
+    <div className="user-profile-container" data-testid="account-dashboard">
       <InfoClient dataClient={dataClient} />
       <div className="order-history">
         <h2>Historique des commandes</h2>

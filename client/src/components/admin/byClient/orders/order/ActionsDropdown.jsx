@@ -39,7 +39,10 @@ const ActionsDropdown = ({
   };
 
   return (
-    <div className={`dropdown ${isOpen ? "open" : "closed"}`}>
+    <div
+      className={`dropdown ${isOpen ? "open" : "closed"}`}
+      data-testid="actions-dropdown"
+    >
       <div className="orderControlContainer">
         {lastSentDateToClient && (
           <p>

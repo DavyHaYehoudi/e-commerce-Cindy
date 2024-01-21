@@ -65,13 +65,13 @@ const ProductAside = () => {
           La pièce que vous aurez choisie est fabriquée à la main spécialement
           pour vous. <br />
           <br />
-          <u>Délai de confection</u> : <b>7 à 10 jours</b> - Variable selon la
+          <span className="underline">Délai de confection</span> : <b>7 à 10 jours</b> - Variable selon la
           période de l'année.
           <br />
-          <u>Livraisons</u> : <b>2 à 4 jours ouvrés</b> pour la France.{" "}
+          <span className="underline">Livraisons</span> : <b>2 à 4 jours ouvrés</b> pour la France.{" "}
           <b>10 jours</b> en moyenne pour les DOM-TOM et l'étranger.
           <br />
-          <u>Retours</u> : Vous disposez d'un délai de <b>14 jours</b> à compter
+          <span className="underline">Retours</span> : Vous disposez d'un délai de <b>14 jours</b> à compter
           de la réception pour renvoyer votre commande et être remboursé. <br />
           <br />
           Par mesure d'hygiène, nous ne proposons pas de remboursement ni
@@ -83,7 +83,7 @@ const ProductAside = () => {
           rendez-vous sur la page
           <Link to="/deliveries&returns">
             {" "}
-            <u> Livraisons & Retours</u>
+            <span className="underline"> Livraisons & Retours</span>
           </Link>
         </div>
       </div>

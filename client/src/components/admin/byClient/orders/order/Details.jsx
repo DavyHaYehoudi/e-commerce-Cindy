@@ -4,29 +4,26 @@ import { getOrderInfo } from "../../../../../selectors/order";
 import { useSelector } from "react-redux";
 
 const Details = ({ order, orderId }) => {
-  const { outTotalAmount } = useSelector((state) =>
-    getOrderInfo(state, orderId)
-  );
+  const { outTotalAmount } =
+    useSelector((state) => getOrderInfo(state, orderId)) || "";
 
   return (
     <>
-      <p>
+      <p data-testid="in-total">
         Total de la commande :
         <span className="pricing inPricing">
           {" "}
           {order.inTotalAmount ? formatPrice(order.inTotalAmount) : "Total NC"}
         </span>
       </p>
-      {outTotalAmount && outTotalAmount > 0 ? (
-        <p>
+      {outTotalAmount && outTotalAmount > 0 && (
+        <p data-testid="out-total">
           Total des sorties :{" "}
           <span className="pricing outPricing">
             {formatPrice(outTotalAmount)}{" "}
           </span>
         </p>
-      ) : (
-        ""
-      )}
+      ) }
     </>
   );
 };

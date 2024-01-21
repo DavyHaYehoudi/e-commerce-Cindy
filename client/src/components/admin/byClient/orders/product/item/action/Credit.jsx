@@ -29,8 +29,8 @@ const Credit = ({
   setInteraction,
 }) => {
   const productsState = useSelector((state) => state?.product?.data);
-  const productPrice = getProductProperties(productId, productsState).pricing
-    .currentPrice;
+  const productPrice = getProductProperties(productId, productsState)?.pricing
+    ?.currentPrice;
   const { handleCredit } = useCreditHandler(
     actions,
     setInteraction,
@@ -52,6 +52,7 @@ const Credit = ({
     <li
       className={interaction.activeLi === action ? "active" : ""}
       onClick={() => handleCredit(action)}
+      data-testid ="credit-component"
     >
       {productsInfo?.[action] ? textCancel : label}
 

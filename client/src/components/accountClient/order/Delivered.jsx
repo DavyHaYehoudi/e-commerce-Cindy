@@ -1,6 +1,6 @@
 import React from "react";
 import { orderStep } from "../../../constants/orderStep";
-import List from "./List";
+import List from ".";
 import { getOrderStepProperty } from "../../../helpers/constants/orderStep";
 
 const Delivered = ({ orderHistory, getStepColor }) => {

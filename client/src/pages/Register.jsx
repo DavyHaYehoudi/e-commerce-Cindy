@@ -115,7 +115,7 @@ const Register = () => {
           Vous avez déjà un compte ?{" "}
           <Link to="/account/login">
             <b>
-              <u>Connectez-vous ici</u>
+              <span className="underline">Connectez-vous ici</span>
             </b>{" "}
           </Link>
         </p>

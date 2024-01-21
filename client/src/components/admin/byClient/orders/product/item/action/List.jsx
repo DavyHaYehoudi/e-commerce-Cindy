@@ -28,7 +28,7 @@ const List = ({
   } = productsActions;
 
   return (
-    <ul className="actions-list">
+    <ul className="actions-list" >
       {generateItemTransactionComponent(
         actions.EXCHANGE,
         actions.EXCHANGE_LABEL,

@@ -58,6 +58,9 @@ img {
     color: var(--danger);
     
 }
+.underline{
+    text-decoration: underline;
+}
 /* ********************* START INFO-BULLE TOOLTIP ********************* */
 .info-tooltip {
     position: relative;

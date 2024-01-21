@@ -40,7 +40,7 @@ const ForgotPassword = () => {
               Un email de récupération a été envoyé à l'adresse {email}. Veuillez
               suivre les instructions pour réinitialiser votre mot de passe.
             </p>
-            <Link to="/account/login"><b><u>Retour à la page de connexion</u></b> </Link>
+            <Link to="/account/login"><b><span className="underline">Retour à la page de connexion</span></b> </Link>
           </>
         )}
       </form>

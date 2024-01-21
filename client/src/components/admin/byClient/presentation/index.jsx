@@ -5,17 +5,17 @@ import ToggleButton from "../../../../shared/ToggleButton";
 import NotesEditor from "../../../../shared/NotesEditor";
 import Orders from "./Orders";
 
-const Infos = ({
-  client,
-  orders,
-  handleClientClick,
-}) => {
+const Infos = ({ client, orders, handleClientClick }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   return (
-    <div className="client-details" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="client-details"
+      onClick={(e) => e.stopPropagation()}
+      data-testid={`infos-component-${client.id}`}
+    >
       <h2>
-        <u> Informations du client</u>
+        <span className="underline"> Informations du client</span>
       </h2>
       <p>Prénom : {client.firstName}</p>
       <p>Nom : {client.lastName}</p>

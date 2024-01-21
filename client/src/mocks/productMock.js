@@ -3,7 +3,7 @@ import bar from "../assets/bar.png";
 import bra from "../assets/bra.png";
 import col from "../assets/col.png";
 
-export const productMock = [
+const productMock = [
   {
     id: "1mongoDb",
     reference: "QER2345OIJD",
