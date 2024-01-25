@@ -5,7 +5,7 @@ import { handleFetchError } from "../../helpers/services/handleFetchError";
 
 const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
   try {
-    return customFetch("orders");
+    return customFetch("order");
   } catch (error) {
     handleFetchError(error);
   }

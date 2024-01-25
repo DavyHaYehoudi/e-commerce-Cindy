@@ -12,7 +12,7 @@ const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
   const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
   const favoriteProducts = useSelector(
-    (state) => state?.client?.data?.client?.wishlist
+    (state) => state?.customer?.data?.client?.wishlist
   );
 
   const handleMenuEnter = (section) => {

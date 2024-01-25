@@ -1,8 +1,8 @@
-import { productsMock } from "../mocks/productsMock.js";
-const productsController = {
+import { productsByOrderMock } from "../mocks/productsByOrderMock.js";
+const productsByOrderController = {
   getAllProducts: async (req, res) => {
     console.log("dans le controller getAllProducts");
-    res.status(200).json(productsMock);
+    res.status(200).json(productsByOrderMock);
   },
 
   getProductsById: async (req, res) => {
@@ -22,4 +22,4 @@ const productsController = {
   },
 };
 
-export default productsController;
+export default productsByOrderController;

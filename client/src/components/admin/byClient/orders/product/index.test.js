@@ -10,9 +10,9 @@ import { bar } from "../../../../../assets/bar.png";
 describe("List Component", () => {
   const mockState = {
     orders: {
-      data: [{ id: 1, products: [1, 2] }],
+      data: [{ id: 1, productsByOrder: [1, 2] }],
     },
-    products: {
+    productsByOrder: {
       data: [
         { id: 1, productId: 1, quantity: 2 },
         { id: 2, productId: 2, quantity: 1 },
@@ -59,12 +59,12 @@ describe("List Component", () => {
   const client = {
     id: 1,
   };
-  test("renders products correctly", () => {
+  test("renders productsByOrder correctly", () => {
     render(<List client={client} orderId={1} />, { store });
 
-    expect(screen.getByTestId("products-container")).toBeInTheDocument();
+    expect(screen.getByTestId("productsByOrder-container")).toBeInTheDocument();
 
-    mockState?.products?.data.forEach((product) => {
+    mockState?.productsByOrder?.data.forEach((product) => {
       expect(
         screen.getByTestId(`product-content-${product.productId}`) 
       ).toBeInTheDocument();

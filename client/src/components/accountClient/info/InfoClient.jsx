@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const InfoClient = ({ dataClient, onSaveChanges }) => {
   const [isEditing, setEditing] = useState(false);
   const [editedUserData, setEditedUserData] = useState({ ...dataClient });
+
+  useEffect(() => {
+    setEditedUserData(dataClient);
+  }, [dataClient]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

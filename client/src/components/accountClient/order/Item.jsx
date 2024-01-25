@@ -6,16 +6,17 @@ import { getProductProperties } from "../../../selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
 import { formatPrice } from "../../../helpers/utils/prices";
 
-const Item = ({ products, isReturnProduct }) => {
+const Item = ({ productsByOrder, isReturnProduct }) => {
   const state = useSelector((state) => state?.product?.data);
-  const productsStore = useSelector((state) => state?.client?.data?.products);
+  const productsByOrderStore = useSelector((state) => state?.customer?.data?.productsByOrder);
+  console.log('productsByOrderStore:', productsByOrderStore)
 
   return (
     <div className="order-items-user-account" data-testid="order-items-user-account">
-      {products &&
-        productsStore &&
-        productsStore
-          .filter((ps) => products.some((p) => p === ps.productId))
+      {productsByOrder &&
+        productsByOrderStore &&
+        productsByOrderStore
+          .filter((ps) => productsByOrder.some((p) => p === ps.productId))
           .map((product) => {
             const { name, pricing, image } = getProductProperties(
               product.productId,

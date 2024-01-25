@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 
-const fetchClient = createAsyncThunk("client/fetchClient", async (clientId) => {
+const fetchCustomer = createAsyncThunk("client/fetchCustomer", async (clientId) => {
   try {
-    return customFetch(`clients/${clientId}`);
+    return customFetch(`client/${clientId}`);
   } catch (error) {
     handleFetchError(error);
   }
 });
-const clientSlice = createSlice({
-  name: "client",
+const customer = createSlice({
+  name: "customer",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     deleteTrackingNumber: (state, action) => {
@@ -41,20 +41,20 @@ const clientSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchClient.pending, (state) => {
+      .addCase(fetchCustomer.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchClient.fulfilled, (state, action) => {
+      .addCase(fetchCustomer.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
         state.data = action.payload;
       })
-      .addCase(fetchClient.rejected, (state, action) => {
+      .addCase(fetchCustomer.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
-export const { deleteTrackingNumber,addClientTrackingNumber } = clientSlice.actions;
-export { fetchClient };
-export default clientSlice.reducer;
+export const { deleteTrackingNumber,addClientTrackingNumber } = customer.actions;
+export { fetchCustomer };
+export default customer.reducer;

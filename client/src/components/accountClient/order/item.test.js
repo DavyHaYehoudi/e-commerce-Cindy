@@ -8,9 +8,9 @@ import { materials } from "../../../constants/materials";
 
 const mockStore = configureStore([]);
 const initialState = {
-  client: {
+  customer: {
     data: {
-      products: [
+      productsByOrder: [
         {
           productId: 1,
           quantity: 2,
@@ -52,15 +52,15 @@ const initialState = {
 describe("Item Component", () => {
   const store = mockStore(initialState);
   test("renders Item component with initial data", () => {
-    render(<Item products={[1]} isReturnProduct={false} />, { store });
+    render(<Item productsByOrder={[1]} isReturnProduct={false} />, { store });
 
     // Vérifier que le composant Item est rendu
     expect(screen.getByTestId("order-items-user-account")).toBeInTheDocument();
   });
 
   test("renders product information correctly", () => {
-    render(<Item products={[1, 2]} isReturnProduct={false} />, { store });
-
+    render(<Item productsByOrder={[1, 2]} isReturnProduct={false} />, { store });
+ 
     // Vérifier que les informations du produit sont rendues correctement
     expect(
       screen.getByText("Nom du produit : Boucles d'oreilles")

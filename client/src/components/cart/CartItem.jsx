@@ -1,26 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
 import TrashIcon from "../../shared/TrashIcon";
+import { getProductProperties } from "../../selectors/product";
+import { useSelector } from "react-redux";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const CartItem = ({ cart }) => {
+  const [coefficient, setCoefficient] = useState(1);
+  const productStore = useSelector((state) => state?.product?.data);
+  const handleChangeQuantity = (quantity) => {
+    setCoefficient(quantity);
+  };
   return (
     <div className="cart-item">
       <div className="cart-item-top">
         <div className="info-tooltip" aria-label="Revenir à l'article">
           <Link>
-            <img src={cart} alt="" width="75px" height="75px" />
+            <img
+              src={`/photos/${
+                getProductProperties(cart.productId, productStore).image
+              }`}
+              alt={getProductProperties(cart.productId, productStore).name}
+              width="75px"
+              height="75px"
+            />
           </Link>
         </div>
 
         <div className="cart-item-name">
-          Nom de l'article qui parfois peut être tres long{" "}
+          {getProductProperties(cart.productId, productStore).name}
         </div>
       </div>
       <div className="cart-item-bottom">
-        <div className="cart-item-subtotal">1 x €25 = €25</div>
+        <div className="cart-item-subtotal">
+          {coefficient} x{" "}
+          {formatPrice(
+            getProductProperties(cart.productId, productStore)?.pricing
+              .currentPrice
+          )}{" "}
+          ={" "}
+          {formatPrice(
+            getProductProperties(cart.productId, productStore)?.pricing
+              .currentPrice * coefficient
+          )}
+        </div>
         <div className="cart-item-quantity">
-          <QuantitySelectProduct />
+          <QuantitySelectProduct handleChangeQuantity={handleChangeQuantity} />
         </div>
         <div className="cart-item-delete">
           <TrashIcon />

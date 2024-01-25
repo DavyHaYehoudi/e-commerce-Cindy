@@ -2,7 +2,7 @@ import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { useNoteValueHandler } from "./item/action/hooks/useNoteValueHandler";
 
-const ToggleButtonNote = ({ productsInfo, productId, actions }) => {
+const ToggleButtonNote = ({ productsByOrderInfo, productId, actions }) => {
   const { handleChangeNoteValue } = useNoteValueHandler(productId, actions);
   return (
     <ToggleButton
@@ -13,7 +13,7 @@ const ToggleButtonNote = ({ productsInfo, productId, actions }) => {
         <div>
           <textarea
             className="product-note"
-            value={productsInfo?.note || ""}
+            value={productsByOrderInfo?.note || ""}
             onChange={handleChangeNoteValue}
           >
             {" "}

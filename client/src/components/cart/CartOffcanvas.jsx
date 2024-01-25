@@ -1,17 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { TfiClose } from "react-icons/tfi";
-import bo from "../../assets/bo.png";
-import bar from "../../assets/bar.png";
-import bra from "../../assets/bra.png";
-import col from "../../assets/col.png";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import {formatPrice} from "../../helpers/utils/prices"
+import { formatPrice } from "../../helpers/utils/prices";
+import { useSelector } from "react-redux";
 
 const CartOffcanvas = ({ show, handleClose }) => {
-  const cartsMock = [bo, bar, bra, col, bo, bar, bra, col, bo, bra];
-  // const cartsMockEmpty=[]
-  const [carts] = useState(cartsMock);
+  const carts = useSelector((state) => state?.customer?.data?.client?.cart);
   const handleOutsideClick = useCallback(
     (e) => {
       if (
@@ -39,16 +34,17 @@ const CartOffcanvas = ({ show, handleClose }) => {
         </button>
       </div>
       <div className="cart-offcanvas-content">
-        {carts.length > 0 ? (
-          carts.map((cart, i) => <CartItem cart={cart} key={i} />)
+        {carts && carts.length > 0 ? (
+          carts.map((cart) => <CartItem cart={cart} key={cart.productId} />)
         ) : (
           <p className="empty-cart-message">VOTRE PANIER EST VIDE</p>
         )}
       </div>
-      {carts.length > 0 && (
+      {carts && carts.length > 0 && (
         <div className="fixed-bottom-content">
           <p>
-            TOTAL DES ARTICLES : <b>{formatPrice(250)} </b>
+            TOTAL DES ARTICLES :{" "}
+            <b>{formatPrice(250)} A CALCULER PAR LE BACK</b>
           </p>
           <div>
             <Link to="/cart">

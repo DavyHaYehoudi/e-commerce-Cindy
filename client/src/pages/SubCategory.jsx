@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 const SubCategory = () => {
     const{subcategory}=useParams()
     return (
-        <div>
+        <div data-testid={subcategory} >
             SubCategory :{subcategory}
         </div>
     );

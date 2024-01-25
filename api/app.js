@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
-import clientsRoutes from "./routes/clients.routes.js";
-import ordersRoutes from "./routes/orders.routes.js";
-import productsRoutes from "./routes/products.routes.js";
+import clientRoutes from "./routes/client.routes.js";
+import orderRoutes from "./routes/order.routes.js";
+import productsByOrderRoutes from "./routes/productsByOrder.routes.js";
 import productRoutes from "./routes/product.routes.js";
-import creditsRoutes from "./routes/credits.routes.js";
+import creditRoutes from "./routes/credit.routes.js";
 const app = express();
 const port = 3001;
 
@@ -14,11 +14,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 //admin
-app.use("/clients", clientsRoutes);
-app.use("/orders", ordersRoutes);
-app.use("/products", productsRoutes);
+app.use("/client", clientRoutes);
+app.use("/order", orderRoutes);
+app.use("/productsbyorder", productsByOrderRoutes);
 app.use("/product", productRoutes);
-app.use("/credits", creditsRoutes);
+app.use("/credit", creditRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);

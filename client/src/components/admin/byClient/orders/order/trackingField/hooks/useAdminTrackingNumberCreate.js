@@ -32,7 +32,7 @@ const useAdminTrackingNumberCreate = ({
       return;
     }
 
-    const { productsInfo } = articlesNumberCheck(
+    const { productsByOrderInfo } = articlesNumberCheck(
       selectedProducts,
       articleNumber
     );
@@ -45,7 +45,7 @@ const useAdminTrackingNumberCreate = ({
           isAdmin: true,
           value: trackingField,
           date: date,
-          products: productsInfo,
+          productsByOrder: productsByOrderInfo,
         },
       })
     );

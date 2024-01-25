@@ -2,17 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { formatPrice } from "../../../../../../helpers/utils/prices";
 import { getProductProperties } from "../../../../../../selectors/product";
-import { getCreditsInfo } from "../../../../../../selectors/credits";
+import { getCreditsInfo } from "../../../../../../selectors/credit";
 
-const Totals = ({ productsInfo, productId, products }) => {
+const Totals = ({ productsByOrderInfo, productId, productsByOrder }) => {
 
   const productStore = useSelector((state) => state?.product?.data);
   const creditTotal =
-  useSelector((state) => getCreditsInfo(state, { productId: products.id }))
+  useSelector((state) => getCreditsInfo(state, { productId: productsByOrder.id }))
   .amount || 0;
   const productPrice = getProductProperties(productId, productStore).pricing
     ?.currentPrice;
-  const refundTotal = productsInfo?.refund || 0;
+  const refundTotal = productsByOrderInfo?.refund || 0;
   const isOut = refundTotal + creditTotal > 0;
 
   return (

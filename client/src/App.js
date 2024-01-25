@@ -34,7 +34,7 @@ function App() {
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />
         <Route path="/menu-tab-subcategory/:subcategory" element={<SubCategory />} />
-        <Route path="/products/:id" element={<Product />} />
+        <Route path="/productsByOrder/:id" element={<Product />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/deliveries&returns" element={<Deliveries />} />

@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
-// import { clientsMock } from "../../mocks/clientsMock";
 
 const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
   try {
-    return customFetch("clients");
+    return customFetch("client");
   } catch (error) {
     handleFetchError(error);
   }
@@ -13,7 +12,6 @@ const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
 
 const clientsSlice = createSlice({
   name: "clients",
-  // initialState: clientsMock,
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     addNote: (state, action) => {

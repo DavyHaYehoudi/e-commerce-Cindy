@@ -1,25 +1,25 @@
 import React from "react";
 import Main from "./item";
-import { getProductsInfo } from "../../../../../selectors/products";
+import { getProductsInfo } from "../../../../../selectors/productsByOrder";
 import { useSelector } from "react-redux";
 
 const List = ({ client, orderId }) => {
   const ordersStore = useSelector((state) => state?.orders?.data);
-  const productsStore = useSelector((state) => state?.products?.data);
+  const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
 
-  const products = getProductsInfo(
+  const productsByOrder = getProductsInfo(
     ordersStore,
-    productsStore,
+    productsByOrderStore,
     orderId
-  ).productsByOrder;
+  ).productsByOrderByOrder;
   return (
-    <ul id="products-container" data-testid="products-container">
+    <ul id="productsByOrder-container" data-testid="productsByOrder-container">
       <small>
-        {products &&
-          products.map((products) => (
+        {productsByOrder &&
+          productsByOrder.map((productsByOrder) => (
             <Main
-              key={products?.productId}
-              products={products}
+              key={productsByOrder?.productId}
+              productsByOrder={productsByOrder}
               client={client}
               orderId={orderId}
             />

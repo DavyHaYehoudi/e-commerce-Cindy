@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { formatDate } from "../../../../helpers/utils/formatDate";
 import { TbInputX } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import { deleteTrackingNumber } from "../../../../features/accountClient/clientSlice";
+import { deleteTrackingNumber } from "../../../../features/accountClient/customerSlice";
 
 const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);

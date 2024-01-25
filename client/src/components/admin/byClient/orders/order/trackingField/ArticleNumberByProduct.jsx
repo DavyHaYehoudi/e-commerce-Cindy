@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getProductsInfo } from "../../../../../../selectors/products";
+import { getProductsInfo } from "../../../../../../selectors/productsByOrder";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { useSelector } from "react-redux";
@@ -47,16 +47,16 @@ const ArticleNumberByProduct = ({
     }));
   };
   const ordersStore = useSelector((state) => state?.orders?.data);
-  const productsStore = useSelector((state) => state?.products?.data);
-  const { productsByOrder } = getProductsInfo(
+  const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
+  const { productsByOrderByOrder } = getProductsInfo(
     ordersStore,
-    productsStore,
+    productsByOrderStore,
     orderId
   );
 
   return (
     <div data-testid="articleNumberByProduct">
-      {productsByOrder?.map((product) => {
+      {productsByOrderByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productId,
           productStore
@@ -98,7 +98,7 @@ const ArticleNumberByProduct = ({
                       handleCheckQuantity(
                         inputValues,
                         ordersStore,
-                        productsStore,
+                        productsByOrderStore,
                         orderId,
                         checkboxStates,
                         setError,

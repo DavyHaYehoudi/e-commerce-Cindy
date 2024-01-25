@@ -4,14 +4,14 @@ export const useCreditHandler = (
   setInteraction,
   setConfirmation,
   setProductActions,
-  productsInfo,
-  productsActions
+  productsByOrderInfo,
+  productsByOrderActions
 ) => {
   const handleCredit = (action) => {
     setInteraction((prevState) => ({ ...prevState, activeLi: action }));
 
     // Si la propriété a une value c'est donc un clic pour annulation
-    if (productsInfo[action]) {
+    if (productsByOrderInfo[action]) {
       setConfirmation((prevState) => ({
         ...prevState,
         isConfirmationVisible: true,
@@ -20,7 +20,7 @@ export const useCreditHandler = (
       // Sinon, c'est pour attribuer une value à la propriété
     } else {
       const updatedProductActions = {
-        ...productsActions,
+        ...productsByOrderActions,
         isAddCredit: action === actions.CREDIT,
       };
       setProductActions(updatedProductActions);

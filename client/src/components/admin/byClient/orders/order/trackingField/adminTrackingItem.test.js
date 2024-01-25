@@ -29,7 +29,7 @@ describe("AdminTrackingItem Component", () => {
     id: "jhkjh534",
     value: "trackingNumberValue",
     date: "2023-01-15 08:30",
-    products: [
+    productsByOrder: [
       { id: 1, articlesNumber: "articleNumber1" },
       { id: 2, articlesNumber: "articleNumber2" },
     ],

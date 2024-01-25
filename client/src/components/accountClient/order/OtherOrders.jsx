@@ -16,4 +16,4 @@ const OtherOrders = ({ orderHistory, getStepColor }) => {
   );
 };
 
-export default OtherOrders;
+export default OtherOrders; 

@@ -7,15 +7,15 @@ import { useSelector } from "react-redux";
 import useFetchSlice from "../selectors/useFetchSlice";
 
 const AccountClient = () => {
-  const dataClient = useSelector((state) => state?.client?.data?.client);
-  const orderHistory = useSelector((state) => state?.client?.data?.orders);
+  const dataClient = useSelector((state) => state?.customer?.data?.client);
+  const orderHistory = useSelector((state) => state?.customer?.data?.orders);
   const [isActive, setIsActive] = useState(null);
 
   const handleTabClick = (tab) => {
     setIsActive(tab);
   };
 
-  useFetchSlice("client", "1mongoDb");
+  useFetchSlice("customer", "1mongoDb");
   useFetchSlice("product");
 
   return (

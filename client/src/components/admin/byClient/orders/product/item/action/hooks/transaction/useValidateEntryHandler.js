@@ -2,8 +2,8 @@ import { articleAction, totalsInOut } from "../../../../../../../../../features/
 
 export const useValidateEntryHandler = (
   actions,
-  productsInfo,
-  productsActions,
+  productsByOrderInfo,
+  productsByOrderActions,
   articleNumber,
   setEntryError,
   dispatch,
@@ -22,9 +22,9 @@ export const useValidateEntryHandler = (
     e.stopPropagation();
 
     const exchangeValue =
-    productsInfo?.exchange ?? productsActions?.exchangeContent ?? 0;
+    productsByOrderInfo?.exchange ?? productsByOrderActions?.exchangeContent ?? 0;
     const refundValue =
-    productsInfo?.refund ?? productsActions?.refundContent ?? 0;
+    productsByOrderInfo?.refund ?? productsByOrderActions?.refundContent ?? 0;
     const articleLimitNumber = exchangeValue + refundValue;
     const articleAllowedNumber = articleNumber - articleLimitNumber;
     const checkArticleNumber = articleAllowedNumber >= 0;
@@ -45,9 +45,9 @@ export const useValidateEntryHandler = (
     const { contentKey, flagKey } = propertyMap[action] || {};
     if (!contentKey || !flagKey) return;
 
-    const productActionContent = productsActions[contentKey] || "";
+    const productActionContent = productsByOrderActions[contentKey] || "";
 
-    if (productsActions[contentKey] > 0 && checkArticleNumber) {
+    if (productsByOrderActions[contentKey] > 0 && checkArticleNumber) {
       dispatch(
         updateActionContent({
           productId,
@@ -60,7 +60,7 @@ export const useValidateEntryHandler = (
         dispatch(
           totalsInOut({
             orderId,
-            amount: productsActions.refundContent * productPrice,
+            amount: productsByOrderActions.refundContent * productPrice,
             movement: "out",
           })
         );
@@ -68,7 +68,7 @@ export const useValidateEntryHandler = (
       dispatch(articleAction({ clientId, orderId }));
       setEntryError("");
     }
-    if (productsActions[contentKey]) {
+    if (productsByOrderActions[contentKey]) {
       const dynamicProperties = { [contentKey]: "", [flagKey]: false };
       setProductActions((prevState) => ({
         ...prevState,

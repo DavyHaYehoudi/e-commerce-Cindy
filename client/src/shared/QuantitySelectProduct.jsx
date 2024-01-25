@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const QuantitySelectProduct = () => {
+const QuantitySelectProduct = ({handleChangeQuantity}) => {
   const [quantity, setQuantity] = useState(1);
 
+ 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (quantity > 1) { 
+      setQuantity((prevQuantity) => {
+        const newQuantity = prevQuantity - 1;
+        handleChangeQuantity(newQuantity);
+        return newQuantity;
+      });
     }
   };
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    setQuantity((prevQuantity) => {
+      const newQuantity = prevQuantity + 1;
+      handleChangeQuantity(newQuantity);
+      return newQuantity;
+    });
   };
 
   return (

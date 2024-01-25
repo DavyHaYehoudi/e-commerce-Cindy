@@ -39,7 +39,7 @@ const List = ({ orderHistory, filter }) => {
               buttonClass="account-btn toggle"
               content={
                 <Item
-                  products={order?.products}
+                  productsByOrder={order?.productsByOrder}
                   isReturnProduct={
                     getOrderStepProperty(order?.step).name === orderStep[3].name
                   }

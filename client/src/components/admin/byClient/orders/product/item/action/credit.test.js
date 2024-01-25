@@ -9,11 +9,11 @@ const mockStore = configureStore([]);
 
 describe("Credit Component", () => {
   const initialState = {
-    credits: {
+    credit: {
       data: [
         {
           id: "idMongoDbGenerate1",
-          productsId: 1,
+          productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
@@ -38,7 +38,7 @@ describe("Credit Component", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basic data", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
@@ -47,7 +47,7 @@ describe("Credit Component", () => {
     const isActionSelected = true;
     const inputCreditAmount = 10;
     const inputDateValue = "2023-04-05";
-    const productsActions = {
+    const productsByOrderActions = {
       isAddCredit: true,
       creditContent: {
         amount: 10,
@@ -59,7 +59,7 @@ describe("Credit Component", () => {
     const client = { id: 1 };
     const productId = 1;
     const orderId = "orderId";
-    const products = {
+    const productsByOrder = {
       id: 1,
     };
     const setProductActions = jest.fn();
@@ -73,17 +73,17 @@ describe("Credit Component", () => {
         action="CREDIT"
         actions={{ CREDIT: "CREDIT" }}
         label={label}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         isActionSelected={isActionSelected}
         inputCreditAmount={inputCreditAmount}
         inputDateValue={inputDateValue}
-        productsActions={productsActions}
+        productsByOrderActions={productsByOrderActions}
         placeholderValue={placeholderValue}
         textCancel={textCancel}
         client={client}
         productId={productId}
         orderId={orderId}
-        products={products}
+        productsByOrder={productsByOrder}
         setProductActions={setProductActions}
         setEntryError={setEntryError}
         setConfirmation={setConfirmation}

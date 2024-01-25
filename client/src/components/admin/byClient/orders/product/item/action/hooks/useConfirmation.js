@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteCredit } from "../../../../../../../../features/admin/creditsSlice";
+import { deleteCredit } from "../../../../../../../../features/admin/creditSlice";
 import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
-import {  updateActionContent } from "../../../../../../../../features/admin/productsSlice";
+import {  updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
 
 const useConfirmation = ({
   confirmation,
-  productsActions,
+  productsByOrderActions,
   actions,
   clientId,
   productId,
   orderId,
-  products,
+  productsByOrder,
   amount,
   productPrice,
-  productsInfo,
+  productsByOrderInfo,
   setProductActions,
   setConfirmation,
   setEntryError,
@@ -29,7 +29,7 @@ const useConfirmation = ({
     const updateProductActions = (confirmAction) => {
       const dynamicProductActions = {
         ...Object.fromEntries(
-          Object.entries(productsActions).map(([key, value]) => [
+          Object.entries(productsByOrderActions).map(([key, value]) => [
             key,
             key.startsWith("isAdd") ? key === confirmAction : value,
           ])
@@ -56,7 +56,7 @@ const useConfirmation = ({
         })
       );
       dispatch(articleAction({ clientId, orderId }));
-      dispatch(deleteCredit({ productsId: products.id }));
+      dispatch(deleteCredit({ productsByOrderId: productsByOrder.id }));
       dispatch(
         updateActionContent({
           creditContent: null,
@@ -93,7 +93,7 @@ const useConfirmation = ({
       dispatch(
         totalsInOut({
           orderId,
-          amount: productsInfo?.refund * productPrice,
+          amount: productsByOrderInfo?.refund * productPrice,
           movement: "outCancel",
         })
       );

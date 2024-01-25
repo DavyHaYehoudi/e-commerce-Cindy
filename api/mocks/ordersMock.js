@@ -14,7 +14,7 @@ export const ordersMock = [
         isAdmin: true,
         value: "1234567POIUY",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "nnnfjdksjh1234", productId:"1mongoDb", articlesNumber: 2 },
           { id: "98798798ffd", productId:"2mongoDb", articlesNumber: 1 },
         ],
@@ -24,14 +24,14 @@ export const ordersMock = [
         isAdmin: true,
         value: "987654FVGBHNJ",
         date: "2023-01-15 08:30",
-        products: [{ id: "hdghdfgh444hh", productId:"2mongoDb", articlesNumber: 1 }],
+        productsByOrder: [{ id: "hdghdfgh444hh", productId:"2mongoDb", articlesNumber: 1 }],
       },
       {
         id: "nndkdh4444aksdjfls",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "vzxcvzxczoio354", productId:"2mongoDb", articlesNumber: 1 },
           { id: "vzxcvzxczoio355", productId:"1mongoDb", articlesNumber: 2 },
         ],
@@ -41,28 +41,28 @@ export const ordersMock = [
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        products: [],
+        productsByOrder: [],
       },
       {
         id: "fasjkj54sfdjfakjd0",
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        products: [{ id: "23425325g", productId:"1mongoDb", articlesNumber: 1 }],
+        productsByOrder: [{ id: "23425325g", productId:"1mongoDb", articlesNumber: 1 }],
       },
       {
         id: "qpanfheifb48fn40n40",
         isAdmin: false,
         value: "JNFDNDM987MND*",
         date: "2023-01-15 08:30",
-        products: [{ id: "sdfg222uuuhreh", productId:"2mongoDb", articlesNumber: 1 }],
+        productsByOrder: [{ id: "sdfg222uuuhreh", productId:"2mongoDb", articlesNumber: 1 }],
       },
       {
         id: "lrjfsurpeoiwu08098",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "1234123142312f", productId:"1mongoDb", articlesNumber: 1 },
           { id: "345634563456h", productId:"2mongoDb", articlesNumber: 1 },
         ],
@@ -70,8 +70,8 @@ export const ordersMock = [
     ],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["1mongoDb","2mongoDb"],
-    // products:null,
+    productsByOrder: ["1mongoDb","2mongoDb"],
+    // productsByOrder:null,
   },
   {
     id: "2mongoDb",
@@ -84,7 +84,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["3mongoDb"],
+    productsByOrder: ["3mongoDb"],
   },
   {
     id: "3mongoDb",
@@ -97,7 +97,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["4mongoDb"],
+    productsByOrder: ["4mongoDb"],
   },
   {
     id: "4mongoDb",
@@ -112,12 +112,12 @@ export const ordersMock = [
       isAdmin: false,
       value: "JND&$HDYS#@FJKS",
       date: "2023-01-15 08:30",
-      products: [{ id: "2342532bg5g", productId:"8mongoDb", articlesNumber: 1 }],
+      productsByOrder: [{ id: "2342532bg5g", productId:"8mongoDb", articlesNumber: 1 }],
     },],
     trackingNumberClient: "ABCDEF8768Y",
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["5mongoDb","6mongoDb"],
+    productsByOrder: ["5mongoDb","6mongoDb"],
   },
   {
     id: "5mongoDb",
@@ -133,7 +133,7 @@ export const ordersMock = [
         isAdmin: true,
         value: "1234567POIUY",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "nnnfjdksjh1734", productId:"7mongoDb", articlesNumber: 2 },
           { id: "9879879d8ffd", productId:"8mongoDb", articlesNumber: 1 },
           { id: "fsadfaettt", productId:"9mongoDb", articlesNumber: 2 },
@@ -144,14 +144,14 @@ export const ordersMock = [
         isAdmin: true,
         value: "987654FVGBHNJ",
         date: "2023-01-15 08:30",
-        products: [{ id: "hdghdfgh444hwh", productId:"9mongoDb", articlesNumber: 3 }],
+        productsByOrder: [{ id: "hdghdfgh444hwh", productId:"9mongoDb", articlesNumber: 3 }],
       },
       {
         id: "nndkdh4444aks12djfls",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "sssssmmsoif08909", productId:"8mongoDb", articlesNumber: 1 },
           { id: "vzxcvzxczoio35c4", productId:"7mongoDb", articlesNumber: 1 },
         ],
@@ -161,14 +161,14 @@ export const ordersMock = [
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        products: [{ id: "2342532bg5g", productId:"8mongoDb", articlesNumber: 1 }],
+        productsByOrder: [{ id: "2342532bg5g", productId:"8mongoDb", articlesNumber: 1 }],
       },
       {
         id: "qpanfheifb448fn40n40",
         isAdmin: false,
         value: "JNFDNDM987MND*",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "sggggggg6666l", productId:"7mongoDb", articlesNumber: 2 },
           { id: "sdfg222uuuhrehv", productId:"9mongoDb", articlesNumber: 1 },
           { id: "poipoipoipaa", productId:"8mongoDb", articlesNumber: 3 },
@@ -179,7 +179,7 @@ export const ordersMock = [
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        products: [
+        productsByOrder: [
           { id: "12341q23142312f", productId:"7mongoDb", articlesNumber: 1 },
           { id: "345634s563456h", productId:"8mongoDb", articlesNumber: 1 },
         ],
@@ -187,7 +187,7 @@ export const ordersMock = [
     ],
     isClientNotified: false,
     lastSentDateToClient: null,
-    products: ["7mongoDb","8mongoDb","9mongoDb"],
+    productsByOrder: ["7mongoDb","8mongoDb","9mongoDb"],
   },
   {
     id: "6mongoDb",
@@ -200,7 +200,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["10mongoDb"],
+    productsByOrder: ["10mongoDb"],
   },
   {
     id: "7mongoDb",
@@ -213,7 +213,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["11mongoDb","12mongoDb","13mongoDb","14mongoDb"],
+    productsByOrder: ["11mongoDb","12mongoDb","13mongoDb","14mongoDb"],
   },
   {
     id: "8mongoDb",
@@ -227,7 +227,7 @@ export const ordersMock = [
     trackingNumberClient: "ABCDEF8768Y",
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["15mongoDb","16mongoDb"],
+    productsByOrder: ["15mongoDb","16mongoDb"],
   },
   {
     id: "9mongoDb",
@@ -240,7 +240,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["17mongoDb","18mongoDb","19mongoDb"],
+    productsByOrder: ["17mongoDb","18mongoDb","19mongoDb"],
   },
   {
     id: "10mongoDb",
@@ -253,7 +253,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["20mongoDb"],
+    productsByOrder: ["20mongoDb"],
   },
   {
     id: "11mongoDb",
@@ -266,7 +266,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["21mongoDb","22mongoDb","23mongoDb","24mongoDb"],
+    productsByOrder: ["21mongoDb","22mongoDb","23mongoDb","24mongoDb"],
   },
   {
     id: "12mongoDb",
@@ -279,7 +279,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["25mongoDb"],
+    productsByOrder: ["25mongoDb"],
   },
   {
     id: "13mongoDb",
@@ -292,7 +292,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["26mongoDb"],
+    productsByOrder: ["26mongoDb"],
   },
   {
     id: "14mongoDb",
@@ -305,7 +305,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["27mongoDb"],
+    productsByOrder: ["27mongoDb"],
   },
   {
     id: "15mongoDb",
@@ -318,7 +318,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["28mongoDb"],
+    productsByOrder: ["28mongoDb"],
   },
   {
     id: "16mongoDb",
@@ -331,7 +331,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["29mongoDb"],
+    productsByOrder: ["29mongoDb"],
   },
   {
     id: "17mongoDb",
@@ -344,7 +344,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["30mongoDb","31mongoDb"],
+    productsByOrder: ["30mongoDb","31mongoDb"],
   },
   {
     id: "18mongoDb",
@@ -357,7 +357,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["32mongoDb"],
+    productsByOrder: ["32mongoDb"],
   },
   {
     id: "19mongoDb",
@@ -370,7 +370,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["33mongoDb"],
+    productsByOrder: ["33mongoDb"],
   },
   {
     id: "20mongoDb",
@@ -383,7 +383,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["34mongoDb","35mongoDb"],
+    productsByOrder: ["34mongoDb","35mongoDb"],
   },
   {
     id: "21mongoDb",
@@ -396,7 +396,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["36mongoDb"],
+    productsByOrder: ["36mongoDb"],
   },
   {
     id: "22mongoDb",
@@ -409,7 +409,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["37mongoDb","38mongoDb"],
+    productsByOrder: ["37mongoDb","38mongoDb"],
   },
   {
     id: "23mongoDb",
@@ -422,7 +422,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["39mongoDb"],
+    productsByOrder: ["39mongoDb"],
   },
   {
     id: "24mongoDb",
@@ -435,7 +435,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["40mongoDb","41mongoDb"],
+    productsByOrder: ["40mongoDb","41mongoDb"],
   },
   {
     id: "25mongoDb",
@@ -448,7 +448,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["42mongoDb"],
+    productsByOrder: ["42mongoDb"],
   },
   {
     id: "26mongoDb",
@@ -461,7 +461,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["43mongoDb","44mongoDb"],
+    productsByOrder: ["43mongoDb","44mongoDb"],
   },
   {
     id: "27mongoDb",
@@ -474,7 +474,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["45mongoDb","46mongoDb"],
+    productsByOrder: ["45mongoDb","46mongoDb"],
   },
   {
     id: "28mongoDb",
@@ -487,7 +487,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["47mongoDb"],
+    productsByOrder: ["47mongoDb"],
   },
   {
     id: "29mongoDb",
@@ -500,7 +500,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["48mongoDb"],
+    productsByOrder: ["48mongoDb"],
   },
   {
     id: "30mongoDb",
@@ -513,7 +513,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["49mongoDb"],
+    productsByOrder: ["49mongoDb"],
   },
   {
     id: "31mongoDb",
@@ -526,7 +526,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["50mongoDb","51mongoDb"],
+    productsByOrder: ["50mongoDb","51mongoDb"],
   },
   {
     id: "32mongoDb",
@@ -539,7 +539,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["52mongoDb"],
+    productsByOrder: ["52mongoDb"],
   },
   {
     id: "33mongoDb",
@@ -552,6 +552,6 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["53mongoDb"],
+    productsByOrder: ["53mongoDb"],
   },
 ];

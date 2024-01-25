@@ -1,8 +1,8 @@
-import { creditsMock } from "../mocks/creditsMock.js";
-const creditsController = {
+import { creditMock } from "../mocks/creditMock.js";
+const creditController = {
   getAllCredits: async (req, res) => {
     console.log("dans le controller getAllCredits");
-    res.status(200).json(creditsMock);
+    res.status(200).json(creditMock);
   },
 
   getProductById: async (req, res) => {
@@ -22,4 +22,4 @@ const creditsController = {
   },
 };
 
-export default creditsController;
+export default creditController;

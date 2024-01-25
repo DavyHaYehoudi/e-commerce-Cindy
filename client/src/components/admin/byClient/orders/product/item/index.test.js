@@ -7,14 +7,14 @@ import Main from ".";
 import { materials } from "../../../../../../constants/materials";
 
 describe("Main Component", () => {
-  const products = { id: 1, productId: 2, quantity: 2, material: 0 };
+  const productsByOrder = { id: 1, productId: 2, quantity: 2, material: 0 };
   const materialName = materials[0].name;
 
   const mockState = {
     orders: {
-      data: [{ id: 1, products: [1, 2] }],
+      data: [{ id: 1, productsByOrder: [1, 2] }],
     },
-    products: {
+    productsByOrder: {
       data: [
         { id: 1, productId: 1, quantity: 2 },
         { id: 2, productId: 2, quantity: 1 },
@@ -61,7 +61,7 @@ describe("Main Component", () => {
     id: 1,
   };
   test("renders the component with basic data", () => {
-    render(<Main products={products} client={client} orderId={1} />, { store });
+    render(<Main productsByOrder={productsByOrder} client={client} orderId={1} />, { store });
 
     // Vérifiez que le composant est rendu avec les données de base
     expect(screen.getByTestId("product-content-2")).toBeInTheDocument();

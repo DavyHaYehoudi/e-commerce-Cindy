@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 
-const selectCreditsStore = (state) => state?.credits?.data;
+const selectCreditsStore = (state) => state?.credit?.data;
 const selectProductId = (_, props) => props?.productId;
 
 export const getCreditsInfo = createSelector(
   [selectCreditsStore, selectProductId],
-  (creditsStore, productId) => {
-    const credit = creditsStore?.find(
-      (credit) => credit?.productsId === productId
+  (creditStore, productId) => {
+    const credit = creditStore?.find(
+      (credit) => credit?.productsByOrderId === productId
     );
     const { amount, code, dateExpire } = credit ?? {};
     return { amount, code, dateExpire };

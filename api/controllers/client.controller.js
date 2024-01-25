@@ -1,9 +1,10 @@
 import { clientsMock } from "../mocks/clientsMock.js";
-import { creditsMock } from "../mocks/creditsMock.js";
+import { creditMock } from "../mocks/creditMock.js";
 import { ordersMock } from "../mocks/ordersMock.js";
-import { productsMock } from "../mocks/productsMock.js";
-const clientsController = {
+import { productsByOrderMock } from "../mocks/productsByOrderMock.js";
+const clientController = {
   getAllClients: async (req, res) => {
+    console.log('coucou');
     res.status(200).json(clientsMock);
   },
 
@@ -28,23 +29,23 @@ const clientsController = {
 
       // Récupération des produits associés aux commandes dans le mock
       const orderProductIds = orders.reduce((acc, order) => {
-        acc.push(...order.products);
+        acc.push(...order.productsByOrder);
         return acc;
       }, []);
 
-      const products = productsMock.filter((item) =>
+      const productsByOrder = productsByOrderMock.filter((item) =>
         orderProductIds.includes(item.id)
       );
 
       // Récupération des crédits associés au client dans le mock
-      const creditIds = products.map((product) => product?.productsActions?.credit);
+      const creditIds = productsByOrder.map((product) => product?.productsByOrderActions?.credit);
       
       // Filtrer les détails des crédits correspondants
-      const credits = creditsMock.filter((credit) =>
-        creditIds.includes(credit.productsId)
+      const credit = creditMock.filter((credit) =>
+        creditIds.includes(credit.productsByOrderId)
       );
 
-      res.json({ client, orders, products, credits });
+      res.json({ client, orders, productsByOrder, credit });
     } catch (error) {
       console.error("Error fetching client data:", error);
       res.status(500).json({ error: "Internal server error" });
@@ -64,4 +65,4 @@ const clientsController = {
   },
 };
 
-export default clientsController;
+export default clientController;

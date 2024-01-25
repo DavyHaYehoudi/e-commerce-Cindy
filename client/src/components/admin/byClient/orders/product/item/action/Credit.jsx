@@ -12,32 +12,32 @@ const Credit = ({
   action,
   actions,
   label,
-  productsInfo,
+  productsByOrderInfo,
   isActionSelected,
   inputCreditAmount,
   inputDateValue,
-  productsActions,
+  productsByOrderActions,
   placeholderValue,
   textCancel,
   client,
   productId,
   orderId,
-  products,
+  productsByOrder,
   setProductActions,
   setEntryError,
   setConfirmation,
   setInteraction,
 }) => {
-  const productsState = useSelector((state) => state?.product?.data);
-  const productPrice = getProductProperties(productId, productsState)?.pricing
+  const productsByOrderState = useSelector((state) => state?.product?.data);
+  const productPrice = getProductProperties(productId, productsByOrderState)?.pricing
     ?.currentPrice;
   const { handleCredit } = useCreditHandler(
     actions,
     setInteraction,
     setConfirmation,
     setProductActions,
-    productsInfo,
-    productsActions
+    productsByOrderInfo,
+    productsByOrderActions
   );
   const { handleChangeInputCreditAmount } =
     useCreditAmountHandler(setProductActions);
@@ -54,7 +54,7 @@ const Credit = ({
       onClick={() => handleCredit(action)}
       data-testid ="credit-component"
     >
-      {productsInfo?.[action] ? textCancel : label}
+      {productsByOrderInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>
@@ -90,13 +90,13 @@ const Credit = ({
               handleConfirmCreditEntry(
                 e,
                 action,
-                productsActions,
+                productsByOrderActions,
                 setProductActions,
                 setEntryError,
                 client.id,
                 productId,
                 orderId,
-                products,
+                productsByOrder,
                 productPrice
               )
             }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../features/admin/productsSlice";
+import { updateActionContent } from "../../../../../../../features/admin/productsByOrderSlice";
 import { handleActionClick } from "./handler/item";
 import { getProductProperties } from "../../../../../../../selectors/product";
 import { useInputQuantityHandler } from "./hooks/transaction/useInputQuantityHandler";
@@ -17,11 +17,11 @@ const Transaction = ({
   productId,
   orderId,
   textCancel,
-  productsInfo,
-  productsState,
+  productsByOrderInfo,
+  productsByOrderState,
   isActionSelected,
   inputQuantityValue,
-  productsActions,
+  productsByOrderActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -29,7 +29,7 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productId, productsState)?.pricing
+  const productPrice = getProductProperties(productId, productsByOrderState)?.pricing
     ?.currentPrice;
   const { handleChangeInputQuantity } = useInputQuantityHandler(
     actions,
@@ -37,8 +37,8 @@ const Transaction = ({
   );
   const { handleValidateEntry } = useValidateEntryHandler(
     actions,
-    productsInfo,
-    productsActions,
+    productsByOrderInfo,
+    productsByOrderActions,
     articleNumber,
     setEntryError,
     dispatch,
@@ -54,9 +54,9 @@ const Transaction = ({
       onClick={() =>
         handleActionClick(
           action,
-          productsInfo,
+          productsByOrderInfo,
           setConfirmation,
-          productsActions,
+          productsByOrderActions,
           actions,
           setProductActions,
           setInteraction
@@ -64,7 +64,7 @@ const Transaction = ({
       }
       data-testid="transaction-component"
     >
-      {productsInfo?.[action] ? textCancel : label}
+      {productsByOrderInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>

@@ -55,11 +55,11 @@ describe("Transaction Component", () => {
         productId={1}
         orderId={1}
         textCancel="Cancel Text"
-        productsInfo={{ someAction: "info" }}
-        productsState={productMock}
+        productsByOrderInfo={{ someAction: "info" }}
+        productsByOrderState={productMock}
         isActionSelected={true}
         inputQuantityValue={5}
-        productsActions={{ someAction: "someAction" }}
+        productsByOrderActions={{ someAction: "someAction" }}
         articleNumber={10}
         setEntryError={setEntryErrorMock}
         setProductActions={setProductActionsMock}
@@ -95,7 +95,7 @@ describe("Transaction Component with interaction input", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basically", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
     };
@@ -122,11 +122,11 @@ describe("Transaction Component with interaction input", () => {
         productId={productId}
         orderId={orderId}
         textCancel={textCancel}
-        productsInfo={productsInfo}
-        productsState={initialState.product.data}
+        productsByOrderInfo={productsByOrderInfo}
+        productsByOrderState={initialState.product.data}
         isActionSelected={true}
         inputQuantityValue={1}
-        productsActions={{ exchangeContent: 1 }}
+        productsByOrderActions={{ exchangeContent: 1 }}
         articleNumber={10}
         setEntryError={jest.fn()}
         setProductActions={jest.fn()}
@@ -141,7 +141,7 @@ describe("Transaction Component with interaction input", () => {
   });
 
   test("renders input and buttons when action is selected", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
     };
@@ -168,11 +168,11 @@ describe("Transaction Component with interaction input", () => {
         productId={productId}
         orderId={orderId}
         textCancel={textCancel}
-        productsInfo={productsInfo}
-        productsState={initialState.product.data}
+        productsByOrderInfo={productsByOrderInfo}
+        productsByOrderState={initialState.product.data}
         isActionSelected={true}
         inputQuantityValue={1}
-        productsActions={{ exchangeContent: 1 }}
+        productsByOrderActions={{ exchangeContent: 1 }}
         articleNumber={10}
         setEntryError={jest.fn()}
         setProductActions={jest.fn()}

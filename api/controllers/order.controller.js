@@ -1,5 +1,5 @@
 import { ordersMock } from "../mocks/ordersMock.js";
-const ordersController = {
+const orderController = {
   getAllOrders: async (req, res) => {
     console.log("dans le controller getAllOrders");
     res.status(200).json(ordersMock);
@@ -22,4 +22,4 @@ const ordersController = {
   },
 };
 
-export default ordersController;
+export default orderController;

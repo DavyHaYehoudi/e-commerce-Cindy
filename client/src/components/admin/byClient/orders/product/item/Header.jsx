@@ -8,7 +8,7 @@ import {
   sumPriceArticle,
 } from "../../../../../../helpers/utils/prices";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
-import { getCreditsInfo } from "../../../../../../selectors/credits";
+import { getCreditsInfo } from "../../../../../../selectors/credit";
 import { useSelector } from "react-redux";
 
 const Header = ({
@@ -16,20 +16,20 @@ const Header = ({
   material,
   quantity,
   productId,
-  products,
+  productsByOrder,
   isTagProductExisted,
-  productsInfo,
+  productsByOrderInfo,
   productStore,
   toggleActions,
 }) => {
   const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productId: products.id })
+    getCreditsInfo(state, { productId: productsByOrder.id })
   );
   const { reference, name, pricing, image } = getProductProperties(
     productId,
     productStore
   );
-  const { exchange, refund, credit } = productsInfo ?? {};
+  const { exchange, refund, credit } = productsByOrderInfo ?? {};
   return (
     <>
       <p

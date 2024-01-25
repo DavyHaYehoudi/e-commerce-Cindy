@@ -1,0 +1,1094 @@
+openapi: 3.0.3
+info:
+  title: Site e-commerce
+  description: |
+    Some useful links:
+    - [Lien Github du code source](https://github.com/DavyHaYehoudi/e-commerce-Cindy)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  contact:
+    email: davy.programa@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: client
+    description: Customers
+  - name: order
+    description: Orders customers
+  - name: productsbyorder
+    description: List of products for each order
+  - name: product
+    description: Product description
+  - name: credit
+    description: Credits customers
+paths:
+  /client:
+    get:
+      tags:
+        - client
+      description: "Getting all clients"
+      operationId: getAllClients
+      responses:
+        '200':
+         description: successful getting all clients
+         content:
+           application/json:
+            schema:
+             $ref: '#/components/schemas/Clients'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /client/register:
+    post:
+      tags:
+        - client
+      summary: Create a new client
+      description: This can only be done by the logged in client.
+      operationId: createClient
+      requestBody:
+        description: Created client object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          description: successful account creation
+        '400':
+          description: Invalid username/password supplied
+        '422':
+          description: Failed validation. The email is already taken.
+  /client/login:
+    post:
+      tags:
+        - client
+      summary: Logs client into the system
+      description: ''
+      operationId: loginClient
+      requestBody:
+        description: Logged client object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          description: successful authentication
+        '400':
+          description: Invalid username/password supplied
+        '401':
+          description: Client not authenticated.
+  /client/logout:
+    get:
+      tags:
+        - client
+      summary: Logs out current logged in client session
+      description: ''
+      operationId: logoutClient
+      parameters: []
+      responses:
+        '204':
+          description: successful logged
+      security:
+        - api_key: []
+  /client/{clientId}:
+    get:
+      tags:
+        - client
+      summary: Get client by id
+      description: ''
+      operationId: getClientById
+      parameters:
+        - name: clientId
+          in: path
+          description: "The id that needs to be fetched."
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful getting client
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDetails'          
+        '400':
+          description: Invalid clientId supplied
+        '401':
+          description: Unauthorized - Client is not authenticated
+        '403' :
+          description : Forbidden - The client is authenticated, but does not have permission to access the requested resource.
+        '404':
+          description: Client not found
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - client
+      summary: Edit partially client
+      description: This can only be done by the logged in client.
+      operationId: updateClient
+      parameters:
+        - name: clientId
+          in: path
+          description: id that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successful updated client
+        '400':
+          description: Invalid clientId supplied
+        '401':
+          description: Unauthorized - Client is not authenticated
+        '403' :
+          description : Forbidden - The client is authenticated, but does not have permission.
+        '404':
+          description: Client not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - client
+      summary: Delete client
+      description: This can only be done by the logged in client.
+      operationId: deleteClient
+      parameters:
+        - name: clientId
+          in: path
+          description: The id that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted client
+        '400':
+          description: Invalid clientId supplied
+        '401':
+          description: Unauthorized - Client is not authenticated
+        '403' :
+          description : Forbidden - The client is authenticated, but does not have permission.
+        '404':
+          description: Client not found
+      security:
+        - api_key: []
+  /order:
+    get:
+      tags:
+        - order
+      summary: Returns all orders
+      description: Returns the list of orders
+      responses:
+        '200':
+          description: successful getting all orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orders'          
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - order 
+      summary: Place an order for a purchase
+      description: Place a new order in the list
+      operationId: placeOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstOrder'
+      responses:
+        '201':
+          description: successful posting order
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Client is not authenticated
+      security:
+        - api_key: []
+  /order/{orderId}:
+    get:
+      tags:
+        - order
+      summary: Find purchase order by ID
+      description: ""
+      operationId: getOrderById
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'          
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Order not found    
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - order 
+      summary: Edit partially an order for a purchase
+      description: Edit an order
+      operationId: editOrder
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '204':
+          description: Successful updated order
+        '400':
+          description: Invalid orderId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Order not found
+      security:
+        - api_key: []
+  /productsbyorder:
+    get:
+      tags:
+        - productsbyorder
+      summary: Returns all products that are in order
+      description: Returns a list of products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductsByOrder'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - productsbyorder 
+      summary: Add the products contained in an order
+      description: Place products for a purchase in one order
+      operationId: placeProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstProductsByOrder'
+      responses:
+        '201':
+          description: successful posting productsByOrder
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Client is not authenticated
+      security:
+        - api_key: []
+  /productsbyorder/{productsbyorderId}:
+    get:
+      tags:
+        - productsbyorder
+      summary: Find purchase productsbyorder by ID
+      description: ""
+      operationId: getProductsById
+      parameters:
+        - name: productsbyorderId
+          in: path
+          description: ID of products that needs to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful get productsbyorder by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductsByOrder'          
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Productsbyorder not found  
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - productsbyorder 
+      summary: Edit partially a list of products in an order
+      description: Place a new list of products in the order
+      operationId: placeProducts
+      parameters:
+        - name: productsbyorderId
+          in: path
+          description: ID of list of products that needs to be fetched
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductsByOrder'
+      responses:
+        '204':
+          description: Successful updated productsbyorder
+        '400':
+          description: Invalid productsbyorder ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Productsbyorder not found
+      security:
+        - api_key: []
+  /product:
+    get:
+      tags:
+        - product
+      summary: Returns all products
+      description: Returns the list of all products
+      responses:
+        '200':
+          description: successful getting all products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - product 
+      summary: Place an product for a purchase
+      description: Place a new product in the list
+      operationId: placeProductsbyorderId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstProduct'
+      responses:
+        '201':
+          description: successful posting product
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /product/{productId}:
+    get:
+      tags:
+        - product
+      summary: Find purchase order by ID
+      description: For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          description: ID of products that needs to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Product not found 
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - product
+      summary: Edit partially a product
+      description: Edit a new product
+      operationId: editProduct
+      parameters:
+        - name: productId
+          in: path
+          description: ID of product that needs to be fetched
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '204':
+          description: Successful updated product
+        '400':
+          description: Invalid product ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Product not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - product
+      summary: Delete product by ID
+      description: ""
+      operationId: deleteProduct
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the order that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted product
+        '400':
+          description: Invalid productId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Product not found
+      security:
+        - api_key: []
+  /credit:
+    get:
+      tags:
+        - credit
+      summary: Returns all credits
+      description: Returns the list of credits
+      responses:
+        '200':
+          description: successful getting all credits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credits'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - credit 
+      summary: Place a credit for a customer
+      description: Place a new credit for a customer
+      operationId: placeCredit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstCredit'
+      responses:
+        '201':
+          description: successful posting credit
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /credit/{creditId}:
+    get:
+      tags:
+        - credit
+      summary: Find credit by ID
+      description: ""
+      operationId: getCreditById
+      parameters:
+        - name: creditId
+          in: path
+          description: ID of credit that needs to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'          
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Credit not found   
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - credit
+      summary: Edit partially a credit
+      description: Edit a credit
+      operationId: editCredits
+      parameters:
+        - name: creditId
+          in: path
+          description: ID of credit that needs to be fetched
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credit'
+      responses:
+        '204':
+          description: Successful updated credit
+        '400':
+          description: Invalid credit ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Credit not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - credit
+      summary: Delete credit by ID
+      description: ""
+      operationId: deleteCredit
+      parameters:
+        - name: creditId
+          in: path
+          description: ID of the credit that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted credit
+        '400':
+          description: Invalid creditId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Credit not found
+      security:
+        - api_key: []
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+      xml:
+        name: client
+    Clients: 
+       type: array
+       items:
+          $ref: "#/components/schemas/ClientDetails"
+       xml:
+        name: clients
+    ClientDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5fc4d22b45a0fb3fd4a75f65"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          example: john@example.com
+        phone:
+          type: string
+          example: "06 90 12 34 56"
+        shippingAddress:
+          type: string
+          example: "12 Rue de la République, 75001 Paris"
+        totalOrders:
+          type: integer
+          format: int16
+          example: 3
+        wishlist:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                example: "6vc4d22b45a0fb3fd4a75f33"
+              material:
+                type: integer
+                format: int8
+                example: 1
+        cart:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                example: "1jc4d22b45a0fb3fd4a75f50"
+              material:
+                type: integer
+                format: int8
+                example: 3
+        Orders:
+          type: array
+          items:
+            type: string
+          example:
+             - "2884d22b45a0fb3fd4a75p2"
+             - "7774d22b45a0fb3fd4a7bn0"
+             - "10m4d22b45a0fb3fd4a7l53"
+      xml:
+        name: client
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5fc4d22b45a0fb3fd4a75f65"
+        date:
+          type: string
+          example: "2023-01-15 08:30"
+        step:
+          type: integer
+          format: int8
+          example: 0
+        isNextStepOrder:
+          type: boolean
+          example: false
+        inTotalAmount:
+          type: integer
+          format: int32
+          example: 220
+        outTotalAmount:
+          type: integer
+          format: int32
+          example: 10
+        paymentMethod:
+          type: array
+          items:
+            type: object
+            properties:
+              cardType:
+                type: string
+                example: "Visa"
+              last4Digits:
+                type: string
+                example: "**** 1234"
+        trackingNumber:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "44c4d22b45a0fb3fd4a75re1"
+              isAdmin:
+                type: boolean
+                example: false
+              value:
+                type: string
+                example: "102938MAUCBQPD"
+              date:
+                type: string
+                example: "2021-09-22 18:50"
+              productsByOrder:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "hfneu8rur7snsl"
+                    productId:
+                      type: string
+                      example: "09m4d22b45a0fb3fd4a75555"
+                    articlesNumber:
+                      type: integer
+                      format: int16
+                      example: 3
+        isClientNotified:
+          type: boolean
+          example: true
+        lastSentDateToClient:
+          type: string
+          example: "2022-10-02 09:30"
+        productsByOrder:
+          type: array
+          items:
+            type: string
+            example: 
+             - "2884d22b45a0fb3fd4a75p2"
+             - "7774d22b45a0fb3fd4a7bn0"
+             - "10m4d22b45a0fb3fd4a7l53"
+    Orders:
+      type: array
+      items:
+       $ref: "#/components/schemas/Order"
+      xml:
+        name: orders
+    FirstOrder:
+      type: object
+      properties:
+        inTotalAmount:
+          type: integer
+          format: int32
+          example: 220
+        paymentMethod:
+          type: array
+          items:
+            type: object
+            properties:
+              cardType:
+                type: string
+                example: "Visa"
+              last4Digits:
+                type: string
+                example: "**** 1234"
+        productsByOrder:
+          type: array
+          items:
+            type: string
+            example: 
+             - "2884d22b45a0fb3fd4a75p2"
+             - "7774d22b45a0fb3fd4a7bn0"
+             - "10m4d22b45a0fb3fd4a7l53"
+    ProductsByOrder:
+      type: array
+      items:
+         type: object
+         properties:
+          id: 
+            type: string
+            example: "2884d22b45a0fb3fd4a75p2"
+          productId:
+            type: string
+            example: "7774d22b45a0fb3fd4a7bn0"
+          quantity:
+            type: integer
+            format: int16
+            example: 2
+          material:
+            type: integer
+            format: int16
+            example: 0
+          isClientNotified:
+            type: boolean
+            example: true
+          productsByOrderActions:
+            type: object
+            properties:
+              exchange:
+                type: integer
+                format: int16
+                example: 1
+              refund:
+                type: integer
+                format: int16
+                example: null
+              credit:
+                type: string
+                example: "10m4d22b45a0fb3fd4a7l53"
+              note:
+                type: string
+                example: "Des notes pour l'exemple"
+    FirstProductsByOrder:
+      type: object
+      properties:
+         productId:
+          type: string
+          example: "7774d22b45a0fb3fd4a7bn0"
+         quantity:
+          type: integer
+          format: int16
+          example: 2
+         material:
+          type: integer
+          format: int16
+          example: 0
+    Product:
+      type: object
+      properties:
+        id: 
+         type: string
+         example: "2884d22b45a0fb3fd4a75p2"
+        reference:
+          type: string
+          example: "QER2345OIJD"
+        category:
+          type: string
+          example: "Jewelry"
+        releaseDate: 
+          type: string
+          example: "2023-03-07 15:54"
+        name: 
+          type: string
+          example: "Boucles d'oreilles"
+        image:
+          type: string
+          example: "bo.png"
+        description: 
+          type: string
+          example: "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur."
+        materials:
+          type: array
+          items:
+           type: integer
+           format: int8
+          example: 
+           - 0
+           - 1
+           - 2
+        promotion:
+          type: object
+          properties:
+            amount: 
+              type: string
+              example: "10%"
+            startDate:
+              type: string
+              example: "2023-11-15"
+            endDate:
+              type: string
+              example: "2023-11-30"
+        pricing:
+          type: object
+          properties:
+            currentPrice:
+              type: integer
+              format: int16
+              example: 50
+            oldPrice:
+              type: integer
+              format: int16
+              example: 25
+        stock:
+          type: integer
+          format: int16
+          example: 7
+        ratings:
+          type: integer
+          format: int16
+          example: 4.5
+        options:
+          type: object
+          properties:
+            size:
+              type: array
+              items:
+                type: string
+              example:
+               - "S"
+               - "M"
+               - "XL"
+            color:
+              type: array
+              items:
+                type: string
+              example:
+               - "Red"
+               - "Blue"
+               - "Green"
+        tags:
+          type: array
+          items:
+            type: string
+          example: 
+           - "Casual"
+           - "Summer"
+        isNew:
+          type: boolean
+          example: true
+    Products:
+       type: array
+       items:
+          $ref: "#/components/schemas/Product"
+    FirstProduct:
+      type: object
+      properties:
+        reference:
+          type: string
+          example: "QER2345OIJD"
+        category:
+          type: string
+          example: "Jewelry"
+        releaseDate: 
+          type: string
+          example: "2023-03-07 15:54"
+        name: 
+          type: string
+          example: "Boucles d'oreilles"
+        image:
+          type: string
+          example: "bo.png"
+        description: 
+          type: string
+          example: "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur."
+        materials:
+          type: array
+          items:
+           type: integer
+           format: int8
+          example: 
+           - 0
+           - 1
+           - 2
+        promotion:
+          type: object
+          properties:
+            amount: 
+              type: string
+              example: "10%"
+            startDate:
+              type: string
+              example: "2023-11-15"
+            endDate:
+              type: string
+              example: "2023-11-30"
+        pricing:
+          type: object
+          properties:
+            currentPrice:
+              type: integer
+              format: int16
+              example: 50
+            oldPrice:
+              type: integer
+              format: int16
+              example: 25
+        stock:
+          type: integer
+          format: int16
+          example: 7
+        ratings:
+          type: integer
+          format: int16
+          example: 4.5
+        options:
+          type: object
+          properties:
+            size:
+              type: array
+              items:
+                type: string
+              example:
+               - "S"
+               - "M"
+               - "XL"
+            color:
+              type: array
+              items:
+                type: string
+              example:
+               - "Red"
+               - "Blue"
+               - "Green"
+        tags:
+          type: array
+          items:
+            type: string
+          example: 
+           - "Casual"
+           - "Summer"
+        isNew:
+          type: boolean
+          example: true
+    Credit:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "6vbhd22b45a0fb3fd4a7599"
+        productsByOrderId: 
+          type: string
+          example: "2884d22b45a0fb3fd4a75p2"
+        amount:
+          type: integer
+          format: int16
+          example: 7
+        code:
+          type: string
+          example: "1156JHUfJNBdfdf"
+        dateExpire:
+          type: string
+          example: "2023-04-05 09:55"
+    Credits:
+      type: array
+      items:
+        $ref: "#/components/schemas/Credit"
+    FirstCredit:
+      type: object
+      properties:
+        productsByOrderId: 
+          type: string
+          example: "2884d22b45a0fb3fd4a75p2"
+        amount:
+          type: integer
+          format: int16
+          example: 7
+        code:
+          type: string
+          example: "1156JHUfJNBdfdf"
+        dateExpire:
+          type: string
+          example: "2023-04-05 09:55"
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

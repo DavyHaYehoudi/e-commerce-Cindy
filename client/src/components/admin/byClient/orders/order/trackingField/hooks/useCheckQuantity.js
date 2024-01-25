@@ -1,10 +1,10 @@
-import { getProductsInfo } from "../../../../../../../selectors/products";
+import { getProductsInfo } from "../../../../../../../selectors/productsByOrder";
 
 const useCheckQuantity = () => {
   const handleCheckQuantity = (
     inputValues,
     ordersStore,
-    productsStore,
+    productsByOrderStore,
     orderId,
     checkboxStates,
     setError,
@@ -22,7 +22,7 @@ const useCheckQuantity = () => {
     Object.entries(inputValues).forEach(([productId, value]) => {
       const maxQuantity = getProductsInfo(
         ordersStore,
-        productsStore,
+        productsByOrderStore,
         orderId,
         productId
       ).articleNumber;

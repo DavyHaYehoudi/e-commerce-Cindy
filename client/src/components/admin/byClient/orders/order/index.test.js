@@ -15,7 +15,7 @@ const order = {
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    products: ["3mongoDb"], 
+    productsByOrder: ["3mongoDb"], 
 };
 describe("Item Component", () => {
   test("renders Item component correctly", () => {

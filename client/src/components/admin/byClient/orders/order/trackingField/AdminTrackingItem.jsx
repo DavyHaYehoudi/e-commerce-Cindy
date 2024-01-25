@@ -29,8 +29,8 @@ const AdminTrackingItem = ({
           <small>- Envoyé le {formatDate(item.date)}</small>
         </p>
       </div>
-      <ul className="products">
-        {item?.products?.map((product) => (
+      <ul className="productsByOrder">
+        {item?.productsByOrder?.map((product) => (
           <ProductListItem
             key={product.id}
             product={product}
