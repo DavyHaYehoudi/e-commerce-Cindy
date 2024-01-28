@@ -1,8 +1,12 @@
-import { creditMock } from "../mocks/creditMock.js";
+import Credit from "../models/credit.model.js";
 const creditController = {
   getAllCredits: async (req, res) => {
-    console.log("dans le controller getAllCredits");
-    res.status(200).json(creditMock);
+    try {
+      const credit = await Credit.find();
+      res.status(200).json(credit);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   getProductById: async (req, res) => {

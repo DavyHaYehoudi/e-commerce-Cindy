@@ -40,10 +40,10 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
                 (step, index) => {
                   const orderId = orders.find(
                     (order) => order?.step === step
-                  )?.id;
+                  )?._id;
                   const orderIds = orders
                     .filter((order) => order?.step === step)
-                    .map((order) => order?.id);
+                    .map((order) => order?._id);
 
                   return (
                     <li key={index}>{renderBadge(step, orderIds, orderId)}</li>
@@ -58,7 +58,7 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
               {selectedOrderId && (
                 <div className="selected-items" data-testid="selected-items">
                   {orders
-                    .filter((order) => selectedOrderId.includes(order.id))
+                    .filter((order) => selectedOrderId.includes(order._id))
                     .map((order, i) => (
                       <Item
                         key={i}

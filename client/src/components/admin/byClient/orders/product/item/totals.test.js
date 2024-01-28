@@ -12,7 +12,7 @@ describe("Totals Component", () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           category: "Jewelry",
           name: "Boucles d'oreilles",
@@ -30,14 +30,14 @@ describe("Totals Component", () => {
     credit: {
       data: [
         {
-          id: "idMongoDbGenerate1",
+          _id: "idMongoDbGenerate1",
           productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
         },
         {
-          id: "idMongoDbGenerate2",
+          _id: "idMongoDbGenerate2",
           productsByOrderId: 2,
           amount: 0,
           code: "456JHUIRJNBdfdf",
@@ -55,7 +55,7 @@ describe("Totals Component", () => {
     };
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     };
 
     render(
@@ -74,7 +74,7 @@ describe("Totals Component", () => {
     };
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     };
 
     render(
@@ -94,7 +94,7 @@ describe("Totals Component", () => {
     };
     const productId = 1;
     const productsByOrder = {
-      id: 2,
+      _id: 2,
     };
 
     render(
@@ -115,7 +115,7 @@ describe("Totals Component", () => {
     };
     const productId = 1;
     const productsByOrder = {
-      id: 2,
+      _id: 2,
     };
 
     render(

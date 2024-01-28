@@ -17,7 +17,7 @@ const clientsSlice = createSlice({
     addNote: (state, action) => {
       const { clientId, id, content, date } = action.payload;
       state.data = state.data.map((user) =>
-        user.id === clientId
+        user._id === clientId
           ? {
               ...user,
               notesAdmin: user.notesAdmin
@@ -30,7 +30,7 @@ const clientsSlice = createSlice({
     deleteNote: (state, action) => {
       const { clientId, noteId } = action.payload;
       state.data = state.data.map((user) =>
-        user.id === clientId
+        user._id === clientId
           ? {
               ...user,
               notesAdmin: user.notesAdmin

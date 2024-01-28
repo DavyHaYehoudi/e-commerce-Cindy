@@ -15,7 +15,7 @@ const List = ({ orderHistory, filter }) => {
     <div className="other-orders" data-testid="list-orders">
       {orderHistory &&
         orderHistory.filter(filter).map((order) => (
-          <div key={order.id} className="order-item-wrapper-user-account">
+          <div key={order._id} className="order-item-wrapper-user-account">
             <div className="header">
               <div className="date-step">
                 <span>Date de commande : {formatDate(order?.date)}</span>
@@ -59,7 +59,7 @@ const List = ({ orderHistory, filter }) => {
                 </button>
                 {trackingNumberBoxOpen && (
                   <TrackingNumberCreate
-                    orderId={order.id}
+                    orderId={order._id}
                     setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
                   />
                 )}

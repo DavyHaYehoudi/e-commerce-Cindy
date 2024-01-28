@@ -13,7 +13,7 @@ describe("Header Component", () => {
     credit: {
       data: [
         {
-          id: "idMongoDbGenerate1",
+          _id: "idMongoDbGenerate1",
           productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
@@ -24,7 +24,7 @@ describe("Header Component", () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           name: "Boucles d'oreilles",
           pricing: {
@@ -48,7 +48,7 @@ describe("Header Component", () => {
     const quantity = 3;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -83,7 +83,7 @@ describe("Header Component", () => {
     const quantity = 3;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -117,7 +117,7 @@ describe("Header Component", () => {
     const quantity = 3;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -151,7 +151,7 @@ describe("Header Component", () => {
     const quantity = 3;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -185,7 +185,7 @@ describe("Header Component", () => {
     const material = 0;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -220,7 +220,7 @@ describe("Header Component", () => {
     const material = 0;
     const productId = 1;
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();

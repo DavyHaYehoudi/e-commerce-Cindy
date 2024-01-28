@@ -19,7 +19,7 @@ const ProductListItem = ({ product, orderId, articleNumber, productStore }) => {
     productStore
   );
   return (
-    <small key={product.id}>
+    <small key={product._id}>
       <li className="description">
         <span>- {productProperties.name} </span>
         <span>{getMaterialProperty(details.material)?.name}</span>

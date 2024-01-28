@@ -6,7 +6,7 @@ import { render } from "../../../test/utils";
 import configureStore from "redux-mock-store";
 import { materials } from "../../../constants/materials";
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([]); 
 const initialState = {
   customer: {
     data: {
@@ -28,7 +28,7 @@ const initialState = {
   product: {
     data: [
       {
-        id: 1,
+        _id: 1,
         reference: "QER2345OIJD",
         name: "Boucles d'oreilles",
         pricing: {
@@ -37,7 +37,7 @@ const initialState = {
         image: "product-image.jpg",
       },
       {
-        id: 2,
+        _id: 2,
         reference: "aEnjuiOIJz",
         name: "Bracelet",
         pricing: {

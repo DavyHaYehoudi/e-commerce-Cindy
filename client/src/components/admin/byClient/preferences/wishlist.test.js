@@ -14,7 +14,7 @@ describe('Wishlist Component', () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           name: "Boucles d'oreilles",
           pricing: {

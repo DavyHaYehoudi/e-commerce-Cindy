@@ -1,8 +1,12 @@
-import { productsByOrderMock } from "../mocks/productsByOrderMock.js";
+import ProductsByOrder from "../models/productsByOrder.model.js";
 const productsByOrderController = {
   getAllProducts: async (req, res) => {
-    console.log("dans le controller getAllProducts");
-    res.status(200).json(productsByOrderMock);
+    try {
+      const productsByOrder = await ProductsByOrder.find();
+      res.status(200).json(productsByOrder);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   getProductsById: async (req, res) => {

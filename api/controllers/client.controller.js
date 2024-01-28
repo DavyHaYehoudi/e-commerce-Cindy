@@ -2,10 +2,16 @@ import { clientsMock } from "../mocks/clientsMock.js";
 import { creditMock } from "../mocks/creditMock.js";
 import { ordersMock } from "../mocks/ordersMock.js";
 import { productsByOrderMock } from "../mocks/productsByOrderMock.js";
+import Client from "../models/client.model.js";
+
 const clientController = {
   getAllClients: async (req, res) => {
-    console.log('coucou');
-    res.status(200).json(clientsMock);
+    try {
+      const clients = await Client.find();
+      res.status(200).json(clients);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   getClientById: async (req, res) => {
@@ -38,8 +44,10 @@ const clientController = {
       );
 
       // Récupération des crédits associés au client dans le mock
-      const creditIds = productsByOrder.map((product) => product?.productsByOrderActions?.credit);
-      
+      const creditIds = productsByOrder.map(
+        (product) => product?.productsByOrderActions?.credit
+      );
+
       // Filtrer les détails des crédits correspondants
       const credit = creditMock.filter((credit) =>
         creditIds.includes(credit.productsByOrderId)

@@ -8,7 +8,7 @@ const Totals = ({ productsByOrderInfo, productId, productsByOrder }) => {
 
   const productStore = useSelector((state) => state?.product?.data);
   const creditTotal =
-  useSelector((state) => getCreditsInfo(state, { productId: productsByOrder.id }))
+  useSelector((state) => getCreditsInfo(state, { productId: productsByOrder._id }))
   .amount || 0;
   const productPrice = getProductProperties(productId, productStore).pricing
     ?.currentPrice;

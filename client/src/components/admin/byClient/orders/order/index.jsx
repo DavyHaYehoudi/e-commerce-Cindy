@@ -18,20 +18,20 @@ const Item = ({
 }) => {
   const dispatch = useDispatch();
   const trackingNumberList = useSelector((state) =>
-    getTrackingNumberList(state, order?.id)
+    getTrackingNumberList(state, order?._id)
   );
 
   const handleSendToClient = () => {
     dispatch(
       sendToClient({
-        clientId: client.id,
-        orderId: order?.id,
+        clientId: client._id,
+        orderId: order?._id,
         isClientNotified: true,
       })
     );
   };
   return (
-    <div className="admin-order-item" data-testid={`item-component-${order.id}`}> 
+    <div className="admin-order-item" data-testid={`item-component-${order._id}`}> 
       <Header
         order={order}
         orderIndex={orderIndex}
@@ -42,8 +42,8 @@ const Item = ({
         handleSendToClient={handleSendToClient}
       />
 
-      <Details order={order} orderId={order?.id} />
-      <List client={client} orderId={order?.id} />
+      <Details order={order} orderId={order?._id} />
+      <List client={client} orderId={order?._id} />
 
       <ToggleButton
         initialText="Suivis"
@@ -53,7 +53,7 @@ const Item = ({
           <Listing
             trackingNumberList={trackingNumberList}
             client={client}
-            orderId={order?.id}
+            orderId={order?._id}
           />
         }
       />

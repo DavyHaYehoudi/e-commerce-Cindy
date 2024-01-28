@@ -15,7 +15,7 @@ const customer = createSlice({
   reducers: {
     deleteTrackingNumber: (state, action) => {
       state.data.orders = state?.data?.orders?.map((order) =>
-        order.id === action.payload.orderId
+        order._id === action.payload.orderId
           ? {
               ...order,
               trackingNumber: order.trackingNumber.filter(
@@ -27,7 +27,7 @@ const customer = createSlice({
     },
     addClientTrackingNumber: (state, action) => {
       state.data.orders = state?.data?.orders?.map((order) =>
-        order.id === action.payload.orderId
+        order._id === action.payload.orderId
           ? {
               ...order,
               trackingNumber: [

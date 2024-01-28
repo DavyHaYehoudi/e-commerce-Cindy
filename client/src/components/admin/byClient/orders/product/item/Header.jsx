@@ -23,7 +23,7 @@ const Header = ({
   toggleActions,
 }) => {
   const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productId: productsByOrder.id })
+    getCreditsInfo(state, { productId: productsByOrder._id })
   );
   const { reference, name, pricing, image } = getProductProperties(
     productId,

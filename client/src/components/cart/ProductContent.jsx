@@ -39,7 +39,7 @@ const ProductContent = ({ state, handleCartShow }) => {
         <AddToCartButton
           buttonText="Ajouter au panier"
           onClick={handleCartShow}
-          additionalFunction={() => handleAddToCart("product.id")}
+          additionalFunction={() => handleAddToCart("product._id")}
           className="buy-button btn"
         />
         <p>{description} </p>

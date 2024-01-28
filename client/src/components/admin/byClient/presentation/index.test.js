@@ -52,5 +52,5 @@ test("handles close button click", () => {
   fireEvent.click(closeButton);
 
   // Vérifie que la fonction handleClientClick a été appelée avec l'ID correct du client
-  expect(handleClientClickMock).toHaveBeenCalledWith(mockClient.id);
+  expect(handleClientClickMock).toHaveBeenCalledWith(mockClient._id);
 });

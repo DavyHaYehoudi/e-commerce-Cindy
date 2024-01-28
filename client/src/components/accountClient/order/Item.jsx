@@ -9,7 +9,6 @@ import { formatPrice } from "../../../helpers/utils/prices";
 const Item = ({ productsByOrder, isReturnProduct }) => {
   const state = useSelector((state) => state?.product?.data);
   const productsByOrderStore = useSelector((state) => state?.customer?.data?.productsByOrder);
-  console.log('productsByOrderStore:', productsByOrderStore)
 
   return (
     <div className="order-items-user-account" data-testid="order-items-user-account">

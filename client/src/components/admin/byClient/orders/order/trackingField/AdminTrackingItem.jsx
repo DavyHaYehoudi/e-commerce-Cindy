@@ -32,7 +32,7 @@ const AdminTrackingItem = ({
       <ul className="productsByOrder">
         {item?.productsByOrder?.map((product) => (
           <ProductListItem
-            key={product.id}
+            key={product._id}
             product={product}
             client={client}
             orderId={orderId}

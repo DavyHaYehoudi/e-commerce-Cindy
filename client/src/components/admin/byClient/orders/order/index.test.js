@@ -31,7 +31,7 @@ describe("Item Component", () => {
     );
 
     // Check if the component renders without errors
-    const itemComponent = screen.getByTestId(`item-component-${order.id}`);
+    const itemComponent = screen.getByTestId(`item-component-${order._id}`);
     expect(itemComponent).toBeInTheDocument();
   });
 });

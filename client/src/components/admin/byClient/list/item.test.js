@@ -13,7 +13,7 @@ const clientDetailsMock = { "1mongoDb": true };
 
 // Mock d'un client
 const mockClient = {
-  id: "1mongoDb",
+  _id: "1mongoDb",
   firstName: "John",
   lastName: "Doe",
 };
@@ -22,11 +22,11 @@ const mockClient = {
 const initialState = {
   orders: {
     data: [
-      { id: "1mongoDb", isClientNotified: true },
-      { id: "2mongoDb", isClientNotified: true },
-      { id: "3mongoDb", isClientNotified: true },
-      { id: "4mongoDb", isClientNotified: true },
-      { id: "5mongoDb", isClientNotified: false },
+      { _id: "1mongoDb", isClientNotified: true },
+      { _id: "2mongoDb", isClientNotified: true },
+      { _id: "3mongoDb", isClientNotified: true },
+      { _id: "4mongoDb", isClientNotified: true },
+      { _id: "5mongoDb", isClientNotified: false },
     ],
   },
 };
@@ -69,7 +69,7 @@ describe("Item Component", () => {
   // Test : rend avec bulle de notification quand isAnyOrderClientNotified est vrai
   it("renders with notification bubble when isAnyOrderClientNotified is true", () => {
     const client = {
-      id: "2mongoDb",
+      _id: "2mongoDb",
       firstName: "Sophie",
       lastName: "Smith",
       orders: ["4mongoDb", "5mongoDb"],
@@ -91,7 +91,7 @@ describe("Item Component", () => {
   // Test : rend sans une bulle de notification quand isAnyOrderClientNotified est faux
   it("renders without notification bubble when isAnyOrderClientNotified is false", () => {
     const client = {
-      id: "1mongoDb",
+      _id: "1mongoDb",
       firstName: "John",
       lastName: "Doe",
       orders: ["1mongoDb", "2mongoDb", "3mongoDb"],
@@ -113,7 +113,7 @@ describe("Item Component", () => {
   // Test : déclenche handleClientClick lors du clic sur l'en-tête du client
   it("triggers handleClientClick on client header click", () => {
     const client = {
-      id: "1mongoDb",
+      _id: "1mongoDb",
       firstName: "John",
       lastName: "Doe",
     };
@@ -127,7 +127,7 @@ describe("Item Component", () => {
       { store }
     );
 
-    const clientHeader = screen.getByTestId(`client-name-${client.id}`);
+    const clientHeader = screen.getByTestId(`client-name-${client._id}`);
 
     fireEvent.click(clientHeader);
     expect(handleClientClickMock).toHaveBeenCalledWith("1mongoDb");

@@ -1,12 +1,7 @@
-// import "bo" from "../assets/"bo".png";
-// import "bar" from "../assets/"bar".png";
-// import "bra" from "../assets/"bra".png";
-// import "col" from "../assets/"col".png";
-
 export const productMock = [
   {
     id: "1mongoDb",
-    reference: "QER2345OIJD",
+    reference: "QER2345OIJD1",
     category: "Jewelry",
     releaseDate: "2023-11-01",
     name: "Boucles d'oreilles",
@@ -34,7 +29,7 @@ export const productMock = [
   },
   {
     id: "2mongoDb",
-    reference: "ABC123XYZ",
+    reference: "ABC123XYZ2",
     category: "Clothing",
     releaseDate: "2023-10-15",
     name: "Robe élégante",
@@ -62,7 +57,7 @@ export const productMock = [
   },
   {
     id: "3mongoDb",
-    reference: "ABC123XYZ",
+    reference: "ABC123XYZ3",
     category: "Hair Accessories",
     releaseDate: "2023-10-20",
     name: "Peigne en cristal",
@@ -89,7 +84,7 @@ export const productMock = [
   },
   {
     id: "4mongoDb",
-    reference: "DEF567LMN",
+    reference: "DEF567LMN4",
     category: "Bracelets",
     releaseDate: "2023-11-05",
     name: "Bracelet en perles",
@@ -117,7 +112,7 @@ export const productMock = [
   },
   {
     id: "5mongoDb",
-    reference: "GHI789JKL",
+    reference: "GHI789JKL5",
     category: "Necklaces",
     releaseDate: "2023-11-10",
     name: "Collier de perles",
@@ -144,7 +139,7 @@ export const productMock = [
   },
   {
     id: "6mongoDb",
-    reference: "MNO456PQR",
+    reference: "MNO456PQR6",
     category: "Hair Accessories",
     releaseDate: "2023-11-02",
     name: "Broche en strass",
@@ -171,7 +166,7 @@ export const productMock = [
   },
   {
     id: "7mongoDb",
-    reference: "STU012VWX",
+    reference: "STU012VWX7",
     category: "Hair Accessories",
     releaseDate: "2023-11-08",
     name: "Collier de dos en perles",
@@ -198,7 +193,7 @@ export const productMock = [
   },
   {
     id: "8mongoDb",
-    reference: "YZA345BCD",
+    reference: "YZA345BCD8",
     category: "Earrings",
     releaseDate: "2023-11-06",
     name: "Boucles d'oreilles pendantes",
@@ -225,7 +220,7 @@ export const productMock = [
   },
   {
     id: "9mongoDb",
-    reference: "EFG678HIJ",
+    reference: "EFG678HIJ9",
     category: "Hair Accessories",
     releaseDate: "2023-11-12",
     name: "Peigne vintage",
@@ -252,7 +247,7 @@ export const productMock = [
   },
   {
     id: "10mongoDb",
-    reference: "KLM901NOP",
+    reference: "KLM901NOP_10",
     category: "Bracelets",
     releaseDate: "2023-11-10",
     name: "Bracelet en cuir tressé",
@@ -280,7 +275,7 @@ export const productMock = [
   },
   {
     id: "11mongoDb",
-    reference: "PQR234STU",
+    reference: "PQR234STU_11",
     category: "Brooches",
     releaseDate: "2023-11-18",
     name: "Broche florale en argent",
@@ -307,7 +302,7 @@ export const productMock = [
   },
   {
     id: "12mongoDb",
-    reference: "UVW567XYZ",
+    reference: "UVW567XYZ_12",
     category: "Earrings",
     releaseDate: "2023-11-15",
     name: "Boucles d'oreilles pendantes en perles",
@@ -334,7 +329,7 @@ export const productMock = [
   },
   {
     id: "13mongoDb",
-    reference: "XYZ890ABC",
+    reference: "XYZ890ABC_13",
     category: "Hair Accessories",
     releaseDate: "2023-11-25",
     name: "Serre-tête en perles",
@@ -361,7 +356,7 @@ export const productMock = [
   },
   {
     id: "14mongoDb",
-    reference: "BCD123EFG",
+    reference: "BCD123EFG_14",
     category: "Bracelets",
     releaseDate: "2023-11-22",
     name: "Bracelet jonc en argent",
@@ -389,7 +384,7 @@ export const productMock = [
   },
   {
     id: "15mongoDb",
-    reference: "EFG456HIJ",
+    reference: "EFG456HIJ_15",
     category: "Earrings",
     releaseDate: "2023-11-30",
     name: "Boucles d'oreilles créoles en argent",
@@ -416,7 +411,7 @@ export const productMock = [
   },
   {
     id: "16mongoDb",
-    reference: "HIJ789KLM",
+    reference: "HIJ789KLM_16",
     category: "Hair Accessories",
     releaseDate: "2023-11-28",
     name: "Pin à cheveux en perles",
@@ -443,7 +438,7 @@ export const productMock = [
   },
   {
     id: "17mongoDb",
-    reference: "LMN012OPQ",
+    reference: "LMN012OPQ_17",
     category: "Necklaces",
     releaseDate: "2023-12-05",
     name: "Collier pendentif en cristal",
@@ -470,7 +465,7 @@ export const productMock = [
   },
   {
     id: "18mongoDb",
-    reference: "OPQ345RST",
+    reference: "OPQ345RST_18",
     category: "Hair Accessories",
     releaseDate: "2023-12-01",
     name: "Serre-tête floral",
@@ -497,7 +492,7 @@ export const productMock = [
   },
   {
     id: "19mongoDb",
-    reference: "RST678UVW",
+    reference: "RST678UVW_19",
     category: "Bracelets",
     releaseDate: "2023-12-10",
     name: "Bracelet charm en perles",
@@ -525,7 +520,7 @@ export const productMock = [
   },
   {
     id: "20mongoDb",
-    reference: "UVW890XYZ",
+    reference: "UVW890XYZ_20",
     category: "Earrings",
     releaseDate: "2023-12-08",
     name: "Boucles d'oreilles pendantes en argent",

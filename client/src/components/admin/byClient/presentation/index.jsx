@@ -12,7 +12,7 @@ const Infos = ({ client, orders, handleClientClick }) => {
     <div
       className="client-details"
       onClick={(e) => e.stopPropagation()}
-      data-testid={`infos-component-${client.id}`}
+      data-testid={`infos-component-${client._id}`}
     >
       <h2>
         <span className="underline"> Informations du client</span>
@@ -47,9 +47,9 @@ const Infos = ({ client, orders, handleClientClick }) => {
         setSelectedOrderId={setSelectedOrderId}
         selectedOrderId={selectedOrderId}
       />
-      <NotesEditor clientId={client.id} notesPropName={"notesAdmin"} />
+      <NotesEditor clientId={client._id} notesPropName={"notesAdmin"} />
       <div className="close-client-details">
-        <span onClick={() => handleClientClick(client.id)}>Fermer</span>
+        <span onClick={() => handleClientClick(client._id)}>Fermer</span>
       </div>
     </div>
   );

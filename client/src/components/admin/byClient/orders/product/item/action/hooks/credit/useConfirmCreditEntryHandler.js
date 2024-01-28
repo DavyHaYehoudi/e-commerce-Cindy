@@ -39,14 +39,14 @@ export const useConfirmCreditEntryHandler = () => {
     } else if (amount > 0 && validityDate) {
       dispatch(
         addCredit({
-          productsByOrderId: productsByOrder.id,
+          productsByOrderId: productsByOrder._id,
           amount: productsByOrderActions.creditContent.amount,
           dateExpire: productsByOrderActions.creditContent?.dateExpire,
         })
       );
       dispatch(
         updateActionContent({
-          creditContent: productsByOrder.id,
+          creditContent: productsByOrder._id,
           productId,
           updatedProperty: action,
           isClientNotified: false,

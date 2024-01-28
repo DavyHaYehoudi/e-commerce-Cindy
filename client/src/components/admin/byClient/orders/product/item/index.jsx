@@ -15,7 +15,7 @@ const Main = ({ productsByOrder, client, orderId }) => {
   const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
   const productStore = useSelector((state) => state?.product?.data);
   const { amount } = useSelector((state) =>
-    getCreditsInfo(state, { productId: productsByOrder.id })
+    getCreditsInfo(state, { productId: productsByOrder._id })
   );
 
   const { productsByOrderInfo, isTagProductExisted, articleNumber } = getProductsInfo(

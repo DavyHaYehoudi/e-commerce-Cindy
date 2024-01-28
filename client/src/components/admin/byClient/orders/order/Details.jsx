@@ -16,7 +16,7 @@ const Details = ({ order, orderId }) => {
           {order.inTotalAmount ? formatPrice(order.inTotalAmount) : "Total NC"}
         </span>
       </p>
-      {outTotalAmount && outTotalAmount > 0 && (
+      {outTotalAmount > 0 && (
         <p data-testid="out-total">
           Total des sorties :{" "}
           <span className="pricing outPricing">

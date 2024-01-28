@@ -8,7 +8,7 @@ const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
   const handleConfirmCancel = (trackingNumberId) => {
-    const orderId = order.id;
+    const orderId = order._id;
     dispatch(
       deleteTrackingNumber({
         orderId,

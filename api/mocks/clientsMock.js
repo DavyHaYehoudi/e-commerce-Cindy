@@ -1,7 +1,6 @@
 
 export const clientsMock = [
   {
-    id: "1mongoDb",
     firstName: "John",
     lastName: "Doe",
     email: "john@example.com",
@@ -16,39 +15,36 @@ export const clientsMock = [
         date: "2023-01-15 08:30",
       },
       {
-        id: 45633,
+        id: "45633",
         content: "Encore des notes pour ce client",
         date: "2023-01-15 08:30",
       },
     ],
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
-    // wishlist:null,
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["1mongoDb","2mongoDb","3mongoDb","4mongoDb"],
-    // orders: ["1mongoDb","2mongoDb","3mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bcf","65b3f8a1624d950f87c37bd0","65b3f8a1624d950f87c37bd1","65b3f8a1624d950f87c37bd2"],
   },
   {
-    id: "2mongoDb",
     firstName: "Alice",
     lastName: "Smith",
     email: "alice@example.com",
@@ -59,30 +55,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["4mongoDb","5mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bd2","65b3f8a1624d950f87c37bd3"],
   },
   {
-    id: "3mongoDb",
     firstName: "Bob",
     lastName: "Johnson",
     email: "bob@example.com",
@@ -93,30 +88,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["6mongoDb","7mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bd4","65b3f8a1624d950f87c37bd5"],
   },
   {
-    id: "4mongoDb",
     firstName: "Eva",
     lastName: "Williams",
     email: "eva@example.com",
@@ -127,30 +121,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["8mongoDb","9mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bd6","65b3f8a1624d950f87c37bd7"],
   },
   {
-    id: "5mongoDb",
     firstName: "Sophie",
     lastName: "Miller",
     email: "sophie@example.com",
@@ -161,30 +154,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["10mongoDb","11mongoDb","12mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bd8","65b3f8a1624d950f87c37bd9","65b3f8a1624d950f87c37bda"],
   },
   {
-    id: "6mongoDb",
     firstName: "Daniel",
     lastName: "Brown",
     email: "daniel@example.com",
@@ -195,30 +187,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["13mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bdb"],
   },
   {
-    id: "7mongoDb",
     firstName: "Emma",
     lastName: "Davis",
     email: "emma@example.com",
@@ -229,30 +220,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["14mongoDb","15mongoDb","16mongoDb","17mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bdc","65b3f8a1624d950f87c37bdd","65b3f8a1624d950f87c37bde","65b3f8a1624d950f87c37bdf"],
   },
   {
-    id: "8mongoDb",
     firstName: "David",
     lastName: "White",
     email: "david@example.com",
@@ -263,30 +253,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["18mongoDb","19mongoDb"],
+    orders: ["65b3f8a1624d950f87c37be0","65b3f8a1624d950f87c37be1"],
   },
   {
-    id: "9mongoDb",
     firstName: "Olivia",
     lastName: "Johnson",
     email: "olivia@example.com",
@@ -297,30 +286,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["20mongoDb","21mongoDb","22mongoDb"],
+    orders: ["65b3f8a1624d950f87c37be2","65b3f8a1624d950f87c37be3","65b3f8a1624d950f87c37be4"],
   },
   {
-    id: "10mongoDb",
     firstName: "William",
     lastName: "Smith",
     email: "william@example.com",
@@ -331,30 +319,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"1mongoDb",
+        productId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"5mongoDb",
+        productId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"2mongoDb",
+        productId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["23mongoDb","24mongoDb"],
+    orders: ["65b3f8a1624d950f87c37be5","65b3f8a1624d950f87c37be6"],
   },
   {
-    id: "11mongoDb",
     firstName: "Jane",
     lastName: "Smith",
     email: "jane@example.com",
@@ -365,30 +352,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"16mongoDb",
+        productId:"65b3e264624d950f87b81f46",
         material: 1,
       },
       {
-        productId:"10mongoDb",
+        productId:"65b3e264624d950f87b81f40",
         material: 3,
       },
     ],
     cart: [
       {
-        productId:"7mongoDb",
+        productId:"65b3e264624d950f87b81f3d",
         material: 2,
         quantity: 3,
       },
       {
-        productId:"12mongoDb",
+        productId:"65b3e264624d950f87b81f42",
         material: 0,
         quantity: 1,
       },
     ],
-    orders: ["25mongoDb","26mongoDb"],
+    orders: ["65b3f8a1624d950f87c37be7","65b3f8a1624d950f87c37be8"],
   },
   {
-    id: "12mongoDb",
     firstName: "Alex",
     lastName: "Johnson",
     email: "alex@example.com",
@@ -399,30 +385,29 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"14mongoDb",
+        productId:"65b3e264624d950f87b81f44",
         material: 0,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 2,
       },
     ],
     cart: [
       {
-        productId:"15mongoDb",
+        productId:"65b3e264624d950f87b81f45",
         material: 3,
         quantity: 1,
       },
       {
-        productId:"20mongoDb",
+        productId:"65b3e264624d950f87b81f4a",
         material: 1,
         quantity: 3,
       },
     ],
-    orders: ["27mongoDb","28mongoDb"],
+    orders: ["65b3f8a1624d950f87c37be9","65b3f8a1624d950f87c37bea"],
   },
   {
-    id: "13mongoDb",
     firstName: "Emily",
     lastName: "Williams",
     email: "emily@example.com",
@@ -433,33 +418,32 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"12mongoDb",
+        productId:"65b3e264624d950f87b81f42",
         material: 1,
       },
       {
-        productId:"15mongoDb",
+        productId:"65b3e264624d950f87b81f45",
         material: 3,
       },
     ],
     cart: [
       {
-        productId:"14mongoDb",
+        productId:"65b3e264624d950f87b81f44",
         material: 0,
         quantity: 1,
       },
       {
-        productId:"18mongoDb",
+        productId:"65b3e264624d950f87b81f48",
         material: 2,
         quantity: 2,
       },
     ],
-    orders: ["29mongoDb","30mongoDb"],
+    orders: ["65b3f8a1624d950f87c37beb","65b3f8a1624d950f87c37bec"],
   },
   {
-    id: "14mongoDb",
     firstName: "Sophie",
     lastName: "Johnson",
-    email: "sophie@example.com",
+    email: "sophie@example.fr",
     phone: "06 90 45 67 89",
     shippingAddress: "18 Avenue des Champs-Élysées, 75002 Paris",
     totalOrders: 5,
@@ -467,60 +451,26 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"15mongoDb",
+        productId:"65b3e264624d950f87b81f45",
         material: 2,
       },
       {
-        productId:"19mongoDb",
+        productId:"65b3e264624d950f87b81f49",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"12mongoDb",
+        productId:"65b3e264624d950f87b81f42",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"6mongoDb",
+        productId:"65b3e264624d950f87b81f3c",
         material: 3,
         quantity: 1,
       },
     ],
-    orders: ["31mongoDb","32mongoDb","33mongoDb"],
-  },
-  {
-    id: "15mongoDb",
-    firstName: "Emma",
-    lastName: "Smith",
-    email: "emma@example.com",
-    phone: "06 90 78 90 12",
-    shippingAddress: "24 Rue de la Liberté, 75003 Paris",
-    totalOrders: 7,
-    totalOrderValue: 900,
-    notesAdmin: null,
-    wishlist: [
-      {
-        productId: "12mongoDb",
-        material: 1,
-      },
-      {
-        productId: "16mongoDb",
-        material: 2,
-      },
-    ],
-    cart: [
-      {
-        productId:"7mongoDb",
-        material: 0,
-        quantity: 2,
-      },
-      {
-        productId:"4mongoDb",
-        material: 3,
-        quantity: 1,
-      },
-    ],
-    orders: ["34mongoDb"],
+    orders: ["65b3f8a1624d950f87c37bed","65b3f8a1624d950f87c37bee","65b3f8a1624d950f87c37bef"],
   },
 ];

@@ -12,7 +12,7 @@ describe("Credit Component", () => {
     credit: {
       data: [
         {
-          id: "idMongoDbGenerate1",
+          _id: "idMongoDbGenerate1",
           productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
@@ -23,7 +23,7 @@ describe("Credit Component", () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           name: "Boucles d'oreilles",
           pricing: {
@@ -56,11 +56,11 @@ describe("Credit Component", () => {
     };
     const placeholderValue = "Saisir le montant de l'avoir";
     const textCancel = "Annuler Avoir";
-    const client = { id: 1 };
+    const client = { _id: 1 };
     const productId = 1;
     const orderId = "orderId";
     const productsByOrder = {
-      id: 1,
+      _id: 1,
     };
     const setProductActions = jest.fn();
     const setEntryError = jest.fn();

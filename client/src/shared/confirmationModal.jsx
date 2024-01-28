@@ -19,13 +19,12 @@ const ConfirmationModal = ({
   setEntryError,
   setInteraction,
 }) => {
-  const productPrice = getProductProperties(productId, productStore).pricing
-    .currentPrice;
+  const productPrice = getProductProperties(productId, productStore)?.pricing?.currentPrice;
   const { isConfirmed, handleConfirmation, handleCancel } = useConfirmation({
     confirmation,
     productsByOrderActions,
     actions,
-    clientId: client.id,
+    clientId: client._id,
     productId,
     orderId,
     productsByOrder,

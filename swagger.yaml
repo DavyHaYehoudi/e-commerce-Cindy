@@ -142,6 +142,12 @@ paths:
           required: true
           schema:
             type: string
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditClient'
       responses:
         '204':
           description: Successful updated client
@@ -359,7 +365,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductsByOrder'
+              $ref: '#/components/schemas/EditProductsByOrder'
       responses:
         '204':
           description: Successful updated productsbyorder
@@ -510,7 +516,7 @@ paths:
     post:
       tags:
         - credit 
-      summary: Place a credit for a customer
+      summary: Place an credit for a customer
       description: Place a new credit for a customer
       operationId: placeCredit
       requestBody:
@@ -554,35 +560,6 @@ paths:
           description: Unauthorized - Admin is not authenticated
         '404':
           description: Credit not found   
-      security:
-        - api_key: []
-    patch:
-      tags:
-        - credit
-      summary: Edit partially a credit
-      description: Edit a credit
-      operationId: editCredits
-      parameters:
-        - name: creditId
-          in: path
-          description: ID of credit that needs to be fetched
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Credit'
-      responses:
-        '204':
-          description: Successful updated credit
-        '400':
-          description: Invalid credit ID supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Credit not found
       security:
         - api_key: []
     delete:
@@ -685,8 +662,63 @@ components:
              - "2884d22b45a0fb3fd4a75p2"
              - "7774d22b45a0fb3fd4a7bn0"
              - "10m4d22b45a0fb3fd4a7l53"
-      xml:
-        name: client
+    EditClient:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5fc4d22b45a0fb3fd4a75f65"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          example: john@example.com
+        phone:
+          type: string
+          example: "06 90 12 34 56"
+        shippingAddress:
+          type: string
+          example: "12 Rue de la République, 75001 Paris"
+        totalOrders:
+          type: integer
+          format: int16
+          example: 3
+        wishlist:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                example: "6vc4d22b45a0fb3fd4a75f33"
+              material:
+                type: integer
+                format: int8
+                example: 1
+        cart:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                example: "1jc4d22b45a0fb3fd4a75f50"
+              material:
+                type: integer
+                format: int8
+                example: 3
+        Orders:
+          type: array
+          items:
+            type: string
+          example:
+             - "2884d22b45a0fb3fd4a75p2"
+             - "7774d22b45a0fb3fd4a7bn0"
+             - "10m4d22b45a0fb3fd4a7l53"
     Order:
       type: object
       properties:
@@ -853,6 +885,32 @@ components:
           type: integer
           format: int16
           example: 0
+    EditProductsByOrder:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5fc4d22b45a0fb3fd4a75f65"
+        isClientNotified:
+          type: boolean
+          example: false
+        productsByOrderActions:
+          type: object
+          properties:
+            exchange:
+              type: integer
+              format: int16
+              example: 1
+            refund:
+              type: integer
+              format: int16
+              example: null
+            credit:
+              type: string
+              example: "111m4d22b45a0fb3fd4a75hq9"
+            note:
+              type: string
+              example: "Quelques notes"
     Product:
       type: object
       properties:

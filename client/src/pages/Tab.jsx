@@ -22,7 +22,7 @@ const Tab = () => {
       <h1>{tab} </h1>
       <div className="collectionList">
         {list.map((item) => (
-          <ProductList item={item} key={item.id} />
+          <ProductList item={item} key={item._id} />
         ))}
       </div>
     </div>
