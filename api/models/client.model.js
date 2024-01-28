@@ -20,6 +20,10 @@ const clientSchema = new mongoose.Schema(
       {
         productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: Number },
+        addDate: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
     cart: [
@@ -27,6 +31,10 @@ const clientSchema = new mongoose.Schema(
         productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: Number },
         quantity: { type: Number, default: 1 },
+        addDate: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],

@@ -4,6 +4,7 @@ import Details from "../preferences";
 import ToggleButton from "../../../../shared/ToggleButton";
 import NotesEditor from "../../../../shared/NotesEditor";
 import Orders from "./Orders";
+import { formatDate } from "../../../../helpers/utils/formatDate";
 
 const Infos = ({ client, orders, handleClientClick }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
@@ -12,23 +13,24 @@ const Infos = ({ client, orders, handleClientClick }) => {
     <div
       className="client-details"
       onClick={(e) => e.stopPropagation()}
-      data-testid={`infos-component-${client._id}`}
+      data-testid={`infos-component-${client?._id}`}
     >
       <h2>
         <span className="underline"> Informations du client</span>
       </h2>
-      <p>Prénom : {client.firstName}</p>
-      <p>Nom : {client.lastName}</p>
+      <p><span className="dotted">Prénom </span> : {client?.firstName}</p>
+      <p><span className="dotted">Nom </span>:  {client?.lastName}</p>
       <p className="client-details-email">
-        Email :{" "}
-        <a href={`mailto:${client.email}`}>
-          {client.email}{" "}
+        <span className="dotted">Email {" "}</span>: 
+        <a href={`mailto:${client?.email}`}>
+        {" "} {client?.email}{" "}
           <MdEmail className="icon" aria-label="Email du client" />
         </a>
       </p>
-      <p>Téléphone : {client.phone}</p>
-      <p>Adresse : {client.shippingAddress}</p>
-      <div className="wishlist-container">
+      <p><span className="dotted">Téléphone </span>:  {client?.phone}</p>
+      <p><span className="dotted">Adresse de livraison </span>:  {client?.shippingAddress}</p>
+      <p><span className="dotted">Compte créé le </span>:  {formatDate(client?.createdAt)} </p>
+      <div className="wishlist-container"> 
         <ToggleButton
           initialText="Afficher les préférences"
           hiddenText="Fermer les préférences"

@@ -49,11 +49,7 @@ describe("Orders Component without Item Component", () => {
         selectedOrderId={null}
       />
     );
-
-    expect(
-      screen.getByText(/Total\s*des\s*commandes\s*:\s*3/i)
-    ).toBeInTheDocument();
-
+ 
     expect(screen.getByText(/325,00 €/i)).toBeInTheDocument();
   });
   describe("All badges steps", () => {

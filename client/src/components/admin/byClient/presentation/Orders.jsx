@@ -26,13 +26,13 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
         <h2>
           <span className="underline">Historique des commandes</span>{" "}
         </h2>
-        <p>Total des commandes : {client?.totalOrders}</p>
+        <p><span className="dotted">Total des commandes :</span> {client?.totalOrders}</p>
         <div className="client-details-orders-info">
-          Valeur totale des commandes :{" "}
+         <span className="dotted">Valeur totale des commandes :</span> 
           <span className="pricing inPricing">
             {" "}
             {formatPrice(client?.totalOrderValue)}
-          </span>
+          </span> 
           <ul className="client-details-orders-badge">
             {orders &&
               orders.length > 0 &&

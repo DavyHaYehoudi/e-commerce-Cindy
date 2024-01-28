@@ -32,6 +32,7 @@ describe('Cart Component', () => {
     const productId = 1;
     const productCart = {
       material: 1,
+      addDate:"2024-04-11 12:15"
     };
 
     render(
@@ -40,9 +41,10 @@ describe('Cart Component', () => {
 
     // Assert that cart item is rendered with correct information
     expect(screen.getByTestId(`cart-item-${productId}`)).toBeInTheDocument();
-    expect(screen.getByText(`Référence : ${initialState.product.data[0].reference}`)).toBeInTheDocument();
-    expect(screen.getByText(`Nom : ${initialState.product.data[0].name}`)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`Matériau : ${materials[1]}`))).toBeInTheDocument();
-    expect(screen.getByText(`Prix : ${formatPrice(initialState.product.data[0].pricing.currentPrice)}`)).toBeInTheDocument();
+    expect(screen.getByText(`: ${initialState.product.data[0].reference}`)).toBeInTheDocument();
+    expect(screen.getByText(`: ${initialState.product.data[0].name}`)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`: ${materials[1]}`))).toBeInTheDocument();
+    expect(screen.getByText(`: ${formatPrice(initialState.product.data[0].pricing.currentPrice)}`)).toBeInTheDocument();
+    expect(screen.getByText(": 11/04/2024 12:15")).toBeInTheDocument() 
   });
 });

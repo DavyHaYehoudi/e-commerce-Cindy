@@ -61,6 +61,9 @@ img {
 .underline{
     text-decoration: underline;
 }
+.dotted {
+    border-bottom: 1px dotted black;
+}
 /* ********************* START INFO-BULLE TOOLTIP ********************* */
 .info-tooltip {
     position: relative;

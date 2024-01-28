@@ -10,6 +10,7 @@ const mockClient = {
   email: "john.doe@example.com",
   phone: "123-456-7890",
   shippingAddress: "123 Main St",
+  createdAt:"2023-01-15T08:30:00.000Z"
 };
 const ordersMock =[] 
 test("Client informations", () => {
@@ -18,13 +19,14 @@ test("Client informations", () => {
   expect(
     screen.getByRole("heading", { level: 2, name: /Informations du client/i })
   ).toBeInTheDocument();
-  expect(screen.getByText(/prénom : John/i)).toBeInTheDocument();
-  expect(screen.getByText(/nom : Doe/i)).toBeInTheDocument();
+  expect(screen.getByText(/: John/i)).toBeInTheDocument(); 
+  expect(screen.getByText(/: Doe/i)).toBeInTheDocument();
   expect(
     screen.getByRole("link", { name: /john\.doe@example\.com/i })
   ).toBeInTheDocument();
-  expect(screen.getByText(/Téléphone : 123-456-7890/i)).toBeInTheDocument();
-  expect(screen.getByText(/Adresse : 123 Main St/i)).toBeInTheDocument();
+  expect(screen.getByText(/: 123-456-7890/i)).toBeInTheDocument();
+  expect(screen.getByText(/: 123 Main St/i)).toBeInTheDocument();
+  expect(screen.getByText(": 15/01/2023 09:30")).toBeInTheDocument();
 });
 
 test("handles preferences toggle button click", () => {

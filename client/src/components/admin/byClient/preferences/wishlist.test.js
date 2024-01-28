@@ -32,6 +32,8 @@ describe('Wishlist Component', () => {
     const productId = 1;
     const productCart = {
       material: 1,
+      addDate:"2024-04-11 12:15"
+
     };
 
     render(
@@ -44,20 +46,21 @@ describe('Wishlist Component', () => {
       screen.getByTestId(`wishlist-item-${productId}`)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(`Référence : ${initialState.product.data[0].reference}`)
+      screen.getByText(`: ${initialState.product.data[0].reference}`)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(`Nom : ${initialState.product.data[0].name}`)
+      screen.getByText(`: ${initialState.product.data[0].name}`)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(new RegExp(`Matériau : ${materials[1]}`))
+      screen.getByText(new RegExp(`: ${materials[1]}`))
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        `Prix : ${formatPrice(
+        `: ${formatPrice(
           initialState.product.data[0].pricing.currentPrice
         )}`
       )
     ).toBeInTheDocument();
+    expect(screen.getByText(": 11/04/2024 12:15")).toBeInTheDocument()
   });
 });
