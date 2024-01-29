@@ -19,5 +19,16 @@ const creditSchema = new mongoose.Schema({
   },
 });
 
+// Clé secrète pour la propriété "code"
+creditSchema.pre('save', function (next) {
+  const generatedCode = generateSecretCode();
+  this.code = generatedCode;
+  next();
+});
+
 const Credit = mongoose.model('Credit', creditSchema);
 export default Credit;
+
+function generateSecretCode() {
+  const randomString = Math.random().toString(36).substring(2, 10);
+}
