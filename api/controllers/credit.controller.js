@@ -7,23 +7,33 @@ const creditController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
+  }, 
+
+  createCredit: async (req, res) => {
+    try {
+      const { productsByOrderId, amount, dateExpire } = req.body;
+  
+      if (!productsByOrderId || !amount || !dateExpire) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+
+      const newCredit = await Credit.create({
+        productsByOrderId,
+        amount,
+        dateExpire,
+      });
+  
+      console.log('newCredit:', newCredit)
+      res.status(201).json(newCredit);
+    } catch (error) {
+      console.error('Error creating credit:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   },
 
-  getProductById: async (req, res) => {
-    // Implementation for getting a client by ID
-  },
-
-  createProduct: async (req, res) => {
-    // Implementation for creating a new client
-  },
-
-  updateProduct: async (req, res) => {
-    // Implementation for updating a client
-  },
-
-  deleteProduct: async (req, res) => {
+  deleteCredit: async (req, res) => {
     // Implementation for deleting a client
   },
 };
 
-export default creditController;
+export default creditController; 

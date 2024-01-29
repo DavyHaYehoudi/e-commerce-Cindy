@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ToggleButtonNote from "../ToggleButtonNote";
-import ConfirmationModal from "../../../../../../shared/ConfirmationModal";
 import Header from "./Header";
 import List from "./action/List";
+import ConfirmationModal from "../../../../../../shared/confirmationModal"
 import * as actions from "../../../../../../constants/productsByOrderActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
@@ -23,8 +23,8 @@ const Main = ({ productsByOrder, client, orderId }) => {
     productsByOrderStore,
     orderId,
     productId
-  );
-
+  ); 
+console.log("productsByOrderInfo :",productsByOrderInfo);
   const [interaction, setInteraction] = useState({
     isActionsOpen: false,
     activeLi: null,

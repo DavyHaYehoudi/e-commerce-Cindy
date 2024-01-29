@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { productsByOrderMock } from "../../mocks/productsByOrderMock";
 import * as actions from "../../constants/productsByOrderActions";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";

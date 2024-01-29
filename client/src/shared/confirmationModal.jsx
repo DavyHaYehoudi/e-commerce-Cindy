@@ -1,7 +1,7 @@
 import React from "react";
 import { getProductProperties } from "../selectors/product";
 import useConfirmation from "../components/admin/byClient/orders/product/item/action/hooks/useConfirmation";
-
+ 
 const ConfirmationModal = ({
   message,
   confirmation,

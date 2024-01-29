@@ -11,7 +11,7 @@ const creditSchema = new mongoose.Schema({
   },
   code: {
     type: String,
-    required: true,
+    default: generateSecretCode,
   },
   dateExpire: {
     type: String,
@@ -30,5 +30,13 @@ const Credit = mongoose.model('Credit', creditSchema);
 export default Credit;
 
 function generateSecretCode() {
-  const randomString = Math.random().toString(36).substring(2, 10);
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  
+  for (let i = 0; i < 12; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    code += characters.charAt(randomIndex);
+  }
+  
+  return code;
 }

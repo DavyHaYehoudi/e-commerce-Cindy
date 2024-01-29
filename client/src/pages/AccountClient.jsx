@@ -15,7 +15,8 @@ const AccountClient = () => {
     setIsActive(tab);
   };
 
-  useFetchSlice("customer", "65b62d48624d950f87e0690b");
+  // useFetchSlice("customer", "65b62d48624d950f87e0690b");
+  useFetchSlice("customer", "65b62d48624d950f87e0690e");
   useFetchSlice("product");
 
   return (

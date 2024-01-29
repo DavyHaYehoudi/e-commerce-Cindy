@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { creditMock } from "../../mocks/creditMock";
-import { generateRandomCode } from "../../helpers/utils/creditCode";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 
@@ -11,18 +9,27 @@ const fetchCredits = createAsyncThunk("credit/fetchCredits", async () => {
     handleFetchError(error);
   }
 });
+const addCredit = createAsyncThunk("credit/addCredit", async (creditData) => {
+  try {
+    const response = await customFetch("credit", {
+      method: "POST",
+      body: JSON.stringify(creditData),
+    });
+    return response;
+  } catch (error) {
+    handleFetchError(error);
+  }
+});
+
 const creditSlice = createSlice({
   name: "credit",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
-    addCredit: (state, action) => {
-      const { productsByOrderId, amount, dateExpire } = action.payload;
-      const id = generateRandomCode(); //A faire en Back
-      state.data = [...state.data, { id, productsByOrderId, amount, dateExpire }];
-    },
     deleteCredit: (state, action) => {
       const { productsByOrderId } = action.payload;
-      state.data = state.data.filter((item) => item.productsByOrderId !== productsByOrderId);
+      state.data = state.data.filter(
+        (item) => item.productsByOrderId !== productsByOrderId
+      );
     },
   },
   extraReducers: (builder) => {
@@ -38,9 +45,21 @@ const creditSlice = createSlice({
       .addCase(fetchCredits.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addCredit.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(addCredit.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        state.data = [...state.data, action.payload];
+      })
+      .addCase(addCredit.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
-export const { addCredit, deleteCredit } = creditSlice.actions;
-export { fetchCredits };
+export const { deleteCredit } = creditSlice.actions;
+export { fetchCredits, addCredit };
 export default creditSlice.reducer;

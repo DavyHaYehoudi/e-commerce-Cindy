@@ -1,8 +1,11 @@
 // Bouton de validation du champ de l'avoir
 import { useDispatch } from "react-redux";
-import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
-import { totalsInOut,articleAction } from "../../../../../../../../../features/admin/ordersSlice";
+import {
+  totalsInOut,
+  articleAction,
+} from "../../../../../../../../../features/admin/ordersSlice";
 import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
+import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
 
 export const useConfirmCreditEntryHandler = () => {
   const dispatch = useDispatch();
@@ -65,8 +68,10 @@ export const useConfirmCreditEntryHandler = () => {
         ...prevState,
         isAddCredit: false,
       }));
-      if (amount > productPrice) {
-        setEntryError("⚠️ Le montant de l'avoir est supérieur au total d'achat.");
+      if (amount > productsByOrder.quantity * productPrice) {
+        setEntryError(
+          "⚠️ Le montant de l'avoir est supérieur au total d'achat."
+        );
       } else {
         setEntryError("");
       }

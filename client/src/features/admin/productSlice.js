@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
-// import { productMock } from "../../mocks/productMock";
 
 const fetchProduct = createAsyncThunk("product/fetchProduct", async () => {
   try {

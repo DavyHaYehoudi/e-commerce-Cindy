@@ -1130,10 +1130,7 @@ components:
         amount:
           type: integer
           format: int16
-          example: 7
-        code:
-          type: string
-          example: "1156JHUfJNBdfdf"
+          example: 7 
         dateExpire:
           type: string
           example: "2023-04-05 09:55"
