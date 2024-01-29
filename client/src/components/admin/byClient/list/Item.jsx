@@ -11,13 +11,13 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
   return (
     <li
       className={`client-item ${isAnyOrderClientNotified ? "notified" : ""}`}
-      data-testid={`client-row-${client.id}`}
+      data-testid={`client-row-${client._id}`}
     >
       <div className="client-header">
         <p
           className="client-header-clic"
-          onClick={() => handleClientClick(client.id)}
-          data-testid={`client-name-${client.id}`}
+          onClick={() => handleClientClick(client._id)}
+          data-testid={`client-name-${client._id}`}
         >
           {client.firstName + " " +client.lastName}
           {isAnyOrderClientNotified && (
@@ -28,7 +28,7 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
           )}
         </p>
       </div>
-      {clientDetails[client.id] && (
+      {clientDetails[client._id] && (
         <Infos
           client={client}
           orders={orders}

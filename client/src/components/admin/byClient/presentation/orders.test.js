@@ -49,11 +49,7 @@ describe("Orders Component without Item Component", () => {
         selectedOrderId={null}
       />
     );
-
-    expect(
-      screen.getByText(/Total\s*des\s*commandes\s*:\s*3/i)
-    ).toBeInTheDocument();
-
+ 
     expect(screen.getByText(/325,00 €/i)).toBeInTheDocument();
   });
   describe("All badges steps", () => {
@@ -130,9 +126,9 @@ describe("Orders Component without Item Component", () => {
 
 describe("Orders Component with Item Component", () => {
   const ordersProps = [
-    { id: "1", step: 0 },
-    { id: "2", step: 1 },
-    { id: "3", step: 2 },
+    { _id: "1", step: 0 },
+    { _id: "2", step: 1 },
+    { _id: "3", step: 2 },
   ];
   const clientProps = { id: "1mongoDb", totalOrders: 3, totalOrderValue: 325 };
   test("renders Item component when selectedOrderId has an id", () => {

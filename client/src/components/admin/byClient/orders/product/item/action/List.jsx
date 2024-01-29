@@ -1,17 +1,17 @@
 import React from "react";
-import * as actions from "../../../../../../../constants/productsActions";
+import * as actions from "../../../../../../../constants/productsByOrderActions";
 import Credit from "./Credit";
 import { generateItemTransactionComponent } from "./handler/item";
 
 const List = ({
   interaction,
-  productsActions,
-  productsInfo,
+  productsByOrderActions,
+  productsByOrderInfo,
   productStore,
   client,
   orderId,
   productId,
-  products,
+  productsByOrder,
   articleNumber,
   setProductActions,
   setConfirmation,
@@ -25,7 +25,7 @@ const List = ({
     creditContent,
     refundContent,
     exchangeContent,
-  } = productsActions;
+  } = productsByOrderActions;
 
   return (
     <ul className="actions-list" >
@@ -37,12 +37,12 @@ const List = ({
         "Nombre d'articles à échanger",
         actions,
         interaction,
-        client.id,
+        client._id,
         productId,
         orderId,
-        productsInfo,
+        productsByOrderInfo,
         productStore,
-        productsActions,
+        productsByOrderActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -57,12 +57,12 @@ const List = ({
         "Nombre d'articles à rembourser",
         actions,
         interaction,
-        client.id,
+        client._id,
         productId,
         orderId,
-        productsInfo,
+        productsByOrderInfo,
         productStore,
-        productsActions,
+        productsByOrderActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -74,17 +74,17 @@ const List = ({
         action={actions?.CREDIT}
         actions={actions}
         label={actions?.CREDIT_LABEL}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         isActionSelected={isAddCredit}
         inputCreditAmount={creditContent?.amount}
         inputDateValue={creditContent?.dateExpire}
-        productsActions={productsActions}
+        productsByOrderActions={productsByOrderActions}
         placeholderValue="Montant de l'avoir"
         textCancel="ANNULER L'AVOIR"
         client={client}
         productId={productId}
         orderId={orderId}
-        products={products}
+        productsByOrder={productsByOrder}
         setProductActions={setProductActions}
         setEntryError={setEntryError}
         setConfirmation={setConfirmation}

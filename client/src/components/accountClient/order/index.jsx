@@ -15,20 +15,28 @@ const List = ({ orderHistory, filter }) => {
     <div className="other-orders" data-testid="list-orders">
       {orderHistory &&
         orderHistory.filter(filter).map((order) => (
-          <div key={order.id} className="order-item-wrapper-user-account">
+          <div key={order._id} className="order-item-wrapper-user-account">
             <div className="header">
               <div className="date-step">
-                <span>Date de commande : {formatDate(order?.date)}</span>
+                <span>
+                  <span className="dotted">Date de commande</span> :{" "}
+                  {formatDate(order?.createdAt)}
+                </span>
                 <OrderStep order={order} />
               </div>
               <div className="details">
                 <p>
-                  Prix total : {formatPrice(order?.inTotalAmount) || "Total NC"}
+                  <span className="dotted">Prix total</span> :{" "}
+                  {formatPrice(order?.inTotalAmount) || "Total NC"}
                 </p>
-                <p>Moyen de paiement : {order?.paymentMethod["cardType"]}</p>
+                <p>
+                  <span className="dotted">Moyen de paiement</span> :{" "}
+                  {order?.paymentMethod["cardType"]}
+                </p>
                 <p>
                   {" "}
-                  Se terminant par : {order?.paymentMethod["last4Digits"]}{" "}
+                  <span className="dotted">Se terminant par</span> :{" "}
+                  {order?.paymentMethod["last4Digits"]}{" "}
                 </p>
               </div>
             </div>
@@ -39,7 +47,7 @@ const List = ({ orderHistory, filter }) => {
               buttonClass="account-btn toggle"
               content={
                 <Item
-                  products={order?.products}
+                  productsByOrder={order?.productsByOrder}
                   isReturnProduct={
                     getOrderStepProperty(order?.step).name === orderStep[3].name
                   }
@@ -59,7 +67,7 @@ const List = ({ orderHistory, filter }) => {
                 </button>
                 {trackingNumberBoxOpen && (
                   <TrackingNumberCreate
-                    orderId={order.id}
+                    orderId={order._id}
                     setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
                   />
                 )}

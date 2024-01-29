@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
-// import { ordersMock } from "../../mocks/ordersMock";
 
 const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
   try {
-    return customFetch("orders");
+    return customFetch("order");
   } catch (error) {
     handleFetchError(error);
   }
@@ -22,7 +21,7 @@ export const ordersActions = [
 
 const applyOrderAction = (state, action, updateFunction) => {
   state.data= state.data.map((order) =>
-    order.id === action.payload.orderId
+    order._id === action.payload.orderId
       ? updateFunction(order, action.payload)
       : order
   );

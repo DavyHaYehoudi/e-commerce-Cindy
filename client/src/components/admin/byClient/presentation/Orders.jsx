@@ -26,13 +26,13 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
         <h2>
           <span className="underline">Historique des commandes</span>{" "}
         </h2>
-        <p>Total des commandes : {client?.totalOrders}</p>
+        <p><span className="dotted">Total des commandes :</span> {client?.totalOrders}</p>
         <div className="client-details-orders-info">
-          Valeur totale des commandes :{" "}
+         <span className="dotted">Valeur totale des commandes :</span> 
           <span className="pricing inPricing">
             {" "}
             {formatPrice(client?.totalOrderValue)}
-          </span>
+          </span> 
           <ul className="client-details-orders-badge">
             {orders &&
               orders.length > 0 &&
@@ -40,10 +40,10 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
                 (step, index) => {
                   const orderId = orders.find(
                     (order) => order?.step === step
-                  )?.id;
+                  )?._id;
                   const orderIds = orders
                     .filter((order) => order?.step === step)
-                    .map((order) => order?.id);
+                    .map((order) => order?._id);
 
                   return (
                     <li key={index}>{renderBadge(step, orderIds, orderId)}</li>
@@ -58,7 +58,7 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
               {selectedOrderId && (
                 <div className="selected-items" data-testid="selected-items">
                   {orders
-                    .filter((order) => selectedOrderId.includes(order.id))
+                    .filter((order) => selectedOrderId.includes(order._id))
                     .map((order, i) => (
                       <Item
                         key={i}

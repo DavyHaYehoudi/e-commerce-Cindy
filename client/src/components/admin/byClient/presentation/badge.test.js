@@ -11,11 +11,11 @@ describe("Badge Component", () => {
   const initialState = {
     orders: {
       data: [
-        { id: "1mongoDb", isClientNotified: true },
-        { id: "2mongoDb", isClientNotified: true },
-        { id: "3mongoDb", isClientNotified: true },
-        { id: "4mongoDb", isClientNotified: true },
-        { id: "5mongoDb", isClientNotified: false },
+        { _id: "1mongoDb", isClientNotified: true },
+        { _id: "2mongoDb", isClientNotified: true },
+        { _id: "3mongoDb", isClientNotified: true },
+        { _id: "4mongoDb", isClientNotified: true },
+        { _id: "5mongoDb", isClientNotified: false },
       ],
     },
   };

@@ -10,15 +10,15 @@ const Details = ({ order, orderId }) => {
   return (
     <>
       <p data-testid="in-total">
-        Total de la commande :
+        <span className="dotted" >Total de la commande</span>  :
         <span className="pricing inPricing">
           {" "}
           {order.inTotalAmount ? formatPrice(order.inTotalAmount) : "Total NC"}
         </span>
       </p>
-      {outTotalAmount && outTotalAmount > 0 && (
+      {outTotalAmount > 0 && (
         <p data-testid="out-total">
-          Total des sorties :{" "}
+          <span className="dotted">Total des sorties</span>  :{" "}
           <span className="pricing outPricing">
             {formatPrice(outTotalAmount)}{" "}
           </span>

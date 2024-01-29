@@ -11,12 +11,18 @@ const Header = ({
   lastSentDateToClient,
 }) => {
   return (
-    <div className="admin-order-item-header" data-testid="admin-order-item-header" >
+    <div
+      className="admin-order-item-header"
+      data-testid="admin-order-item-header"
+    >
       <div className="admin-order-item-header order-header">
-        <span>Date de commande : {order.date?formatDate(order.date):"Date NC"}</span>
+        <span>
+          <span className="dotted">Date de commande</span> :{" "}
+          {order.createdAt ? formatDate(order.createdAt) : "Date NC"}
+        </span>
         <OrderStep order={order} />
       </div>
-      
+
       <ActionsDropdown
         order={order}
         step={step}

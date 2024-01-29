@@ -13,7 +13,7 @@ const useClientTrackingItem = ({
   const [isEdited, setIsEdited] = useState(false);
   const dispatch = useDispatch();
   const handleValidate = (item, selectedProducts, articleNumber, orderId) => {
-    const { productsInfo } = articlesNumberCheck(
+    const { productsByOrderInfo } = articlesNumberCheck(
       selectedProducts,
       articleNumber
     );
@@ -28,7 +28,7 @@ const useClientTrackingItem = ({
         orderId,
         trackingNumber: {
           id: item.id,
-          products: productsInfo,
+          productsByOrder: productsByOrderInfo,
         },
       })
     );

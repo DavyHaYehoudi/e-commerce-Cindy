@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { productsMock } from "../../mocks/productsMock";
-import * as actions from "../../constants/productsActions";
+// import { productsByOrderMock } from "../../mocks/productsByOrderMock";
+import * as actions from "../../constants/productsByOrderActions";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 
-const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
+const fetchProducts = createAsyncThunk("productsByOrder/fetchProducts", async () => {
   try {
-    return customFetch("products");
+    return customFetch("productsByOrder");
   } catch (error) {
     handleFetchError(error);
   }
 });
-const productsSlice = createSlice({
-  name: "products",
+const productsByOrderSlice = createSlice({
+  name: "productsByOrder",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     updateActionContent: (state, action) => {
@@ -30,8 +30,8 @@ const productsSlice = createSlice({
             return {
               ...product,
               isClientNotified,
-              productsActions: {
-                ...product.productsActions,
+              productsByOrderActions: {
+                ...product.productsByOrderActions,
                 [updatedProperty]: creditContent,
               },
             };
@@ -39,8 +39,8 @@ const productsSlice = createSlice({
           return {
             ...product,
             isClientNotified,
-            productsActions: {
-              ...product.productsActions,
+            productsByOrderActions: {
+              ...product.productsByOrderActions,
               [updatedProperty]: productActionContent,
             },
           };
@@ -65,6 +65,6 @@ const productsSlice = createSlice({
       });
   },
 });
-export const { updateActionContent } = productsSlice.actions;
+export const { updateActionContent } = productsByOrderSlice.actions;
 export { fetchProducts };
-export default productsSlice.reducer;
+export default productsByOrderSlice.reducer;

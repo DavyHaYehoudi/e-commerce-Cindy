@@ -54,9 +54,9 @@ const ClientTrackingItem = ({
         </button>
       </div>
       <ul>
-        {item?.products?.map((product) => (
+        {item?.productsByOrder?.map((product) => (
           <ProductListItem
-            key={product.id}
+            key={product._id}
             product={product}
             client={client}
             orderId={orderId}

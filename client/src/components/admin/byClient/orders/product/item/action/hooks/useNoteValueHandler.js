@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../../features/admin/productsSlice";
+import { updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
 
 export const useNoteValueHandler = (productId, actions) => {
   const dispatch = useDispatch();

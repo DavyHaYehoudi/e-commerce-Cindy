@@ -9,7 +9,7 @@ const Tab = () => {
   const getList = async () => {
     const listData = await axios.get(
       `https://fakestoreapiserver.reactbd.com/products/`
-      // `https://fakestoreapiserver.reactbd.com/products/${tab}`
+      // `https://fakestoreapiserver.reactbd.com/productsByOrder/${tab}`
     );
     setList(listData.data);
     console.log("ici la data :",listData.data);
@@ -22,7 +22,7 @@ const Tab = () => {
       <h1>{tab} </h1>
       <div className="collectionList">
         {list.map((item) => (
-          <ProductList item={item} key={item.id} />
+          <ProductList item={item} key={item._id} />
         ))}
       </div>
     </div>

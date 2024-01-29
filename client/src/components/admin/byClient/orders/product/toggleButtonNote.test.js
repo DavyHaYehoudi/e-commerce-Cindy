@@ -3,7 +3,7 @@ import { screen, fireEvent } from "@testing-library/react";
 import ToggleButtonNote from "./ToggleButtonNote";
 import { render } from "../../../../../test/utils";
 import "@testing-library/jest-dom";
-import * as actions from "../../../../../constants/productsActions";
+import * as actions from "../../../../../constants/productsByOrderActions";
 
 jest.mock("./item/action/hooks/useNoteValueHandler", () => ({
   useNoteValueHandler: (productId, actions) => {
@@ -13,13 +13,13 @@ jest.mock("./item/action/hooks/useNoteValueHandler", () => ({
   },
 }));
 
-const productsInfo = {
+const productsByOrderInfo = {
   note: "Some initial note",
 };
 
 render(
   <ToggleButtonNote
-    productsInfo={productsInfo}
+    productsByOrderInfo={productsByOrderInfo}
     productId="1mongoDb"
     actions={actions}
   />
@@ -49,7 +49,7 @@ describe("Integration Test - ToggleButtonNote", () => {
   test('displays textarea content when clicking on the "Note" toggle button', () => {
     render(
       <ToggleButtonNote
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productId="1mongoDb"
         actions={actions}
       />

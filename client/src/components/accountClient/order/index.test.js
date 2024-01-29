@@ -7,15 +7,15 @@ import { render } from "../../../test/utils";
 // Mock data for testing
 const mockOrderHistory = [
   {
-    id: 1,
-    date: "2023-01-15 08:30",
+    _id: 1,
+    createdAt: "2023-01-15 08:30",
     step: 0,
     trackingNumber: [  {
       id: "nndkdh4444aksdjfls",
       isAdmin: true,
       value: "102938MAUCBQPDMN",
       date: "2013-01-15 08:30",
-      products: [
+      productsByOrder: [
         { id: "vzxcvzxczoio354", productId:"2mongoDb", articlesNumber: 1 },
         { id: "vzxcvzxczoio355", productId:"1mongoDb", articlesNumber: 2 },
       ],
@@ -25,14 +25,14 @@ const mockOrderHistory = [
       isAdmin: false,
       value: "JND&HDYS#@FJKS",
       date: "2014-01-15 08:30",
-      products: [],
+      productsByOrder: [],
     },],
     paymentMethod: { cardType: "Visa", last4Digits: "**** **** **** 1234" },
     inTotalAmount: 220,
   },
   {
-    id: 2,
-    date: "2023-02-15 09:30",
+    _id: 2,
+    createdAt: "2023-02-15 09:30",
     step: 3,
     trackingNumber: [],
     paymentMethod: {
@@ -42,22 +42,22 @@ const mockOrderHistory = [
     inTotalAmount: 25,
   },
   {
-    id: 3,
-    date: "2023-03-15 10:30",
+    _id: 3,
+    createdAt: "2023-03-15 10:30",
     step: 2,
     trackingNumber: [ {
       id: "qpanfheifb48fn40n40",
       isAdmin: false,
       value: "JNFDNDM987MND*",
       date: "2023-01-10 08:30",
-      products: [{ id: "sdfg222uuuhreh", productId:"2mongoDb", articlesNumber: 1 }],
+      productsByOrder: [{ id: "sdfg222uuuhreh", productId:"2mongoDb", articlesNumber: 1 }],
     },
     {
       id: "lrjfsurpeoiwu08098",
       isAdmin: true,
       value: "10b2938MAUCBQPD",
       date: "2023-01-09 08:35",
-      products: [
+      productsByOrder: [
         { id: "1234123142312f", productId:"1mongoDb", articlesNumber: 1 },
         { id: "345634563456h", productId:"2mongoDb", articlesNumber: 1 },
       ],
@@ -89,24 +89,24 @@ describe("List Component", () => {
   test("renders inTotalAmount", () => {
     render(<List orderHistory={mockOrderHistory} filter={() => true} />);
     expect(
-      screen.getByText(new RegExp("Prix total : 220,00 €"))
+      screen.getByText(new RegExp(": 220,00 €"))
+    ).toBeInTheDocument();
+    expect( 
+      screen.getByText(new RegExp(": 25,00 €"))
     ).toBeInTheDocument();
     expect(
-      screen.getByText(new RegExp("Prix total : 25,00 €"))
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(new RegExp("Prix total : 80,00 €"))
+      screen.getByText(new RegExp(": 80,00 €"))
     ).toBeInTheDocument();
   });
   test("renders paymentMethod", () => {
     render(<List orderHistory={mockOrderHistory} filter={() => true} />);
-    expect(screen.getByText("Moyen de paiement : Visa")).toBeInTheDocument();
+    expect(screen.getByText(": Visa")).toBeInTheDocument();
     expect(
-      screen.getByText("Moyen de paiement : Mastercard")
+      screen.getByText(": Mastercard")
     ).toBeInTheDocument();
-    expect(screen.getByText("Moyen de paiement : Express")).toBeInTheDocument();
+    expect(screen.getByText(": Express")).toBeInTheDocument();
     expect(
-      screen.getByText("Se terminant par : **** **** **** 1234")
+      screen.getByText(": **** **** **** 1234")
     ).toBeInTheDocument();
   });
 

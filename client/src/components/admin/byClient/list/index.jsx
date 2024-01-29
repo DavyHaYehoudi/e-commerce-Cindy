@@ -19,7 +19,7 @@ const List = ({ handleClientClick, clientDetails }) => {
       <ul>
         {currentItems?.map((client) => (
           <Item
-            key={client.id}
+            key={client._id}
             client={client}
             handleClientClick={handleClientClick}
             clientDetails={clientDetails}

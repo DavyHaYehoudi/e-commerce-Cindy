@@ -37,12 +37,12 @@ export const userMock = {
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      products: [
+      productsByOrder: [
         {
           productId: "4mongoDb",
           quantity: 2,
           material: 1,
-          productsActions: {
+          productsByOrderActions: {
             exchange: null,
             refund: 2,
             credit: {
@@ -61,12 +61,12 @@ export const userMock = {
       inTotalAmount: 250,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      products: [
+      productsByOrder: [
         {
           productId: "14mongoDb",
           quantity: 1,
           material: 0,
-          productsActions: {
+          productsByOrderActions: {
             exchange: 1,
             refund: null,
             credit: {
@@ -85,12 +85,12 @@ export const userMock = {
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      products: [
+      productsByOrder: [
         {
           productId: "16mongoDb",
           quantity: 1,
           material: 3,
-          productsActions: {
+          productsByOrderActions: {
             exchange: null,
             refund: 1,
             credit: {
@@ -104,7 +104,7 @@ export const userMock = {
           productId: "9mongoDb",
           quantity: 1,
           material: 2,
-          productsActions: {
+          productsByOrderActions: {
             exchange: null,
             refund: null,
             credit: {

@@ -1,12 +1,12 @@
-#products-assortments-section h2{
+#productsByOrder-assortments-section h2{
  text-align: center;
  letter-spacing: var(--letter-spacing);
 }
-#products-assortments-section h3{
+#productsByOrder-assortments-section h3{
  letter-spacing: var(--letter-spacing);
 }
 
-.products-assortments-container{
+.productsByOrder-assortments-container{
     display: flex;
     justify-content:center;
     flex-wrap: wrap;

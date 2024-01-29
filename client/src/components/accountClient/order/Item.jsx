@@ -6,16 +6,23 @@ import { getProductProperties } from "../../../selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
 import { formatPrice } from "../../../helpers/utils/prices";
 
-const Item = ({ products, isReturnProduct }) => {
+const Item = ({ productsByOrder, isReturnProduct }) => {
   const state = useSelector((state) => state?.product?.data);
-  const productsStore = useSelector((state) => state?.client?.data?.products);
+  const productsByOrderStore = useSelector(
+    (state) => state?.customer?.data?.productsByOrder
+  );
 
   return (
-    <div className="order-items-user-account" data-testid="order-items-user-account">
-      {products &&
-        productsStore &&
-        productsStore
-          .filter((ps) => products.some((p) => p === ps.productId))
+    <div
+      className="order-items-user-account"
+      data-testid="order-items-user-account"
+    >
+      {productsByOrder &&
+        productsByOrderStore &&
+        productsByOrderStore
+          .filter((ps) =>
+            productsByOrder.some((p) => p.productId === ps.productId)
+          )
           .map((product) => {
             const { name, pricing, image } = getProductProperties(
               product.productId,
@@ -24,13 +31,22 @@ const Item = ({ products, isReturnProduct }) => {
             return (
               <div key={product.productId} className="order-item-user-account">
                 <div className="order-info">
-                  <p>Nom du produit : {name || "Non disponible"}</p>
                   <p>
-                    Matériau :{" "}
+                    <span className="dotted">Nom du produit</span> :{" "}
+                    {name || "Non disponible"}
+                  </p>
+                  <p>
+                    <span className="dotted">Matériau</span> :{" "}
                     {name && getMaterialProperty(product?.material).name}
                   </p>
-                  <p>Quantité : {product?.quantity}</p>
-                  <p>Prix unitaire : {formatPrice(pricing?.currentPrice)}</p>
+                  <p>
+                    <span className="dotted">Quantité</span> :{" "}
+                    {product?.quantity}
+                  </p>
+                  <p>
+                    <span className="dotted">Prix unitaire</span> :{" "}
+                    {formatPrice(pricing?.currentPrice)}
+                  </p>
                 </div>
                 <div
                   className="image-container info-tooltip"

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClients } from "../features/admin/clientsSlice";
 import { fetchOrders } from "../features/admin/ordersSlice";
-import { fetchProducts } from "../features/admin/productsSlice";
+import { fetchProducts } from "../features/admin/productsByOrderSlice";
 import { fetchProduct } from "../features/admin/productSlice";
-import { fetchCredits } from "../features/admin/creditsSlice";
-import { fetchClient } from "../features/accountClient/clientSlice";
+import { fetchCredits } from "../features/admin/creditSlice";
+import { fetchCustomer } from "../features/accountClient/customerSlice";
 
 const useFetchSlice = (slice, clientId) => {
   const dispatch = useDispatch();
@@ -15,10 +15,10 @@ const useFetchSlice = (slice, clientId) => {
     const fetchFunctionMap = {
       clients: fetchClients,
       orders: fetchOrders,
-      products: fetchProducts,
+      productsByOrder: fetchProducts,
       product: fetchProduct,
-      credits: fetchCredits,
-      client: fetchClient,
+      credit: fetchCredits,
+      customer: fetchCustomer,
     };
     if (status === "idle") {
       dispatch(fetchFunctionMap[slice](clientId));

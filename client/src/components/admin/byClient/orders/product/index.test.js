@@ -10,18 +10,18 @@ import { bar } from "../../../../../assets/bar.png";
 describe("List Component", () => {
   const mockState = {
     orders: {
-      data: [{ id: 1, products: [1, 2] }],
+      data: [{ _id: 1, productsByOrder: [1, 2] }],
     },
-    products: {
+    productsByOrder: {
       data: [
-        { id: 1, productId: 1, quantity: 2 },
-        { id: 2, productId: 2, quantity: 1 },
+        { _id: 1, productId: 1, quantity: 2 },
+        { _id: 2, productId: 2, quantity: 1 },
       ],
     },
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           category: "Jewelry",
           name: "Boucles d'oreilles",
@@ -35,7 +35,7 @@ describe("List Component", () => {
           },
         },
         {
-          id: 2,
+          _id: 2,
           reference: "ABC123XYZ",
           category: "Clothing",
           name: "Robe élégante",
@@ -57,14 +57,14 @@ describe("List Component", () => {
   const store = mockStore(mockState);
 
   const client = {
-    id: 1,
+    _id: 1,
   };
-  test("renders products correctly", () => {
+  test("renders productsByOrder correctly", () => {
     render(<List client={client} orderId={1} />, { store });
 
-    expect(screen.getByTestId("products-container")).toBeInTheDocument();
+    expect(screen.getByTestId("productsByOrder-container")).toBeInTheDocument();
 
-    mockState?.products?.data.forEach((product) => {
+    mockState?.productsByOrder?.data.forEach((product) => {
       expect(
         screen.getByTestId(`product-content-${product.productId}`) 
       ).toBeInTheDocument();

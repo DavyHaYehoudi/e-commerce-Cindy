@@ -1,8 +1,8 @@
 // Bouton de validation du champ de l'avoir
 import { useDispatch } from "react-redux";
-import { addCredit } from "../../../../../../../../../features/admin/creditsSlice";
+import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
 import { totalsInOut,articleAction } from "../../../../../../../../../features/admin/ordersSlice";
-import { updateActionContent } from "../../../../../../../../../features/admin/productsSlice";
+import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
 
 export const useConfirmCreditEntryHandler = () => {
   const dispatch = useDispatch();
@@ -10,17 +10,17 @@ export const useConfirmCreditEntryHandler = () => {
   const handleConfirmCreditEntry = (
     e,
     action,
-    productsActions,
+    productsByOrderActions,
     setProductActions,
     setEntryError,
     clientId,
     productId,
     orderId,
-    products,
+    productsByOrder,
     productPrice
   ) => {
     e.stopPropagation();
-    let { amount, dateExpire } = productsActions.creditContent;
+    let { amount, dateExpire } = productsByOrderActions.creditContent;
     amount = parseInt(amount);
     const selectedDate = new Date(dateExpire);
     const currentDate = new Date();
@@ -39,14 +39,14 @@ export const useConfirmCreditEntryHandler = () => {
     } else if (amount > 0 && validityDate) {
       dispatch(
         addCredit({
-          productsId: products.id,
-          amount: productsActions.creditContent.amount,
-          dateExpire: productsActions.creditContent?.dateExpire,
+          productsByOrderId: productsByOrder._id,
+          amount: productsByOrderActions.creditContent.amount,
+          dateExpire: productsByOrderActions.creditContent?.dateExpire,
         })
       );
       dispatch(
         updateActionContent({
-          creditContent: products.id,
+          creditContent: productsByOrder._id,
           productId,
           updatedProperty: action,
           isClientNotified: false,

@@ -401,34 +401,34 @@
 
 /* ********************* ENDTOTAL SORTIES ********************* */
 /* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
-#products-container .product-content {
+#productsByOrder-container .product-content {
     padding: 10px;
     border: 1px dotted var(--dark);
     margin: 20px;
 }
 
-#products-container .action-icon {
+#productsByOrder-container .action-icon {
     font-size: 20px;
     cursor: pointer;
     text-align: end;
 }
 
-#products-container .actions-list {
+#productsByOrder-container .actions-list {
     background-color: #fff;
     border: 1px solid #ddd;
     display: none;
 }
 
-#products-container .actions-list li {
+#productsByOrder-container .actions-list li {
     cursor: pointer;
     padding: 0 5px;
 }
 
-#products-container .actions-list li.active {
+#productsByOrder-container .actions-list li.active {
     color: var(--danger);
 }
 
-#products-container .product-content-details {
+#productsByOrder-container .product-content-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -436,7 +436,7 @@
 
 }
 
-#products-container .product-content.open .actions-list {
+#productsByOrder-container .product-content.open .actions-list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -479,7 +479,7 @@
     background-color: var(--danger);
 }
 
-#products-container .product-tag {
+#productsByOrder-container .product-tag {
     color: white;
     background-color: var(--secondary);
     border: none;
@@ -488,7 +488,7 @@
     margin: 5px;
 }
 
-#products-container .product-note-container {
+#productsByOrder-container .product-note-container {
     margin: 20px;
     text-align: initial;
 }

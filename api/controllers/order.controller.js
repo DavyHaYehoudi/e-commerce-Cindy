@@ -1,8 +1,12 @@
-import { ordersMock } from "../mocks/ordersMock.js";
-const ordersController = {
+import Order from "../models/order.model.js";
+const orderController = {
   getAllOrders: async (req, res) => {
-    console.log("dans le controller getAllOrders");
-    res.status(200).json(ordersMock);
+    try {
+      const orders = await Order.find();
+      res.status(200).json(orders);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   getOrderById: async (req, res) => {
@@ -22,4 +26,4 @@ const ordersController = {
   },
 };
 
-export default ordersController;
+export default orderController;

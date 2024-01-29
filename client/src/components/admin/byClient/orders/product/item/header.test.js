@@ -10,11 +10,11 @@ const mockStore = configureStore([]);
 
 describe("Header Component", () => {
   const initialState = {
-    credits: {
+    credit: {
       data: [
         {
-          id: "idMongoDbGenerate1",
-          productsId: 1,
+          _id: "idMongoDbGenerate1",
+          productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
@@ -24,7 +24,7 @@ describe("Header Component", () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           name: "Boucles d'oreilles",
           pricing: {
@@ -39,7 +39,7 @@ describe("Header Component", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basic data", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
@@ -47,8 +47,8 @@ describe("Header Component", () => {
     const material = 0;
     const quantity = 3;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -59,9 +59,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -74,7 +74,7 @@ describe("Header Component", () => {
     expect(screen.getByText("Référence : QER2345OIJD")).toBeInTheDocument();
   });
   test("display ECHANGE,REMBOURSEMENT,AVOIR", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
@@ -82,8 +82,8 @@ describe("Header Component", () => {
     const material = 0;
     const quantity = 3;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -94,9 +94,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -108,7 +108,7 @@ describe("Header Component", () => {
     expect(screen.getByText(("AVOIR :"))).toBeInTheDocument();
   });
   test("display ECHANGE,REMBOURSEMENT and not AVOIR", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: false,
@@ -116,8 +116,8 @@ describe("Header Component", () => {
     const material = 0;
     const quantity = 3;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -128,9 +128,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -142,7 +142,7 @@ describe("Header Component", () => {
     expect(screen.queryByText(("AVOIR :"))).toBeNull();
   });
   test("display ECHANGE and not REMBOURSEMENT neither AVOIR", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 0,
       credit: false,
@@ -150,8 +150,8 @@ describe("Header Component", () => {
     const material = 0;
     const quantity = 3;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -162,9 +162,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -177,15 +177,15 @@ describe("Header Component", () => {
   });
 
   test("renders the correct price for a single item", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: false,
     };
     const material = 0;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -198,9 +198,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -212,15 +212,15 @@ describe("Header Component", () => {
   });
 
   test("renders the correct price for multiple items", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 3,
       credit: false,
     };
     const material = 0;
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     }; 
     const isTagProductExisted = true;
     const toggleActions = jest.fn();
@@ -233,9 +233,9 @@ describe("Header Component", () => {
         material={material}
         quantity={quantity}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
         isTagProductExisted={isTagProductExisted}
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,

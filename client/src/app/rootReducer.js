@@ -1,20 +1,20 @@
 // rootReducer.js
 import { combineReducers } from "redux";
-import clientReducer from "../features/accountClient/clientSlice";
+import customerReducer from "../features/accountClient/customerSlice";
 import ordersReducer from "../features/admin/ordersSlice";
-import productsReducer from "../features/admin/productsSlice";
+import productsByOrderReducer from "../features/admin/productsByOrderSlice";
 import productReducer from "../features/admin/productSlice";
 import clientsReducer from "../features/admin/clientsSlice";
-import creditsReducer from "../features/admin/creditsSlice";
+import creditReducer from "../features/admin/creditSlice";
 
 const rootReducer = (state, action) => {
   return combineReducers({
     clients: clientsReducer,
     orders: ordersReducer,
-    products: productsReducer,
+    productsByOrder: productsByOrderReducer,
     product: productReducer,
-    credits: creditsReducer,
-    client: clientReducer,
+    credit: creditReducer,
+    customer: customerReducer,
   })(state, action);
 };
 // const rootReducer = (state, action) => {

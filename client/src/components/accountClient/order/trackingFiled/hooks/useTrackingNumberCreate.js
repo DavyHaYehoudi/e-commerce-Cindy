@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addClientTrackingNumber } from "../../../../../features/accountClient/clientSlice";
+import { addClientTrackingNumber } from "../../../../../features/accountClient/customerSlice";
 
 const useTrackingNumberCreate = ({
   setErrors,

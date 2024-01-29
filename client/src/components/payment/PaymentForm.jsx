@@ -39,7 +39,7 @@ const PaymentForm = () => {
   
 
   return (
-    <div id="payment-form">
+    <div id="payment-form" data-testid="payment-form">
       <PaymentFormContact onUpdate={updateContactData} />
       <PaymentFormDelivery onUpdate={updateDeliveryData} />
       <PaymentFormCard onUpdate={updateCardData} />

@@ -29,8 +29,8 @@ const ActionsDropdown = ({
   const performAction = (actionType, newStep) => {
     dispatch(
       actionType({
-        clientId: client.id,
-        orderId: order.id,
+        clientId: client._id,
+        orderId: order._id,
         isClientNotified: false,
         step: newStep,
         isNextStepOrder: true,

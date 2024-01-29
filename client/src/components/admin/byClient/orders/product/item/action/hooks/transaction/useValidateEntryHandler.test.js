@@ -1,7 +1,7 @@
 import { act } from "react-dom/test-utils";
 import { useValidateEntryHandler } from "./useValidateEntryHandler";
-import * as actions from "../../../../../../../../../constants/productsActions";
-import { updateActionContent } from "../../../../../../../../../features/admin/productsSlice";
+import * as actions from "../../../../../../../../../constants/productsByOrderActions";
+import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
 
 // Mock de useDispatch pour surveiller les actions dispatchées
 jest.mock("react-redux", () => ({
@@ -17,9 +17,9 @@ describe("useValidateEntryHandler", () => {
     dispatch = jest.fn();
     setEntryError = jest.fn();
   });
-  const productsActions = {};
+  const productsByOrderActions = {};
   it("devrait déclencher une erreur si le nombre maximal d'articles est dépassé, avec REFUND = 2 et EXCHANGE = 0", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: null,
       refund: 2,
       credit: null,
@@ -28,8 +28,8 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
-      productsInfo,
-      productsActions,
+      productsByOrderInfo,
+      productsByOrderActions,
       articleNumber,
       setEntryError,
       dispatch,
@@ -55,7 +55,7 @@ describe("useValidateEntryHandler", () => {
     );
   });
   it("devrait déclencher une erreur si le nombre maximal d'articles est dépassé, avec REFUND = 1 et EXCHANGE = 1", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 1,
       credit: null,
@@ -64,8 +64,8 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
-      productsInfo,
-      productsActions,
+      productsByOrderInfo,
+      productsByOrderActions,
       articleNumber,
       setEntryError,
       dispatch,
@@ -91,7 +91,7 @@ describe("useValidateEntryHandler", () => {
     );
   });
   it("devrait déclencher une erreur si le nombre maximal d'articles est dépassé, avec REFUND = 0 et EXCHANGE = 2", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 2,
       refund: 0,
       credit: null,
@@ -100,8 +100,8 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
-      productsInfo,
-      productsActions,
+      productsByOrderInfo,
+      productsByOrderActions,
       articleNumber,
       setEntryError,
       dispatch,
@@ -127,7 +127,7 @@ describe("useValidateEntryHandler", () => {
     );
   });
   it("devrait déclencher une action de validation réussie si le nombre maximal d'articles n'est pas dépassé,avec REFUND = 0 et EXCHANGE = 1", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 1,
       refund: 0,
       credit: null,
@@ -136,8 +136,8 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
-      productsInfo,
-      productsActions,
+      productsByOrderInfo,
+      productsByOrderActions,
       articleNumber,
       setEntryError,
       dispatch,
@@ -167,7 +167,7 @@ describe("useValidateEntryHandler", () => {
     expect(setEntryError).not.toHaveBeenCalled();
   });
   it("devrait déclencher une action de validation réussie si le nombre maximal d'articles n'est pas dépassé,avec REFUND = 1 et EXCHANGE = 0", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       exchange: 0,
       refund: 1,
       credit: null,
@@ -176,8 +176,8 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
-      productsInfo,
-      productsActions,
+      productsByOrderInfo,
+      productsByOrderActions,
       articleNumber,
       setEntryError,
       dispatch,

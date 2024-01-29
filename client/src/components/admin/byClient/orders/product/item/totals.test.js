@@ -12,7 +12,7 @@ describe("Totals Component", () => {
     product: {
       data: [
         {
-          id: 1,
+          _id: 1,
           reference: "QER2345OIJD",
           category: "Jewelry",
           name: "Boucles d'oreilles",
@@ -27,18 +27,18 @@ describe("Totals Component", () => {
         },
       ],
     },
-    credits: {
+    credit: {
       data: [
         {
-          id: "idMongoDbGenerate1",
-          productsId: 1,
+          _id: "idMongoDbGenerate1",
+          productsByOrderId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
         },
         {
-          id: "idMongoDbGenerate2",
-          productsId: 2,
+          _id: "idMongoDbGenerate2",
+          productsByOrderId: 2,
           amount: 0,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
@@ -50,38 +50,38 @@ describe("Totals Component", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basic data", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       refund: 10,
     };
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     };
 
     render(
       <Totals
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
       />,
       { store }
     );
     expect(screen.getByText("Sortie :")).toBeInTheDocument();
   });
   test("refund + creditTotal > 0 , with refund = 0 and creditTotal > 0", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       refund: 0,
     };
     const productId = 1;
-    const products = {
-      id: 1,
+    const productsByOrder = {
+      _id: 1,
     };
 
     render(
       <Totals
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
       />,
       { store }
     );
@@ -89,19 +89,19 @@ describe("Totals Component", () => {
     expect(screen.getByText(formatPrice(10))).toBeInTheDocument();
   });
   test("refund + creditTotal > 0 , with refund > 0 and creditTotal = 0", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       refund: 2,
     };
     const productId = 1;
-    const products = {
-      id: 2,
+    const productsByOrder = {
+      _id: 2,
     };
 
     render(
       <Totals
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
       />,
       { store }
     );
@@ -110,19 +110,19 @@ describe("Totals Component", () => {
     expect(screen.getByText(formatPrice(totalRefund))).toBeInTheDocument();
   });
   test("refund + creditTotal = 0", () => {
-    const productsInfo = {
+    const productsByOrderInfo = {
       refund: 0,
     };
     const productId = 1;
-    const products = {
-      id: 2,
+    const productsByOrder = {
+      _id: 2,
     };
 
     render(
       <Totals
-        productsInfo={productsInfo}
+        productsByOrderInfo={productsByOrderInfo}
         productId={productId}
-        products={products}
+        productsByOrder={productsByOrder}
       />,
       { store }
     );

@@ -8,9 +8,9 @@ import { materials } from "../../../constants/materials";
 
 const mockStore = configureStore([]);
 const initialState = {
-  client: {
+  customer: {
     data: {
-      products: [
+      productsByOrder: [
         {
           productId: 1,
           quantity: 2,
@@ -28,7 +28,7 @@ const initialState = {
   product: {
     data: [
       {
-        id: 1,
+        _id: 1,
         reference: "QER2345OIJD",
         name: "Boucles d'oreilles",
         pricing: {
@@ -37,7 +37,7 @@ const initialState = {
         image: "product-image.jpg",
       },
       {
-        id: 2,
+        _id: 2,
         reference: "aEnjuiOIJz",
         name: "Bracelet",
         pricing: {
@@ -52,30 +52,30 @@ const initialState = {
 describe("Item Component", () => {
   const store = mockStore(initialState);
   test("renders Item component with initial data", () => {
-    render(<Item products={[1]} isReturnProduct={false} />, { store });
+    render(<Item productsByOrder={[1]} isReturnProduct={false} />, { store });
 
     // Vérifier que le composant Item est rendu
     expect(screen.getByTestId("order-items-user-account")).toBeInTheDocument();
   });
 
   test("renders product information correctly", () => {
-    render(<Item products={[1, 2]} isReturnProduct={false} />, { store });
+    render(
+      <Item
+        productsByOrder={[{ productId: 1 }, { productId: 2 }]}
+        isReturnProduct={false}
+      />,
+      { store }
+    );
 
     // Vérifier que les informations du produit sont rendues correctement
-    expect(
-      screen.getByText("Nom du produit : Boucles d'oreilles")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(`Matériau : ${materials[1].name}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText("Quantité : 2")).toBeInTheDocument();
-    expect(screen.getByText("Prix unitaire : 50,00 €")).toBeInTheDocument();
+    expect(screen.getByText(/Boucles d'oreilles/i)).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[1].name}`)).toBeInTheDocument();
+    expect(screen.getByText(": 2")).toBeInTheDocument();
+    expect(screen.getByText(": 50,00 €")).toBeInTheDocument();
 
-    expect(screen.getByText("Nom du produit : Bracelet")).toBeInTheDocument();
-    expect(
-      screen.getByText(`Matériau : ${materials[2].name}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText("Quantité : 3")).toBeInTheDocument();
-    expect(screen.getByText("Prix unitaire : 30,00 €")).toBeInTheDocument();
+    expect(screen.getByText(": Bracelet")).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[2].name}`)).toBeInTheDocument();
+    expect(screen.getByText(": 3")).toBeInTheDocument();
+    expect(screen.getByText(": 30,00 €")).toBeInTheDocument();
   });
 });

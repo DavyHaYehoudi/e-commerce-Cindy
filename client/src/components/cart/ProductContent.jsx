@@ -1,6 +1,6 @@
 import React from "react";
 import ImageCarousel from "./ImageCarousel";
-import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
+// import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
 import ProductMeta from "../../shared/ProductMeta";
 import FavoriteButton from "../../shared/FavoriteButton";
 import AddToCartButton from "../../shared/AddToCartButton";
@@ -35,11 +35,11 @@ const ProductContent = ({ state, handleCartShow }) => {
           <ProductColorSelector />
         </div>
         <p className="separator"></p>
-        <QuantitySelectProduct />
+        {/* <QuantitySelectProduct /> */}
         <AddToCartButton
           buttonText="Ajouter au panier"
           onClick={handleCartShow}
-          additionalFunction={() => handleAddToCart("product.id")}
+          additionalFunction={() => handleAddToCart("product._id")}
           className="buy-button btn"
         />
         <p>{description} </p>

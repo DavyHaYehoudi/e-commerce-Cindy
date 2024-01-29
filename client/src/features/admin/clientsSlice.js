@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
-// import { clientsMock } from "../../mocks/clientsMock";
 
 const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
   try {
-    return customFetch("clients");
+    return customFetch("client");
   } catch (error) {
     handleFetchError(error);
   }
@@ -13,13 +12,12 @@ const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
 
 const clientsSlice = createSlice({
   name: "clients",
-  // initialState: clientsMock,
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     addNote: (state, action) => {
       const { clientId, id, content, date } = action.payload;
       state.data = state.data.map((user) =>
-        user.id === clientId
+        user._id === clientId
           ? {
               ...user,
               notesAdmin: user.notesAdmin
@@ -32,7 +30,7 @@ const clientsSlice = createSlice({
     deleteNote: (state, action) => {
       const { clientId, noteId } = action.payload;
       state.data = state.data.map((user) =>
-        user.id === clientId
+        user._id === clientId
           ? {
               ...user,
               notesAdmin: user.notesAdmin

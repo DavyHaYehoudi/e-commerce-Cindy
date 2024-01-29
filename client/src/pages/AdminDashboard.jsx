@@ -6,9 +6,9 @@ const AdminDashboard = () => {
   const [clientDetails, setClientDetails] = useState({});
   useFetchSlice("clients");
   useFetchSlice("orders");
-  useFetchSlice("products");
+  useFetchSlice("productsByOrder");
   useFetchSlice("product");
-  useFetchSlice("credits");
+  useFetchSlice("credit");
 
   // ouverture/fermeture rangée client
   const handleClientClick = (clientId) => {
