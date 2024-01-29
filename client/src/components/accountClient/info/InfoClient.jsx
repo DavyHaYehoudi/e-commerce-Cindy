@@ -25,7 +25,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
     <div className="user-info-account">
       <h2>Informations</h2>
       <p>
-        <b>Prénom :</b>{" "}
+        <b><span className="dotted">Prénom</span> :</b>{" "}
         {isEditing ? (
           <input
             type="text"
@@ -39,7 +39,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
         )}
       </p>
       <p>
-        <b>Nom : </b>
+        <b><span className="dotted">Nom</span> : </b>
         {isEditing ? (
           <input
             type="text"
@@ -53,7 +53,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
         )}
       </p>
       <p>
-        <b>Email :</b>{" "}
+        <b><span className="dotted">Email</span> :</b>{" "}
         {isEditing ? (
           <input
             type="email"
@@ -67,7 +67,7 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
         )}
       </p>
       <p>
-        <b>Téléphone :</b>{" "}
+        <b><span className="dotted">Téléphone</span> :</b>{" "}
         {isEditing ? (
           <input
             type="text"
@@ -81,17 +81,17 @@ const InfoClient = ({ dataClient, onSaveChanges }) => {
         )}
       </p>
       <p>
-        <b>Adresse de livraison :</b>{" "}
+        <b><span className="dotted">Adresse de livraison</span> :</b>{" "}
         {isEditing ? (
           <input
             type="text"
             name="address"
             className="account-input"
-            value={editedUserData.address}
+            value={editedUserData.shippingAddress}
             onChange={handleInputChange}
           />
         ) : (
-          dataClient?.address
+          dataClient?.shippingAddress
         )}
       </p>
       {isEditing ? (

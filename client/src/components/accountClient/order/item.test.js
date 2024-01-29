@@ -6,7 +6,7 @@ import { render } from "../../../test/utils";
 import configureStore from "redux-mock-store";
 import { materials } from "../../../constants/materials";
 
-const mockStore = configureStore([]); 
+const mockStore = configureStore([]);
 const initialState = {
   customer: {
     data: {
@@ -59,23 +59,23 @@ describe("Item Component", () => {
   });
 
   test("renders product information correctly", () => {
-    render(<Item productsByOrder={[1, 2]} isReturnProduct={false} />, { store });
- 
-    // Vérifier que les informations du produit sont rendues correctement
-    expect(
-      screen.getByText("Nom du produit : Boucles d'oreilles")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(`Matériau : ${materials[1].name}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText("Quantité : 2")).toBeInTheDocument();
-    expect(screen.getByText("Prix unitaire : 50,00 €")).toBeInTheDocument();
+    render(
+      <Item
+        productsByOrder={[{ productId: 1 }, { productId: 2 }]}
+        isReturnProduct={false}
+      />,
+      { store }
+    );
 
-    expect(screen.getByText("Nom du produit : Bracelet")).toBeInTheDocument();
-    expect(
-      screen.getByText(`Matériau : ${materials[2].name}`)
-    ).toBeInTheDocument();
-    expect(screen.getByText("Quantité : 3")).toBeInTheDocument();
-    expect(screen.getByText("Prix unitaire : 30,00 €")).toBeInTheDocument();
+    // Vérifier que les informations du produit sont rendues correctement
+    expect(screen.getByText(/Boucles d'oreilles/i)).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[1].name}`)).toBeInTheDocument();
+    expect(screen.getByText(": 2")).toBeInTheDocument();
+    expect(screen.getByText(": 50,00 €")).toBeInTheDocument();
+
+    expect(screen.getByText(": Bracelet")).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[2].name}`)).toBeInTheDocument();
+    expect(screen.getByText(": 3")).toBeInTheDocument();
+    expect(screen.getByText(": 30,00 €")).toBeInTheDocument();
   });
 });

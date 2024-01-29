@@ -8,14 +8,21 @@ import { formatPrice } from "../../../helpers/utils/prices";
 
 const Item = ({ productsByOrder, isReturnProduct }) => {
   const state = useSelector((state) => state?.product?.data);
-  const productsByOrderStore = useSelector((state) => state?.customer?.data?.productsByOrder);
+  const productsByOrderStore = useSelector(
+    (state) => state?.customer?.data?.productsByOrder
+  );
 
   return (
-    <div className="order-items-user-account" data-testid="order-items-user-account">
+    <div
+      className="order-items-user-account"
+      data-testid="order-items-user-account"
+    >
       {productsByOrder &&
         productsByOrderStore &&
         productsByOrderStore
-          .filter((ps) => productsByOrder.some((p) => p === ps.productId))
+          .filter((ps) =>
+            productsByOrder.some((p) => p.productId === ps.productId)
+          )
           .map((product) => {
             const { name, pricing, image } = getProductProperties(
               product.productId,
@@ -24,13 +31,22 @@ const Item = ({ productsByOrder, isReturnProduct }) => {
             return (
               <div key={product.productId} className="order-item-user-account">
                 <div className="order-info">
-                  <p>Nom du produit : {name || "Non disponible"}</p>
                   <p>
-                    Matériau :{" "}
+                    <span className="dotted">Nom du produit</span> :{" "}
+                    {name || "Non disponible"}
+                  </p>
+                  <p>
+                    <span className="dotted">Matériau</span> :{" "}
                     {name && getMaterialProperty(product?.material).name}
                   </p>
-                  <p>Quantité : {product?.quantity}</p>
-                  <p>Prix unitaire : {formatPrice(pricing?.currentPrice)}</p>
+                  <p>
+                    <span className="dotted">Quantité</span> :{" "}
+                    {product?.quantity}
+                  </p>
+                  <p>
+                    <span className="dotted">Prix unitaire</span> :{" "}
+                    {formatPrice(pricing?.currentPrice)}
+                  </p>
                 </div>
                 <div
                   className="image-container info-tooltip"

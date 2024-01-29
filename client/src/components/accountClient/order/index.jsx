@@ -18,17 +18,25 @@ const List = ({ orderHistory, filter }) => {
           <div key={order._id} className="order-item-wrapper-user-account">
             <div className="header">
               <div className="date-step">
-                <span>Date de commande : {formatDate(order?.date)}</span>
+                <span>
+                  <span className="dotted">Date de commande</span> :{" "}
+                  {formatDate(order?.createdAt)}
+                </span>
                 <OrderStep order={order} />
               </div>
               <div className="details">
                 <p>
-                  Prix total : {formatPrice(order?.inTotalAmount) || "Total NC"}
+                  <span className="dotted">Prix total</span> :{" "}
+                  {formatPrice(order?.inTotalAmount) || "Total NC"}
                 </p>
-                <p>Moyen de paiement : {order?.paymentMethod["cardType"]}</p>
+                <p>
+                  <span className="dotted">Moyen de paiement</span> :{" "}
+                  {order?.paymentMethod["cardType"]}
+                </p>
                 <p>
                   {" "}
-                  Se terminant par : {order?.paymentMethod["last4Digits"]}{" "}
+                  <span className="dotted">Se terminant par</span> :{" "}
+                  {order?.paymentMethod["last4Digits"]}{" "}
                 </p>
               </div>
             </div>

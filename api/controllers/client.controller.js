@@ -1,8 +1,5 @@
-import { clientsMock } from "../mocks/clientsMock.js";
-import { creditMock } from "../mocks/creditMock.js";
-import { ordersMock } from "../mocks/ordersMock.js";
-import { productsByOrderMock } from "../mocks/productsByOrderMock.js";
 import Client from "../models/client.model.js";
+import Credit from "../models/credit.model.js";
 
 const clientController = {
   getAllClients: async (req, res) => {
@@ -19,39 +16,31 @@ const clientController = {
     console.log("clientId:", clientId);
 
     try {
-      // Recherche du client dans le mock
-      const client = clientsMock.find((c) => c.id === clientId);
-      //attention de bien exclure notesAdmin avec .select('-notesAdmin')
+      // Recherche du client dans la base de données MongoDB avec les commandes et les produits associés
+      const client = await Client.findById(clientId).populate({
+        path: "orders",
+        populate: {
+          path: "productsByOrder",
+          model: "ProductsByOrder",
+        },
+      });
 
       if (!client) {
         return res.status(404).json({ error: "Client not found" });
       }
 
-      // Récupération des commandes associées au client dans le mock
-      const clientOrdersIds = client.orders;
-      const orders = ordersMock.filter((order) =>
-        clientOrdersIds.includes(order.id)
-      );
+      const orders = client.orders;
 
-      // Récupération des produits associés aux commandes dans le mock
-      const orderProductIds = orders.reduce((acc, order) => {
-        acc.push(...order.productsByOrder);
-        return acc;
-      }, []);
+      // Utilisation de flatMap pour obtenir directement les produits associés aux commandes
+      const productsByOrder = orders.flatMap((order) => order.productsByOrder);
 
-      const productsByOrder = productsByOrderMock.filter((item) =>
-        orderProductIds.includes(item.id)
-      );
+      // Utilisation de map pour récupérer les crédits associés aux produits
+      const creditIds = productsByOrder
+        .map((product) => product?.productsByOrderActions?.credit)
+        .filter(Boolean);
 
-      // Récupération des crédits associés au client dans le mock
-      const creditIds = productsByOrder.map(
-        (product) => product?.productsByOrderActions?.credit
-      );
-
-      // Filtrer les détails des crédits correspondants
-      const credit = creditMock.filter((credit) =>
-        creditIds.includes(credit.productsByOrderId)
-      );
+      // Récupération des crédits associés au client
+      const credit = await Credit.find({ productsByOrderId: { $in: creditIds } });
 
       res.json({ client, orders, productsByOrder, credit });
     } catch (error) {
