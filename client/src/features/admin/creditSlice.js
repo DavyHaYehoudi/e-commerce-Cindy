@@ -20,17 +20,27 @@ const addCredit = createAsyncThunk("credit/addCredit", async (creditData) => {
     handleFetchError(error);
   }
 });
-
+const deleteCredit = createAsyncThunk("credit/deleteCredit", async (productsByOrderId) => {
+  try {
+    await customFetch(`credit/${productsByOrderId}`, {
+      method: "DELETE",
+    });
+    return productsByOrderId;
+  } catch (error) {
+    handleFetchError(error);
+    throw error; 
+  }
+});
 const creditSlice = createSlice({
   name: "credit",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
-    deleteCredit: (state, action) => {
-      const { productsByOrderId } = action.payload;
-      state.data = state.data.filter(
-        (item) => item.productsByOrderId !== productsByOrderId
-      );
-    },
+    // deleteCredit: (state, action) => {
+    //   const { productsByOrderId } = action.payload;
+    //   state.data = state.data.filter(
+    //     (item) => item.productsByOrderId !== productsByOrderId
+    //   );
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -57,9 +67,20 @@ const creditSlice = createSlice({
       .addCase(addCredit.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(deleteCredit.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteCredit.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        state.data = state.data.filter((credit) => credit.productsByOrderId !== action.payload);
+      })
+      .addCase(deleteCredit.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
-export const { deleteCredit } = creditSlice.actions;
-export { fetchCredits, addCredit };
+export { fetchCredits, addCredit,deleteCredit };
 export default creditSlice.reducer;

@@ -175,7 +175,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted client
         '400':
           description: Invalid clientId supplied
@@ -297,26 +297,6 @@ paths:
                 $ref: '#/components/schemas/ProductsByOrder'
         '401':
           description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
-    post:
-      tags:
-        - productsbyorder 
-      summary: Add the products contained in an order
-      description: Place products for a purchase in one order
-      operationId: placeProduct
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FirstProductsByOrder'
-      responses:
-        '201':
-          description: successful posting productsByOrder
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
-          description: Unauthorized - Client is not authenticated
       security:
         - api_key: []
   /productsbyorder/{productsbyorderId}:
@@ -486,7 +466,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted product
         '400':
           description: Invalid productId supplied
@@ -576,7 +556,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted credit
         '400':
           description: Invalid creditId supplied

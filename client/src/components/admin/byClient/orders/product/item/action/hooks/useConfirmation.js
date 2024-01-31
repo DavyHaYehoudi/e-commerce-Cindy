@@ -56,7 +56,7 @@ const useConfirmation = ({
         })
       );
       dispatch(articleAction({ clientId, orderId }));
-      dispatch(deleteCredit({ productsByOrderId: productsByOrder._id }));
+      dispatch(deleteCredit(productsByOrder._id ));
       dispatch(
         updateActionContent({
           creditContent: null,

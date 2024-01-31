@@ -7,14 +7,14 @@ const creditController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }, 
+  },
 
   createCredit: async (req, res) => {
     try {
       const { productsByOrderId, amount, dateExpire } = req.body;
-  
+
       if (!productsByOrderId || !amount || !dateExpire) {
-        return res.status(400).json({ error: 'Missing required fields' });
+        return res.status(400).json({ error: "Missing required fields" });
       }
 
       const newCredit = await Credit.create({
@@ -22,18 +22,29 @@ const creditController = {
         amount,
         dateExpire,
       });
-  
-      console.log('newCredit:', newCredit)
+
       res.status(201).json(newCredit);
     } catch (error) {
-      console.error('Error creating credit:', error);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error("Error creating credit:", error);
+      res.status(500).json({ error: "Internal server error" });
     }
   },
 
   deleteCredit: async (req, res) => {
-    // Implementation for deleting a client
+    const {productsByOrderId}= req.params
+    try {
+      const credit = await Credit.findOne({ productsByOrderId: productsByOrderId });
+
+      if (!credit) {
+        return res.status(404).json({ error: 'Credit not found' });
+      }
+      await Credit.findOneAndDelete({ productsByOrderId:  productsByOrderId });
+      res.status(204).end();
+    } catch (error) {
+      console.error('Error deleting credit:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   },
 };
 
-export default creditController; 
+export default creditController;
