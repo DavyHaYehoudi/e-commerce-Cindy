@@ -10,7 +10,6 @@ const creditController = {
       res.status(500).json({ error: error.message });
     }
   },
-
   createCredit: async (req, res) => {
     try {
       const { productsByOrderId, amount, dateExpire, orderId } = req.body;
@@ -62,7 +61,6 @@ const creditController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
-
   deleteCredit: async (req, res) => {
     try {
       const { productsByOrderId } = req.params;

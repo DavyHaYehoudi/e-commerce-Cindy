@@ -11,6 +11,7 @@ export const generateItemTransactionComponent = (
   clientId,
   productId,
   orderId,
+  productsByOrder,
   productsByOrderInfo,
   productsByOrderState,
   productsByOrderActions,
@@ -30,6 +31,7 @@ export const generateItemTransactionComponent = (
       clientId={clientId}
       productId={productId}
       orderId={orderId}
+      productsByOrder={productsByOrder}
       textCancel={`ANNULER ${label}`}
       productsByOrderInfo={productsByOrderInfo}
       productsByOrderState={productsByOrderState}

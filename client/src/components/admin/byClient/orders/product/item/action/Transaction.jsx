@@ -16,6 +16,7 @@ const Transaction = ({
   clientId,
   productId,
   orderId,
+  productsByOrder,
   textCancel,
   productsByOrderInfo,
   productsByOrderState,
@@ -37,6 +38,7 @@ const Transaction = ({
   );
   const { handleValidateEntry } = useValidateEntryHandler(
     actions,
+    productsByOrder,
     productsByOrderInfo,
     productsByOrderActions,
     articleNumber,
@@ -88,7 +90,6 @@ const Transaction = ({
                 e,
                 action,
                 clientId,
-                productId,
                 orderId,
                 setProductActions,
                 productPrice

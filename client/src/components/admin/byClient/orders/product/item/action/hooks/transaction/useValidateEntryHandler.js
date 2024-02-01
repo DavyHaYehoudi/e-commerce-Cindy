@@ -2,6 +2,7 @@ import { articleAction, totalsInOut } from "../../../../../../../../../features/
 
 export const useValidateEntryHandler = (
   actions,
+  productsByOrder,
   productsByOrderInfo,
   productsByOrderActions,
   articleNumber,
@@ -14,7 +15,6 @@ export const useValidateEntryHandler = (
     e,
     action,
     clientId,
-    productId,
     orderId,
     setProductActions,
     productPrice
@@ -50,10 +50,10 @@ export const useValidateEntryHandler = (
     if (productsByOrderActions[contentKey] > 0 && checkArticleNumber) {
       dispatch(
         updateActionContent({
-          productId,
           updatedProperty: action,
           isClientNotified: false,
           productActionContent,
+          productsByOrderId: productsByOrder._id,
         })
       );
       if (action === actions.REFUND) {

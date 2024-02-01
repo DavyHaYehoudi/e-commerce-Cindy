@@ -2,8 +2,8 @@ import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { useNoteValueHandler } from "./item/action/hooks/useNoteValueHandler";
 
-const ToggleButtonNote = ({ productsByOrderInfo, productId, actions }) => {
-  const { handleChangeNoteValue } = useNoteValueHandler(productId, actions);
+const ToggleButtonNote = ({ productsByOrderInfo, actions,productsByOrder }) => {
+  const { handleChangeNoteValue } = useNoteValueHandler(actions,productsByOrder);
   return (
     <ToggleButton
       initialText="Note"
