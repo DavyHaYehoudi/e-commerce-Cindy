@@ -94,7 +94,7 @@ paths:
       operationId: logoutClient
       parameters: []
       responses:
-        '204':
+        '200':
           description: successful logged
       security:
         - api_key: []
@@ -149,7 +149,7 @@ paths:
             schema:
               $ref: '#/components/schemas/EditClient'
       responses:
-        '204':
+        '200':
           description: Successful updated client
         '400':
           description: Invalid clientId supplied
@@ -175,7 +175,7 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        '200':
           description: Successful deleted client
         '400':
           description: Invalid clientId supplied
@@ -272,7 +272,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Order'
       responses:
-        '204':
+        '200':
           description: Successful updated order
         '400':
           description: Invalid orderId supplied
@@ -347,7 +347,7 @@ paths:
             schema:
               $ref: '#/components/schemas/EditProductsByOrder'
       responses:
-        '204':
+        '200':
           description: Successful updated productsbyorder
         '400':
           description: Invalid productsbyorder ID supplied
@@ -442,7 +442,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Product'
       responses:
-        '204':
+        '200':
           description: Successful updated product
         '400':
           description: Invalid product ID supplied
@@ -466,7 +466,7 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        '200':
           description: Successful deleted product
         '400':
           description: Invalid productId supplied
@@ -556,7 +556,7 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        '200':
           description: Successful deleted credit
         '400':
           description: Invalid creditId supplied
@@ -564,6 +564,32 @@ paths:
           description: Unauthorized - Admin is not authenticated
         '404':
           description: Credit not found
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - credit
+      summary: Use of customer credit
+      description: This can only be done by the logged in client.
+      operationId: updateCredit to be archived
+      parameters:
+        - name: creditId
+          in: path
+          description: id that needs to be archived
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful updated credit
+        '400':
+          description: Invalid creditId supplied
+        '401':
+          description: Unauthorized - Client is not authenticated
+        '403' :
+          description : Forbidden - The client is authenticated, but does not have permission.
+        '404':
+          description: Client not found
       security:
         - api_key: []
 components:

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCredit } from "../../../../../../../../features/admin/creditSlice";
-import { articleAction, totalsInOut } from "../../../../../../../../features/admin/ordersSlice";
-import {  updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
+import {
+  articleAction,
+  totalsInOut,
+} from "../../../../../../../../features/admin/ordersSlice";
+import { updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
 
 const useConfirmation = ({
   confirmation,
@@ -56,7 +59,13 @@ const useConfirmation = ({
         })
       );
       dispatch(articleAction({ clientId, orderId }));
-      dispatch(deleteCredit(productsByOrder._id ));
+      dispatch(
+        deleteCredit({
+          productsByOrderId: productsByOrder._id,
+          orderId,
+          amount,
+        })
+      );
       dispatch(
         updateActionContent({
           creditContent: null,
