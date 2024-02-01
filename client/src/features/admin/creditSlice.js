@@ -20,28 +20,27 @@ const addCredit = createAsyncThunk("credit/addCredit", async (creditData) => {
     handleFetchError(error);
   }
 });
-const deleteCredit = createAsyncThunk("credit/deleteCredit", async (productsByOrderId) => {
-  try {
-    await customFetch(`credit/${productsByOrderId}`, {
-      method: "DELETE",
-    });
-    return productsByOrderId;
-  } catch (error) {
-    handleFetchError(error);
-    throw error; 
+const deleteCredit = createAsyncThunk(
+  "credit/deleteCredit",
+  async ({ productsByOrderId, orderId, amount }) => {
+    try {
+      await customFetch(
+        `credit/${productsByOrderId}?orderId=${orderId}&amount=${amount}`,
+        {
+          method: "DELETE",
+        }
+      );
+      return productsByOrderId;
+    } catch (error) {
+      handleFetchError(error);
+      throw error;
+    }
   }
-});
+);
 const creditSlice = createSlice({
   name: "credit",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {
-    // deleteCredit: (state, action) => {
-    //   const { productsByOrderId } = action.payload;
-    //   state.data = state.data.filter(
-    //     (item) => item.productsByOrderId !== productsByOrderId
-    //   );
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCredits.pending, (state) => {
@@ -74,7 +73,9 @@ const creditSlice = createSlice({
       .addCase(deleteCredit.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
-        state.data = state.data.filter((credit) => credit.productsByOrderId !== action.payload);
+        state.data = state.data.filter(
+          (credit) => credit.productsByOrderId !== action.payload
+        );
       })
       .addCase(deleteCredit.rejected, (state, action) => {
         state.status = "failed";
@@ -82,5 +83,5 @@ const creditSlice = createSlice({
       });
   },
 });
-export { fetchCredits, addCredit,deleteCredit };
+export { fetchCredits, addCredit, deleteCredit };
 export default creditSlice.reducer;

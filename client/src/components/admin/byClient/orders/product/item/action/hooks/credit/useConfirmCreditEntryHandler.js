@@ -45,6 +45,7 @@ export const useConfirmCreditEntryHandler = () => {
           productsByOrderId: productsByOrder._id,
           amount: productsByOrderActions.creditContent.amount,
           dateExpire: productsByOrderActions.creditContent?.dateExpire,
+          orderId,
         })
       );
       dispatch(
