@@ -18,6 +18,7 @@ describe("useValidateEntryHandler", () => {
     setEntryError = jest.fn();
   });
   const productsByOrderActions = {};
+  const productsByOrder ={}
   it("devrait déclencher une erreur si le nombre maximal d'articles est dépassé, avec REFUND = 2 et EXCHANGE = 0", () => {
     const productsByOrderInfo = {
       exchange: null,
@@ -28,6 +29,7 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
+      productsByOrder,
       productsByOrderInfo,
       productsByOrderActions,
       articleNumber,
@@ -64,6 +66,7 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
+      productsByOrder,
       productsByOrderInfo,
       productsByOrderActions,
       articleNumber,
@@ -100,6 +103,7 @@ describe("useValidateEntryHandler", () => {
     const articleNumber = 1;
     const { handleValidateEntry } = useValidateEntryHandler(
       actions,
+      productsByOrder,
       productsByOrderInfo,
       productsByOrderActions,
       articleNumber,

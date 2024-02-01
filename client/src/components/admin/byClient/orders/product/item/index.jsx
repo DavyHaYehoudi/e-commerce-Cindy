@@ -22,7 +22,7 @@ const Main = ({ productsByOrder, client, orderId }) => {
     ordersStore,
     productsByOrderStore,
     orderId,
-    productId
+    productId,
   ); 
 // console.log("productsByOrderInfo :",productsByOrderInfo,"orderId :",orderId);
   const [interaction, setInteraction] = useState({
@@ -112,8 +112,7 @@ const Main = ({ productsByOrder, client, orderId }) => {
           <ToggleButtonNote
             productsByOrderInfo={productsByOrderInfo}
             client={client}
-            productId={productId}
-            orderId={orderId}
+            productsByOrder={productsByOrder}
             actions={actions}
           />
         </div>

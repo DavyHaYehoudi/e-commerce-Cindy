@@ -12,7 +12,6 @@ const useConfirmation = ({
   productsByOrderActions,
   actions,
   clientId,
-  productId,
   orderId,
   productsByOrder,
   amount,
@@ -69,9 +68,9 @@ const useConfirmation = ({
       dispatch(
         updateActionContent({
           creditContent: null,
-          productId,
           updatedProperty: "credit",
           isClientNotified: false,
+          productsByOrderId: productsByOrder._id,
         })
       );
     }
@@ -80,8 +79,7 @@ const useConfirmation = ({
       dispatch(
         updateActionContent({
           clientId,
-          productId,
-          orderId,
+          productsByOrderId: productsByOrder._id,
           updatedProperty: confirmAction,
           isClientNotified: false,
           productActionContent: null,

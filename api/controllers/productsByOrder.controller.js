@@ -13,16 +13,40 @@ const productsByOrderController = {
     // Implementation for getting a client by ID
   },
 
-  createProducts: async (req, res) => {
-    // Implementation for creating a new client
-  },
-
   updateProducts: async (req, res) => {
-    // Implementation for updating a client
-  },
+    const { productsByOrderId } = req.params;
+    const {
+      updatedProperty,
+      isClientNotified,
+      productActionContent,
+      creditContent,
+    } = req.body;
 
-  deleteProducts: async (req, res) => {
-    // Implementation for deleting a client
+    const updateQuery = {};
+
+    // Construire la mise à jour en fonction de la propriété mise à jour
+    if (updatedProperty === "exchange" || updatedProperty === "refund") {
+      updateQuery[`productsByOrderActions.${updatedProperty}`] =
+        productActionContent;
+    } else if (updatedProperty === "credit") {
+      updateQuery["productsByOrderActions.credit"] = creditContent;
+    }
+    try {
+      const updatedProduct = await ProductsByOrder.findOneAndUpdate(
+        { _id: productsByOrderId },
+        {
+          $set: {
+            isClientNotified,
+            ...updateQuery,
+          },
+        },
+        { new: true }
+      );
+
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 };
 

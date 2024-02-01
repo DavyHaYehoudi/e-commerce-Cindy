@@ -25,7 +25,6 @@ const ConfirmationModal = ({
     productsByOrderActions,
     actions,
     clientId: client._id,
-    productId,
     orderId,
     productsByOrder,
     amount,

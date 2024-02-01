@@ -17,7 +17,6 @@ export const useConfirmCreditEntryHandler = () => {
     setProductActions,
     setEntryError,
     clientId,
-    productId,
     orderId,
     productsByOrder,
     productPrice
@@ -51,9 +50,9 @@ export const useConfirmCreditEntryHandler = () => {
       dispatch(
         updateActionContent({
           creditContent: productsByOrder._id,
-          productId,
           updatedProperty: action,
           isClientNotified: false,
+          productsByOrderId: productsByOrder._id,
         })
       );
 
