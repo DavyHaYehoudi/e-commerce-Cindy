@@ -78,11 +78,12 @@ const useConfirmation = ({
     if (confirmAction) {
       dispatch(
         updateActionContent({
-          clientId,
           productsByOrderId: productsByOrder._id,
           updatedProperty: confirmAction,
           isClientNotified: false,
           productActionContent: null,
+          orderId,
+          amount: productsByOrderInfo?.refund * productPrice,
         })
       );
       updateProductActions(confirmAction);

@@ -54,6 +54,8 @@ export const useValidateEntryHandler = (
           isClientNotified: false,
           productActionContent,
           productsByOrderId: productsByOrder._id,
+          amount: productsByOrderActions.refundContent * productPrice,
+          orderId,
         })
       );
       if (action === actions.REFUND) {

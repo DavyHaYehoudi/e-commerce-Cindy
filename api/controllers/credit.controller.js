@@ -35,7 +35,6 @@ const creditController = {
         },
         { new: true }
         );
-        console.log('updatedProductsByOrder:', updatedProductsByOrder)
 
       // Mise à jour de la propriété isClientNotified et outTotalAmount dans Order en utilisant l'_id
       const updatedOrder = await Order.findOneAndUpdate(
