@@ -139,8 +139,9 @@
     gap: 10px;
     margin-left: 10px;
 }
-.client-details-orders-badge li{
- position: relative;
+
+.client-details-orders-badge li {
+    position: relative;
 }
 
 .orders-container,
@@ -491,6 +492,15 @@
 #productsByOrder-container .product-note-container {
     margin: 20px;
     text-align: initial;
+}
+
+#productsByOrder-container .product-note-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#productsByOrder-container .product-note-wrapper button.info-tooltip:hover::before {
+    top: -40px;
 }
 
 #trashNoteProduct {

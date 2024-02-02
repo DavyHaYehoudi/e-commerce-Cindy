@@ -894,29 +894,29 @@ components:
     EditProductsByOrder:
       type: object
       properties:
-        id:
+        orderId:
           type: string
           example: "5fc4d22b45a0fb3fd4a75f65"
         isClientNotified:
           type: boolean
           example: false
-        productsByOrderActions:
-          type: object
-          properties:
-            exchange:
-              type: integer
-              format: int16
-              example: 1
-            refund:
-              type: integer
-              format: int16
-              example: null
-            credit:
-              type: string
-              example: "111m4d22b45a0fb3fd4a75hq9"
-            note:
-              type: string
-              example: "Quelques notes"
+        exchange:
+          type: integer
+          format: int16
+          example: 1
+        refund:
+          type: integer
+          format: int16
+          example: null
+        credit:
+          type: string
+          example: "111m4d22b45a0fb3fd4a75hq9"
+        note:
+          type: string
+          example: "Quelques notes"
+        amount:   
+          type: number
+          example: 50
     Product:
       type: object
       properties:

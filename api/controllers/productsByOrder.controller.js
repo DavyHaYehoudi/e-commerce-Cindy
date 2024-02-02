@@ -28,7 +28,11 @@ const productsByOrderController = {
     const updateQuery = {};
 
     // Construire la mise à jour en fonction de la propriété mise à jour
-    if (updatedProperty === "exchange" || updatedProperty === "refund") {
+    if (
+      updatedProperty === "exchange" ||
+      updatedProperty === "refund" ||
+      updatedProperty === "note"
+    ) {
       updateQuery[`productsByOrderActions.${updatedProperty}`] =
         productActionContent;
     } else if (updatedProperty === "credit") {
