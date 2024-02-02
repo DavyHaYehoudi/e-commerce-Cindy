@@ -21,6 +21,8 @@ const updateActionContent = createAsyncThunk(
     isClientNotified,
     productActionContent,
     productsByOrderId,
+    amount,
+    orderId,
   }) => {
     try {
       await customFetch(`productsByOrder/${productsByOrderId}`, {
@@ -30,6 +32,8 @@ const updateActionContent = createAsyncThunk(
           updatedProperty,
           isClientNotified,
           productActionContent,
+          amount,
+          orderId,
         }),
         headers: {
           "Content-Type": "application/json",
