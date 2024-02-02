@@ -111,9 +111,7 @@ const Main = ({ productsByOrder, client, orderId }) => {
         <div className="product-note-container">
           <ToggleButtonNote
             productsByOrderInfo={productsByOrderInfo}
-            client={client}
             productsByOrder={productsByOrder}
-            actions={actions}
           />
         </div>
       }

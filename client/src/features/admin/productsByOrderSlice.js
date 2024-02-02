@@ -57,33 +57,19 @@ const productsByOrderSlice = createSlice({
   name: "productsByOrder",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
-    updateActionContent: (state, action) => {
+    productsByOrderNotes: (state, action) => {
       const {
-        creditContent,
-        updatedProperty,
-        isClientNotified,
-        productActionContent,
+        content,
         productsByOrderId,
       } = action.payload;
 
       state.data = state?.data.map((product) => {
         if (productsByOrderId === product._id) {
-          if (updatedProperty === actions.CREDIT) {
-            return {
-              ...product,
-              isClientNotified,
-              productsByOrderActions: {
-                ...product.productsByOrderActions,
-                [updatedProperty]: creditContent,
-              },
-            };
-          }
           return {
             ...product,
-            isClientNotified,
             productsByOrderActions: {
               ...product.productsByOrderActions,
-              [updatedProperty]: productActionContent,
+              note: content,
             },
           };
         }
@@ -150,4 +136,5 @@ const productsByOrderSlice = createSlice({
   },
 });
 export { fetchProducts, updateActionContent };
+export const{productsByOrderNotes}=productsByOrderSlice.actions
 export default productsByOrderSlice.reducer;
