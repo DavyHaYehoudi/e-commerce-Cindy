@@ -7,10 +7,10 @@ export const getClientInfo = createSelector(
   [selectOrdersStore, selectClient],
   (ordersStore, client) => {
     const orders = client?.orders?.map((orderId) =>
-    ordersStore.find((order) => order._id === orderId)
+    ordersStore?.find((order) => order._id === orderId)
     );
     const isAnyOrderClientNotified = orders?.some(
-      (order) => !ordersStore.find((oa) => oa._id === order?._id)?.isClientNotified
+      (order) => !ordersStore?.find((oa) => oa._id === order?._id)?.isClientNotified
       );
 
     return { orders, isAnyOrderClientNotified };

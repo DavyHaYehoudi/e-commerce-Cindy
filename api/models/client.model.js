@@ -2,18 +2,17 @@ import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema(
   {
-    firstName: { type: String },
-    lastName: { type: String },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    phone: { type: String },
-    shippingAddress: { type: String },
+    phone: { type: String, default: "" },
+    shippingAddress: { type: String, required: true },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
     notesAdmin: [
       {
-        id: { type: String },
-        content: { type: String },
-        date: { type: Date },
+        content: String ,
+        date: Date,
       },
     ],
     wishlist: [
