@@ -40,7 +40,9 @@ const clientController = {
         .filter(Boolean);
 
       // Récupération des crédits associés au client
-      const credit = await Credit.find({ productsByOrderId: { $in: creditIds } });
+      const credit = await Credit.find({
+        productsByOrderId: { $in: creditIds },
+      });
 
       res.json({ client, orders, productsByOrder, credit });
     } catch (error) {
@@ -54,11 +56,78 @@ const clientController = {
   },
 
   updateClient: async (req, res) => {
-    // Implementation for updating a client
+    // *************** A VOIR POUR MODIFICATIONS CLIENT DE SON PROPRE COMPTE ***************
+    const clientId = req.params;
+    const updateFields = req.body;
+
+    // Liste des champs à exclure de la mise à jour
+    const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
+
+    // Filtrer les champs indésirables du req.body
+    const filteredUpdateFields = Object.fromEntries(
+      Object.entries(updateFields).filter(
+        ([key]) => !fieldsToExclude.includes(key)
+      )
+    );
+
+    try {
+      const updatedClient = await Client.findOneAndUpdate(
+        { _id: clientId },
+        {
+          $set: filteredUpdateFields,
+        },
+        { new: true }
+      );
+
+      res.status(200).json(updatedClient);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   deleteClient: async (req, res) => {
     // Implementation for deleting a client
+  },
+
+  addNoteAdmin: async (req, res) => {
+    const { clientId } = req.params;
+    const { content } = req.body;
+    try {
+      const currentDate = new Date();
+      const newNote = { content, date: currentDate };
+
+      const updatedClient = await Client.findOneAndUpdate(
+        { _id: clientId },
+        { $push: { notesAdmin: newNote } },
+        { new: true }
+      );
+      const index =
+        updatedClient.notesAdmin[updatedClient.notesAdmin.length - 1];
+
+      res.status(200).json({
+        _id: index._id,
+        date: index.date,
+        clientId,
+        content,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  removeNoteAdmin: async (req, res) => {
+    const { clientId, noteId } = req.params;
+
+    try {
+      const updatedClient = await Client.findOneAndUpdate(
+        { _id: clientId },
+        { $pull: { notesAdmin: { _id: noteId } } },
+        { new: true }
+      );
+      res.status(200).json(updatedClient);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 };
 

@@ -10,37 +10,41 @@ const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
   }
 });
 
+const addNoteAdmin = createAsyncThunk(
+  "clients/addNoteAdmin",
+  async ({ clientId, content }) => {
+    try {
+      const response = await customFetch(`client/addNote/${clientId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ content }),
+      });
+      return response;
+    } catch (error) {
+      handleFetchError(error);
+      throw error;
+    }
+  }
+);
+
+const removeNoteAdmin = createAsyncThunk(
+  "clients/removeNoteAdmin",
+  async ({ clientId, noteId }) => {
+    try {
+      await customFetch(`client/removeNote/${clientId}/${noteId}`, {
+        method: "PATCH",
+      });
+      return { clientId, noteId };
+    } catch (error) {
+      handleFetchError(error);
+      throw error;
+    }
+  }
+);
+
 const clientsSlice = createSlice({
   name: "clients",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {
-    addNote: (state, action) => {
-      const { clientId, id, content, date } = action.payload;
-      state.data = state.data.map((user) =>
-        user._id === clientId
-          ? {
-              ...user,
-              notesAdmin: user.notesAdmin
-                ? [...user.notesAdmin, { id, content, date }]
-                : [{ id, content, date }],
-            }
-          : user
-      );
-    },
-    deleteNote: (state, action) => {
-      const { clientId, noteId } = action.payload;
-      state.data = state.data.map((user) =>
-        user._id === clientId
-          ? {
-              ...user,
-              notesAdmin: user.notesAdmin
-                ? user.notesAdmin.filter((note) => note.id !== noteId)
-                : user.notesAdmin, 
-            }
-          : user
-      );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchClients.pending, (state) => {
@@ -54,9 +58,52 @@ const clientsSlice = createSlice({
       .addCase(fetchClients.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addNoteAdmin.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(addNoteAdmin.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        const { clientId, _id, content, date } = action.payload;
+        state.data = state.data.map((user) =>
+          user._id === clientId
+            ? {
+                ...user,
+                notesAdmin: user.notesAdmin
+                  ? [...user.notesAdmin, { _id, content, date }]
+                  : [{ _id, content, date }],
+              }
+            : user
+        );
+      })
+      .addCase(addNoteAdmin.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(removeNoteAdmin.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(removeNoteAdmin.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        const { clientId, noteId } = action.payload;
+        state.data = state.data.map((user) =>
+          user._id === clientId
+            ? {
+                ...user,
+                notesAdmin: user.notesAdmin
+                  ? user.notesAdmin.filter((note) => note._id !== noteId)
+                  : user.notesAdmin,
+              }
+            : user
+        );
+      })
+      .addCase(removeNoteAdmin.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
-export const { addNote, deleteNote } = clientsSlice.actions;
-export { fetchClients };
+export { fetchClients, addNoteAdmin, removeNoteAdmin };
 export default clientsSlice.reducer;

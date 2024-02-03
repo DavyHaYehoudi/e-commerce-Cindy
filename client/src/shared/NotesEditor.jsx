@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/utils/formatDate";
-import { addNote, deleteNote } from "../features/admin/clientsSlice";
-import { v4 as uuidv4 } from "uuid";
 import { getNotesEditorInfo } from "../selectors/client";
+import { addNoteAdmin, removeNoteAdmin } from "../features/admin/clientsSlice";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
@@ -16,23 +15,18 @@ const NotesEditor = ({ clientId, notesPropName }) => {
     setCurrentNote(e.target.value);
   };
 
-  const handleSaveNotes = () => {
-    const noteId = uuidv4();
-    const currentDate = new Date().toISOString();
+  const handleSaveNotes = () => { 
     dispatch(
-      addNote({
+      addNoteAdmin({
         clientId,
-        id: noteId,
         content: currentNote,
-        propName: notesPropName,
-        date: currentDate,
       })
     );
     setCurrentNote("");
   };
 
   const handleDeleteNote = (noteId) => {
-    dispatch(deleteNote({ clientId, noteId, propName: notesPropName }));
+    dispatch(removeNoteAdmin({ clientId, noteId }));
   };
 
   const isNotesEmpty = currentNote.length === 0;
@@ -45,13 +39,13 @@ const NotesEditor = ({ clientId, notesPropName }) => {
 
       <div className="previous-notes">
         {notes?.map((note) => (
-          <div key={note.id} className="previous-note">
+          <div key={note._id} className="previous-note">
             <p>
-              {note.content} {" "}<small>{formatDate(note.date)}</small> {" "}
+              {note.content} <small>{formatDate(note.date)}</small>{" "}
             </p>
             <button
               className="account-btn icon-trash"
-              onClick={() => handleDeleteNote(note.id)}
+              onClick={() => handleDeleteNote(note._id)}
               aria-label="Supprimer cette note"
             >
               <TbInputX aria-hidden="true" />{" "}

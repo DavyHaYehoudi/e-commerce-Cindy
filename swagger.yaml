@@ -187,6 +187,68 @@ paths:
           description: Client not found
       security:
         - api_key: []
+  /client/addNote/{clientId}:
+    patch:
+      tags:
+        - client
+      summary: Add admin notes
+      description: This can only be done by admin.
+      operationId: add notes about the order or the client
+      parameters:
+        - name: clientId
+          in: path
+          description: id that needs to be added
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddingNotesAdmin'
+      responses:
+        '200':
+          description: Successful added notes 
+        '400':
+          description: Invalid clientId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Client not found
+      security:
+        - api_key: []
+  /client/removeNote/{clientId}/{noteId}:
+   patch:
+      tags:
+        - client
+      summary: Delete admin notes
+      description: This can only be done by admin.
+      operationId: delete notes about the order or the client
+      parameters:
+        - name: clientId
+          in: path
+          description: id that needs to be deleted
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteNotesAdmin'
+      responses:
+        '200':
+          description: Successful added notes 
+        '400':
+          description: Invalid clientId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: Client not found
+      security:
+        - api_key: []
   /order:
     get:
       tags:
@@ -717,7 +779,7 @@ components:
                 type: integer
                 format: int8
                 example: 3
-        Orders:
+        orders:
           type: array
           items:
             type: string
@@ -725,6 +787,18 @@ components:
              - "2884d22b45a0fb3fd4a75p2"
              - "7774d22b45a0fb3fd4a7bn0"
              - "10m4d22b45a0fb3fd4a7l53"
+    AddingNotesAdmin:
+      type: object  
+      properties:
+        content:
+          type: string
+          example: "Echange cordial avec le client"
+    DeleteNotesAdmin:
+      type: object  
+      properties:
+        noteId:
+          type: string
+          example: "2884d22b45a0fb3fd4a75p2"
     Order:
       type: object
       properties:
