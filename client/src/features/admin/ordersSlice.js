@@ -9,28 +9,42 @@ const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
     handleFetchError(error);
   }
 });
-export const ordersActions = [
-  { id: 0, number: 0 },
-  { id: 1, number: 1 },
-  { id: 2, number: 2 },
-  { id: 3, number: 3 },
-  { id: 4, number: 4 },
-  { id: 5, number: 5 },
-  { id: 6, number: 6 },
-];
+const updateOrder = createAsyncThunk(
+  "orders/updateOrder",
+  async ({ orderId, actionType, step, isClientNotified, isNextStepOrder }) => {
+    try {
+      const response = await customFetch(`order/${orderId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          actionType,
+          step,
+          isClientNotified,
+          isNextStepOrder,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return response;
+    } catch (error) {
+      handleFetchError(error);
+    }
+  }
+);
 
 const applyOrderAction = (state, action, updateFunction) => {
-  state.data= state.data.map((order) =>
+  state.data = state.data.map((order) =>
     order._id === action.payload.orderId
       ? updateFunction(order, action.payload)
       : order
   );
 };
-const updateOrderStep = (order, { step, isClientNotified }) => ({
-  ...order,
-  step,
-  isClientNotified,
-});
+// const updateOrderStep = (order, { step, isClientNotified }) => ({
+//   ...order,
+//   step,
+//   isClientNotified,
+// });
 
 const sendToTheClient = (order, payload) => ({
   ...order,
@@ -38,23 +52,6 @@ const sendToTheClient = (order, payload) => ({
   lastSentDateToClient: new Date().toISOString(),
 });
 
-const updateMoveToNextStep = (
-  order,
-  { step, isClientNotified, isNextStepOrder }
-) => {
-  const currentStepIndex = ordersActions.findIndex(
-    (s) => s.number === order.step
-  );
-
-  const nextStepIndex = (currentStepIndex + 1) % ordersActions.length;
-  const nextStep = isNextStepOrder ? ordersActions[nextStepIndex].number : step;
-
-  return {
-    ...order,
-    step: nextStep,
-    isClientNotified,
-  };
-};
 const updateIsClientNotified = (order) => ({
   ...order,
   isClientNotified: false,
@@ -90,15 +87,6 @@ const ordersSlice = createSlice({
   name: "orderActions",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
-    moveToNextStep: (state, action) =>
-      applyOrderAction(state, action, updateMoveToNextStep),
-
-    cancelOrder: (state, action) =>
-      applyOrderAction(state, action, updateOrderStep),
-
-    reactivateOrder: (state, action) =>
-      applyOrderAction(state, action, updateOrderStep),
-
     sendToClient: (state, action) =>
       applyOrderAction(state, action, sendToTheClient),
 
@@ -110,7 +98,7 @@ const ordersSlice = createSlice({
 
     addAdminTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberAddAdmin),
-      
+
     deleteTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberDelete),
 
@@ -130,14 +118,27 @@ const ordersSlice = createSlice({
       .addCase(fetchOrders.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(updateOrder.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateOrder.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        state.data = state.data.map((order) =>
+          order._id === action.payload.updatedOrder._id
+            ? action.payload.updatedOrder
+            : order
+        );
+      })
+      .addCase(updateOrder.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
 
 export const {
-  moveToNextStep,
-  cancelOrder,
-  reactivateOrder,
   sendToClient,
   articleAction,
   totalsInOut,
@@ -145,5 +146,5 @@ export const {
   deleteTrackingNumber,
   updatedClientTrackingNumber,
 } = ordersSlice.actions;
-export { fetchOrders };
+export { fetchOrders, updateOrder };
 export default ordersSlice.reducer;

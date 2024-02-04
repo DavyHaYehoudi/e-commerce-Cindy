@@ -26,7 +26,6 @@ const Header = ({
       <ActionsDropdown
         order={order}
         step={step}
-        client={client}
         handleSendToClient={handleSendToClient}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}

@@ -805,9 +805,6 @@ components:
         id:
           type: string
           example: "5fc4d22b45a0fb3fd4a75f65"
-        date:
-          type: string
-          example: "2023-01-15 08:30"
         step:
           type: integer
           format: int8
