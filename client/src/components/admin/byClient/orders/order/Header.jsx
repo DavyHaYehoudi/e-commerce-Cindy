@@ -6,7 +6,6 @@ const Header = ({
   order,
   handleSendToClient,
   step,
-  client,
   isClientNotified,
   lastSentDateToClient,
 }) => {

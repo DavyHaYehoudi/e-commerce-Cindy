@@ -93,7 +93,6 @@ const Credit = ({
                 productsByOrderActions,
                 setProductActions,
                 setEntryError,
-                client._id,
                 orderId,
                 productsByOrder,
                 productPrice

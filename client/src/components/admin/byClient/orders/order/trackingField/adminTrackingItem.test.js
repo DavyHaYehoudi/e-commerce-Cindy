@@ -26,7 +26,7 @@ describe("AdminTrackingItem Component", () => {
 
   const store = mockStore(initialState);
   const item = {
-    id: "jhkjh534",
+    _id: "jhkjh534",
     value: "trackingNumberValue",
     date: "2023-01-15 08:30",
     productsByOrder: [
@@ -36,7 +36,7 @@ describe("AdminTrackingItem Component", () => {
   };
 
   const client = {
-    id: "1mongoDb",
+    _id: "1mongoDb",
   };
 
   const orderId = "1mongoDb";
@@ -91,8 +91,7 @@ describe("AdminTrackingItem Component", () => {
     const trashIcon = screen.getByLabelText("Supprimer ce numéro de suivi");
     fireEvent.click(trashIcon);
 
-    const confirmButton = screen.getByText("Confirmer");
-    fireEvent.click(confirmButton);
+    expect(screen.getByText("Confirmer")).toBeInTheDocument();
   });
 
   test("cancels deletion on cancel button click", () => {

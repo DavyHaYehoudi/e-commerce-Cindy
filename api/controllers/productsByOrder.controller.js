@@ -1,5 +1,4 @@
 import ProductsByOrder from "../models/productsByOrder.model.js";
-import Order from "../models/order.model.js";
 const productsByOrderController = {
   getAllProducts: async (req, res) => {
     try {
@@ -21,13 +20,10 @@ const productsByOrderController = {
       isClientNotified,
       productActionContent,
       creditContent,
-      amount,
-      orderId,
     } = req.body;
 
     const updateQuery = {};
 
-    // Construire la mise à jour en fonction de la propriété mise à jour
     if (
       updatedProperty === "exchange" ||
       updatedProperty === "refund" ||
@@ -49,34 +45,7 @@ const productsByOrderController = {
         },
         { new: true }
       );
-      // Mettre à jour la propriété isClientNotified dans le document Order
-      await Order.findOneAndUpdate(
-        { _id: orderId },
-        {
-          $set: {
-            isClientNotified,
-          },
-        }
-      );
-      // Mettre à jour la propriété outTotalAmount dans le document Order
-      if (updatedProperty === "refund" && productActionContent > 0) {
-        await Order.findOneAndUpdate(
-          { _id: orderId },
-          {
-            $inc: { outTotalAmount: amount },
-          }
-        );
-      } else if (
-        updatedProperty === "refund" &&
-        productActionContent === null
-      ) {
-        await Order.findOneAndUpdate(
-          { _id: orderId },
-          {
-            $inc: { outTotalAmount: -amount },
-          }
-        );
-      }
+
       res.status(200).json(updatedProduct);
     } catch (error) {
       res.status(500).json({ error: error.message });

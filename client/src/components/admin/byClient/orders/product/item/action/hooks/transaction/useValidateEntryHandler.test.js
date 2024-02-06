@@ -148,7 +148,6 @@ describe("useValidateEntryHandler", () => {
       updateActionContent
     );
 
-    const clientId = "123";
     const productId = "456";
     const orderId = "789";
     const setProductActions = jest.fn();
@@ -159,7 +158,6 @@ describe("useValidateEntryHandler", () => {
       handleValidateEntry(
         { stopPropagation: jest.fn() },
         "EXCHANGE",
-        clientId,
         productId,
         orderId,
         setProductActions,
@@ -188,7 +186,6 @@ describe("useValidateEntryHandler", () => {
       updateActionContent
     );
 
-    const clientId = "123";
     const productId = "456";
     const orderId = "789";
     const setProductActions = jest.fn();
@@ -199,7 +196,6 @@ describe("useValidateEntryHandler", () => {
       handleValidateEntry(
         { stopPropagation: jest.fn() },
         "EXCHANGE",
-        clientId,
         productId,
         orderId,
         setProductActions,

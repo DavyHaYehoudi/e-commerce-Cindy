@@ -8,7 +8,6 @@ export const generateItemTransactionComponent = (
   placeholderValue,
   actions,
   interaction,
-  clientId,
   productId,
   orderId,
   productsByOrder,
@@ -28,7 +27,6 @@ export const generateItemTransactionComponent = (
       actions={actions}
       label={label}
       placeholderValue={placeholderValue}
-      clientId={clientId}
       productId={productId}
       orderId={orderId}
       productsByOrder={productsByOrder}

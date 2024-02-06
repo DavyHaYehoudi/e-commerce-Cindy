@@ -1,17 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCredit } from "../../../../../../../../features/admin/creditSlice";
-import {
-  articleAction,
-  totalsInOut,
-} from "../../../../../../../../features/admin/ordersSlice";
+import { updateOrder } from "../../../../../../../../features/admin/ordersSlice";
 import { updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
 
 const useConfirmation = ({
   confirmation,
   productsByOrderActions,
   actions,
-  clientId,
   orderId,
   productsByOrder,
   amount,
@@ -51,13 +47,13 @@ const useConfirmation = ({
       }));
       setEntryError("");
       dispatch(
-        totalsInOut({
+        updateOrder({
           orderId,
           amount,
           movement: "outCancel",
+          actionType: "totalsInOut",
         })
       );
-      dispatch(articleAction({ clientId, orderId }));
       dispatch(
         deleteCredit({
           productsByOrderId: productsByOrder._id,
@@ -82,8 +78,6 @@ const useConfirmation = ({
           updatedProperty: confirmAction,
           isClientNotified: false,
           productActionContent: null,
-          orderId,
-          amount: productsByOrderInfo?.refund * productPrice,
         })
       );
       updateProductActions(confirmAction);
@@ -95,14 +89,13 @@ const useConfirmation = ({
       isConfirmationVisible: false,
     }));
 
-    dispatch(articleAction({ clientId, orderId }));
-
     if (confirmAction === actions.REFUND) {
       dispatch(
-        totalsInOut({
+        updateOrder({
           orderId,
           amount: productsByOrderInfo?.refund * productPrice,
           movement: "outCancel",
+          actionType: "totalsInOut",
         })
       );
     }
