@@ -93,7 +93,6 @@ const Main = ({ productsByOrder, client, orderId }) => {
           confirmation={confirmation}
           productsByOrderActions={productsByOrderActions}
           actions={actions}
-          client={client}
           productId={productId}
           orderId={orderId}
           productsByOrder={productsByOrder}

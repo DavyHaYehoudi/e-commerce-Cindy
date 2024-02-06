@@ -3,21 +3,17 @@ import { formatDate } from "../../../../../../helpers/utils/formatDate";
 import ProductListItem from "./ProductListItem";
 import { TbInputX } from "react-icons/tb";
 import { useDispatch } from "react-redux";
-import { deleteTrackingNumber } from "../../../../../../features/admin/ordersSlice";
+import { updateOrder } from "../../../../../../features/admin/ordersSlice";
 
-const AdminTrackingItem = ({
-  item,
-  client,
-  orderId,
-  productStore,
-}) => {
+const AdminTrackingItem = ({ item, client, orderId, productStore }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
-  const handleConfirmCancel = (trackingNumberId) => {
+  const handleConfirmCancel = (item) => {
     dispatch(
-      deleteTrackingNumber({
+      updateOrder({
         orderId,
-        trackingNumberId,
+        trackingNumber :item,
+        actionType: "trackingNumberDelete",
       })
     );
   };
@@ -25,7 +21,8 @@ const AdminTrackingItem = ({
     <div className="trackingNumber trackingNumberAdminItem">
       <div className="header">
         <p>
-          <span className="underline">Numéro de suivi d'envoi</span>  : <span className="trackingNumberValue" >{item.value}</span> {" "}
+          <span className="underline">Numéro de suivi d'envoi</span> :{" "}
+          <span className="trackingNumberValue">{item.value}</span>{" "}
           <small>- Envoyé le {formatDate(item.date)}</small>
         </p>
       </div>
@@ -46,7 +43,7 @@ const AdminTrackingItem = ({
           <p>⚠️ La suppression de ce numéro de suivi est définitive !</p>
           <button
             className="btn-confirm"
-            onClick={() => handleConfirmCancel(item.id)}
+            onClick={() => handleConfirmCancel(item)}
           >
             Confirmer
           </button>
@@ -63,7 +60,7 @@ const AdminTrackingItem = ({
         onClick={() => setIsTrashConfirm(true)}
         aria-label="Supprimer ce numéro de suivi"
       >
-        <TbInputX  aria-hidden="true" />{" "}
+        <TbInputX aria-hidden="true" />{" "}
       </button>
     </div>
   );

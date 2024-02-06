@@ -1,8 +1,7 @@
 // Bouton de validation du champ de l'avoir
 import { useDispatch } from "react-redux";
 import {
-  totalsInOut,
-  articleAction,
+  updateOrder,
 } from "../../../../../../../../../features/admin/ordersSlice";
 import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
 import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
@@ -16,13 +15,12 @@ export const useConfirmCreditEntryHandler = () => {
     productsByOrderActions,
     setProductActions,
     setEntryError,
-    clientId,
     orderId,
     productsByOrder,
     productPrice
   ) => {
     e.stopPropagation();
-    let { amount, dateExpire } = productsByOrderActions.creditContent;
+    let { amount, dateExpire } = productsByOrderActions?.creditContent;
     amount = parseInt(amount);
     const selectedDate = new Date(dateExpire);
     const currentDate = new Date();
@@ -57,13 +55,14 @@ export const useConfirmCreditEntryHandler = () => {
       );
 
       dispatch(
-        totalsInOut({
+        updateOrder({
           orderId,
           amount,
           movement: "out",
+          actionType:"totalsInOut"
         })
       );
-      dispatch(articleAction({ clientId, orderId }));
+      // dispatch(updateOrder({ orderId, actionType: "articleAction" }));
       setProductActions((prevState) => ({
         ...prevState,
         isAddCredit: false,

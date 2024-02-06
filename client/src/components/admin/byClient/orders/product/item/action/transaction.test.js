@@ -1,10 +1,9 @@
 import React from "react";
-import { screen,userEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Transaction from "./Transaction";
 import { render } from "../../../../../../../test/utils";
 import configureStore from "redux-mock-store";
-import { useValidateEntryHandler } from "./hooks/transaction/useValidateEntryHandler";
 
 const productMock = [
   {
@@ -51,7 +50,6 @@ describe("Transaction Component", () => {
         actions={["someAction"]}
         label="Some Label"
         placeholderValue="Some Placeholder"
-        clientId={1}
         productId={1}
         orderId={1}
         textCancel="Cancel Text"
@@ -101,7 +99,6 @@ describe("Transaction Component with interaction input", () => {
     };
     const productId = 1;
     const orderId = "order123";
-    const clientId = "client123";
     const action = "EXCHANGE";
     const actions = {
       EXCHANGE: "EXCHANGE",
@@ -118,7 +115,6 @@ describe("Transaction Component with interaction input", () => {
         actions={actions}
         label={label}
         placeholderValue={placeholderValue}
-        clientId={clientId}
         productId={productId}
         orderId={orderId}
         textCancel={textCancel}
@@ -147,7 +143,6 @@ describe("Transaction Component with interaction input", () => {
     };
     const productId = 1;
     const orderId = "order123";
-    const clientId = "client123";
     const action = "EXCHANGE";
     const actions = {
       EXCHANGE: "EXCHANGE",
@@ -164,7 +159,6 @@ describe("Transaction Component with interaction input", () => {
         actions={actions}
         label={label}
         placeholderValue={placeholderValue}
-        clientId={clientId}
         productId={productId}
         orderId={orderId}
         textCancel={textCancel}

@@ -13,7 +13,6 @@ const Transaction = ({
   actions,
   label,
   placeholderValue,
-  clientId,
   productId,
   orderId,
   productsByOrder,
@@ -89,7 +88,6 @@ const Transaction = ({
               handleValidateEntry(
                 e,
                 action,
-                clientId,
                 orderId,
                 setProductActions,
                 productPrice

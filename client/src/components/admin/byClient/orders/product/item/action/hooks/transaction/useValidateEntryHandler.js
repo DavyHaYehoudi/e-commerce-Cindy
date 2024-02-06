@@ -1,4 +1,6 @@
-import { articleAction, totalsInOut } from "../../../../../../../../../features/admin/ordersSlice";
+import {
+  updateOrder,
+} from "../../../../../../../../../features/admin/ordersSlice";
 
 export const useValidateEntryHandler = (
   actions,
@@ -8,13 +10,11 @@ export const useValidateEntryHandler = (
   articleNumber,
   setEntryError,
   dispatch,
-  updateActionContent,
+  updateActionContent
 ) => {
-
   const handleValidateEntry = (
     e,
     action,
-    clientId,
     orderId,
     setProductActions,
     productPrice
@@ -22,9 +22,11 @@ export const useValidateEntryHandler = (
     e.stopPropagation();
 
     const exchangeValue =
-    productsByOrderInfo?.exchange ?? productsByOrderActions?.exchangeContent ?? 0;
+      productsByOrderInfo?.exchange ??
+      productsByOrderActions?.exchangeContent ??
+      0;
     const refundValue =
-    productsByOrderInfo?.refund ?? productsByOrderActions?.refundContent ?? 0;
+      productsByOrderInfo?.refund ?? productsByOrderActions?.refundContent ?? 0;
     const articleLimitNumber = exchangeValue + refundValue;
     const articleAllowedNumber = articleNumber - articleLimitNumber;
     const checkArticleNumber = articleAllowedNumber >= 0;
@@ -54,20 +56,19 @@ export const useValidateEntryHandler = (
           isClientNotified: false,
           productActionContent,
           productsByOrderId: productsByOrder._id,
-          amount: productsByOrderActions.refundContent * productPrice,
-          orderId,
         })
       );
       if (action === actions.REFUND) {
         dispatch(
-          totalsInOut({
+          updateOrder({
             orderId,
             amount: productsByOrderActions.refundContent * productPrice,
             movement: "out",
+            actionType:"totalsInOut"
           })
         );
       }
-      dispatch(articleAction({ clientId, orderId }));
+      // dispatch(updateOrder({ orderId, actionType: "articleAction" }));
       setEntryError("");
     }
     if (productsByOrderActions[contentKey]) {
