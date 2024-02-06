@@ -12,9 +12,9 @@ const creditController = {
   },
   createCredit: async (req, res) => {
     try {
-      const { productsByOrderId, amount, dateExpire, orderId } = req.body;
+      const { productsByOrderId, amount, dateExpire } = req.body;
 
-      if (!productsByOrderId || !amount || !dateExpire || !orderId) {
+      if (!productsByOrderId || !amount || !dateExpire) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
@@ -34,20 +34,10 @@ const creditController = {
           },
         },
         { new: true }
-        );
-
-      // Mise à jour de la propriété isClientNotified et outTotalAmount dans Order en utilisant l'_id
-      const updatedOrder = await Order.findOneAndUpdate(
-        { _id: orderId },
-        {
-          $set: { isClientNotified: false },
-          $inc: { outTotalAmount: amount },
-        },
-        { new: true }
       );
 
       // Vérification si les deux mises à jour ont réussi avant de renvoyer la réponse
-      if (updatedProductsByOrder && updatedOrder) {
+      if (updatedProductsByOrder) {
         res.status(201).json(newCredit);
       } else {
         // Si l'une des mises à jour a échoué
@@ -63,9 +53,9 @@ const creditController = {
   deleteCredit: async (req, res) => {
     try {
       const { productsByOrderId } = req.params;
-      const { orderId, amount } = req.query;
+      const { amount } = req.query;
 
-      if (!productsByOrderId || !amount || !orderId) {
+      if (!productsByOrderId || !amount) {
         return res.status(400).json({ error: "Missing required fields" });
       }
       const credit = await Credit.findOne({
@@ -76,12 +66,7 @@ const creditController = {
         return res.status(404).json({ error: "Credit not found" });
       }
       await Credit.findOneAndDelete({ productsByOrderId: productsByOrderId });
-      await Order.findOneAndUpdate(
-        { _id: orderId },
-        {
-          $inc: { outTotalAmount: -amount },
-        }
-      );
+
       await ProductsByOrder.findOneAndUpdate(
         { _id: productsByOrderId },
         {

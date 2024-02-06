@@ -22,10 +22,10 @@ const addCredit = createAsyncThunk("credit/addCredit", async (creditData) => {
 });
 const deleteCredit = createAsyncThunk(
   "credit/deleteCredit",
-  async ({ productsByOrderId, orderId, amount }) => {
+  async ({ productsByOrderId, amount }) => {
     try {
       await customFetch(
-        `credit/${productsByOrderId}?orderId=${orderId}&amount=${amount}`,
+        `credit/${productsByOrderId}?amount=${amount}`,
         {
           method: "DELETE",
         }

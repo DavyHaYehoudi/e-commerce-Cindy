@@ -57,7 +57,6 @@ const useConfirmation = ({
       dispatch(
         deleteCredit({
           productsByOrderId: productsByOrder._id,
-          orderId,
           amount,
         })
       );
