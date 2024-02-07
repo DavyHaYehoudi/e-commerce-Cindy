@@ -28,12 +28,12 @@ test("Renders correctly Item component for each client and respects the paginati
   const initialState = {
     clients: {
       data: [
-        { id: 1, firstName: "John", lastName: "Doe" },
-        { id: 2, firstName: "Jane", lastName: "Doe" },
-        { id: 3, firstName: "Eric", lastName: "Cartouche" },
-        { id: 4, firstName: "Marguerite", lastName: "Douglas" },
-        { id: 5, firstName: "Noemi", lastName: "Center" },
-        { id: 6, firstName: "Stephan", lastName: "Colt" },
+        { _id: 1, firstName: "John", lastName: "Doe" },
+        { _id: 2, firstName: "Jane", lastName: "Doe" },
+        { _id: 3, firstName: "Eric", lastName: "Cartouche" },
+        { _id: 4, firstName: "Marguerite", lastName: "Douglas" },
+        { _id: 5, firstName: "Noemi", lastName: "Center" },
+        { _id: 6, firstName: "Stephan", lastName: "Colt" },
       ],
     },
   };

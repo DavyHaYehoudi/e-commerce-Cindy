@@ -48,7 +48,7 @@ const ArticleNumberByProduct = ({
   };
   const ordersStore = useSelector((state) => state?.orders?.data);
   const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
-  const { productsByOrderByOrder } = getProductsInfo(
+  const { getProductsByOrder } = getProductsInfo(
     ordersStore,
     productsByOrderStore,
     orderId
@@ -56,7 +56,7 @@ const ArticleNumberByProduct = ({
 
   return (
     <div data-testid="articleNumberByProduct">
-      {productsByOrderByOrder?.map((product) => {
+      {getProductsByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productId,
           productStore

@@ -11,7 +11,7 @@ const List = ({ client, orderId }) => {
     ordersStore,
     productsByOrderStore,
     orderId
-  ).productsByOrderByOrder;
+  ).getProductsByOrder;
   return (
     <ul id="productsByOrder-container" data-testid="productsByOrder-container">
       <small>
