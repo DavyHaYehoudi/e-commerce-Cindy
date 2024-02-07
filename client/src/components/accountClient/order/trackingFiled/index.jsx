@@ -36,7 +36,7 @@ const TrackingNumberList = ({ trk, order }) => {
           <p>⚠️ La suppression de ce numéro de suivi est définitive !</p>
           <button
             className="btn-confirm"
-            onClick={() => handleConfirmCancel(trk.id)}
+            onClick={() => handleConfirmCancel(trk._id)}
           >
             Confirmer
           </button>

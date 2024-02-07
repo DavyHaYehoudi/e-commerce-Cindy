@@ -9,38 +9,20 @@ const fetchCredits = createAsyncThunk("credit/fetchCredits", async () => {
     handleFetchError(error);
   }
 });
-const addCredit = createAsyncThunk("credit/addCredit", async (creditData) => {
-  try {
-    const response = await customFetch("credit", {
-      method: "POST",
-      body: JSON.stringify(creditData),
-    });
-    return response;
-  } catch (error) {
-    handleFetchError(error);
-  }
-});
-const deleteCredit = createAsyncThunk(
-  "credit/deleteCredit",
-  async ({ productsByOrderId, amount }) => {
-    try {
-      await customFetch(
-        `credit/${productsByOrderId}?amount=${amount}`,
-        {
-          method: "DELETE",
-        }
-      );
-      return productsByOrderId;
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
-  }
-);
+
 const creditSlice = createSlice({
   name: "credit",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {},
+  reducers: {
+    addCredit: (state, action) => {
+      const { productsByOrderId, amount, dateExpire } = action.payload;
+      state.data = [...state.data, { productsByOrderId, amount, dateExpire }];
+    },
+    deleteCredit: (state, action) => {
+      const { productsByOrderId } = action.payload;
+      state.data = state.data.filter((item) => item.productsByOrderId !== productsByOrderId);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCredits.pending, (state) => {
@@ -55,33 +37,8 @@ const creditSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(addCredit.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(addCredit.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.error = null;
-        state.data = [...state.data, action.payload];
-      })
-      .addCase(addCredit.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
-      .addCase(deleteCredit.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(deleteCredit.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.error = null;
-        state.data = state.data.filter(
-          (credit) => credit.productsByOrderId !== action.payload
-        );
-      })
-      .addCase(deleteCredit.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      });
   },
 });
-export { fetchCredits, addCredit, deleteCredit };
+export { fetchCredits };
+export const { addCredit, deleteCredit } = creditSlice.actions;
 export default creditSlice.reducer;

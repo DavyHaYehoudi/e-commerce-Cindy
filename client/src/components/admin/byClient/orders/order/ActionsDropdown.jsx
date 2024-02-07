@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  updateOrder,
+  cancelOrder,
+  moveToNextStep,
+  reactivateOrder,
 } from "../../../../../features/admin/ordersSlice";
 import { HiOutlineSquaresPlus } from "react-icons/hi2";
 import { TbUserShare } from "react-icons/tb";
@@ -23,14 +25,13 @@ const ActionsDropdown = ({
     setIsOpen(!isOpen);
   };
 
-  const performAction = (actionType, step) => {
+  const performAction = (actionType, newStep) => {
     dispatch(
-      updateOrder({
+      actionType({
         orderId: order._id,
-        actionType,
-        step,
-        isNextStepOrder: true,
         isClientNotified: false,
+        step: newStep,
+        isNextStepOrder: true,
       })
     );
   };
@@ -73,16 +74,16 @@ const ActionsDropdown = ({
       </div>
       <div className="dropdown-menu" onClick={() => setIsOpen(false)}>
         {!isOrderCancelled && (
-          <button onClick={() => performAction("moveToNextStep", step)}>
+          <button onClick={() => performAction(moveToNextStep, step)}>
             Passer à l'étape suivante
           </button>
         )}
         {isOrderCancelled ? (
-          <button onClick={() => performAction("reactivateOrder", 0)}>
+          <button onClick={() => performAction(reactivateOrder, 0)}>
             Réactiver la commande
           </button>
         ) : (
-          <button onClick={() => performAction("cancelOrder", 6)}>
+          <button onClick={() => performAction(cancelOrder, 6)}>
             Annuler la commande
           </button>
         )}

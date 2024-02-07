@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { updateOrder } from "../../../../../../../features/admin/ordersSlice";
+import { addAdminTrackingNumber } from "../../../../../../../features/admin/ordersSlice";
+import { v4 as uuidv4 } from "uuid";
 import { articlesNumberCheck } from "../handle/articlesNumberCheck";
 import { useDispatch } from "react-redux";
 
@@ -37,10 +38,10 @@ const useAdminTrackingNumberCreate = ({
     );
 
     dispatch(
-      updateOrder({
+      addAdminTrackingNumber({
         orderId,
-        actionType: "trackingNumberAddAdmin",
         trackingNumber: {
+          _id: uuidv4(),
           isAdmin: true,
           value: trackingField,
           date: date,

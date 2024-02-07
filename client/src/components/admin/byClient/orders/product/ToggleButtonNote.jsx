@@ -1,28 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { useNoteValueHandler } from "./item/action/hooks/useNoteValueHandler";
-import { MdSaveAs } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { updateActionContent } from "../../../../../features/admin/productsByOrderSlice";
 
 const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
-  const [toSave, setToSave] = useState(false);
   const dispatch = useDispatch();
-  const { handleChangeNoteValue } = useNoteValueHandler(
-    productsByOrder,
-    setToSave
-  );
-  const productActionContent = useSelector((state) =>
-    state?.productsByOrder?.data.find((p) => p._id === productsByOrder._id)
-  )?.productsByOrderActions?.note;
 
-  const handleValidateNote = () => {
-    setToSave(false);
+  const handleChangeNoteValue = (e) => {
     dispatch(
       updateActionContent({
         productsByOrderId: productsByOrder._id,
         updatedProperty: "note",
-        productActionContent,
+        productActionContent:e.target.value
       })
     );
   };
@@ -36,19 +25,10 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
           <textarea
             className="product-note"
             value={productsByOrderInfo?.note || ""}
-            onChange={handleChangeNoteValue}
+            onChange={e=> handleChangeNoteValue(e)}
           >
             {" "}
           </textarea>
-          {toSave && (
-            <button
-              className="account-btn icon-validate info-tooltip"
-              aria-label="Sauvegarder les notes"
-              onClick={handleValidateNote}
-            >
-              <MdSaveAs />
-            </button>
-          )}
         </div>
       }
     />

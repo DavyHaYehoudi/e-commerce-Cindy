@@ -5,7 +5,7 @@ import List from "../product";
 import Listing from "./trackingField";
 import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { updateOrder } from "../../../../../features/admin/ordersSlice";
+import { sendToClient } from "../../../../../features/admin/ordersSlice";
 import { getTrackingNumberList } from "../../../../../selectors/order";
 
 const Item = ({
@@ -23,21 +23,19 @@ const Item = ({
 
   const handleSendToClient = () => {
     dispatch(
-      updateOrder({
-        actionType: "sendToClient",
+      sendToClient({
+        clientId: client._id,
         orderId: order?._id,
         isClientNotified: true,
       })
     );
   };
   return (
-    <div
-      className="admin-order-item"
-      data-testid={`item-component-${order._id}`}
-    >
+    <div className="admin-order-item" data-testid={`item-component-${order._id}`}> 
       <Header
         order={order}
         orderIndex={orderIndex}
+        client={client}
         step={step}
         isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}

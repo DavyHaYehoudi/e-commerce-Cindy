@@ -12,7 +12,7 @@ export const articlesNumberCheck = (selectedProducts, articleNumber) => {
     articlesNumber = productData.value || 1;
 
     productsByOrderInfo.push({
-      id: uuidv4(),
+      _id: uuidv4(),
       productId,
       articlesNumber,
     });

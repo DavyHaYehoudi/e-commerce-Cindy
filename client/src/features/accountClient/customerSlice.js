@@ -19,7 +19,7 @@ const customer = createSlice({
           ? {
               ...order,
               trackingNumber: order.trackingNumber.filter(
-                (tn) => tn.id !== action.payload.trackingNumberId
+                (tn) => tn._id !== action.payload.trackingNumberId
               ),
             }
           : order
