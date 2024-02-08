@@ -5,7 +5,9 @@ const useSendToClient = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendToClient = useCallback(async (orderId,requestBody) => {
+  const sendToClient = useCallback(async (orderId,productsByOrderReqBody,orderReqBody) => {
+    const requestBody = [productsByOrderReqBody,orderReqBody]
+    console.log('requestBody:', requestBody)
     try {
       setLoading(true);
 
@@ -15,7 +17,7 @@ const useSendToClient = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
-      });
+      }); 
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);

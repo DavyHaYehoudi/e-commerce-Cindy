@@ -21,7 +21,7 @@ const Item = ({
   step,
 }) => {
   const { productsByOrder } = useSelector((state) =>
-  getOrderInfo(state, order._id)
+    getOrderInfo(state, order._id)
   );
   const productsByOrderStore = useSelector(
     (state) => state?.productsByOrder?.data
@@ -43,36 +43,33 @@ const Item = ({
   const { sendToClient, loading, error } = useSendToClient();
 
   const handleSendToClient = () => {
-    const resultMapArray = [];
+    const productsByOrderReqBody = [];
+    const orderReqBody = {};
 
-    productsByOrder.forEach((_id) => {
+    productsByOrder.forEach((productsByOrderId) => {
       const resultMap = {};
 
       const matchingObject = productsByOrderStore.find(
-        (item) => item._id === _id
+        (item) => item._id === productsByOrderId
       );
       if (matchingObject) {
-        resultMap["id"] = _id;
-        resultMap["productsByOrderActions"] =
-          matchingObject.productsByOrderActions;
+        resultMap["productsByOrder"] = matchingObject;
       }
 
       const creditMatchingObject = creditStore.find(
-        (item) => item.productsByOrderId === _id
+        (item) => item.productsByOrderId === productsByOrderId
       );
       if (creditMatchingObject) {
-        resultMap["credit"] = creditMatchingObject;
+        resultMap["creditEdit"] = creditMatchingObject;
       }
 
-      resultMapArray.push(resultMap);
+      productsByOrderReqBody.push(resultMap);
     });
 
-    resultMapArray.push({
-      step: step,
-      trackingNumberList: trackingNumberList,
-    });
+    orderReqBody["step"] = step;
+    orderReqBody["trackingNumberList"] = trackingNumberList;
 
-    sendToClient(order?._id, resultMapArray);
+    sendToClient(order?._id, productsByOrderReqBody, orderReqBody);
   };
 
   return (

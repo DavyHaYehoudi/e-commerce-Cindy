@@ -25,7 +25,7 @@ const creditSchema = new mongoose.Schema({
 
         return expirationDate >= currentDate;
       },
-      message: "La date d'expiration doit être au moins celle du lendemain.",
+      message: "La date d'expiration choisie doit être au moins celle du lendemain.",
     },
   },
   archived: {

@@ -6,6 +6,12 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+      validate: {
+        validator: function (value) {
+          return Number.isInteger(value) && value >= 0 && value <= 6;
+        },
+        message: props => `${props.value} n'est pas un nombre entier entre 0 et 6!`
+      }
     },
     isNextStepOrder: {
       type: Boolean,
@@ -15,11 +21,23 @@ const orderSchema = new mongoose.Schema(
     inTotalAmount: {
       type: Number,
       required: true,
+        validate: {
+        validator: function (value) {
+          return value >= -10000 && value <= 10000;
+        },
+        message: props => `${props.value} n'est pas compris entre -10 000 et +10 000!`
+      }
     },
     outTotalAmount: {
       type: Number,
       required: true,
       default: 0,
+        validate: {
+        validator: function (value) {
+          return value >= -10000 && value <= 10000;
+        },
+        message: props => `${props.value} n'est pas compris entre -10 000 et +10 000!`
+      }
     },
     paymentMethod: {
       cardType: {
