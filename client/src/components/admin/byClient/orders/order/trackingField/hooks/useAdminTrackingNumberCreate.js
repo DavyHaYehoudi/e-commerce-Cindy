@@ -41,7 +41,7 @@ const useAdminTrackingNumberCreate = ({
       addAdminTrackingNumber({
         orderId,
         trackingNumber: {
-          _id: uuidv4(),
+          id: uuidv4(),
           isAdmin: true,
           value: trackingField,
           date: date,

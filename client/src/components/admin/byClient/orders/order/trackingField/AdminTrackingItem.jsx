@@ -46,7 +46,7 @@ const AdminTrackingItem = ({
           <p>⚠️ La suppression de ce numéro de suivi est définitive !</p>
           <button
             className="btn-confirm"
-            onClick={() => handleConfirmCancel(item._id)}
+            onClick={() => handleConfirmCancel(item.id)}
           >
             Confirmer
           </button>

@@ -75,14 +75,14 @@ const trackingNumberAddAdmin = (order, { trackingNumber }) => ({
 const trackingNumberDelete = (order, { trackingNumberId }) => ({
   ...order,
   trackingNumber: order.trackingNumber.filter(
-    (tn) => tn._id !== trackingNumberId
+    (tn) => tn.id !== trackingNumberId
   ),
 });
 
 const trackingNumberUpdatedClient = (order, { trackingNumber }) => ({
   ...order,
   trackingNumber: order.trackingNumber.map((tn) =>
-    tn._id === trackingNumber._id ? { ...tn, ...trackingNumber } : tn
+    tn.id === trackingNumber.id ? { ...tn, ...trackingNumber } : tn
   ),
 });
 

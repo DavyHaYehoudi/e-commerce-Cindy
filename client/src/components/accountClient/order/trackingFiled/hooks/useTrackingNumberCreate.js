@@ -32,7 +32,7 @@ const useTrackingNumberCreate = ({
       addClientTrackingNumber({
         orderId,
         trackingNumber: {
-          _id: uuidv4(),
+          id: uuidv4(),
           isAdmin: false,
           value: trackingField,
           date: date,

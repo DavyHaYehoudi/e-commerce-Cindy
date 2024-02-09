@@ -31,15 +31,7 @@ const Item = ({
     getTrackingNumberList(state, order?._id)
   );
 
-  // const handleSendToClient = () => {
-  //   dispatch(
-  //     sendToClient({
-  //       clientId: client._id,
-  //       orderId: order?._id,
-  //       isClientNotified: true,
-  //     })
-  //   );
-  // };
+
   const { sendToClient, loading, error } = useSendToClient();
 
   const handleSendToClient = () => {
