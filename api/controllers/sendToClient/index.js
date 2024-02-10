@@ -16,10 +16,10 @@ const sendToClientController = {
         await checkFirstElement(productsByOrderArray);
 
       if (firstElementErrors.length > 0) {
-        console.log("firstElementErrors:", firstElementErrors);
         return res.status(400).json({ errors: firstElementErrors });
       }
-
+      console.log('firstElementErrors:', firstElementErrors)
+ 
       const { errors: secondElementErrors } = await checkSecondElement(
         req,
         step,
@@ -27,17 +27,16 @@ const sendToClientController = {
       );
 
       if (secondElementErrors.length > 0) {
-        console.log("secondElementErrors:", secondElementErrors);
         return res.status(400).json({ errors: secondElementErrors });
       }
+      console.log('secondElementErrors:', secondElementErrors)
       outTotalAmount = outTotalAmountCalc;
     } catch (error) {
       return res.status(500).json({
         error: `** Erreur interne du serveur dans index.js **: ${error.message}`,
       });
     }
-    // Mises à jour MongoDB dans la transaction
-
+ 
     try {
       await updateOrder(orderId, trackingNumberList, step, outTotalAmount);
 
@@ -45,7 +44,7 @@ const sendToClientController = {
         try {
           const { productsByOrder, creditEdit } = item;
           const { productsByOrderActions } = productsByOrder;
-          const { amount = null, dateExpire = null } = creditEdit || {};
+          const { amount = null, dateExpire = null } = creditEdit || {}; 
 
           await updateCredit(productsByOrder, creditEdit, amount, dateExpire);
           await updateProductsByOrderActions(

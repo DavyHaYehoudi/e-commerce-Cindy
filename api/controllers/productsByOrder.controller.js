@@ -43,7 +43,7 @@ const productsByOrderController = {
             ...updateQuery,
           },
         },
-        { new: true }
+        { new: true, runValidators: true }
       );
 
       res.status(200).json(updatedProduct);

@@ -47,13 +47,13 @@ creditSchema.pre('save', function (next) {
   this.code = generatedCode;
   next();
 });
-// creditSchema.pre('validate', function (next) {
-//   const error = this.validateSync();
-//   if (error) {
-//     handleValidationErrors(error, 'Credit');
-//   }
-//   next();
-// });
+creditSchema.pre('validate', function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, 'Credit');
+  }
+  next();
+});
 const Credit = mongoose.model('Credit', creditSchema);
 export default Credit;
 

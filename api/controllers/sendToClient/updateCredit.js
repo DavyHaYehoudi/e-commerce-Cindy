@@ -1,5 +1,4 @@
 import Credit from "../../models/credit.model.js";
-import { handleValidationErrors } from "../../models/errorModelHandler.js";
 
 export const updateCredit = async (
   productsByOrder,
@@ -31,7 +30,7 @@ export const updateCredit = async (
       });
     }
   } catch (error) {
-    handleValidationErrors(error,"Credit")
+    console.log("Erreur dans la mise à jour de updateCredit");
   }
 };
   

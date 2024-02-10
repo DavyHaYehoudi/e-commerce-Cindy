@@ -27,7 +27,7 @@ const useClientTrackingItem = ({
       updatedClientTrackingNumber({
         orderId,
         trackingNumber: {
-          id: item._id,
+          id: item.id,
           productsByOrder: productsByOrderInfo,
         },
       })

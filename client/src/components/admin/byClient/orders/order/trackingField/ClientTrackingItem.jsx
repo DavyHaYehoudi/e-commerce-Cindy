@@ -38,7 +38,7 @@ const ClientTrackingItem = ({
   };
 
   return (
-    <div className="trackingNumber trackingNumberClientItem" key={item._id}>
+    <div className="trackingNumber trackingNumberClientItem" key={item.id}>
       <div className="header">
         <p>
           <span className="underline">Numéro de suivi retour client</span> :{" "}
@@ -56,7 +56,7 @@ const ClientTrackingItem = ({
       <ul>
         {item?.productsByOrder?.map((product) => (
           <ProductListItem
-            key={product._id}
+            key={product.id}
             product={product}
             client={client}
             orderId={orderId}

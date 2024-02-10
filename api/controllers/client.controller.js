@@ -76,7 +76,7 @@ const clientController = {
         {
           $set: filteredUpdateFields,
         },
-        { new: true }
+        { new: true, runValidators: true  }
       );
 
       res.status(200).json(updatedClient);

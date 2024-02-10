@@ -5,7 +5,8 @@ export const updateOrder = async (
   trackingNumberList,
   step,
   outTotalAmount
-) => {
+  ) => {
+  console.log('trackingNumberList:', trackingNumberList)
   try {
     const order = await Order.findById(orderId);
 
@@ -21,7 +22,8 @@ export const updateOrder = async (
           step,
           outTotalAmount,
         },
-      }
+      },
+      { runValidators: true }
     );
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la commande :", error);

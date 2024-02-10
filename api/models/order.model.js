@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderSchema = new mongoose.Schema(
   {
@@ -21,23 +22,11 @@ const orderSchema = new mongoose.Schema(
     inTotalAmount: {
       type: Number,
       required: true,
-        validate: {
-        validator: function (value) {
-          return value >= -10000 && value <= 10000;
-        },
-        message: props => `${props.value} n'est pas compris entre -10 000 et +10 000!`
-      }
     },
     outTotalAmount: {
       type: Number,
       required: true,
       default: 0,
-        validate: {
-        validator: function (value) {
-          return value >= -10000 && value <= 10000;
-        },
-        message: props => `${props.value} n'est pas compris entre -10 000 et +10 000!`
-      }
     },
     paymentMethod: {
       cardType: {
@@ -108,6 +97,12 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+orderSchema.pre('validate', function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, 'Order');
+  }
+  next();
+});
 const Order = mongoose.model("Order", orderSchema);
 export default Order;

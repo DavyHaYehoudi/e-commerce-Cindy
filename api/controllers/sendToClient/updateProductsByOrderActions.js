@@ -18,9 +18,12 @@ export const updateProductsByOrderActions = async (
         $set: {
           productsByOrderActions,
         },
-      }
+      },
+      { runValidators: true }
     );
   } catch (error) {
-    console.error("Erreur lors de la mise à jour de productsByOrder :", error);
+    console.log(
+      "Erreur lors de la mise à jour de updateProductsByOrderActions"
+    );
   }
 };

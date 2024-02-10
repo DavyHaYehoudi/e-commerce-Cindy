@@ -88,7 +88,7 @@ const Header = ({
                     {formatPrice(amount)}
                   </span>
                 </li>
-                <li> Nᴼ {code} </li>
+                <li> Nᴼ {code || " - - - en cours - - -"} </li>
                 <li>Valable jusqu'au {formatDate(dateExpire)}</li>
               </ul>
             )}

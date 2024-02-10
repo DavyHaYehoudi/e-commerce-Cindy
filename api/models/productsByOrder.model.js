@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const productsByOrderSchema = new mongoose.Schema({
   productId: {
@@ -67,7 +68,13 @@ const productsByOrderSchema = new mongoose.Schema({
     },
   },
 });
-
+productsByOrderSchema.pre("validate", function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, "ProductsByOrder");
+  }
+  next();
+});
 const ProductsByOrder = mongoose.model(
   "ProductsByOrder",
   productsByOrderSchema
