@@ -51,23 +51,7 @@ const productsByOrderSchema = new mongoose.Schema({
       },
     },
     credit: {
-      type: {
-        productsByOrderId: {
-          type: String,
-        },
-        amount: {
-          type: Number,
-          validate: {
-            validator: (value) =>
-              value === null || (typeof value === "number" && value >= 0),
-            message:
-              "La propriété 'amount' du crédit doit être de type null ou un nombre supérieur ou égal à 0.",
-          },
-        },
-        dateExpire: {
-          type: String,
-        },
-      },
+      type: String,
       default: null,
     },
 
