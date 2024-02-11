@@ -18,8 +18,8 @@ const sendToClientController = {
       if (firstElementErrors.length > 0) {
         return res.status(400).json({ errors: firstElementErrors });
       }
-      console.log('firstElementErrors:', firstElementErrors)
- 
+      // console.log('firstElementErrors:', firstElementErrors)
+
       const { errors: secondElementErrors } = await checkSecondElement(
         req,
         step,
@@ -29,22 +29,29 @@ const sendToClientController = {
       if (secondElementErrors.length > 0) {
         return res.status(400).json({ errors: secondElementErrors });
       }
-      console.log('secondElementErrors:', secondElementErrors)
+      // console.log('secondElementErrors:', secondElementErrors)
       outTotalAmount = outTotalAmountCalc;
     } catch (error) {
       return res.status(500).json({
         error: `** Erreur interne du serveur dans index.js **: ${error.message}`,
       });
     }
- 
+
     try {
-      await updateOrder(orderId, trackingNumberList, step, outTotalAmount);
+      const lastSentDateToClient = new Date();
+      await updateOrder(
+        orderId,
+        trackingNumberList,
+        step,
+        outTotalAmount,
+        lastSentDateToClient
+      );
 
       for (const item of productsByOrderArray) {
         try {
           const { productsByOrder, creditEdit } = item;
           const { productsByOrderActions } = productsByOrder;
-          const { amount = null, dateExpire = null } = creditEdit || {}; 
+          const { amount = null, dateExpire = null } = creditEdit || {};
 
           await updateCredit(productsByOrder, creditEdit, amount, dateExpire);
           await updateProductsByOrderActions(
@@ -57,8 +64,13 @@ const sendToClientController = {
           });
         }
       }
-      res.status(200).json({});
+      res.status(200).json({
+        lastSentDateToClient,
+      });
+      // res.status(400).json({})
+      // res.status(500).json({})
     } catch (error) {
+      console.log("error:", error);
       return res.status(500).json({
         error: `Erreur interne du serveur : ${error.message}`,
       });

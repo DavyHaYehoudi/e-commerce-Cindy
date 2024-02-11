@@ -4,9 +4,9 @@ export const updateOrder = async (
   orderId,
   trackingNumberList,
   step,
-  outTotalAmount
-  ) => {
-  console.log('trackingNumberList:', trackingNumberList)
+  outTotalAmount,
+  lastSentDateToClient
+) => {
   try {
     const order = await Order.findById(orderId);
 
@@ -21,6 +21,7 @@ export const updateOrder = async (
           trackingNumber: trackingNumberList,
           step,
           outTotalAmount,
+          lastSentDateToClient,
         },
       },
       { runValidators: true }

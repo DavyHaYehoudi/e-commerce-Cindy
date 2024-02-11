@@ -498,4 +498,9 @@
     display: flex;
     align-items: center;
 }
+.sending{
+    font-style: italic;
+    color: var(--success);
+    font-size: 2rem;
+}
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */

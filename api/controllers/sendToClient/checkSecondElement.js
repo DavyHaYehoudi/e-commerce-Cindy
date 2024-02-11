@@ -70,7 +70,6 @@ export async function checkSecondElement(req, step, trackingNumberList) {
               }
             }
         } catch (error) {
-            console.log('error----:', error)
             errors.push(error.message);
         }
     

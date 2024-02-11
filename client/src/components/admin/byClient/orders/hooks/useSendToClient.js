@@ -1,35 +1,49 @@
 import { useState, useCallback } from "react";
 import { customFetch } from "../../../../../helpers/services/customFetch";
+import { useDispatch } from "react-redux";
+import { sendToClientSuccess } from "../../../../../features/admin/ordersSlice";
+import { toast } from "react-toastify";
 
 const useSendToClient = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
-  const sendToClient = useCallback(async (orderId,productsByOrderReqBody,orderReqBody) => {
-    const requestBody = [productsByOrderReqBody,orderReqBody]
-    console.log('requestBody:', requestBody)
-    try {
-      setLoading(true);
+  const sendToClient = useCallback(
+    async (orderId, productsByOrderReqBody, orderReqBody) => {
+      const requestBody = [productsByOrderReqBody, orderReqBody];
+      try {
+        setLoading(true);
 
-      const response = await customFetch(`order/${orderId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      }); 
+        const response = await customFetch(`order/${orderId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+        if (response) {
+          const { lastSentDateToClient } = response;
+          dispatch(sendToClientSuccess({ orderId, lastSentDateToClient }));
+          toast.success("Les informations ont bien été partagées au client !");
+        }
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
+        setError(null);
+      } catch (error) {
+        console.log('error:', error)
+        if (error.message.includes("Status: 400")){
+          toast.error("Une erreur est survenue avec les informations fournies.");
+        }
+        if (error.message.includes("Status: 500")){
+          toast.error("Une erreur est survenue avec le réseau ou le serveur.");
+        }
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-
-      setError(null); // Réinitialisez les erreurs s'il y en a eu précédemment
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [dispatch]
+  );
 
   return { sendToClient, loading, error };
 };

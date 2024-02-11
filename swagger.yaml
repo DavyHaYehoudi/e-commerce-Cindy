@@ -390,35 +390,6 @@ paths:
           description: Productsbyorder not found  
       security:
         - api_key: []
-    patch:
-      tags:
-        - productsbyorder 
-      summary: Edit partially a list of products in an order
-      description: Place a new list of products in the order
-      operationId: placeProducts
-      parameters:
-        - name: productsbyorderId
-          in: path
-          description: ID of list of products that needs to be fetched
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditProductsByOrder'
-      responses:
-        '200':
-          description: Successful updated productsbyorder
-        '400':
-          description: Invalid productsbyorder ID supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Productsbyorder not found
-      security:
-        - api_key: []
   /product:
     get:
       tags:
@@ -551,26 +522,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Credits'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
-    post:
-      tags:
-        - credit 
-      summary: Place an credit for a customer
-      description: Place a new credit for a customer
-      operationId: placeCredit
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FirstCredit'
-      responses:
-        '201':
-          description: successful posting credit
-        '400':
-          description: Bad Request - Invalid parameters
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
@@ -853,7 +804,7 @@ components:
                 items:
                   type: object
                   properties:
-                    id:
+                    _id:
                       type: string
                       example: "hfneu8rur7snsl"
                     productId:
@@ -914,7 +865,7 @@ components:
       items:
          type: object
          properties:
-          id: 
+          _id: 
             type: string
             example: "2884d22b45a0fb3fd4a75p2"
           productId:
@@ -948,46 +899,6 @@ components:
               note:
                 type: string
                 example: "Des notes pour l'exemple"
-    FirstProductsByOrder:
-      type: object
-      properties:
-         productId:
-          type: string
-          example: "7774d22b45a0fb3fd4a7bn0"
-         quantity:
-          type: integer
-          format: int16
-          example: 2
-         material:
-          type: integer
-          format: int16
-          example: 0
-    EditProductsByOrder:
-      type: object
-      properties:
-        orderId:
-          type: string
-          example: "5fc4d22b45a0fb3fd4a75f65"
-        isClientNotified:
-          type: boolean
-          example: false
-        exchange:
-          type: integer
-          format: int16
-          example: 1
-        refund:
-          type: integer
-          format: int16
-          example: null
-        credit:
-          type: string
-          example: "111m4d22b45a0fb3fd4a75hq9"
-        note:
-          type: string
-          example: "Quelques notes"
-        amount:   
-          type: number
-          example: 50
     Product:
       type: object
       properties:
@@ -1178,7 +1089,7 @@ components:
     Credit:
       type: object
       properties:
-        id:
+        _id:
           type: string
           example: "6vbhd22b45a0fb3fd4a7599"
         productsByOrderId: 

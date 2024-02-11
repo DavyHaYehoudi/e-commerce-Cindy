@@ -5,12 +5,13 @@ import List from "../product";
 import Listing from "./trackingField";
 import { useSelector } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
-// import { sendToClient } from "../../../../../features/admin/ordersSlice";
 import {
   getOrderInfo,
   getTrackingNumberList,
 } from "../../../../../selectors/order";
 import useSendToClient from "../hooks/useSendToClient";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Item = ({
   client,
@@ -31,8 +32,7 @@ const Item = ({
     getTrackingNumberList(state, order?._id)
   );
 
-
-  const { sendToClient, loading, error } = useSendToClient();
+  const { sendToClient, loading} = useSendToClient();
 
   const handleSendToClient = () => {
     const productsByOrderReqBody = [];
@@ -69,15 +69,19 @@ const Item = ({
       className="admin-order-item"
       data-testid={`item-component-${order._id}`}
     >
-      <Header
-        order={order}
-        orderIndex={orderIndex}
-        client={client}
-        step={step}
-        isClientNotified={isClientNotified}
-        lastSentDateToClient={lastSentDateToClient}
-        handleSendToClient={handleSendToClient}
-      />
+      {!loading ? (
+        <Header
+          order={order}
+          orderIndex={orderIndex}
+          client={client}
+          step={step}
+          isClientNotified={isClientNotified}
+          lastSentDateToClient={lastSentDateToClient}
+          handleSendToClient={handleSendToClient}
+        />
+      ) : (
+        <p className="sending" >Envoi en cours...</p>
+      )}
 
       <Details order={order} orderId={order?._id} />
       <List client={client} orderId={order?._id} />
@@ -94,6 +98,7 @@ const Item = ({
           />
         }
       />
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

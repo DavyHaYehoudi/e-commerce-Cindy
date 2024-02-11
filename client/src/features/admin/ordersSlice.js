@@ -20,7 +20,7 @@ export const ordersActions = [
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
-  state.data= state.data.map((order) =>
+  state.data = state.data.map((order) =>
     order._id === action.payload.orderId
       ? updateFunction(order, action.payload)
       : order
@@ -32,10 +32,10 @@ const updateOrderStep = (order, { step, isClientNotified }) => ({
   isClientNotified,
 });
 
-const sendToTheClient = (order, payload) => ({
+const sendToTheClientSuccess = (order,  payload ) => ({
   ...order,
-  isClientNotified: payload.isClientNotified,
-  lastSentDateToClient: new Date().toISOString(),
+  isClientNotified: true,
+  lastSentDateToClient: payload.lastSentDateToClient,
 });
 
 const updateMoveToNextStep = (
@@ -69,11 +69,13 @@ const updateTotalsInOut = (order, { amount, movement }) => ({
 
 const trackingNumberAddAdmin = (order, { trackingNumber }) => ({
   ...order,
+  isClientNotified:false,
   trackingNumber: [...order.trackingNumber, trackingNumber],
 });
 
 const trackingNumberDelete = (order, { trackingNumberId }) => ({
   ...order,
+  isClientNotified:false,
   trackingNumber: order.trackingNumber.filter(
     (tn) => tn.id !== trackingNumberId
   ),
@@ -99,8 +101,8 @@ const ordersSlice = createSlice({
     reactivateOrder: (state, action) =>
       applyOrderAction(state, action, updateOrderStep),
 
-    sendToClient: (state, action) =>
-      applyOrderAction(state, action, sendToTheClient),
+    sendToClientSuccess: (state, action) =>
+      applyOrderAction(state, action, sendToTheClientSuccess),
 
     articleAction: (state, action) =>
       applyOrderAction(state, action, updateIsClientNotified),
@@ -110,7 +112,7 @@ const ordersSlice = createSlice({
 
     addAdminTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberAddAdmin),
-      
+
     deleteTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberDelete),
 
@@ -138,7 +140,7 @@ export const {
   moveToNextStep,
   cancelOrder,
   reactivateOrder,
-  sendToClient,
+  sendToClientSuccess,
   articleAction,
   totalsInOut,
   addAdminTrackingNumber,
