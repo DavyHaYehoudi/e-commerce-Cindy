@@ -66,8 +66,8 @@ test("renders Infos component when clientDetails is true", () => {
 
 // Groupe de tests pour le composant Item
 describe("Item Component", () => {
-  // Test : rend avec bulle de notification quand isAnyOrderClientNotified est vrai
-  it("renders with notification bubble when isAnyOrderClientNotified is true", () => {
+  // Test : rend avec bulle de notification quand isToProcessOrNotNotified est vrai
+  it("renders with notification bubble when isToProcessOrNotNotified is true", () => {
     const client = {
       _id: "2mongoDb",
       firstName: "Sophie",
@@ -88,8 +88,8 @@ describe("Item Component", () => {
     expect(notificationBubble).toBeInTheDocument();
   });
 
-  // Test : rend sans une bulle de notification quand isAnyOrderClientNotified est faux
-  it("renders without notification bubble when isAnyOrderClientNotified is false", () => {
+  // Test : rend sans une bulle de notification quand isToProcessOrNotNotified est faux
+  it("renders without notification bubble when isToProcessOrNotNotified is false", () => {
     const client = {
       _id: "1mongoDb",
       firstName: "John",
