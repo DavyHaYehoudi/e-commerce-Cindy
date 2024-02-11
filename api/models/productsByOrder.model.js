@@ -59,13 +59,9 @@ const productsByOrderSchema = new mongoose.Schema({
     note: {
       type: String,
       default: null,
-      validate: {
-        validator: (value) =>
-          value === null || (typeof value === "string" && value.length <= 1000),
-        message:
-          "La note doit être de type null ou une chaîne de caractères de longueur maximale 1000.",
-      },
+      maxlength: [500, "La note doit avoir au maximum 500 caractères."],
     },
+    
   },
 });
 productsByOrderSchema.pre("validate", function (next) {

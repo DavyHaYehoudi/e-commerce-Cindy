@@ -498,7 +498,7 @@
     display: flex;
     align-items: center;
 }
-.sending{
+.admin-order-item .sending{
     font-style: italic;
     color: var(--success);
     font-size: 2rem;

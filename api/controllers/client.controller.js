@@ -76,7 +76,7 @@ const clientController = {
         {
           $set: filteredUpdateFields,
         },
-        { new: true, runValidators: true  }
+        { new: true, runValidators: true }
       );
 
       res.status(200).json(updatedClient);
@@ -99,7 +99,7 @@ const clientController = {
       const updatedClient = await Client.findOneAndUpdate(
         { _id: clientId },
         { $push: { notesAdmin: newNote } },
-        { new: true }
+        { new: true, runValidators: true }
       );
       const index =
         updatedClient.notesAdmin[updatedClient.notesAdmin.length - 1];

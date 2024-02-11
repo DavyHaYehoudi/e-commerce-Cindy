@@ -10,7 +10,7 @@ import {
   getTrackingNumberList,
 } from "../../../../../selectors/order";
 import useSendToClient from "../hooks/useSendToClient";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Item = ({
@@ -32,7 +32,7 @@ const Item = ({
     getTrackingNumberList(state, order?._id)
   );
 
-  const { sendToClient, loading} = useSendToClient();
+  const { sendToClient, loading } = useSendToClient();
 
   const handleSendToClient = () => {
     const productsByOrderReqBody = [];
@@ -80,7 +80,7 @@ const Item = ({
           handleSendToClient={handleSendToClient}
         />
       ) : (
-        <p className="sending" >Envoi en cours...</p>
+        <p className="sending">Envoi en cours...</p>
       )}
 
       <Details order={order} orderId={order?._id} />

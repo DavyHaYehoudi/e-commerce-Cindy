@@ -25,5 +25,6 @@ export const updateProductsByOrderActions = async (
     console.log(
       "Erreur lors de la mise à jour de updateProductsByOrderActions"
     );
+    throw error
   }
 };

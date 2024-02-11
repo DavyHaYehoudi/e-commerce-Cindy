@@ -31,6 +31,7 @@ export const updateCredit = async (
     }
   } catch (error) {
     console.log("Erreur dans la mise à jour de updateCredit");
+    throw error
   }
 };
   

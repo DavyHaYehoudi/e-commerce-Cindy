@@ -28,5 +28,6 @@ export const updateOrder = async (
     );
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la commande :", error);
+    throw error
   }
 };

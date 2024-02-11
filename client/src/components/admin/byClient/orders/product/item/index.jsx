@@ -24,7 +24,6 @@ const Main = ({ productsByOrder, client, orderId }) => {
     orderId,
     productId,
   ); 
-// console.log("productsByOrderInfo :",productsByOrderInfo,"orderId :",orderId);
   const [interaction, setInteraction] = useState({
     isActionsOpen: false,
     activeLi: null,

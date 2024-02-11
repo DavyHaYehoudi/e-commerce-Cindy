@@ -12,10 +12,13 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
 
   const handleNotesChange = (e) => {
-    setCurrentNote(e.target.value);
+    const enteredText = e.target.value;
+    if (enteredText.length <= 500) {
+      setCurrentNote(enteredText);
+    }
   };
 
-  const handleSaveNotes = () => { 
+  const handleSaveNotes = () => {
     dispatch(
       addNoteAdmin({
         clientId,
@@ -36,16 +39,15 @@ const NotesEditor = ({ clientId, notesPropName }) => {
       <h2>
         <span className="underline">Notes</span>{" "}
       </h2>
-
       <div className="previous-notes">
         {notes?.map((note) => (
           <div key={note._id} className="previous-note">
             <p>
-              {note.content} <small>{formatDate(note.date)}</small>{" "}
+              {note?.content} <small>{formatDate(note?.date)}</small>{" "}
             </p>
             <button
               className="account-btn icon-trash"
-              onClick={() => handleDeleteNote(note._id)}
+              onClick={() => handleDeleteNote(note?._id)}
               aria-label="Supprimer cette note"
             >
               <TbInputX aria-hidden="true" />{" "}
@@ -53,7 +55,10 @@ const NotesEditor = ({ clientId, notesPropName }) => {
           </div>
         ))}
       </div>
-
+      <small>
+        {500 - currentNote.length} caratère
+        {500 - currentNote.length > 1 ? "s" : ""} permis
+      </small>{" "}
       <div className="notes-textarea">
         <textarea
           value={currentNote}
