@@ -20,12 +20,6 @@ export const getProductsInfo = (
       ps.productId === productId && order?.productsByOrder.includes(ps._id)
   )?.material;
 
-  const isAnyProductClientNotified = order?.productsByOrder
-    ?.map(
-      (p) => productsByOrderStore?.find((ps) => ps._id === p)?.isClientNotified
-    )
-    .some((notified) => !notified);
-
   const getProductsByOrder = order?.productsByOrder?.map((p) =>
     productsByOrderStore?.find((ps) => ps._id === p)
   );
@@ -37,7 +31,6 @@ export const getProductsInfo = (
     productsByOrderInfo?.credit;
   return {
     productsByOrderInfo,
-    isAnyProductClientNotified,
     getProductsByOrder,
     noteContent,
     isTagProductExisted,

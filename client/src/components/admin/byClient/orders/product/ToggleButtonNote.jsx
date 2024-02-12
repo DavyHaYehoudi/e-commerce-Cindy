@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../features/admin/productsByOrderSlice";
+import {
+  productsByOrderNote,
+  updateActionContent,
+} from "../../../../../features/admin/productsByOrderSlice";
+import { IoSave } from "react-icons/io5";
 
 const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
+  const [isEdited, setIsEdited] = useState(false);
   const dispatch = useDispatch();
 
   const handleChangeNoteValue = (e) => {
+    setIsEdited(true);
     const enteredText = e.target.value;
     if (enteredText.length <= 500) {
       dispatch(
@@ -17,6 +23,15 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
         })
       );
     }
+  };
+  const handleNoteValidate = () => {
+    setIsEdited(false);
+    dispatch(
+      productsByOrderNote({
+        productsByOrderId: productsByOrder._id,
+        content: productsByOrderInfo?.note,
+      })
+    );
   };
   return (
     <ToggleButton
@@ -38,6 +53,15 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
             >
               {" "}
             </textarea>
+            {isEdited && (
+              <button
+                className="account-btn icon-validate info-tooltip"
+                aria-label="Enregistrer la note"
+                onClick={handleNoteValidate}
+              >
+                <IoSave />
+              </button>
+            )}
           </div>
         </>
       }

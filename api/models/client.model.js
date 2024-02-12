@@ -1,12 +1,18 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const clientSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    phone: { type: String, default: "" },
-    shippingAddress: { type: String, required: true },
+    firstName: { type: String, required: true, maxlength: 50 },
+    lastName: { type: String, required: true, maxlength: 50 },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    },
+    phone: { type: String, default: "", maxlength: 20}, 
+    shippingAddress: { type: String, required: true, maxlength: 200 },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
     notesAdmin: [
@@ -47,6 +53,12 @@ const clientSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+clientSchema.pre("validate", function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, "Order");
+  }
+  next();
+});
 const Client = mongoose.model("Client", clientSchema);
 export default Client;

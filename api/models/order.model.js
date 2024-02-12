@@ -77,11 +77,6 @@ const orderSchema = new mongoose.Schema(
         ],
         default: [], 
       },
-    isClientNotified: {
-      type: Boolean,
-      required: true,
-      default: true,
-    },
     lastSentDateToClient: {
       type: String,
       default:null

@@ -2,13 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 
-const fetchCustomer = createAsyncThunk("client/fetchCustomer", async (clientId) => {
-  try {
-    return customFetch(`client/${clientId}`);
-  } catch (error) {
-    handleFetchError(error);
+const fetchCustomer = createAsyncThunk(
+  "client/fetchCustomer",
+  async (clientId) => {
+    try {
+      return customFetch(`client/${clientId}`);
+    } catch (error) {
+      handleFetchError(error);
+    }
   }
-});
+);
 const customer = createSlice({
   name: "customer",
   initialState: { data: [], status: "idle", error: null },
@@ -38,6 +41,14 @@ const customer = createSlice({
           : order
       );
     },
+    updateClientField: (state, action) => {
+      const { clientId, field, value } = action.payload;
+      const client = state?.data?.client;
+
+      if (clientId === client._id) {
+        client[field] = value;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +66,10 @@ const customer = createSlice({
       });
   },
 });
-export const { deleteTrackingNumber,addClientTrackingNumber } = customer.actions;
+export const {
+  deleteTrackingNumber,
+  addClientTrackingNumber,
+  updateClientField,
+} = customer.actions;
 export { fetchCustomer };
 export default customer.reducer;

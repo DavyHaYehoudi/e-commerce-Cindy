@@ -12,30 +12,37 @@ describe("InfoClient Component", () => {
     phone: "123-456-7890",
     address: "123 Main St",
   };
+  const clientId = "1mongoDB";
+  const handleChangeProfilSave = jest.fn();
+  const handleChangeProfilEdit = jest.fn();
   test("renders component with initial data", () => {
-    render(<InfoClient dataClient={dataClient} />);
+    const isEditing = false;
+    render(
+      <InfoClient
+        dataClient={dataClient}
+        handleChangeProfilSave={handleChangeProfilSave}
+        isEditing={isEditing}
+        handleChangeProfilEdit={handleChangeProfilEdit}
+        clientId={clientId}
+      />
+    );
     const elements = screen.queryAllByText(/John/i);
     expect(elements.length > 0).toBe(true);
   });
 
-  test("allows editing when 'Modifier les Informations' button is clicked", () => {
-    render(<InfoClient dataClient={dataClient} />);
-
-    fireEvent.click(screen.getByText("Modifier les Informations"));
-
-    // Vérifie que les champs deviennent éditables
-    expect(screen.getByDisplayValue("John")).toBeEnabled();
-    // Ajoutez des assertions similaires pour les autres champs
-  });
-
   test("calls onSaveChanges when 'Enregistrer les modifications' button is clicked", () => {
-    const onSaveChangesMock = jest.fn();
-
+    const isEditing = true;
     render(
-      <InfoClient dataClient={dataClient} onSaveChanges={onSaveChangesMock} />
+      <InfoClient
+        dataClient={dataClient}
+        handleChangeProfilSave={handleChangeProfilSave}
+        isEditing={isEditing}
+        handleChangeProfilEdit={handleChangeProfilEdit}
+        clientId={clientId}
+      />
     );
 
-    fireEvent.click(screen.getByText("Modifier les Informations"));
+    // fireEvent.click(screen.getByText("Modifier les Informations"));
     fireEvent.click(screen.getByText("Enregistrer les modifications"));
 
     // Vérifie que la fonction onSaveChanges a été appelée avec les bonnes données

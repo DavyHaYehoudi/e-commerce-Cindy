@@ -26,10 +26,6 @@ const productsByOrderSchema = new mongoose.Schema({
       message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
     },
   },
-  isClientNotified: {
-    type: Boolean,
-    required: true,
-  },
   productsByOrderActions: {
     exchange: {
       type: Number,

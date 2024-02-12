@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 
 const Item = ({ client, handleClientClick, clientDetails }) => {
   const { orders, isToProcessOrNotNotified } = useSelector((state) =>
-  getClientInfo(state, { client })
+    getClientInfo(state, {
+      client,
+      isClientNotified: state?.orders?.isClientNotified,
+    })
   );
-
 
   return (
     <li
@@ -20,7 +22,7 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
           onClick={() => handleClientClick(client._id)}
           data-testid={`client-name-${client._id}`}
         >
-          {client.firstName + " " +client.lastName}
+          {client.firstName + " " + client.lastName}
           {isToProcessOrNotNotified && (
             <span
               className="notification-bubble-list blink"

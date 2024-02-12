@@ -6,7 +6,6 @@ const Header = ({
   order,
   handleSendToClient,
   step,
-  isClientNotified,
   lastSentDateToClient,
 }) => {
   return (
@@ -26,7 +25,6 @@ const Header = ({
         order={order}
         step={step}
         handleSendToClient={handleSendToClient}
-        isClientNotified={isClientNotified}
         lastSentDateToClient={lastSentDateToClient}
       />
     </div>

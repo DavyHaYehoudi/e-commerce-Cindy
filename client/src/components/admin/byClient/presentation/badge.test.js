@@ -11,12 +11,13 @@ describe("Badge Component", () => {
   const initialState = {
     orders: {
       data: [
-        { _id: "1mongoDb", isClientNotified: true },
-        { _id: "2mongoDb", isClientNotified: true },
-        { _id: "3mongoDb", isClientNotified: true },
-        { _id: "4mongoDb", isClientNotified: true },
-        { _id: "5mongoDb", isClientNotified: false },
+        { _id: "1mongoDb" },
+        { _id: "2mongoDb" },
+        { _id: "3mongoDb" },
+        { _id: "4mongoDb" },
+        { _id: "5mongoDb" },
       ],
+      isClientNotified: ["5mongoDb"],
     },
   };
   const setSelectedOrderIdMock = jest.fn();

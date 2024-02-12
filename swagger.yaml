@@ -142,7 +142,7 @@ paths:
       parameters:
         - name: clientId
           in: path
-          description: id that needs to be deleted
+          description: id that needs to be edited
           required: true
           schema:
             type: string
@@ -376,6 +376,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductsByOrder'
+        '400':
+          description: Invalid ID supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /productsbyorder/note/{productsbyorderId}:
+    patch:
+      tags:
+        - productsbyorder
+      summary: Edit note productsbyorder by ID
+      description: ''
+      operationId: editNoteProductsByOrder
+      parameters:
+        - name: productsbyorderId
+          in: path
+          description: ID of productsbyorder that needs to be edited
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful edit productsbyorder 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductsByOrderNote'
         '400':
           description: Invalid ID supplied
         '401':
@@ -748,8 +775,6 @@ components:
                         type: integer 
                       credit:
                         type: string
-                      note:
-                        type: string
                   _id:
                     type: string
                   quantity:
@@ -826,8 +851,6 @@ components:
                         articlesNumber: 2
                         _id: "65c20591b1a16a3ec8e4bd44"
                     _id: "65c20591b1a16a3ec8e4bd45"
-
-    
     Orders:
       type: array
       items:
@@ -879,9 +902,6 @@ components:
             type: integer
             format: int16
             example: 0
-          isClientNotified:
-            type: boolean
-            example: true
           productsByOrderActions:
             type: object
             properties:
@@ -899,6 +919,13 @@ components:
               note:
                 type: string
                 example: Des notes pour l'exemple
+    ProductsByOrderNote:
+      type: object  
+      properties:
+        _id:
+          type: string
+        content:
+          type: string
     Product:
       type: object
       properties:

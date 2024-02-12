@@ -28,6 +28,7 @@ const initialState = {
       { _id: "4mongoDb", isClientNotified: true },
       { _id: "5mongoDb", isClientNotified: false },
     ],
+    isClientNotified:["1mongoDb"]
   },
 };
 
@@ -72,9 +73,9 @@ describe("Item Component", () => {
       _id: "2mongoDb",
       firstName: "Sophie",
       lastName: "Smith",
-      orders: ["4mongoDb", "5mongoDb"],
+      orders: ["1mongoDb"],
     };
-
+ 
     render(
       <Item
         client={client}
@@ -94,7 +95,7 @@ describe("Item Component", () => {
       _id: "1mongoDb",
       firstName: "John",
       lastName: "Doe",
-      orders: ["1mongoDb", "2mongoDb", "3mongoDb"],
+      orders: ["2mongoDb", "3mongoDb"],
     };
 
     render(
@@ -106,8 +107,8 @@ describe("Item Component", () => {
       { store }
     );
 
-    const notificationBubble = screen.queryByTestId("notification-bubble");
-    expect(notificationBubble).not.toBeInTheDocument();
+    const notificationBubble = screen.queryAllByTestId("notification-bubble");
+    expect(notificationBubble).toHaveLength(0);
   });
 
   // Test : déclenche handleClientClick lors du clic sur l'en-tête du client
