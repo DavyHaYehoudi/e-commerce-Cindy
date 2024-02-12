@@ -56,7 +56,7 @@ describe("AdminTrackingItem Component", () => {
       screen.getByText(/trackingNumberValue/i)
     ).toBeInTheDocument();
     expect(
-        screen.getByText(/Envoyé le \d{2}\/\d{2}\/\d{4} \d{2}:\d{2}/)
+        screen.getByText(/Envoyé le \d{2}\/\d{2}\/\d{4}/)
       ).toBeInTheDocument();
   });
 

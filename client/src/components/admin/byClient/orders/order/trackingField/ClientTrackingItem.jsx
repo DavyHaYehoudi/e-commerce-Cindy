@@ -43,7 +43,7 @@ const ClientTrackingItem = ({
         <p>
           <span className="underline">Numéro de suivi retour client</span> :{" "}
           <span className="trackingNumberValue">{item.value}</span>{" "}
-          <small>- Envoyé le {formatDate(item.date)}</small>
+          <small>- Envoyé le {formatDate(item.date, false)}</small>
         </p>
         <button
           className="account-btn icon-edit info-tooltip"
@@ -80,7 +80,10 @@ const ClientTrackingItem = ({
             setIsFormValid={setIsFormValid}
           />
           {error && <p className="error-message">{error}</p>}
-          <div className="trackingNumberClientItem-validate" data-testid="trackingNumberClientItem-validate">
+          <div
+            className="trackingNumberClientItem-validate"
+            data-testid="trackingNumberClientItem-validate"
+          >
             <button
               className={isFormValid ? "btn-confirm" : "noValid"}
               onClick={() =>

@@ -26,7 +26,7 @@ const AdminTrackingItem = ({
       <div className="header">
         <p>
           <span className="underline">Numéro de suivi d'envoi</span>  : <span className="trackingNumberValue" >{item.value}</span> {" "}
-          <small>- Envoyé le {formatDate(item.date)}</small>
+          <small>- Envoyé le {formatDate(item.date,false)}</small>
         </p>
       </div>
       <ul className="productsByOrder">

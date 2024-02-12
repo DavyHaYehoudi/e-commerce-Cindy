@@ -29,7 +29,7 @@ const TrackingNumberList = ({ trk, order }) => {
           : "№ suivi de retour client : " + trk.value}
       </p>
       <p>
-        <small>- Envoyé le {formatDate(trk.date)}</small>
+        <small>- Envoyé le {formatDate(trk.date, false)}</small>
       </p>
       {isTrashConfirm && (
         <div className="adminTrackingItemTrashConfirm">
