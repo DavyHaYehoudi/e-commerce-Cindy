@@ -1,10 +1,14 @@
 openapi: 3.0.3
 info:
   title: Site e-commerce
-  description: |
+  description: >
     Some useful links:
-    - [Lien Github du code source](https://github.com/DavyHaYehoudi/e-commerce-Cindy)
-    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+
+    - [Lien Github du code
+    source](https://github.com/DavyHaYehoudi/e-commerce-Cindy)
+
+    - [The source API definition for the Pet
+    Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
   contact:
     email: davy.programa@gmail.com
   license:
@@ -32,15 +36,15 @@ paths:
     get:
       tags:
         - client
-      description: "Getting all clients"
+      description: Getting all clients
       operationId: getAllClients
       responses:
         '200':
-         description: successful getting all clients
-         content:
-           application/json:
-            schema:
-             $ref: '#/components/schemas/Clients'
+          description: successful getting all clients
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clients'
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
@@ -108,7 +112,7 @@ paths:
       parameters:
         - name: clientId
           in: path
-          description: "The id that needs to be fetched."
+          description: The id that needs to be fetched.
           required: true
           schema:
             type: string
@@ -118,13 +122,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientDetails'          
+                $ref: '#/components/schemas/ClientDetails'
         '400':
           description: Invalid clientId supplied
         '401':
           description: Unauthorized - Client is not authenticated
-        '403' :
-          description : Forbidden - The client is authenticated, but does not have permission to access the requested resource.
+        '403':
+          description: >-
+            Forbidden - The client is authenticated, but does not have
+            permission to access the requested resource.
         '404':
           description: Client not found
       security:
@@ -142,7 +148,6 @@ paths:
           required: true
           schema:
             type: string
-            
       requestBody:
         content:
           application/json:
@@ -155,8 +160,10 @@ paths:
           description: Invalid clientId supplied
         '401':
           description: Unauthorized - Client is not authenticated
-        '403' :
-          description : Forbidden - The client is authenticated, but does not have permission.
+        '403':
+          description: >-
+            Forbidden - The client is authenticated, but does not have
+            permission.
         '404':
           description: Client not found
       security:
@@ -181,8 +188,10 @@ paths:
           description: Invalid clientId supplied
         '401':
           description: Unauthorized - Client is not authenticated
-        '403' :
-          description : Forbidden - The client is authenticated, but does not have permission.
+        '403':
+          description: >-
+            Forbidden - The client is authenticated, but does not have
+            permission.
         '404':
           description: Client not found
       security:
@@ -201,7 +210,6 @@ paths:
           required: true
           schema:
             type: string
-            
       requestBody:
         content:
           application/json:
@@ -209,7 +217,7 @@ paths:
               $ref: '#/components/schemas/AddingNotesAdmin'
       responses:
         '200':
-          description: Successful added notes 
+          description: Successful added notes
         '400':
           description: Invalid clientId supplied
         '401':
@@ -219,7 +227,7 @@ paths:
       security:
         - api_key: []
   /client/removeNote/{clientId}/{noteId}:
-   patch:
+    patch:
       tags:
         - client
       summary: Delete admin notes
@@ -228,19 +236,19 @@ paths:
       parameters:
         - name: clientId
           in: path
-          description: id that needs to be deleted
+          description: ID of the client
           required: true
           schema:
             type: string
-            
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DeleteNotesAdmin'
+        - name: noteId
+          in: path
+          description: ID of the note
+          required: true
+          schema:
+            type: string
       responses:
         '200':
-          description: Successful added notes 
+          description: Successful added notes
         '400':
           description: Invalid clientId supplied
         '401':
@@ -261,14 +269,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Orders'          
+                $ref: '#/components/schemas/Orders'
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
     post:
       tags:
-        - order 
+        - order
       summary: Place an order for a purchase
       description: Place a new order in the list
       operationId: placeOrder
@@ -291,7 +299,7 @@ paths:
       tags:
         - order
       summary: Find purchase order by ID
-      description: ""
+      description: ''
       operationId: getOrderById
       parameters:
         - name: orderId
@@ -306,18 +314,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'          
+                $ref: '#/components/schemas/Order'
         '400':
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
         '404':
-          description: Order not found    
+          description: Order not found
       security:
         - api_key: []
     patch:
       tags:
-        - order 
+        - order
       summary: Edit partially an order for a purchase
       description: Edit an order
       operationId: editOrder
@@ -366,7 +374,7 @@ paths:
       tags:
         - productsbyorder
       summary: Find purchase productsbyorder by ID
-      description: ""
+      description: ''
       operationId: getProductsById
       parameters:
         - name: productsbyorderId
@@ -381,13 +389,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductsByOrder'          
+                $ref: '#/components/schemas/ProductsByOrder'
         '400':
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
         '404':
-          description: Productsbyorder not found  
+          description: Productsbyorder not found
       security:
         - api_key: []
   /product:
@@ -409,7 +417,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - product 
+        - product
       summary: Place an product for a purchase
       description: Place a new product in the list
       operationId: placeProductsbyorderId
@@ -432,7 +440,9 @@ paths:
       tags:
         - product
       summary: Find purchase order by ID
-      description: For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.
+      description: >-
+        For valid response try integer IDs with value <= 5 or > 10. Other values
+        will generate exceptions.
       operationId: getProductById
       parameters:
         - name: productId
@@ -453,7 +463,7 @@ paths:
         '401':
           description: Unauthorized - Admin is not authenticated
         '404':
-          description: Product not found 
+          description: Product not found
       security:
         - api_key: []
     patch:
@@ -489,7 +499,7 @@ paths:
       tags:
         - product
       summary: Delete product by ID
-      description: ""
+      description: ''
       operationId: deleteProduct
       parameters:
         - name: productId
@@ -531,7 +541,7 @@ paths:
       tags:
         - credit
       summary: Find credit by ID
-      description: ""
+      description: ''
       operationId: getCreditById
       parameters:
         - name: creditId
@@ -546,20 +556,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Credit'          
+                $ref: '#/components/schemas/Credit'
         '400':
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
         '404':
-          description: Credit not found   
+          description: Credit not found
       security:
         - api_key: []
     delete:
       tags:
         - credit
       summary: Delete credit by ID
-      description: ""
+      description: ''
       operationId: deleteCredit
       parameters:
         - name: creditId
@@ -599,8 +609,10 @@ paths:
           description: Invalid creditId supplied
         '401':
           description: Unauthorized - Client is not authenticated
-        '403' :
-          description : Forbidden - The client is authenticated, but does not have permission.
+        '403':
+          description: >-
+            Forbidden - The client is authenticated, but does not have
+            permission.
         '404':
           description: Client not found
       security:
@@ -618,33 +630,33 @@ components:
           example: '12345'
       xml:
         name: client
-    Clients: 
-       type: array
-       items:
-          $ref: "#/components/schemas/ClientDetails"
-       xml:
+    Clients:
+      type: array
+      items:
+        $ref: '#/components/schemas/ClientDetails'
+      xml:
         name: clients
     ClientDetails:
       type: object
       properties:
         id:
           type: string
-          example: "5fc4d22b45a0fb3fd4a75f65"
+          example: 5fc4d22b45a0fb3fd4a75f65
         firstName:
           type: string
-          example: "John"
+          example: John
         lastName:
           type: string
-          example: "Doe"
+          example: Doe
         email:
           type: string
           example: john@example.com
         phone:
           type: string
-          example: "06 90 12 34 56"
+          example: 06 90 12 34 56
         shippingAddress:
           type: string
-          example: "12 Rue de la République, 75001 Paris"
+          example: 12 Rue de la République, 75001 Paris
         totalOrders:
           type: integer
           format: int16
@@ -656,7 +668,7 @@ components:
             properties:
               productId:
                 type: string
-                example: "6vc4d22b45a0fb3fd4a75f33"
+                example: 6vc4d22b45a0fb3fd4a75f33
               material:
                 type: integer
                 format: int8
@@ -668,7 +680,7 @@ components:
             properties:
               productId:
                 type: string
-                example: "1jc4d22b45a0fb3fd4a75f50"
+                example: 1jc4d22b45a0fb3fd4a75f50
               material:
                 type: integer
                 format: int8
@@ -678,30 +690,30 @@ components:
           items:
             type: string
           example:
-             - "2884d22b45a0fb3fd4a75p2"
-             - "7774d22b45a0fb3fd4a7bn0"
-             - "10m4d22b45a0fb3fd4a7l53"
+            - 2884d22b45a0fb3fd4a75p2
+            - 7774d22b45a0fb3fd4a7bn0
+            - 10m4d22b45a0fb3fd4a7l53
     EditClient:
       type: object
       properties:
         id:
           type: string
-          example: "5fc4d22b45a0fb3fd4a75f65"
+          example: 5fc4d22b45a0fb3fd4a75f65
         firstName:
           type: string
-          example: "John"
+          example: John
         lastName:
           type: string
-          example: "Doe"
+          example: Doe
         email:
           type: string
           example: john@example.com
         phone:
           type: string
-          example: "06 90 12 34 56"
+          example: 06 90 12 34 56
         shippingAddress:
           type: string
-          example: "12 Rue de la République, 75001 Paris"
+          example: 12 Rue de la République, 75001 Paris
         totalOrders:
           type: integer
           format: int16
@@ -713,7 +725,7 @@ components:
             properties:
               productId:
                 type: string
-                example: "6vc4d22b45a0fb3fd4a75f33"
+                example: 6vc4d22b45a0fb3fd4a75f33
               material:
                 type: integer
                 format: int8
@@ -725,7 +737,7 @@ components:
             properties:
               productId:
                 type: string
-                example: "1jc4d22b45a0fb3fd4a75f50"
+                example: 1jc4d22b45a0fb3fd4a75f50
               material:
                 type: integer
                 format: int8
@@ -735,103 +747,119 @@ components:
           items:
             type: string
           example:
-             - "2884d22b45a0fb3fd4a75p2"
-             - "7774d22b45a0fb3fd4a7bn0"
-             - "10m4d22b45a0fb3fd4a7l53"
+            - 2884d22b45a0fb3fd4a75p2
+            - 7774d22b45a0fb3fd4a7bn0
+            - 10m4d22b45a0fb3fd4a7l53
     AddingNotesAdmin:
-      type: object  
+      type: object
       properties:
         content:
           type: string
-          example: "Echange cordial avec le client"
-    DeleteNotesAdmin:
-      type: object  
-      properties:
-        noteId:
-          type: string
-          example: "2884d22b45a0fb3fd4a75p2"
+          example: Echange cordial avec le client
     Order:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "5fc4d22b45a0fb3fd4a75f65"
-        step:
-          type: integer
-          format: int8
-          example: 0
-        isNextStepOrder:
-          type: boolean
-          example: false
-        inTotalAmount:
-          type: integer
-          format: int32
-          example: 220
-        outTotalAmount:
-          type: integer
-          format: int32
-          example: 10
-        paymentMethod:
-          type: array
-          items:
-            type: object
-            properties:
-              cardType:
-                type: string
-                example: "Visa"
-              last4Digits:
-                type: string
-                example: "**** 1234"
-        trackingNumber:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: "44c4d22b45a0fb3fd4a75re1"
-              isAdmin:
-                type: boolean
-                example: false
-              value:
-                type: string
-                example: "102938MAUCBQPD"
-              date:
-                type: string
-                example: "2021-09-22 18:50"
+      type: array
+      items:
+        anyOf:
+          - type: array
+            items:
+             type: object
+             properties:
               productsByOrder:
+                type: object
+                properties:
+                  productsByOrderActions:
+                    type: object
+                    properties:
+                      exchange:
+                        type: integer
+                      refund:
+                        type: integer 
+                      credit:
+                        type: string
+                      note:
+                        type: string
+                  _id:
+                    type: string
+                  quantity:
+                    type: integer
+              creditEdit:
+                type: object
+                properties:
+                  productsByOrderId:
+                    type: string
+                  amount:
+                    type: integer
+                  dateExpire:
+                    type: string
+                    format: date
+          - type: object
+            properties:
+              step:
+                type: integer
+                format: int32
+                example: 2
+              trackingNumberList:
                 type: array
                 items:
                   type: object
                   properties:
+                    id:
+                      type: string
+                    isAdmin:
+                      type: boolean
+                    value:
+                      type: string
+                    date:
+                      type: string
+                      format: date
+                    productsByOrder:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          productId:
+                            type: string
+                          articlesNumber:
+                            type: integer
+                            format: int32
+                          _id:
+                            type: string
+                      example:
+                        - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
+                          productId: "65b3e264624d950f87b81f38"
+                          articlesNumber: 1
+                          _id: "65c20591b1a16a3ec8e4bd44"
                     _id:
                       type: string
-                      example: "hfneu8rur7snsl"
-                    productId:
-                      type: string
-                      example: "09m4d22b45a0fb3fd4a75555"
-                    articlesNumber:
-                      type: integer
-                      format: int16
-                      example: 3
-        isClientNotified:
-          type: boolean
-          example: true
-        lastSentDateToClient:
-          type: string
-          example: "2022-10-02 09:30"
-        productsByOrder:
-          type: array
-          items:
-            type: string
-            example: 
-             - "2884d22b45a0fb3fd4a75p2"
-             - "7774d22b45a0fb3fd4a7bn0"
-             - "10m4d22b45a0fb3fd4a7l53"
+                example:
+                  - id: "c336090c-5e7d-439a-8bf2-322311c4906d"
+                    isAdmin: true
+                    value: "4eme"
+                    date: "2024-02-24"
+                    productsByOrder:
+                      - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
+                        productId: "65b3e264624d950f87b81f38"
+                        articlesNumber: 1
+                        _id: "65c20591b1a16a3ec8e4bd44"
+                    _id: "65c20591b1a16a3ec8e4bd43"
+                  - id: "c336090c-5e7d-439a-8bf2-322311c4777e"
+                    isAdmin: true
+                    value: "6eme"
+                    date: "2024-02-24"
+                    productsByOrder:
+                      - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
+                        productId: "65b3e264624d950f87b81f37"
+                        articlesNumber: 2
+                        _id: "65c20591b1a16a3ec8e4bd44"
+                    _id: "65c20591b1a16a3ec8e4bd45"
+
+    
     Orders:
       type: array
       items:
-       $ref: "#/components/schemas/Order"
+        $ref: '#/components/schemas/Order'
       xml:
         name: orders
     FirstOrder:
@@ -848,29 +876,29 @@ components:
             properties:
               cardType:
                 type: string
-                example: "Visa"
+                example: Visa
               last4Digits:
                 type: string
-                example: "**** 1234"
+                example: '**** 1234'
         productsByOrder:
           type: array
           items:
             type: string
-            example: 
-             - "2884d22b45a0fb3fd4a75p2"
-             - "7774d22b45a0fb3fd4a7bn0"
-             - "10m4d22b45a0fb3fd4a7l53"
+            example:
+              - 2884d22b45a0fb3fd4a75p2
+              - 7774d22b45a0fb3fd4a7bn0
+              - 10m4d22b45a0fb3fd4a7l53
     ProductsByOrder:
       type: array
       items:
-         type: object
-         properties:
-          _id: 
+        type: object
+        properties:
+          _id:
             type: string
-            example: "2884d22b45a0fb3fd4a75p2"
+            example: 2884d22b45a0fb3fd4a75p2
           productId:
             type: string
-            example: "7774d22b45a0fb3fd4a7bn0"
+            example: 7774d22b45a0fb3fd4a7bn0
           quantity:
             type: integer
             format: int16
@@ -895,55 +923,57 @@ components:
                 example: null
               credit:
                 type: string
-                example: "10m4d22b45a0fb3fd4a7l53"
+                example: 10m4d22b45a0fb3fd4a7l53
               note:
                 type: string
-                example: "Des notes pour l'exemple"
+                example: Des notes pour l'exemple
     Product:
       type: object
       properties:
-        id: 
-         type: string
-         example: "2884d22b45a0fb3fd4a75p2"
+        id:
+          type: string
+          example: 2884d22b45a0fb3fd4a75p2
         reference:
           type: string
-          example: "QER2345OIJD"
+          example: QER2345OIJD
         category:
           type: string
-          example: "Jewelry"
-        releaseDate: 
+          example: Jewelry
+        releaseDate:
           type: string
-          example: "2023-03-07 15:54"
-        name: 
+          example: 2023-03-07 15:54
+        name:
           type: string
-          example: "Boucles d'oreilles"
+          example: Boucles d'oreilles
         image:
           type: string
-          example: "bo.png"
-        description: 
+          example: bo.png
+        description:
           type: string
-          example: "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur."
+          example: >-
+            Magnifiques boucles d'oreilles pour des occasions uniques et qui
+            vous mettront en valeur.
         materials:
           type: array
           items:
-           type: integer
-           format: int8
-          example: 
-           - 0
-           - 1
-           - 2
+            type: integer
+            format: int8
+          example:
+            - 0
+            - 1
+            - 2
         promotion:
           type: object
           properties:
-            amount: 
+            amount:
               type: string
-              example: "10%"
+              example: 10%
             startDate:
               type: string
-              example: "2023-11-15"
+              example: '2023-11-15'
             endDate:
               type: string
-              example: "2023-11-30"
+              example: '2023-11-30'
         pricing:
           type: object
           properties:
@@ -971,73 +1001,75 @@ components:
               items:
                 type: string
               example:
-               - "S"
-               - "M"
-               - "XL"
+                - S
+                - M
+                - XL
             color:
               type: array
               items:
                 type: string
               example:
-               - "Red"
-               - "Blue"
-               - "Green"
+                - Red
+                - Blue
+                - Green
         tags:
           type: array
           items:
             type: string
-          example: 
-           - "Casual"
-           - "Summer"
+          example:
+            - Casual
+            - Summer
         isNew:
           type: boolean
           example: true
     Products:
-       type: array
-       items:
-          $ref: "#/components/schemas/Product"
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
     FirstProduct:
       type: object
       properties:
         reference:
           type: string
-          example: "QER2345OIJD"
+          example: QER2345OIJD
         category:
           type: string
-          example: "Jewelry"
-        releaseDate: 
+          example: Jewelry
+        releaseDate:
           type: string
-          example: "2023-03-07 15:54"
-        name: 
+          example: 2023-03-07 15:54
+        name:
           type: string
-          example: "Boucles d'oreilles"
+          example: Boucles d'oreilles
         image:
           type: string
-          example: "bo.png"
-        description: 
+          example: bo.png
+        description:
           type: string
-          example: "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur."
+          example: >-
+            Magnifiques boucles d'oreilles pour des occasions uniques et qui
+            vous mettront en valeur.
         materials:
           type: array
           items:
-           type: integer
-           format: int8
-          example: 
-           - 0
-           - 1
-           - 2
+            type: integer
+            format: int8
+          example:
+            - 0
+            - 1
+            - 2
         promotion:
           type: object
           properties:
-            amount: 
+            amount:
               type: string
-              example: "10%"
+              example: 10%
             startDate:
               type: string
-              example: "2023-11-15"
+              example: '2023-11-15'
             endDate:
               type: string
-              example: "2023-11-30"
+              example: '2023-11-30'
         pricing:
           type: object
           properties:
@@ -1065,24 +1097,24 @@ components:
               items:
                 type: string
               example:
-               - "S"
-               - "M"
-               - "XL"
+                - S
+                - M
+                - XL
             color:
               type: array
               items:
                 type: string
               example:
-               - "Red"
-               - "Blue"
-               - "Green"
+                - Red
+                - Blue
+                - Green
         tags:
           type: array
           items:
             type: string
-          example: 
-           - "Casual"
-           - "Summer"
+          example:
+            - Casual
+            - Summer
         isNew:
           type: boolean
           example: true
@@ -1091,37 +1123,24 @@ components:
       properties:
         _id:
           type: string
-          example: "6vbhd22b45a0fb3fd4a7599"
-        productsByOrderId: 
+          example: 6vbhd22b45a0fb3fd4a7599
+        productsByOrderId:
           type: string
-          example: "2884d22b45a0fb3fd4a75p2"
+          example: 2884d22b45a0fb3fd4a75p2
         amount:
           type: integer
           format: int16
           example: 7
         code:
           type: string
-          example: "1156JHUfJNBdfdf"
+          example: 1156JHUfJNBdfdf
         dateExpire:
           type: string
-          example: "2023-04-05 09:55"
+          example: 2023-04-05 09:55
     Credits:
       type: array
       items:
-        $ref: "#/components/schemas/Credit"
-    FirstCredit:
-      type: object
-      properties:
-        productsByOrderId: 
-          type: string
-          example: "2884d22b45a0fb3fd4a75p2"
-        amount:
-          type: integer
-          format: int16
-          example: 7 
-        dateExpire:
-          type: string
-          example: "2023-04-05 09:55"
+        $ref: '#/components/schemas/Credit'
   securitySchemes:
     petstore_auth:
       type: oauth2
