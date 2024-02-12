@@ -1,10 +1,11 @@
 // Bouton de validation du champ de l'avoir
 import { useDispatch } from "react-redux";
+import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
 import {
-  updateOrder,
+  totalsInOut,
+  articleAction,
 } from "../../../../../../../../../features/admin/ordersSlice";
 import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
-import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
 
 export const useConfirmCreditEntryHandler = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export const useConfirmCreditEntryHandler = () => {
     productPrice
   ) => {
     e.stopPropagation();
-    let { amount, dateExpire } = productsByOrderActions?.creditContent;
+    let { amount, dateExpire } = productsByOrderActions.creditContent;
     amount = parseInt(amount);
     const selectedDate = new Date(dateExpire);
     const currentDate = new Date();
@@ -47,26 +48,25 @@ export const useConfirmCreditEntryHandler = () => {
       dispatch(
         updateActionContent({
           creditContent: productsByOrder._id,
+          productsByOrderId: productsByOrder._id,
           updatedProperty: action,
           isClientNotified: false,
-          productsByOrderId: productsByOrder._id,
         })
       );
 
       dispatch(
-        updateOrder({
+        totalsInOut({
           orderId,
           amount,
           movement: "out",
-          actionType:"totalsInOut"
         })
       );
-      // dispatch(updateOrder({ orderId, actionType: "articleAction" }));
+      dispatch(articleAction({ orderId }));
       setProductActions((prevState) => ({
         ...prevState,
         isAddCredit: false,
       }));
-      if (amount > productsByOrder.quantity * productPrice) {
+      if (amount > productPrice) {
         setEntryError(
           "⚠️ Le montant de l'avoir est supérieur au total d'achat."
         );

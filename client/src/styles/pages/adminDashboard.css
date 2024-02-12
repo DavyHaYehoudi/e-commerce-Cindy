@@ -498,27 +498,9 @@
     display: flex;
     align-items: center;
 }
-
-#productsByOrder-container .product-note-wrapper button.info-tooltip:hover::before {
-    top: -40px;
+.admin-order-item .sending{
+    font-style: italic;
+    color: var(--success);
+    font-size: 2rem;
 }
-
-#trashNoteProduct {
-    margin-left: 20px;
-}
-
-#trashNoteProduct.info-tooltip:hover::before {
-    top: -60px;
-    right: 0;
-}
-
-#trashNoteProduct.info-tooltip:hover::before {
-    opacity: 1;
-}
-
-#trashNoteProduct:hover {
-    cursor: pointer;
-    color: var(--danger);
-}
-
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */

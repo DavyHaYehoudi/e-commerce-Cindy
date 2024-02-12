@@ -11,8 +11,13 @@ const clientSchema = new mongoose.Schema(
     totalOrderValue: { type: Number, default: 0 },
     notesAdmin: [
       {
-        content: String ,
-        date: Date,
+        content: {
+          type: String,
+          maxlength: 500,
+        },
+        date: {
+          type: Date,
+        },
       },
     ],
     wishlist: [

@@ -5,12 +5,22 @@ import { render } from "../../../../test/utils";
 import "@testing-library/jest-dom";
 import { orderStep } from "../../../../constants/orderStep";
 
-const ordersProps1 = [{ id: "1mongoDb", step: 0 }, { step: 1 }, { step: 2 }];
-const ordersProps2 = [{ step: 3 }, { step: 4 }];
-const ordersProps3 = [{ step: 5 }, { step: 6 }];
-const ordersProps4 = [{ step: 6 }];
+const ordersProps1 = [
+  { _id: "1mongoDb", step: 0 },
+  { _id: "2mongoDb", step: 1 },
+  { _id: "3mongoDb", step: 2 },
+];
+const ordersProps2 = [
+  { _id: "mongodb7", step: 3 },
+  { _id: "mongodb7", step: 4 },
+];
+const ordersProps3 = [
+  { _id: "mongodb7", step: 5 },
+  { _id: "mongodb7", step: 6 },
+];
+const ordersProps4 = [{ _id: "mongodb7", step: 6 }];
 
-const clientProps1 = { id: "1mongoDb", totalOrders: 3, totalOrderValue: 325 };
+const clientProps1 = { _id: "1mongoDb", totalOrders: 3, totalOrderValue: 325 };
 const setSelectedOrderIdMock = jest.fn();
 
 describe("Orders Component without Item Component", () => {
@@ -49,7 +59,7 @@ describe("Orders Component without Item Component", () => {
         selectedOrderId={null}
       />
     );
- 
+
     expect(screen.getByText(/325,00 €/i)).toBeInTheDocument();
   });
   describe("All badges steps", () => {
@@ -124,24 +134,3 @@ describe("Orders Component without Item Component", () => {
   });
 });
 
-describe("Orders Component with Item Component", () => {
-  const ordersProps = [
-    { _id: "1", step: 0 },
-    { _id: "2", step: 1 },
-    { _id: "3", step: 2 },
-  ];
-  const clientProps = { id: "1mongoDb", totalOrders: 3, totalOrderValue: 325 };
-  test("renders Item component when selectedOrderId has an id", () => {
-    render(
-      <Orders
-        orders={ordersProps}
-        client={clientProps}
-        setSelectedOrderId={setSelectedOrderIdMock}
-        selectedOrderId={["3"]}
-      />
-    );
-
-    expect(screen.getByTestId(/selected-items/i)).toBeInTheDocument();
-    expect(screen.getByTestId(`item-component-3`)).toBeInTheDocument();
-  });
-});

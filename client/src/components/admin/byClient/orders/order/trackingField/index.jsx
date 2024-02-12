@@ -47,7 +47,7 @@ const Listing = ({ trackingNumberList, client, orderId }) => {
       {(trackingNumberList ?? []).map((item) =>
         item?.isAdmin ? (
           <AdminTrackingItem
-            key={item._id}
+            key={item.id}
             item={item}
             client={client}
             orderId={orderId}
@@ -55,7 +55,7 @@ const Listing = ({ trackingNumberList, client, orderId }) => {
           />
         ) : (
           <ClientTrackingItem
-            key={item._id}
+            key={item.id}
             item={item}
             client={client}
             orderId={orderId}

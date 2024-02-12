@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateOrder } from "../../../../../../../features/admin/ordersSlice";
+import { updatedClientTrackingNumber } from "../../../../../../../features/admin/ordersSlice";
 import { articlesNumberCheck } from "../handle/articlesNumberCheck";
 import { useDispatch } from "react-redux";
 
@@ -24,11 +24,10 @@ const useClientTrackingItem = ({
     }
 
     dispatch(
-      updateOrder({
+      updatedClientTrackingNumber({
         orderId,
-        actionType: "trackingNumberUpdatedClient",
         trackingNumber: {
-          _id: item._id,
+          id: item.id,
           productsByOrder: productsByOrderInfo,
         },
       })

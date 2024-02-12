@@ -3,10 +3,15 @@ import Header from "./Header";
 import Details from "./Details";
 import List from "../product";
 import Listing from "./trackingField";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { updateOrder } from "../../../../../features/admin/ordersSlice";
-import { getTrackingNumberList } from "../../../../../selectors/order";
+import {
+  getOrderInfo,
+  getTrackingNumberList,
+} from "../../../../../selectors/order";
+import useSendToClient from "../hooks/useSendToClient";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Item = ({
   client,
@@ -16,33 +21,67 @@ const Item = ({
   lastSentDateToClient,
   step,
 }) => {
-  const dispatch = useDispatch();
+  const { productsByOrder } = useSelector((state) =>
+    getOrderInfo(state, order._id)
+  );
+  const productsByOrderStore = useSelector(
+    (state) => state?.productsByOrder?.data
+  );
+  const creditStore = useSelector((state) => state?.credit?.data);
   const trackingNumberList = useSelector((state) =>
     getTrackingNumberList(state, order?._id)
   );
 
+  const { sendToClient, loading } = useSendToClient();
+
   const handleSendToClient = () => {
-    dispatch(
-      updateOrder({
-        actionType: "sendToClient",
-        orderId: order?._id,
-        isClientNotified: true,
-      })
-    );
+    const productsByOrderReqBody = [];
+    const orderReqBody = {};
+
+    productsByOrder.forEach((productsByOrderId) => {
+      const resultMap = {};
+
+      const matchingObject = productsByOrderStore.find(
+        (item) => item._id === productsByOrderId
+      );
+      if (matchingObject) {
+        resultMap["productsByOrder"] = matchingObject;
+      }
+
+      const creditMatchingObject = creditStore.find(
+        (item) => item.productsByOrderId === productsByOrderId
+      );
+      if (creditMatchingObject) {
+        resultMap["creditEdit"] = creditMatchingObject;
+      }
+
+      productsByOrderReqBody.push(resultMap);
+    });
+
+    orderReqBody["step"] = step;
+    orderReqBody["trackingNumberList"] = trackingNumberList;
+
+    sendToClient(order?._id, productsByOrderReqBody, orderReqBody);
   };
+
   return (
     <div
       className="admin-order-item"
       data-testid={`item-component-${order._id}`}
     >
-      <Header
-        order={order}
-        orderIndex={orderIndex}
-        step={step}
-        isClientNotified={isClientNotified}
-        lastSentDateToClient={lastSentDateToClient}
-        handleSendToClient={handleSendToClient}
-      />
+      {!loading ? (
+        <Header
+          order={order}
+          orderIndex={orderIndex}
+          client={client}
+          step={step}
+          isClientNotified={isClientNotified}
+          lastSentDateToClient={lastSentDateToClient}
+          handleSendToClient={handleSendToClient}
+        />
+      ) : (
+        <p className="sending">Envoi en cours...</p>
+      )}
 
       <Details order={order} orderId={order?._id} />
       <List client={client} orderId={order?._id} />
@@ -59,6 +98,7 @@ const Item = ({
           />
         }
       />
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

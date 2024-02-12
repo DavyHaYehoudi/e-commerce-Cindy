@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser"
 import clientRoutes from "./routes/client.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import productsByOrderRoutes from "./routes/productsByOrder.routes.js";
@@ -15,7 +14,7 @@ const corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200,
 };
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cors(corsOptions));
 app.use("/client", clientRoutes);
 app.use("/order", orderRoutes);
@@ -25,4 +24,4 @@ app.use("/credit", creditRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);
-});
+}); 

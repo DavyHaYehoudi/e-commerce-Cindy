@@ -5,13 +5,6 @@ import { render } from "../../../../../test/utils";
 import "@testing-library/jest-dom";
 import * as actions from "../../../../../constants/productsByOrderActions";
 
-jest.mock("./item/action/hooks/useNoteValueHandler", () => ({
-  useNoteValueHandler: (productId, actions) => {
-    return {
-      handleChangeNoteValue: jest.fn(),
-    };
-  },
-}));
 
 const productsByOrderInfo = {
   note: "Some initial note",

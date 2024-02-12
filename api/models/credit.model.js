@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const creditSchema = new mongoose.Schema({
   productsByOrderId: {
@@ -8,6 +9,12 @@ const creditSchema = new mongoose.Schema({
   amount: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (amount) {
+        return amount > 0;
+      },
+      message: "Le montant doit être supérieur à zéro.",
+    },
   },
   code: {
     type: String,
@@ -25,7 +32,7 @@ const creditSchema = new mongoose.Schema({
 
         return expirationDate >= currentDate;
       },
-      message: "La date d'expiration doit être au moins celle du lendemain.",
+      message: "La date d'expiration choisie doit être au moins celle du lendemain.",
     },
   },
   archived: {
@@ -40,7 +47,13 @@ creditSchema.pre('save', function (next) {
   this.code = generatedCode;
   next();
 });
-
+creditSchema.pre('validate', function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, 'Credit');
+  }
+  next();
+});
 const Credit = mongoose.model('Credit', creditSchema);
 export default Credit;
 

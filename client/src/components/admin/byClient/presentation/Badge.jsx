@@ -21,7 +21,7 @@ const Badge = ({ step, orderIds, orderId, count, setSelectedOrderId }) => {
   return (
     <span className={badgeClass} style={style} onClick={handleClick}>
       {getOrderStepProperty(step)?.name} ({count})
-      {!isClientNotifiedForThisOrder && (
+      {(!isClientNotifiedForThisOrder || step === 0) && (
         <span
           className="notification-bubble-order blink"
           data-testid="notification-bubble"
