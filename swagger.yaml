@@ -131,8 +131,6 @@ paths:
           description: >-
             Forbidden - The client is authenticated, but does not have
             permission to access the requested resource.
-        '404':
-          description: Client not found
       security:
         - api_key: []
     patch:
@@ -164,8 +162,6 @@ paths:
           description: >-
             Forbidden - The client is authenticated, but does not have
             permission.
-        '404':
-          description: Client not found
       security:
         - api_key: []
     delete:
@@ -192,8 +188,6 @@ paths:
           description: >-
             Forbidden - The client is authenticated, but does not have
             permission.
-        '404':
-          description: Client not found
       security:
         - api_key: []
   /client/addNote/{clientId}:
@@ -222,8 +216,6 @@ paths:
           description: Invalid clientId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Client not found
       security:
         - api_key: []
   /client/removeNote/{clientId}/{noteId}:
@@ -253,8 +245,6 @@ paths:
           description: Invalid clientId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Client not found
       security:
         - api_key: []
   /order:
@@ -319,8 +309,6 @@ paths:
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Order not found
       security:
         - api_key: []
     patch:
@@ -348,8 +336,6 @@ paths:
           description: Invalid orderId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Order not found
       security:
         - api_key: []
   /productsbyorder:
@@ -394,8 +380,6 @@ paths:
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Productsbyorder not found
       security:
         - api_key: []
   /product:
@@ -462,8 +446,6 @@ paths:
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Product not found
       security:
         - api_key: []
     patch:
@@ -491,8 +473,6 @@ paths:
           description: Invalid product ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Product not found
       security:
         - api_key: []
     delete:
@@ -515,8 +495,6 @@ paths:
           description: Invalid productId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Product not found
       security:
         - api_key: []
   /credit:
@@ -561,8 +539,6 @@ paths:
           description: Invalid ID supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Credit not found
       security:
         - api_key: []
     delete:
@@ -585,8 +561,6 @@ paths:
           description: Invalid creditId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
-        '404':
-          description: Credit not found
       security:
         - api_key: []
     patch:
@@ -613,8 +587,6 @@ paths:
           description: >-
             Forbidden - The client is authenticated, but does not have
             permission.
-        '404':
-          description: Client not found
       security:
         - api_key: []
 components:
