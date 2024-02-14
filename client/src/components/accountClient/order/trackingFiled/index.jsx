@@ -4,6 +4,7 @@ import { TbInputX } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTrackingNumber } from "../../../../features/accountClient/customerSlice";
 import { getProductProperties } from "../../../../selectors/product";
+import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
@@ -39,6 +40,7 @@ const TrackingNumberList = ({ trk, order }) => {
           trk.productsByOrder.map((item) => (
             <li key={item._id}>
               {getProductProperties(item.productId, productStore).name}{" "}
+              {getMaterialProperty(item?.material).name}{" "}
               {item?.articlesNumber} article
               {item?.articlesNumber > 1 ? "s" : ""}{" "}
             </li>

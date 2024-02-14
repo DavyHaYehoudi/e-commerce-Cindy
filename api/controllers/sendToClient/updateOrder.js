@@ -7,7 +7,7 @@ export const updateOrder = async (
   outTotalAmount,
   lastSentDateToClient
   ) => {
-  console.log('trackingNumberList:', trackingNumberList)
+
   try {
     const order = await Order.findById(orderId);
 

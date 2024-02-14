@@ -24,7 +24,7 @@ const ArticleNumberByProduct = ({
       ...prev,
       [id]: !prev[id],
     }));
-  
+
     setSelectedProducts((prev) => {
       const updatedSelectedProducts = { ...prev };
       if (checkboxStates[id]) {
@@ -34,14 +34,13 @@ const ArticleNumberByProduct = ({
       }
       return updatedSelectedProducts;
     });
-  
+
     if (!checkboxStates[id] && articleNumber[_id]?.value > 1) {
       setIsFormValid(false);
     } else {
       setIsFormValid(true);
     }
   };
-  
 
   const handleNumberChange = (_id, value, articlesNumberMax, material) => {
     setArticleNumber((prev) => ({
@@ -55,7 +54,9 @@ const ArticleNumberByProduct = ({
   };
 
   const ordersStore = useSelector((state) => state?.orders?.data);
-  const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
+  const productsByOrderStore = useSelector(
+    (state) => state?.productsByOrder?.data
+  );
   const { getProductsByOrder } = getProductsInfo(
     ordersStore,
     productsByOrderStore,
@@ -71,16 +72,18 @@ const ArticleNumberByProduct = ({
         );
 
         return (
-          <div
-            className="articleNumberByProduct-container"
-            key={product._id}
-          >
+          <div className="articleNumberByProduct-container" key={product._id}>
             <input
               type="checkbox"
               id={product._id}
               checked={checkboxStates[product._id] || false}
               onChange={() =>
-                handleCheckboxChange(product._id, product._id, product.productId,product.material)
+                handleCheckboxChange(
+                  product._id,
+                  product._id,
+                  product.productId,
+                  product.material
+                )
               }
             />
             <label htmlFor={product._id}>
@@ -112,7 +115,7 @@ const ArticleNumberByProduct = ({
                         orderId,
                         checkboxStates,
                         setError,
-                        setIsFormValid,
+                        setIsFormValid
                       )
                     }
                   />
@@ -127,4 +130,3 @@ const ArticleNumberByProduct = ({
 };
 
 export default ArticleNumberByProduct;
-

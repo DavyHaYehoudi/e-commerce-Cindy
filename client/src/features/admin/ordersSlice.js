@@ -21,6 +21,7 @@ export const ordersActions = [
 
 const applyOrderAction = (state, action, updateFunction) => {
   const { orderId } = action.payload;
+  console.log('action.payload:', action.payload)
 
   state.data = state.data.map((order) =>
     order._id === orderId ? updateFunction(order, action.payload) : order
