@@ -48,3 +48,7 @@
     --info:#17a2b8;
 
 }
+[data-theme="dark"]{
+    --background:#282c34;
+    --dark:white;
+}

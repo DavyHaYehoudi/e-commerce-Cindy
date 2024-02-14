@@ -4,6 +4,12 @@
     margin: 20px auto;
 }
 
+.admin-dashboard .darkMode {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
 .client-list {
     padding: 20px;
     background-color: #f2f2f2;
@@ -498,9 +504,11 @@
     display: flex;
     align-items: center;
 }
-.admin-order-item .sending{
+
+.admin-order-item .sending {
     font-style: italic;
     color: var(--success);
     font-size: 2rem;
 }
+
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */
