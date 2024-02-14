@@ -43,7 +43,7 @@ describe('Cart Component', () => {
     expect(screen.getByTestId(`cart-item-${productId}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${initialState.product.data[0].reference}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${initialState.product.data[0].name}`)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`: ${materials[1]}`))).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[1].name}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${formatPrice(initialState.product.data[0].pricing.currentPrice)}`)).toBeInTheDocument();
     expect(screen.getByText(": 11/04/2024 12:15")).toBeInTheDocument() 
   });

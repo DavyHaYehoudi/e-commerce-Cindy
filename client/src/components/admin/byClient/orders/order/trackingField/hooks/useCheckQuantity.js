@@ -8,7 +8,7 @@ const useCheckQuantity = () => {
     orderId,
     checkboxStates,
     setError,
-    setIsFormValid
+    setIsFormValid,
   ) => {
     let isQuantityValid = true;
     setError("");
@@ -19,12 +19,12 @@ const useCheckQuantity = () => {
       return;
     }
 
-    Object.entries(inputValues).forEach(([productId, value]) => {
+    Object.entries(inputValues).forEach(([productsByOrderId, value]) => {
       const maxQuantity = getProductsInfo(
         ordersStore,
         productsByOrderStore,
         orderId,
-        productId
+        productsByOrderId
       ).articleNumber;
       const numericValue = parseInt(value, 10);
 

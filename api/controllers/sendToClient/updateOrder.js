@@ -6,7 +6,8 @@ export const updateOrder = async (
   step,
   outTotalAmount,
   lastSentDateToClient
-) => {
+  ) => {
+  console.log('trackingNumberList:', trackingNumberList)
   try {
     const order = await Order.findById(orderId);
 

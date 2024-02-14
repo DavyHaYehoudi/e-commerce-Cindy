@@ -21,7 +21,7 @@ const productsByOrderSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value >= 0 && value <= 20;
+        return value >= 0 && value <= 10;
       },
       message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
     },

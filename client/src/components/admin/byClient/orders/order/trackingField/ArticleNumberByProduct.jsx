@@ -19,33 +19,41 @@ const ArticleNumberByProduct = ({
   const [inputValues, setInputValues] = useState({});
   const { handleCheckQuantity } = useCheckQuantity();
 
-  const handleCheckboxChange = (id, productId) => {
+  const handleCheckboxChange = (id, _id, productId, material) => {
     setCheckboxStates((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
-
-    setSelectedProducts((prev) =>
-      checkboxStates[id]
-        ? prev.filter((prevId) => prevId !== productId)
-        : [...prev, productId]
-    );
-    if (!checkboxStates[id] && articleNumber[productId]?.value > 1) {
+  
+    setSelectedProducts((prev) => {
+      const updatedSelectedProducts = { ...prev };
+      if (checkboxStates[id]) {
+        delete updatedSelectedProducts[_id];
+      } else {
+        updatedSelectedProducts[_id] = { productId, material };
+      }
+      return updatedSelectedProducts;
+    });
+  
+    if (!checkboxStates[id] && articleNumber[_id]?.value > 1) {
       setIsFormValid(false);
     } else {
       setIsFormValid(true);
     }
   };
-  const handleNumberChange = (productId, value, articlesNumberMax) => {
+  
+
+  const handleNumberChange = (_id, value, articlesNumberMax, material) => {
     setArticleNumber((prev) => ({
       ...prev,
-      [productId]: { value, articlesNumberMax },
+      [_id]: { value, articlesNumberMax, material },
     }));
     setInputValues((prev) => ({
       ...prev,
-      [productId]: value,
+      [_id]: value,
     }));
   };
+
   const ordersStore = useSelector((state) => state?.orders?.data);
   const productsByOrderStore = useSelector((state) => state?.productsByOrder?.data);
   const { getProductsByOrder } = getProductsInfo(
@@ -65,33 +73,35 @@ const ArticleNumberByProduct = ({
         return (
           <div
             className="articleNumberByProduct-container"
-            key={product.productId}
+            key={product._id}
           >
             <input
               type="checkbox"
-              id={product.productId}
-              checked={checkboxStates[product.productId] || false}
+              id={product._id}
+              checked={checkboxStates[product._id] || false}
               onChange={() =>
-                handleCheckboxChange(product.productId, product.productId)
+                handleCheckboxChange(product._id, product._id, product.productId,product.material)
               }
             />
-            <label htmlFor={product.productId}>
+            <label htmlFor={product._id}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
                 <span>{getMaterialProperty(product.material).name}</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"
-                    id="articleNumberInput"
+                    className="articleNumberInput"
+                    id={product._id}
                     min="0"
                     max={product.quantity}
                     placeholder="Nombre d'articles à définir"
-                    value={articleNumber[product.productId]?.value ?? ""}
+                    value={articleNumber[`${product._id}`]?.value ?? ""}
                     onChange={(e) =>
                       handleNumberChange(
-                        product.productId,
+                        product._id,
                         e.target.value,
-                        product.quantity
+                        product.quantity,
+                        product.material
                       )
                     }
                     onBlur={() =>
@@ -102,7 +112,7 @@ const ArticleNumberByProduct = ({
                         orderId,
                         checkboxStates,
                         setError,
-                        setIsFormValid
+                        setIsFormValid,
                       )
                     }
                   />
@@ -117,3 +127,4 @@ const ArticleNumberByProduct = ({
 };
 
 export default ArticleNumberByProduct;
+

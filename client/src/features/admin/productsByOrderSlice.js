@@ -82,7 +82,7 @@ const productsByOrderSlice = createSlice({
         state.status = "loading";
       })
       .addCase(productsByOrderNote.fulfilled, (state, action) => {
-        toast.success("Les notes ont bien été enregistrées !");
+        toast.success("La note a bien été enregistrée !");
         state.status = "succeeded";
         state.error = null;
         const { productsByOrderId, content } = action.payload;

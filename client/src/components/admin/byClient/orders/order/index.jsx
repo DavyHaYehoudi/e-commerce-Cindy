@@ -63,8 +63,8 @@ const Item = ({
       productsByOrderReqBody.push(resultMap);
     });
 
-    orderReqBody["step"] = step;
     orderReqBody["trackingNumberList"] = trackingNumberList;
+    orderReqBody["step"] = step;
 
     sendToClient(order?._id, productsByOrderReqBody, orderReqBody);
   };

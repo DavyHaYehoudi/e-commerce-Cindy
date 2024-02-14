@@ -821,6 +821,9 @@ components:
                           articlesNumber:
                             type: integer
                             format: int32
+                          material:
+                            type: integer
+                            format: int8
                           _id:
                             type: string
                       example:
@@ -839,6 +842,7 @@ components:
                       - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
                         productId: "65b3e264624d950f87b81f38"
                         articlesNumber: 1
+                        material: 3
                         _id: "65c20591b1a16a3ec8e4bd44"
                     _id: "65c20591b1a16a3ec8e4bd43"
                   - id: "c336090c-5e7d-439a-8bf2-322311c4777e"
@@ -849,6 +853,7 @@ components:
                       - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
                         productId: "65b3e264624d950f87b81f37"
                         articlesNumber: 2
+                        material: 0
                         _id: "65c20591b1a16a3ec8e4bd44"
                     _id: "65c20591b1a16a3ec8e4bd45"
     Orders:

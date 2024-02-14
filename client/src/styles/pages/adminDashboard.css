@@ -335,14 +335,14 @@
 }
 
 #trackingNumberInput,
-#articleNumberInput {
+.articleNumberByProduct-description .articleNumberInput {
     width: 250px;
     border: 1px solid var(--border-color);
     padding: 5px;
 }
 
 #trackingNumberInput:focus,
-#articleNumberInput:focus {
+.articleNumberByProduct-description .articleNumberInput:focus {
     outline: none;
     border: 1px solid var(--dark);
     box-shadow: 0 0 3px var(--dark);

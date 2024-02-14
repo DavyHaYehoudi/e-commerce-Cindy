@@ -22,8 +22,9 @@ const Main = ({ productsByOrder, client, orderId }) => {
     ordersStore,
     productsByOrderStore,
     orderId,
-    productId,
+    productsByOrder._id,
   ); 
+
   const [interaction, setInteraction] = useState({
     isActionsOpen: false,
     activeLi: null,
@@ -56,7 +57,7 @@ const Main = ({ productsByOrder, client, orderId }) => {
   return (
     <li
       className={`product-content ${interaction.isActionsOpen ? "open" : ""}`}
-      data-testid ={`product-content-${productId}`}
+      data-testid ={`product-content-${productsByOrder?._id}`}
     >
       <Header
         interaction={interaction}

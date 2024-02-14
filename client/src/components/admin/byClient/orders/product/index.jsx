@@ -11,14 +11,14 @@ const List = ({ client, orderId }) => {
     ordersStore,
     productsByOrderStore,
     orderId
-  ).getProductsByOrder;
+    ).getProductsByOrder;
   return (
     <ul id="productsByOrder-container" data-testid="productsByOrder-container">
       <small>
         {productsByOrder &&
           productsByOrder.map((productsByOrder) => (
             <Main
-              key={productsByOrder?.productId}
+              key={productsByOrder?._id}
               productsByOrder={productsByOrder}
               client={client}
               orderId={orderId}

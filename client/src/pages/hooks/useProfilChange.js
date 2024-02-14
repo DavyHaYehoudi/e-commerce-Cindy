@@ -29,7 +29,7 @@ const useProfilChange = () => {
             );
           }
           if (error.message.includes("Status: 500")) {
-            toast.error("Une erreur est survenue avec le réseau ou le serveur.");
+            toast.error("Une erreur est survenue avec les données saisies ou le réseau.");
           }
       setError(error.message);
     } finally {

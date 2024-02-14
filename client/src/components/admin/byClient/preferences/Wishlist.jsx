@@ -10,18 +10,36 @@ const Wishlist = ({ productId, productCart }) => {
   const state = useSelector((state) => state?.product?.data);
 
   return (
-    <div className="wishlistUserViewAdmin" data-testid={`wishlist-item-${productId}`} >
+    <div
+      className="wishlistUserViewAdmin"
+      data-testid={`wishlist-item-${productId}`}
+    >
       <div>
-        <p><span className="dotted">Référence</span>  : {getProductProperties(productId, state)?.reference}</p>
-        <p><span className="dotted">Nom</span>  : {getProductProperties(productId, state)?.name}</p>
-        <p><span className="dotted">Matériau</span>  : {getMaterialProperty(productCart.material)?.name}</p>
+        <p>
+          <span className="dotted">Référence</span> :{" "}
+          {getProductProperties(productId, state)?.reference}
+        </p>
+        <p>
+          <span className="dotted">Nom</span> :{" "}
+          {getProductProperties(productId, state)?.name}
+        </p>
+        {getMaterialProperty(productCart.material)?.name !== null && (
+          <p>
+            <span className="dotted">Matériau</span> :{" "}
+            {getMaterialProperty(productCart.material)?.name}
+          </p>
+        )}
+
         <p>
           <span className="dotted">Prix</span> :{" "}
           {formatPrice(
             getProductProperties(productId, state)?.pricing?.currentPrice
           )}
         </p>
-        <p><span className="dotted">Ajouté le</span> : {formatDate(productCart.addDate)} </p>
+        <p>
+          <span className="dotted">Ajouté le</span> :{" "}
+          {formatDate(productCart.addDate)}{" "}
+        </p>
       </div>
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>

@@ -2,26 +2,26 @@ export const getProductsInfo = (
   ordersStore,
   productsByOrderStore,
   orderId,
-  productId
-) => {
+  productsByOrderId
+  ) => {
   const order = ordersStore?.find((item) => item._id === orderId);
 
   const productsByOrderInfo = productsByOrderStore?.find((ps) => {
     return (
-      ps.productId === productId && order?.productsByOrder.includes(ps._id)
+      ps._id === productsByOrderId 
     );
   })?.productsByOrderActions;
   const articleNumber = productsByOrderStore?.find(
     (ps) =>
-      ps.productId === productId && order?.productsByOrder.includes(ps._id)
+       ps._id === productsByOrderId  
   )?.quantity;
   const material = productsByOrderStore?.find(
     (ps) =>
-      ps.productId === productId && order?.productsByOrder.includes(ps._id)
+       ps._id === productsByOrderId  
   )?.material;
 
   const getProductsByOrder = order?.productsByOrder?.map((p) =>
-    productsByOrderStore?.find((ps) => ps._id === p)
+  productsByOrderStore?.find((ps) => ps._id === p)
   );
 
   const noteContent = productsByOrderInfo?.note;

@@ -51,9 +51,7 @@ describe('Wishlist Component', () => {
     expect(
       screen.getByText(`: ${initialState.product.data[0].name}`)
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(new RegExp(`: ${materials[1]}`))
-    ).toBeInTheDocument();
+    expect(screen.getByText(`: ${materials[1].name}`)).toBeInTheDocument();
     expect(
       screen.getByText(
         `: ${formatPrice(

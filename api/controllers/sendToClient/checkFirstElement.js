@@ -79,6 +79,13 @@ export async function checkFirstElement(productsByOrderArray) {
 
         const { currentPrice } = productInDB.pricing;
 
+        // Vérification spécifique pour material dans ProductsByOrder
+        const { material } = productsByOrder;
+        if (material === undefined || material < 0 || material > 10) {
+          throw new Error(
+            `La propriété 'material' doit être présente et comprise entre 0 et 10.`
+          );
+        }
         // Vérification spécifique pour quantity dans ProductsByOrder
         const { quantity } = productsByOrder;
         if (quantity === undefined || quantity < 1 || quantity > 100) {

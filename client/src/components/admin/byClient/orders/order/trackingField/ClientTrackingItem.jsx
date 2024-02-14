@@ -59,8 +59,8 @@ const ClientTrackingItem = ({
             key={product.id}
             product={product}
             client={client}
-            orderId={orderId}
             articleNumber={product.articlesNumber}
+            material={product.material}
             productStore={productStore}
           />
         ))}

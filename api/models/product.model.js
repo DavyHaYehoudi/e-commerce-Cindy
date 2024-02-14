@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
   },
   materials: {
     type: [Number],
-    default: null,
+    default: [0],
   },
   promotion: {
     type: {

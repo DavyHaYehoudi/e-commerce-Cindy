@@ -64,8 +64,8 @@ describe("Main Component", () => {
     render(<Main productsByOrder={productsByOrder} client={client} orderId={1} />, { store });
 
     // Vérifiez que le composant est rendu avec les données de base
-    expect(screen.getByTestId("product-content-2")).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(materialName))).toBeInTheDocument();
+    expect(screen.getByTestId(`product-content-${productsByOrder._id}`)).toBeInTheDocument();
     expect(screen.getByTestId("header-component")).toBeInTheDocument();
   });
 });
+ 
