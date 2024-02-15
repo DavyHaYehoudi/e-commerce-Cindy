@@ -15,6 +15,8 @@
     --new-badge-text: #FFFFFF;
     --footer-heading-color: #1C1B1B;
     --footer-text-color: #FFFFFF;
+    --text-whitesmoke:#F5F5F5; 
+    --text-color-white:#FFFFFF;
 
     /* BACKGROUND */
     --background: #FFFFFF;
@@ -23,6 +25,10 @@
     --new-badge-bkg: to right, #d8e1eb, #aeb8c5;
     --quantity-cart: #D9C2B6;
     --footer-background: #C4B6C3;
+    --client-list:#f2f2f2;
+    --client-item:#fff;
+    --client-details:#fff;
+    --client-header:#f9f9f9;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -45,10 +51,31 @@
     --success:#28a745;
     --danger:#dc3545;
     --warning:#ffc107;
-    --info:#17a2b8;
+    --info:#17a2b8; 
 
 }
 [data-theme="dark"]{
     --background:#282c34;
-    --dark:white;
+    --border-color: #DDDDDD;
+    --text-color: #FFFFFF;
+    --text-golden: #967F71;
+    --light-text-color: #FFFFFF;
+    --nav-menu-color: #FFFFFF;
+    --footer-text-color: #FFFFFF;
+    --freeShippingBanner-bkg: #282c34;
+    --button-background: #282c34;
+    --footer-background: #282c34;
+    --client-list:#282c34;
+    --client-item:#282c34;
+    --client-header:#282c34;
+    --client-details:#282c34;
+    --text-whitesmoke:#282c34; 
+    --text-color-white:#282c34;
+    --dark:#FFFFFF;
+    --primary:#007bff;
+    --secondary:#FFFFFF;
+    --success:#28a745;
+    --danger:#dc3545;
+    --warning:#ffc107;
+    --info:#17a2b8;
 }

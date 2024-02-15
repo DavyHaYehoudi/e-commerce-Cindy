@@ -46,24 +46,28 @@ ul {
 }
 
 .btn:hover {
-    color: #FFFFFF;
+    color: var(--text-color-white);
     background-position: -100% 0;
 }
 
 img {
     object-fit: cover;
 }
-.error-message{
+
+.error-message {
     font-size: 0.75rem;
     color: var(--danger);
-    
+
 }
-.underline{
+
+.underline {
     text-decoration: underline;
 }
+
 .dotted {
-    border-bottom: 1px dotted black;
+    border-bottom: 1px dotted var(--dark);
 }
+
 /* ********************* START INFO-BULLE TOOLTIP ********************* */
 .info-tooltip {
     position: relative;
@@ -75,7 +79,7 @@ img {
     top: -30px;
     width: 100px;
     background: #000;
-    color: #fff;
+    color: var(--text-color-white);
     padding: 5px;
     font-size: 0.625rem;
     text-align: center;
@@ -92,19 +96,23 @@ img {
 .info-tooltip:hover::before {
     opacity: 1;
 }
+
 /* ********************* START AFFICHAGE PRIX ********************* */
-.pricing{
+.pricing {
     padding: 2px 4px;
     border: none;
     border-radius: 5px;
-    background-color: whitesmoke;
+    background-color: var(--text-whitesmoke);
 }
-.inPricing{
+
+.inPricing {
     color: var(--success)
 }
-.outPricing{
+
+.outPricing {
     color: var(--danger);
 }
+
 /* ********************* END AFFICHAGE PRIX ********************* */
 /* ********************* START CONFIRMATION POPUP ********************* */
 .confirmation-popup button {
@@ -116,19 +124,19 @@ img {
 }
 
 .confirmation-popup button:nth-child(2) {
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     background-color: var(--danger);
 }
 
 .confirmation-popup button:nth-child(3) {
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     background-color: var(--success);
 }
 
 /* ********************* END CONFIRMATION POPUP ********************* */
 /* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 .account-btn {
-    color: #fff;
+    color: var(--text-color-white);
     border: none;
     border-radius: 5px;
     padding: 8px;
@@ -139,11 +147,12 @@ img {
 .account-btn:hover {
     transform: translateY(-2px);
 }
-.noValid{
+
+.noValid {
     margin: 10px;
     border: none;
     border-radius: 5px;
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     background-color: var(--secondary);
     padding: 5px;
     cursor: not-allowed;
@@ -157,16 +166,16 @@ img {
 /* SPECIFICITE ICONES */
 .icon-trash {
     background-color: var(--danger);
-    color: white;
+    color: var(--text-whitesmoke);
 }
 
 .icon-edit {
-    color: white;
+    color: var(--text-whitesmoke);
     background-color: var(--warning);
 }
 
 .icon-validate {
-    color: white;
+    color: var(--text-whitesmoke);
     background-color: var(--success);
 }
 
@@ -182,8 +191,8 @@ img {
 
 .account-input:focus {
     outline: none;
-    border: 1px solid black;
-    box-shadow: 0 0 3px black;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 3px var(--dark);
 }
 
 /* ********************* END INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */
@@ -201,8 +210,8 @@ img {
 .pagination-link {
     display: block;
     padding: 10px;
-    color: #333;
-    background-color: #fff;
+    color: var(--dark);
+    background-color: var(--background);
     border: 1px solid #ddd;
     border-radius: 4px;
     text-decoration: none;
@@ -211,7 +220,7 @@ img {
 }
 
 .pagination-link:hover {
-    background-color: #f2f2f2;
+    background-color: var(--client-list);
 }
 
 /* ********************* END PAGINATION ********************* */
