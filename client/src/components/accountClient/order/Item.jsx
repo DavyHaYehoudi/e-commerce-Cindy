@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import TrackingField from "../../../shared/TrackingField";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
 import { formatPrice } from "../../../helpers/utils/prices";
 
-const Item = ({ productsByOrder, isReturnProduct }) => {
+const Item = ({ productsByOrder }) => {
   const state = useSelector((state) => state?.product?.data);
   const productsByOrderStore = useSelector(
     (state) => state?.customer?.data?.productsByOrder
@@ -35,10 +34,12 @@ const Item = ({ productsByOrder, isReturnProduct }) => {
                     <span className="dotted">Nom du produit</span> :{" "}
                     {name || "Non disponible"}
                   </p>
-                  <p>
-                    <span className="dotted">Matériau</span> :{" "}
-                    {name && getMaterialProperty(product?.material).name}
-                  </p>
+                  {product?.material !== 0 && (
+                    <p>
+                      <span className="dotted">Matériau</span> :{" "}
+                      {name && getMaterialProperty(product?.material).name}
+                    </p>
+                  )}
                   <p>
                     <span className="dotted">Quantité</span> :{" "}
                     {product?.quantity}
@@ -60,7 +61,6 @@ const Item = ({ productsByOrder, isReturnProduct }) => {
                     />
                   </Link>
                 </div>
-                {/* {isReturnProduct && <TrackingField isAdmin={false} />} */}
               </div>
             );
           })}

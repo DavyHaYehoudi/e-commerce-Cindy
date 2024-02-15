@@ -12,21 +12,34 @@ const orderController = {
   createTrackingNumberClient: async (req, res) => {
     const { orderId } = req.params;
     const { trackingNumber } = req.body;
+  
     try {
       const existingOrder = await Order.findById(orderId);
-
+  
       if (!existingOrder) {
         return res.status(404).json({ error: "Order not found" });
       }
 
+      const isAdminFalseTrackingNumber = existingOrder.trackingNumber.find(
+        (tn) => tn.isAdmin === false
+      );
+  
+      if (isAdminFalseTrackingNumber) {
+        return res
+          .status(400)
+          .json({ error: "Tracking number with isAdmin=false already exists" });
+      }
+  
+      // Ajoutez le nouveau trackingNumber à la propriété trackingNumber
       existingOrder.trackingNumber.push(trackingNumber);
       await existingOrder.save();
-
+  
       res.status(201).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   },
+  
   deleteTrackingNumberClient: async (req, res) => {
     const { orderId } = req.params;
     const { trackingNumberId } = req.query;

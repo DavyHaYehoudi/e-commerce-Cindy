@@ -45,39 +45,33 @@ const List = ({ orderHistory, filter }) => {
               initialText="Afficher les articles"
               hiddenText="Fermer les articles"
               buttonClass="account-btn toggle"
-              content={
-                <Item
-                  productsByOrder={order?.productsByOrder}
-                  isReturnProduct={
-                    getOrderStepProperty(order?.step).name === orderStep[3].name
-                  }
-                />
-              }
+              content={<Item productsByOrder={order?.productsByOrder} />}
             />
-            {getOrderStepProperty(order?.step).name === orderStep[3].name && (
-              <div>
-                {" "}
-                <button
-                  className="account-btn addTrackingNumberClientBtn"
-                  onClick={() =>
-                    setTrackingNumberBoxOpen(!trackingNumberBoxOpen)
-                  }
-                >
-                  Ajouter un numéro de suivi pour un retour
-                </button>
-                {trackingNumberBoxOpen && (
-                  <TrackingNumberCreate
-                    orderId={order._id}
-                    setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
-                  />
-                )}
-              </div>
-            )}
+            {getOrderStepProperty(order?.step).name === orderStep[3].name &&
+              order.trackingNumber &&
+              order.trackingNumber.every((tn) => tn.isAdmin !== false) && (
+                <div>
+                  <button
+                    className="account-btn addTrackingNumberClientBtn"
+                    onClick={() =>
+                      setTrackingNumberBoxOpen(!trackingNumberBoxOpen)
+                    }
+                  >
+                    Ajouter un numéro de suivi pour un retour
+                  </button>
+                  {trackingNumberBoxOpen && (
+                    <TrackingNumberCreate
+                      orderId={order._id}
+                      setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
+                    />
+                  )}
+                </div>
+              )}
 
             <div className="trackingNumber">
               {order?.trackingNumber?.length > 0
                 ? order.trackingNumber.map((trk) => (
-                    <TrackingNumberList key={trk.id} trk={trk} order={order}  />
+                    <TrackingNumberList key={trk.id} trk={trk} order={order} />
                   ))
                 : "№ suivi de commande en attente d'être communiqué"}
             </div>

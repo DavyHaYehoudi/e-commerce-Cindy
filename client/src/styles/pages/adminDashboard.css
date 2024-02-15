@@ -259,11 +259,11 @@
 }
 
 .trackingNumberAdminItem {
-    border: 3px solid var(--success);
+    border: 2px dotted var(--success);
 }
 
 .trackingNumberClientItem {
-    border: 3px solid var(--info);
+    border: 2px solid var(--info);
 }
 
 .trackingNumberClientItem .header {
