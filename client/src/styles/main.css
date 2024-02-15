@@ -78,7 +78,7 @@ img {
     position: absolute;
     top: -30px;
     width: 100px;
-    background: #000;
+    background: var(--dark);
     color: var(--text-color-white);
     padding: 5px;
     font-size: 0.625rem;
