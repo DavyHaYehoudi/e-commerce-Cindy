@@ -17,15 +17,12 @@ const addClientTrackingNumber = createAsyncThunk(
   "orders/addClientTrackingNumber",
   async ({ orderId, trackingNumber }) => {
     try {
-      await customFetch(
-        `order/trackingnumber_client/${orderId}`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            trackingNumber,
-          }),
-        }
-      );
+      await customFetch(`order/trackingnumber_client/${orderId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          trackingNumber,
+        }),
+      });
       return { orderId, trackingNumber };
     } catch (error) {
       handleFetchError(error);
@@ -98,9 +95,7 @@ const customer = createSlice({
         );
       })
       .addCase(addClientTrackingNumber.rejected, (state, action) => {
-        toast.error(
-          "Une erreur est survenue avec les informations fournies."
-        );
+        toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -123,9 +118,7 @@ const customer = createSlice({
         );
       })
       .addCase(deleteTrackingNumber.rejected, (state, action) => {
-        toast.error(
-          "Une erreur est survenue avec les informations fournies."
-        );
+        toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       });

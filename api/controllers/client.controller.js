@@ -84,19 +84,19 @@ const clientController = {
     const updateFields = req.body;
 
     try {
-    const client = await Client.findById(clientId)
-    if (!client) {
-      return res.status(404).json({ error: "Client not found" });
-    }
-    // Liste des champs à exclure de la mise à jour
-    const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
+      // Liste des champs à exclure de la mise à jour
+      const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
 
-    // Filtrer les champs indésirables du req.body
-    const filteredUpdateFields = Object.fromEntries(
-      Object.entries(updateFields).filter(
-        ([key]) => !fieldsToExclude.includes(key)
-      )
-    );
+      // Filtrer les champs indésirables du req.body
+      const filteredUpdateFields = Object.fromEntries(
+        Object.entries(updateFields).filter(
+          ([key]) => !fieldsToExclude.includes(key)
+        )
+      );
 
       await Client.findOneAndUpdate(
         { _id: clientId },
@@ -120,6 +120,10 @@ const clientController = {
     const { clientId } = req.params;
     const { content } = req.body;
     try {
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
       const currentDate = new Date();
       const newNote = { content, date: currentDate };
 
@@ -146,6 +150,10 @@ const clientController = {
     const { clientId, noteId } = req.params;
 
     try {
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
       const updatedClient = await Client.findOneAndUpdate(
         { _id: clientId },
         { $pull: { notesAdmin: { _id: noteId } } },
@@ -156,7 +164,6 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-  
 };
 
 export default clientController;

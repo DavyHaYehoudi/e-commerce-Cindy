@@ -13,15 +13,19 @@ const productsByOrderController = {
     // Implementation for getting a client by ID
   },
   addNote: async (req, res) => {
-    const {productsbyorderId} = req.params
-    const {content}=req.body
+    const { productsbyorderId } = req.params;
+    const { content } = req.body;
     try {
+      const productsbyorder = await ProductsByOrder.findById(productsbyorderId);
+      if (!productsbyorder) {
+        return res.status(404).json({ error: "Productsbyorder not found" });
+      }
       const note = await ProductsByOrder.updateOne(
         { _id: productsbyorderId },
         { $set: { "productsByOrderActions.note": content } },
         { runValidators: true }
       );
-      res.status(200).json({note})
+      res.status(200).json({ note });
     } catch (error) {
       return res.status(500).json({
         error: `Erreur interne du serveur : ${error.message}`,
