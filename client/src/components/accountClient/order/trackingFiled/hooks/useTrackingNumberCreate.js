@@ -48,6 +48,7 @@ const useTrackingNumberCreate = ({
   const handleCancel = () => {
     setTrackingInfo({ trackingField: "", date: "" });
     setErrors({});
+    setTrackingNumberBoxOpen(false)
   };
 
   return {

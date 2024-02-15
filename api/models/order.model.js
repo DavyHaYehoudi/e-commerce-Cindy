@@ -70,10 +70,22 @@ const orderSchema = new mongoose.Schema(
                 articlesNumber: {
                   type: Number,
                   required: true,
+                  validate: {
+                    validator: function (value) {
+                      return value >= 1 && value <= 100;
+                    },
+                    message: (props) => `${props.value} n'est pas compris entre 1 et 100!`,
+                  },
                 },
                 material: {
                   type: Number,
                   required: true,
+                  validate: {
+                    validator: function (value) {
+                      return value >= 0 && value <= 10;
+                    },
+                    message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
+                  },
                 },
               },
             ],

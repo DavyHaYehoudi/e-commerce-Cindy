@@ -338,6 +338,67 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
+  /order/trackingnumber_client/{orderId}:
+    post:
+      tags:
+        - order
+      summary: Create a tracking Number client
+      description: This can only be done by client.
+      operationId: The client creates his tracking number
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackingNumberClient'
+      responses:
+        '201':
+          description: Successful creation tracking number
+        '400':
+          description: Invalid orderId supplied
+        '404':
+          description: Order not found
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /order/trackingnumber_client/{orderId}?{trackingNumberId}:
+    delete:
+      tags:
+        - order
+      summary: Delete a tracking Number client
+      description: This can only be done by client.
+      operationId: The client deletes his tracking number
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - name: trackingNumberId
+          in: query
+          description: ID of the tracking number
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful creation tracking number
+        '400':
+          description: Invalid orderId or trackingNumberId supplied
+        '404':
+          description: Order or trackingNumberId not found
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
   /productsbyorder:
     get:
       tags:
@@ -755,6 +816,24 @@ components:
         content:
           type: string
           example: Echange cordial avec le client
+    TrackingNumberClient:
+      type: object
+      properties:
+        trackingNumber:
+          type: object
+          properties:
+            id: 
+              type: string
+              example: 634b8479-1e1f-42a6-835a-26f6bc8e8337
+            isAdmin:
+              type: boolean
+              example: false
+            value:
+              type: string
+              example: UIOP908_njUI
+            date:
+              type: string
+              example: 2024-03-24
     Order:
       type: array
       items:

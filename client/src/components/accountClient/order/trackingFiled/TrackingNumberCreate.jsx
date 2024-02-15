@@ -12,7 +12,7 @@ const TrackingNumberCreate = ({ orderId,setTrackingNumberBoxOpen }) => {
     setErrors,
     setTrackingInfo,
     orderId,
-    setTrackingNumberBoxOpen
+    setTrackingNumberBoxOpen,
   });
 
   const isFormValid = !errors.trackingField && !errors.date;

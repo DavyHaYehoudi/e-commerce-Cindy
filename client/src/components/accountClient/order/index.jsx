@@ -77,7 +77,7 @@ const List = ({ orderHistory, filter }) => {
             <div className="trackingNumber">
               {order?.trackingNumber?.length > 0
                 ? order.trackingNumber.map((trk) => (
-                    <TrackingNumberList key={trk.id} trk={trk} order={order} />
+                    <TrackingNumberList key={trk.id} trk={trk} order={order}  />
                   ))
                 : "№ suivi de commande en attente d'être communiqué"}
             </div>

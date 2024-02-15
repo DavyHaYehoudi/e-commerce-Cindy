@@ -33,7 +33,7 @@ const clientController = {
         const productsByOrderWithoutNote = order.productsByOrder.map(
           (product) => {
             const { productsByOrderActions, ...rest } = product.toJSON();
-            const productsByOrderActionsWithoutNote = { 
+            const productsByOrderActionsWithoutNote = {
               ...productsByOrderActions,
               note: undefined,
             };
@@ -80,9 +80,14 @@ const clientController = {
   },
 
   updateClient: async (req, res) => {
-    const {clientId} = req.params;
+    const { clientId } = req.params;
     const updateFields = req.body;
 
+    try {
+    const client = await Client.findById(clientId)
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
     // Liste des champs à exclure de la mise à jour
     const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
 
@@ -93,8 +98,7 @@ const clientController = {
       )
     );
 
-    try {
-      const updatedClient = await Client.findOneAndUpdate(
+      await Client.findOneAndUpdate(
         { _id: clientId },
         {
           $set: filteredUpdateFields,
@@ -152,6 +156,7 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
+  
 };
 
 export default clientController;
