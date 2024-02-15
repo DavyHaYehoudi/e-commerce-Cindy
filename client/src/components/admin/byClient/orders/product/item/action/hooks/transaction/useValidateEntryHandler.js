@@ -1,5 +1,5 @@
 import {
-  articleAction,
+  isClientNotified,
   totalsInOut,
 } from "../../../../../../../../../features/admin/ordersSlice";
 
@@ -55,10 +55,10 @@ export const useValidateEntryHandler = (
         updateActionContent({
           productsByOrderId: productsByOrder._id,
           updatedProperty: action,
-          isClientNotified: false,
           productActionContent,
         })
       );
+      dispatch(isClientNotified({orderId}));
       if (action === actions.REFUND) {
         dispatch(
           totalsInOut({
@@ -68,7 +68,6 @@ export const useValidateEntryHandler = (
           })
         );
       }
-      dispatch(articleAction({ orderId }));
       setEntryError("");
     }
     if (productsByOrderActions[contentKey]) {

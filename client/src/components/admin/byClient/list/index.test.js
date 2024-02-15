@@ -36,6 +36,9 @@ test("Renders correctly Item component for each client and respects the paginati
         { _id: 6, firstName: "Stephan", lastName: "Colt" },
       ],
     },
+    orders: {
+      isClientNotified:[]
+    }
   };
   const store = mockStore(initialState);
 

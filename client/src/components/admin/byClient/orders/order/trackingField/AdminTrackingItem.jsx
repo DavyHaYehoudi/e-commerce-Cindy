@@ -5,12 +5,7 @@ import { TbInputX } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { deleteTrackingNumber } from "../../../../../../features/admin/ordersSlice";
 
-const AdminTrackingItem = ({
-  item,
-  client,
-  orderId,
-  productStore,
-}) => {
+const AdminTrackingItem = ({ item, client, orderId, productStore }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
   const handleConfirmCancel = (trackingNumberId) => {
@@ -25,18 +20,19 @@ const AdminTrackingItem = ({
     <div className="trackingNumber trackingNumberAdminItem">
       <div className="header">
         <p>
-          <span className="underline">Numéro de suivi d'envoi</span>  : <span className="trackingNumberValue" >{item.value}</span> {" "}
-          <small>- Envoyé le {formatDate(item.date,false)}</small>
+          <span className="underline">Numéro de suivi d'envoi</span> :{" "}
+          <span className="trackingNumberValue">{item.value}</span>{" "}
+          <small>- Envoyé le {formatDate(item.date, false)}</small>
         </p>
       </div>
       <ul className="productsByOrder">
         {item?.productsByOrder?.map((product) => (
           <ProductListItem
-            key={product._id}
+            key={product.id}
             product={product}
             client={client}
-            orderId={orderId}
             articleNumber={product.articlesNumber}
+            material={product.material}
             productStore={productStore}
           />
         ))}
@@ -63,7 +59,7 @@ const AdminTrackingItem = ({
         onClick={() => setIsTrashConfirm(true)}
         aria-label="Supprimer ce numéro de suivi"
       >
-        <TbInputX  aria-hidden="true" />{" "}
+        <TbInputX aria-hidden="true" />{" "}
       </button>
     </div>
   );

@@ -2,14 +2,33 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as actions from "../../constants/productsByOrderActions";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { toast } from "react-toastify";
 
-const fetchProducts = createAsyncThunk("productsByOrder/fetchProducts", async () => {
-  try {
-    return customFetch("productsByOrder");
-  } catch (error) {
-    handleFetchError(error);
+const fetchProducts = createAsyncThunk(
+  "productsByOrder/fetchProducts",
+  async () => {
+    try {
+      return customFetch("productsByOrder");
+    } catch (error) {
+      handleFetchError(error);
+    }
   }
-});
+);
+const productsByOrderNote = createAsyncThunk(
+  "productsByOrder/note",
+  async ({ productsByOrderId, content }) => {
+    try {
+      await customFetch(`productsbyorder/note/${productsByOrderId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ content }),
+      });
+      return { productsByOrderId, content };
+    } catch (error) {
+      handleFetchError(error);
+      throw error;
+    }
+  }
+);
 const productsByOrderSlice = createSlice({
   name: "productsByOrder",
   initialState: { data: [], status: "idle", error: null },
@@ -19,7 +38,6 @@ const productsByOrderSlice = createSlice({
         creditContent,
         productsByOrderId,
         updatedProperty,
-        isClientNotified,
         productActionContent,
       } = action.payload;
 
@@ -28,7 +46,6 @@ const productsByOrderSlice = createSlice({
           if (updatedProperty === actions.CREDIT) {
             return {
               ...productsByOrder,
-              isClientNotified,
               productsByOrderActions: {
                 ...productsByOrder.productsByOrderActions,
                 [updatedProperty]: creditContent,
@@ -37,7 +54,6 @@ const productsByOrderSlice = createSlice({
           }
           return {
             ...productsByOrder,
-            isClientNotified,
             productsByOrderActions: {
               ...productsByOrder.productsByOrderActions,
               [updatedProperty]: productActionContent,
@@ -61,9 +77,34 @@ const productsByOrderSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(productsByOrderNote.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(productsByOrderNote.fulfilled, (state, action) => {
+        toast.success("La note a bien été enregistrée !");
+        state.status = "succeeded";
+        state.error = null;
+        const { productsByOrderId, content } = action.payload;
+        state.data = state.data.map((item) => {
+          if (item._id === productsByOrderId) {
+            return {
+              ...item,
+              note: content,
+            };
+          }
+          return item;
+        });
+      })
+      .addCase(productsByOrderNote.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error(
+          "Une erreur est survenue avec les informations fournies."
+        );
       });
   },
 });
 export const { updateActionContent } = productsByOrderSlice.actions;
-export { fetchProducts };
+export { fetchProducts, productsByOrderNote };
 export default productsByOrderSlice.reducer;

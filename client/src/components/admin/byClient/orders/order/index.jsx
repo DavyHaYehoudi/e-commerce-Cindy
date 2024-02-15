@@ -12,12 +12,12 @@ import {
 import useSendToClient from "../hooks/useSendToClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Item = ({
   client,
   order,
   orderIndex,
-  isClientNotified,
   lastSentDateToClient,
   step,
 }) => {
@@ -34,7 +34,12 @@ const Item = ({
 
   const { sendToClient, loading } = useSendToClient();
 
-  const handleSendToClient = () => {
+  const handleSendToClient = (isClientNotNotified) => {
+    if(!isClientNotNotified){
+      return  toast.info(
+        "Aucune modification n'a été apportée."
+      );
+    }
     const productsByOrderReqBody = [];
     const orderReqBody = {};
 
@@ -58,8 +63,8 @@ const Item = ({
       productsByOrderReqBody.push(resultMap);
     });
 
-    orderReqBody["step"] = step;
     orderReqBody["trackingNumberList"] = trackingNumberList;
+    orderReqBody["step"] = step;
 
     sendToClient(order?._id, productsByOrderReqBody, orderReqBody);
   };
@@ -75,7 +80,6 @@ const Item = ({
           orderIndex={orderIndex}
           client={client}
           step={step}
-          isClientNotified={isClientNotified}
           lastSentDateToClient={lastSentDateToClient}
           handleSendToClient={handleSendToClient}
         />

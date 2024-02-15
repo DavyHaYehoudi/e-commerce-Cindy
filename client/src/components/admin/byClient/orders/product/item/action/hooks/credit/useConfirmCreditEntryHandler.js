@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { addCredit } from "../../../../../../../../../features/admin/creditSlice";
 import {
   totalsInOut,
-  articleAction,
 } from "../../../../../../../../../features/admin/ordersSlice";
 import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
 
@@ -50,10 +49,8 @@ export const useConfirmCreditEntryHandler = () => {
           creditContent: productsByOrder._id,
           productsByOrderId: productsByOrder._id,
           updatedProperty: action,
-          isClientNotified: false,
         })
       );
-
       dispatch(
         totalsInOut({
           orderId,
@@ -61,7 +58,6 @@ export const useConfirmCreditEntryHandler = () => {
           movement: "out",
         })
       );
-      dispatch(articleAction({ orderId }));
       setProductActions((prevState) => ({
         ...prevState,
         isAddCredit: false,

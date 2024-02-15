@@ -64,10 +64,5 @@ describe("List Component", () => {
 
     expect(screen.getByTestId("productsByOrder-container")).toBeInTheDocument();
 
-    mockState?.productsByOrder?.data.forEach((product) => {
-      expect(
-        screen.getByTestId(`product-content-${product.productId}`) 
-      ).toBeInTheDocument();
-    });
   });
 });

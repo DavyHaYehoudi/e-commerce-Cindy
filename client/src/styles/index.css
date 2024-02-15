@@ -22,6 +22,7 @@
 @import "./components/wishlistModal.css";
 @import "./components/colorPicker.css";
 @import "./components/orderActionsDropdown.css";
+@import "./darkMode/darkMode.css";
 
 /* LAYOUT */
 @import "./layout/header.css";

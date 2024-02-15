@@ -20,28 +20,35 @@ export const ordersActions = [
 ];
 
 const applyOrderAction = (state, action, updateFunction) => {
+  const { orderId } = action.payload;
+  console.log('action.payload:', action.payload)
+
   state.data = state.data.map((order) =>
-    order._id === action.payload.orderId
-      ? updateFunction(order, action.payload)
-      : order
+    order._id === orderId ? updateFunction(order, action.payload) : order
   );
+
+  if (action.type === sendToClientSuccess.type) {
+    state.isClientNotified = state.isClientNotified.filter(
+      (item) => item !== orderId
+    );
+  } else {
+    if (!state.isClientNotified.some((item) => item === orderId)) {
+      state.isClientNotified.push(orderId);
+    }
+  }
 };
-const updateOrderStep = (order, { step, isClientNotified }) => ({
+
+const updateOrderStep = (order, { step }) => ({
   ...order,
   step,
-  isClientNotified,
 });
 
-const sendToTheClientSuccess = (order,  payload ) => ({
+const sendToTheClientSuccess = (order, payload) => ({
   ...order,
-  isClientNotified: true,
   lastSentDateToClient: payload.lastSentDateToClient,
 });
 
-const updateMoveToNextStep = (
-  order,
-  { step, isClientNotified, isNextStepOrder }
-) => {
+const updateMoveToNextStep = (order, { step, isNextStepOrder }) => {
   const currentStepIndex = ordersActions.findIndex(
     (s) => s.number === order.step
   );
@@ -52,13 +59,9 @@ const updateMoveToNextStep = (
   return {
     ...order,
     step: nextStep,
-    isClientNotified,
   };
 };
-const updateIsClientNotified = (order) => ({
-  ...order,
-  isClientNotified: false,
-});
+
 const updateTotalsInOut = (order, { amount, movement }) => ({
   ...order,
   outTotalAmount:
@@ -69,13 +72,11 @@ const updateTotalsInOut = (order, { amount, movement }) => ({
 
 const trackingNumberAddAdmin = (order, { trackingNumber }) => ({
   ...order,
-  isClientNotified:false,
   trackingNumber: [...order.trackingNumber, trackingNumber],
 });
 
 const trackingNumberDelete = (order, { trackingNumberId }) => ({
   ...order,
-  isClientNotified:false,
   trackingNumber: order.trackingNumber.filter(
     (tn) => tn.id !== trackingNumberId
   ),
@@ -90,7 +91,7 @@ const trackingNumberUpdatedClient = (order, { trackingNumber }) => ({
 
 const ordersSlice = createSlice({
   name: "orderActions",
-  initialState: { data: [], status: "idle", error: null },
+  initialState: { data: [], isClientNotified: [], status: "idle", error: null },
   reducers: {
     moveToNextStep: (state, action) =>
       applyOrderAction(state, action, updateMoveToNextStep),
@@ -104,9 +105,6 @@ const ordersSlice = createSlice({
     sendToClientSuccess: (state, action) =>
       applyOrderAction(state, action, sendToTheClientSuccess),
 
-    articleAction: (state, action) =>
-      applyOrderAction(state, action, updateIsClientNotified),
-
     totalsInOut: (state, action) =>
       applyOrderAction(state, action, updateTotalsInOut),
 
@@ -118,6 +116,13 @@ const ordersSlice = createSlice({
 
     updatedClientTrackingNumber: (state, action) =>
       applyOrderAction(state, action, trackingNumberUpdatedClient),
+
+    isClientNotified: (state, action) => {
+      const { orderId } = action.payload;
+      if (!state.isClientNotified.some((item) => item === orderId)) {
+        state.isClientNotified.push(orderId);
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -141,11 +146,11 @@ export const {
   cancelOrder,
   reactivateOrder,
   sendToClientSuccess,
-  articleAction,
   totalsInOut,
   addAdminTrackingNumber,
   deleteTrackingNumber,
   updatedClientTrackingNumber,
+  isClientNotified
 } = ordersSlice.actions;
 export { fetchOrders };
 export default ordersSlice.reducer;

@@ -4,6 +4,12 @@
     margin: 20px auto;
 }
 
+.admin-dashboard .darkMode {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
 .client-list {
     padding: 20px;
     background-color: #f2f2f2;
@@ -253,11 +259,11 @@
 }
 
 .trackingNumberAdminItem {
-    border: 3px solid var(--success);
+    border: 2px dotted var(--success);
 }
 
 .trackingNumberClientItem {
-    border: 3px solid var(--info);
+    border: 2px solid var(--info);
 }
 
 .trackingNumberClientItem .header {
@@ -335,14 +341,14 @@
 }
 
 #trackingNumberInput,
-#articleNumberInput {
+.articleNumberByProduct-description .articleNumberInput {
     width: 250px;
     border: 1px solid var(--border-color);
     padding: 5px;
 }
 
 #trackingNumberInput:focus,
-#articleNumberInput:focus {
+.articleNumberByProduct-description .articleNumberInput:focus {
     outline: none;
     border: 1px solid var(--dark);
     box-shadow: 0 0 3px var(--dark);
@@ -498,9 +504,11 @@
     display: flex;
     align-items: center;
 }
-.admin-order-item .sending{
+
+.admin-order-item .sending {
     font-style: italic;
     color: var(--success);
     font-size: 2rem;
 }
+
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */

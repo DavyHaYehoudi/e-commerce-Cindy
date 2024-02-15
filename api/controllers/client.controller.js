@@ -13,38 +13,62 @@ const clientController = {
 
   getClientById: async (req, res) => {
     const { clientId } = req.params;
-    console.log("clientId:", clientId);
 
     try {
-      // Recherche du client dans la base de données MongoDB avec les commandes et les produits associés
-      const client = await Client.findById(clientId).populate({
-        path: "orders",
-        populate: {
-          path: "productsByOrder",
-          model: "ProductsByOrder",
-        },
-      });
+      const client = await Client.findById(clientId)
+        .select("-notesAdmin")
+        .populate({
+          path: "orders",
+          populate: {
+            path: "productsByOrder",
+            model: "ProductsByOrder",
+          },
+        });
 
       if (!client) {
         return res.status(404).json({ error: "Client not found" });
       }
 
-      const orders = client.orders;
+      const ordersWithoutNote = client.orders.map((order) => {
+        const productsByOrderWithoutNote = order.productsByOrder.map(
+          (product) => {
+            const { productsByOrderActions, ...rest } = product.toJSON();
+            const productsByOrderActionsWithoutNote = {
+              ...productsByOrderActions,
+              note: undefined,
+            };
+            return {
+              ...rest,
+              productsByOrderActions: productsByOrderActionsWithoutNote,
+            };
+          }
+        );
+        return {
+          ...order.toJSON(),
+          productsByOrder: productsByOrderWithoutNote,
+        };
+      });
 
-      // Utilisation de flatMap pour obtenir directement les produits associés aux commandes
-      const productsByOrder = orders.flatMap((order) => order.productsByOrder);
+      const creditIds = ordersWithoutNote.flatMap((order) =>
+        order.productsByOrder
+          .map((product) => product?.productsByOrderActions?.credit)
+          .filter(Boolean)
+      );
 
-      // Utilisation de map pour récupérer les crédits associés aux produits
-      const creditIds = productsByOrder
-        .map((product) => product?.productsByOrderActions?.credit)
-        .filter(Boolean);
-
-      // Récupération des crédits associés au client
       const credit = await Credit.find({
         productsByOrderId: { $in: creditIds },
       });
 
-      res.json({ client, orders, productsByOrder, credit });
+      const productsByOrder = ordersWithoutNote.flatMap(
+        (order) => order.productsByOrder
+      );
+
+      res.json({
+        client: { ...client.toJSON() },
+        orders: ordersWithoutNote,
+        credit,
+        productsByOrder,
+      });
     } catch (error) {
       console.error("Error fetching client data:", error);
       res.status(500).json({ error: "Internal server error" });
@@ -56,10 +80,14 @@ const clientController = {
   },
 
   updateClient: async (req, res) => {
-    // *************** A VOIR POUR MODIFICATIONS CLIENT DE SON PROPRE COMPTE ***************
-    const clientId = req.params;
+    const { clientId } = req.params;
     const updateFields = req.body;
 
+    try {
+    const client = await Client.findById(clientId)
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
     // Liste des champs à exclure de la mise à jour
     const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
 
@@ -70,8 +98,7 @@ const clientController = {
       )
     );
 
-    try {
-      const updatedClient = await Client.findOneAndUpdate(
+      await Client.findOneAndUpdate(
         { _id: clientId },
         {
           $set: filteredUpdateFields,
@@ -79,7 +106,7 @@ const clientController = {
         { new: true, runValidators: true }
       );
 
-      res.status(200).json(updatedClient);
+      res.status(200).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -129,6 +156,7 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
+  
 };
 
 export default clientController;

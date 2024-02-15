@@ -65,7 +65,6 @@ const Orders = ({ orders, client, setSelectedOrderId, selectedOrderId }) => {
                         client={client}
                         order={order}
                         orderIndex={i}
-                        isClientNotified={order.isClientNotified}
                         lastSentDateToClient={order.lastSentDateToClient}
                         step={order.step}
                       />

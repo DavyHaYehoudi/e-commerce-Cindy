@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import List from "../components/admin/byClient/list";
 import useFetchSlice from "../selectors/useFetchSlice";
+import DarkMode from "../components/darkMode/DarkMode";
 
 const AdminDashboard = () => {
   const [clientDetails, setClientDetails] = useState({});
@@ -20,7 +21,9 @@ const AdminDashboard = () => {
   };
 
   return (
+
     <div className="admin-dashboard" data-testid="admin-dashboard">
+      <div className="darkMode" ><DarkMode /></div>
       <List
         handleClientClick={handleClientClick}
         clientDetails={clientDetails}

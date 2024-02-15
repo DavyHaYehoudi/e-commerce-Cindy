@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   cancelOrder,
   moveToNextStep,
@@ -14,12 +14,13 @@ const ActionsDropdown = ({
   order,
   step,
   handleSendToClient,
-  isClientNotified,
   lastSentDateToClient,
 }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const isOrderCancelled = step === 6;
+  const orders = useSelector((state) => state?.orders?.isClientNotified);
+  const isClientNotNotified = orders?.find((item) => item === order?._id);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -29,7 +30,6 @@ const ActionsDropdown = ({
     dispatch(
       actionType({
         orderId: order._id,
-        isClientNotified: false,
         step: newStep,
         isNextStepOrder: true,
       })
@@ -49,20 +49,21 @@ const ActionsDropdown = ({
             </small>{" "}
           </p>
         )}
-        {isClientNotified ? (
-          <p className="info-tooltip" aria-label="Client informé">
-            {" "}
-            <TbCircleCheck
-              style={{ color: "var(--success)", fontSize: "25px" }}
-            />
-          </p>
+        {isClientNotNotified ? (
+           <p className="info-tooltip" aria-label="Client non informé">
+           <TbUserShare
+             style={{ color: "var(--danger)", fontSize: "25px" }}
+             aria-hidden="true"
+           />
+         </p>
+          
         ) : (
-          <p className="info-tooltip" aria-label="Client non informé">
-            <TbUserShare
-              style={{ color: "var(--danger)", fontSize: "25px" }}
-              aria-hidden="true"
-            />
-          </p>
+          <p className="info-tooltip" aria-label="Client informé">
+          {" "}
+          <TbCircleCheck
+            style={{ color: "var(--success)", fontSize: "25px" }}
+          />
+        </p>
         )}
         <button
           className="account-btn toggle"
@@ -88,7 +89,7 @@ const ActionsDropdown = ({
           </button>
         )}
         <div className="dropdown-separator"></div>
-        <button onClick={handleSendToClient}>
+        <button onClick={()=> handleSendToClient(isClientNotNotified)}>
           Envoyer ces informations au client
         </button>
       </div>
