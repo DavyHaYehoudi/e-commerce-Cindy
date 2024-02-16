@@ -4,8 +4,17 @@ import Credit from "../models/credit.model.js";
 const clientController = {
   getAllClients: async (req, res) => {
     try {
-      const clients = await Client.find();
-      res.status(200).json(clients);
+      let query = Client.find();
+      const itemsPerPage = parseInt(req.query.itemsPerPage);
+
+      if (itemsPerPage !== -1) {
+        query = query.limit(itemsPerPage);
+      }
+      query = query.sort({ _id: 1 });
+      const clients = await query.exec();
+      const totalClientsCount = await Client.countDocuments();
+
+      res.status(200).json({ clients, totalClientsCount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

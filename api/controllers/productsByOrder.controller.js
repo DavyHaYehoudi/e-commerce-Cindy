@@ -2,8 +2,14 @@ import ProductsByOrder from "../models/productsByOrder.model.js";
 const productsByOrderController = {
   getAllProducts: async (req, res) => {
     try {
-      const productsByOrder = await ProductsByOrder.find();
-      res.status(200).json(productsByOrder);
+      const { productsByOrderIds } = req.query;
+      const parsedProductsByOrderIds = JSON.parse(productsByOrderIds);
+
+      const orders = await ProductsByOrder.find({
+        _id: { $in: parsedProductsByOrderIds },
+      }).exec();
+
+      res.status(200).json(orders);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

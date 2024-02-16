@@ -1,14 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { fetchProductsByOrder } from "./productsByOrderSlice";
+import { fetchCredits } from "./creditSlice";
 
-const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
-  try {
-    return customFetch("order");
-  } catch (error) {
-    handleFetchError(error);
+const fetchOrders = createAsyncThunk(
+  "orders/fetchOrders",
+  async ({ orderIds }, { dispatch }) => {
+    try {
+      const orders = await customFetch(`order?orderIds=${orderIds}`);
+      const productsByOrderIds = orders
+        .map((order) => order.productsByOrder)
+        .flat();
+      dispatch(
+        fetchProductsByOrder({
+          productsByOrderIds: JSON.stringify(productsByOrderIds),
+        })
+      );
+      dispatch(
+        fetchCredits({ productsByOrderIds: JSON.stringify(productsByOrderIds) })
+      );
+      return orders;
+    } catch (error) {
+      handleFetchError(error);
+    }
   }
-});
+);
 export const ordersActions = [
   { id: 0, number: 0 },
   { id: 1, number: 1 },
@@ -21,7 +38,6 @@ export const ordersActions = [
 
 const applyOrderAction = (state, action, updateFunction) => {
   const { orderId } = action.payload;
-  console.log('action.payload:', action.payload)
 
   state.data = state.data.map((order) =>
     order._id === orderId ? updateFunction(order, action.payload) : order
@@ -150,7 +166,7 @@ export const {
   addAdminTrackingNumber,
   deleteTrackingNumber,
   updatedClientTrackingNumber,
-  isClientNotified
+  isClientNotified,
 } = ordersSlice.actions;
 export { fetchOrders };
 export default ordersSlice.reducer;

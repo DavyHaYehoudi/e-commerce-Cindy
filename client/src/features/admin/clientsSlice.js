@@ -1,14 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { fetchOrders } from "./ordersSlice";
 
-const fetchClients = createAsyncThunk("clients/fetchClients", async () => {
-  try {
-    return customFetch("client");
-  } catch (error) {
-    handleFetchError(error);
+const fetchClients = createAsyncThunk(
+  "clients/fetchClients",
+  async ({ itemsPerPage }, { dispatch }) => {
+    try {
+      const { clients, totalClientsCount } = await customFetch(
+        `client?itemsPerPage=${itemsPerPage}`
+      );
+      const orderIds = clients.map((client) => client.orders).flat();
+      dispatch(fetchOrders({ orderIds: JSON.stringify(orderIds) }));
+
+      return { clients, totalClientsCount };
+    } catch (error) {
+      handleFetchError(error);
+    }
   }
-});
+);
 
 const addNoteAdmin = createAsyncThunk(
   "clients/addNoteAdmin",
@@ -43,7 +53,12 @@ const removeNoteAdmin = createAsyncThunk(
 
 const clientsSlice = createSlice({
   name: "clients",
-  initialState: { data: [], status: "idle", error: null },
+  initialState: {
+    data: [],
+    totalClientsCount: "",
+    status: "idle",
+    error: null,
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -51,9 +66,11 @@ const clientsSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchClients.fulfilled, (state, action) => {
+        const { clients, totalClientsCount } = action.payload;
         state.status = "succeeded";
         state.error = null;
-        state.data = action.payload;
+        state.data = clients;
+        state.totalClientsCount = totalClientsCount;
       })
       .addCase(fetchClients.rejected, (state, action) => {
         state.status = "failed";
