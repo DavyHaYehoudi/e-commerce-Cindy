@@ -3,8 +3,14 @@ import Credit from "../models/credit.model.js";
 const creditController = {
   getAllCredits: async (req, res) => {
     try {
-      const credit = await Credit.find();
-      res.status(200).json(credit);
+      const { productsByOrderIds } = req.query;
+      const parsedProductsByOrderIds = JSON.parse(productsByOrderIds);
+
+      const credits = await Credit.find({
+        productsByOrderId: { $in: parsedProductsByOrderIds },
+      }).exec();
+
+      res.status(200).json(credits);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

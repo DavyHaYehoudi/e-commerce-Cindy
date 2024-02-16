@@ -4,11 +4,13 @@ import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 import { toast } from "react-toastify";
 
-const fetchProducts = createAsyncThunk(
-  "productsByOrder/fetchProducts",
-  async () => {
+const fetchProductsByOrder = createAsyncThunk(
+  "productsByOrder/fetchProductsByOrder",
+  async ({ productsByOrderIds }) => {
     try {
-      return customFetch("productsByOrder");
+      return customFetch(
+        `productsbyorder?productsByOrderIds=${productsByOrderIds}`
+      );
     } catch (error) {
       handleFetchError(error);
     }
@@ -66,15 +68,15 @@ const productsByOrderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchProductsByOrder.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchProductsByOrder.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
         state.data = action.payload;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchProductsByOrder.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -99,12 +101,10 @@ const productsByOrderSlice = createSlice({
       .addCase(productsByOrderNote.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error(
-          "Une erreur est survenue avec les informations fournies."
-        );
+        toast.error("Une erreur est survenue avec les informations fournies.");
       });
   },
 });
 export const { updateActionContent } = productsByOrderSlice.actions;
-export { fetchProducts, productsByOrderNote };
+export { fetchProductsByOrder, productsByOrderNote };
 export default productsByOrderSlice.reducer;

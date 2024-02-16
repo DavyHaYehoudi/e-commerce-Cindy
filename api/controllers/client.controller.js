@@ -4,8 +4,17 @@ import Credit from "../models/credit.model.js";
 const clientController = {
   getAllClients: async (req, res) => {
     try {
-      const clients = await Client.find();
-      res.status(200).json(clients);
+      let query = Client.find();
+      const itemsPerPage = parseInt(req.query.itemsPerPage);
+
+      if (itemsPerPage !== -1) {
+        query = query.limit(itemsPerPage);
+      }
+      query = query.sort({ _id: 1 });
+      const clients = await query.exec();
+      const totalClientsCount = await Client.countDocuments();
+
+      res.status(200).json({ clients, totalClientsCount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -15,7 +24,7 @@ const clientController = {
     const { clientId } = req.params;
 
     try {
-      const client = await Client.findById(clientId)
+      let client = await Client.findById(clientId)
         .select("-notesAdmin")
         .populate({
           path: "orders",
@@ -63,8 +72,10 @@ const clientController = {
         (order) => order.productsByOrder
       );
 
+      client = await Client.findById(clientId).select("-notesAdmin -orders");
+
       res.json({
-        client: { ...client.toJSON() },
+        client,
         orders: ordersWithoutNote,
         credit,
         productsByOrder,
@@ -84,19 +95,19 @@ const clientController = {
     const updateFields = req.body;
 
     try {
-    const client = await Client.findById(clientId)
-    if (!client) {
-      return res.status(404).json({ error: "Client not found" });
-    }
-    // Liste des champs à exclure de la mise à jour
-    const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
+      // Liste des champs à exclure de la mise à jour
+      const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
 
-    // Filtrer les champs indésirables du req.body
-    const filteredUpdateFields = Object.fromEntries(
-      Object.entries(updateFields).filter(
-        ([key]) => !fieldsToExclude.includes(key)
-      )
-    );
+      // Filtrer les champs indésirables du req.body
+      const filteredUpdateFields = Object.fromEntries(
+        Object.entries(updateFields).filter(
+          ([key]) => !fieldsToExclude.includes(key)
+        )
+      );
 
       await Client.findOneAndUpdate(
         { _id: clientId },
@@ -120,6 +131,10 @@ const clientController = {
     const { clientId } = req.params;
     const { content } = req.body;
     try {
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
       const currentDate = new Date();
       const newNote = { content, date: currentDate };
 
@@ -146,6 +161,10 @@ const clientController = {
     const { clientId, noteId } = req.params;
 
     try {
+      const client = await Client.findById(clientId);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
       const updatedClient = await Client.findOneAndUpdate(
         { _id: clientId },
         { $pull: { notesAdmin: { _id: noteId } } },
@@ -156,7 +175,6 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-  
 };
 
 export default clientController;

@@ -32,12 +32,20 @@ tags:
   - name: credit
     description: Credits customers
 paths:
-  /client:
+  /client?{itemsPerPage}:
     get:
       tags:
         - client
       description: Getting all clients
       operationId: getAllClients
+      parameters:
+          - name: itemsPerPage
+            in: query
+            description: Number of items per page
+            required: false
+            schema:
+              type: integer
+              default: 5
       responses:
         '200':
           description: successful getting all clients
@@ -247,10 +255,25 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /order:
+  /order?{orderIds}:
     get:
       tags:
         - order
+      parameters:
+        - name: orderIds
+          in: query
+          description: JSON array representing ids of orders
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            properties:
+              orderIds:
+                type: array
+                items:
+                  type: string
+
       summary: Returns all orders
       description: Returns the list of orders
       responses:
@@ -399,10 +422,25 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /productsbyorder:
+  /productsbyorder?{productsByOrderIds}:
     get:
       tags:
         - productsbyorder
+      parameters:
+        - name: productsByOrderIds
+          in: query
+          description: JSON array representing ids of productsByOrder
+          required: false
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+            properties:
+              orderIds:
+                type: array
+                items:
+                  type: string
+
       summary: Returns all products that are in order
       description: Returns a list of products
       responses:
@@ -585,10 +623,24 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /credit:
+  /credit?{productsByOrderIds}:
     get:
       tags:
         - credit
+      parameters:
+      - name: productsByOrderIds
+        in: query
+        description: JSON array representing ids of productsByOrder
+        required: false
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            productsByOrderIds:
+              type: array
+              items:
+                type: string
       summary: Returns all credits
       description: Returns the list of credits
       responses:

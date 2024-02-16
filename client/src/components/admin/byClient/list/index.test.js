@@ -33,7 +33,6 @@ test("Renders correctly Item component for each client and respects the paginati
         { _id: 3, firstName: "Eric", lastName: "Cartouche" },
         { _id: 4, firstName: "Marguerite", lastName: "Douglas" },
         { _id: 5, firstName: "Noemi", lastName: "Center" },
-        { _id: 6, firstName: "Stephan", lastName: "Colt" },
       ],
     },
     orders: {
@@ -55,7 +54,4 @@ test("Renders correctly Item component for each client and respects the paginati
   expect(screen.getByText("Eric Cartouche")).toBeInTheDocument();
   expect(screen.getByText("Marguerite Douglas")).toBeInTheDocument();
   expect(screen.getByText("Noemi Center")).toBeInTheDocument();
-
-  //Render only 5 because of Pagination limited to 5
-  expect(screen.queryByText("Stephan Colt")).not.toBeInTheDocument();
 });

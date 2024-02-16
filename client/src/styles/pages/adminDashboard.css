@@ -12,7 +12,7 @@
 
 .client-list {
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: var(--client-list);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,11 +26,11 @@
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: var(--client-item);
 }
 
 .client-header {
-    background-color: #f9f9f9;
+    background-color: var(--client-header);
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -39,25 +39,12 @@
     position: relative;
     text-align: center;
     display: inline-block;
+    transition: transform 0.3s ease; 
 }
 
 .client-header-clic:hover {
-    background-color: #e0e0e0;
+    transform: translateY(-3px);
     cursor: pointer;
-    text-decoration: underline;
-}
-
-.client-header button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-}
-
-.client-header button:hover {
-    background-color: #2c3e50;
-    color: #ecf0f1;
 }
 
 .admin-badge {
@@ -112,7 +99,7 @@
 /* ********************* START FICHE CLIENT VIEW ********************* */
 .client-details {
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--client-details);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: initial;
 }
@@ -130,7 +117,7 @@
     border: none;
     border-radius: 5px;
     padding: 5px;
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     background-color: var(--secondary);
     cursor: pointer;
 }
@@ -216,7 +203,7 @@
     margin-bottom: 20px;
     padding: 10px;
     border: 2px solid var(--dark);
-    background-color: #f9f9f9;
+    background-color: var(--client-header);
 }
 
 .admin-order-item p {
@@ -238,7 +225,7 @@
 
 .addTrackingNumberBtn {
     background-color: var(--dark);
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     font-size: 0.85rem;
     border: none;
     border-radius: 5px;
@@ -292,7 +279,7 @@
     margin: 10px;
     border: none;
     border-radius: 5px;
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     padding: 5px;
 }
 
@@ -334,7 +321,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: var(--background);
     padding: 20px;
     border: 2px solid var(--dark);
     box-shadow: 0 0 3px var(--dark);
@@ -363,19 +350,19 @@
 }
 
 .Step-buttons .not-send {
-    color: white;
+    color: var(--text-color-white);
     background-color: var(--warning);
 }
 
 .Step-buttons .send {
-    color: white;
+    color: var(--text-color-white);
     background-color: var(--success);
     cursor: initial;
     padding: 5px;
 }
 
 .not-send-icon {
-    color: white;
+    color: var(--text-color-white);
     margin-left: 5px;
 }
 
@@ -421,7 +408,7 @@
 }
 
 #productsByOrder-container .actions-list {
-    background-color: #fff;
+    background-color: var(--background);
     border: 1px solid #ddd;
     display: none;
 }
@@ -469,7 +456,7 @@
 }
 
 .actions-list button {
-    color: whitesmoke;
+    color: var(--text-whitesmoke);
     background-color: var(--success);
     border: none;
     cursor: pointer;
@@ -487,7 +474,7 @@
 }
 
 #productsByOrder-container .product-tag {
-    color: white;
+    color: var(--text-color-white);
     background-color: var(--secondary);
     border: none;
     padding: 5px;
