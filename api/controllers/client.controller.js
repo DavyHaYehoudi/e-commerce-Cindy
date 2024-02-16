@@ -24,7 +24,7 @@ const clientController = {
     const { clientId } = req.params;
 
     try {
-      const client = await Client.findById(clientId)
+      let client = await Client.findById(clientId)
         .select("-notesAdmin")
         .populate({
           path: "orders",
@@ -72,8 +72,10 @@ const clientController = {
         (order) => order.productsByOrder
       );
 
+      client = await Client.findById(clientId).select("-notesAdmin -orders");
+
       res.json({
-        client: { ...client.toJSON() },
+        client,
         orders: ordersWithoutNote,
         credit,
         productsByOrder,
