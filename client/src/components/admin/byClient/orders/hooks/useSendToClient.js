@@ -15,7 +15,7 @@ const useSendToClient = () => {
       try {
         setLoading(true);
 
-        const response = await customFetch(`order/${orderId}`, {
+        const response = await customFetch(`orders/${orderId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

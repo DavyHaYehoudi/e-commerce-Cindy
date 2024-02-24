@@ -7,7 +7,7 @@ const fetchCustomer = createAsyncThunk(
   "client/fetchCustomer",
   async (clientId) => {
     try {
-      return customFetch(`client/${clientId}`);
+      return customFetch(`clients/${clientId}`);
     } catch (error) {
       handleFetchError(error);
     }
@@ -17,7 +17,7 @@ const addClientTrackingNumber = createAsyncThunk(
   "orders/addClientTrackingNumber",
   async ({ orderId, trackingNumber }) => {
     try {
-      await customFetch(`order/trackingnumber_client/${orderId}`, {
+      await customFetch(`orders/trackingnumber_client/${orderId}`, {
         method: "POST",
         body: JSON.stringify({
           trackingNumber,
@@ -35,7 +35,7 @@ const deleteTrackingNumber = createAsyncThunk(
   async ({ orderId, trackingNumberId }) => {
     try {
       await customFetch(
-        `order/trackingnumber_client/${orderId}?trackingNumberId=${trackingNumberId}`,
+        `orders/trackingnumber_client/${orderId}?trackingNumberId=${trackingNumberId}`,
         {
           method: "DELETE",
         }

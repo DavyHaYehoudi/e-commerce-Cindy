@@ -6,7 +6,7 @@ const fetchCredits = createAsyncThunk(
   "credit/fetchCredits",
   async ({ productsByOrderIds }) => {
     try {
-      return customFetch(`credit?productsByOrderIds=${productsByOrderIds}`);
+      return customFetch(`credits?productsByOrderIds=${productsByOrderIds}`);
     } catch (error) {
       handleFetchError(error);
     }

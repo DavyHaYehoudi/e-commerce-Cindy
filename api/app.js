@@ -16,11 +16,11 @@ const corsOptions = {
 };
 app.use(express.json())
 app.use(cors(corsOptions));
-app.use("/client", clientRoutes);
-app.use("/order", orderRoutes);
+app.use("/clients", clientRoutes);
+app.use("/orders", orderRoutes);
 app.use("/productsbyorder", productsByOrderRoutes);
-app.use("/product", productRoutes);
-app.use("/credit", creditRoutes);
+app.use("/products", productRoutes);
+app.use("/credits", creditRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);

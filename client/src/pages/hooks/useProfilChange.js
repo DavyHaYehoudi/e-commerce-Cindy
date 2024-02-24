@@ -10,7 +10,7 @@ const useProfilChange = () => {
     setLoading(true);
 
     try {
-      const response = await customFetch(`client/${clientId}`, {
+      const response = await customFetch(`clients/${clientId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

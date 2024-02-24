@@ -72,10 +72,6 @@
     --text-whitesmoke:#282c34; 
     --text-color-white:#282c34;
     --dark:#FFFFFF;
-    --primary:#007bff;
     --secondary:#FFFFFF;
-    --success:#28a745;
-    --danger:#dc3545;
-    --warning:#ffc107;
-    --info:#17a2b8;
+    --danger:#d2483d;
 }

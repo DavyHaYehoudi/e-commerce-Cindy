@@ -8,7 +8,7 @@ const fetchOrders = createAsyncThunk(
   "orders/fetchOrders",
   async ({ orderIds }, { dispatch }) => {
     try {
-      const orders = await customFetch(`order?orderIds=${orderIds}`);
+      const orders = await customFetch(`orders?orderIds=${orderIds}`);
       const productsByOrderIds = orders
         .map((order) => order.productsByOrder)
         .flat();

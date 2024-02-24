@@ -32,20 +32,20 @@ tags:
   - name: credit
     description: Credits customers
 paths:
-  /client?{itemsPerPage}:
+  /clients{itemsPerPage} :
     get:
       tags:
         - client
-      description: Getting all clients
+      description: Getting paramater number of clients
       operationId: getAllClients
       parameters:
-          - name: itemsPerPage
-            in: query
-            description: Number of items per page
-            required: false
-            schema:
-              type: integer
-              default: 5
+        - name: itemsPerPage
+          in: path
+          description: Number of items per page
+          required: true
+          schema:
+            type: integer
+            default: "5"
       responses:
         '200':
           description: successful getting all clients
@@ -57,7 +57,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /client/register:
+  /clients/register:
     post:
       tags:
         - client
@@ -69,7 +69,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Client'
+              $ref: '#/components/schemas/Clients'
       responses:
         '201':
           description: successful account creation
@@ -77,7 +77,7 @@ paths:
           description: Invalid username/password supplied
         '422':
           description: Failed validation. The email is already taken.
-  /client/login:
+  /clients/login:
     post:
       tags:
         - client
@@ -97,7 +97,7 @@ paths:
           description: Invalid username/password supplied
         '401':
           description: Client not authenticated.
-  /client/logout:
+  /clients/logout:
     get:
       tags:
         - client
@@ -110,7 +110,7 @@ paths:
           description: successful logged
       security:
         - api_key: []
-  /client/{clientId}:
+  /clients/{clientId}:
     get:
       tags:
         - client
@@ -198,7 +198,7 @@ paths:
             permission.
       security:
         - api_key: []
-  /client/addNote/{clientId}:
+  /clients/addNote/{clientId}:
     patch:
       tags:
         - client
@@ -226,7 +226,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /client/removeNote/{clientId}/{noteId}:
+  /clients/removeNote/{clientId}/{noteId}:
     patch:
       tags:
         - client
@@ -255,26 +255,23 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /order?{orderIds}:
+  /orders{orderIds}:
     get:
       tags:
         - order
       parameters:
         - name: orderIds
-          in: query
+          in: path
           description: JSON array representing ids of orders
-          required: false
-          style: deepObject
+          required: true
+          style: simple
           explode: true
           schema:
-            type: object
-            properties:
-              orderIds:
-                type: array
-                items:
-                  type: string
+            type: array
+            items:
+              type: string
 
-      summary: Returns all orders
+      summary: Returns orders depend on the number parameter
       description: Returns the list of orders
       responses:
         '200':
@@ -290,6 +287,18 @@ paths:
     post:
       tags:
         - order
+      parameters: 
+      - name: orderIds
+        in: path
+        required: true
+        schema:
+          type: object
+          properties:
+              orderIds:
+                type: array
+                items:
+                  type: string
+            
       summary: Place an order for a purchase
       description: Place a new order in the list
       operationId: placeOrder
@@ -307,7 +316,7 @@ paths:
           description: Unauthorized - Client is not authenticated
       security:
         - api_key: []
-  /order/{orderId}:
+  /orders/{orderId}:
     get:
       tags:
         - order
@@ -361,7 +370,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /order/trackingnumber_client/{orderId}:
+  /orders/trackingnumber_client/{orderId}:
     post:
       tags:
         - order
@@ -391,7 +400,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /order/trackingnumber_client/{orderId}?{trackingNumberId}:
+  /orders/trackingnumber_client/{orderId}/{trackingNumberId} :
     delete:
       tags:
         - order
@@ -406,7 +415,7 @@ paths:
           schema:
             type: string
         - name: trackingNumberId
-          in: query
+          in: path
           description: ID of the tracking number
           required: true
           schema:
@@ -422,24 +431,21 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /productsbyorder?{productsByOrderIds}:
+  /productsbyorder{productsByOrderIds}:
     get:
       tags:
         - productsbyorder
       parameters:
         - name: productsByOrderIds
-          in: query
+          in: path
           description: JSON array representing ids of productsByOrder
-          required: false
-          style: deepObject
+          required: true
+          style: simple
           explode: true
           schema:
-            type: object
-            properties:
-              orderIds:
-                type: array
-                items:
-                  type: string
+            type: array
+            items:
+              type: string
 
       summary: Returns all products that are in order
       description: Returns a list of products
@@ -508,7 +514,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /product:
+  /products:
     get:
       tags:
         - product
@@ -545,7 +551,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /product/{productId}:
+  /products/{productId}:
     get:
       tags:
         - product
@@ -623,24 +629,21 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /credit?{productsByOrderIds}:
+  /credits{productsByOrderIds}:
     get:
       tags:
         - credit
       parameters:
       - name: productsByOrderIds
-        in: query
+        in: path
         description: JSON array representing ids of productsByOrder
-        required: false
-        style: deepObject
+        required: true
+        style: simple
         explode: true
         schema:
-          type: object
-          properties:
-            productsByOrderIds:
-              type: array
-              items:
-                type: string
+            type: array
+            items:
+              type: string
       summary: Returns all credits
       description: Returns the list of credits
       responses:
@@ -654,7 +657,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /credit/{creditId}:
+  /credits/{creditId}:
     get:
       tags:
         - credit

@@ -8,7 +8,7 @@ const fetchClients = createAsyncThunk(
   async ({ itemsPerPage }, { dispatch }) => {
     try {
       const { clients, totalClientsCount } = await customFetch(
-        `client?itemsPerPage=${itemsPerPage}`
+        `clients?itemsPerPage=${itemsPerPage}`
       );
       const orderIds = clients.map((client) => client.orders).flat();
       dispatch(fetchOrders({ orderIds: JSON.stringify(orderIds) }));
@@ -24,7 +24,7 @@ const addNoteAdmin = createAsyncThunk(
   "clients/addNoteAdmin",
   async ({ clientId, content }) => {
     try {
-      const response = await customFetch(`client/addNote/${clientId}`, {
+      const response = await customFetch(`clients/addNote/${clientId}`, {
         method: "PATCH",
         body: JSON.stringify({ content }),
       });
@@ -40,7 +40,7 @@ const removeNoteAdmin = createAsyncThunk(
   "clients/removeNoteAdmin",
   async ({ clientId, noteId }) => {
     try {
-      await customFetch(`client/removeNote/${clientId}/${noteId}`, {
+      await customFetch(`clients/removeNote/${clientId}/${noteId}`, {
         method: "PATCH",
       });
       return { clientId, noteId };
