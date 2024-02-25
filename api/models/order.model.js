@@ -97,12 +97,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default:null
     },
-    orderProducts: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    orderProducts:  [{ type: mongoose.Schema.Types.ObjectId, ref: "OrderProducts" }],
   },
   {
     timestamps: true,

@@ -61,7 +61,10 @@ export async function checkSecondElement(req, step, trackingNumberList) {
           }
 
           // Vérifier si articlesNumber ne dépasse pas quantity
-          const  {quantity}  = await OrderProducts.findOne({ _id: orderProductsId });
+          const { quantity } =
+            (await OrderProducts.findOne({
+              _id: orderProductsId,
+            })) || {};
           const articlesNumber = parseInt(productByOrder.articlesNumber, 10);
 
           if (isNaN(articlesNumber) || articlesNumber > quantity) {

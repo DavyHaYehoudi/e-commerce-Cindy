@@ -1,5 +1,6 @@
 import Client from "../models/client.model.js";
 import Credit from "../models/credit.model.js";
+import Order from "../models/order.model.js";
 
 const clientController = {
   getAllClients: async (req, res) => {
@@ -20,7 +21,7 @@ const clientController = {
     }
   },
 
-  getClientById: async (req, res) => {
+  getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
 
     try {

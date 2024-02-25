@@ -16,7 +16,7 @@ const sendToClientController = {
         await checkFirstElement(orderProductsArray);
 
       if (firstElementErrors.length > 0) {
-        // console.log('firstElementErrors:', firstElementErrors)
+        console.log('firstElementErrors:', firstElementErrors)
         return res.status(400).json({ errors: firstElementErrors });
       }
 

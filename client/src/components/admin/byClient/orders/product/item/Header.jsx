@@ -22,13 +22,12 @@ const Header = ({
   productStore,
   toggleActions,
 }) => {
-  const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productsId: orderProducts._id })
-  );
-  const { reference, name, pricing, image } = getProductProperties(
-    productsId,
-    productStore
-  );
+  const { amount, code, dateExpire } =
+    useSelector((state) =>
+      getCreditsInfo(state, { productsId: orderProducts._id })
+    ) || {};
+  const { reference, name, pricing, image } =
+    getProductProperties(productsId, productStore) || {};
   const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
     <>
@@ -73,7 +72,7 @@ const Header = ({
               <>
                 <span>REMBOURSEMENT :</span>{" "}
                 <span className="pricing outPricing">
-                  {sumPriceArticle(parseInt(refund), pricing.currentPrice)}
+                  {sumPriceArticle(parseInt(refund), pricing?.currentPrice)}
                 </span>
               </>
             )}

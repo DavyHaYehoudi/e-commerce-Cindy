@@ -114,9 +114,9 @@ paths:
     get:
       tags:
         - client
-      summary: Get client by id
+      summary: Get customer infos by id
       description: ''
-      operationId: getClientById
+      operationId: getCustomerInfos
       parameters:
         - name: clientId
           in: path
