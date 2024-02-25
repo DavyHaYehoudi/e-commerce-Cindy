@@ -5,10 +5,10 @@ import { getProductProperties } from "../../../selectors/product";
 import { getMaterialProperty } from "../../../helpers/constants/materials";
 import { formatPrice } from "../../../helpers/utils/prices";
 
-const Item = ({ productsByOrder }) => {
+const Item = ({ orderProducts }) => {
   const state = useSelector((state) => state?.product?.data);
-  const productsByOrderStore = useSelector(
-    (state) => state?.customer?.data?.productsByOrder
+  const orderProductsStore = useSelector(
+    (state) => state?.customer?.data?.orderProducts
   );
 
   return (
@@ -16,19 +16,19 @@ const Item = ({ productsByOrder }) => {
       className="order-items-user-account"
       data-testid="order-items-user-account"
     >
-      {productsByOrder &&
-        productsByOrderStore &&
-        productsByOrderStore
+      {orderProducts &&
+        orderProductsStore &&
+        orderProductsStore
           .filter((ps) =>
-            productsByOrder.some((p) => p.productId === ps.productId)
+            orderProducts.some((p) => p.productsId === ps.productsId)
           )
           .map((product) => {
             const { name, pricing, image } = getProductProperties(
-              product.productId,
+              product.productsId,
               state
             );
             return (
-              <div key={product.productId} className="order-item-user-account">
+              <div key={product.productsId} className="order-item-user-account">
                 <div className="order-info">
                   <p>
                     <span className="dotted">Nom du produit</span> :{" "}

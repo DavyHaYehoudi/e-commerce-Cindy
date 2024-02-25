@@ -9,7 +9,7 @@ const Tab = () => {
   const getList = async () => {
     const listData = await axios.get(
       `https://fakestoreapiserver.reactbd.com/products/`
-      // `https://fakestoreapiserver.reactbd.com/productsByOrder/${tab}`
+      // `https://fakestoreapiserver.reactbd.com/orderProducts/${tab}`
     );
     setList(listData.data);
     console.log("ici la data :",listData.data);

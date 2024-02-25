@@ -4,7 +4,7 @@ import { addCredit } from "../../../../../../../../../features/admin/creditSlice
 import {
   totalsInOut,
 } from "../../../../../../../../../features/admin/ordersSlice";
-import { updateActionContent } from "../../../../../../../../../features/admin/productsByOrderSlice";
+import { updateActionContent } from "../../../../../../../../../features/admin/orderProductsSlice";
 
 export const useConfirmCreditEntryHandler = () => {
   const dispatch = useDispatch();
@@ -12,15 +12,15 @@ export const useConfirmCreditEntryHandler = () => {
   const handleConfirmCreditEntry = (
     e,
     action,
-    productsByOrderActions,
+    orderProductsActions,
     setProductActions,
     setEntryError,
     orderId,
-    productsByOrder,
+    orderProducts,
     productPrice
   ) => {
     e.stopPropagation();
-    let { amount, dateExpire } = productsByOrderActions.creditContent;
+    let { amount, dateExpire } = orderProductsActions.creditContent;
     amount = parseInt(amount);
     const selectedDate = new Date(dateExpire);
     const currentDate = new Date();
@@ -39,15 +39,15 @@ export const useConfirmCreditEntryHandler = () => {
     } else if (amount > 0 && validityDate) {
       dispatch(
         addCredit({
-          productsByOrderId: productsByOrder._id,
-          amount: productsByOrderActions.creditContent.amount,
-          dateExpire: productsByOrderActions.creditContent?.dateExpire,
+          orderProductsId: orderProducts._id,
+          amount: orderProductsActions.creditContent.amount,
+          dateExpire: orderProductsActions.creditContent?.dateExpire,
         })
       );
       dispatch(
         updateActionContent({
-          creditContent: productsByOrder._id,
-          productsByOrderId: productsByOrder._id,
+          creditContent: orderProducts._id,
+          orderProductsId: orderProducts._id,
           updatedProperty: action,
         })
       );

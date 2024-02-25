@@ -15,21 +15,21 @@ const Header = ({
   interaction,
   material,
   quantity,
-  productId,
-  productsByOrder,
+  productsId,
+  orderProducts,
   isTagProductExisted,
-  productsByOrderInfo,
+  orderProductsInfo,
   productStore,
   toggleActions,
 }) => {
   const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productId: productsByOrder._id })
+    getCreditsInfo(state, { productsId: orderProducts._id })
   );
   const { reference, name, pricing, image } = getProductProperties(
-    productId,
+    productsId,
     productStore
   );
-  const { exchange, refund, credit } = productsByOrderInfo ?? {};
+  const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
     <>
       <p

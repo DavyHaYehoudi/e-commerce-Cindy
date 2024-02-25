@@ -10,14 +10,14 @@ const mockStore = configureStore([]);
 const initialState = {
   customer: {
     data: {
-      productsByOrder: [
+      orderProducts: [
         {
-          productId: 1,
+          productsId: 1,
           quantity: 2,
           material: 1,
         },
         {
-          productId: 2,
+          productsId: 2,
           quantity: 3,
           material: 2,
         },
@@ -52,7 +52,7 @@ const initialState = {
 describe("Item Component", () => {
   const store = mockStore(initialState);
   test("renders Item component with initial data", () => {
-    render(<Item productsByOrder={[1]} isReturnProduct={false} />, { store });
+    render(<Item orderProducts={[1]} isReturnProduct={false} />, { store });
 
     // Vérifier que le composant Item est rendu
     expect(screen.getByTestId("order-items-user-account")).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe("Item Component", () => {
   test("renders product information correctly", () => {
     render(
       <Item
-        productsByOrder={[{ productId: 1 }, { productId: 2 }]}
+        orderProducts={[{ productsId: 1 }, { productsId: 2 }]}
         isReturnProduct={false}
       />,
       { store }

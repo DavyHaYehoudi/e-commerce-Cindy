@@ -1,24 +1,24 @@
 import { checkFirstElement } from "./checkFirstElement.js";
 import { checkSecondElement } from "./checkSecondElement.js";
 import { updateOrder } from "./updateOrder.js";
-import { updateProductsByOrderActions } from "./updateProductsByOrderActions.js";
+import { updateOrderProductsActions } from "./updateOrderProductsActions.js";
 import { updateCredit } from "./updateCredit.js";
 
 const sendToClientController = {
   updateOrder: async (req, res) => {
     const { orderId } = req.params;
-    const productsByOrderArray = req.body[0];
+    const orderProductsArray = req.body[0];
     const { step, trackingNumberList } = req.body[1];
     let outTotalAmount;
 
     try {
       const { outTotalAmountCalc, errors: firstElementErrors } =
-        await checkFirstElement(productsByOrderArray);
+        await checkFirstElement(orderProductsArray);
 
       if (firstElementErrors.length > 0) {
+        // console.log('firstElementErrors:', firstElementErrors)
         return res.status(400).json({ errors: firstElementErrors });
       }
-      // console.log('firstElementErrors:', firstElementErrors)
 
       const { errors: secondElementErrors } = await checkSecondElement(
         req,
@@ -27,9 +27,9 @@ const sendToClientController = {
       );
 
       if (secondElementErrors.length > 0) {
+        console.log('secondElementErrors:', secondElementErrors)
         return res.status(400).json({ errors: secondElementErrors });
       }
-      // console.log('secondElementErrors:', secondElementErrors)
       outTotalAmount = outTotalAmountCalc;
     } catch (error) {
       return res.status(500).json({
@@ -47,16 +47,16 @@ const sendToClientController = {
         lastSentDateToClient
       );
 
-      for (const item of productsByOrderArray) {
+      for (const item of orderProductsArray) {
         try {
-          const { productsByOrder, creditEdit } = item;
-          const { productsByOrderActions } = productsByOrder;
+          const { orderProducts, creditEdit } = item;
+          const { orderProductsActions } = orderProducts;
           const { amount = null, dateExpire = null } = creditEdit || {};
 
-          await updateCredit(productsByOrder, creditEdit, amount, dateExpire);
-          await updateProductsByOrderActions(
-            productsByOrder,
-            productsByOrderActions
+          await updateCredit(orderProducts, creditEdit, amount, dateExpire);
+          await updateOrderProductsActions(
+            orderProducts,
+            orderProductsActions
           );
         } catch (error) {
           return res.status(400).json({

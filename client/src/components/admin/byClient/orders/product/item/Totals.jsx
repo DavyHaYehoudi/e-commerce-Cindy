@@ -4,15 +4,15 @@ import { formatPrice } from "../../../../../../helpers/utils/prices";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getCreditsInfo } from "../../../../../../selectors/credit";
 
-const Totals = ({ productsByOrderInfo, productId, productsByOrder }) => {
+const Totals = ({ orderProductsInfo, productsId, orderProducts }) => {
 
   const productStore = useSelector((state) => state?.product?.data);
   const creditTotal =
-  useSelector((state) => getCreditsInfo(state, { productId: productsByOrder._id }))
+  useSelector((state) => getCreditsInfo(state, { productsId: orderProducts._id }))
   .amount || 0;
-  const productPrice = getProductProperties(productId, productStore).pricing
+  const productPrice = getProductProperties(productsId, productStore).pricing
     ?.currentPrice;
-  const refundTotal = productsByOrderInfo?.refund || 0;
+  const refundTotal = orderProductsInfo?.refund || 0;
   const isOut = refundTotal + creditTotal > 0;
 
   return (

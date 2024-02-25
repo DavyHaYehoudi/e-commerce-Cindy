@@ -4,9 +4,9 @@ import { handleFetchError } from "../../helpers/services/handleFetchError";
 
 const fetchCredits = createAsyncThunk(
   "credit/fetchCredits",
-  async ({ productsByOrderIds }) => {
+  async ({ orderProductsIds }) => {
     try {
-      return customFetch(`credits?productsByOrderIds=${productsByOrderIds}`);
+      return customFetch(`credits?orderProductsIds=${orderProductsIds}`);
     } catch (error) {
       handleFetchError(error);
     }
@@ -18,13 +18,13 @@ const creditSlice = createSlice({
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     addCredit: (state, action) => {
-      const { productsByOrderId, amount, dateExpire } = action.payload;
-      state.data = [...state.data, { productsByOrderId, amount, dateExpire }];
+      const { orderProductsId, amount, dateExpire } = action.payload;
+      state.data = [...state.data, { orderProductsId, amount, dateExpire }];
     },
     deleteCredit: (state, action) => {
-      const { productsByOrderId } = action.payload;
+      const { orderProductsId } = action.payload;
       state.data = state.data.filter(
-        (item) => item.productsByOrderId !== productsByOrderId
+        (item) => item.orderProductsId !== orderProductsId
       );
     },
   },

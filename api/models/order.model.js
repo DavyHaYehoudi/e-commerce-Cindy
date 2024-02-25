@@ -57,13 +57,13 @@ const orderSchema = new mongoose.Schema(
               type: String,
               required: true,
             },
-            productsByOrder: [
+            orderProducts: [
               {
                 id: {
                   type: String,
                   required: true,
                 },
-                productId: {
+                productsId: {
                   type: String,
                   required: true,
                 },
@@ -97,7 +97,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default:null
     },
-    productsByOrder: [
+    orderProducts: [
       {
         type: String,
         required: true,

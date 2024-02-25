@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
 import { useDispatch } from "react-redux";
 import {
-  productsByOrderNote,
+  orderProductsNote,
   updateActionContent,
-} from "../../../../../features/admin/productsByOrderSlice";
+} from "../../../../../features/admin/orderProductsSlice";
 import { IoSave } from "react-icons/io5";
 
-const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
+const ToggleButtonNote = ({ orderProductsInfo, orderProducts }) => {
   const [isEdited, setIsEdited] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
     if (enteredText.length <= 500) {
       dispatch(
         updateActionContent({
-          productsByOrderId: productsByOrder._id,
+          orderProductsId: orderProducts._id,
           updatedProperty: "note",
           productActionContent: e.target.value,
         })
@@ -27,9 +27,9 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
   const handleNoteValidate = () => {
     setIsEdited(false);
     dispatch(
-      productsByOrderNote({
-        productsByOrderId: productsByOrder._id,
-        content: productsByOrderInfo?.note,
+      orderProductsNote({
+        orderProductsId: orderProducts._id,
+        content: orderProductsInfo?.note,
       })
     );
   };
@@ -42,13 +42,13 @@ const ToggleButtonNote = ({ productsByOrderInfo, productsByOrder }) => {
         <>
           <small>
             {" "}
-            {500 - productsByOrderInfo?.note?.length} caratère
-            {500 - productsByOrderInfo?.note?.length > 1 ? "s" : ""} permis
+            {500 - orderProductsInfo?.note?.length} caratère
+            {500 - orderProductsInfo?.note?.length > 1 ? "s" : ""} permis
           </small>{" "}
           <div className="product-note-wrapper">
             <textarea
               className="product-note"
-              value={productsByOrderInfo?.note || ""}
+              value={orderProductsInfo?.note || ""}
               onChange={(e) => handleChangeNoteValue(e)}
             >
               {" "}

@@ -45,7 +45,7 @@ const List = ({ orderHistory, filter }) => {
               initialText="Afficher les articles"
               hiddenText="Fermer les articles"
               buttonClass="account-btn toggle"
-              content={<Item productsByOrder={order?.productsByOrder} />}
+              content={<Item orderProducts={order?.orderProducts} />}
             />
             {getOrderStepProperty(order?.step).name === orderStep[3].name &&
               order.trackingNumber &&

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getProductsInfo } from "../../../../../../selectors/productsByOrder";
+import { getProductsInfo } from "../../../../../../selectors/orderProducts";
 import { getProductProperties } from "../../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const ArticleNumberByProduct = ({
   const [inputValues, setInputValues] = useState({});
   const { handleCheckQuantity } = useCheckQuantity();
 
-  const handleCheckboxChange = (id, _id, productId, material) => {
+  const handleCheckboxChange = (id, _id, productsId, material) => {
     setCheckboxStates((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -30,7 +30,7 @@ const ArticleNumberByProduct = ({
       if (checkboxStates[id]) {
         delete updatedSelectedProducts[_id];
       } else {
-        updatedSelectedProducts[_id] = { productId, material };
+        updatedSelectedProducts[_id] = { productsId, material,_id };
       }
       return updatedSelectedProducts;
     });
@@ -54,12 +54,12 @@ const ArticleNumberByProduct = ({
   };
 
   const ordersStore = useSelector((state) => state?.orders?.data);
-  const productsByOrderStore = useSelector(
-    (state) => state?.productsByOrder?.data
+  const orderProductsStore = useSelector(
+    (state) => state?.orderProducts?.data
   );
   const { getProductsByOrder } = getProductsInfo(
     ordersStore,
-    productsByOrderStore,
+    orderProductsStore,
     orderId
   );
 
@@ -67,7 +67,7 @@ const ArticleNumberByProduct = ({
     <div data-testid="articleNumberByProduct">
       {getProductsByOrder?.map((product) => {
         const properties = getProductProperties(
-          product.productId,
+          product.productsId,
           productStore
         );
 
@@ -81,7 +81,7 @@ const ArticleNumberByProduct = ({
                 handleCheckboxChange(
                   product._id,
                   product._id,
-                  product.productId,
+                  product.productsId,
                   product.material
                 )
               }
@@ -111,7 +111,7 @@ const ArticleNumberByProduct = ({
                       handleCheckQuantity(
                         inputValues,
                         ordersStore,
-                        productsByOrderStore,
+                        orderProductsStore,
                         orderId,
                         checkboxStates,
                         setError,

@@ -7,17 +7,17 @@ import Main from ".";
 import { materials } from "../../../../../../constants/materials";
 
 describe("Main Component", () => {
-  const productsByOrder = { id: 1, productId: 2, quantity: 2, material: 0 };
+  const orderProducts = { id: 1, productsId: 2, quantity: 2, material: 0 };
   const materialName = materials[0].name;
 
   const mockState = {
     orders: {
-      data: [{ id: 1, productsByOrder: [1, 2] }],
+      data: [{ id: 1, orderProducts: [1, 2] }],
     },
-    productsByOrder: {
+    orderProducts: {
       data: [
-        { id: 1, productId: 1, quantity: 2 },
-        { id: 2, productId: 2, quantity: 1 },
+        { id: 1, productsId: 1, quantity: 2 },
+        { id: 2, productsId: 2, quantity: 1 },
       ],
     },
     product: {
@@ -61,10 +61,10 @@ describe("Main Component", () => {
     id: 1,
   };
   test("renders the component with basic data", () => {
-    render(<Main productsByOrder={productsByOrder} client={client} orderId={1} />, { store });
+    render(<Main orderProducts={orderProducts} client={client} orderId={1} />, { store });
 
     // Vérifiez que le composant est rendu avec les données de base
-    expect(screen.getByTestId(`product-content-${productsByOrder._id}`)).toBeInTheDocument();
+    expect(screen.getByTestId(`product-content-${orderProducts._id}`)).toBeInTheDocument();
     expect(screen.getByTestId("header-component")).toBeInTheDocument();
   });
 });

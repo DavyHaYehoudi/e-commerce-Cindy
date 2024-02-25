@@ -8,12 +8,12 @@ export const generateItemTransactionComponent = (
   placeholderValue,
   actions,
   interaction,
-  productId,
+  productsId,
   orderId,
-  productsByOrder,
-  productsByOrderInfo,
-  productsByOrderState,
-  productsByOrderActions,
+  orderProducts,
+  orderProductsInfo,
+  orderProductsState,
+  orderProductsActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -27,15 +27,15 @@ export const generateItemTransactionComponent = (
       actions={actions}
       label={label}
       placeholderValue={placeholderValue}
-      productId={productId}
+      productsId={productsId}
       orderId={orderId}
-      productsByOrder={productsByOrder}
+      orderProducts={orderProducts}
       textCancel={`ANNULER ${label}`}
-      productsByOrderInfo={productsByOrderInfo}
-      productsByOrderState={productsByOrderState}
+      orderProductsInfo={orderProductsInfo}
+      orderProductsState={orderProductsState}
       isActionSelected={isActionSelected}
       inputQuantityValue={inputQuantityValue}
-      productsByOrderActions={productsByOrderActions}
+      orderProductsActions={orderProductsActions}
       articleNumber={articleNumber}
       setEntryError={setEntryError}
       handleActionClick={handleActionClick}
@@ -48,16 +48,16 @@ export const generateItemTransactionComponent = (
 
 export const handleActionClick = (
   action,
-  productsByOrderInfo,
+  orderProductsInfo,
   setConfirmation,
-  productsByOrderActions,
+  orderProductsActions,
   actions,
   setProductActions,
   setInteraction
 ) => {
   setInteraction((prevState) => ({ ...prevState, activeLi: action }));
   // Si la propriété a une value c'est donc un click pour annulation
-  if (productsByOrderInfo?.[action]) {
+  if (orderProductsInfo?.[action]) {
     setConfirmation((prevState) => ({
       ...prevState,
       isConfirmationVisible: true,
@@ -66,7 +66,7 @@ export const handleActionClick = (
     // Sinon, c'est pour attribuer une value à la propriété
   } else {
     const updatedProductActions = {
-      ...productsByOrderActions,
+      ...orderProductsActions,
       isAddCredit: action === actions.CREDIT,
       isAddRefund: action === actions.REFUND,
       isAddExchange: action === actions.EXCHANGE,

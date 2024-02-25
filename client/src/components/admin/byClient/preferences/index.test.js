@@ -21,14 +21,14 @@ describe("Details Component", () => {
 
   it("devrait afficher les éléments de la liste de favoris", () => {
     const wishlistItems = [
-      { productId: "1"},
-      { productId: "2"},
+      { productsId: "1"},
+      { productsId: "2"},
     ];
 
     render(<Details client={{ wishlist: wishlistItems }} />);
 
     wishlistItems.forEach((item) => {
-      const wishlistItem = screen.getByTestId(`wishlist-item-${item.productId}`);
+      const wishlistItem = screen.getByTestId(`wishlist-item-${item.productsId}`);
       expect(wishlistItem).toBeInTheDocument();
     });
 
@@ -38,14 +38,14 @@ describe("Details Component", () => {
 
   it("devrait afficher les éléments du panier", () => {
     const cartItems = [
-      { productId: "1"},
-      { productId: "2"},
+      { productsId: "1"},
+      { productsId: "2"},
     ]; 
   
     render(<Details client={{ cart: cartItems }} />);
 
     cartItems.forEach((item) => {
-      const cartItem = screen.getByTestId(`cart-item-${item.productId}`); 
+      const cartItem = screen.getByTestId(`cart-item-${item.productsId}`); 
       expect(cartItem).toBeInTheDocument();
     });
 

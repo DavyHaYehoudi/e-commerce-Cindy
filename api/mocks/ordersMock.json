@@ -16,15 +16,15 @@
         "isAdmin": true,
         "value": "1234567POIUY",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "nnnfjdksjh1234",
-            "productId": "65b3e264624d950f87b81f37",
+            "productsId": "65b3e264624d950f87b81f37",
             "articlesNumber": 2
           },
           {
             "id": "98798798ffd",
-            "productId": "65b3e264624d950f87b81f38",
+            "productsId": "65b3e264624d950f87b81f38",
             "articlesNumber": 1
           }
         ]
@@ -34,10 +34,10 @@
         "isAdmin": true,
         "value": "987654FVGBHNJ",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "hdghdfgh444hh",
-            "productId": "65b3e264624d950f87b81f38",
+            "productsId": "65b3e264624d950f87b81f38",
             "articlesNumber": 1
           }
         ]
@@ -47,15 +47,15 @@
         "isAdmin": true,
         "value": "102938MAUCBQPD",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "vzxcvzxczoio354",
-            "productId": "65b3e264624d950f87b81f38",
+            "productsId": "65b3e264624d950f87b81f38",
             "articlesNumber": 1
           },
           {
             "id": "vzxcvzxczoio355",
-            "productId": "65b3e264624d950f87b81f37",
+            "productsId": "65b3e264624d950f87b81f37",
             "articlesNumber": 2
           }
         ]
@@ -65,17 +65,17 @@
         "isAdmin": false,
         "value": "JND&$HDYS#@FJKS",
         "date": "2023-01-15 08:30",
-        "productsByOrder": []
+        "orderProducts": []
       },
       {
         "id": "fasjkj54sfdjfakjd0",
         "isAdmin": false,
         "value": "JND&$HDYS#@FJKS",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "23425325g",
-            "productId": "65b3e264624d950f87b81f37",
+            "productsId": "65b3e264624d950f87b81f37",
             "articlesNumber": 1
           }
         ]
@@ -85,10 +85,10 @@
         "isAdmin": false,
         "value": "JNFDNDM987MND*",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "sdfg222uuuhreh",
-            "productId": "65b3e264624d950f87b81f38",
+            "productsId": "65b3e264624d950f87b81f38",
             "articlesNumber": 1
           }
         ]
@@ -98,22 +98,22 @@
         "isAdmin": true,
         "value": "102938MAUCBQPD",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "1234123142312f",
-            "productId": "65b3e264624d950f87b81f37",
+            "productsId": "65b3e264624d950f87b81f37",
             "articlesNumber": 1
           },
           {
             "id": "345634563456h",
-            "productId": "65b3e264624d950f87b81f38",
+            "productsId": "65b3e264624d950f87b81f38",
             "articlesNumber": 1
           }
         ]
       }
     ],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b45",
       "65b3ede7624d950f87be0b46"
     ]
@@ -131,7 +131,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b47"
     ]
   },
@@ -148,7 +148,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b48"
     ]
   },
@@ -169,10 +169,10 @@
         "isAdmin": false,
         "value": "JND&$HDYS#@FJKS",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "2342532bg5g",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 1
           }
         ]
@@ -180,7 +180,7 @@
     ],
     "trackingNumberClient": "ABCDEF8768Y",
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b49",
       "65b3ede7624d950f87be0b4a"
     ]
@@ -202,20 +202,20 @@
         "isAdmin": true,
         "value": "1234567POIUY",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "nnnfjdksjh1734",
-            "productId": "65b3e264624d950f87b81f3d",
+            "productsId": "65b3e264624d950f87b81f3d",
             "articlesNumber": 2
           },
           {
             "id": "9879879d8ffd",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 1
           },
           {
             "id": "fsadfaettt",
-            "productId": "65b3e264624d950f87b81f3f",
+            "productsId": "65b3e264624d950f87b81f3f",
             "articlesNumber": 2
           }
         ]
@@ -225,10 +225,10 @@
         "isAdmin": true,
         "value": "987654FVGBHNJ",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "hdghdfgh444hwh",
-            "productId": "65b3e264624d950f87b81f3f",
+            "productsId": "65b3e264624d950f87b81f3f",
             "articlesNumber": 3
           }
         ]
@@ -238,15 +238,15 @@
         "isAdmin": true,
         "value": "102938MAUCBQPD",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "sssssmmsoif08909",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 1
           },
           {
             "id": "vzxcvzxczoio35c4",
-            "productId": "65b3e264624d950f87b81f3d",
+            "productsId": "65b3e264624d950f87b81f3d",
             "articlesNumber": 1
           }
         ]
@@ -256,10 +256,10 @@
         "isAdmin": false,
         "value": "JND&$HDYS#@FJKS",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "2342532bg5g",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 1
           }
         ]
@@ -269,20 +269,20 @@
         "isAdmin": false,
         "value": "JNFDNDM987MND*",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "sggggggg6666l",
-            "productId": "65b3e264624d950f87b81f3d",
+            "productsId": "65b3e264624d950f87b81f3d",
             "articlesNumber": 2
           },
           {
             "id": "sdfg222uuuhrehv",
-            "productId": "65b3e264624d950f87b81f3f",
+            "productsId": "65b3e264624d950f87b81f3f",
             "articlesNumber": 1
           },
           {
             "id": "poipoipoipaa",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 3
           }
         ]
@@ -292,15 +292,15 @@
         "isAdmin": true,
         "value": "102938MAUCBQPD",
         "date": "2023-01-15 08:30",
-        "productsByOrder": [
+        "orderProducts": [
           {
             "id": "12341q23142312f",
-            "productId": "65b3e264624d950f87b81f3d",
+            "productsId": "65b3e264624d950f87b81f3d",
             "articlesNumber": 1
           },
           {
             "id": "345634s563456h",
-            "productId": "65b3e264624d950f87b81f3e",
+            "productsId": "65b3e264624d950f87b81f3e",
             "articlesNumber": 1
           }
         ]
@@ -308,7 +308,7 @@
     ],
     "isClientNotified": false,
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b4b",
       "65b3ede7624d950f87be0b4c",
       "65b3ede7624d950f87be0b4d"
@@ -327,7 +327,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b4e"
     ]
   },
@@ -344,7 +344,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b4f",
       "65b3ede7624d950f87be0b50",
       "65b3ede7624d950f87be0b51",
@@ -365,7 +365,7 @@
     "trackingNumber": [],
     "trackingNumberClient": "ABCDEF8768Y",
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b53",
       "65b3ede7624d950f87be0b54"
     ]
@@ -383,7 +383,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b55",
       "65b3ede7624d950f87be0b56",
       "65b3ede7624d950f87be0b57"
@@ -402,7 +402,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b58"
     ]
   },
@@ -419,7 +419,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b59",
       "65b3ede7624d950f87be0b5a",
       "65b3ede7624d950f87be0b5b",
@@ -439,7 +439,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b5d"
     ]
   },
@@ -456,7 +456,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b5e"
     ]
   },
@@ -473,7 +473,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b5f"
     ]
   },
@@ -490,7 +490,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b60"
     ]
   },
@@ -507,7 +507,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b61"
     ]
   },
@@ -524,7 +524,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b62",
       "65b3ede7624d950f87be0b63"
     ]
@@ -542,7 +542,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b64"
     ]
   },
@@ -559,7 +559,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b65"
     ]
   },
@@ -576,7 +576,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b66",
       "65b3ede7624d950f87be0b67"
     ]
@@ -594,7 +594,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b68"
     ]
   },
@@ -611,7 +611,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b69",
       "65b3ede7624d950f87be0b6a"
     ]
@@ -629,7 +629,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b6b"
     ]
   },
@@ -646,7 +646,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b6c",
       "65b3ede7624d950f87be0b6d"
     ]
@@ -664,7 +664,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b6e"
     ]
   },
@@ -681,7 +681,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b6f",
       "65b3ede7624d950f87be0b70"
     ]
@@ -699,7 +699,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b71",
       "65b3ede7624d950f87be0b72"
     ]
@@ -717,7 +717,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b73"
     ]
   },
@@ -734,7 +734,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b74"
     ]
   },
@@ -751,7 +751,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b75"
     ]
   },
@@ -768,7 +768,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b76",
       "65b3ede7624d950f87be0b77"
     ]
@@ -786,7 +786,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b78"
     ]
   },
@@ -803,7 +803,7 @@
     },
     "trackingNumber": [],
     "lastSentDateToClient": null,
-    "productsByOrder": [
+    "orderProducts": [
       "65b3ede7624d950f87be0b79"
     ]
   }

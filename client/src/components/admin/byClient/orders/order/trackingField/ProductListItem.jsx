@@ -10,7 +10,7 @@ const ProductListItem = ({
 }) => {
 
   const productProperties = getProductProperties(
-    product.productId,
+    product.productsId,
     productStore
   );
   return (

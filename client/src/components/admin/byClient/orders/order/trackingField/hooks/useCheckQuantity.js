@@ -1,10 +1,10 @@
-import { getProductsInfo } from "../../../../../../../selectors/productsByOrder";
+import { getProductsInfo } from "../../../../../../../selectors/orderProducts";
 
 const useCheckQuantity = () => {
   const handleCheckQuantity = (
     inputValues,
     ordersStore,
-    productsByOrderStore,
+    orderProductsStore,
     orderId,
     checkboxStates,
     setError,
@@ -19,12 +19,12 @@ const useCheckQuantity = () => {
       return;
     }
 
-    Object.entries(inputValues).forEach(([productsByOrderId, value]) => {
+    Object.entries(inputValues).forEach(([orderProductsId, value]) => {
       const maxQuantity = getProductsInfo(
         ordersStore,
-        productsByOrderStore,
+        orderProductsStore,
         orderId,
-        productsByOrderId
+        orderProductsId
       ).articleNumber;
       const numericValue = parseInt(value, 10);
 

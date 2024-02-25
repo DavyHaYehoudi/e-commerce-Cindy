@@ -13,9 +13,9 @@ export const ordersMock = [
         isAdmin: true,
         value: "1234567POIUY",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "nnnfjdksjh1234", productId:"65b3e264624d950f87b81f37", articlesNumber: 2 },
-          { id: "98798798ffd", productId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
+        orderProducts: [
+          { id: "nnnfjdksjh1234", productsId:"65b3e264624d950f87b81f37", articlesNumber: 2 },
+          { id: "98798798ffd", productsId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
         ],
       },
       {
@@ -23,16 +23,16 @@ export const ordersMock = [
         isAdmin: true,
         value: "987654FVGBHNJ",
         date: "2023-01-15 08:30",
-        productsByOrder: [{ id: "hdghdfgh444hh", productId:"65b3e264624d950f87b81f38", articlesNumber: 1 }],
+        orderProducts: [{ id: "hdghdfgh444hh", productsId:"65b3e264624d950f87b81f38", articlesNumber: 1 }],
       },
       {
         id: "nndkdh4444aksdjfls",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "vzxcvzxczoio354", productId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
-          { id: "vzxcvzxczoio355", productId:"65b3e264624d950f87b81f37", articlesNumber: 2 },
+        orderProducts: [
+          { id: "vzxcvzxczoio354", productsId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
+          { id: "vzxcvzxczoio355", productsId:"65b3e264624d950f87b81f37", articlesNumber: 2 },
         ],
       },
       {
@@ -40,36 +40,36 @@ export const ordersMock = [
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        productsByOrder: [],
+        orderProducts: [],
       },
       {
         id: "fasjkj54sfdjfakjd0",
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        productsByOrder: [{ id: "23425325g", productId:"65b3e264624d950f87b81f37", articlesNumber: 1 }],
+        orderProducts: [{ id: "23425325g", productsId:"65b3e264624d950f87b81f37", articlesNumber: 1 }],
       },
       {
         id: "qpanfheifb48fn40n40",
         isAdmin: false,
         value: "JNFDNDM987MND*",
         date: "2023-01-15 08:30",
-        productsByOrder: [{ id: "sdfg222uuuhreh", productId:"65b3e264624d950f87b81f38", articlesNumber: 1 }],
+        orderProducts: [{ id: "sdfg222uuuhreh", productsId:"65b3e264624d950f87b81f38", articlesNumber: 1 }],
       },
       {
         id: "lrjfsurpeoiwu08098",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "1234123142312f", productId:"65b3e264624d950f87b81f37", articlesNumber: 1 },
-          { id: "345634563456h", productId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
+        orderProducts: [
+          { id: "1234123142312f", productsId:"65b3e264624d950f87b81f37", articlesNumber: 1 },
+          { id: "345634563456h", productsId:"65b3e264624d950f87b81f38", articlesNumber: 1 },
         ],
       },
     ],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b45","65b3ede7624d950f87be0b46"],
+    orderProducts: ["65b3ede7624d950f87be0b45","65b3ede7624d950f87be0b46"],
   },
   {
     date: "2023-02-02 14:02",
@@ -81,7 +81,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b47"],
+    orderProducts: ["65b3ede7624d950f87be0b47"],
   },
   {
     date: "2023-03-10 10:03",
@@ -93,7 +93,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b48"],
+    orderProducts: ["65b3ede7624d950f87be0b48"],
   },
   {
     date: "2023-04-05 09:04",
@@ -107,12 +107,12 @@ export const ordersMock = [
       isAdmin: false,
       value: "JND&$HDYS#@FJKS",
       date: "2023-01-15 08:30",
-      productsByOrder: [{ id: "2342532bg5g", productId:"65b3e264624d950f87b81f3e", articlesNumber: 1 }],
+      orderProducts: [{ id: "2342532bg5g", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 }],
     },],
     trackingNumberClient: "ABCDEF8768Y",
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b49","65b3ede7624d950f87be0b4a"],
+    orderProducts: ["65b3ede7624d950f87be0b49","65b3ede7624d950f87be0b4a"],
   },
   {
     date: "2023-04-15 12:05",
@@ -127,10 +127,10 @@ export const ordersMock = [
         isAdmin: true,
         value: "1234567POIUY",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "nnnfjdksjh1734", productId:"65b3e264624d950f87b81f3d", articlesNumber: 2 },
-          { id: "9879879d8ffd", productId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
-          { id: "fsadfaettt", productId:"65b3e264624d950f87b81f3f", articlesNumber: 2 },
+        orderProducts: [
+          { id: "nnnfjdksjh1734", productsId:"65b3e264624d950f87b81f3d", articlesNumber: 2 },
+          { id: "9879879d8ffd", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
+          { id: "fsadfaettt", productsId:"65b3e264624d950f87b81f3f", articlesNumber: 2 },
         ],
       },
       {
@@ -138,16 +138,16 @@ export const ordersMock = [
         isAdmin: true,
         value: "987654FVGBHNJ",
         date: "2023-01-15 08:30",
-        productsByOrder: [{ id: "hdghdfgh444hwh", productId:"65b3e264624d950f87b81f3f", articlesNumber: 3 }],
+        orderProducts: [{ id: "hdghdfgh444hwh", productsId:"65b3e264624d950f87b81f3f", articlesNumber: 3 }],
       },
       {
         id: "nndkdh4444aks12djfls",
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "sssssmmsoif08909", productId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
-          { id: "vzxcvzxczoio35c4", productId:"65b3e264624d950f87b81f3d", articlesNumber: 1 },
+        orderProducts: [
+          { id: "sssssmmsoif08909", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
+          { id: "vzxcvzxczoio35c4", productsId:"65b3e264624d950f87b81f3d", articlesNumber: 1 },
         ],
       },
       {
@@ -155,17 +155,17 @@ export const ordersMock = [
         isAdmin: false,
         value: "JND&$HDYS#@FJKS",
         date: "2023-01-15 08:30",
-        productsByOrder: [{ id: "2342532bg5g", productId:"65b3e264624d950f87b81f3e", articlesNumber: 1 }],
+        orderProducts: [{ id: "2342532bg5g", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 }],
       },
       {
         id: "qpanfheifb448fn40n40",
         isAdmin: false,
         value: "JNFDNDM987MND*",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "sggggggg6666l", productId:"65b3e264624d950f87b81f3d", articlesNumber: 2 },
-          { id: "sdfg222uuuhrehv", productId:"65b3e264624d950f87b81f3f", articlesNumber: 1 },
-          { id: "poipoipoipaa", productId:"65b3e264624d950f87b81f3e", articlesNumber: 3 },
+        orderProducts: [
+          { id: "sggggggg6666l", productsId:"65b3e264624d950f87b81f3d", articlesNumber: 2 },
+          { id: "sdfg222uuuhrehv", productsId:"65b3e264624d950f87b81f3f", articlesNumber: 1 },
+          { id: "poipoipoipaa", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 3 },
         ],
       },
       {
@@ -173,15 +173,15 @@ export const ordersMock = [
         isAdmin: true,
         value: "102938MAUCBQPD",
         date: "2023-01-15 08:30",
-        productsByOrder: [
-          { id: "12341q23142312f", productId:"65b3e264624d950f87b81f3d", articlesNumber: 1 },
-          { id: "345634s563456h", productId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
+        orderProducts: [
+          { id: "12341q23142312f", productsId:"65b3e264624d950f87b81f3d", articlesNumber: 1 },
+          { id: "345634s563456h", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 },
         ],
       },
     ],
     isClientNotified: false,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b4b","65b3ede7624d950f87be0b4c","65b3ede7624d950f87be0b4d"],
+    orderProducts: ["65b3ede7624d950f87be0b4b","65b3ede7624d950f87be0b4c","65b3ede7624d950f87be0b4d"],
   },
   {
     date: "2023-05-01 18:06",
@@ -193,7 +193,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b4e"],
+    orderProducts: ["65b3ede7624d950f87be0b4e"],
   },
   {
     date: "2023-05-10 10:07",
@@ -205,7 +205,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b4f","65b3ede7624d950f87be0b50","65b3ede7624d950f87be0b51","65b3ede7624d950f87be0b52"],
+    orderProducts: ["65b3ede7624d950f87be0b4f","65b3ede7624d950f87be0b50","65b3ede7624d950f87be0b51","65b3ede7624d950f87be0b52"],
   },
   {
     date: "2023-06-02 14:08",
@@ -218,7 +218,7 @@ export const ordersMock = [
     trackingNumberClient: "ABCDEF8768Y",
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b53","65b3ede7624d950f87be0b54"],
+    orderProducts: ["65b3ede7624d950f87be0b53","65b3ede7624d950f87be0b54"],
   },
   {
     date: "2023-06-15 08:09",
@@ -230,7 +230,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b55","65b3ede7624d950f87be0b56","65b3ede7624d950f87be0b57"],
+    orderProducts: ["65b3ede7624d950f87be0b55","65b3ede7624d950f87be0b56","65b3ede7624d950f87be0b57"],
   },
   {
     date: "2023-07-05 11:10",
@@ -242,7 +242,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b58"],
+    orderProducts: ["65b3ede7624d950f87be0b58"],
   },
   {
     date: "2023-07-15 15:11",
@@ -254,7 +254,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b59","65b3ede7624d950f87be0b5a","65b3ede7624d950f87be0b5b","65b3ede7624d950f87be0b5c"],
+    orderProducts: ["65b3ede7624d950f87be0b59","65b3ede7624d950f87be0b5a","65b3ede7624d950f87be0b5b","65b3ede7624d950f87be0b5c"],
   },
   {
     date: "2023-08-02 09:12",
@@ -266,7 +266,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b5d"],
+    orderProducts: ["65b3ede7624d950f87be0b5d"],
   },
   {
     date: "2023-08-10 14:13",
@@ -278,7 +278,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b5e"],
+    orderProducts: ["65b3ede7624d950f87be0b5e"],
   },
   {
     date: "2023-09-01 18:14",
@@ -290,7 +290,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b5f"],
+    orderProducts: ["65b3ede7624d950f87be0b5f"],
   },
   {
     date: "2023-09-10 10:15",
@@ -302,7 +302,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b60"],
+    orderProducts: ["65b3ede7624d950f87be0b60"],
   },
   {
     date: "2023-09-20 12:16",
@@ -314,7 +314,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b61"],
+    orderProducts: ["65b3ede7624d950f87be0b61"],
   },
   {
     date: "2023-09-25 09:17",
@@ -326,7 +326,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b62","65b3ede7624d950f87be0b63"],
+    orderProducts: ["65b3ede7624d950f87be0b62","65b3ede7624d950f87be0b63"],
   },
   {
     date: "2023-10-05 15:18",
@@ -338,7 +338,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b64"],
+    orderProducts: ["65b3ede7624d950f87be0b64"],
   },
   {
     date: "2023-10-15 08:19",
@@ -350,7 +350,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b65"],
+    orderProducts: ["65b3ede7624d950f87be0b65"],
   },
   {
     date: "2023-11-01 11:20",
@@ -362,7 +362,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b66","65b3ede7624d950f87be0b67"],
+    orderProducts: ["65b3ede7624d950f87be0b66","65b3ede7624d950f87be0b67"],
   },
   {
     date: "2023-11-10 15:21",
@@ -374,7 +374,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b68"],
+    orderProducts: ["65b3ede7624d950f87be0b68"],
   },
   {
     date: "2023-11-20 09:22",
@@ -386,7 +386,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b69","65b3ede7624d950f87be0b6a"],
+    orderProducts: ["65b3ede7624d950f87be0b69","65b3ede7624d950f87be0b6a"],
   },
   {
     date: "2023-12-05 14:23",
@@ -398,7 +398,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b6b"],
+    orderProducts: ["65b3ede7624d950f87be0b6b"],
   },
   {
     date: "2023-12-15 08:24",
@@ -410,7 +410,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b6c","65b3ede7624d950f87be0b6d"],
+    orderProducts: ["65b3ede7624d950f87be0b6c","65b3ede7624d950f87be0b6d"],
   },
   {
     date: "2023-05-20 12:25",
@@ -422,7 +422,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b6e"],
+    orderProducts: ["65b3ede7624d950f87be0b6e"],
   },
   {
     date: "2023-06-10 09:26",
@@ -434,7 +434,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b6f","65b3ede7624d950f87be0b70"],
+    orderProducts: ["65b3ede7624d950f87be0b6f","65b3ede7624d950f87be0b70"],
   },
   {
     date: "2023-08-05 15:27",
@@ -446,7 +446,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b71","65b3ede7624d950f87be0b72"],
+    orderProducts: ["65b3ede7624d950f87be0b71","65b3ede7624d950f87be0b72"],
   },
   {
     date: "2023-11-20 11:28",
@@ -458,7 +458,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b73"],
+    orderProducts: ["65b3ede7624d950f87be0b73"],
   },
   {
     date: "2023-12-05 09:29",
@@ -470,7 +470,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b74"],
+    orderProducts: ["65b3ede7624d950f87be0b74"],
   },
   {
     date: "2023-05-15 15:30",
@@ -482,7 +482,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b75"],
+    orderProducts: ["65b3ede7624d950f87be0b75"],
   },
   {
     date: "2023-06-02 08:31",
@@ -494,7 +494,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b76","65b3ede7624d950f87be0b77"],
+    orderProducts: ["65b3ede7624d950f87be0b76","65b3ede7624d950f87be0b77"],
   },
   {
     date: "2023-08-10 12:32",
@@ -506,7 +506,7 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b78"],
+    orderProducts: ["65b3ede7624d950f87be0b78"],
   },
   {
     date: "2023-09-05 16:33",
@@ -518,6 +518,6 @@ export const ordersMock = [
     trackingNumber: [],
     isClientNotified: true,
     lastSentDateToClient: null,
-    productsByOrder: ["65b3ede7624d950f87be0b79"],
+    orderProducts: ["65b3ede7624d950f87be0b79"],
   },
 ];

@@ -29,7 +29,7 @@ describe('Wishlist Component', () => {
   const store = mockStore(initialState);
 
   it('should render wishlist item with correct information', () => {
-    const productId = 1;
+    const productsId = 1;
     const productCart = {
       material: 1,
       addDate:"2024-04-11 12:15"
@@ -37,13 +37,13 @@ describe('Wishlist Component', () => {
     };
 
     render(
-      <Wishlist productId={productId} productCart={productCart} />,
+      <Wishlist productsId={productsId} productCart={productCart} />,
       { store }
     );
 
     // Assert that wishlist item is rendered with correct information
     expect(
-      screen.getByTestId(`wishlist-item-${productId}`)
+      screen.getByTestId(`wishlist-item-${productsId}`)
     ).toBeInTheDocument();
     expect(
       screen.getByText(`: ${initialState.product.data[0].reference}`)

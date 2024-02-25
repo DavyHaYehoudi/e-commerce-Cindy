@@ -21,15 +21,15 @@ describe("useConfirmCreditEntryHandler", () => {
 
     const e = { stopPropagation: jest.fn() };
     const action = "CREDIT";
-    const productsByOrderActions = { creditContent: { amount: null, dateExpire: "2024-01-19" } };
+    const orderProductsActions = { creditContent: { amount: null, dateExpire: "2024-01-19" } };
     const setProductActions = jest.fn();
     const setEntryError = jest.fn();
     const orderId = "789";
-    const productsByOrder = { id: "abc" };
+    const orderProducts = { id: "abc" };
     const productPrice = 10;
 
     act(() => {
-      handleConfirmCreditEntry(e, action, productsByOrderActions, setProductActions, setEntryError, orderId, productsByOrder, productPrice);
+      handleConfirmCreditEntry(e, action, orderProductsActions, setProductActions, setEntryError, orderId, orderProducts, productPrice);
     });
 
     expect(setEntryError).toHaveBeenCalledWith("⚠️ Le montant de l'avoir et une date de validité ultérieure doivent être définis.");

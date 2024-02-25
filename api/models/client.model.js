@@ -28,7 +28,7 @@ const clientSchema = new mongoose.Schema(
     ],
     wishlist: [
       {
-        productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: Number },
         addDate: {
           type: Date,
@@ -38,7 +38,7 @@ const clientSchema = new mongoose.Schema(
     ],
     cart: [
       {
-        productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: Number },
         quantity: { type: Number, default: 1 },
         addDate: {

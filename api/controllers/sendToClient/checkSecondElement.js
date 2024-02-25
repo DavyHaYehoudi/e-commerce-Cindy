@@ -1,4 +1,4 @@
-import ProductsByOrder from "../../models/productsByOrder.model.js";
+import OrderProducts from "../../models/orderProducts.model.js";
 import Order from "../../models/order.model.js";
 
 export async function checkSecondElement(req, step, trackingNumberList) {
@@ -24,58 +24,59 @@ export async function checkSecondElement(req, step, trackingNumberList) {
     if (!getOrder) {
       throw new Error("Order non trouvé.");
     }
-    const productsByOrderIds = getOrder.productsByOrder;
-    // Récupérer les documents ProductsByOrder correspondants
-    const productsByOrderDocuments = await ProductsByOrder.find({
-      _id: { $in: productsByOrderIds },
+    const orderProductsIds = getOrder.orderProducts;
+    // Récupérer les documents OrderProducts correspondants
+    const orderProductsDocuments = await OrderProducts.find({
+      _id: { $in: orderProductsIds },
     });
 
     if (
-      !productsByOrderDocuments ||
-      productsByOrderDocuments.length !== productsByOrderIds.length
+      !orderProductsDocuments ||
+      orderProductsDocuments.length !== orderProductsIds.length
     ) {
       throw new Error(
-        "Certains documents ProductsByOrder n'ont pas été trouvés."
+        "Certains documents OrderProducts n'ont pas été trouvés."
       );
     }
 
-    const productsByOrderDetails = productsByOrderDocuments.map((product) => ({
-      productId: product.productId,
+    const orderProductsDetails = orderProductsDocuments.map((product) => ({
+      productsId: product.productsId,
       quantity: product.quantity,
     }));
 
     for (const trackingNumberItem of trackingNumberList) {
-        try {
-            const productsByOrderArray = trackingNumberItem.productsByOrder;
+      try {
+        const orderProductsArray = trackingNumberItem.orderProducts;
 
-            for (const productByOrder of productsByOrderArray) {
-              const productId = productByOrder.productId;
-      
-              if (
-                !productsByOrderDetails.find((item) => item.productId === productId)
-              ) {
-                throw new Error("ProductId inexistant ou non associé à la commande.");
-              }
-      
-              // Vérifier si articlesNumber ne dépasse pas quantity
-              const articlesNumber = parseInt(productByOrder.articlesNumber, 10);
-              const { quantity } = productsByOrderDetails.find(
-                (item) => item.productId === productId
-              );
-      
-              if (isNaN(articlesNumber) || articlesNumber > quantity) {
-                throw new Error(
-                  "ArticlesNumber ne peut pas dépasser la quantité commandée."
-                );
-              }
-            }
-        } catch (error) {
-            errors.push(error.message);
+        for (const productByOrder of orderProductsArray) {
+          const productsId = productByOrder.productsId;
+          const { orderProductsId } = productByOrder;
+
+          if (
+            !orderProductsDetails.find((item) => item.productsId === productsId)
+          ) {
+            throw new Error(
+              "ProductsId inexistant ou non associé à la commande."
+            );
+          }
+
+          // Vérifier si articlesNumber ne dépasse pas quantity
+          const  {quantity}  = await OrderProducts.findOne({ _id: orderProductsId });
+          const articlesNumber = parseInt(productByOrder.articlesNumber, 10);
+
+          if (isNaN(articlesNumber) || articlesNumber > quantity) {
+            throw new Error(
+              "ArticlesNumber ne peut pas dépasser la quantité commandée."
+            );
+          }
         }
-    
+      } catch (error) {
+        errors.push(error.message);
+      }
     }
-    return {errors}
+    return { errors };
   } catch (error) {
+    console.log("error dans checkSecondElement.js:", error);
     return { errors: [error.message] };
   }
 }

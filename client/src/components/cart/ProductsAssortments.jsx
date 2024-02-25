@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const ProductsAssortments = () => {
   const assortedProducts = [bo, bar, bra, col, bo, bar, bra, col];
   return (
-    <div id="productsByOrder-assortments-section">
+    <div id="orderProducts-assortments-section">
       <h2>Mes assortiments</h2>
-      <div className="productsByOrder-assortments-container">
+      <div className="orderProducts-assortments-container">
         {assortedProducts.map((product, i) => (
           <div className="assortment-row" key={i}>
             <Link>

@@ -1,23 +1,24 @@
 import { v4 as uuidv4 } from "uuid";
 
 export const articlesNumberCheck = (selectedProducts, articleNumber) => {
-  let productsByOrderInfo = [];
+  let orderProductsInfo = [];
 
   const selectedProductsArray = Object.entries(selectedProducts);
 
   selectedProductsArray.forEach(([combinedId, value]) => {
-    const { productId, material } = value;
+    const { productsId, material, _id } = value;
 
     const productData = articleNumber[combinedId] || { value: 0 };
     const articlesNumber = productData.value || 1;
 
-    productsByOrderInfo.push({
+    orderProductsInfo.push({
       id: uuidv4(),
-      productId,
+      productsId,
       articlesNumber,
       material,
+      orderProductsId: _id,
     });
   });
 
-  return { productsByOrderInfo };
+  return { orderProductsInfo };
 };

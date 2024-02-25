@@ -395,34 +395,34 @@
 
 /* ********************* ENDTOTAL SORTIES ********************* */
 /* ********************* START ACTIONS DROPDOWN PRODUCT AND TAG PRODUCT ********************* */
-#productsByOrder-container .product-content {
+#orderProducts-container .product-content {
     padding: 10px;
     border: 1px dotted var(--dark);
     margin: 20px;
 }
 
-#productsByOrder-container .action-icon {
+#orderProducts-container .action-icon {
     font-size: 20px;
     cursor: pointer;
     text-align: end;
 }
 
-#productsByOrder-container .actions-list {
+#orderProducts-container .actions-list {
     background-color: var(--background);
     border: 1px solid #ddd;
     display: none;
 }
 
-#productsByOrder-container .actions-list li {
+#orderProducts-container .actions-list li {
     cursor: pointer;
     padding: 0 5px;
 }
 
-#productsByOrder-container .actions-list li.active {
+#orderProducts-container .actions-list li.active {
     color: var(--danger);
 }
 
-#productsByOrder-container .product-content-details {
+#orderProducts-container .product-content-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -430,7 +430,7 @@
 
 }
 
-#productsByOrder-container .product-content.open .actions-list {
+#orderProducts-container .product-content.open .actions-list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -473,7 +473,7 @@
     background-color: var(--danger);
 }
 
-#productsByOrder-container .product-tag {
+#orderProducts-container .product-tag {
     color: var(--text-color-white);
     background-color: var(--secondary);
     border: none;
@@ -482,12 +482,12 @@
     margin: 5px;
 }
 
-#productsByOrder-container .product-note-container {
+#orderProducts-container .product-note-container {
     margin: 20px;
     text-align: initial;
 }
 
-#productsByOrder-container .product-note-wrapper {
+#orderProducts-container .product-note-wrapper {
     display: flex;
     align-items: center;
 }

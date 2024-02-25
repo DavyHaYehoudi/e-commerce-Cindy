@@ -15,9 +15,9 @@ const mockOrderHistory = [
       isAdmin: true,
       value: "102938MAUCBQPDMN",
       date: "2013-01-15 08:30",
-      productsByOrder: [
-        { id: "vzxcvzxczoio354", productId:"2mongoDb", articlesNumber: 1,material:0 },
-        { id: "vzxcvzxczoio355", productId:"1mongoDb", articlesNumber: 2 ,material:1},
+      orderProducts: [
+        { id: "vzxcvzxczoio354", productsId:"2mongoDb", articlesNumber: 1,material:0 },
+        { id: "vzxcvzxczoio355", productsId:"1mongoDb", articlesNumber: 2 ,material:1},
       ],
     },
     {
@@ -25,7 +25,7 @@ const mockOrderHistory = [
       isAdmin: false,
       value: "JND&HDYS#@FJKS",
       date: "2014-01-15 08:30",
-      productsByOrder: [],
+      orderProducts: [],
     },],
     paymentMethod: { cardType: "Visa", last4Digits: "**** **** **** 1234" },
     inTotalAmount: 220,

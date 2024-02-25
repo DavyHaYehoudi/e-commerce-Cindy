@@ -15,7 +15,7 @@ const ShoppingCartContent = () => {
       </div>
 
       {carts && carts.length > 0 ? (
-        carts.map((cart) => <OrderItem cart={cart} key={cart.productId} />)
+        carts.map((cart) => <OrderItem cart={cart} key={cart.productsId} />)
       ) : (
         <p>VOTRE PANIER EST VIDE</p>
       )}

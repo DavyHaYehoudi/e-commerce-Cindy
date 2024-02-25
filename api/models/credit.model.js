@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
 const creditSchema = new mongoose.Schema({
-  productsByOrderId: {
+  orderProductsId: {
     type: String,
     required: true,
   },

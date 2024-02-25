@@ -25,7 +25,7 @@ tags:
     description: Customers
   - name: order
     description: Orders customers
-  - name: productsbyorder
+  - name: orderProducts
     description: List of products for each order
   - name: product
     description: Product description
@@ -431,14 +431,14 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /productsbyorder{productsByOrderIds}:
+  /orderProducts{orderProductsIds}:
     get:
       tags:
-        - productsbyorder
+        - orderProducts
       parameters:
-        - name: productsByOrderIds
+        - name: orderProductsIds
           in: path
-          description: JSON array representing ids of productsByOrder
+          description: JSON array representing ids of orderProducts
           required: true
           style: simple
           explode: true
@@ -460,15 +460,15 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /productsbyorder/{productsbyorderId}:
+  /orderProducts/{orderProductsId}:
     get:
       tags:
-        - productsbyorder
-      summary: Find purchase productsbyorder by ID
+        - orderProducts
+      summary: Find purchase orderProducts by ID
       description: ''
       operationId: getProductsById
       parameters:
-        - name: productsbyorderId
+        - name: orderProductsId
           in: path
           description: ID of products that needs to be fetched
           required: true
@@ -476,7 +476,7 @@ paths:
             type: string
       responses:
         '200':
-          description: successful get productsbyorder by id
+          description: successful get orderProducts by id
           content:
             application/json:
               schema:
@@ -487,23 +487,23 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /productsbyorder/note/{productsbyorderId}:
+  /orderProducts/note/{orderProductsId}:
     patch:
       tags:
-        - productsbyorder
-      summary: Edit note productsbyorder by ID
+        - orderProducts
+      summary: Edit note orderProducts by ID
       description: ''
       operationId: editNoteProductsByOrder
       parameters:
-        - name: productsbyorderId
+        - name: orderProductsId
           in: path
-          description: ID of productsbyorder that needs to be edited
+          description: ID of orderProducts that needs to be edited
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: successful edit productsbyorder 
+          description: successful edit orderProducts 
           content:
             application/json:
               schema:
@@ -551,7 +551,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /products/{productId}:
+  /products/{productsId}:
     get:
       tags:
         - product
@@ -561,7 +561,7 @@ paths:
         will generate exceptions.
       operationId: getProductById
       parameters:
-        - name: productId
+        - name: productsId
           in: path
           description: ID of products that needs to be fetched
           required: true
@@ -587,7 +587,7 @@ paths:
       description: Edit a new product
       operationId: editProduct
       parameters:
-        - name: productId
+        - name: productsId
           in: path
           description: ID of product that needs to be fetched
           required: true
@@ -614,7 +614,7 @@ paths:
       description: ''
       operationId: deleteProduct
       parameters:
-        - name: productId
+        - name: productsId
           in: path
           description: ID of the order that needs to be deleted
           required: true
@@ -624,19 +624,19 @@ paths:
         '200':
           description: Successful deleted product
         '400':
-          description: Invalid productId supplied
+          description: Invalid productsId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /credits{productsByOrderIds}:
+  /credits{orderProductsIds}:
     get:
       tags:
         - credit
       parameters:
-      - name: productsByOrderIds
+      - name: orderProductsIds
         in: path
-        description: JSON array representing ids of productsByOrder
+        description: JSON array representing ids of orderProducts
         required: true
         style: simple
         explode: true
@@ -781,7 +781,7 @@ components:
           items:
             type: object
             properties:
-              productId:
+              productsId:
                 type: string
                 example: 6vc4d22b45a0fb3fd4a75f33
               material:
@@ -793,7 +793,7 @@ components:
           items:
             type: object
             properties:
-              productId:
+              productsId:
                 type: string
                 example: 1jc4d22b45a0fb3fd4a75f50
               material:
@@ -838,7 +838,7 @@ components:
           items:
             type: object
             properties:
-              productId:
+              productsId:
                 type: string
                 example: 6vc4d22b45a0fb3fd4a75f33
               material:
@@ -850,7 +850,7 @@ components:
           items:
             type: object
             properties:
-              productId:
+              productsId:
                 type: string
                 example: 1jc4d22b45a0fb3fd4a75f50
               material:
@@ -889,6 +889,9 @@ components:
             date:
               type: string
               example: 2024-03-24
+            orderProductsId :
+              type: string
+              example: 10m4d22b45a0fb3fd4a7l53
     Order:
       type: array
       items:
@@ -897,10 +900,10 @@ components:
             items:
              type: object
              properties:
-              productsByOrder:
+              orderProducts:
                 type: object
                 properties:
-                  productsByOrderActions:
+                  orderProductsActions:
                     type: object
                     properties:
                       exchange:
@@ -916,7 +919,7 @@ components:
               creditEdit:
                 type: object
                 properties:
-                  productsByOrderId:
+                  orderProductsId:
                     type: string
                   amount:
                     type: integer
@@ -943,14 +946,14 @@ components:
                     date:
                       type: string
                       format: date
-                    productsByOrder:
+                    orderProducts:
                       type: array
                       items:
                         type: object
                         properties:
                           id:
                             type: string
-                          productId:
+                          productsId:
                             type: string
                           articlesNumber:
                             type: integer
@@ -962,7 +965,7 @@ components:
                             type: string
                       example:
                         - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                          productId: "65b3e264624d950f87b81f38"
+                          productsId: "65b3e264624d950f87b81f38"
                           articlesNumber: 1
                           _id: "65c20591b1a16a3ec8e4bd44"
                     _id:
@@ -972,9 +975,9 @@ components:
                     isAdmin: true
                     value: "4eme"
                     date: "2024-02-24"
-                    productsByOrder:
+                    orderProducts:
                       - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                        productId: "65b3e264624d950f87b81f38"
+                        productsId: "65b3e264624d950f87b81f38"
                         articlesNumber: 1
                         material: 3
                         _id: "65c20591b1a16a3ec8e4bd44"
@@ -983,9 +986,9 @@ components:
                     isAdmin: true
                     value: "6eme"
                     date: "2024-02-24"
-                    productsByOrder:
+                    orderProducts:
                       - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                        productId: "65b3e264624d950f87b81f37"
+                        productsId: "65b3e264624d950f87b81f37"
                         articlesNumber: 2
                         material: 0
                         _id: "65c20591b1a16a3ec8e4bd44"
@@ -1014,7 +1017,7 @@ components:
               last4Digits:
                 type: string
                 example: '**** 1234'
-        productsByOrder:
+        orderProducts:
           type: array
           items:
             type: string
@@ -1030,7 +1033,7 @@ components:
           _id:
             type: string
             example: 2884d22b45a0fb3fd4a75p2
-          productId:
+          productsId:
             type: string
             example: 7774d22b45a0fb3fd4a7bn0
           quantity:
@@ -1041,7 +1044,7 @@ components:
             type: integer
             format: int16
             example: 0
-          productsByOrderActions:
+          orderProductsActions:
             type: object
             properties:
               exchange:
@@ -1262,7 +1265,7 @@ components:
         _id:
           type: string
           example: 6vbhd22b45a0fb3fd4a7599
-        productsByOrderId:
+        orderProductsId:
           type: string
           example: 2884d22b45a0fb3fd4a75p2
         amount:

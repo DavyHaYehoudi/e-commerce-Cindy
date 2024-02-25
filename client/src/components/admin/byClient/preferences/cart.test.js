@@ -29,18 +29,18 @@ describe('Cart Component', () => {
       const store = mockStore(initialState);
  
   it('should render cart item with correct information', () => {
-    const productId = 1;
+    const productsId = 1;
     const productCart = {
       material: 1,
       addDate:"2024-04-11 12:15"
     };
 
     render(
-        <Cart productId={productId} productCart={productCart} />,{store}
+        <Cart productsId={productsId} productCart={productCart} />,{store}
     );
 
     // Assert that cart item is rendered with correct information
-    expect(screen.getByTestId(`cart-item-${productId}`)).toBeInTheDocument();
+    expect(screen.getByTestId(`cart-item-${productsId}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${initialState.product.data[0].reference}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${initialState.product.data[0].name}`)).toBeInTheDocument();
     expect(screen.getByText(`: ${materials[1].name}`)).toBeInTheDocument();
