@@ -10,12 +10,12 @@ import { bar } from "../../../../../assets/bar.png";
 describe("List Component", () => {
   const mockState = {
     orders: {
-      data: [{ _id: 1, productsByOrder: [1, 2] }],
+      data: [{ _id: 1, orderProducts: [1, 2] }],
     },
-    productsByOrder: {
+    orderProducts: {
       data: [
-        { _id: 1, productId: 1, quantity: 2 },
-        { _id: 2, productId: 2, quantity: 1 },
+        { _id: 1, productsId: 1, quantity: 2 },
+        { _id: 2, productsId: 2, quantity: 1 },
       ],
     },
     product: {
@@ -59,10 +59,10 @@ describe("List Component", () => {
   const client = {
     _id: 1,
   };
-  test("renders productsByOrder correctly", () => {
+  test("renders orderProducts correctly", () => {
     render(<List client={client} orderId={1} />, { store });
 
-    expect(screen.getByTestId("productsByOrder-container")).toBeInTheDocument();
+    expect(screen.getByTestId("orderProducts-container")).toBeInTheDocument();
 
   });
 });

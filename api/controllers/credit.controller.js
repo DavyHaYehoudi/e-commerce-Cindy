@@ -3,11 +3,11 @@ import Credit from "../models/credit.model.js";
 const creditController = {
   getAllCredits: async (req, res) => {
     try {
-      const { productsByOrderIds } = req.query;
-      const parsedProductsByOrderIds = JSON.parse(productsByOrderIds);
+      const { orderProductsIds } = req.query;
+      const parsedProductsByOrderIds = JSON.parse(orderProductsIds);
 
       const credits = await Credit.find({
-        productsByOrderId: { $in: parsedProductsByOrderIds },
+        orderProductsId: { $in: parsedProductsByOrderIds },
       }).exec();
 
       res.status(200).json(credits);
@@ -16,10 +16,10 @@ const creditController = {
     }
   },
   archiveCredit: async (req, res) => {
-    const { productsByOrderId } = req.params;
+    const { orderProductsId } = req.params;
 
     try {
-      const credit = await Credit.findOne({ productsByOrderId });
+      const credit = await Credit.findOne({ orderProductsId });
       if (!credit) {
         return res.status(404).json({ error: "Ressource non trouvée" });
       }

@@ -35,7 +35,7 @@ const CartOffcanvas = ({ show, handleClose }) => {
       </div>
       <div className="cart-offcanvas-content">
         {carts && carts.length > 0 ? (
-          carts.map((cart) => <CartItem cart={cart} key={cart.productId} />)
+          carts.map((cart) => <CartItem cart={cart} key={cart.productsId} />)
         ) : (
           <p className="empty-cart-message">VOTRE PANIER EST VIDE</p>
         )}

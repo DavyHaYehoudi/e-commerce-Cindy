@@ -8,6 +8,7 @@ import useFetchSlice from "../selectors/useFetchSlice";
 import useProfilChange from "./hooks/useProfilChange";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DarkMode from "../components/darkMode/DarkMode";
 
 const AccountClient = () => {
   const clientIdForDevelopment ="65bc8c5b7f890edc1f63182e"
@@ -15,11 +16,12 @@ const AccountClient = () => {
   const orderHistory = useSelector((state) => state?.customer?.data?.orders);
   const [isActive, setIsActive] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isModified,setIsModified]=useState(false)
 
   const handleTabClick = (tab) => {
     setIsActive(tab);
   };
-  const { handleChangeProfilSave } = useProfilChange(); 
+  const { handleChangeProfilSave } = useProfilChange(isModified); 
 
   const handleChangeProfilEdit = () => {
     setIsEditing(true);
@@ -35,6 +37,7 @@ const AccountClient = () => {
         isEditing={isEditing}
         handleChangeProfilEdit={handleChangeProfilEdit}
         clientId={clientIdForDevelopment}
+        setIsModified={setIsModified}
       />
       <div className="order-history">
         <h2>Historique des commandes</h2>
@@ -67,6 +70,9 @@ const AccountClient = () => {
             />
           )}
         </div>
+      </div>
+      <div className="darkMode">
+        <DarkMode />
       </div>
       <ToastContainer autoClose={2500} />
     </div>

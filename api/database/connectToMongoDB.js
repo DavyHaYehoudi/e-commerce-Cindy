@@ -13,7 +13,7 @@ const connectToDatabase = async () => {
     const db = mongoose.connection;
 
     // Renommage de collection
-    // const ancienNom = 'productsByOrders';
+    // const ancienNom = 'orderProductss';
     // const nouveauNom = 'productsbyorders';
 
     // db.collection(ancienNom).rename(nouveauNom, (err, result) => {

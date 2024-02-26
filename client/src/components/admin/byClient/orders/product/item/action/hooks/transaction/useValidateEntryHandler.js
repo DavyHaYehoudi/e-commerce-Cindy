@@ -5,9 +5,9 @@ import {
 
 export const useValidateEntryHandler = (
   actions,
-  productsByOrder,
-  productsByOrderInfo,
-  productsByOrderActions,
+  orderProducts,
+  orderProductsInfo,
+  orderProductsActions,
   articleNumber,
   setEntryError,
   dispatch,
@@ -23,11 +23,11 @@ export const useValidateEntryHandler = (
     e.stopPropagation();
 
     const exchangeValue =
-      productsByOrderInfo?.exchange ??
-      productsByOrderActions?.exchangeContent ??
+      orderProductsInfo?.exchange ??
+      orderProductsActions?.exchangeContent ??
       0;
     const refundValue =
-      productsByOrderInfo?.refund ?? productsByOrderActions?.refundContent ?? 0;
+      orderProductsInfo?.refund ?? orderProductsActions?.refundContent ?? 0;
     const articleLimitNumber = exchangeValue + refundValue;
     const articleAllowedNumber = articleNumber - articleLimitNumber;
     const checkArticleNumber = articleAllowedNumber >= 0;
@@ -48,12 +48,12 @@ export const useValidateEntryHandler = (
     const { contentKey, flagKey } = propertyMap[action] || {};
     if (!contentKey || !flagKey) return;
 
-    const productActionContent = productsByOrderActions[contentKey] || "";
+    const productActionContent = orderProductsActions[contentKey] || "";
 
-    if (productsByOrderActions[contentKey] > 0 && checkArticleNumber) {
+    if (orderProductsActions[contentKey] > 0 && checkArticleNumber) {
       dispatch(
         updateActionContent({
-          productsByOrderId: productsByOrder._id,
+          orderProductsId: orderProducts._id,
           updatedProperty: action,
           productActionContent,
         })
@@ -63,14 +63,14 @@ export const useValidateEntryHandler = (
         dispatch(
           totalsInOut({
             orderId,
-            amount: productsByOrderActions.refundContent * productPrice,
+            amount: orderProductsActions.refundContent * productPrice,
             movement: "out",
           })
         );
       }
       setEntryError("");
     }
-    if (productsByOrderActions[contentKey]) {
+    if (orderProductsActions[contentKey]) {
       const dynamicProperties = { [contentKey]: "", [flagKey]: false };
       setProductActions((prevState) => ({
         ...prevState,

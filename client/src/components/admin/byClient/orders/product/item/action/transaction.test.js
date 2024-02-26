@@ -50,14 +50,14 @@ describe("Transaction Component", () => {
         actions={["someAction"]}
         label="Some Label"
         placeholderValue="Some Placeholder"
-        productId={1}
+        productsId={1}
         orderId={1}
         textCancel="Cancel Text"
-        productsByOrderInfo={{ someAction: "info" }}
-        productsByOrderState={productMock}
+        orderProductsInfo={{ someAction: "info" }}
+        orderProductsState={productMock}
         isActionSelected={true}
         inputQuantityValue={5}
-        productsByOrderActions={{ someAction: "someAction" }}
+        orderProductsActions={{ someAction: "someAction" }}
         articleNumber={10}
         setEntryError={setEntryErrorMock}
         setProductActions={setProductActionsMock}
@@ -93,11 +93,11 @@ describe("Transaction Component with interaction input", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basically", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
     };
-    const productId = 1;
+    const productsId = 1;
     const orderId = "order123";
     const action = "EXCHANGE";
     const actions = {
@@ -115,14 +115,14 @@ describe("Transaction Component with interaction input", () => {
         actions={actions}
         label={label}
         placeholderValue={placeholderValue}
-        productId={productId}
+        productsId={productsId}
         orderId={orderId}
         textCancel={textCancel}
-        productsByOrderInfo={productsByOrderInfo}
-        productsByOrderState={initialState.product.data}
+        orderProductsInfo={orderProductsInfo}
+        orderProductsState={initialState.product.data}
         isActionSelected={true}
         inputQuantityValue={1}
-        productsByOrderActions={{ exchangeContent: 1 }}
+        orderProductsActions={{ exchangeContent: 1 }}
         articleNumber={10}
         setEntryError={jest.fn()}
         setProductActions={jest.fn()}
@@ -137,11 +137,11 @@ describe("Transaction Component with interaction input", () => {
   });
 
   test("renders input and buttons when action is selected", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
     };
-    const productId = 1;
+    const productsId = 1;
     const orderId = "order123";
     const action = "EXCHANGE";
     const actions = {
@@ -159,14 +159,14 @@ describe("Transaction Component with interaction input", () => {
         actions={actions}
         label={label}
         placeholderValue={placeholderValue}
-        productId={productId}
+        productsId={productsId}
         orderId={orderId}
         textCancel={textCancel}
-        productsByOrderInfo={productsByOrderInfo}
-        productsByOrderState={initialState.product.data}
+        orderProductsInfo={orderProductsInfo}
+        orderProductsState={initialState.product.data}
         isActionSelected={true}
         inputQuantityValue={1}
-        productsByOrderActions={{ exchangeContent: 1 }}
+        orderProductsActions={{ exchangeContent: 1 }}
         articleNumber={10}
         setEntryError={jest.fn()}
         setProductActions={jest.fn()}

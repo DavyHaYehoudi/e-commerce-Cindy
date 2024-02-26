@@ -21,11 +21,11 @@ const Item = ({
   lastSentDateToClient,
   step,
 }) => {
-  const { productsByOrder } = useSelector((state) =>
+  const { orderProducts } = useSelector((state) =>
     getOrderInfo(state, order._id)
   );
-  const productsByOrderStore = useSelector(
-    (state) => state?.productsByOrder?.data
+  const orderProductsStore = useSelector(
+    (state) => state?.orderProducts?.data
   );
   const creditStore = useSelector((state) => state?.credit?.data);
   const trackingNumberList = useSelector((state) =>
@@ -40,33 +40,33 @@ const Item = ({
         "Aucune modification n'a été apportée."
       );
     }
-    const productsByOrderReqBody = [];
+    const orderProductsReqBody = [];
     const orderReqBody = {};
 
-    productsByOrder.forEach((productsByOrderId) => {
+    orderProducts.forEach((orderProductsId) => {
       const resultMap = {};
 
-      const matchingObject = productsByOrderStore.find(
-        (item) => item._id === productsByOrderId
+      const matchingObject = orderProductsStore.find(
+        (item) => item._id === orderProductsId
       );
       if (matchingObject) {
-        resultMap["productsByOrder"] = matchingObject;
+        resultMap["orderProducts"] = matchingObject;
       }
 
       const creditMatchingObject = creditStore.find(
-        (item) => item.productsByOrderId === productsByOrderId
+        (item) => item.orderProductsId === orderProductsId
       );
       if (creditMatchingObject) {
         resultMap["creditEdit"] = creditMatchingObject;
       }
 
-      productsByOrderReqBody.push(resultMap);
+      orderProductsReqBody.push(resultMap);
     });
 
     orderReqBody["trackingNumberList"] = trackingNumberList;
     orderReqBody["step"] = step;
 
-    sendToClient(order?._id, productsByOrderReqBody, orderReqBody);
+    sendToClient(order?._id, orderProductsReqBody, orderReqBody);
   };
 
   return (

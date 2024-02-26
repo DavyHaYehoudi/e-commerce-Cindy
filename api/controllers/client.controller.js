@@ -1,5 +1,6 @@
 import Client from "../models/client.model.js";
 import Credit from "../models/credit.model.js";
+import Order from "../models/order.model.js";
 
 const clientController = {
   getAllClients: async (req, res) => {
@@ -20,7 +21,7 @@ const clientController = {
     }
   },
 
-  getClientById: async (req, res) => {
+  getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
 
     try {
@@ -29,8 +30,8 @@ const clientController = {
         .populate({
           path: "orders",
           populate: {
-            path: "productsByOrder",
-            model: "ProductsByOrder",
+            path: "orderProducts",
+            model: "OrderProducts",
           },
         });
 
@@ -39,37 +40,37 @@ const clientController = {
       }
 
       const ordersWithoutNote = client.orders.map((order) => {
-        const productsByOrderWithoutNote = order.productsByOrder.map(
+        const orderProductsWithoutNote = order.orderProducts.map(
           (product) => {
-            const { productsByOrderActions, ...rest } = product.toJSON();
-            const productsByOrderActionsWithoutNote = {
-              ...productsByOrderActions,
+            const { orderProductsActions, ...rest } = product.toJSON();
+            const orderProductsActionsWithoutNote = {
+              ...orderProductsActions,
               note: undefined,
             };
             return {
               ...rest,
-              productsByOrderActions: productsByOrderActionsWithoutNote,
+              orderProductsActions: orderProductsActionsWithoutNote,
             };
           }
         );
         return {
           ...order.toJSON(),
-          productsByOrder: productsByOrderWithoutNote,
+          orderProducts: orderProductsWithoutNote,
         };
       });
 
       const creditIds = ordersWithoutNote.flatMap((order) =>
-        order.productsByOrder
-          .map((product) => product?.productsByOrderActions?.credit)
+        order.orderProducts
+          .map((product) => product?.orderProductsActions?.credit)
           .filter(Boolean)
       );
 
       const credit = await Credit.find({
-        productsByOrderId: { $in: creditIds },
+        orderProductsId: { $in: creditIds },
       });
 
-      const productsByOrder = ordersWithoutNote.flatMap(
-        (order) => order.productsByOrder
+      const orderProducts = ordersWithoutNote.flatMap(
+        (order) => order.orderProducts
       );
 
       client = await Client.findById(clientId).select("-notesAdmin -orders");
@@ -78,7 +79,7 @@ const clientController = {
         client,
         orders: ordersWithoutNote,
         credit,
-        productsByOrder,
+        orderProducts,
       });
     } catch (error) {
       console.error("Error fetching client data:", error);

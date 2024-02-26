@@ -27,7 +27,7 @@ const List = ({ orderHistory, filter }) => {
               <div className="details">
                 <p>
                   <span className="dotted">Prix total</span> :{" "}
-                  {formatPrice(order?.inTotalAmount) || "Total NC"}
+                  <span className="outPricing">{formatPrice(order?.inTotalAmount) || "Total NC"}</span> 
                 </p>
                 <p>
                   <span className="dotted">Moyen de paiement</span> :{" "}
@@ -45,7 +45,12 @@ const List = ({ orderHistory, filter }) => {
               initialText="Afficher les articles"
               hiddenText="Fermer les articles"
               buttonClass="account-btn toggle"
-              content={<Item productsByOrder={order?.productsByOrder} />}
+              content={
+                <Item
+                  orderProducts={order?.orderProducts}
+                  orderId={order._id}
+                />
+              }
             />
             {getOrderStepProperty(order?.step).name === orderStep[3].name &&
               order.trackingNumber &&

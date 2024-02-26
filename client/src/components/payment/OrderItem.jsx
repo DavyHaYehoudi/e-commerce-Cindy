@@ -22,9 +22,9 @@ const OrderItem = ({ cart }) => {
           <Link>
             <img
               src={`/photos/${
-                getProductProperties(cart.productId, productStore).image
+                getProductProperties(cart.productsId, productStore).image
               }`}
-              alt={getProductProperties(cart.productId, productStore).name}
+              alt={getProductProperties(cart.productsId, productStore).name}
               width="100px"
               height="150px"
             />
@@ -32,11 +32,11 @@ const OrderItem = ({ cart }) => {
         </div>
         <div className="orderItem-details">
           <div className="orderItem-name">
-            {getProductProperties(cart.productId, productStore).name}
+            {getProductProperties(cart.productsId, productStore).name}
           </div>
           <div className="orderItem-price">
             {formatPrice(
-              getProductProperties(cart.productId, productStore)?.pricing
+              getProductProperties(cart.productsId, productStore)?.pricing
                 .currentPrice
             )}{" "}
           </div>
@@ -48,7 +48,7 @@ const OrderItem = ({ cart }) => {
       </div>
       <div className="orderItem-total">
         {formatPrice(
-          getProductProperties(cart.productId, productStore)?.pricing
+          getProductProperties(cart.productsId, productStore)?.pricing
             .currentPrice * coefficient
         )}{" "}
       </div>

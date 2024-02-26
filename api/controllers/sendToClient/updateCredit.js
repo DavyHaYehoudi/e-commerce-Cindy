@@ -1,7 +1,7 @@
 import Credit from "../../models/credit.model.js";
 
 export const updateCredit = async (
-  productsByOrder,
+  orderProducts,
   creditEdit,
   amount,
   dateExpire
@@ -15,16 +15,16 @@ export const updateCredit = async (
     //Aucun crédit passé, il faut donc supprimer ce qui pourrait déjà exister.
     if (!isCreditDB && !creditEdit) {
       await Credit.findOneAndDelete({
-        productsByOrderId: productsByOrder._id,
+        orderProductsId: orderProducts._id,
       });
     }
     //Le crédit passé est nouveau, il doit donc remplacer ce qui pourrait déjà exister.
     if (!isCreditDB && creditEdit) {
       await Credit.findOneAndDelete({
-        productsByOrderId: productsByOrder._id,
+        orderProductsId: orderProducts._id,
       });
       await Credit.create({
-        productsByOrderId: productsByOrder._id,
+        orderProductsId: orderProducts._id,
         amount,
         dateExpire,
       });

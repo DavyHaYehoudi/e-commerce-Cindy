@@ -1,17 +1,17 @@
 import React from "react";
-import * as actions from "../../../../../../../constants/productsByOrderActions";
+import * as actions from "../../../../../../../constants/orderProductsActions";
 import Credit from "./Credit";
 import { generateItemTransactionComponent } from "./handler/item";
 
 const List = ({
   interaction,
-  productsByOrderActions,
-  productsByOrderInfo,
+  orderProductsActions,
+  orderProductsInfo,
   productStore,
   client,
   orderId,
-  productId,
-  productsByOrder,
+  productsId,
+  orderProducts,
   articleNumber,
   setProductActions,
   setConfirmation,
@@ -25,7 +25,7 @@ const List = ({
     creditContent,
     refundContent,
     exchangeContent,
-  } = productsByOrderActions;
+  } = orderProductsActions;
 
   return (
     <ul className="actions-list" >
@@ -37,12 +37,12 @@ const List = ({
         "Nombre d'articles à échanger",
         actions,
         interaction,
-        productId,
+        productsId,
         orderId,
-        productsByOrder,
-        productsByOrderInfo,
+        orderProducts,
+        orderProductsInfo,
         productStore,
-        productsByOrderActions,
+        orderProductsActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -57,12 +57,12 @@ const List = ({
         "Nombre d'articles à rembourser",
         actions,
         interaction,
-        productId,
+        productsId,
         orderId,
-        productsByOrder,
-        productsByOrderInfo,
+        orderProducts,
+        orderProductsInfo,
         productStore,
-        productsByOrderActions,
+        orderProductsActions,
         articleNumber,
         setEntryError,
         setProductActions,
@@ -74,17 +74,17 @@ const List = ({
         action={actions?.CREDIT}
         actions={actions}
         label={actions?.CREDIT_LABEL}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         isActionSelected={isAddCredit}
         inputCreditAmount={creditContent?.amount}
         inputDateValue={creditContent?.dateExpire}
-        productsByOrderActions={productsByOrderActions}
+        orderProductsActions={orderProductsActions}
         placeholderValue="Montant de l'avoir"
         textCancel="ANNULER L'AVOIR"
         client={client}
-        productId={productId}
+        productsId={productsId}
         orderId={orderId}
-        productsByOrder={productsByOrder}
+        orderProducts={orderProducts}
         setProductActions={setProductActions}
         setEntryError={setEntryError}
         setConfirmation={setConfirmation}

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import clientRoutes from "./routes/client.routes.js";
 import orderRoutes from "./routes/order.routes.js";
-import productsByOrderRoutes from "./routes/productsByOrder.routes.js";
+import orderProductsRoutes from "./routes/orderProducts.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import creditRoutes from "./routes/credit.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(cors(corsOptions));
 app.use("/clients", clientRoutes);
 app.use("/orders", orderRoutes);
-app.use("/productsbyorder", productsByOrderRoutes);
+app.use("/orderProducts", orderProductsRoutes);
 app.use("/products", productRoutes);
 app.use("/credits", creditRoutes);
 

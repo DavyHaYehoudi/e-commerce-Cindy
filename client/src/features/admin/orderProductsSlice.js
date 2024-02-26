@@ -1,68 +1,68 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import * as actions from "../../constants/productsByOrderActions";
+import * as actions from "../../constants/orderProductsActions";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
 import { toast } from "react-toastify";
 
 const fetchProductsByOrder = createAsyncThunk(
-  "productsByOrder/fetchProductsByOrder",
-  async ({ productsByOrderIds }) => {
+  "orderProducts/fetchProductsByOrder",
+  async ({ orderProductsIds }) => {
     try {
       return customFetch(
-        `productsbyorder?productsByOrderIds=${productsByOrderIds}`
+        `orderProducts?orderProductsIds=${orderProductsIds}`
       );
     } catch (error) {
       handleFetchError(error);
     }
   }
 );
-const productsByOrderNote = createAsyncThunk(
-  "productsByOrder/note",
-  async ({ productsByOrderId, content }) => {
+const orderProductsNote = createAsyncThunk(
+  "orderProducts/note",
+  async ({ orderProductsId, content }) => {
     try {
-      await customFetch(`productsbyorder/note/${productsByOrderId}`, {
+      await customFetch(`orderProducts/note/${orderProductsId}`, {
         method: "PATCH",
         body: JSON.stringify({ content }),
       });
-      return { productsByOrderId, content };
+      return { orderProductsId, content };
     } catch (error) {
       handleFetchError(error);
       throw error;
     }
   }
 );
-const productsByOrderSlice = createSlice({
-  name: "productsByOrder",
+const orderProductsSlice = createSlice({
+  name: "orderProducts",
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     updateActionContent: (state, action) => {
       const {
         creditContent,
-        productsByOrderId,
+        orderProductsId,
         updatedProperty,
         productActionContent,
       } = action.payload;
 
-      state.data = state?.data.map((productsByOrder) => {
-        if (productsByOrderId === productsByOrder._id) {
+      state.data = state?.data.map((orderProducts) => {
+        if (orderProductsId === orderProducts._id) {
           if (updatedProperty === actions.CREDIT) {
             return {
-              ...productsByOrder,
-              productsByOrderActions: {
-                ...productsByOrder.productsByOrderActions,
+              ...orderProducts,
+              orderProductsActions: {
+                ...orderProducts.orderProductsActions,
                 [updatedProperty]: creditContent,
               },
             };
           }
           return {
-            ...productsByOrder,
-            productsByOrderActions: {
-              ...productsByOrder.productsByOrderActions,
+            ...orderProducts,
+            orderProductsActions: {
+              ...orderProducts.orderProductsActions,
               [updatedProperty]: productActionContent,
             },
           };
         }
-        return productsByOrder;
+        return orderProducts;
       });
     },
   },
@@ -80,16 +80,16 @@ const productsByOrderSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(productsByOrderNote.pending, (state) => {
+      .addCase(orderProductsNote.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(productsByOrderNote.fulfilled, (state, action) => {
+      .addCase(orderProductsNote.fulfilled, (state, action) => {
         toast.success("La note a bien été enregistrée !");
         state.status = "succeeded";
         state.error = null;
-        const { productsByOrderId, content } = action.payload;
+        const { orderProductsId, content } = action.payload;
         state.data = state.data.map((item) => {
-          if (item._id === productsByOrderId) {
+          if (item._id === orderProductsId) {
             return {
               ...item,
               note: content,
@@ -98,13 +98,13 @@ const productsByOrderSlice = createSlice({
           return item;
         });
       })
-      .addCase(productsByOrderNote.rejected, (state, action) => {
+      .addCase(orderProductsNote.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
         toast.error("Une erreur est survenue avec les informations fournies.");
       });
   },
 });
-export const { updateActionContent } = productsByOrderSlice.actions;
-export { fetchProductsByOrder, productsByOrderNote };
-export default productsByOrderSlice.reducer;
+export const { updateActionContent } = orderProductsSlice.actions;
+export { fetchProductsByOrder, orderProductsNote };
+export default orderProductsSlice.reducer;

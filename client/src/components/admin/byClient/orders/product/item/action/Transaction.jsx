@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateActionContent } from "../../../../../../../features/admin/productsByOrderSlice";
+import { updateActionContent } from "../../../../../../../features/admin/orderProductsSlice";
 import { handleActionClick } from "./handler/item";
 import { getProductProperties } from "../../../../../../../selectors/product";
 import { useInputQuantityHandler } from "./hooks/transaction/useInputQuantityHandler";
@@ -13,15 +13,15 @@ const Transaction = ({
   actions,
   label,
   placeholderValue,
-  productId,
+  productsId,
   orderId,
-  productsByOrder,
+  orderProducts,
   textCancel,
-  productsByOrderInfo,
-  productsByOrderState,
+  orderProductsInfo,
+  orderProductsState,
   isActionSelected,
   inputQuantityValue,
-  productsByOrderActions,
+  orderProductsActions,
   articleNumber,
   setEntryError,
   setProductActions,
@@ -29,7 +29,7 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productId, productsByOrderState)?.pricing
+  const productPrice = getProductProperties(productsId, orderProductsState)?.pricing
     ?.currentPrice;
   const { handleChangeInputQuantity } = useInputQuantityHandler(
     actions,
@@ -37,9 +37,9 @@ const Transaction = ({
   );
   const { handleValidateEntry } = useValidateEntryHandler(
     actions,
-    productsByOrder,
-    productsByOrderInfo,
-    productsByOrderActions,
+    orderProducts,
+    orderProductsInfo,
+    orderProductsActions,
     articleNumber,
     setEntryError,
     dispatch,
@@ -55,9 +55,9 @@ const Transaction = ({
       onClick={() =>
         handleActionClick(
           action,
-          productsByOrderInfo,
+          orderProductsInfo,
           setConfirmation,
-          productsByOrderActions,
+          orderProductsActions,
           actions,
           setProductActions,
           setInteraction
@@ -65,7 +65,7 @@ const Transaction = ({
       }
       data-testid="transaction-component"
     >
-      {productsByOrderInfo?.[action] ? textCancel : label}
+      {orderProductsInfo?.[action] ? textCancel : label}
 
       {isActionSelected && (
         <>

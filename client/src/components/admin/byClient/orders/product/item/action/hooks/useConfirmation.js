@@ -5,17 +5,17 @@ import {
   isClientNotified,
   totalsInOut,
 } from "../../../../../../../../features/admin/ordersSlice";
-import { updateActionContent } from "../../../../../../../../features/admin/productsByOrderSlice";
+import { updateActionContent } from "../../../../../../../../features/admin/orderProductsSlice";
 
 const useConfirmation = ({
   confirmation,
-  productsByOrderActions,
+  orderProductsActions,
   actions,
   orderId,
-  productsByOrder,
+  orderProducts,
   amount,
   productPrice,
-  productsByOrderInfo,
+  orderProductsInfo,
   setProductActions,
   setConfirmation,
   setEntryError,
@@ -30,7 +30,7 @@ const useConfirmation = ({
     const updateProductActions = (confirmAction) => {
       const dynamicProductActions = {
         ...Object.fromEntries(
-          Object.entries(productsByOrderActions).map(([key, value]) => [
+          Object.entries(orderProductsActions).map(([key, value]) => [
             key,
             key.startsWith("isAdd") ? key === confirmAction : value,
           ])
@@ -56,11 +56,11 @@ const useConfirmation = ({
           movement: "outCancel",
         })
       );
-      dispatch(deleteCredit({ productsByOrderId: productsByOrder._id }));
+      dispatch(deleteCredit({ orderProductsId: orderProducts._id }));
       dispatch(
         updateActionContent({
           creditContent: null,
-          productsByOrderId: productsByOrder._id,
+          orderProductsId: orderProducts._id,
           updatedProperty: "credit",
         })
       );
@@ -69,7 +69,7 @@ const useConfirmation = ({
     if (confirmAction) {
       dispatch(
         updateActionContent({
-          productsByOrderId: productsByOrder._id,
+          orderProductsId: orderProducts._id,
           orderId,
           updatedProperty: confirmAction,
           productActionContent: null,
@@ -89,7 +89,7 @@ const useConfirmation = ({
       dispatch(
         totalsInOut({
           orderId,
-          amount: productsByOrderInfo?.refund * productPrice,
+          amount: orderProductsInfo?.refund * productPrice,
           movement: "outCancel",
         })
       );

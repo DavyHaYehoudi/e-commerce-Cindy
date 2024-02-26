@@ -12,8 +12,8 @@ const Details = ({ client }) => {
         {client?.wishlist?.length > 0 ? (
           client.wishlist.map((item) => (
             <Wishlist
-              key={item.productId}
-              productId={item.productId}
+              key={item.productsId}
+              productsId={item.productsId}
               productCart={item}
             />
           ))
@@ -29,8 +29,8 @@ const Details = ({ client }) => {
         {client?.cart?.length > 0 ? (
           client?.cart?.map((item) => (
             <Cart
-              key={item.productId}
-              productId={item.productId}
+              key={item.productsId}
+              productsId={item.productsId}
               productCart={item}
             />
           ))

@@ -1,5 +1,5 @@
-export const getProductProperties = (productId, state) => {
-  const product = state?.find((product) => product._id === productId);
+export const getProductProperties = (productsId, state) => {
+  const product = state?.find((product) => product._id === productsId);
 
   if (product) {
     const {

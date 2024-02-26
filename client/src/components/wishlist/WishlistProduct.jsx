@@ -9,7 +9,7 @@ const WishlistProduct = ({ product, }) => {
   };
 
   return (
-    <div key={product.productId} className="modal-product-row">
+    <div key={product.productsId} className="modal-product-row">
       <WishlistProductContent product={product} />
       <div className="modal-product-remove" onClick={handleDelete}>
         <TrashIcon />

@@ -9,22 +9,22 @@ export const userMock = {
   notesClient: null,
   wishlist: [
     {
-      productId: "1mongoDb",
+      productsId: "1mongoDb",
       material: 2,
     },
     {
-      productId: "5mongoDb",
+      productsId: "5mongoDb",
       material: 0,
     },
   ],
   cart: [
     {
-      productId: "2mongoDb",
+      productsId: "2mongoDb",
       material: 1,
       quantity: 2,
     },
     {
-      productId: "8mongoDb",
+      productsId: "8mongoDb",
       material: 3,
       quantity: 1,
     },
@@ -37,12 +37,12 @@ export const userMock = {
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      productsByOrder: [
+      orderProducts: [
         {
-          productId: "4mongoDb",
+          productsId: "4mongoDb",
           quantity: 2,
           material: 1,
-          productsByOrderActions: {
+          orderProductsActions: {
             exchange: null,
             refund: 2,
             credit: {
@@ -61,12 +61,12 @@ export const userMock = {
       inTotalAmount: 250,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      productsByOrder: [
+      orderProducts: [
         {
-          productId: "14mongoDb",
+          productsId: "14mongoDb",
           quantity: 1,
           material: 0,
-          productsByOrderActions: {
+          orderProductsActions: {
             exchange: 1,
             refund: null,
             credit: {
@@ -85,12 +85,12 @@ export const userMock = {
       inTotalAmount: 150,
       paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
       shippingAddress: "12 Rue de la République, 75001 Paris",
-      productsByOrder: [
+      orderProducts: [
         {
-          productId: "16mongoDb",
+          productsId: "16mongoDb",
           quantity: 1,
           material: 3,
-          productsByOrderActions: {
+          orderProductsActions: {
             exchange: null,
             refund: 1,
             credit: {
@@ -101,10 +101,10 @@ export const userMock = {
           },
         },
         {
-          productId: "9mongoDb",
+          productsId: "9mongoDb",
           quantity: 1,
           material: 2,
-          productsByOrderActions: {
+          orderProductsActions: {
             exchange: null,
             refund: null,
             credit: {

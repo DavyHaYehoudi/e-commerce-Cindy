@@ -15,21 +15,20 @@ const Header = ({
   interaction,
   material,
   quantity,
-  productId,
-  productsByOrder,
+  productsId,
+  orderProducts,
   isTagProductExisted,
-  productsByOrderInfo,
+  orderProductsInfo,
   productStore,
   toggleActions,
 }) => {
-  const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productId: productsByOrder._id })
-  );
-  const { reference, name, pricing, image } = getProductProperties(
-    productId,
-    productStore
-  );
-  const { exchange, refund, credit } = productsByOrderInfo ?? {};
+  const { amount, code, dateExpire } =
+    useSelector((state) =>
+      getCreditsInfo(state, { productsId: orderProducts._id })
+    ) || {};
+  const { reference, name, pricing, image } =
+    getProductProperties(productsId, productStore) || {};
+  const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
     <>
       <p
@@ -46,9 +45,9 @@ const Header = ({
       </p>
       <div className="product-content-details">
         <div>
-          <p>
+          <h3>
             {name} {getMaterialProperty(material)?.name}
-          </p>
+          </h3>
           <p className="pricing inPricing">
             {quantity} article
             {quantity > 1 ? "s" : ""} -{" "}
@@ -73,7 +72,7 @@ const Header = ({
               <>
                 <span>REMBOURSEMENT :</span>{" "}
                 <span className="pricing outPricing">
-                  {sumPriceArticle(parseInt(refund), pricing.currentPrice)}
+                  {sumPriceArticle(parseInt(refund), pricing?.currentPrice)}
                 </span>
               </>
             )}

@@ -10,8 +10,8 @@ const useSendToClient = () => {
   const dispatch = useDispatch();
 
   const sendToClient = useCallback(
-    async (orderId, productsByOrderReqBody, orderReqBody) => {
-      const requestBody = [productsByOrderReqBody, orderReqBody];
+    async (orderId, orderProductsReqBody, orderReqBody) => {
+      const requestBody = [orderProductsReqBody, orderReqBody];
       try {
         setLoading(true);
 

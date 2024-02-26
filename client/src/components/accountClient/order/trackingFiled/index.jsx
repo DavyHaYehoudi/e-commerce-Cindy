@@ -35,11 +35,11 @@ const TrackingNumberList = ({ trk, order }) => {
         <small>- Envoyé le {formatDate(trk?.date, false)}</small>
       </p>
       <ul>
-        {trk?.productsByOrder &&
-          trk.productsByOrder.length > 0 &&
-          trk.productsByOrder.map((item) => (
+        {trk?.orderProducts &&
+          trk.orderProducts.length > 0 &&
+          trk.orderProducts.map((item) => (
             <li key={item._id}>
-              {getProductProperties(item.productId, productStore).name}{" "}
+              {getProductProperties(item.productsId, productStore).name}{" "}
               {getMaterialProperty(item?.material).name}{" "}
               {item?.articlesNumber} article
               {item?.articlesNumber > 1 ? "s" : ""}{" "}

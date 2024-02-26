@@ -14,7 +14,7 @@ describe("Header Component", () => {
       data: [
         {
           _id: "idMongoDbGenerate1",
-          productsByOrderId: 1,
+          orderProductsId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
@@ -39,15 +39,15 @@ describe("Header Component", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basic data", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
     };
     const material = 0;
     const quantity = 3;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -58,10 +58,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -74,15 +74,15 @@ describe("Header Component", () => {
     expect(screen.getByText("Référence : QER2345OIJD")).toBeInTheDocument();
   });
   test("display ECHANGE,REMBOURSEMENT,AVOIR", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
     };
     const material = 0;
     const quantity = 3;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -93,10 +93,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -108,15 +108,15 @@ describe("Header Component", () => {
     expect(screen.getByText(("AVOIR :"))).toBeInTheDocument();
   });
   test("display ECHANGE,REMBOURSEMENT and not AVOIR", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
       credit: false,
     };
     const material = 0;
     const quantity = 3;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -127,10 +127,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -142,15 +142,15 @@ describe("Header Component", () => {
     expect(screen.queryByText(("AVOIR :"))).toBeNull();
   });
   test("display ECHANGE and not REMBOURSEMENT neither AVOIR", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 0,
       credit: false,
     };
     const material = 0;
     const quantity = 3;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -161,10 +161,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -177,14 +177,14 @@ describe("Header Component", () => {
   });
 
   test("renders the correct price for a single item", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
       credit: false,
     };
     const material = 0;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -197,10 +197,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,
@@ -212,14 +212,14 @@ describe("Header Component", () => {
   });
 
   test("renders the correct price for multiple items", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 3,
       credit: false,
     };
     const material = 0;
-    const productId = 1;
-    const productsByOrder = {
+    const productsId = 1;
+    const orderProducts = {
       _id: 1,
     }; 
     const isTagProductExisted = true;
@@ -232,10 +232,10 @@ describe("Header Component", () => {
         interaction={{ isActionsOpen: false }}
         material={material}
         quantity={quantity}
-        productId={productId}
-        productsByOrder={productsByOrder}
+        productsId={productsId}
+        orderProducts={orderProducts}
         isTagProductExisted={isTagProductExisted}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         productStore={initialState.product.data}
         toggleActions={toggleActions}
       />,

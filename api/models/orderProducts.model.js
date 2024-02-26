@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
-const productsByOrderSchema = new mongoose.Schema({
-  productId: {
+const orderProductsSchema = new mongoose.Schema({
+  productsId: {
     type: String,
     required: true,
   },
@@ -26,7 +26,7 @@ const productsByOrderSchema = new mongoose.Schema({
       message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
     },
   },
-  productsByOrderActions: {
+  orderProductsActions: {
     exchange: {
       type: Number,
       default: null,
@@ -60,15 +60,15 @@ const productsByOrderSchema = new mongoose.Schema({
     
   },
 });
-productsByOrderSchema.pre("validate", function (next) {
+orderProductsSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
-    handleValidationErrors(error, "ProductsByOrder");
+    handleValidationErrors(error, "OrderProducts");
   }
   next();
 });
-const ProductsByOrder = mongoose.model(
-  "ProductsByOrder",
-  productsByOrderSchema
+const OrderProducts = mongoose.model(
+  "OrderProducts",
+  orderProductsSchema
 );
-export default ProductsByOrder;
+export default OrderProducts;

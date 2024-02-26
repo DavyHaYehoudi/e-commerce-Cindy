@@ -3,17 +3,17 @@ import { screen, fireEvent } from "@testing-library/react";
 import ToggleButtonNote from "./ToggleButtonNote";
 import { render } from "../../../../../test/utils";
 import "@testing-library/jest-dom";
-import * as actions from "../../../../../constants/productsByOrderActions";
+import * as actions from "../../../../../constants/orderProductsActions";
 
 
-const productsByOrderInfo = {
+const orderProductsInfo = {
   note: "Some initial note",
 };
 
 render(
   <ToggleButtonNote
-    productsByOrderInfo={productsByOrderInfo}
-    productId="1mongoDb"
+    orderProductsInfo={orderProductsInfo}
+    productsId="1mongoDb"
     actions={actions}
   />
 );
@@ -42,8 +42,8 @@ describe("Integration Test - ToggleButtonNote", () => {
   test('displays textarea content when clicking on the "Note" toggle button', () => {
     render(
       <ToggleButtonNote
-        productsByOrderInfo={productsByOrderInfo}
-        productId="1mongoDb"
+        orderProductsInfo={orderProductsInfo}
+        productsId="1mongoDb"
         actions={actions}
       />
     );

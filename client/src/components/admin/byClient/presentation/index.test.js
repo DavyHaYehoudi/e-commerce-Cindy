@@ -49,7 +49,7 @@ test("handles close button click", () => {
     />
   );
 
-  const closeButton = screen.getByText("Fermer");
+  const closeButton = screen.getByText("Fermer la fiche de John Doe");
   expect(closeButton).toBeInTheDocument();
   fireEvent.click(closeButton);
 

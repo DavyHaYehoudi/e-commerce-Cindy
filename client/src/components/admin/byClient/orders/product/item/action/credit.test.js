@@ -13,7 +13,7 @@ describe("Credit Component", () => {
       data: [
         {
           _id: "idMongoDbGenerate1",
-          productsByOrderId: 1,
+          orderProductsId: 1,
           amount: 10,
           code: "456JHUIRJNBdfdf",
           dateExpire: "2023-04-05 09:55",
@@ -38,7 +38,7 @@ describe("Credit Component", () => {
   const store = mockStore(initialState);
 
   test("renders the component with basic data", () => {
-    const productsByOrderInfo = {
+    const orderProductsInfo = {
       exchange: 1,
       refund: 1,
       credit: true,
@@ -47,7 +47,7 @@ describe("Credit Component", () => {
     const isActionSelected = true;
     const inputCreditAmount = 10;
     const inputDateValue = "2023-04-05";
-    const productsByOrderActions = {
+    const orderProductsActions = {
       isAddCredit: true,
       creditContent: {
         amount: 10,
@@ -57,9 +57,9 @@ describe("Credit Component", () => {
     const placeholderValue = "Saisir le montant de l'avoir";
     const textCancel = "Annuler Avoir";
     const client = { _id: 1 };
-    const productId = 1;
+    const productsId = 1;
     const orderId = "orderId";
-    const productsByOrder = {
+    const orderProducts = {
       _id: 1,
     };
     const setProductActions = jest.fn();
@@ -73,17 +73,17 @@ describe("Credit Component", () => {
         action="CREDIT"
         actions={{ CREDIT: "CREDIT" }}
         label={label}
-        productsByOrderInfo={productsByOrderInfo}
+        orderProductsInfo={orderProductsInfo}
         isActionSelected={isActionSelected}
         inputCreditAmount={inputCreditAmount}
         inputDateValue={inputDateValue}
-        productsByOrderActions={productsByOrderActions}
+        orderProductsActions={orderProductsActions}
         placeholderValue={placeholderValue}
         textCancel={textCancel}
         client={client}
-        productId={productId}
+        productsId={productsId}
         orderId={orderId}
-        productsByOrder={productsByOrder}
+        orderProducts={orderProducts}
         setProductActions={setProductActions}
         setEntryError={setEntryError}
         setConfirmation={setConfirmation}

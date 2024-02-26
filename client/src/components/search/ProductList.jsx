@@ -7,7 +7,7 @@ const ProductList = ({ item }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${item.image})`,
   };
-  const productLink = `/productsByOrder/${item._id}`;
+  const productLink = `/orderProducts/${item._id}`;
   return (
     <div className="collectionItem-Wrapper">
       <Link to={productLink} state={{ product: { item } }}>

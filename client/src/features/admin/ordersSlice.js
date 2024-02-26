@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../helpers/services/customFetch";
 import { handleFetchError } from "../../helpers/services/handleFetchError";
-import { fetchProductsByOrder } from "./productsByOrderSlice";
+import { fetchProductsByOrder } from "./orderProductsSlice";
 import { fetchCredits } from "./creditSlice";
 
 const fetchOrders = createAsyncThunk(
@@ -9,16 +9,16 @@ const fetchOrders = createAsyncThunk(
   async ({ orderIds }, { dispatch }) => {
     try {
       const orders = await customFetch(`orders?orderIds=${orderIds}`);
-      const productsByOrderIds = orders
-        .map((order) => order.productsByOrder)
+      const orderProductsIds = orders
+        .map((order) => order.orderProducts)
         .flat();
       dispatch(
         fetchProductsByOrder({
-          productsByOrderIds: JSON.stringify(productsByOrderIds),
+          orderProductsIds: JSON.stringify(orderProductsIds),
         })
       );
       dispatch(
-        fetchCredits({ productsByOrderIds: JSON.stringify(productsByOrderIds) })
+        fetchCredits({ orderProductsIds: JSON.stringify(orderProductsIds) })
       );
       return orders;
     } catch (error) {

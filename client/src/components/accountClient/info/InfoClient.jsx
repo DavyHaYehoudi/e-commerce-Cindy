@@ -8,6 +8,7 @@ const InfoClient = ({
   isEditing,
   handleChangeProfilEdit,
   clientId,
+  setIsModified,
 }) => {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const InfoClient = ({
       setIsValidEmail(emailRegex.test(value));
     }
     dispatch(updateClientField({ clientId, field: name, value }));
+    setIsModified(true);
   };
 
   return (

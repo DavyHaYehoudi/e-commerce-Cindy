@@ -22,22 +22,22 @@ export const clientsMock = [
     ],
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -55,22 +55,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -88,22 +88,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -121,22 +121,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -154,22 +154,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -187,22 +187,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -220,22 +220,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -253,22 +253,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -286,22 +286,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -319,22 +319,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f37",
+        productsId:"65b3e264624d950f87b81f37",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3b",
+        productsId:"65b3e264624d950f87b81f3b",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f38",
+        productsId:"65b3e264624d950f87b81f38",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 3,
         quantity: 1,
       },
@@ -352,22 +352,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f46",
+        productsId:"65b3e264624d950f87b81f46",
         material: 1,
       },
       {
-        productId:"65b3e264624d950f87b81f40",
+        productsId:"65b3e264624d950f87b81f40",
         material: 3,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f3d",
+        productsId:"65b3e264624d950f87b81f3d",
         material: 2,
         quantity: 3,
       },
       {
-        productId:"65b3e264624d950f87b81f42",
+        productsId:"65b3e264624d950f87b81f42",
         material: 0,
         quantity: 1,
       },
@@ -385,22 +385,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f44",
+        productsId:"65b3e264624d950f87b81f44",
         material: 0,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 2,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f45",
+        productsId:"65b3e264624d950f87b81f45",
         material: 3,
         quantity: 1,
       },
       {
-        productId:"65b3e264624d950f87b81f4a",
+        productsId:"65b3e264624d950f87b81f4a",
         material: 1,
         quantity: 3,
       },
@@ -418,22 +418,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f42",
+        productsId:"65b3e264624d950f87b81f42",
         material: 1,
       },
       {
-        productId:"65b3e264624d950f87b81f45",
+        productsId:"65b3e264624d950f87b81f45",
         material: 3,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f44",
+        productsId:"65b3e264624d950f87b81f44",
         material: 0,
         quantity: 1,
       },
       {
-        productId:"65b3e264624d950f87b81f48",
+        productsId:"65b3e264624d950f87b81f48",
         material: 2,
         quantity: 2,
       },
@@ -451,22 +451,22 @@ export const clientsMock = [
     notesAdmin: null,
     wishlist: [
       {
-        productId:"65b3e264624d950f87b81f45",
+        productsId:"65b3e264624d950f87b81f45",
         material: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f49",
+        productsId:"65b3e264624d950f87b81f49",
         material: 0,
       },
     ],
     cart: [
       {
-        productId:"65b3e264624d950f87b81f42",
+        productsId:"65b3e264624d950f87b81f42",
         material: 1,
         quantity: 2,
       },
       {
-        productId:"65b3e264624d950f87b81f3c",
+        productsId:"65b3e264624d950f87b81f3c",
         material: 3,
         quantity: 1,
       },
