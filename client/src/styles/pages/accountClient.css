@@ -1,18 +1,12 @@
 .user-profile-container {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 20px;
 }
-
-.user-info-account,
-.order-history {
-  margin-right: 30px;
-}
-
-.order-history {
-  flex: 1.5;
+.user-profile-container .darkMode {
+  text-align:end;
 }
 
 .tabs-history {
@@ -55,29 +49,6 @@
   color: var(--text-golden);
 }
 
-.user-info-account {
-  flex: 0.5;
-}
-
-.user-info-account button {
-  width: 100%;
-  border: 1px solid var(--border-color);
-  padding: 8px;
-}
-
-.user-info-account input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-.user-info-account input:focus {
-  outline: none;
-  border: 1px solid black;
-  box-shadow: 0 0 3px black;
-}
-
 .order-item-wrapper-user-account {
   border: 1px solid #ccc;
   padding: 15px;
@@ -99,23 +70,54 @@
   border: 1px solid #ccc;
   padding: 15px;
   margin: 20px 0;
+  gap: 20px;
 }
 
 .order-item-user-account p {
   margin-bottom: 10px;
+}
+.order-item-user-account h3 {
+  max-width: 200px;
 }
 
 .delivered-orders,
 .other-orders {
   margin-bottom: 30px;
 }
+.user-info-account{
+  flex: 0.5;
+}
+.user-info-account button {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  padding: 8px;
+}
 
+.user-info-account input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.user-info-account input:focus {
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 0 0 3px black;
+}
 .user-info-account p {
   margin-bottom: 15px;
 }
 
 .user-info-account b {
   text-transform: uppercase;
+}
+.user-info-account .btn {
+  color: var(--text-color);
+  transition: transform 0.3s;
+}
+.user-info-account .btn:hover {
+  transform: translateY(-2px);
 }
 .other-orders .trackingNumber{
   text-align: center;
@@ -130,7 +132,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: var(--background);
   padding: 20px;
   border: 2px solid var(--info);
   box-shadow: 0 0 3px var(--info);

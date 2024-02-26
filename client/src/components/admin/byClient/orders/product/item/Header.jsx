@@ -45,9 +45,9 @@ const Header = ({
       </p>
       <div className="product-content-details">
         <div>
-          <p>
+          <h3>
             {name} {getMaterialProperty(material)?.name}
-          </p>
+          </h3>
           <p className="pricing inPricing">
             {quantity} article
             {quantity > 1 ? "s" : ""} -{" "}

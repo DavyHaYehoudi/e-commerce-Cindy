@@ -27,6 +27,11 @@
     padding: 10px;
     border: 1px solid #ccc;
     background-color: var(--client-item);
+    cursor: pointer;
+    transition: transform 0.3s ease; 
+}
+.client-item:hover {
+    transform: translateY(-3px);
 }
 
 .client-header {
@@ -38,13 +43,7 @@
 .client-header-clic {
     position: relative;
     text-align: center;
-    display: inline-block;
     transition: transform 0.3s ease; 
-}
-
-.client-header-clic:hover {
-    transform: translateY(-3px);
-    cursor: pointer;
 }
 
 .admin-badge {
@@ -473,7 +472,7 @@
     background-color: var(--danger);
 }
 
-#orderProducts-container .product-tag {
+.product-tag {
     color: var(--text-color-white);
     background-color: var(--secondary);
     border: none;
