@@ -17,19 +17,19 @@ const Item = ({ client, handleClientClick, clientDetails }) => {
       data-testid={`client-row-${client._id}`}
     >
       <div className="client-header">
-        <p
+        <span
           className="client-header-clic"
           onClick={() => handleClientClick(client._id)}
           data-testid={`client-name-${client._id}`}
         >
           {client.firstName + " " + client.lastName}
+        </span>
           {isToProcessOrNotNotified && (
             <span
               className="notification-bubble-list blink"
               data-testid="notification-bubble"
             ></span>
           )}
-        </p>
       </div>
       {clientDetails[client._id] && (
         <Infos

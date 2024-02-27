@@ -38,10 +38,10 @@
     background-color: var(--client-header);
     border-radius: 5px;
     transition: background-color 0.3s;
+    display: flex;
 }
 
 .client-header-clic {
-    position: relative;
     text-align: center;
     transition: transform 0.3s ease; 
 }
@@ -56,9 +56,6 @@
 }
 
 .notification-bubble-list {
-    position: absolute;
-    top: 0;
-    right: -15px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
