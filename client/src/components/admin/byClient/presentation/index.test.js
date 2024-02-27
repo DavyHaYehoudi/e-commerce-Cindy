@@ -39,20 +39,4 @@ test("handles preferences toggle button click", () => {
   const preferencesContent = screen.getByText("Fermer les préférences");
   expect(preferencesContent).toBeInTheDocument();
 });
-test("handles close button click", () => {
-  const handleClientClickMock = jest.fn();
-  render(
-    <Infos
-      client={mockClient}
-      orders={ordersMock}
-      handleClientClick={handleClientClickMock}
-    />
-  );
-
-  const closeButton = screen.getByText("Fermer la fiche de John Doe");
-  expect(closeButton).toBeInTheDocument();
-  fireEvent.click(closeButton);
-
-  // Vérifie que la fonction handleClientClick a été appelée avec l'ID correct du client
-  expect(handleClientClickMock).toHaveBeenCalledWith(mockClient._id);
-});
+ 

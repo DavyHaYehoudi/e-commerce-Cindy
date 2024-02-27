@@ -198,7 +198,7 @@ paths:
             permission.
       security:
         - api_key: []
-  /clients/addNote/{clientId}:
+  /clients/{clientId}/addNote:
     patch:
       tags:
         - client
@@ -226,7 +226,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /clients/removeNote/{clientId}/{noteId}:
+  /clients/{clientId}/removeNote/{noteId}:
     patch:
       tags:
         - client
@@ -370,7 +370,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /orders/trackingnumber_client/{orderId}:
+  /orders/{orderId}/trackingnumber_client:
     post:
       tags:
         - order
@@ -400,7 +400,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /orders/trackingnumber_client/{orderId}/{trackingNumberId} :
+  /orders/{orderId}/trackingnumber_client/{trackingNumberId} :
     delete:
       tags:
         - order
@@ -487,7 +487,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /orderProducts/note/{orderProductsId}:
+  /orderProducts/{orderProductsId}/note:
     patch:
       tags:
         - orderProducts

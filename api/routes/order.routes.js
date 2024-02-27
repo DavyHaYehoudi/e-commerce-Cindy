@@ -5,11 +5,11 @@ import sendToClientController from "../controllers/sendToClient/index.js";
 
 router.get("/", orderController.getAllOrders);
 router.post(
-  "/trackingnumber_client/:orderId",
+  "/:orderId/trackingnumber_client",
   orderController.createTrackingNumberClient
 );
 router.delete(
-  "/trackingnumber_client/:orderId",
+  "/:orderId/trackingnumber_client/:trackingNumberId",
   orderController.deleteTrackingNumberClient
 );
 router.patch("/:orderId", sendToClientController.updateOrder);

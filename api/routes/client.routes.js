@@ -5,7 +5,7 @@ import clientController from "../controllers/client.controller.js";
 router.get("/", clientController.getAllClients);
 router.get("/:clientId", clientController.getCustomerInfos);
 router.patch("/:clientId", clientController.updateClient);
-router.patch("/addNote/:clientId", clientController.addNoteAdmin);
-router.patch("/removeNote/:clientId/:noteId", clientController.removeNoteAdmin);
+router.patch("/:clientId/addNote", clientController.addNoteAdmin);
+router.patch("/:clientId/removeNote/:noteId", clientController.removeNoteAdmin);
 
 export default router;

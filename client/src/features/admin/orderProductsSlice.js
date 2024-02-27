@@ -20,7 +20,7 @@ const orderProductsNote = createAsyncThunk(
   "orderProducts/note",
   async ({ orderProductsId, content }) => {
     try {
-      await customFetch(`orderProducts/note/${orderProductsId}`, {
+      await customFetch(`orderProducts/${orderProductsId}/note`, {
         method: "PATCH",
         body: JSON.stringify({ content }),
       });

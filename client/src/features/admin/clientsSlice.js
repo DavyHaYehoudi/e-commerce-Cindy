@@ -24,7 +24,7 @@ const addNoteAdmin = createAsyncThunk(
   "clients/addNoteAdmin",
   async ({ clientId, content }) => {
     try {
-      const response = await customFetch(`clients/addNote/${clientId}`, {
+      const response = await customFetch(`clients/${clientId}/addNote`, {
         method: "PATCH",
         body: JSON.stringify({ content }),
       });
@@ -40,7 +40,7 @@ const removeNoteAdmin = createAsyncThunk(
   "clients/removeNoteAdmin",
   async ({ clientId, noteId }) => {
     try {
-      await customFetch(`clients/removeNote/${clientId}/${noteId}`, {
+      await customFetch(`clients/${clientId}/removeNote/${noteId}`, {
         method: "PATCH",
       });
       return { clientId, noteId };

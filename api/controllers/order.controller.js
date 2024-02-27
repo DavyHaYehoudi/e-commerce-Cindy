@@ -45,8 +45,7 @@ const orderController = {
   },
 
   deleteTrackingNumberClient: async (req, res) => {
-    const { orderId } = req.params;
-    const { trackingNumberId } = req.query;
+    const { orderId,trackingNumberId } = req.params;
 
     try {
       const existingOrder = await Order.findById(orderId);
