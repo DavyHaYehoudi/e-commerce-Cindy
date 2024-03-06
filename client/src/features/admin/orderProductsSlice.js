@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as actions from "../../constants/orderProductsActions";
-import { customFetch } from "../../helpers/services/customFetch";
-import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { customFetch } from "../../services/customFetch";
+import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
 
 const fetchProductsByOrder = createAsyncThunk(

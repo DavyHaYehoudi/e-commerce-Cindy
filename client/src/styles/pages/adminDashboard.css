@@ -9,6 +9,17 @@
     justify-content: flex-end;
     margin: 20px;
 }
+.admin-dashboard-menu{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 100px;
+}
+.admin-dashboard-menu button{
+   margin: 20px;
+   color: var(--text-whitesmoke);
+   background-color: var(--secondary);
+}
 
 .client-list {
     padding: 20px;
@@ -204,10 +215,6 @@
 
 .admin-order-item p {
     margin: 5px 0;
-}
-
-.admin-order-item h3 {
-    border-top: 1px solid var(--border-color)
 }
 
 /* ********************* END PREFERENCES CLIENT  ********************* */

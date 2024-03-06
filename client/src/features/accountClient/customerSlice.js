@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../helpers/services/customFetch";
-import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { customFetch } from "../../services/customFetch";
+import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
 
 const fetchCustomer = createAsyncThunk(
