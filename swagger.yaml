@@ -31,6 +31,8 @@ tags:
     description: Product description
   - name: credit
     description: Credits customers
+  - name: material
+    description: Material products
 paths:
   /clients{itemsPerPage} :
     get:
@@ -732,6 +734,66 @@ paths:
             permission.
       security:
         - api_key: []
+  /material:
+    get:
+      tags:
+        - material
+      summary: Returns all materials
+      description: Returns the list of all materials
+      responses:
+        '200':
+          description: successful getting all materials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Material'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - material
+      summary: Place a material for a product
+      description: Place a new material in the list
+      operationId: placeMaterialById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreate'
+      responses:
+        '201':
+          description: successful posting material
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /material/{materialId}:
+    delete:
+      tags:
+        - material
+      summary: Delete material by ID
+      description: ''
+      operationId: deleteMaterial
+      parameters:
+        - name: materialId
+          in: path
+          description: ID of the material that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted material
+        '400':
+          description: Invalid materialId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
 components:
   schemas:
     Client:
@@ -1282,6 +1344,35 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Credit'
+    Material:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 2884d22b45a0fb3fd4a75p2
+        id:
+          type: integer
+          format: int16
+          example: 2
+        name:
+          type: string
+          example: Or blanc
+        value:
+          type: string
+          example: "#FFFFFF"
+    MaterialCreate:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: int16
+          example: 3
+        name:
+          type: string
+          example: Or rose
+        value:
+          type: string
+          example: "#F0F0F0"
   securitySchemes:
     petstore_auth:
       type: oauth2

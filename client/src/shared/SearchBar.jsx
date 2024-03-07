@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchTerm } from '../redux/actions';
+// import { setSearchTerm } from '../redux/actions';
 
 const SearchBar = () => {
   const searchTerm = useSelector((state) => state.searchTerm);
   const dispatch = useDispatch();
 
   const handleSearchChange = (e) => {
-    dispatch(setSearchTerm(e.target.value));
+    // dispatch(setSearchTerm(e.target.value));
   };
 
   return (
