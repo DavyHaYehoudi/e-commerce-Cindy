@@ -7,20 +7,126 @@
 .admin-dashboard .darkMode {
     display: flex;
     justify-content: flex-end;
-    margin: 20px;
 }
-.admin-dashboard-menu{
+
+.admin-dashboard-menu {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 100px;
-}
-.admin-dashboard-menu button{
-   margin: 20px;
-   color: var(--text-whitesmoke);
-   background-color: var(--secondary);
+    margin-bottom: 200px;
 }
 
+.admin-dashboard-menu button {
+    margin: 20px;
+    color: var(--text-whitesmoke);
+    background-color: var(--secondary);
+}
+
+.admin-dashboard-menu button span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ********************* START BLOC FILTER PANEL CLIENT ********************* */
+.clientsFilterPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.itemsPerPage-select {
+    border: 2px solid var(--dark);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.itemsPerPage-select:focus {
+    outline: var(--dark);
+}
+
+.searchBar-client-filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+}
+
+.searchBar-client-filter {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.searchBar-client-filter:focus {
+    outline: var(--dark);
+}
+.searchBar-client-filter-icon{
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+.filter-block {
+    position: relative;
+}
+
+.filterBlock-content {
+    position: absolute;
+    top: 100%;
+    left: -200px;
+    z-index: 1;
+    width: 300px;
+    border: 1px solid var(--secondary);
+    background-color: var(--background);
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.filter-block-close {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease
+}
+
+.filter-block-close:hover {
+    transform: rotate(180deg) translateY(25%);
+}
+
+.filterBlock-content input {
+    margin: 5px;
+}
+
+.filter-icon {
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+.filter-icon span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filterBlock-content-subBlock {
+    margin-bottom: 25px;
+}
+
+.filterBlock-content-action {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filterBlock-content-action .reset-btn {
+    background-color: var(--danger);
+}
+
+.filterBlock-content-action .validate-btn {
+    background-color: var(--success);
+}
+
+/* ********************* END BLOC FILTER PANEL CLIENT ********************* */
 .client-list {
     padding: 20px;
     background-color: var(--client-list);
@@ -39,8 +145,9 @@
     border: 1px solid #ccc;
     background-color: var(--client-item);
     cursor: pointer;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
+
 .client-item:hover {
     transform: translateY(-3px);
 }
@@ -54,7 +161,7 @@
 
 .client-header-clic {
     text-align: center;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
 
 .admin-badge {

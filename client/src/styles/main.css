@@ -62,6 +62,7 @@ img {
 
 .underline {
     text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .dotted {
@@ -136,7 +137,7 @@ img {
 /* ********************* END CONFIRMATION POPUP ********************* */
 /* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 .account-btn {
-    color: var(--text-color-white);
+    color: var( --text-whitesmoke);
     border: none;
     border-radius: 5px;
     padding: 8px;
