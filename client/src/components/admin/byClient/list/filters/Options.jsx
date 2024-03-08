@@ -2,26 +2,26 @@ import React from "react";
 
 const Options = ({ handleCheckboxChange, checkedItems }) => {
   const options = [
-    "Avoir",
-    "Remboursement",
-    "Echange",
-    "Numéro de suivi",
-    "Note",
+    { name: "credit", label: "Avoir" },
+    { name: "refund", label: "Remboursement" },
+    { name: "exchange", label: "Echange" },
+    { name: "trackingNumber", label: "Numéro de suivi" },
+    { name: "note", label: "Note" },
   ];
 
   return (
     <div className="filterBlock-content-subBlock">
       <p className="underline">CONTIENT :</p>
-      {options.map((option) => (
-        <div key={option}>
+      {options.map(({ name, label }) => (
+        <div key={name}>
           <input
             type="checkbox"
-            id={option}
-            name={option}
+            id={name}
+            name={name}
             onChange={handleCheckboxChange}
-            checked={checkedItems[option] || false}
+            checked={checkedItems[name] || false}
           />
-          <label htmlFor={option}>{option}</label>
+          <label htmlFor={name}>{label}</label>
         </div>
       ))}
     </div>

@@ -5,8 +5,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import Steps from "./Steps";
 import Dates from "./Dates";
 import Options from "./Options";
+import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
+import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const Block = () => {
+const Block = ({itemsPerPage}) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [preciseDate, setPreciseDate] = useState("");
   const [rangeDate, setRangeDate] = useState({ start: "", end: "" });
@@ -29,8 +31,14 @@ const Block = () => {
     setRangeDate({ ...rangeDate, [limit]: event.target.value });
   };
   const handleValidation = () => {
+    const {steps,credit,refund,exchange,trackingNumber,note} = formattedDataClient(checkedItems)
+    console.log('steps:', steps)
+ 
+    console.log('steps,credit,refund,exchange,trackingNumber,note:', steps,credit,refund,exchange,trackingNumber,note)
+    dispatch(fetchClients({ itemsPerPage, steps,credit,refund,exchange,trackingNumber,note }));
+    // console.log('formattedData:', formattedData) 
     console.log(
-      "Filtres validés :",
+      "checkedItems :",
       checkedItems,
       "Date précise sélectionnée :",
       preciseDate,

@@ -6,16 +6,16 @@ const Steps = ({ handleCheckboxChange, checkedItems }) => {
   return (
     <div className="filterBlock-content-subBlock">
       <p className="underline">ETAPES :</p>
-      {steps.map(({ name }) => (
-        <div key={name}>
+      {steps.map(({ id,name }) => (
+        <div key={id}>
           <input
             type="checkbox"
-            id={name}
-            name={name}
+            id={id}
+            name={id}
             onChange={handleCheckboxChange}
-            checked={checkedItems[name] || false}
+            checked={checkedItems[id] || false}
           />
-          <label htmlFor={name}>{name}</label>
+          <label htmlFor={id}>{name}</label>
         </div>
       ))}
     </div>

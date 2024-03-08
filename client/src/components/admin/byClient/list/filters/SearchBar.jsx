@@ -1,14 +1,18 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FaSearch } from "react-icons/fa";
-// import { setSearchTerm } from '../redux/actions';
+import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const SearchBar = () => {
-  //   const searchTerm = useSelector((state) => state.searchTerm);
+const SearchBar = ({ itemsPerPage }) => {
   const dispatch = useDispatch();
 
   const handleSearchChange = (e) => {
-    // dispatch(setSearchTerm(e.target.value));
+    const name = e.target.value.trim();
+    if (name.length > 2) {
+      dispatch(fetchClients({ itemsPerPage, name }));
+    } else {
+      dispatch(fetchClients({ itemsPerPage }));
+    }
   };
 
   return (
@@ -17,13 +21,14 @@ const SearchBar = () => {
         <input
           type="search"
           id="searchInput"
-          // value={searchTerm}
-          placeholder="Entrer un nom d'au moins 3 lettres"
+          placeholder="Nom/prénom (au moins 3 lettres)"
           onChange={handleSearchChange}
           className="searchBar-client-filter"
         />
-        <span className="searchBar-client-filter-icon">  <FaSearch /></span>
-     
+        <span className="searchBar-client-filter-icon">
+          {" "}
+          <FaSearch />
+        </span>
       </div>
     </div>
   );

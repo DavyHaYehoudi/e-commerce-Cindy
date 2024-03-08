@@ -1,21 +1,140 @@
 import Client from "../models/client.model.js";
 import Credit from "../models/credit.model.js";
 import Order from "../models/order.model.js";
+import OrderProducts from "../models/orderProducts.model.js";
 
 const clientController = {
   getAllClients: async (req, res) => {
     try {
-      let query = Client.find();
-      const itemsPerPage = parseInt(req.query.itemsPerPage);
+      let clients = new Set();
+      let totalClientsCount;
+      console.log("req.query :", req.query);
+      const {
+        itemsPerPage,
+        name,
+        credit,
+        exchange,
+        refund,
+        note,
+        steps,
+        trackingNumber,
+      } = req.query;
 
-      if (itemsPerPage !== -1) {
-        query = query.limit(itemsPerPage);
+      // Vérifier si itemsPerPage est la seule query
+      if (
+        name === "" &&
+        credit === "" &&
+        exchange === "" &&
+        refund === "" &&
+        note === "" &&
+        steps === "" &&
+        trackingNumber === ""
+      ) {
+        let query = Client.find();
+
+        if (parseInt(itemsPerPage) !== -1) {
+          query = query.limit(parseInt(itemsPerPage));
+        }
+
+        query = query.sort({ _id: 1 });
+        const clientsResult = await query.exec();
+        clientsResult.forEach((client) => clients.add(client));
+        totalClientsCount = await Client.countDocuments();
+        res
+          .status(200)
+          .json({ clients: Array.from(clients), totalClientsCount });
+        return;
       }
-      query = query.sort({ _id: 1 });
-      const clients = await query.exec();
-      const totalClientsCount = await Client.countDocuments();
 
-      res.status(200).json({ clients, totalClientsCount });
+      // Construire les filtres pour chaque collection
+      const queryInClient = {};
+      const queryInOrder = {};
+      const queryInOrderProducts = {};
+
+      // Ajouter les critères à la requête en fonction de leur existence
+      if (name && name.trim() !== "") {
+        queryInClient.$or = [
+          { firstName: { $regex: new RegExp(name, "i") } },
+          { lastName: { $regex: new RegExp(name, "i") } },
+        ];
+      }
+      if (note && note.trim() !== "") {
+        queryInClient.notesAdmin = { $type: "array", $not: { $size: 0 } };
+      }
+
+      if (trackingNumber && trackingNumber.trim() !== "") {
+        console.log("entree dans trackingNumber");
+        queryInOrder.trackingNumber = {
+          $type: "array",
+          $not: { $size: 0 },
+        };
+      }
+      if (steps && steps.trim() !== "") {
+        const steps = req.query.steps.split(",").map(Number);
+        queryInOrder.step = { $in: steps };
+      }
+
+      if (
+        credit.trim() !== "" &&
+        exchange.trim() !== "" &&
+        refund.trim() !== ""
+      ) {
+        console.log("entree dans le trio");
+        queryInOrderProducts.orderProductsActions = {
+          credit: { $ne: null },
+          exchange: { $ne: null },
+          refund: { $ne: null },
+        };
+      }
+
+      // Effectuer les recherches dans chaque collection
+      const clientsInClient = await Client.find(queryInClient);
+
+      // Ajouter les clients de la collection Client à l'ensemble
+      clientsInClient.forEach((client) => clients.add(client));
+
+      // Recherche dans la collection Order seulement si des filtres sont définis
+      if (Object.keys(queryInOrder).length !== 0) {
+        const ordersInOrder = await Order.find(queryInOrder);
+        const orderIds = [];
+
+        for (const order of ordersInOrder) {
+          orderIds.push(order._id);
+        }
+        console.log('clientsWithOrders:', clientsWithOrders)
+        clientsWithOrders.forEach((client) => clients.add(client));
+      }
+
+      // Recherche dans la collection OrderProducts seulement si des filtres sont définis
+      if (Object.keys(queryInOrderProducts).length !== 0) {
+        const ordersProductsInOrderProducts = await OrderProducts.find(
+          queryInOrderProducts
+        );
+        for (const orderProducts of ordersProductsInOrderProducts) {
+          const order = await Order.findOne({
+            orderProducts: orderProducts._id.toString(),
+          });
+          if (order) {
+            const client = await Client.findOne({
+              orders: order._id.toString(),
+            });
+            if (client) {
+              clients.add(client); 
+            }
+          }
+        }
+      }
+
+
+      totalClientsCount = clients.size;
+
+      let clientsArray = Array.from(clients);
+
+      if (parseInt(itemsPerPage) !== -1) {
+        clientsArray = clientsArray.slice(0, parseInt(itemsPerPage));
+      }
+      // console.log('clientsArray2:', clientsArray)
+      res.status(200).json({ clients: clientsArray, totalClientsCount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -40,19 +159,17 @@ const clientController = {
       }
 
       const ordersWithoutNote = client.orders.map((order) => {
-        const orderProductsWithoutNote = order.orderProducts.map(
-          (product) => {
-            const { orderProductsActions, ...rest } = product.toJSON();
-            const orderProductsActionsWithoutNote = {
-              ...orderProductsActions,
-              note: undefined,
-            };
-            return {
-              ...rest,
-              orderProductsActions: orderProductsActionsWithoutNote,
-            };
-          }
-        );
+        const orderProductsWithoutNote = order.orderProducts.map((product) => {
+          const { orderProductsActions, ...rest } = product.toJSON();
+          const orderProductsActionsWithoutNote = {
+            ...orderProductsActions,
+            note: undefined,
+          };
+          return {
+            ...rest,
+            orderProductsActions: orderProductsActionsWithoutNote,
+          };
+        });
         return {
           ...order.toJSON(),
           orderProducts: orderProductsWithoutNote,

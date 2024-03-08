@@ -12,7 +12,7 @@ const ClientFilterPanel = ({
       <div>
         <label htmlFor="itemsPerPage">
           {" "}
-          {totalClientsCount} clients au total{" "}
+          {totalClientsCount} client{totalClientsCount > 1 ? "s" : ""} au total{" "}
         </label>
         <select
           className="itemsPerPage-select"
@@ -29,8 +29,8 @@ const ClientFilterPanel = ({
           <option value="TOUS">TOUS</option>
         </select>
       </div>
-      <SearchBar />
-      <Block />
+      <SearchBar itemsPerPage={itemsPerPage} />
+      <Block itemsPerPage={itemsPerPage} />
     </div>
   );
 };

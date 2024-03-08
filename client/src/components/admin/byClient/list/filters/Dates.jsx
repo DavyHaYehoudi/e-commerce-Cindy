@@ -37,6 +37,7 @@ const Dates = ({
             type="date"
             onChange={handlePreciseDateChange}
             value={preciseDate || ""}
+            name="datePrecise"
           />
         )}
       </div>

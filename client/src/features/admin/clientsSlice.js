@@ -5,11 +5,35 @@ import { fetchOrders } from "./ordersSlice";
 
 const fetchClients = createAsyncThunk(
   "clients/fetchClients",
-  async ({ itemsPerPage }, { dispatch }) => {
+  async (
+    {
+      itemsPerPage,
+      name = "",
+      steps = "",
+      credit = "",
+      refund = "",
+      exchange = "",
+      trackingNumber = "",
+      note = "",
+    },
+    { dispatch }
+  ) => {
     try {
+      const queryString = new URLSearchParams({
+        itemsPerPage,
+        name,
+        steps,
+        credit,
+        refund,
+        exchange,
+        trackingNumber,
+        note,
+      }).toString();
+
       const { clients, totalClientsCount } = await customFetch(
-        `clients?itemsPerPage=${itemsPerPage}`
+        `clients?${queryString}`
       );
+
       const orderIds = clients.map((client) => client.orders).flat();
       dispatch(fetchOrders({ orderIds: JSON.stringify(orderIds) }));
 
