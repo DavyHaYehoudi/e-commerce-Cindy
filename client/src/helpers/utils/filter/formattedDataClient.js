@@ -12,8 +12,13 @@ export const formattedDataClient = (inputObject) => {
         formattedData.steps.push(key);
       }
     } else {
-      // Ajout de la clé directement
-      formattedData[key] = true;
+      // Ajout de la clé directement si sa valeur est true
+      if (inputObject[key]) {
+        formattedData[key] = true;
+      } else {
+        // Suppression de la clé si sa valeur est false
+        delete formattedData[key];
+      }
     }
   }
 

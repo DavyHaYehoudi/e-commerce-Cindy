@@ -8,7 +8,7 @@ import Options from "./Options";
 import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const Block = ({itemsPerPage}) => {
+const Block = ({ itemsPerPage }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [preciseDate, setPreciseDate] = useState("");
   const [rangeDate, setRangeDate] = useState({ start: "", end: "" });
@@ -31,20 +31,29 @@ const Block = ({itemsPerPage}) => {
     setRangeDate({ ...rangeDate, [limit]: event.target.value });
   };
   const handleValidation = () => {
-    const {steps,credit,refund,exchange,trackingNumber,note} = formattedDataClient(checkedItems)
-    console.log('steps:', steps)
- 
-    console.log('steps,credit,refund,exchange,trackingNumber,note:', steps,credit,refund,exchange,trackingNumber,note)
-    dispatch(fetchClients({ itemsPerPage, steps,credit,refund,exchange,trackingNumber,note }));
-    // console.log('formattedData:', formattedData) 
-    console.log(
-      "checkedItems :",
-      checkedItems,
-      "Date précise sélectionnée :",
-      preciseDate,
-      "Range de date :",
-      rangeDate
+    const { steps, credit, refund, exchange, trackingNumber, note } =
+      formattedDataClient(checkedItems);
+
+    dispatch(
+      fetchClients({
+        itemsPerPage,
+        steps,
+        credit,
+        refund,
+        exchange,
+        trackingNumber,
+        note,
+      })
     );
+    // console.log(
+    //   "checkedItems :",
+    //   checkedItems,
+    //   "Date précise sélectionnée :",
+    //   preciseDate,
+    //   "Range de date :",
+    //   rangeDate
+    // );
+    console.log("formattedDataClient(checkedItems) :",formattedDataClient(checkedItems));
   };
   const handleReset = () => {
     setCheckedItems({});
