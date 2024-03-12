@@ -9,7 +9,7 @@ const SearchBar = ({ itemsPerPage }) => {
   const handleSearchChange = (e) => {
     const name = e.target.value.trim();
     if (name.length > 2) {
-      dispatch(fetchClients({ itemsPerPage, name }));
+      dispatch(fetchClients({ itemsPerPage: "", name }));
     } else {
       dispatch(fetchClients({ itemsPerPage }));
     }

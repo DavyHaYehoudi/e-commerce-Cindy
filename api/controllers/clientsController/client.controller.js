@@ -1,5 +1,5 @@
-import Client from "../models/client.model.js";
-import Credit from "../models/credit.model.js";
+import Client from "../../models/client.model.js";
+import Credit from "../../models/credit.model.js";
 
 const clientController = {
 

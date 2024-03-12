@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BsFilterSquareFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import Steps from "./Steps";
@@ -8,7 +8,7 @@ import Options from "./Options";
 import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const Block = ({ itemsPerPage }) => {
+const Block = () => {
   const [checkedItems, setCheckedItems] = useState({});
   const [preciseDate, setPreciseDate] = useState("");
   const [rangeDate, setRangeDate] = useState({ start: "", end: "" });
@@ -31,29 +31,38 @@ const Block = ({ itemsPerPage }) => {
     setRangeDate({ ...rangeDate, [limit]: event.target.value });
   };
   const handleValidation = () => {
-    const { steps, credit, refund, exchange, trackingNumber, note } =
-      formattedDataClient(checkedItems);
+    const {
+      steps,
+      credit,
+      refund,
+      exchange,
+      trackingNumber,
+      note,
+    } = formattedDataClient(checkedItems);
 
     dispatch(
       fetchClients({
-        itemsPerPage,
+        itemsPerPage:-1,
         steps,
         credit,
         refund,
         exchange,
         trackingNumber,
         note,
+        preciseDate,
+        rangeDateStart: rangeDate.start,
+        rangeDateEnd: rangeDate.end,
       })
     );
-    // console.log(
-    //   "checkedItems :",
-    //   checkedItems,
-    //   "Date précise sélectionnée :",
-    //   preciseDate,
-    //   "Range de date :",
-    //   rangeDate
-    // );
-    console.log("formattedDataClient(checkedItems) :",formattedDataClient(checkedItems));
+    console.log(
+      "checkedItems :",
+      checkedItems,
+      "Date précise sélectionnée :",
+      preciseDate,
+      "Range de date :",
+      rangeDate
+    );
+    // console.log("formattedDataClient(checkedItems) :",formattedDataClient(checkedItems));
   };
   const handleReset = () => {
     setCheckedItems({});

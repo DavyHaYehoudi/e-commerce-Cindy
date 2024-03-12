@@ -30,7 +30,7 @@ const ClientFilterPanel = ({
         </select>
       </div>
       <SearchBar itemsPerPage={itemsPerPage} />
-      <Block itemsPerPage={itemsPerPage} />
+      <Block />
     </div>
   );
 };

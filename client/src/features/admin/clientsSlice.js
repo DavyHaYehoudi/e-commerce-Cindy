@@ -15,6 +15,9 @@ const fetchClients = createAsyncThunk(
       exchange = "",
       trackingNumber = "",
       note = "",
+      preciseDate = "",
+      rangeDateStart = "",
+      rangeDateEnd = "",
     },
     { dispatch }
   ) => {
@@ -28,6 +31,9 @@ const fetchClients = createAsyncThunk(
         exchange,
         trackingNumber,
         note,
+        preciseDate,
+        rangeDateStart,
+        rangeDateEnd
       }).toString();
 
       const { clients, totalClientsCount } = await customFetch(

@@ -15,8 +15,10 @@ const Dates = ({
   const handleOptionChange = (event) => {
     const option = event.target.value;
     setSelectedOption(option);
-    setPreciseDate(null);
-    setRangeDate({});
+    // setPreciseDate(null);
+    setPreciseDate("");
+    setRangeDate({start:"",end:""});
+    // setRangeDate({});
   };
 
   return (
