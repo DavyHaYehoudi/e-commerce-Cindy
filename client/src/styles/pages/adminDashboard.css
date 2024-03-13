@@ -62,10 +62,12 @@
 .searchBar-client-filter:focus {
     outline: var(--dark);
 }
-.searchBar-client-filter-icon{
+
+.searchBar-client-filter-icon {
     font-size: 1.2rem;
     color: var(--secondary);
 }
+
 .filter-block {
     position: relative;
 }
@@ -111,6 +113,15 @@
 
 .filterBlock-content-subBlock {
     margin-bottom: 25px;
+}
+
+.filterBlock-content-subBlock input,
+.filterBlock-content-subBlock label {
+    cursor: pointer;
+}
+.filterBlock-content-subBlock label:hover{
+    background-color: var(--secondary);
+    color: var(--text-color-white);
 }
 
 .filterBlock-content-action {

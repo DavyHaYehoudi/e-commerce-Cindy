@@ -1,6 +1,6 @@
 
 export const buildOrderProductsQuery = ( credit, exchange, refund ) => {
-  console.log('buildOrderProductsQuery:')
+//   console.log('buildOrderProductsQuery:')
   let query ={};
 
   // Ajouter les critères à la requête en fonction de leur existence
@@ -23,6 +23,6 @@ export const buildOrderProductsQuery = ( credit, exchange, refund ) => {
     });
   }
 
-  console.log('*************** query dans buildOrderProductsQuery *************:', query)
+//   console.log('*************** query dans buildOrderProductsQuery *************:', query)
   return query;
 };

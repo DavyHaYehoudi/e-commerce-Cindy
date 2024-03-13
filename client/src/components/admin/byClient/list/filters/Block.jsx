@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { BsFilterSquareFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import Steps from "./Steps";
+import Criteria from "./Criteria";
 import Dates from "./Dates";
-import Options from "./Options";
 import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const Block = () => {
+const Block = ({ itemsPerPage }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [preciseDate, setPreciseDate] = useState("");
   const [rangeDate, setRangeDate] = useState({ start: "", end: "" });
@@ -22,6 +21,9 @@ const Block = () => {
       ...prevCheckedItems,
       [name]: checked,
     }));
+    setPreciseDate("");
+    setRangeDate({});
+    setSelectedOption("");
   };
 
   const handlePreciseDateChange = (event) => {
@@ -31,18 +33,12 @@ const Block = () => {
     setRangeDate({ ...rangeDate, [limit]: event.target.value });
   };
   const handleValidation = () => {
-    const {
-      steps,
-      credit,
-      refund,
-      exchange,
-      trackingNumber,
-      note,
-    } = formattedDataClient(checkedItems);
+    const { steps, credit, refund, exchange, trackingNumber, note } =
+      formattedDataClient(checkedItems);
 
     dispatch(
       fetchClients({
-        itemsPerPage:-1,
+        itemsPerPage: -1,
         steps,
         credit,
         refund,
@@ -54,27 +50,35 @@ const Block = () => {
         rangeDateEnd: rangeDate.end,
       })
     );
-    console.log(
-      "checkedItems :",
-      checkedItems,
-      "Date précise sélectionnée :",
-      preciseDate,
-      "Range de date :",
-      rangeDate
-    );
-    // console.log("formattedDataClient(checkedItems) :",formattedDataClient(checkedItems));
+    setIsFilterOpen(false);
   };
   const handleReset = () => {
     setCheckedItems({});
     setRangeDate({});
     setPreciseDate("");
     setSelectedOption("");
+    dispatch(
+      fetchClients({
+        itemsPerPage,
+      })
+    );
   };
 
   const toggleFilter = () => {
     setIsFilterOpen((prevState) => !prevState);
+    setCheckedItems({});
+    setRangeDate({});
+    setPreciseDate("");
+    setSelectedOption("");
   };
 
+  const isValidationButtonDisabled =
+  !Object.values(checkedItems).some((value) => value === true)  &&
+    (preciseDate==="" && !rangeDate.start  && !rangeDate.end );
+  
+  const validationButtonClass = isValidationButtonDisabled
+    ? "account-btn"
+    : "account-btn validate-btn";
   return (
     <div className="filter-block">
       <div className="filter-icon" onClick={toggleFilter}>
@@ -92,7 +96,7 @@ const Block = () => {
           >
             <AiOutlineClose />
           </span>
-          <Steps
+          <Criteria
             handleCheckboxChange={handleCheckboxChange}
             checkedItems={checkedItems}
           />
@@ -105,18 +109,16 @@ const Block = () => {
             setRangeDate={setRangeDate}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
-          />
-          <Options
-            handleCheckboxChange={handleCheckboxChange}
-            checkedItems={checkedItems}
+            setCheckedItems={setCheckedItems}
           />
           <div className="filterBlock-content-action">
             <button className="account-btn reset-btn" onClick={handleReset}>
               Réinitialiser
             </button>
             <button
-              className="account-btn validate-btn"
+              className={validationButtonClass}
               onClick={handleValidation}
+              disabled={isValidationButtonDisabled}
             >
               Valider
             </button>

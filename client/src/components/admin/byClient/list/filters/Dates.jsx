@@ -8,22 +8,22 @@ const Dates = ({
   rangeDate,
   setRangeDate,
   selectedOption,
-  setSelectedOption
+  setSelectedOption,
+  setCheckedItems
 }) => {
 
 
   const handleOptionChange = (event) => {
     const option = event.target.value;
     setSelectedOption(option);
-    // setPreciseDate(null);
     setPreciseDate("");
     setRangeDate({start:"",end:""});
-    // setRangeDate({});
+    setCheckedItems({})
   };
 
   return (
     <div className="filterBlock-content-subBlock">
-      <p className="underline">DATE DE COMMANDE :</p>
+      <p className="underline">PAR DATE DE COMMANDE :</p>
       <div>
         <input
           type="radio"

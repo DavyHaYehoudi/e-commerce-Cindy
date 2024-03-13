@@ -1,23 +1,42 @@
+import { orderStep } from "../../../constants/orderStep";
+
 export const formattedDataClient = (inputObject) => {
+  const stepsConstants = orderStep;
+  const options = [
+    { name: "Avoir", label: "credit" },
+    { name: "Remboursement", label: "refund" },
+    { name: "Echange", label: "exchange" },
+    { name: "Numéro de suivi", label: "trackingNumber" },
+    { name: "Note", label: "note" },
+  ];
+
+  // console.log("inputObject:", inputObject);
+
   const formattedData = {
     steps: [],
   };
 
-  for (const key in inputObject) {
-    // Vérification si la clé est un nombre
-    if (!isNaN(key)) {
-      if (inputObject[key]) {
-        formattedData.steps.push(key);
-      }
-    } else {
-      if (inputObject[key]) {
-        formattedData[key] = true;
-      } else {
-        delete formattedData[key];
-      }
-    }
-  }
+  Object.keys(inputObject).forEach((key) => {
+    const isStep = stepsConstants.find(
+      (item) => item.name === key && inputObject[key]
+    );
+    const isOption = options.find(
+      (item) => item.name === key && inputObject[key]
+    );
 
-  console.log('formattedData:', formattedData)
+    if (isStep) {
+      formattedData.steps.push(isStep.id);
+    } else if (isOption) {
+      formattedData[isOption.label] = true;
+    } else {
+      options.forEach((item) => {
+        if (formattedData[item.label] && !inputObject[key]) {
+          delete formattedData[item.label];
+        }
+      });
+    }
+  });
+
+  // console.log("formattedData:", formattedData);
   return formattedData;
 };

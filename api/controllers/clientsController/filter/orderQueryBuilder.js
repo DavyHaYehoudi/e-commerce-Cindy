@@ -5,7 +5,7 @@ export const buildOrderQuery = (
   rangeDateStart,
   rangeDateEnd
 ) => {
-  console.log("buildOrderQuery:");
+//   console.log("buildOrderQuery:");
   const conditions = [];
 
   // Ajouter les critères à la liste en fonction de leur existence
@@ -47,9 +47,9 @@ export const buildOrderQuery = (
   // Combiner les conditions avec un "ou"
   const query = conditions.length > 0 ? { $or: conditions } : {};
 
-  console.log(
-    "*************** query dans buildOrderQuery *************:",
-    query
-  );
+//   console.log(
+//     "*************** query dans buildOrderQuery *************:",
+//     query
+//   );
   return query;
 };

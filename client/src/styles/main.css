@@ -137,7 +137,7 @@ img {
 /* ********************* END CONFIRMATION POPUP ********************* */
 /* ********************* START BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 .account-btn {
-    color: var( --text-whitesmoke);
+    color: var(--text-whitesmoke);
     border: none;
     border-radius: 5px;
     padding: 8px;
@@ -156,6 +156,10 @@ img {
     color: var(--text-whitesmoke);
     background-color: var(--secondary);
     padding: 5px;
+    cursor: not-allowed;
+}
+
+[disabled] {
     cursor: not-allowed;
 }
 

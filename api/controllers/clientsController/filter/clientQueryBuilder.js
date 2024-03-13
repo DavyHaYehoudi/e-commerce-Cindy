@@ -1,5 +1,5 @@
 export const buildClientQuery = (name, note) => {
-  console.log("buildClientQuery:");
+  // console.log("buildClientQuery:");
   let query = {};
 
   if (name && name.trim() !== "") {
