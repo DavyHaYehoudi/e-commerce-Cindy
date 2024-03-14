@@ -34,7 +34,7 @@ tags:
   - name: material
     description: Material products
 paths:
-  /clients{itemsPerPage} :
+  /clients:
     get:
       tags:
         - client
@@ -42,12 +42,60 @@ paths:
       operationId: getAllClients
       parameters:
         - name: itemsPerPage
-          in: path
+          in: query
           description: Number of items per page
-          required: true
+          required: false
           schema:
             type: integer
             default: "5"
+        - name: steps
+          in: query
+          description: Number of steps
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: 0,3,5
+        - name: trackingNumber
+          in: query
+          description: trackingNumber in order 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: note
+          in: query
+          description: note in client 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: credit
+          in: query
+          description: credit in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: exchange
+          in: query
+          description: exchange in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: refund
+          in: query
+          description: refund in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
       responses:
         '200':
           description: successful getting all clients
@@ -772,6 +820,33 @@ paths:
       security:
         - api_key: []
   /material/{materialId}:
+    put:
+      tags:
+        - material
+      summary: Update material by ID
+      description: ''
+      operationId: updateMaterial
+      parameters:
+        - name: materialId
+          in: path
+          description: ID of the material that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreate'
+      responses:
+        '200':
+          description: Successful deleted material
+        '400':
+          description: Invalid materialId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
     delete:
       tags:
         - material
