@@ -806,7 +806,7 @@ paths:
             permission.
       security:
         - api_key: []
-  /material:
+  /materials:
     get:
       tags:
         - material
@@ -843,7 +843,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /material/{materialId}:
+  /materials/{materialId}:
     put:
       tags:
         - material

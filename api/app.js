@@ -5,6 +5,7 @@ import orderRoutes from "./routes/order.routes.js";
 import orderProductsRoutes from "./routes/orderProducts.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import creditRoutes from "./routes/credit.routes.js";
+import materialRoutes from "./routes/material.routes.js"
 import connectToDatabase from "./database/connectToMongoDB.js";
 const app = express();
 const port = 3001;
@@ -21,6 +22,7 @@ app.use("/orders", orderRoutes);
 app.use("/orderProducts", orderProductsRoutes);
 app.use("/products", productRoutes);
 app.use("/credits", creditRoutes);
+app.use("/materials",materialRoutes)
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);
