@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import OrderProductsDetails from "./OrderProductsDetails";
 
-const Item = ({ orderProducts,orderId }) => {
+const Item = ({ orderProducts, orderId }) => {
   const orderProductsStore = useSelector(
     (state) => state?.customer?.data?.orderProducts
   );
@@ -20,7 +20,7 @@ const Item = ({ orderProducts,orderId }) => {
           )
           .map((orderProductsItem) => (
             <OrderProductsDetails
-            key={orderProductsItem._id}
+              key={orderProductsItem._id}
               orderProductsItem={orderProductsItem}
               orderProductsStore={orderProductsStore}
               orderId={orderId}

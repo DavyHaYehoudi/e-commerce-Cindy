@@ -4,12 +4,14 @@ import { TbInputX } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTrackingNumber } from "../../../../features/accountClient/customerSlice";
 import { getProductProperties } from "../../../../selectors/product";
-import { getMaterialProperty } from "../../../../helpers/constants/materials";
+import { getMaterialProperty } from "../../../../selectors/material";
+// import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
   const dispatch = useDispatch();
   const productStore = useSelector((state) => state?.product?.data);
+  const materialStore = useSelector((state) => state?.material?.data);
   const handleConfirmCancel = (trackingNumberId) => {
     const orderId = order._id;
     dispatch(
@@ -39,8 +41,8 @@ const TrackingNumberList = ({ trk, order }) => {
           trk.orderProducts.length > 0 &&
           trk.orderProducts.map((item) => (
             <li key={item._id}>
-              {getProductProperties(item.productsId, productStore).name}{" "}
-              {getMaterialProperty(item?.material).name}{" "}
+              {getProductProperties(item.productsId, productStore)?.name}{" "}
+              {getMaterialProperty(item?.material,materialStore)?.name}{" "}
               {item?.articlesNumber} article
               {item?.articlesNumber > 1 ? "s" : ""}{" "}
             </li>

@@ -17,7 +17,8 @@ const orderProductsSchema = new mongoose.Schema({
     },
   },
   material: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Material",
     required: true,
     validate: {
       validator: function (value) {
@@ -57,7 +58,6 @@ const orderProductsSchema = new mongoose.Schema({
       default: null,
       maxlength: [500, "La note doit avoir au maximum 500 caractères."],
     },
-    
   },
 });
 orderProductsSchema.pre("validate", function (next) {
@@ -67,8 +67,5 @@ orderProductsSchema.pre("validate", function (next) {
   }
   next();
 });
-const OrderProducts = mongoose.model(
-  "OrderProducts",
-  orderProductsSchema
-);
+const OrderProducts = mongoose.model("OrderProducts", orderProductsSchema);
 export default OrderProducts;

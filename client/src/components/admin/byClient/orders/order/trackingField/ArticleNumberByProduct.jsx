@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { getProductsInfo } from "../../../../../../selectors/orderProducts";
 import { getProductProperties } from "../../../../../../selectors/product";
-import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+// import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { useSelector } from "react-redux";
 import useCheckQuantity from "./hooks/useCheckQuantity";
+import { getMaterialProperty } from "../../../../../../selectors/material";
 
 const ArticleNumberByProduct = ({
   orderId,
@@ -17,6 +18,7 @@ const ArticleNumberByProduct = ({
   setIsFormValid,
 }) => {
   const [inputValues, setInputValues] = useState({});
+  const materialStore = useSelector((state) => state?.material?.data);
   const { handleCheckQuantity } = useCheckQuantity();
 
   const handleCheckboxChange = (id, _id, productsId, material) => {
@@ -89,7 +91,7 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product._id}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{getMaterialProperty(product.material).name}</span>
+                <span>{getMaterialProperty(product.material,materialStore).name}</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"

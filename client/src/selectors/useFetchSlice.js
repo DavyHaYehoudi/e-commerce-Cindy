@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchClients } from "../features/admin/clientsSlice";
 import { fetchProduct } from "../features/admin/productSlice";
 import { fetchCustomer } from "../features/accountClient/customerSlice";
+import { fetchMaterials } from "../features/admin/materialSlice";
 
 const useFetchSlice = (slice, clientId) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const useFetchSlice = (slice, clientId) => {
     const fetchFunctionMap = {
       clients: fetchClients,
       product: fetchProduct,
+      material: fetchMaterials,
       customer: fetchCustomer,
     };
     if (status === "idle") {

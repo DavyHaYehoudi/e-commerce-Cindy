@@ -1,7 +1,8 @@
 import React from "react";
 import { getProductProperties } from "../../../selectors/product";
 import { useSelector } from "react-redux";
-import { getMaterialProperty } from "../../../helpers/constants/materials";
+// import { getMaterialProperty } from "../../../helpers/constants/materials";
+import { getMaterialProperty } from "../../../selectors/material";
 import { formatPrice, sumPriceArticle } from "../../../helpers/utils/prices";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../helpers/utils/formatDate";
@@ -13,6 +14,7 @@ const OrderProductsDetails = ({
   orderId,
 }) => {
   const state = useSelector((state) => state?.product?.data);
+  const materialStore = useSelector((state) => state?.material?.data);
   const ordersStore = useSelector((state) => state?.customer?.data?.orders);
   const creditStore = useSelector((state) => state?.customer?.data?.credit);
   const { amount, code, dateExpire } =
@@ -33,10 +35,11 @@ const OrderProductsDetails = ({
   );
   const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
-    <div key={productsId} className="order-item-user-account" >
+    <div key={productsId} className="order-item-user-account">
       <div>
         <h3>
-          {name} {getMaterialProperty(material)?.name}
+          {/* {name} {getMaterialProperty(material)?.name} */}
+          {name} {getMaterialProperty(material, materialStore)?.name}
         </h3>
         <p className="pricing">
           {quantity} article

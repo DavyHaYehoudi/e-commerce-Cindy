@@ -11,7 +11,7 @@ const clientSchema = new mongoose.Schema(
       unique: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
-    phone: { type: String, default: "", maxlength: 20}, 
+    phone: { type: String, default: "", maxlength: 20 },
     shippingAddress: { type: String, required: true, maxlength: 200 },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
@@ -29,7 +29,7 @@ const clientSchema = new mongoose.Schema(
     wishlist: [
       {
         productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-        material: { type: Number },
+        material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
         addDate: {
           type: Date,
           default: Date.now,
@@ -39,7 +39,7 @@ const clientSchema = new mongoose.Schema(
     cart: [
       {
         productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-        material: { type: Number },
+        material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
         quantity: { type: Number, default: 1 },
         addDate: {
           type: Date,

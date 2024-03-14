@@ -3,14 +3,15 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
   reference: {
     type: String,
-    required: true,
+    required: false,
   },
   category: {
     type: String,
+    required:true
   },
   releaseDate: {
     type: String,
-    required: true,
+    required: false,
   },
   name: {
     type: String,
@@ -23,8 +24,8 @@ const productSchema = new mongoose.Schema({
     type: String,
   },
   materials: {
-    type: [Number],
-    default: [0],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Material" }],
+    default: null,
   },
   promotion: {
     type: {

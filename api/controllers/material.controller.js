@@ -24,11 +24,17 @@ const materialController = {
     try {
       const { materialId } = req.params;
       const { name, value } = req.body;
-      const updateMaterial = await Material.updateOne(
-        { _id: materialId },
+
+      const updateMaterial = await Material.findByIdAndUpdate(
+        materialId,
         { name, value },
         { new: true, runValidators: true }
       );
+
+      if (!updateMaterial) {
+        return res.status(404).json({ error: "Material not found" });
+      }
+
       res.status(200).json(updateMaterial);
     } catch (error) {
       console.error("Error updateMaterials:", error);
@@ -39,15 +45,19 @@ const materialController = {
   deleteMaterial: async (req, res) => {
     try {
       const { materialId } = req.params;
-      const deleteMaterial = await Material.findOneAndDelete({
-        id: materialId,
-      });
+      const deleteMaterial = await Material.findByIdAndDelete(materialId);
+  
+      if (!deleteMaterial) {
+        return res.status(404).json({ error: "Material not found" });
+      }
+  
       res.status(200).json(deleteMaterial);
     } catch (error) {
       console.error("Error deleting material:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   },
+  
 };
 
 export default materialController;

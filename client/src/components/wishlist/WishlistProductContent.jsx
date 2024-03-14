@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../selectors/product";
-import { getMaterialProperty } from "../../helpers/constants/materials";
+// import { getMaterialProperty } from "../../helpers/constants/materials";
 import { formatPrice } from "../../helpers/utils/prices";
+import { getMaterialProperty } from "../../selectors/material";
 
 const WishlistProductContent = ({ product }) => {
-  const productStore = useSelector((state) => state?.product?.data);
+  console.log('product:', product)
+  const productStore = useSelector((state) => state?.product?.data); 
+  const materialStore = useSelector((state) => state?.material?.data);
 
   const handleAddToCart = (productsId) => {
     console.log(`Ajouter au panier : ${productsId}`);
@@ -30,7 +33,7 @@ const WishlistProductContent = ({ product }) => {
 
       <div className="modal-product-details">
         <h3>{getProductProperties(product.productsId, productStore).name}</h3>
-        <p>{getMaterialProperty(product.material).name}</p>
+        <p>{getMaterialProperty(product?.material,materialStore)?.name}</p>
         <p className="price">
           {formatPrice(
             getProductProperties(product.productsId, productStore)?.pricing?.currentPrice

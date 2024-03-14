@@ -1,6 +1,8 @@
 import React from "react";
 import { getProductProperties } from "../../../../../../selectors/product";
-import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+// import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+import { useSelector } from "react-redux";
+import { getMaterialProperty } from "../../../../../../selectors/material";
 
 const ProductListItem = ({
   product,
@@ -8,7 +10,7 @@ const ProductListItem = ({
   productStore,
   material
 }) => {
-
+  const materialStore = useSelector((state) => state?.material?.data);
   const productProperties = getProductProperties(
     product.productsId,
     productStore
@@ -17,7 +19,7 @@ const ProductListItem = ({
     <small>
       <li className="description">
         <span>- {productProperties.name} </span>
-        <span>{getMaterialProperty(material)?.name}</span>
+        <span>{getMaterialProperty(material,materialStore)?.name}</span>
         <span>
           {" "}
           {articleNumber || 1} article{articleNumber > 1 ? "s" : ""}

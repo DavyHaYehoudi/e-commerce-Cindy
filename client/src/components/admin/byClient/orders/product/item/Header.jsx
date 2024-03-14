@@ -7,9 +7,10 @@ import {
   formatPrice,
   sumPriceArticle,
 } from "../../../../../../helpers/utils/prices";
-import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
+// import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { getCreditsInfo } from "../../../../../../selectors/credit";
 import { useSelector } from "react-redux";
+import { getMaterialProperty } from "../../../../../../selectors/material";
 
 const Header = ({
   interaction,
@@ -26,6 +27,8 @@ const Header = ({
     useSelector((state) =>
       getCreditsInfo(state, { productsId: orderProducts._id })
     ) || {};
+    const materialStore = useSelector((state) => state?.material?.data);
+
   const { reference, name, pricing, image } =
     getProductProperties(productsId, productStore) || {};
   const { exchange, refund, credit } = orderProductsInfo ?? {};
@@ -46,7 +49,7 @@ const Header = ({
       <div className="product-content-details">
         <div>
           <h3>
-            {name} {getMaterialProperty(material)?.name}
+            {name} {getMaterialProperty(material,materialStore)?.name}
           </h3>
           <p className="pricing inPricing">
             {quantity} article

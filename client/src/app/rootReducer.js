@@ -6,6 +6,7 @@ import orderProductsReducer from "../features/admin/orderProductsSlice";
 import productReducer from "../features/admin/productSlice";
 import clientsReducer from "../features/admin/clientsSlice";
 import creditReducer from "../features/admin/creditSlice";
+import materialReducer from "../features/admin/materialSlice";
 
 const rootReducer = (state, action) => {
   return combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = (state, action) => {
     orderProducts: orderProductsReducer,
     product: productReducer,
     credit: creditReducer,
+    material: materialReducer,
     customer: customerReducer,
   })(state, action);
 };

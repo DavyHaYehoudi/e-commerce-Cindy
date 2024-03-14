@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../helpers/utils/prices";
 import { formatDate } from "../../../../helpers/utils/formatDate";
 import { getProductProperties } from "../../../../selectors/product";
-import { getMaterialProperty } from "../../../../helpers/constants/materials";
+import { getMaterialProperty } from "../../../../selectors/material";
+// import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const Wishlist = ({ productsId, productCart }) => {
   const state = useSelector((state) => state?.product?.data);
-
+  const materialStore = useSelector((state) => state?.material?.data);
   return (
     <div
       className="wishlistUserViewAdmin"
@@ -23,10 +24,10 @@ const Wishlist = ({ productsId, productCart }) => {
           <span className="dotted">Nom</span> :{" "}
           {getProductProperties(productsId, state)?.name}
         </p>
-        {getMaterialProperty(productCart.material)?.name !== null && (
+        {getMaterialProperty(productCart.material,materialStore)?.name !== null && (
           <p>
             <span className="dotted">Matériau</span> :{" "}
-            {getMaterialProperty(productCart.material)?.name}
+            {getMaterialProperty(productCart.material,materialStore)?.name}
           </p>
         )}
 

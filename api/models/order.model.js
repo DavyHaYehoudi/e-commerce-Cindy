@@ -11,8 +11,9 @@ const orderSchema = new mongoose.Schema(
         validator: function (value) {
           return Number.isInteger(value) && value >= 0 && value <= 6;
         },
-        message: props => `${props.value} n'est pas un nombre entier entre 0 et 6!`
-      }
+        message: (props) =>
+          `${props.value} n'est pas un nombre entier entre 0 et 6!`,
+      },
     },
     isNextStepOrder: {
       type: Boolean,
@@ -39,74 +40,79 @@ const orderSchema = new mongoose.Schema(
       },
     },
     trackingNumber: {
-        type: [
-          {
-            id: {
-              type: String,
-              required: true,
-            },
-            isAdmin: {
-              type: Boolean,
-              required: true,
-            },
-            value: {
-              type: String,
-              required: true,
-            },
-            date: {
-              type: String,
-              required: true,
-            },
-            orderProducts: [
-              {
-                id: {
-                  type: String,
-                  required: true,
-                },
-                productsId: {
-                  type: String,
-                  required: true,
-                },
-                articlesNumber: {
-                  type: Number,
-                  required: true,
-                  validate: {
-                    validator: function (value) {
-                      return value >= 1 && value <= 100;
-                    },
-                    message: (props) => `${props.value} n'est pas compris entre 1 et 100!`,
+      type: [
+        {
+          id: {
+            type: String,
+            required: true,
+          },
+          isAdmin: {
+            type: Boolean,
+            required: true,
+          },
+          value: {
+            type: String,
+            required: true,
+          },
+          date: {
+            type: String,
+            required: true,
+          },
+          orderProducts: [
+            {
+              id: {
+                type: String,
+                required: true,
+              },
+              productsId: {
+                type: String,
+                required: true,
+              },
+              articlesNumber: {
+                type: Number,
+                required: true,
+                validate: {
+                  validator: function (value) {
+                    return value >= 1 && value <= 100;
                   },
-                },
-                material: {
-                  type: Number,
-                  required: true,
-                  validate: {
-                    validator: function (value) {
-                      return value >= 0 && value <= 10;
-                    },
-                    message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
-                  },
+                  message: (props) =>
+                    `${props.value} n'est pas compris entre 1 et 100!`,
                 },
               },
-            ],
-          },
-        ],
-        default: [], 
-      },
+              material: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Material",
+                required: true,
+                validate: {
+                  validator: function (value) {
+                    return value >= 0 && value <= 10;
+                  },
+                  message: (props) =>
+                    `${props.value} n'est pas compris entre 0 et 10!`,
+                },
+              },
+            },
+          ],
+        },
+      ],
+      default: [],
+    },
     lastSentDateToClient: {
       type: String,
-      default:null
+      default: null,
     },
-    orderProducts:  [{ type: mongoose.Schema.Types.ObjectId, ref: "OrderProducts" }],
+    orderProducts: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "OrderProducts" },
+    ],
   },
   {
     timestamps: true,
   }
 );
-orderSchema.pre('validate', function (next) {
+orderSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
-    handleValidationErrors(error, 'Order');
+    handleValidationErrors(error, "Order");
   }
   next();
 });
