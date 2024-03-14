@@ -16,7 +16,7 @@ const sendToClientController = {
         await checkFirstElement(orderProductsArray);
 
       if (firstElementErrors.length > 0) {
-        console.log('firstElementErrors:', firstElementErrors)
+        console.log("firstElementErrors:", firstElementErrors);
         return res.status(400).json({ errors: firstElementErrors });
       }
 
@@ -27,7 +27,7 @@ const sendToClientController = {
       );
 
       if (secondElementErrors.length > 0) {
-        console.log('secondElementErrors:', secondElementErrors)
+        console.log("secondElementErrors:", secondElementErrors);
         return res.status(400).json({ errors: secondElementErrors });
       }
       outTotalAmount = outTotalAmountCalc;
@@ -51,13 +51,20 @@ const sendToClientController = {
         try {
           const { orderProducts, creditEdit } = item;
           const { orderProductsActions } = orderProducts;
-          const { amount = null, dateExpire = null } = creditEdit || {};
+          const {
+            amount = null,
+            dateExpire = null,
+            clientId = null,
+          } = creditEdit || {};
 
-          await updateCredit(orderProducts, creditEdit, amount, dateExpire);
-          await updateOrderProductsActions(
+          await updateCredit(
             orderProducts,
-            orderProductsActions
+            creditEdit,
+            amount,
+            dateExpire,
+            clientId
           );
+          await updateOrderProductsActions(orderProducts, orderProductsActions);
         } catch (error) {
           return res.status(400).json({
             error: error.message,

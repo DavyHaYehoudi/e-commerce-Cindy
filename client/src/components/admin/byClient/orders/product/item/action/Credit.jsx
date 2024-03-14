@@ -29,8 +29,8 @@ const Credit = ({
   setInteraction,
 }) => {
   const orderProductsState = useSelector((state) => state?.product?.data);
-  const productPrice = getProductProperties(productsId, orderProductsState)?.pricing
-    ?.currentPrice;
+  const productPrice = getProductProperties(productsId, orderProductsState)
+    ?.pricing?.currentPrice;
   const { handleCredit } = useCreditHandler(
     actions,
     setInteraction,
@@ -48,11 +48,12 @@ const Credit = ({
     setProductActions,
     setEntryError
   );
+  const clientId = client._id;
   return (
     <li
       className={interaction.activeLi === action ? "active" : ""}
       onClick={() => handleCredit(action)}
-      data-testid ="credit-component"
+      data-testid="credit-component"
     >
       {orderProductsInfo?.[action] ? textCancel : label}
 
@@ -95,7 +96,8 @@ const Credit = ({
                 setEntryError,
                 orderId,
                 orderProducts,
-                productPrice
+                productPrice,
+                clientId
               )
             }
           >

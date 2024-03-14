@@ -12,7 +12,7 @@ const ClientFilterPanel = ({
   const [searchBarValue, setSearchBarValue] = useState("");
   const dispatch = useDispatch();
   const handleSearchChange = (e) => {
-    const name = e.target.value.trim();
+    const name = e.target.value;
     setSearchBarValue(name);
     if (name.length > 2) {
       dispatch(fetchClients({ itemsPerPage: "", name }));

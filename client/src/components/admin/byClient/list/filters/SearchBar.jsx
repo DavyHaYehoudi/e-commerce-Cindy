@@ -8,7 +8,7 @@ const SearchBar = ({ handleSearchChange, searchBarValue }) => {
         <input
           type="search"
           id="searchInput"
-          placeholder="Nom/prénom (au moins 3 lettres)"
+          placeholder="Nom ou prénom (au moins 3 lettres)"
           onChange={handleSearchChange}
           className="searchBar-client-filter"
           value={searchBarValue}

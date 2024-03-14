@@ -7,7 +7,6 @@ import {
   formatPrice,
   sumPriceArticle,
 } from "../../../../../../helpers/utils/prices";
-// import { getMaterialProperty } from "../../../../../../helpers/constants/materials";
 import { getCreditsInfo } from "../../../../../../selectors/credit";
 import { useSelector } from "react-redux";
 import { getMaterialProperty } from "../../../../../../selectors/material";

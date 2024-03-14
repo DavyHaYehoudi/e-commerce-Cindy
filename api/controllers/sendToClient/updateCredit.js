@@ -4,7 +4,8 @@ export const updateCredit = async (
   orderProducts,
   creditEdit,
   amount,
-  dateExpire
+  dateExpire,
+  clientId
 ) => {
   try {
     const isCreditDB = await Credit.findById(creditEdit?._id);
@@ -27,11 +28,11 @@ export const updateCredit = async (
         orderProductsId: orderProducts._id,
         amount,
         dateExpire,
+        clientId,
       });
     }
   } catch (error) {
     console.log("Erreur dans la mise à jour de updateCredit");
-    throw error
+    throw error;
   }
 };
-  

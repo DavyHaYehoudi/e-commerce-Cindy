@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
 const creditSchema = new mongoose.Schema({
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+    required: true,
+  },
   orderProductsId: {
     type: String,
     required: true,
@@ -32,7 +37,8 @@ const creditSchema = new mongoose.Schema({
 
         return expirationDate >= currentDate;
       },
-      message: "La date d'expiration choisie doit être au moins celle du lendemain.",
+      message:
+        "La date d'expiration choisie doit être au moins celle du lendemain.",
     },
   },
   archived: {
@@ -42,29 +48,30 @@ const creditSchema = new mongoose.Schema({
 });
 
 // Clé secrète pour la propriété "code"
-creditSchema.pre('save', function (next) {
+creditSchema.pre("save", function (next) {
   const generatedCode = generateSecretCode();
   this.code = generatedCode;
   next();
 });
-creditSchema.pre('validate', function (next) {
+creditSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
-    handleValidationErrors(error, 'Credit');
+    handleValidationErrors(error, "Credit");
   }
   next();
 });
-const Credit = mongoose.model('Credit', creditSchema);
+const Credit = mongoose.model("Credit", creditSchema);
 export default Credit;
 
 function generateSecretCode() {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let code = '';
-  
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let code = "";
+
   for (let i = 0; i < 15; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
     code += characters.charAt(randomIndex);
   }
-  
+
   return code;
 }

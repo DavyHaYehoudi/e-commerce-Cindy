@@ -17,7 +17,8 @@ export const useConfirmCreditEntryHandler = () => {
     setEntryError,
     orderId,
     orderProducts,
-    productPrice
+    productPrice,
+    clientId
   ) => {
     e.stopPropagation();
     let { amount, dateExpire } = orderProductsActions.creditContent;
@@ -42,6 +43,7 @@ export const useConfirmCreditEntryHandler = () => {
           orderProductsId: orderProducts._id,
           amount: orderProductsActions.creditContent.amount,
           dateExpire: orderProductsActions.creditContent?.dateExpire,
+          clientId
         })
       );
       dispatch(

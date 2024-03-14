@@ -18,8 +18,8 @@ const creditSlice = createSlice({
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     addCredit: (state, action) => {
-      const { orderProductsId, amount, dateExpire } = action.payload;
-      state.data = [...state.data, { orderProductsId, amount, dateExpire }];
+      const { orderProductsId, amount, dateExpire,clientId } = action.payload;
+      state.data = [...state.data, { orderProductsId, amount, dateExpire,clientId }];
     },
     deleteCredit: (state, action) => {
       const { orderProductsId } = action.payload;

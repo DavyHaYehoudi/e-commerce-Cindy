@@ -5,6 +5,14 @@ const materialSchema = new mongoose.Schema({
   value: { type: String, default: null },
 });
 
+materialSchema.pre('validate', function (next) {
+  const error = this.validateSync();
+  if (error) {
+    handleValidationErrors(error, 'Material');
+  }
+  next();
+});
+
 const Material = mongoose.model('Material', materialSchema);
 
 export default Material;
