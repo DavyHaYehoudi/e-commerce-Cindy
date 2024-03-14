@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { customFetch } from "../../../../../helpers/services/customFetch";
+import { customFetch } from "../../../../../services/customFetch";
 import { useDispatch } from "react-redux";
 import { sendToClientSuccess } from "../../../../../features/admin/ordersSlice";
 import { toast } from "react-toastify";

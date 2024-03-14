@@ -1,15 +1,45 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../helpers/services/customFetch";
-import { handleFetchError } from "../../helpers/services/handleFetchError";
+import { customFetch } from "../../services/customFetch";
+import { handleFetchError } from "../../services/handleFetchError";
 import { fetchOrders } from "./ordersSlice";
 
 const fetchClients = createAsyncThunk(
   "clients/fetchClients",
-  async ({ itemsPerPage }, { dispatch }) => {
+  async (
+    {
+      itemsPerPage,
+      name = "",
+      steps = "",
+      credit = "",
+      refund = "",
+      exchange = "",
+      trackingNumber = "",
+      note = "",
+      preciseDate = "",
+      rangeDateStart = "",
+      rangeDateEnd = "",
+    },
+    { dispatch }
+  ) => {
     try {
+      const queryString = new URLSearchParams({
+        itemsPerPage,
+        name,
+        steps,
+        credit,
+        refund,
+        exchange,
+        trackingNumber,
+        note,
+        preciseDate,
+        rangeDateStart,
+        rangeDateEnd
+      }).toString();
+
       const { clients, totalClientsCount } = await customFetch(
-        `clients?itemsPerPage=${itemsPerPage}`
+        `clients?${queryString}`
       );
+
       const orderIds = clients.map((client) => client.orders).flat();
       dispatch(fetchOrders({ orderIds: JSON.stringify(orderIds) }));
 

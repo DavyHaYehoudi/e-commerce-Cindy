@@ -34,7 +34,6 @@ const InfoClient = ({
           <input
             type="text"
             name="firstName"
-            className="account-input"
             value={dataClient?.firstName}
             onChange={handleInputChange}
           />

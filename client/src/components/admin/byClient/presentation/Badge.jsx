@@ -14,10 +14,10 @@ const Badge = ({ step, orderIds, orderId, count, setSelectedOrderId }) => {
 
   const allOrderNotNotified = useSelector(
     (state) => state?.orders?.isClientNotified
-  );
+    );
   const isClientNotifiedForThisOrder = allOrderNotNotified.find(
     (item) => item === orderId
-  );
+    );
 
   return (
     <span className={badgeClass} style={style} onClick={handleClick}>

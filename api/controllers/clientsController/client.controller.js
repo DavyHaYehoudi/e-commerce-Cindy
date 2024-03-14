@@ -1,25 +1,7 @@
-import Client from "../models/client.model.js";
-import Credit from "../models/credit.model.js";
-import Order from "../models/order.model.js";
+import Client from "../../models/client.model.js";
+import Credit from "../../models/credit.model.js";
 
 const clientController = {
-  getAllClients: async (req, res) => {
-    try {
-      let query = Client.find();
-      const itemsPerPage = parseInt(req.query.itemsPerPage);
-
-      if (itemsPerPage !== -1) {
-        query = query.limit(itemsPerPage);
-      }
-      query = query.sort({ _id: 1 });
-      const clients = await query.exec();
-      const totalClientsCount = await Client.countDocuments();
-
-      res.status(200).json({ clients, totalClientsCount });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
 
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
@@ -40,19 +22,17 @@ const clientController = {
       }
 
       const ordersWithoutNote = client.orders.map((order) => {
-        const orderProductsWithoutNote = order.orderProducts.map(
-          (product) => {
-            const { orderProductsActions, ...rest } = product.toJSON();
-            const orderProductsActionsWithoutNote = {
-              ...orderProductsActions,
-              note: undefined,
-            };
-            return {
-              ...rest,
-              orderProductsActions: orderProductsActionsWithoutNote,
-            };
-          }
-        );
+        const orderProductsWithoutNote = order.orderProducts.map((product) => {
+          const { orderProductsActions, ...rest } = product.toJSON();
+          const orderProductsActionsWithoutNote = {
+            ...orderProductsActions,
+            note: undefined,
+          };
+          return {
+            ...rest,
+            orderProductsActions: orderProductsActionsWithoutNote,
+          };
+        });
         return {
           ...order.toJSON(),
           orderProducts: orderProductsWithoutNote,

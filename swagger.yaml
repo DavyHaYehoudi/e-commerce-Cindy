@@ -31,8 +31,10 @@ tags:
     description: Product description
   - name: credit
     description: Credits customers
+  - name: material
+    description: Material products
 paths:
-  /clients{itemsPerPage} :
+  /clients:
     get:
       tags:
         - client
@@ -40,12 +42,60 @@ paths:
       operationId: getAllClients
       parameters:
         - name: itemsPerPage
-          in: path
+          in: query
           description: Number of items per page
-          required: true
+          required: false
           schema:
             type: integer
             default: "5"
+        - name: steps
+          in: query
+          description: Number of steps
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: 0,3,5
+        - name: trackingNumber
+          in: query
+          description: trackingNumber in order 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: note
+          in: query
+          description: note in client 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: credit
+          in: query
+          description: credit in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: exchange
+          in: query
+          description: exchange in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
+        - name: refund
+          in: query
+          description: refund in orderProducts 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: true
       responses:
         '200':
           description: successful getting all clients
@@ -732,6 +782,93 @@ paths:
             permission.
       security:
         - api_key: []
+  /material:
+    get:
+      tags:
+        - material
+      summary: Returns all materials
+      description: Returns the list of all materials
+      responses:
+        '200':
+          description: successful getting all materials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Material'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - material
+      summary: Place a material for a product
+      description: Place a new material in the list
+      operationId: placeMaterialById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreate'
+      responses:
+        '201':
+          description: successful posting material
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /material/{materialId}:
+    put:
+      tags:
+        - material
+      summary: Update material by ID
+      description: ''
+      operationId: updateMaterial
+      parameters:
+        - name: materialId
+          in: path
+          description: ID of the material that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreate'
+      responses:
+        '200':
+          description: Successful deleted material
+        '400':
+          description: Invalid materialId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - material
+      summary: Delete material by ID
+      description: ''
+      operationId: deleteMaterial
+      parameters:
+        - name: materialId
+          in: path
+          description: ID of the material that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted material
+        '400':
+          description: Invalid materialId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
 components:
   schemas:
     Client:
@@ -1282,6 +1419,35 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Credit'
+    Material:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 2884d22b45a0fb3fd4a75p2
+        id:
+          type: integer
+          format: int16
+          example: 2
+        name:
+          type: string
+          example: Or blanc
+        value:
+          type: string
+          example: "#FFFFFF"
+    MaterialCreate:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: int16
+          example: 3
+        name:
+          type: string
+          example: Or rose
+        value:
+          type: string
+          example: "#F0F0F0"
   securitySchemes:
     petstore_auth:
       type: oauth2

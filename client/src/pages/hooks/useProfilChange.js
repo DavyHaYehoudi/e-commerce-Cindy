@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { customFetch } from "../../helpers/services/customFetch";
+import { customFetch } from "../../services/customFetch";
 import { toast } from "react-toastify";
 
 const useProfilChange = (isModified) => {
