@@ -96,6 +96,30 @@ paths:
             type: string
             default: ""
             example: true
+        - name: preciseDate
+          in: query
+          description: precise creation date of order 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: 2024-03-10 in this format
+        - name: rangeDateStart
+          in: query
+          description: start of range creation date of order 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: 2024-03-10 in this format
+        - name: rangeDateEnd
+          in: query
+          description: end of range creation date of order 
+          required: false
+          schema:
+            type: string
+            default: ""
+            example: 2024-05-20 in this format
       responses:
         '200':
           description: successful getting all clients

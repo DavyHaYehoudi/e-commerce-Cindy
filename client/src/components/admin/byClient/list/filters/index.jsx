@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Block from "./Block";
+import { useDispatch } from "react-redux";
+import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
 const ClientFilterPanel = ({
   totalClientsCount,
   itemsPerPage,
   handleChangeItemPerPage,
 }) => {
+  const [searchBarValue, setSearchBarValue] = useState("");
+  const dispatch = useDispatch();
+  const handleSearchChange = (e) => {
+    const name = e.target.value.trim();
+    setSearchBarValue(name);
+    if (name.length > 2) {
+      dispatch(fetchClients({ itemsPerPage: "", name }));
+    } else {
+      dispatch(fetchClients({ itemsPerPage }));
+    }
+  };
   return (
     <div className="clientsFilterPanel">
       <div>
@@ -29,8 +42,14 @@ const ClientFilterPanel = ({
           <option value="TOUS">TOUS</option>
         </select>
       </div>
-      <SearchBar itemsPerPage={itemsPerPage} />
-      <Block itemsPerPage={itemsPerPage} />
+      <SearchBar
+        searchBarValue={searchBarValue}
+        handleSearchChange={handleSearchChange}
+      />
+      <Block
+        itemsPerPage={itemsPerPage}
+        setSearchBarValue={setSearchBarValue}
+      />
     </div>
   );
 };

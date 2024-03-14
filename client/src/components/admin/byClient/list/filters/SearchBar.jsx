@@ -1,20 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { FaSearch } from "react-icons/fa";
-import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const SearchBar = ({ itemsPerPage }) => {
-  const dispatch = useDispatch();
-
-  const handleSearchChange = (e) => {
-    const name = e.target.value.trim();
-    if (name.length > 2) {
-      dispatch(fetchClients({ itemsPerPage: "", name }));
-    } else {
-      dispatch(fetchClients({ itemsPerPage }));
-    }
-  };
-
+const SearchBar = ({ handleSearchChange, searchBarValue }) => {
   return (
     <div>
       <div className="searchBar-client-filter-wrapper">
@@ -24,6 +11,7 @@ const SearchBar = ({ itemsPerPage }) => {
           placeholder="Nom/prénom (au moins 3 lettres)"
           onChange={handleSearchChange}
           className="searchBar-client-filter"
+          value={searchBarValue}
         />
         <span className="searchBar-client-filter-icon">
           {" "}

@@ -32,7 +32,7 @@ const clientsController = {
       const clients = await process(
         name,
         credit,
-        exchange,
+        exchange, 
         refund,
         note,
         steps,

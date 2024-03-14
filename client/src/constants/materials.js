@@ -5,3 +5,4 @@ export const materials = [
   { id: 3, name: "OR BLANC", value: "#FFF" },
   { id: 4, name: "ARGENT 925", value: "#C0C0C0" },
 ];
+ 

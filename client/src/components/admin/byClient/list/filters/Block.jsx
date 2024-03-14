@@ -7,7 +7,7 @@ import Dates from "./Dates";
 import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
-const Block = ({ itemsPerPage }) => {
+const Block = ({ itemsPerPage, setSearchBarValue }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [preciseDate, setPreciseDate] = useState("");
   const [rangeDate, setRangeDate] = useState({ start: "", end: "" });
@@ -51,6 +51,7 @@ const Block = ({ itemsPerPage }) => {
       })
     );
     setIsFilterOpen(false);
+    setSearchBarValue("");
   };
   const handleReset = () => {
     setCheckedItems({});
@@ -73,9 +74,11 @@ const Block = ({ itemsPerPage }) => {
   };
 
   const isValidationButtonDisabled =
-  !Object.values(checkedItems).some((value) => value === true)  &&
-    (preciseDate==="" && !rangeDate.start  && !rangeDate.end );
-  
+    !Object.values(checkedItems).some((value) => value === true) &&
+    preciseDate === "" &&
+    !rangeDate.start &&
+    !rangeDate.end;
+
   const validationButtonClass = isValidationButtonDisabled
     ? "account-btn"
     : "account-btn validate-btn";
