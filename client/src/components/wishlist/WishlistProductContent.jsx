@@ -8,7 +8,6 @@ import { formatPrice } from "../../helpers/utils/prices";
 import { getMaterialProperty } from "../../selectors/material";
 
 const WishlistProductContent = ({ product }) => {
-  console.log('product:', product)
   const productStore = useSelector((state) => state?.product?.data); 
   const materialStore = useSelector((state) => state?.material?.data);
 

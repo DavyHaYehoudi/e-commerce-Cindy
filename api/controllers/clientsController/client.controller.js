@@ -1,8 +1,8 @@
 import Client from "../../models/client.model.js";
 import Credit from "../../models/credit.model.js";
+import Giftcard from "../../models/giftcard.model.js";
 
 const clientController = {
-
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
 
@@ -49,6 +49,8 @@ const clientController = {
         orderProductsId: { $in: creditIds },
       });
 
+      const giftcard = await Giftcard.find({ buyerId: clientId });
+
       const orderProducts = ordersWithoutNote.flatMap(
         (order) => order.orderProducts
       );
@@ -59,6 +61,7 @@ const clientController = {
         client,
         orders: ordersWithoutNote,
         credit,
+        giftcard,
         orderProducts,
       });
     } catch (error) {

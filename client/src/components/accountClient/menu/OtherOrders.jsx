@@ -1,21 +1,19 @@
 import React from "react";
 import { orderStep } from "../../../constants/orderStep";
-import List from ".";
+import List from "../order";
 import { getOrderStepProperty } from "../../../helpers/constants/orderStep";
 
-const Delivered = ({ orderHistory, getStepColor }) => {
+const OtherOrders = ({ orderHistory, getStepColor }) => {
   const filter = (order) =>
-    getOrderStepProperty(order.step).name === orderStep[2].name;
-  const title = "Commandes expédiées";
+    getOrderStepProperty(order.step).name !== orderStep[2].name;
 
   return (
     <List
       orderHistory={orderHistory}
       getStepColor={getStepColor}
       filter={filter}
-      title={title}
     />
   );
 };
 
-export default Delivered;
+export default OtherOrders; 

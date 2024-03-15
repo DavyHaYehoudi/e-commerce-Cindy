@@ -1,32 +1,37 @@
 import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
-const promocodeSchema = new mongoose.Schema({
-  code: {
-    type: String,
-    required: true,
-  },
-  percentage: {
-    type: Number,
-    required: true,
-  },
-  dateExpire: {
-    type: String,
-    required: true,
-    validate: {
-      validator: function (dateExpire) {
-        // Vérifie si la date d'expiration est au moins celle du lendemain
-        const currentDate = new Date();
-        const expirationDate = new Date(dateExpire);
-        expirationDate.setDate(expirationDate.getDate() + 1); // Ajoute un jour à la date d'expiration
+const promocodeSchema = new mongoose.Schema(
+  {
+    code: {
+      type: String,
+      required: true,
+    },
+    percentage: {
+      type: Number,
+      required: true,
+    },
+    dateExpire: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (dateExpire) {
+          // Vérifie si la date d'expiration est au moins celle du lendemain
+          const currentDate = new Date();
+          const expirationDate = new Date(dateExpire);
+          expirationDate.setDate(expirationDate.getDate() + 1); // Ajoute un jour à la date d'expiration
 
-        return expirationDate >= currentDate;
+          return expirationDate >= currentDate;
+        },
+        message:
+          "La date d'expiration choisie doit être au moins celle du lendemain.",
       },
-      message:
-        "La date d'expiration choisie doit être au moins celle du lendemain.",
     },
   },
-});
+  {
+    timestamps: true,
+  }
+);
 
 promocodeSchema.pre("validate", function (next) {
   const error = this.validateSync();

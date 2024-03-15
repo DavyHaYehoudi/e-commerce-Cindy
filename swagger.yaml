@@ -941,42 +941,17 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /giftcards/{giftcardId}:
-    delete:
-      tags:
-        - giftcard
-      summary: Delete giftcard by ID
-      description: ''
-      operationId: deleteGiftCard
-      parameters:
-        - name: giftcardId
-          in: path
-          description: ID of the giftCard that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful deleted promocode
-        '400':
-          description: Invalid giftcardId supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     patch:
       tags:
         - giftcard
-      summary: Archive giftcard by ID
+      summary: Consuming giftcard 
       description: ''
       operationId: archiveGiftcardById
-      parameters:
-        - name: giftcardId
-          in: path
-          description: ID of the giftCard that needs to be archived
-          required: true
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCardUsed'
       responses:
         '200':
           description: Successful archiving giftcard
@@ -1597,7 +1572,7 @@ components:
         _id:
           type: string
           example: 65f2d2b24db605d02020061c
-        customerId:
+        buyerId:
           type: string
           example: 65b50eb0624d950f874b983a
         amount:
@@ -1607,22 +1582,37 @@ components:
         dateExpire: 
           type: string
           example: 2025-12-18
-        archived:
-          type: boolean
-          example: false
+        code:
+          type: string
+          example: ut984bsl_+opj12
+        consumerId: 
+          type: string
+          example: null
+        createdAt:
+          type: string
+          example: 2024-03-15T11:59:26.905+00:00
+        updatedAt:
+          type: string
+          example: 2024-03-15T11:59:26.905+00:00
     GiftCardCreate:
       type: object
       properties:
-        customerId:
+        buyerId:
           type: string
           example: 64f2d2df4db605d0202b0acd
         amount:
           type: number
           format: int16
           example: 50
-        dateExpire: 
+    GiftCardUsed:
+      type: object
+      properties:
+        giftcardId:
           type: string
-          example: 2025-12-18
+          example: 65f2d2b24db605d02020061c
+        consumerId:
+          type: string
+          example: 61f2d2df4db605d0202b0af5 
   securitySchemes:
     petstore_auth:
       type: oauth2

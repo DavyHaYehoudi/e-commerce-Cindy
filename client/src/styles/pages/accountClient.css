@@ -5,8 +5,9 @@
   margin: 0 auto;
   padding: 20px;
 }
+
 .user-profile-container .darkMode {
-  text-align:end;
+  text-align: end;
 }
 
 .tabs-history {
@@ -54,13 +55,14 @@
   padding: 15px;
 }
 
-.order-item-wrapper-user-account .header .date-step{
+.order-item-wrapper-user-account .header .date-step {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
 }
-.order-item-wrapper-user-account .header{
+
+.order-item-wrapper-user-account .header {
   margin-bottom: 20px;
 }
 
@@ -76,6 +78,7 @@
 .order-item-user-account p {
   margin-bottom: 10px;
 }
+
 .order-item-user-account h3 {
   max-width: 200px;
 }
@@ -84,9 +87,11 @@
 .other-orders {
   margin-bottom: 30px;
 }
-.user-info-account{
+
+.user-info-account {
   flex: 0.5;
 }
+
 .user-info-account button {
   width: 100%;
   border: 1px solid var(--border-color);
@@ -105,6 +110,7 @@
   border: 1px solid black;
   box-shadow: 0 0 3px black;
 }
+
 .user-info-account p {
   margin-bottom: 15px;
 }
@@ -112,20 +118,25 @@
 .user-info-account b {
   text-transform: uppercase;
 }
+
 .user-info-account .btn {
   color: var(--text-color);
   transition: transform 0.3s;
 }
+
 .user-info-account .btn:hover {
   transform: translateY(-2px);
 }
-.other-orders .trackingNumber{
+
+.other-orders .trackingNumber {
   text-align: center;
 }
-.addTrackingNumberClientBtn{
+
+.addTrackingNumberClientBtn {
   background-color: var(--success);
   margin: 20px 0;
 }
+
 .ClientTrackingNumberCreate {
   display: flex;
   gap: 20px;
@@ -136,4 +147,29 @@
   padding: 20px;
   border: 2px solid var(--info);
   box-shadow: 0 0 3px var(--info);
+}
+
+/**************************** CARTES-CADEAUX /*****************************/
+.giftcards li {
+  position: relative;
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  color: var(--text-color);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 3);
+} 
+.giftcards .tag-isUsed{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  background-color: var(--success);
+  padding: 5px;
+  border-radius: 5px;
+
+}
+.giftcards .tag-isUsed.used{
+  background-color: var(--info);
+}
+.giftcards .text-used{
+  color:var(--info)
 }

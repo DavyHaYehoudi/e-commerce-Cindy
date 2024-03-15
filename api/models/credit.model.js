@@ -1,51 +1,56 @@
 import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
-const creditSchema = new mongoose.Schema({
-  clientId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
-    required: true,
-  },
-  orderProductsId: {
-    type: String,
-    required: true,
-  },
-  amount: {
-    type: Number,
-    required: true,
-    validate: {
-      validator: function (amount) {
-        return amount > 0;
-      },
-      message: "Le montant doit être supérieur à zéro.",
+const creditSchema = new mongoose.Schema(
+  {
+    clientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
+      required: true,
     },
-  },
-  code: {
-    type: String,
-    default: generateSecretCode,
-  },
-  dateExpire: {
-    type: String,
-    required: true,
-    validate: {
-      validator: function (dateExpire) {
-        // Vérifie si la date d'expiration est au moins celle du lendemain
-        const currentDate = new Date();
-        const expirationDate = new Date(dateExpire);
-        expirationDate.setDate(expirationDate.getDate() + 1); // Ajoute un jour à la date d'expiration
+    orderProductsId: {
+      type: String,
+      required: true,
+    },
+    amount: {
+      type: Number,
+      required: true,
+      validate: {
+        validator: function (amount) {
+          return amount > 0;
+        },
+        message: "Le montant doit être supérieur à zéro.",
+      },
+    },
+    code: {
+      type: String,
+      default: generateSecretCode,
+    },
+    dateExpire: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (dateExpire) {
+          // Vérifie si la date d'expiration est au moins celle du lendemain
+          const currentDate = new Date();
+          const expirationDate = new Date(dateExpire);
+          expirationDate.setDate(expirationDate.getDate() + 1); // Ajoute un jour à la date d'expiration
 
-        return expirationDate >= currentDate;
+          return expirationDate >= currentDate;
+        },
+        message:
+          "La date d'expiration choisie doit être au moins celle du lendemain.",
       },
-      message:
-        "La date d'expiration choisie doit être au moins celle du lendemain.",
+    },
+    archived: {
+      type: Boolean,
+      default: false,
     },
   },
-  archived: {
-    type: Boolean,
-    default: false,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 // Clé secrète pour la propriété "code"
 creditSchema.pre("save", function (next) {
