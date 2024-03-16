@@ -1544,6 +1544,9 @@ components:
         _id:
           type: string
           example: 65f2d2df4db605d020200620
+        id:
+          type: string
+          example: 93e4a710-0b78-4846-9eb9-dad6a9507832
         code:
           type: string
           example: Bonjour-10
@@ -1554,9 +1557,18 @@ components:
         dateExpire: 
           type: string
           example: 2024-12-10
+        createdAt:
+          type: string
+          example: 2024-03-15T11:59:26.905+00:00
+        updatedAt:
+          type: string
+          example: 2024-03-15T11:59:26.905+00:00
     PromocodeCreate:
       type: object
       properties:
+        id:
+          type: string
+          example: 93e4a710-0b78-4846-9eb9-dad6a9507832
         code:
           type: string
           example: Bonjour-10

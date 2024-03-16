@@ -21,7 +21,7 @@
 
 .modal-header-top,
 .modal-content {
-    background: #fff;
+    background: var(--background);
     padding: 20px;
     border-radius: 8px;
     width: 100%;

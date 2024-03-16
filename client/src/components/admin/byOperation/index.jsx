@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Promocodes from "./Promocodes";
-import OtherOpe from "./OtherOpe"
+import OtherOpe from "./OtherOpe";
+import { ToastContainer } from "react-toastify";
 
 const Operations = () => {
   const [isActive, setIsActive] = useState(null);
@@ -25,15 +26,10 @@ const Operations = () => {
         </h2>
       </div>
       <div className="operation-items-container">
-      {isActive === "promoCode" && (
-         <Promocodes />
-          )}
-  
-      {isActive === "otherPromo" && (
-        <OtherOpe />
-          )}
-  
+        {isActive === "promoCode" && <Promocodes />}
+        {isActive === "otherPromo" && <OtherOpe />}
       </div>
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

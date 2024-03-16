@@ -1,27 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import { formatDate } from "../../../helpers/utils/formatDate";
 
-const PromocodesCard = ({ promocode, onDelete }) => {
+const PromocodesCard = ({ promocode, handleDeletePromocode }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="card">
-      <div className="card-header">{promocode.name}</div>
-      <div className="card-body">
-        <p className="card-name">{promocode.code} </p>
-        <p className="card-percentage">{promocode.percentage}%</p>
-        <p className="card-expiration">
-          Créé le : <br/>{formatDate(promocode.createdAt)}
-        </p>
-        <p className="card-expiration">
-          Expire le : <br/>{formatDate(promocode.dateExpire)}
-        </p>
+    <div
+      className="card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="card-wrapper">
+        <div>{promocode.name}</div>
+        <div>
+          <p>{promocode.code} </p>
+          <p>
+            {promocode.percentage}% jusqu'au :<br />{" "}
+            {formatDate(promocode.dateExpire)}
+          </p>
+        </div>
+        {isHovered && (
+          <button
+            className="delete-button icon-trash account-btn"
+            onClick={() => handleDeletePromocode(promocode.id)}
+          >
+            <BsTrash />{" "}
+          </button>
+        )}
       </div>
-      <button
-        className="delete-button icon-trash account-btn"
-        onClick={() => onDelete(promocode._id)}
-      >
-        <BsTrash />{" "}
-      </button>
+      <p className="card-created">
+        <small>
+          Créé le :{" "}
+          {promocode.createdAt
+            ? formatDate(promocode.createdAt)
+            : "En cours..."}
+        </small>
+      </p>
     </div>
   );
 };

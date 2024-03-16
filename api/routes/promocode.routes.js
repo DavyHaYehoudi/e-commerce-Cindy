@@ -7,3 +7,4 @@ router.post("/", promocodeController.createPromocode);
 router.delete("/:promocodeId", promocodeController.deletePromocode);
 
 export default router;
+ 

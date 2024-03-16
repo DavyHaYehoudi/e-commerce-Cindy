@@ -12,8 +12,9 @@ const promocodeController = {
   },
   createPromocode: async (req, res) => {
     try {
-      const { code, percentage, dateExpire } = req.body;
+      const { id, code, percentage, dateExpire } = req.body;
       const promocode = await Promocode.create({
+        id,
         code,
         percentage,
         dateExpire,
@@ -28,7 +29,9 @@ const promocodeController = {
   deletePromocode: async (req, res) => {
     try {
       const { promocodeId } = req.params;
-      const deletePromocode = await Promocode.findByIdAndDelete(promocodeId);
+      const deletePromocode = await Promocode.findOneAndDelete({
+        id: promocodeId,
+      });
 
       if (!deletePromocode) {
         return res.status(404).json({ error: "Promocode not found" });
