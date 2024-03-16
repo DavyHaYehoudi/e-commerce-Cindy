@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import AddToCartButton from "../../shared/AddToCartButton";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../selectors/product";
-// import { getMaterialProperty } from "../../helpers/constants/materials";
 import { formatPrice } from "../../helpers/utils/prices";
 import { getMaterialProperty } from "../../selectors/material";
 

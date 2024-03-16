@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTrackingNumber } from "../../../../features/accountClient/customerSlice";
 import { getProductProperties } from "../../../../selectors/product";
 import { getMaterialProperty } from "../../../../selectors/material";
-// import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);

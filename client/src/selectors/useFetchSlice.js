@@ -4,6 +4,7 @@ import { fetchClients } from "../features/admin/clientsSlice";
 import { fetchProduct } from "../features/admin/productSlice";
 import { fetchCustomer } from "../features/accountClient/customerSlice";
 import { fetchMaterials } from "../features/admin/materialSlice";
+import { fetchPromocode } from "../features/admin/promocodeSlice";
 
 const useFetchSlice = (slice, clientId) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const useFetchSlice = (slice, clientId) => {
       clients: fetchClients,
       product: fetchProduct,
       material: fetchMaterials,
+      promocode: fetchPromocode,
       customer: fetchCustomer,
     };
     if (status === "idle") {

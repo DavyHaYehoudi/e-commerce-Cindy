@@ -22,17 +22,22 @@ const giftcardController = {
   consumerGiftcard: async (req, res) => {
     try {
       const { giftcardId, consumerId } = req.body;
+      const giftcard = await Giftcard.findById(giftcardId);
+      if (!giftcard || giftcard.consumerId) {
+        res.status(400).json("Error ressource not found or not available");
+        return;
+      }
       const consumerGiftcard = await Giftcard.findByIdAndUpdate(
         giftcardId,
-        { $set: { consumerId } },
+        { $set: { consumerId } }, // l'existance de consumerId prouvera que la carte-cardeau a déjà été utilisée.
         { new: true }
       );
-      res.status(200).json(consumerGiftcard); 
+      res.status(200).json(consumerGiftcard);
     } catch (error) {
       console.error("Error consuming giftcard:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   },
 };
- 
+
 export default giftcardController;

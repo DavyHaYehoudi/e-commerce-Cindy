@@ -15,6 +15,7 @@ const AdminDashboard = () => {
   useFetchSlice("clients", undefined, itemsPerPage);
   useFetchSlice("product");
   useFetchSlice("material")
+  useFetchSlice("promocode")
 
   useEffect(() => {
     dispatch(fetchClients({ itemsPerPage }));
