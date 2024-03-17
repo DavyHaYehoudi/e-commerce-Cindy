@@ -529,7 +529,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductsByOrder'
+                $ref: '#/components/schemas/OrderProducts'
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
@@ -554,7 +554,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductsByOrder'
+                $ref: '#/components/schemas/OrderProducts'
         '400':
           description: Invalid ID supplied
         '401':
@@ -567,7 +567,7 @@ paths:
         - orderProducts
       summary: Edit note orderProducts by ID
       description: ''
-      operationId: editNoteProductsByOrder
+      operationId: editNoteOrderProducts
       parameters:
         - name: orderProductsId
           in: path
@@ -581,7 +581,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductsByOrderNote'
+                $ref: '#/components/schemas/OrderProductsNote'
         '400':
           description: Invalid ID supplied
         '401':
@@ -610,7 +610,7 @@ paths:
         - product
       summary: Place an product for a purchase
       description: Place a new product in the list
-      operationId: placeProductsbyorderId
+      operationId: placeOrderProductsId
       requestBody:
         content:
           application/json:
@@ -1122,106 +1122,60 @@ components:
               type: string
               example: 10m4d22b45a0fb3fd4a7l53
     Order:
-      type: array
-      items:
-        anyOf:
-          - type: array
-            items:
-             type: object
-             properties:
-              orderProducts:
+      type: object
+      properties:
+        orderProducts:
+          type: object
+          properties:
+            orderProductsActions:
+              type: object
+              properties:
+                exchange:
+                  type: integer
+                exchangeDate:
+                  type: string
+                refund:
+                  type: integer 
+                refundDate:
+                  type: string
+                  example: 2024-05-13
+                credit:
+                  type: string
+            clientId:
+              type: string
+              example: 65bc8c5b7f890edc1f631830
+            _id:
+              type: string
+            quantity:
+              type: integer
+            step:
+              type: integer
+              format: int32
+              example: 2
+            trackingNumberList:
+              type: array
+              items:
                 type: object
                 properties:
-                  orderProductsActions:
-                    type: object
-                    properties:
-                      exchange:
-                        type: integer
-                      refund:
-                        type: integer 
-                      credit:
-                        type: string
-                  _id:
+                  id:
                     type: string
-                  quantity:
-                    type: integer
-              creditEdit:
-                type: object
-                properties:
-                  orderProductsId:
+                  isAdmin:
+                    type: boolean
+                  value:
                     type: string
-                  amount:
-                    type: integer
-                  dateExpire:
+                  date:
                     type: string
                     format: date
-          - type: object
-            properties:
-              step:
-                type: integer
-                format: int32
-                example: 2
-              trackingNumberList:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
+                  orderProducts:
+                    type: array
+                    items:
                       type: string
-                    isAdmin:
-                      type: boolean
-                    value:
-                      type: string
-                    date:
-                      type: string
-                      format: date
-                    orderProducts:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                          productsId:
-                            type: string
-                          articlesNumber:
-                            type: integer
-                            format: int32
-                          material:
-                            type: integer
-                            format: int8
-                          _id:
-                            type: string
-                      example:
-                        - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                          productsId: "65b3e264624d950f87b81f38"
-                          articlesNumber: 1
-                          _id: "65c20591b1a16a3ec8e4bd44"
-                    _id:
-                      type: string
-                example:
-                  - id: "c336090c-5e7d-439a-8bf2-322311c4906d"
-                    isAdmin: true
-                    value: "4eme"
-                    date: "2024-02-24"
-                    orderProducts:
-                      - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                        productsId: "65b3e264624d950f87b81f38"
-                        articlesNumber: 1
-                        material: 3
-                        _id: "65c20591b1a16a3ec8e4bd44"
-                    _id: "65c20591b1a16a3ec8e4bd43"
-                  - id: "c336090c-5e7d-439a-8bf2-322311c4777e"
-                    isAdmin: true
-                    value: "6eme"
-                    date: "2024-02-24"
-                    orderProducts:
-                      - id: "a0612881-8d13-47e1-aba2-42619b34c4a9"
-                        productsId: "65b3e264624d950f87b81f37"
-                        articlesNumber: 2
-                        material: 0
-                        _id: "65c20591b1a16a3ec8e4bd44"
-                    _id: "65c20591b1a16a3ec8e4bd45"
+                    example:
+                      - 2884d22b45a0fb3fd4a75p2
+                      - 7774d22b45a0fb3fd4a7bn0
+                      - 10m4d22b45a0fb3fd4a7l53
+                  _id:
+                    type: string
     Orders:
       type: array
       items:
@@ -1254,7 +1208,7 @@ components:
               - 2884d22b45a0fb3fd4a75p2
               - 7774d22b45a0fb3fd4a7bn0
               - 10m4d22b45a0fb3fd4a7l53
-    ProductsByOrder:
+    OrderProducts:
       type: array
       items:
         type: object
@@ -1273,6 +1227,9 @@ components:
             type: integer
             format: int16
             example: 0
+          orderId:
+            type: string
+            example: 65bc8c5b7f890edc1f631830
           orderProductsActions:
             type: object
             properties:
@@ -1280,17 +1237,22 @@ components:
                 type: integer
                 format: int16
                 example: 1
+              exchangDate:
+                type: string
+                example: 2024-10-03
               refund:
                 type: integer
                 format: int16
                 example: null
+              refundDate:
+                type: string
               credit:
                 type: string
                 example: 10m4d22b45a0fb3fd4a7l53
               note:
                 type: string
                 example: Des notes pour l'exemple
-    ProductsByOrderNote:
+    OrderProductsNote:
       type: object  
       properties:
         _id:

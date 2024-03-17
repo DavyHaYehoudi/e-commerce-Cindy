@@ -67,7 +67,7 @@ export const ordersMock = [
         ],
       },
     ],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b45","65b3ede7624d950f87be0b46"],
   },
@@ -79,7 +79,7 @@ export const ordersMock = [
     outTotalAmount: 7,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b47"],
   },
@@ -91,7 +91,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b48"],
   },
@@ -110,7 +110,7 @@ export const ordersMock = [
       orderProducts: [{ id: "2342532bg5g", productsId:"65b3e264624d950f87b81f3e", articlesNumber: 1 }],
     },],
     trackingNumberClient: "ABCDEF8768Y",
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b49","65b3ede7624d950f87be0b4a"],
   },
@@ -179,7 +179,6 @@ export const ordersMock = [
         ],
       },
     ],
-    isClientNotified: false,
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b4b","65b3ede7624d950f87be0b4c","65b3ede7624d950f87be0b4d"],
   },
@@ -191,7 +190,7 @@ export const ordersMock = [
     outTotalAmount: 10,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b4e"],
   },
@@ -203,7 +202,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b4f","65b3ede7624d950f87be0b50","65b3ede7624d950f87be0b51","65b3ede7624d950f87be0b52"],
   },
@@ -216,7 +215,7 @@ export const ordersMock = [
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
     trackingNumberClient: "ABCDEF8768Y",
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b53","65b3ede7624d950f87be0b54"],
   },
@@ -228,7 +227,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b55","65b3ede7624d950f87be0b56","65b3ede7624d950f87be0b57"],
   },
@@ -240,7 +239,7 @@ export const ordersMock = [
     outTotalAmount: 11,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b58"],
   },
@@ -252,7 +251,7 @@ export const ordersMock = [
     outTotalAmount: 17,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b59","65b3ede7624d950f87be0b5a","65b3ede7624d950f87be0b5b","65b3ede7624d950f87be0b5c"],
   },
@@ -264,7 +263,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b5d"],
   },
@@ -276,7 +275,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b5e"],
   },
@@ -288,7 +287,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b5f"],
   },
@@ -300,7 +299,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b60"],
   },
@@ -312,7 +311,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b61"],
   },
@@ -324,7 +323,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b62","65b3ede7624d950f87be0b63"],
   },
@@ -336,7 +335,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b64"],
   },
@@ -348,7 +347,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b65"],
   },
@@ -360,7 +359,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b66","65b3ede7624d950f87be0b67"],
   },
@@ -372,7 +371,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b68"],
   },
@@ -384,7 +383,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b69","65b3ede7624d950f87be0b6a"],
   },
@@ -396,7 +395,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b6b"],
   },
@@ -408,7 +407,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 1234" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b6c","65b3ede7624d950f87be0b6d"],
   },
@@ -420,7 +419,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b6e"],
   },
@@ -432,7 +431,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b6f","65b3ede7624d950f87be0b70"],
   },
@@ -444,7 +443,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b71","65b3ede7624d950f87be0b72"],
   },
@@ -456,7 +455,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Mastercard", last4Digits: "**** 5678" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b73"],
   },
@@ -468,7 +467,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b74"],
   },
@@ -480,7 +479,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Amex", last4Digits: "**** 7890" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b75"],
   },
@@ -492,7 +491,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 3456" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b76","65b3ede7624d950f87be0b77"],
   },
@@ -504,7 +503,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "MasterCard", last4Digits: "**** 5678" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b78"],
   },
@@ -516,7 +515,7 @@ export const ordersMock = [
     outTotalAmount: null,
     paymentMethod: { cardType: "Visa", last4Digits: "**** 2345" },
     trackingNumber: [],
-    isClientNotified: true,
+    
     lastSentDateToClient: null,
     orderProducts: ["65b3ede7624d950f87be0b79"],
   },

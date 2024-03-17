@@ -4,7 +4,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f37",
     quantity: 2,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: 1,
       refund: null,
@@ -16,7 +16,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f38",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -28,7 +28,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f39",
     quantity: 1,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -40,7 +40,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3a",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -52,7 +52,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3b",
     quantity: 2,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -64,7 +64,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3c",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -76,7 +76,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3d",
     quantity: 3,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -88,7 +88,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3e",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -100,7 +100,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3f",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -112,7 +112,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f40",
     quantity: 4,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -124,7 +124,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f41",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -136,7 +136,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f42",
     quantity: 1,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -148,7 +148,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f43",
     quantity: 3,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -160,7 +160,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f44",
     quantity: 2,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -172,7 +172,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f45",
     quantity: 1,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -184,7 +184,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f46",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -196,7 +196,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f47",
     quantity: 3,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -208,7 +208,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f48",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -220,7 +220,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f49",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -232,7 +232,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f4a",
     quantity: 4,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -244,7 +244,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f37",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -256,7 +256,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f38",
     quantity: 1,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -268,7 +268,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f39",
     quantity: 3,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -280,7 +280,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3a",
     quantity: 2,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -292,7 +292,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3b",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -304,7 +304,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3c",
     quantity: 3,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -316,7 +316,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3d",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -328,7 +328,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3e",
     quantity: 2,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -340,7 +340,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3f",
     quantity: 4,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -352,7 +352,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f40",
     quantity: 2,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -364,7 +364,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f41",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -376,7 +376,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f42",
     quantity: 3,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -388,7 +388,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f43",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -400,7 +400,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f44",
     quantity: 1,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -412,7 +412,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f45",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -424,7 +424,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f46",
     quantity: 3,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -436,7 +436,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f47",
     quantity: 1,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -448,7 +448,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f48",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -460,7 +460,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f49",
     quantity: 3,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -472,7 +472,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f4a",
     quantity: 3,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -484,7 +484,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f4a",
     quantity: 3,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -496,7 +496,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f37",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -508,7 +508,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f38",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -520,7 +520,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f39",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -532,7 +532,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3a",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -544,7 +544,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3b",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -556,7 +556,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3c",
     quantity: 2,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -568,7 +568,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3d",
     quantity: 2,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -580,7 +580,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3e",
     quantity: 1,
     material: 3,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -592,7 +592,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f3f",
     quantity: 3,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -604,7 +604,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f40",
     quantity: 1,
     material: 0,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -616,7 +616,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f41",
     quantity: 1,
     material: 1,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,
@@ -628,7 +628,7 @@ export const orderProductsMock = [
     productsId: "65b3e264624d950f87b81f42",
     quantity: 2,
     material: 2,
-    isClientNotified: true,
+    
     orderProductsActions: {
       exchange: null,
       refund: null,

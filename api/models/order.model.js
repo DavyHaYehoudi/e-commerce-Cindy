@@ -3,6 +3,11 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderSchema = new mongoose.Schema(
   {
+    clientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
+      required: true,
+    },
     step: {
       type: Number,
       required: true,
@@ -14,11 +19,6 @@ const orderSchema = new mongoose.Schema(
         message: (props) =>
           `${props.value} n'est pas un nombre entier entre 0 et 6!`,
       },
-    },
-    isNextStepOrder: {
-      type: Boolean,
-      required: true,
-      default: false,
     },
     inTotalAmount: {
       type: Number,

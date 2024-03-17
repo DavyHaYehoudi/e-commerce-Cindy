@@ -8,9 +8,7 @@ const fetchProductsByOrder = createAsyncThunk(
   "orderProducts/fetchProductsByOrder",
   async ({ orderProductsIds }) => {
     try {
-      return customFetch(
-        `orderProducts?orderProductsIds=${orderProductsIds}`
-      );
+      return customFetch(`orderProducts?orderProductsIds=${orderProductsIds}`);
     } catch (error) {
       handleFetchError(error);
     }
@@ -43,23 +41,34 @@ const orderProductsSlice = createSlice({
         productActionContent,
       } = action.payload;
 
+      const timestamp = new Date();
+
       state.data = state?.data.map((orderProducts) => {
         if (orderProductsId === orderProducts._id) {
+          let updatedActions = { ...orderProducts.orderProductsActions };
+
           if (updatedProperty === actions.CREDIT) {
-            return {
-              ...orderProducts,
-              orderProductsActions: {
-                ...orderProducts.orderProductsActions,
-                [updatedProperty]: creditContent,
-              },
+            updatedActions = {
+              ...updatedActions,
+              [updatedProperty]: creditContent,
             };
+          } else {
+            updatedActions = {
+              ...updatedActions,
+              [updatedProperty]: productActionContent,
+            };
+
+            // Mise à jour de la propriété de date correspondante
+            if (updatedProperty === actions.REFUND) {
+              updatedActions.refundDate = timestamp;
+            } else if (updatedProperty === actions.EXCHANGE) {
+              updatedActions.exchangeDate = timestamp;
+            }
           }
+
           return {
             ...orderProducts,
-            orderProductsActions: {
-              ...orderProducts.orderProductsActions,
-              [updatedProperty]: productActionContent,
-            },
+            orderProductsActions: updatedActions,
           };
         }
         return orderProducts;
