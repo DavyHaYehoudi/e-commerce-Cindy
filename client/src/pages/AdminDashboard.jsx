@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const handleChangeItemPerPage = (event) => {
     const selectedValue = event.target.value;
     setItemsPerPage(
-      selectedValue === "TOUS" ? -1 : parseInt(selectedValue, 10)
+      selectedValue === "TOUS" ? "all" : parseInt(selectedValue, 10)
     );
   };
 

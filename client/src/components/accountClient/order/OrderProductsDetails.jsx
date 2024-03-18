@@ -1,7 +1,6 @@
 import React from "react";
 import { getProductProperties } from "../../../selectors/product";
 import { useSelector } from "react-redux";
-// import { getMaterialProperty } from "../../../helpers/constants/materials";
 import { getMaterialProperty } from "../../../selectors/material";
 import { formatPrice, sumPriceArticle } from "../../../helpers/utils/prices";
 import { Link } from "react-router-dom";
@@ -38,7 +37,6 @@ const OrderProductsDetails = ({
     <div key={productsId} className="order-item-user-account">
       <div>
         <h3>
-          {/* {name} {getMaterialProperty(material)?.name} */}
           {name} {getMaterialProperty(material, materialStore)?.name}
         </h3>
         <p className="pricing">

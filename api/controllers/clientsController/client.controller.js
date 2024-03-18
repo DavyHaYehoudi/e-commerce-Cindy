@@ -1,65 +1,24 @@
 import Client from "../../models/client.model.js";
+import Order from "../../models/order.model.js";
+import OrderProducts from "../../models/orderProducts.model.js";
 import Credit from "../../models/credit.model.js";
 import Giftcard from "../../models/giftcard.model.js";
 
 const clientController = {
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
-
     try {
-      let client = await Client.findById(clientId)
-        .select("-notesAdmin")
-        .populate({
-          path: "orders",
-          populate: {
-            path: "orderProducts",
-            model: "OrderProducts",
-          },
-        });
-
-      if (!client) {
-        return res.status(404).json({ error: "Client not found" });
-      }
-
-      const ordersWithoutNote = client.orders.map((order) => {
-        const orderProductsWithoutNote = order.orderProducts.map((product) => {
-          const { orderProductsActions, ...rest } = product.toJSON();
-          const orderProductsActionsWithoutNote = {
-            ...orderProductsActions,
-            note: undefined,
-          };
-          return {
-            ...rest,
-            orderProductsActions: orderProductsActionsWithoutNote,
-          };
-        });
-        return {
-          ...order.toJSON(),
-          orderProducts: orderProductsWithoutNote,
-        };
-      });
-
-      const creditIds = ordersWithoutNote.flatMap((order) =>
-        order.orderProducts
-          .map((product) => product?.orderProductsActions?.credit)
-          .filter(Boolean)
-      );
-
-      const credit = await Credit.find({
-        orderProductsId: { $in: creditIds },
-      });
-
+      const client = await Client.findById(clientId).select("-notesAdmin");
+      const orders = await Order.find({ clientId });
+      const orderIds = orders.map((order) => order._id.toString());
+      const orderProducts = await OrderProducts.find({
+        orderId: { $in: orderIds },
+      }).select("-orderProductsActions.note");
       const giftcard = await Giftcard.find({ buyerId: clientId });
-
-      const orderProducts = ordersWithoutNote.flatMap(
-        (order) => order.orderProducts
-      );
-
-      client = await Client.findById(clientId).select("-notesAdmin -orders");
-
+      const credit = await Credit.find({ clientId });
       res.json({
         client,
-        orders: ordersWithoutNote,
+        orders,
         credit,
         giftcard,
         orderProducts,

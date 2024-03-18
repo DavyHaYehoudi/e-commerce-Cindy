@@ -15,9 +15,7 @@ const Item = ({ orderProducts, orderId }) => {
       {orderProducts &&
         orderProductsStore &&
         orderProductsStore
-          .filter((ps) =>
-            orderProducts.some((p) => p.productsId === ps.productsId)
-          )
+          .filter((ps) => orderProducts.some((p) => ps.orderId === orderId))
           .map((orderProductsItem) => (
             <OrderProductsDetails
               key={orderProductsItem._id}

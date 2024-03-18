@@ -21,18 +21,28 @@ const clientsController = {
       } = req.query;
 
       // Vérifier si un nombre limité est demandé
-      if (itemsPerPage.trim() !== "" && parseInt(itemsPerPage) !== -1) {
+      if (
+        itemsPerPage.trim() !== "" &&
+        itemsPerPage.trim() !== "all" &&
+        parseInt(itemsPerPage) !== -1
+      ) {
         let query = await Client.find();
         const clientsLimit = query.slice(0, parseInt(itemsPerPage));
         totalClientsCount = await Client.countDocuments();
         res.status(200).json({ clients: clientsLimit, totalClientsCount });
         return;
       }
+      // Si tous les clients sont demandés
+      if (itemsPerPage.trim() === "all") {
+        const allClients = await Client.find();
+        res.status(200).json({ clients: allClients });
+        return;
+      }
 
       const clients = await process(
         name,
         credit,
-        exchange, 
+        exchange,
         refund,
         note,
         steps,

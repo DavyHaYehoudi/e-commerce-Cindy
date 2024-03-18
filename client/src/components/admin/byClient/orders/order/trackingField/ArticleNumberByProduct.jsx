@@ -91,7 +91,7 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product._id}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{getMaterialProperty(product.material,materialStore).name}</span>
+                <span>{getMaterialProperty(product.material,materialStore)?.name}</span>
                 {product.quantity > 1 && (
                   <input
                     type="number"

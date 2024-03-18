@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderProductsSchema = new mongoose.Schema({
+  orderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order",
+    required: true,
+  },
   productsId: {
     type: String,
     required: true,
@@ -38,6 +43,7 @@ const orderProductsSchema = new mongoose.Schema({
           "La propriété 'exchange' doit être de type null ou un nombre supérieur à 0.",
       },
     },
+    exchangeDate: { type: Date, default: null },
     refund: {
       type: Number,
       default: null,
@@ -48,6 +54,7 @@ const orderProductsSchema = new mongoose.Schema({
           "La propriété 'refund' doit être de type null ou un nombre supérieur à 0.",
       },
     },
+    refundDate: { type: Date, default: null },
     credit: {
       type: String,
       default: null,
