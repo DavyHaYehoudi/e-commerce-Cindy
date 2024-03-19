@@ -10,7 +10,7 @@ const creditController = {
 
       const credits = await Credit.find({
         orderProductsId: { $in: parsedProductsByOrderIds },
-        archived: false,
+        isArchived: false,
       }).exec();
 
       res.status(200).json(credits);
@@ -20,51 +20,56 @@ const creditController = {
   },
   archiveCredit: async (req, res) => {
     const { orderProductsId } = req.params;
+    const { isArchived } = req.body;
 
     try {
-      // Mettre à jour le crédit
-      const updatedCredit = await Credit.findOneAndUpdate(
-        { orderProductsId },
-        { $set: { archived: true } },
-        { new: true }
-      );
+      // Vérifier si req.body.isArchived est true
+      if (isArchived === true) {
+        // Mettre à jour le crédit
+        const updatedCredit = await Credit.findOneAndUpdate(
+          { orderProductsId },
+          { $set: { isArchived: true } },
+          { new: true }
+        );
 
-      if (!updatedCredit) {
-        return res
-          .status(404)
-          .json({ error: "Ressource dans Credit non trouvée" });
+        if (!updatedCredit) {
+          return res
+            .status(404)
+            .json({ error: "Ressource dans Credit non trouvée" });
+        }
+
+        // Mettre à jour les OrderProducts
+        const updatedOrderProducts = await OrderProducts.findByIdAndUpdate(
+          orderProductsId,
+          { $set: { "orderProductsActions.credit": null } },
+          { new: true }
+        );
+
+        if (!updatedOrderProducts) {
+          return res
+            .status(404)
+            .json({ error: "Ressource dans OrderProducts non trouvée" });
+        }
+
+        // Trouver l'ID de l'Order associé à l'OrderProducts
+        const order = await Order.findOne({ orderProducts: orderProductsId });
+
+        if (!order) {
+          return res.status(404).json({ error: "Order associé non trouvé" });
+        }
+
+        // Mettre à jour outTotalAmount de l'Order
+        await Order.findByIdAndUpdate(
+          order._id,
+          { $inc: { outTotalAmount: -updatedCredit.amount } },
+          { new: true }
+        );
+
+        res.status(200).json({ updatedCredit });
+      } else {
+        // Si isArchived n'est pas true, renvoyer un message d'erreur
+        return res.status(400).json({ error: "isArchived doit être true" });
       }
-
-      // Mettre à jour les OrderProducts
-      const updatedOrderProducts = await OrderProducts.findByIdAndUpdate(
-        orderProductsId,
-        { $set: { "orderProductsActions.credit": null } },
-        { new: true }
-      );
-
-      if (!updatedOrderProducts) {
-        return res
-          .status(404)
-          .json({ error: "Ressource dans OrderProducts non trouvée" });
-      }
-
-      // Trouver l'ID de l'Order associé à l'OrderProducts
-      const order = await Order.findOne({ orderProducts: orderProductsId });
-
-      if (!order) {
-        return res.status(404).json({ error: "Order associé non trouvé" });
-      }
-
-      // Mettre à jour outTotalAmount de l'Order
-      const updatedOrder = await Order.findByIdAndUpdate(
-        order._id,
-        { $inc: { outTotalAmount: -updatedCredit.amount } },
-        { new: true }
-      );
-
-      res
-        .status(200)
-        .json({ updatedCredit, updatedOrderProducts, updatedOrder });
     } catch (error) {
       console.error("Error archiving credit:", error);
       res.status(500).json({ error: "Internal server error" });

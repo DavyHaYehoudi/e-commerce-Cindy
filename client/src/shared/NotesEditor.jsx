@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/utils/formatDate";
 import { getNotesEditorInfo } from "../selectors/client";
-import { addNoteAdmin, removeNoteAdmin } from "../features/admin/clientsSlice";
+import { notesAdmin } from "../features/admin/clientsSlice";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
   const [currentNote, setCurrentNote] = useState("");
@@ -20,7 +20,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
 
   const handleSaveNotes = () => {
     dispatch(
-      addNoteAdmin({
+      notesAdmin({
         clientId,
         content: currentNote,
       })
@@ -29,7 +29,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
   };
 
   const handleDeleteNote = (noteId) => {
-    dispatch(removeNoteAdmin({ clientId, noteId }));
+    dispatch(notesAdmin({ clientId, noteId }));
   };
 
   const isNotesEmpty = currentNote.length === 0;

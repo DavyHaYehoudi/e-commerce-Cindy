@@ -8,6 +8,7 @@ import creditRoutes from "./routes/credit.routes.js";
 import materialRoutes from "./routes/material.routes.js";
 import promocodeRoutes from "./routes/promocode.routes.js";
 import giftcardRoutes from "./routes/giftcard.routes.js";
+import statisticsRoutes from "./routes/statistic.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
 const app = express();
 const port = 3001;
@@ -27,6 +28,7 @@ app.use("/credits", creditRoutes);
 app.use("/materials", materialRoutes);
 app.use("/promocodes", promocodeRoutes);
 app.use("/giftcards", giftcardRoutes);
+app.use("/statistics", statisticsRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);

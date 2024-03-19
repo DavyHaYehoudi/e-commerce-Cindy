@@ -1,0 +1,141 @@
+/* ********************* START PAGE PROMOCODE ********************* */
+.tabs-operations {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0px 20px 100px 20px;
+}
+
+.tabs-operations h2 {
+    cursor: pointer;
+}
+
+.tabs-operations h2 {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    color: var(--text-color);
+    overflow: hidden;
+    font-size: var(--nav-menu-text-fontSize);
+    letter-spacing: var(--letter-spacing);
+}
+
+.tabs-operations h2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-menu-color);
+    transition: width 0.3s ease;
+}
+
+.tabs-operations h2:hover::before {
+    width: 100%;
+}
+
+.tabs-operations h2.active {
+    color: var(--text-golden);
+}
+
+.promocodes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: auto;
+}
+
+.promocodes .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--background);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+.promocodes .card:hover {
+    transform: scale(1.05);
+}
+
+.promocodes .card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promocodes .delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.promocodes .card:hover .delete-button {
+    opacity: 1;
+}
+
+.promocodes .card-created {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.addPromocode {
+    cursor: pointer;
+}
+
+.addPromocode span {
+    font-size: 100px;
+}
+
+.promocodes-modal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    min-height: 350px;
+    border-radius: 15px;
+    background: var(--dark);
+}
+
+.promocodes-modal-content {
+    padding: 20px 10px;
+}
+
+.promocodes-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.promocodes-wrapper input {
+    width: 100%;
+    margin: auto;
+}
+
+.promocodes-modal-close {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: var(--background);
+}
+
+.promocodes .validate-btn {
+    background-color: var(--success);
+}
+
+.promocodes-modal-close:hover {
+    transform: rotate(180deg) translateY(25%);
+}
+
+/* ********************* END PAGE PROMOCODE ********************* */

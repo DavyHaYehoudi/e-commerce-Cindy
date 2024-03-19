@@ -36,5 +36,9 @@
 @import "pages/legalDocs.css";
 @import "pages/about.css";
 @import "pages/shoppingCart.css";
-@import "pages/adminDashboard.css";
 @import "pages/accountClient.css";
+@import "pages/adminDashboard/main.css";
+@import "pages/adminDashboard/clients.css";
+@import "pages/adminDashboard/operations.css";
+@import "pages/adminDashboard/products.css";
+@import "pages/adminDashboard/stats.css";

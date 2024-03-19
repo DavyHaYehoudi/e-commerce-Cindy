@@ -272,11 +272,11 @@ paths:
             permission.
       security:
         - api_key: []
-  /clients/{clientId}/addNote:
+  /clients/{clientId}/notesAdmin:
     patch:
       tags:
         - client
-      summary: Add admin notes
+      summary: Add/Remove admin notes
       description: This can only be done by admin.
       operationId: add notes about the order or the client
       parameters:
@@ -290,36 +290,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddingNotesAdmin'
-      responses:
-        '200':
-          description: Successful added notes
-        '400':
-          description: Invalid clientId supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
-  /clients/{clientId}/removeNote/{noteId}:
-    patch:
-      tags:
-        - client
-      summary: Delete admin notes
-      description: This can only be done by admin.
-      operationId: delete notes about the order or the client
-      parameters:
-        - name: clientId
-          in: path
-          description: ID of the client
-          required: true
-          schema:
-            type: string
-        - name: noteId
-          in: path
-          description: ID of the note
-          required: true
-          schema:
-            type: string
+              $ref: '#/components/schemas/NotesAdmin'
       responses:
         '200':
           description: Successful added notes
@@ -744,6 +715,11 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditCredit'
       responses:
         '200':
           description: Successful updated credit
@@ -961,6 +937,31 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
+  /statistics/{year}:
+    get:
+      tags:
+        - statistic
+      summary: Get statistics
+      description: ''
+      operationId: getStatistics
+      parameters:
+        - name: year
+          in: path
+          description: year concerned
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful getting all statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistics'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
 components:
   schemas:
     Client:
@@ -1094,7 +1095,7 @@ components:
             - 2884d22b45a0fb3fd4a75p2
             - 7774d22b45a0fb3fd4a7bn0
             - 10m4d22b45a0fb3fd4a7l53
-    AddingNotesAdmin:
+    NotesAdmin:
       type: object
       properties:
         content:
@@ -1472,13 +1473,19 @@ components:
         dateExpire:
           type: string
           example: 2023-04-05 09:55
-        archived:
+        isArchived:
           type: boolean
           example: false
     Credits:
       type: array
       items:
         $ref: '#/components/schemas/Credit'
+    EditCredit:
+      type: object
+      properties:
+        isArchived:
+          type: boolean
+          example: true
     Material:
       type: object
       properties:
@@ -1587,6 +1594,12 @@ components:
         consumerId:
           type: string
           example: 61f2d2df4db605d0202b0af5 
+    Statistics:
+      type: object
+      properties:
+        credits:
+          type: string
+          
   securitySchemes:
     petstore_auth:
       type: oauth2
