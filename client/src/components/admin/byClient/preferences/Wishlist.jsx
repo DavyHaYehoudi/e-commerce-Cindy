@@ -45,7 +45,7 @@ const Wishlist = ({ productsId, productCart }) => {
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>
           <img
-            src={`/photos/${getProductProperties(productsId, state).image}`}
+            src={`/photos/${getProductProperties(productsId, state).main_image}`}
             alt={getProductProperties(productsId, state)?.name}
             width="100px"
             height="100px"

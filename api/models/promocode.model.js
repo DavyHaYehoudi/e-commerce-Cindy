@@ -7,13 +7,14 @@ const promocodeSchema = new mongoose.Schema(
     code: {
       type: String,
       required: true,
+      maxlength: 50
     },
     percentage: {
       type: Number,
       required: true,
     },
     dateExpire: {
-      type: String,
+      type: Date,
       required: true,
       validate: {
         validator: function (dateExpire) {

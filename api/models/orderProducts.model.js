@@ -63,7 +63,8 @@ const orderProductsSchema = new mongoose.Schema(
       },
       refundDate: { type: Date, default: null },
       credit: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "OrderProducts",
         default: null,
       },
 

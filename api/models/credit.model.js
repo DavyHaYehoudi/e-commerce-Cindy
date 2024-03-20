@@ -27,7 +27,7 @@ const creditSchema = new mongoose.Schema(
       default: generateSecretCode,
     },
     dateExpire: {
-      type: String,
+      type: Date,
       required: true,
       validate: {
         validator: function (dateExpire) {

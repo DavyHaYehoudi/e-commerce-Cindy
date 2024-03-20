@@ -52,7 +52,10 @@ const Promocodes = () => {
   };
 
   const handleDeletePromocode = (id) => {
-    deletePromoCode(id);
+    const isConfirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce code promo ?");
+        if (isConfirmed) {
+        deletePromoCode(id);
+    }
   };
 
   const isFormCompleted =

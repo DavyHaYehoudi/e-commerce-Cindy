@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../helpers/utils/prices";
 import { getProductProperties } from "../../../../selectors/product";
-// import { getMaterialProperty } from "../../../../helpers/constants/materials";
 import { formatDate } from "../../../../helpers/utils/formatDate";
 import { getMaterialProperty } from "../../../../selectors/material";
 
@@ -42,7 +41,7 @@ const Cart = ({ productsId, productCart }) => {
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>
           <img
-            src={`/photos/${getProductProperties(productsId, state).image}`}
+            src={`/photos/${getProductProperties(productsId, state).main_image}`}
             alt={getProductProperties(productsId, state).name}
             width="100px"
             height="100px"

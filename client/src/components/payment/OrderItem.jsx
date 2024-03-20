@@ -22,7 +22,7 @@ const OrderItem = ({ cart }) => {
           <Link>
             <img
               src={`/photos/${
-                getProductProperties(cart.productsId, productStore).image
+                getProductProperties(cart.productsId, productStore).main_image
               }`}
               alt={getProductProperties(cart.productsId, productStore).name}
               width="100px"

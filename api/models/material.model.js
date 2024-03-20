@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const materialSchema = new mongoose.Schema({
-  name: { type: String, default: null },
+  name: { type: String, default: null,maxlength: 50 },
   value: { type: String, default: null },
 });
 

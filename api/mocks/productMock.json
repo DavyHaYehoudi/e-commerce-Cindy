@@ -1,9 +1,8 @@
 [
   {
-    "reference": "QER2345OIJD1",
-    "category": "Jewelry",
-    "releaseDate": "2023-11-01",
     "name": "Boucles d'oreilles",
+    "collection":"",
+    "category": "Jewelry",
     "image": "bo.png",
     "description": "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur.",
     "materials": [
@@ -42,9 +41,7 @@
     "isNew": true
   },
   {
-    "reference": "ABC123XYZ2",
     "category": "Clothing",
-    "releaseDate": "2023-10-15",
     "name": "Robe élégante",
     "image": "bar.png",
     "description": "Une robe élégante parfaite pour les soirées spéciales. Confortable et stylée.",
@@ -81,9 +78,7 @@
     "isNew": false
   },
   {
-    "reference": "ABC123XYZ3",
     "category": "Hair Accessories",
-    "releaseDate": "2023-10-20",
     "name": "Peigne en cristal",
     "image": "col.png",
     "description": "Un peigne élégant en cristal pour ajouter une touche de glamour à votre coiffure.",
@@ -115,9 +110,7 @@
     "isNew": false
   },
   {
-    "reference": "DEF567LMN4",
     "category": "Bracelets",
-    "releaseDate": "2023-11-05",
     "name": "Bracelet en perles",
     "image": "bra.png",
     "description": "Un bracelet élégant en perles pour compléter votre look avec style.",
@@ -151,9 +144,7 @@
     "isNew": true
   },
   {
-    "reference": "GHI789JKL5",
-    "category": "Necklaces",
-    "releaseDate": "2023-11-10",
+        "category": "Necklaces",
     "name": "Collier de perles",
     "image": "bo.png",
     "description": "Un collier de perles classique qui ajoute une touche d'élégance à n'importe quelle tenue.",
@@ -185,9 +176,7 @@
     "isNew": true
   },
   {
-    "reference": "MNO456PQR6",
     "category": "Hair Accessories",
-    "releaseDate": "2023-11-02",
     "name": "Broche en strass",
     "image": "bar.png",
     "description": "Une broche scintillante en strass pour ajouter une touche de glamour à votre coiffure.",
@@ -218,9 +207,7 @@
     "isNew": false
   },
   {
-    "reference": "STU012VWX7",
     "category": "Hair Accessories",
-    "releaseDate": "2023-11-08",
     "name": "Collier de dos en perles",
     "image": "col.png",
     "description": "Un collier de dos en perles pour sublimer vos tenues dos nu avec élégance.",
@@ -249,9 +236,7 @@
     "isNew": false
   },
   {
-    "reference": "YZA345BCD8",
     "category": "Earrings",
-    "releaseDate": "2023-11-06",
     "name": "Boucles d'oreilles pendantes",
     "image": "bra.png",
     "description": "Des boucles d'oreilles pendantes chic et modernes pour compléter votre look avec style.",
@@ -283,9 +268,7 @@
     "isNew": true
   },
   {
-    "reference": "EFG678HIJ9",
     "category": "Hair Accessories",
-    "releaseDate": "2023-11-12",
     "name": "Peigne vintage",
     "image": "col.png",
     "description": "Un peigne vintage orné de détails élégants pour ajouter une touche rétro à votre coiffure.",
@@ -317,9 +300,7 @@
     "isNew": false
   },
   {
-    "reference": "KLM901NOP_10",
     "category": "Bracelets",
-    "releaseDate": "2023-11-10",
     "name": "Bracelet en cuir tressé",
     "image": "bo.png",
     "description": "Un bracelet en cuir tressé avec une fermeture magnétique pour un look décontracté et tendance.",
@@ -356,9 +337,7 @@
     "isNew": true
   },
   {
-    "reference": "PQR234STU_11",
     "category": "Brooches",
-    "releaseDate": "2023-11-18",
     "name": "Broche florale en argent",
     "image": "bar.png",
     "description": "Une élégante broche florale en argent pour ajouter une touche de délicatesse à vos tenues.",
@@ -389,9 +368,7 @@
     "isNew": false
   },
   {
-    "reference": "UVW567XYZ_12",
     "category": "Earrings",
-    "releaseDate": "2023-11-15",
     "name": "Boucles d'oreilles pendantes en perles",
     "image": "bra.png",
     "description": "Des boucles d'oreilles pendantes en perles pour un look sophistiqué et raffiné.",
@@ -422,9 +399,7 @@
     "isNew": true
   },
   {
-    "reference": "XYZ890ABC_13",
     "category": "Hair Accessories",
-    "releaseDate": "2023-11-25",
     "name": "Serre-tête en perles",
     "image": "col.png",
     "description": "Un serre-tête élégant en perles pour ajouter une touche sophistiquée à votre coiffure.",
@@ -453,9 +428,7 @@
     "isNew": false
   },
   {
-    "reference": "BCD123EFG_14",
     "category": "Bracelets",
-    "releaseDate": "2023-11-22",
     "name": "Bracelet jonc en argent",
     "image": "bo.png",
     "description": "Un bracelet jonc en argent avec des détails ciselés pour une allure élégante au quotidien.",
@@ -491,9 +464,7 @@
     "isNew": true
   },
   {
-    "reference": "EFG456HIJ_15",
     "category": "Earrings",
-    "releaseDate": "2023-11-30",
     "name": "Boucles d'oreilles créoles en argent",
     "image": "bar.png",
     "description": "Des boucles d'oreilles créoles en argent pour un look moderne et élégant.",
@@ -524,9 +495,7 @@
     "isNew": false
   },
   {
-    "reference": "HIJ789KLM_16",
     "category": "Hair Accessories",
-    "releaseDate": "2023-11-28",
     "name": "Pin à cheveux en perles",
     "image": "bra.png",
     "description": "Un pin à cheveux élégant en perles pour rehausser votre coiffure avec une touche de sophistication.",
@@ -558,9 +527,7 @@
     "isNew": true
   },
   {
-    "reference": "LMN012OPQ_17",
     "category": "Necklaces",
-    "releaseDate": "2023-12-05",
     "name": "Collier pendentif en cristal",
     "image": "col.png",
     "description": "Un collier pendentif en cristal pour ajouter une touche de glamour à vos tenues de soirée.",
@@ -592,9 +559,7 @@
     "isNew": false
   },
   {
-    "reference": "OPQ345RST_18",
     "category": "Hair Accessories",
-    "releaseDate": "2023-12-01",
     "name": "Serre-tête floral",
     "image": "bo.png",
     "description": "Un serre-tête floral avec des détails délicats pour une coiffure féminine et romantique.",
@@ -626,9 +591,7 @@
     "isNew": true
   },
   {
-    "reference": "RST678UVW_19",
     "category": "Bracelets",
-    "releaseDate": "2023-12-10",
     "name": "Bracelet charm en perles",
     "image": "bar.png",
     "description": "Un bracelet charm en perles pour exprimer votre style unique et personnel.",
@@ -665,9 +628,7 @@
     "isNew": false
   },
   {
-    "reference": "UVW890XYZ_20",
     "category": "Earrings",
-    "releaseDate": "2023-12-08",
     "name": "Boucles d'oreilles pendantes en argent",
     "image": "bra.png",
     "description": "Des boucles d'oreilles pendantes en argent pour un look élégant et intemporel.",

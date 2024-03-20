@@ -28,7 +28,7 @@ const Header = ({
     ) || {};
     const materialStore = useSelector((state) => state?.material?.data);
 
-  const { reference, name, pricing, image } =
+  const { reference, name, pricing, main_image } =
     getProductProperties(productsId, productStore) || {};
   const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
@@ -57,7 +57,7 @@ const Header = ({
           </p>
           <p>Référence : {reference}</p>
         </div>
-        <img src={`/photos/${image}`} alt={name} width="150px" />
+        <img src={`/photos/${main_image}`} alt={name} width="150px" />
         <ul>
           <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
             {exchange && (

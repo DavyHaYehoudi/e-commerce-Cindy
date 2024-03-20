@@ -18,10 +18,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
+    main_image: {
       type: String,
     },
-    description: {
+    main_description: {
       type: String,
     },
     materials: {

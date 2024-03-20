@@ -9,9 +9,8 @@ import { formatPrice } from "../../helpers/utils/prices";
 
 const ProductContent = ({ state, handleCartShow }) => {
 
-  // Si un produit propose différents matériaux alors le prix change. Prévoir un DB avec un prix courant et une propriété materialColors qui sera un objet contenant les propriétés imbriquées name, code couleur, prix
-  const { title, image, description, isNew, oldPrice, price } =
-    state.product.item;
+  const { title, image, main_description, isNew, oldPrice, price } =
+    state?.product?.item;
   const handleAddToCart = (productsId) => {
     console.log(`Ajouter au panier : ${productsId}`);
   };
@@ -42,7 +41,7 @@ const ProductContent = ({ state, handleCartShow }) => {
           additionalFunction={() => handleAddToCart("product._id")}
           className="buy-button btn"
         />
-        <p>{description} </p>
+        <p>{main_description} </p>
         <ProductMeta />
       </div>
     </div>

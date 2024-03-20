@@ -28,7 +28,7 @@ const OrderProductsDetails = ({
     orderProductsItem._id
   );
 
-  const { name, pricing, image, reference } = getProductProperties(
+  const { name, pricing, main_image, reference } = getProductProperties(
     productsId,
     state
   );
@@ -52,7 +52,7 @@ const OrderProductsDetails = ({
       >
         <Link>
           <img
-            src={`/photos/${image}`}
+            src={`/photos/${main_image}`}
             alt={name || "Non disponible"}
             style={{ width: "100px", height: "150px" }}
           />
