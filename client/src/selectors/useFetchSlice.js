@@ -5,6 +5,9 @@ import { fetchProduct } from "../features/admin/productSlice";
 import { fetchCustomer } from "../features/accountClient/customerSlice";
 import { fetchMaterials } from "../features/admin/materialSlice";
 import { fetchPromocode } from "../features/admin/promocodeSlice";
+import { fetchCollections } from "../features/admin/collectionSlice";
+import { fetchTags } from "../features/admin/tagSlice";
+import { fetchCategories } from "../features/admin/categorySlice";
 
 const useFetchSlice = (slice, clientId) => {
   const dispatch = useDispatch();
@@ -16,6 +19,9 @@ const useFetchSlice = (slice, clientId) => {
       product: fetchProduct,
       material: fetchMaterials,
       promocode: fetchPromocode,
+      collection: fetchCollections,
+      categorie: fetchCategories,
+      tag: fetchTags,
       customer: fetchCustomer,
     };
     if (status === "idle") {

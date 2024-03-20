@@ -7,15 +7,16 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     collection: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
       required: true,
     },
     category: {
-        type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
       required: true,
     },
     tags: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
+      default: null,
     },
     secondary_images: { type: [String] },
     main_description: {
@@ -43,11 +44,7 @@ const productSchema = new mongoose.Schema(
               default: null,
             },
           },
-          quantity: {
-            type: Number,
-            default: 1,
-          },
-          isNewProduct: {
+          untilNew: {
             type: Date,
             default: new Date(),
           },
