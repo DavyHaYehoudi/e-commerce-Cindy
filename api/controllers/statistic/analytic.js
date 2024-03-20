@@ -41,7 +41,7 @@ export const analytic = async (year) => {
       { $group: { _id: null, average: { $avg: "$inTotalAmount" } } },
     ]);
 
-    const average =
+    const averageByOrder =
       averageInTotalAmount.length > 0
         ? parseFloat(averageInTotalAmount[0].average.toFixed(2))
         : 0;
@@ -103,7 +103,7 @@ export const analytic = async (year) => {
       ordersCount,
       ordersCanceled,
       currentMonthOrdersCount,
-      average,
+      averageByOrder,
       topSellingProducts,
       topCartProducts,
     };

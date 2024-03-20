@@ -1,5 +1,7 @@
 import { analytic } from "./analytic.js";
 import { credit } from "./credit.js";
+import { exchange } from "./exchange.js";
+import { giftcard } from "./giftcard.js";
 
 const statisticController = {
   getAllStatistics: async (req, res) => {
@@ -11,7 +13,7 @@ const statisticController = {
         ordersCount,
         ordersCanceled,
         currentMonthOrdersCount,
-        average,
+        averageByOrder,
         topSellingProducts,
         topCartProducts,
       } = await analytic(year);
@@ -25,11 +27,25 @@ const statisticController = {
         activeCreditDetails,
       } = await credit(year);
 
+      // Exchange
+      const { totalExchanges, exchangeDetails } = await exchange(year);
+
+      // Giftcard
+      const {
+        totalGiftcards,
+        totalAmountGiftcards,
+        validGiftcards,
+        totalAmountValidGiftcards,
+        validGiftcardsDetails,
+        usedGiftcards,
+        totalAmountUsedGiftcards,
+        usedGiftcardsDetails,
+      } = await giftcard(year);
       res.status(200).json({
         ordersCount,
         ordersCanceled,
         currentMonthOrdersCount,
-        average,
+        averageByOrder,
         topSellingProducts,
         topCartProducts,
         totalCredits,
@@ -37,6 +53,16 @@ const statisticController = {
         usedCreditDetails,
         activeCredits,
         activeCreditDetails,
+        totalExchanges,
+        exchangeDetails,
+        totalGiftcards,
+        totalAmountGiftcards,
+        validGiftcards,
+        totalAmountValidGiftcards,
+        validGiftcardsDetails,
+        usedGiftcards,
+        totalAmountUsedGiftcards,
+        usedGiftcardsDetails,
       });
     } catch (error) {
       res.status(500).json({ error: error.message });

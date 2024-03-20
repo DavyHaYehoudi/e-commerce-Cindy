@@ -3,6 +3,11 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderProductsSchema = new mongoose.Schema(
   {
+    clientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
+      required: true,
+    },
     orderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
