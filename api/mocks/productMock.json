@@ -1,9 +1,10 @@
 [
   {
     "name": "Boucles d'oreilles",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
-    "tags": null,
+    "tags": ["65fafe8fab75220625f55dc0",
+    "65fafe98ab75220625f55dc2"],
     "secondary_images": [
       "bo.png",
       "bar.png",
@@ -12,23 +13,63 @@
     ],
     "main_description": "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur.",
     "materials": [
-  {"_id":"65f2d29d4db605d02020061a","main_image":"bo.png","pricing":{"currentPrice":20,"oldPrice":30},"untilNew":"2024-01-15","promotion":{"amount":null,"startDate":null,"endDate":null},"stock":5,"isActive":true}
-    ],
-    "promotion": {
-      "amount": "10%",
-      "startDate": "2023-11-15",
-      "endDate": "2023-11-30"
-    },
-    "pricing": {
-      "currentPrice": 50,
-      "oldPrice": 65
-    },
-    "stock": 7,
-    "untilNew": "2024-01-15"
+      {
+        "_id": "65f2d29d4db605d02020061a",
+        "main_image": "bo.png",
+        "pricing": {
+          "currentPrice": 20,
+          "oldPrice": 30
+        },
+        "untilNew": "2024-01-15",
+        "promotion": null,
+        "stock": 5,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2b24db605d02020061c",
+        "main_image": "bar.png",
+        "pricing": {
+          "currentPrice": 40,
+          "oldPrice": null
+        },
+        "untilNew": "2024-02-15",
+        "promotion": null,
+        "stock": 4,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2c44db605d02020061e",
+        "main_image": "bra.png",
+        "pricing": {
+          "currentPrice": 15,
+          "oldPrice": null
+        },
+        "untilNew": "2024-03-15",
+        "promotion": null,
+        "stock": 7,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2df4db605d020200620",
+        "main_image": "col.png",
+        "pricing": {
+          "currentPrice": 10,
+          "oldPrice": 20
+        },
+        "untilNew": "2024-04-15",
+        "promotion": {
+          "amount": 50,
+          "startDate": "2024-04-01",
+          "endDate": "2024-05-01"
+        },
+        "stock": 12,
+        "isActive": true
+      }
+    ]
   },
   {
     "name": "Robe élégante",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe2fab75220625f55db9",
     "tags": [
       "65fafe8fab75220625f55dc0",
@@ -67,7 +108,7 @@
   },
   {
     "name": "Peigne en cristal",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe1eab75220625f55db5",
     "tags": [
       "65fafedbab75220625f55dd0",
@@ -98,7 +139,7 @@
   },
   {
     "name": "Bracelet en perles",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafec3ab75220625f55dcc",
@@ -126,7 +167,7 @@
   },
   {
     "name": "Collier de perles",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafeb5ab75220625f55dc8",
@@ -157,7 +198,7 @@
   },
   {
     "name": "Broche en strass",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe1eab75220625f55db5",
     "tags": [
       "65fafea0ab75220625f55dc4",
@@ -191,7 +232,7 @@
   },
   {
     "name": "Collier de dos en perles",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe1eab75220625f55db5",
     "tags": [
       "65fafea0ab75220625f55dc4",
@@ -219,7 +260,7 @@
   },
   {
     "name": "Boucles d'oreilles pendantes",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafecaab75220625f55dce",
@@ -251,7 +292,7 @@
   },
   {
     "name": "Peigne vintage",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe1eab75220625f55db5",
     "tags": [
       "65fafecaab75220625f55dce",
@@ -282,7 +323,7 @@
   },
   {
     "name": "Bracelet en cuir tressé",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafe8fab75220625f55dc0",
@@ -316,7 +357,7 @@
   },
   {
     "name": "Broche florale en argent",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafe8fab75220625f55dc0",
@@ -349,7 +390,7 @@
   },
   {
     "name": "Boucles d'oreilles pendantes en perles",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafe98ab75220625f55dc2",
@@ -382,7 +423,7 @@
   },
   {
     "name": "Serre-tête en perles",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe2fab75220625f55db9",
     "tags": [
       "65fafe8fab75220625f55dc0",
@@ -411,7 +452,7 @@
   },
   {
     "name": "Bracelet jonc en argent",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafea0ab75220625f55dc4",
@@ -446,7 +487,7 @@
   },
   {
     "name": "Boucles d'oreilles créoles en argent",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
     "tags": [
       "65fafea0ab75220625f55dc4",
@@ -479,7 +520,7 @@
   },
   {
     "name": "Pin à cheveux en perles",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe1eab75220625f55db5",
     "tags": [
       "65fafea7ab75220625f55dc6",
@@ -513,7 +554,7 @@
   },
   {
     "name": "Collier pendentif en cristal",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
     "tags": null,
     "secondary_images": [
@@ -541,7 +582,7 @@
   },
   {
     "name": "Serre-tête floral",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe1eab75220625f55db5",
     "tags": null,
     "secondary_images": [
@@ -569,7 +610,7 @@
   },
   {
     "name": "Bracelet charm en perles",
-    "collection": "65fafde9ab75220625f55daf",
+    "_collection": "65fafde9ab75220625f55daf",
     "category": "65fafe25ab75220625f55db7",
     "tags": null,
     "secondary_images": [
@@ -597,7 +638,7 @@
   },
   {
     "name": "Boucles d'oreilles pendantes en argent",
-    "collection": "65fafdf6ab75220625f55db1",
+    "_collection": "65fafdf6ab75220625f55db1",
     "category": "65fafe2fab75220625f55db9",
     "tags": [
       "65fafea0ab75220625f55dc4",

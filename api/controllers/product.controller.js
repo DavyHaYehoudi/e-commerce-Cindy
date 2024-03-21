@@ -14,7 +14,12 @@ const productController = {
   },
 
   createProduct: async (req, res) => {
-    // Implementation for creating a new client
+    try {
+      const product = await Product.create({...req.body})
+      res.status(201).json(product)
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 
   updateProduct: async (req, res) => {
@@ -26,4 +31,4 @@ const productController = {
   },
 };
 
-export default productController;
+export default productController; 

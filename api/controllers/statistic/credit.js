@@ -1,14 +1,10 @@
 import Credit from "../../models/credit.model.js";
+import { filterByYear } from "../../utils/filterByYear.js";
 
 export const credit = async (year) => {
   try {
-    let filter = {};
 
-    if (year !== "-1") {
-      const startDate = new Date(year, 0, 1);
-      const endDate = new Date(parseInt(year, 10) + 1, 0, 1);
-      filter.createdAt = { $gte: startDate, $lt: endDate };
-    }
+    const filter = filterByYear(year)
     // Requête pour obtenir le nombre total de crédits et leur montant total
     const totalCredits = await Credit.aggregate([
       {

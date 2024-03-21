@@ -1,14 +1,9 @@
 import OrderProducts from "../../models/orderProducts.model.js";
+import { filterByYear } from "../../utils/filterByYear.js";
 
 export const exchange = async (year) => {
   try {
-    let filter = {};
-
-    if (year !== "-1") {
-      const startDate = new Date(year, 0, 1);
-      const endDate = new Date(parseInt(year, 10) + 1, 0, 1);
-      filter.createdAt = { $gte: startDate, $lt: endDate };
-    }
+const filter = filterByYear(year)
     // Nombre total d'échanges
     const totalExchanges = await OrderProducts.aggregate([
       {

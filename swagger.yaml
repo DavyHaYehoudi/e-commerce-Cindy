@@ -733,7 +733,7 @@ paths:
             permission.
       security:
         - api_key: []
-  /material:
+  /materials:
     get:
       tags:
         - material
@@ -770,7 +770,7 @@ paths:
           description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
-  /material/{materialId}:
+  /materials/{materialId}:
     put:
       tags:
         - material
@@ -958,6 +958,264 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Statistics'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /collections:
+    get:
+      tags:
+        - collection
+      summary: Returns all collections
+      description: Returns the list of all collections
+      responses:
+        '200':
+          description: successful getting all collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - collection
+      summary: Place a collection 
+      description: Place a new collection in the list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionCreate'
+      responses:
+        '201':
+          description: successful posting collection
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /collections/{collectionId}:
+    put:
+      tags:
+        - collection
+      summary: Update collection by ID
+      description: ''
+      operationId: updateCollection
+      parameters:
+        - name: collectionId
+          in: path
+          description: ID of the collection that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionCreate'
+      responses:
+        '200':
+          description: Successful deleted collection
+        '400':
+          description: Invalid collectionId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - collection
+      summary: Delete collection by ID
+      description: ''
+      operationId: deleteCollection
+      parameters:
+        - name: collectionId
+          in: path
+          description: ID of the collection that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted collection
+        '400':
+          description: Invalid collectionId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /categories:
+    get:
+      tags:
+        - category
+      summary: Returns all categories
+      description: Returns the list of all categories
+      responses:
+        '200':
+          description: successful getting all categories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - category
+      summary: Place a category 
+      description: Place a new category in the list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryCreate'
+      responses:
+        '201':
+          description: successful posting category
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /categories/{categoryId}:
+    put:
+      tags:
+        - category
+      summary: Update category by ID
+      description: ''
+      operationId: updateCategory
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryCreate'
+      responses:
+        '200':
+          description: Successful deleted category
+        '400':
+          description: Invalid categoryId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - category
+      summary: Delete category by ID
+      description: ''
+      operationId: deleteCategory
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted category
+        '400':
+          description: Invalid collectionId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /tags:
+    get:
+      tags:
+        - tag
+      summary: Returns all tags
+      description: Returns the list of all tags
+      responses:
+        '200':
+          description: successful getting all tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    post:
+      tags:
+        - tag
+      summary: Place a tag 
+      description: Place a new tag in the list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreate'
+      responses:
+        '201':
+          description: successful posting tag
+        '400':
+          description: Bad Request - Invalid parameters
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+  /tags/{tagId}:
+    put:
+      tags:
+        - tag
+      summary: Update tag by ID
+      description: ''
+      operationId: updateTag
+      parameters:
+        - name: tagId
+          in: path
+          description: ID of the tag that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreate'
+      responses:
+        '200':
+          description: Successful deleted tag
+        '400':
+          description: Invalid tagId supplied
+        '401':
+          description: Unauthorized - Admin is not authenticated
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - tag
+      summary: Delete tag by ID
+      description: ''
+      operationId: deleteTag
+      parameters:
+        - name: tagId
+          in: path
+          description: ID of the tag that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted tag
+        '400':
+          description: Invalid tagId supplied
         '401':
           description: Unauthorized - Admin is not authenticated
       security:
@@ -1487,17 +1745,19 @@ components:
           type: boolean
           example: true
     Material:
-      type: object
-      properties:
-        _id:
-          type: string
-          example: 2884d22b45a0fb3fd4a75p2
-        name:
-          type: string
-          example: Or blanc
-        value:
-          type: string
-          example: "#FFFFFF"
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
+          name:
+            type: string
+            example: Or blanc
+          value:
+            type: string
+            example: "#FFFFFF"
     MaterialCreate:
       type: object
       properties:
@@ -1507,31 +1767,84 @@ components:
         value:
           type: string
           example: "#F0F0F0"
-    Promocode:
+    Tag:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
+          name:
+            type: string
+            example: Elégance
+    TagCreate:
       type: object
       properties:
-        _id:
+        name:
           type: string
-          example: 65f2d2df4db605d020200620
-        id:
+          example: Fantaisie
+    Collection:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
+          name:
+            type: string
+            example: Pour un jour unique
+    CollectionCreate:
+      type: object
+      properties:
+        name:
           type: string
-          example: 93e4a710-0b78-4846-9eb9-dad6a9507832
-        code:
+          example: Pour le quotidien
+    Category:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
+          name:
+            type: string
+            example: Accessoire cheveux
+    CategoryCreate:
+      type: object
+      properties:
+        name:
           type: string
-          example: Bonjour-10
-        percentage:
-          type: integer
-          format: int16
-          example: 10
-        dateExpire: 
-          type: string
-          example: 2024-12-10
-        createdAt:
-          type: string
-          example: 2024-03-15T11:59:26.905+00:00
-        updatedAt:
-          type: string
-          example: 2024-03-15T11:59:26.905+00:00
+          example: Bijoux
+    Promocode:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 65f2d2df4db605d020200620
+          id:
+            type: string
+            example: 93e4a710-0b78-4846-9eb9-dad6a9507832
+          code:
+            type: string
+            example: Bonjour-10
+          percentage:
+            type: integer
+            format: int16
+            example: 10
+          dateExpire: 
+            type: string
+            example: 2024-12-10
+          createdAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
+          updatedAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
     PromocodeCreate:
       type: object
       properties:
@@ -1548,33 +1861,35 @@ components:
           type: string
           example: "#F0F0F0"
     GiftCard:
-      type: object
-      properties:
-        _id:
-          type: string
-          example: 65f2d2b24db605d02020061c
-        buyerId:
-          type: string
-          example: 65b50eb0624d950f874b983a
-        amount:
-          type: number
-          format: int16
-          example: 50
-        dateExpire: 
-          type: string
-          example: 2025-12-18
-        code:
-          type: string
-          example: ut984bsl_+opj12
-        consumerId: 
-          type: string
-          example: null
-        createdAt:
-          type: string
-          example: 2024-03-15T11:59:26.905+00:00
-        updatedAt:
-          type: string
-          example: 2024-03-15T11:59:26.905+00:00
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 65f2d2b24db605d02020061c
+          buyerId:
+            type: string
+            example: 65b50eb0624d950f874b983a
+          amount:
+            type: number
+            format: int16
+            example: 50
+          dateExpire: 
+            type: string
+            example: 2025-12-18
+          code:
+            type: string
+            example: ut984bsl_+opj12
+          consumerId: 
+            type: string
+            example: null
+          createdAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
+          updatedAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
     GiftCardCreate:
       type: object
       properties:
