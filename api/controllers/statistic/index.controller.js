@@ -2,6 +2,7 @@ import { analytic } from "./analytic.js";
 import { credit } from "./credit.js";
 import { exchange } from "./exchange.js";
 import { giftcard } from "./giftcard.js";
+import { refund } from "./refund.js";
 
 const statisticController = {
   getAllStatistics: async (req, res) => {
@@ -29,6 +30,9 @@ const statisticController = {
 
       // Exchange
       const { totalExchanges, exchangeDetails } = await exchange(year);
+
+      // Refund
+      const { refundDetails } = await refund(year);
 
       // Giftcard
       const {
@@ -63,6 +67,7 @@ const statisticController = {
         usedGiftcards,
         totalAmountUsedGiftcards,
         usedGiftcardsDetails,
+        refundDetails,
       });
     } catch (error) {
       res.status(500).json({ error: error.message });

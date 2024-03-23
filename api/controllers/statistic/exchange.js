@@ -3,7 +3,7 @@ import { filterByYear } from "../../utils/filterByYear.js";
 
 export const exchange = async (year) => {
   try {
-const filter = filterByYear(year)
+    const filter = filterByYear(year);
     // Nombre total d'échanges
     const totalExchanges = await OrderProducts.aggregate([
       {
@@ -91,7 +91,7 @@ const filter = filterByYear(year)
       },
     ]);
 
-    return { totalExchanges, exchangeDetails };
+    return { totalExchanges: totalExchanges[0], exchangeDetails };
   } catch (error) {
     console.log("Error folder statistic exchange.js :", error);
     throw error;

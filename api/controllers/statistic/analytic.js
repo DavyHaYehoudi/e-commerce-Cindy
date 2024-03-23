@@ -5,8 +5,8 @@ import { filterByYear } from "../../utils/filterByYear.js";
 
 export const analytic = async (year) => {
   try {
-    const filter = filterByYear(year)
-    
+    const filter = filterByYear(year);
+
     // Nombre total de commandes
     const ordersCount = await Order.countDocuments(filter);
     // Nombre de commandes annulées
@@ -44,11 +44,8 @@ export const analytic = async (year) => {
 
     // Liste des produits les plus vendus
     const topSellingProducts = await OrderProducts.aggregate([
-      { $match: filter },
-      {
-        $group: { _id: "$productsId", totalQuantity: { $sum: "$quantity" } },
-      },
-      { $sort: { totalQuantity: -1 } },
+      { $match: filter }, // Filtre pour les commandes concernées
+      { $group: { _id: "$productsId", totalQuantity: { $sum: "$quantity" } } }, // Regrouper par produit et calculer la quantité totale vendue
       {
         $lookup: {
           from: "products", // Nom de la collection des produits
@@ -56,28 +53,48 @@ export const analytic = async (year) => {
           foreignField: "_id",
           as: "productDetails", // Alias pour stocker les détails du produit
         },
-      },
+      }, // Joindre les détails du produit
       { $unwind: "$productDetails" }, // Dérouler le tableau des détails du produit
       {
-        $project: {
-          _id: "$productDetails._id",
-          name: "$productDetails.name",
-          totalQuantity: "$totalQuantity",
+        $lookup: {
+          from: "materials", // Nom de la collection des matériaux
+          localField: "productDetails.materials._id", // Champ de matériaux dans le schéma du produit
+          foreignField: "_id",
+          as: "materialDetails", // Alias pour stocker les détails du matériau
         },
-      },
+      }, // Joindre les détails du matériau
+      { $unwind: "$materialDetails" }, // Dérouler le tableau des détails du matériau
+      {
+        $group: {
+          _id: { productId: "$_id", materialId: "$materialDetails._id" }, // Regrouper par ID de produit et ID de matériau
+          productName: { $first: "$productDetails.name" }, // Récupérer le nom du produit
+          materialName: { $first: "$materialDetails.name" }, // Récupérer le nom du matériau
+          totalQuantity: { $sum: "$totalQuantity" }, // Calculer la quantité totale vendue
+        },
+      }, // Regrouper par ID de produit et ID de matériau
+      {
+        $project: {
+          _id: 0, // Masquer l'ID
+          productId: "$_id.productId", // Récupérer l'ID du produit
+          productName: 1, // Afficher le nom du produit
+          materialName: 1, // Afficher le nom du matériau
+          totalQuantity: 1, // Afficher la quantité totale vendue
+        },
+      }, // Projeter les champs nécessaires
+      { $sort: { totalQuantity: -1 } }, // Trier par quantité totale vendue
     ]);
 
     // Liste des produits les plus fréquents dans les paniers
     const topCartProducts = await Client.aggregate([
-      { $match: filter },
+      { $match: filter }, // Filtre pour les clients concernés
       { $unwind: "$cart" }, // Dérouler le tableau des produits dans le panier
       {
         $group: {
           _id: "$cart.productsId",
           totalQuantity: { $sum: "$cart.quantity" },
         },
-      },
-      { $sort: { totalQuantity: -1 } },
+      }, // Regrouper par produit et calculer la quantité totale dans les paniers
+      { $sort: { totalQuantity: -1 } }, // Trier par quantité totale vendue
       {
         $lookup: {
           from: "products", // Nom de la collection des produits
@@ -85,16 +102,31 @@ export const analytic = async (year) => {
           foreignField: "_id",
           as: "productDetails", // Alias pour stocker les détails du produit
         },
-      },
+      }, // Joindre les détails du produit
       { $unwind: "$productDetails" }, // Dérouler le tableau des détails du produit
       {
-        $project: {
-          _id: "$productDetails._id",
-          name: "$productDetails.name",
-          totalQuantity: "$totalQuantity",
+        $lookup: {
+          from: "materials", // Nom de la collection des matériaux
+          localField: "productDetails.materials._id",
+          foreignField: "_id",
+          as: "materialDetails", // Alias pour stocker les détails du matériau
         },
-      },
+      }, // Joindre les détails du matériau
+      { $unwind: "$materialDetails" }, // Dérouler le tableau des détails du matériau
+      {
+        $group: {
+          _id: {
+            productId: "$productDetails._id",
+            productName: "$productDetails.name",
+            materialId: "$materialDetails._id",
+            materialName: "$materialDetails.name",
+          },
+          totalQuantity: { $sum: "$totalQuantity" },
+        },
+      }, // Regrouper par produit et matériau et calculer la quantité totale
+      { $sort: { totalQuantity: -1 } }, // Trier par quantité totale dans le panier
     ]);
+    
     return {
       ordersCount,
       ordersCanceled,
