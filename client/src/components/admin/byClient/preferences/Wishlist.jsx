@@ -5,10 +5,12 @@ import { formatPrice } from "../../../../helpers/utils/prices";
 import { formatDate } from "../../../../helpers/utils/formatDate";
 import { getProductProperties } from "../../../../selectors/product";
 import { getMaterialProperty } from "../../../../selectors/material";
-// import { getMaterialProperty } from "../../../../helpers/constants/materials";
 
 const Wishlist = ({ productsId, productCart }) => {
-  const state = useSelector((state) => state?.product?.data);
+  const productStore = useSelector((state) => state?.product?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
   const materialStore = useSelector((state) => state?.material?.data);
   return (
     <div
@@ -17,24 +19,63 @@ const Wishlist = ({ productsId, productCart }) => {
     >
       <div>
         <p>
-          <span className="dotted">Référence</span> :{" "}
-          {getProductProperties(productsId, state)?.reference}
+          <span className="dotted">Collection</span> :{" "}
+          {
+            getProductProperties(
+              productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              productCart?.material
+            )?.collection
+          }
+        </p>
+        <p>
+          <span className="dotted">Catégorie</span> :{" "}
+          {
+            getProductProperties(
+              productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              productCart?.material
+            )?.category
+          }
         </p>
         <p>
           <span className="dotted">Nom</span> :{" "}
-          {getProductProperties(productsId, state)?.name}
+          {
+            getProductProperties(
+              productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              productCart?.material
+            )?.name
+          }
         </p>
-        {getMaterialProperty(productCart.material,materialStore)?.name !== null && (
+        {getMaterialProperty(productCart.material, materialStore)?.name !==
+          null && (
           <p>
             <span className="dotted">Matériau</span> :{" "}
-            {getMaterialProperty(productCart.material,materialStore)?.name}
+            {getMaterialProperty(productCart.material, materialStore)?.name}
           </p>
         )}
 
         <p>
           <span className="dotted">Prix</span> :{" "}
           {formatPrice(
-            getProductProperties(productsId, state)?.pricing?.currentPrice
+            getProductProperties(
+              productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              productCart?.material
+            )?.pricing?.currentPrice
           )}
         </p>
         <p>
@@ -45,8 +86,26 @@ const Wishlist = ({ productsId, productCart }) => {
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>
           <img
-            src={`/photos/${getProductProperties(productsId, state).main_image}`}
-            alt={getProductProperties(productsId, state)?.name}
+            src={`/photos/${
+              getProductProperties(
+                productsId,
+                productStore,
+                collectionStore,
+                categoryStore,
+                tagStore,
+                productCart?.material
+              ).main_image
+            }`}
+            alt={
+              getProductProperties(
+                productsId,
+                productStore,
+                collectionStore,
+                categoryStore,
+                tagStore,
+                productCart?.material
+              )?.name
+            }
             width="100px"
             height="100px"
           />

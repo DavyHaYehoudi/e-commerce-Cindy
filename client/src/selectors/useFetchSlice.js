@@ -20,7 +20,7 @@ const useFetchSlice = (slice, clientId) => {
       material: fetchMaterials,
       promocode: fetchPromocode,
       collection: fetchCollections,
-      categorie: fetchCategories,
+      category: fetchCategories,
       tag: fetchTags,
       customer: fetchCustomer,
     };

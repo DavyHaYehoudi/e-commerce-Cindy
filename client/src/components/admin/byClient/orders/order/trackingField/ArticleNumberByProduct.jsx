@@ -18,6 +18,9 @@ const ArticleNumberByProduct = ({
   setIsFormValid,
 }) => {
   const [inputValues, setInputValues] = useState({});
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
   const materialStore = useSelector((state) => state?.material?.data);
   const { handleCheckQuantity } = useCheckQuantity();
 
@@ -32,7 +35,7 @@ const ArticleNumberByProduct = ({
       if (checkboxStates[id]) {
         delete updatedSelectedProducts[_id];
       } else {
-        updatedSelectedProducts[_id] = { productsId, material,_id };
+        updatedSelectedProducts[_id] = { productsId, material, _id };
       }
       return updatedSelectedProducts;
     });
@@ -56,9 +59,7 @@ const ArticleNumberByProduct = ({
   };
 
   const ordersStore = useSelector((state) => state?.orders?.data);
-  const orderProductsStore = useSelector(
-    (state) => state?.orderProducts?.data
-  );
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const { getProductsByOrder } = getProductsInfo(
     ordersStore,
     orderProductsStore,
@@ -70,7 +71,11 @@ const ArticleNumberByProduct = ({
       {getProductsByOrder?.map((product) => {
         const properties = getProductProperties(
           product.productsId,
-          productStore
+          productStore,
+          collectionStore,
+          categoryStore,
+          tagStore,
+          materialStore
         );
 
         return (
@@ -91,7 +96,9 @@ const ArticleNumberByProduct = ({
             <label htmlFor={product._id}>
               <div className="articleNumberByProduct-description">
                 <span>{properties.name}</span>
-                <span>{getMaterialProperty(product.material,materialStore)?.name}</span>
+                <span>
+                  {getMaterialProperty(product.material, materialStore)?.name}
+                </span>
                 {product.quantity > 1 && (
                   <input
                     type="number"

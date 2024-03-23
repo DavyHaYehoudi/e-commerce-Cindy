@@ -8,6 +8,7 @@ import { useConfirmCreditEntryHandler } from "./hooks/credit/useConfirmCreditEnt
 import { useCancelCreditEntryHandler } from "./hooks/credit/useCancelCreditEntryHandler";
 
 const Credit = ({
+  material,
   interaction,
   action,
   actions,
@@ -28,9 +29,18 @@ const Credit = ({
   setConfirmation,
   setInteraction,
 }) => {
-  const orderProductsState = useSelector((state) => state?.product?.data);
-  const productPrice = getProductProperties(productsId, orderProductsState)
-    ?.pricing?.currentPrice;
+  const productStore = useSelector((state) => state?.product?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
+  const productPrice = getProductProperties(
+    productsId,
+    productStore,
+    collectionStore,
+    categoryStore,
+    tagStore,
+    material
+  )?.pricing?.currentPrice;
   const { handleCredit } = useCreditHandler(
     actions,
     setInteraction,

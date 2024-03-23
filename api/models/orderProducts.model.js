@@ -32,12 +32,6 @@ const orderProductsSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Material",
       required: true,
-      validate: {
-        validator: function (value) {
-          return value >= 0 && value <= 10;
-        },
-        message: (props) => `${props.value} n'est pas compris entre 0 et 10!`,
-      },
     },
     orderProductsActions: {
       exchange: {
@@ -55,7 +49,7 @@ const orderProductsSchema = new mongoose.Schema(
         type: Number,
         default: null,
         validate: {
-          validator: (value) =>
+          validator: (value) => 
             value === null || (typeof value === "number" && value > 0),
           message:
             "La propriété 'refund' doit être de type null ou un nombre supérieur à 0.",

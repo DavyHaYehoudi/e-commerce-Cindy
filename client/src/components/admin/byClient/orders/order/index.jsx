@@ -66,6 +66,8 @@ const Item = ({
     orderReqBody["trackingNumberList"] = trackingNumberList;
     orderReqBody["step"] = step;
 
+    console.log('orderProductsReqBody:', orderProductsReqBody) /////////
+    console.log('orderReqBody:', orderReqBody) /////////
     sendToClient(order?._id, orderProductsReqBody, orderReqBody);
   };
 
