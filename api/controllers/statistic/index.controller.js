@@ -12,7 +12,9 @@ const statisticController = {
       // Analytic
       const {
         ordersCount,
+        totalOrderAmount,
         ordersCanceled,
+        totalCanceledAmount,
         currentMonthOrdersCount,
         averageByOrder,
         topSellingProducts,
@@ -45,9 +47,12 @@ const statisticController = {
         totalAmountUsedGiftcards,
         usedGiftcardsDetails,
       } = await giftcard(year);
+
       res.status(200).json({
         ordersCount,
+        totalOrderAmount,
         ordersCanceled,
+        totalCanceledAmount,
         currentMonthOrdersCount,
         averageByOrder,
         topSellingProducts,

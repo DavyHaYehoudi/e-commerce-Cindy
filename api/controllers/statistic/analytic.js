@@ -9,12 +9,32 @@ export const analytic = async (year) => {
 
     // Nombre total de commandes
     const ordersCount = await Order.countDocuments(filter);
+    // Montant total des commandes
+    const totalOrderAmount = await Order.aggregate([
+      { $match: filter },
+      {
+        $group: {
+          _id: null,
+          totalAmount: { $sum: "$inTotalAmount" },
+        },
+      },
+    ]);
+
     // Nombre de commandes annulées
     const ordersCanceled = await Order.countDocuments({
       ...filter,
       step: 6,
     });
-
+    // Montant total des commandes annulées
+    const totalCanceledAmount = await Order.aggregate([
+      { $match: { ...filter, step: 6 } },
+      {
+        $group: {
+          _id: null,
+          totalAmount: { $sum: "$inTotalAmount" },
+        },
+      },
+    ]);
     // Nombre de commandes du mois en cours
     const currentDate = new Date();
     const currentMonthStartDate = new Date(
@@ -126,10 +146,14 @@ export const analytic = async (year) => {
       }, // Regrouper par produit et matériau et calculer la quantité totale
       { $sort: { totalQuantity: -1 } }, // Trier par quantité totale dans le panier
     ]);
-    
+
     return {
       ordersCount,
+      totalOrderAmount:
+        totalOrderAmount.length > 0 ? totalOrderAmount[0].totalAmount : 0,
       ordersCanceled,
+      totalCanceledAmount:
+        totalCanceledAmount.length > 0 ? totalCanceledAmount[0].totalAmount : 0,
       currentMonthOrdersCount,
       averageByOrder,
       topSellingProducts,
