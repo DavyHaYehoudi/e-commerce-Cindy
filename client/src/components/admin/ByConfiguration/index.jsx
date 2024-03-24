@@ -1,7 +1,8 @@
 import React from "react";
 import Collections from "./Collections";
-import Categories from "./Categories";
+import Categories from "./categories/index.jsx";
 import Tags from "./Tags";
+import Materials from "./Materials";
 
 const Configuration = () => {
   return (
@@ -10,6 +11,7 @@ const Configuration = () => {
       <Collections />
       <Categories />
       <Tags />
+      <Materials />
     </div>
   );
 };

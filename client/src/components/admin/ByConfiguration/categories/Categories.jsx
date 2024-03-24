@@ -4,7 +4,7 @@ import {
   addCategory,
   deleteCategory,
   updateCategory,
-} from "../../../features/admin/categorySlice";
+} from "../../../../features/admin/categorySlice";
 
 const Categories = () => {
   const [editCategoryId, setEditCategoryId] = useState(null);
