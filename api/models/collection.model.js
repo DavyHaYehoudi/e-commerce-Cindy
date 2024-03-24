@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const collectionSchema = new mongoose.Schema({
   name: { type: String, maxLength: 50, required: true },

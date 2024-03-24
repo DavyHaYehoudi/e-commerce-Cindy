@@ -34,7 +34,7 @@ const collectionController = {
       if (!updateCollection) {
         return res.status(404).json({ error: "Collection not found" });
       }
-
+ 
       res.status(200).json(updateCollection);
     } catch (error) {
       console.error("Error updateCollection :", error);

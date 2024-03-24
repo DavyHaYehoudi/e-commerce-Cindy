@@ -14,25 +14,41 @@ const fetchCategories = createAsyncThunk(
   }
 );
 
+const addCategory = createAsyncThunk(
+  "category/addCategories",
+  async (categoryData) => {
+    const response = await customFetch("categories", {
+      method: "POST",
+      body: JSON.stringify(categoryData),
+    });
+    return response;
+  }
+);
+
+const updateCategory = createAsyncThunk(
+  "category/updateCategory",
+  async ({ categoryId, name ,parentCollection}) => {
+    const response = await customFetch(`categories/${categoryId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ name,parentCollection }),
+    });
+    return response;
+  }
+);
+const deleteCategory = createAsyncThunk(
+  "category/deleteCategory",
+  async (categoryId) => {
+    await customFetch(`categories/${categoryId}`, {
+      method: "DELETE",
+    });
+    return categoryId;
+  }
+);
+
 const categoriesSlice = createSlice({
   name: "category",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {
-    addCategory: (state, action) => {
-      //   const { orderProductsId, amount, dateExpire } = action.payload;
-      //   state.data = [...state.data, { orderProductsId, amount, dateExpire }];
-    },
-    updateCategory: (state, action) => {
-      //   const { orderProductsId, amount, dateExpire } = action.payload;
-      //   state.data = [...state.data, { orderProductsId, amount, dateExpire }];
-    },
-    deleteCategory: (state, action) => {
-      //   const { orderProductsId } = action.payload;
-      //   state.data = state.data.filter(
-      //     (item) => item.orderProductsId !== orderProductsId
-      //   );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -46,10 +62,36 @@ const categoriesSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addCategory.fulfilled, (state, action) => {
+        state.data = state.data.concat(action.payload);
+      })
+      .addCase(addCategory.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.data = state.data.map((category) =>
+          category._id === action.payload._id ? action.payload : category
+        );
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+      })
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (category) => category._id !== action.payload
+        );
+      })
+      .addCase(deleteCategory.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
       });
   },
 });
-export { fetchCategories };
-export const { addCategory, deleteCategory, updateCategory } =
-  categoriesSlice.actions;
+export { fetchCategories, addCategory, deleteCategory, updateCategory };
 export default categoriesSlice.reducer;

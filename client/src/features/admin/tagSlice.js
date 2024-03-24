@@ -10,26 +10,32 @@ const fetchTags = createAsyncThunk("tag/fetchTags", async () => {
     handleFetchError(error);
   }
 });
+const addTag = createAsyncThunk("tag/adTag", async (tagData) => {
+  const response = await customFetch("tags", {
+    method: "POST",
+    body: JSON.stringify(tagData),
+  });
+  return response;
+});
+
+const updateTag = createAsyncThunk("tag/updateTag", async ({ tagId, name }) => {
+  const response = await customFetch(`tags/${tagId}`, {
+    method: "PUT",
+    body: JSON.stringify({ name }),
+  });
+  return response;
+});
+const deleteTag = createAsyncThunk("tag/deleteTag", async (tagId) => {
+  await customFetch(`tags/${tagId}`, {
+    method: "DELETE",
+  });
+  return tagId;
+});
 
 const tagSlice = createSlice({
   name: "tag",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {
-    addTag: (state, action) => {
-      //   const { orderProductsId, amount, dateExpire } = action.payload;
-      //   state.data = [...state.data, { orderProductsId, amount, dateExpire }];
-    },
-    updateTag: (state, action) => {
-      //   const { orderProductsId, amount, dateExpire } = action.payload;
-      //   state.data = [...state.data, { orderProductsId, amount, dateExpire }];
-    },
-    deleteTag: (state, action) => {
-      //   const { orderProductsId } = action.payload;
-      //   state.data = state.data.filter(
-      //     (item) => item.orderProductsId !== orderProductsId
-      //   );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchTags.pending, (state) => {
@@ -43,9 +49,36 @@ const tagSlice = createSlice({
       .addCase(fetchTags.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addTag.fulfilled, (state, action) => {
+        state.data = state.data.concat(action.payload);
+      })
+      .addCase(addTag.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+      })
+      .addCase(updateTag.fulfilled, (state, action) => {
+        state.data = state.data.map((tag) =>
+          tag._id === action.payload._id ? action.payload : tag
+        );
+      })
+      .addCase(updateTag.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+      })
+      .addCase(deleteTag.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (tag) => tag._id !== action.payload
+        );
+      })
+      .addCase(deleteTag.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
       });
   },
 });
-export { fetchTags };
-export const { addTag, deleteTag, updateTag } = tagSlice.actions;
+export { fetchTags, addTag, deleteTag, updateTag };
 export default tagSlice.reducer;

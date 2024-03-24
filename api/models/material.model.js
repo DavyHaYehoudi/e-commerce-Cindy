@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { handleValidationErrors } from "./errorModelHandler.js";
 
 const materialSchema = new mongoose.Schema({
   name: { type: String, default: null,maxlength: 50 },

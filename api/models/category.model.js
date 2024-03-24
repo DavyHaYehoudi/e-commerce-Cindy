@@ -3,7 +3,9 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const categorySchema = new mongoose.Schema({
   name: { type: String, maxLength: 50, required: true },
-  _collection: [{ type: String, required: true }],
+  parentCollection: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Collection" },
+  ],
 });
 
 categorySchema.pre("validate", function (next) {

@@ -24,6 +24,17 @@ const addCollection = createAsyncThunk(
   }
 );
 
+const updateCollection = createAsyncThunk(
+  "collection/updateCollection",
+  async ({ collectionId, name }) => {
+    const response = await customFetch(`collections/${collectionId}`, {
+      method: "PUT",
+      body: JSON.stringify({ name }),
+    });
+    return response;
+  }
+);
+
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async (collectionId) => {
@@ -31,17 +42,6 @@ const deleteCollection = createAsyncThunk(
       method: "DELETE",
     });
     return collectionId;
-  }
-);
-
-const updateCollection = createAsyncThunk(
-  "collection/updateCollection",
-  async (collectionData) => {
-    const response = await customFetch(`collections/${collectionData.id}`, {
-      method: "PUT",
-      body: JSON.stringify(collectionData),
-    });
-    return response;
   }
 );
 
@@ -62,13 +62,21 @@ const collectionSlice = createSlice({
       .addCase(fetchCollections.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      });
-    builder
+      })
       .addCase(addCollection.fulfilled, (state, action) => {
         state.data = state.data.concat(action.payload);
-        toast.success("La nouvelle collection a bien été ajoutée !");
       })
       .addCase(addCollection.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+      })
+      .addCase(updateCollection.fulfilled, (state, action) => {
+        state.data = state.data.map((collection) =>
+          collection._id === action.payload._id ? action.payload : collection
+        );
+      })
+      .addCase(updateCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
         toast.error("Une erreur est survenue !");
@@ -77,20 +85,8 @@ const collectionSlice = createSlice({
         state.data = state.data.filter(
           (collection) => collection._id !== action.payload
         );
-        toast.success("La nouvelle collection a bien été supprimée !");
       })
       .addCase(deleteCollection.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
-      })
-      .addCase(updateCollection.fulfilled, (state, action) => {
-        state.data = state.data.map((collection) =>
-          collection.id === action.payload._id ? action.payload : collection
-        );
-        toast.success("La nouvelle collection a bien été modifiée !");
-      })
-      .addCase(updateCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
         toast.error("Une erreur est survenue !");
