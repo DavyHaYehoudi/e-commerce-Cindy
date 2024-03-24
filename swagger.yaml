@@ -1085,7 +1085,7 @@ paths:
       security:
         - api_key: []
   /categories/{categoryId}:
-    put:
+    patch:
       tags:
         - category
       summary: Update category by ID
@@ -1514,8 +1514,7 @@ components:
     OrderProductsNote:
       type: object  
       properties:
-        _id:
-          type: string
+
         content:
           type: string
     Product:
@@ -1524,95 +1523,79 @@ components:
         id:
           type: string
           example: 2884d22b45a0fb3fd4a75p2
-        reference:
-          type: string
-          example: QER2345OIJD
-        category:
-          type: string
-          example: Jewelry
-        releaseDate:
-          type: string
-          example: 2023-03-07 15:54
         name:
           type: string
           example: Boucles d'oreilles
-        image:
+        collection:
           type: string
-          example: bo.png
-        description:
+          example: Pour un jour unique
+        category:
           type: string
-          example: >-
-            Magnifiques boucles d'oreilles pour des occasions uniques et qui
-            vous mettront en valeur.
-        materials:
-          type: array
-          items:
-            type: integer
-            format: int8
-          example:
-            - 0
-            - 1
-            - 2
-        promotion:
-          type: object
-          properties:
-            amount:
-              type: string
-              example: 10%
-            startDate:
-              type: string
-              example: '2023-11-15'
-            endDate:
-              type: string
-              example: '2023-11-30'
-        pricing:
-          type: object
-          properties:
-            currentPrice:
-              type: integer
-              format: int16
-              example: 50
-            oldPrice:
-              type: integer
-              format: int16
-              example: 25
-        stock:
-          type: integer
-          format: int16
-          example: 7
-        ratings:
-          type: integer
-          format: int16
-          example: 4.5
-        options:
-          type: object
-          properties:
-            size:
-              type: array
-              items:
-                type: string
-              example:
-                - S
-                - M
-                - XL
-            color:
-              type: array
-              items:
-                type: string
-              example:
-                - Red
-                - Blue
-                - Green
+          example: Jewelry
         tags:
           type: array
           items:
             type: string
-          example:
-            - Casual
-            - Summer
-        isNew:
-          type: boolean
-          example: true
+            example: 65fafea0ab75220625f55dc4
+        secondary_images:
+          type: array
+          items: 
+            type: string
+            example: bo.png
+        main_description:
+          type: string
+          example: >-
+            Magnifiques boucles d'oreilles pour des occasions uniques et qui
+            vous mettront en valeur.
+        createdAt:
+          type: string
+          example: "2024-03-21T17:50:38.100Z"
+        updatedAt:
+          type: string
+          example: "2024-03-21T17:50:38.100Z"
+        materials:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 65f2d2df4db605d020200620
+              pricing:
+                type: object
+                properties:
+                  currentPrice:
+                    type: string
+                    example: 15
+                  oldPrice:
+                    type: string
+                    example: 30
+              promotion:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    format: int16
+                    example: 50
+                  startDate:
+                    type: string
+                    example: 2024-04-01T00:00:00.000
+                  endDate:
+                    type: string
+                    example: 2024-05-01T00:00:00.000Z
+              main_image:
+                type: string
+                example: col.png
+              untilNew:
+                type: string
+                example: 2024-04-15T00:00:00.000Z
+              stock:
+                type: integer
+                format: int16
+                example: 7
+              isActive:
+                type: boolean
+                example: true
     Products:
       type: array
       items:
@@ -1812,12 +1795,25 @@ components:
           name:
             type: string
             example: Accessoire cheveux
+          collectionLink:
+            type: array
+            items: 
+              type: string
+              example: 
+                - "65f2d2b24db605d02020061c"
+                - "65f2d2b24db605d02020061d"
     CategoryCreate:
       type: object
       properties:
         name:
           type: string
           example: Bijoux
+        collectionLink:
+          type: array
+          items: 
+            type: string
+            example: 65f2d2b24db605d02020061c
+               
     Promocode:
       type: array
       items:

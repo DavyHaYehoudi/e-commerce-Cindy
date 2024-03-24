@@ -28,7 +28,7 @@ const collectionController = {
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
         { name },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true } 
       );
 
       if (!updateCollection) {
@@ -46,18 +46,18 @@ const collectionController = {
     try {
       const { collectionId } = req.params;
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
-  
+
       if (!deleteCollection) {
         return res.status(404).json({ error: "Collection not found" });
       }
-  
+
       res.status(200).json(deleteCollection);
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   },
-  
-};
+};  
 
-export default collectionController;
+export default collectionController; 
+ 

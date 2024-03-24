@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
+import { toast } from "react-toastify";
 
 const fetchCategories = createAsyncThunk(
   "category/fetchCategories",

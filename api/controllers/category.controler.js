@@ -12,8 +12,8 @@ const categoryController = {
   },
   createCategory: async (req, res) => {
     try {
-      const { name } = req.body;
-      const category = await Category.create({ name });
+      const { name, collection } = req.body;
+      const category = await Category.create({ name, _collection: collection });
       res.status(201).json(category);
     } catch (error) {
       console.error("Error createCategory :", error);
@@ -23,11 +23,12 @@ const categoryController = {
   updateCategory: async (req, res) => {
     try {
       const { categoryId } = req.params;
-      const { name } = req.body;
+      const { name, collection } = req.body;
 
       const updateCategory = await Category.findByIdAndUpdate(
         categoryId,
-        { name },
+        { name, _collection: collection },
+
         { new: true, runValidators: true }
       );
 
