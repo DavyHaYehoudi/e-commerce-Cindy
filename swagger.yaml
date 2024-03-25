@@ -771,7 +771,7 @@ paths:
       security:
         - api_key: []
   /materials/{materialId}:
-    put:
+    patch:
       tags:
         - material
       summary: Update material by ID

@@ -1,22 +1,40 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMaterial, deleteMaterial, updateMaterial } from "../../../features/admin/materialSlice";
+import {
+  addMaterial,
+  deleteMaterial,
+  updateMaterial,
+} from "../../../features/admin/materialSlice";
 
 const Materials = () => {
   const [editMaterialId, setEditMaterialId] = useState(null);
-  const [editedMaterialName, setEditedMaterialName] = useState("");
-  const [newMaterialName, setNewMaterialName] = useState("");
+  const [editedMaterial, setEditedMaterial] = useState({ name: "", value: "" });
+  const [newMaterial, setNewMateria] = useState({
+    name: "",
+    value: "",
+  });
   const materials = useSelector((state) => state?.material?.data);
 
   const dispatch = useDispatch();
 
+  const handleNewMaterial = (e, property) => {
+    setNewMateria({ ...newMaterial, [property]: e.target.value });
+  };
+  const handleEditedMaterial = (e, property) => {
+    setEditedMaterial({ ...editedMaterial, [property]: e.target.value });
+  };
+
   const handleAddMaterial = () => {
-    if (newMaterialName.trim() !== "") {
+    if (
+      newMaterial["name"].trim() !== "" &&
+      newMaterial["value"].trim() !== ""
+    ) {
       const formatData = {
-        name: newMaterialName,
+        name: newMaterial["name"],
+        value: newMaterial["value"],
       };
       dispatch(addMaterial(formatData));
-      setNewMaterialName("");
+      setNewMateria({});
     }
   };
   const handleDeleteMaterial = (materialId) => {
@@ -27,19 +45,22 @@ const Materials = () => {
       dispatch(deleteMaterial(materialId));
     }
   };
-  const handleEditMaterial = (materialId, name) => {
-    dispatch(updateMaterial({ materialId, name }));
+  const handleEditMaterial = (materialId, editedproperty) => {
+    dispatch(updateMaterial({ materialId, editedproperty }));
   };
-  const handleEditClick = (materialId, materialName) => {
+  const handleEditClick = (materialId, materialName, materialValue) => {
     setEditMaterialId(materialId);
-    setEditedMaterialName(materialName);
+    setEditedMaterial({ name: materialName, value: materialValue });
   };
 
   const handleSaveClick = () => {
-    if (editedMaterialName.trim() !== "") {
-      handleEditMaterial(editMaterialId, editedMaterialName);
+    if (
+      editedMaterial["name"].trim() !== "" ||
+      editedMaterial["value"].trim() !== ""
+    ) {
+      handleEditMaterial(editMaterialId, editedMaterial);
       setEditMaterialId(null);
-      setEditedMaterialName("");
+      setEditedMaterial({});
     }
   };
 
@@ -47,28 +68,49 @@ const Materials = () => {
     <div>
       <h2>materials</h2>
       <ul>
-        {materials?.map((collection) => (
-          <li key={collection?._id}>
-            {editMaterialId === collection?._id ? (
+        {materials?.map((material) => (
+          <li key={material?._id}>
+            {editMaterialId === material?._id ? (
               <>
                 <input
                   type="text"
-                  value={editedMaterialName}
-                  onChange={(e) => setEditedMaterialName(e.target.value)}
+                  value={editedMaterial["name"]}
+                  onChange={(e) => handleEditedMaterial(e, "name")}
+                />
+                <input
+                  type="color"
+                  placeholder="Choisir une couleur"
+                  value={editedMaterial["value"]}
+                  onChange={(e) => handleEditedMaterial(e, "value")}
                 />
                 <button onClick={handleSaveClick}>Save</button>
               </>
             ) : (
               <>
-                {collection?.name}
+                <span> {material?.name} </span>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "20px",
+                    height: "20px",
+                    backgroundColor: material?.value,
+                  }}
+                ></span>
+
+                <span> {material?.value} </span>
+
                 <button
                   onClick={() =>
-                    handleEditClick(collection?._id, collection?.name)
+                    handleEditClick(
+                      material?._id,
+                      material?.name,
+                      material?.value
+                    )
                   }
                 >
                   Edit
                 </button>
-                <button onClick={() => handleDeleteMaterial(collection?._id)}>
+                <button onClick={() => handleDeleteMaterial(material?._id)}>
                   Delete
                 </button>
               </>
@@ -78,12 +120,18 @@ const Materials = () => {
       </ul>
       <input
         type="text"
-        placeholder="New collection"
-        value={newMaterialName}
-        onChange={(e) => setNewMaterialName(e.target.value)}
+        placeholder="Nouveau matériau"
+        value={newMaterial["name"] || ""}
+        onChange={(e) => handleNewMaterial(e, "name")}
       />
-      <button onClick={() => handleAddMaterial(newMaterialName)}>
-        Add Collection
+      <input
+        type="color"
+        placeholder="Choisir une couleur"
+        value={newMaterial["value"] || ""}
+        onChange={(e) => handleNewMaterial(e, "value")}
+      />
+      <button onClick={() => handleAddMaterial(newMaterial)}>
+        Add Material
       </button>
     </div>
   );

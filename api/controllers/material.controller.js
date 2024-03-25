@@ -20,9 +20,10 @@ const materialController = {
       res.status(500).json({ error: error.message });
     }
   },
-  updateMaterials: async (req, res) => {
+  updateMaterials: async (req, res) => { 
     try {
       const { materialId } = req.params;
+      console.log('req.body:', req.body)
       const { name, value } = req.body;
 
       const updateMaterial = await Material.findByIdAndUpdate(

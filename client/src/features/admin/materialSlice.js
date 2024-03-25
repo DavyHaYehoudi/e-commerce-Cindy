@@ -26,10 +26,10 @@ const addMaterial = createAsyncThunk(
 
 const updateMaterial = createAsyncThunk(
   "material/updateMaterial",
-  async ({ materialId, name , value}) => {
+  async ({ materialId, editedproperty}) => {
     const response = await customFetch(`materials/${materialId}`, {
-      method: "PUT",
-      body: JSON.stringify({ name, value }),
+      method: "PATCH",
+      body: JSON.stringify(editedproperty),
     });
     return response;
   }

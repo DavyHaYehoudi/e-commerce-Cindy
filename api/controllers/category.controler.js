@@ -24,7 +24,6 @@ const categoryController = {
     try {
       const { categoryId } = req.params;
       const { name, parentCollection } = req.body;
-      console.log('name, parentCollection :', name, parentCollection )
 
       const updateCategory = await Category.findByIdAndUpdate(
         categoryId,
