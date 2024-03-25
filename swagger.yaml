@@ -260,7 +260,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted client
         '400':
           description: Invalid clientId supplied
@@ -586,7 +586,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FirstProduct'
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
           description: successful posting product
@@ -666,7 +666,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted product
         '400':
           description: Invalid productsId supplied
@@ -812,7 +812,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Successful deleted material
         '400':
           description: Invalid materialId supplied
@@ -1520,9 +1520,6 @@ components:
     Product:
       type: object
       properties:
-        id:
-          type: string
-          example: 2884d22b45a0fb3fd4a75p2
         name:
           type: string
           example: Boucles d'oreilles
@@ -1822,9 +1819,6 @@ components:
           _id:
             type: string
             example: 65f2d2df4db605d020200620
-          id:
-            type: string
-            example: 93e4a710-0b78-4846-9eb9-dad6a9507832
           code:
             type: string
             example: Bonjour-10
@@ -1844,9 +1838,6 @@ components:
     PromocodeCreate:
       type: object
       properties:
-        id:
-          type: string
-          example: 93e4a710-0b78-4846-9eb9-dad6a9507832
         code:
           type: string
           example: Bonjour-10

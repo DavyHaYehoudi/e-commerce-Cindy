@@ -23,7 +23,7 @@ const PromocodesCard = ({ promocode, handleDeletePromocode }) => {
         {isHovered && (
           <button
             className="delete-button icon-trash account-btn"
-            onClick={() => handleDeletePromocode(promocode.id)}
+            onClick={() => handleDeletePromocode(promocode._id)}
           >
             <BsTrash />{" "}
           </button>

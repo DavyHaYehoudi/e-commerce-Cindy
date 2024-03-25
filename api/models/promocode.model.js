@@ -3,7 +3,6 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const promocodeSchema = new mongoose.Schema(
   {
-    id:  String,
     code: {
       type: String,
       required: true,
