@@ -70,8 +70,8 @@ const productController = {
   deleteProduct: async (req, res) => {
     try {
       const { productId } = req.params;
-      const product = await Product.findByIdAndDelete(productId);
-      res.status(200).json(product);
+      await Product.findByIdAndDelete(productId);
+      res.status(204).json();
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

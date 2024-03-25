@@ -5,11 +5,14 @@ import {
   updateCollection,
 } from "../../../features/admin/collectionSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { BsTrash } from "react-icons/bs";
+import { MdEdit } from "react-icons/md";
 
 const Collections = () => {
   const [editCollectionId, setEditCollectionId] = useState(null);
   const [editedCollectionName, setEditedCollectionName] = useState("");
   const [newCollectionName, setNewCollectionName] = useState("");
+  const [isContentVisible, setIsContentVisible] = useState(false);
   const collections = useSelector((state) => state?.collection?.data);
 
   const dispatch = useDispatch();
@@ -48,47 +51,86 @@ const Collections = () => {
   };
 
   return (
-    <div>
-      <h2>Collections</h2>
-      <ul>
-        {collections?.map((collection) => (
-          <li key={collection?._id}>
-            {editCollectionId === collection?._id ? (
-              <>
-                <input
-                  type="text"
-                  value={editedCollectionName}
-                  onChange={(e) => setEditedCollectionName(e.target.value)}
-                />
-                <button onClick={handleSaveClick}>Save</button>
-              </>
-            ) : (
-              <>
-                {collection?.name}
-                <button
-                  onClick={() =>
-                    handleEditClick(collection?._id, collection?.name)
-                  }
-                >
-                  Edit
-                </button>
-                <button onClick={() => handleDeleteCollection(collection?._id)}>
-                  Delete
-                </button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        placeholder="New collection"
-        value={newCollectionName}
-        onChange={(e) => setNewCollectionName(e.target.value)}
-      />
-      <button onClick={() => handleAddCollection(newCollectionName)}>
-        Add Collection
-      </button>
+    <div className="admin-collections">
+      <h2 onClick={() => setIsContentVisible(!isContentVisible)}>
+        Collections
+      </h2>
+      {isContentVisible && (
+        <div className=" admin-config-tab">
+          <ul>
+            {collections?.map((collection) => (
+              <li key={collection?._id} className="content-block-wrapper">
+                {editCollectionId === collection?._id ? (
+                  <div className="content-block">
+                    <div className="content-block-left">
+                      <input
+                        type="text"
+                        className="account-input-config"
+                        value={editedCollectionName}
+                        onChange={(e) =>
+                          setEditedCollectionName(e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="content-block-right">
+                      <button
+                        className="account-btn validate-btn"
+                        onClick={handleSaveClick}
+                      >
+                        Enregistrer
+                      </button>
+                      <button
+                        className="account-btn icon-trash"
+                        onClick={() => setEditCollectionId("")}
+                      >
+                        Annuler
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="content-block-left">{collection?.name}</div>
+                    <div className="content-block-right">
+                      <button
+                        className="icon-edit account-btn"
+                        onClick={() =>
+                          handleEditClick(collection?._id, collection?.name)
+                        }
+                      >
+                        <MdEdit />
+                      </button>
+                      <button
+                        className="icon-trash account-btn"
+                        onClick={() => handleDeleteCollection(collection?._id)}
+                      >
+                        <BsTrash />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className="adding">
+            <input
+              type="text"
+              placeholder="Nouvelle collection"
+              className="account-input-config"
+              value={newCollectionName}
+              onChange={(e) => setNewCollectionName(e.target.value)}
+            />
+            <button
+              className={`account-btn ${
+                newCollectionName ? "validate-btn" : ""
+              }`}
+              disabled={newCollectionName === ""}
+              onClick={() => handleAddCollection(newCollectionName)}
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

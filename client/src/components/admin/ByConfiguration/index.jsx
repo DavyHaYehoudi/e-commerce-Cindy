@@ -6,7 +6,7 @@ import Materials from "./Materials";
 
 const Configuration = () => {
   return (
-    <div>
+    <div className="admin-configuration">
       <h1>Configurations</h1>
       <Collections />
       <Categories />

@@ -37,7 +37,8 @@ const promocodeController = {
         return res.status(404).json({ error: "Promocode not found" });
       }
 
-      res.status(200).json(deletePromocode);
+      res.status(204).json();
+      // res.status(200).json(deletePromocode);
     } catch (error) {
       console.error("Error deleting promocode:", error);
       res.status(500).json({ error: "Internal server error" });

@@ -15,6 +15,7 @@ const Categories = () => {
     []
   );
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [isContentVisible, setIsContentVisible] = useState(false);
   const categories = useSelector((state) => state?.category?.data);
   const collections = useSelector((state) => state?.collection?.data);
   const dispatch = useDispatch();
@@ -70,28 +71,33 @@ const Categories = () => {
   };
 
   return (
-    <div>
-      <h2>Categories</h2>
-      <CategoriesList
-        categories={categories}
-        editCategoryId={editCategoryId}
-        editedCategoryName={editedCategoryName}
-        selectedParentCollections={selectedParentCollections}
-        collections={collections}
-        handleEditClick={handleEditClick}
-        handleDeleteCategory={handleDeleteCategory}
-        handleSaveClick={handleSaveClick}
-        setEditedCategoryName={setEditedCategoryName}
-        setSelectedParentCollections={setSelectedParentCollections}
-      />
-      <AddCategoryForm
-        newCategoryName={newCategoryName}
-        selectedParentCollections={selectedParentCollections}
-        collections={collections}
-        handleAddCategory={handleAddCategory}
-        setNewCategoryName={setNewCategoryName}
-        setSelectedParentCollections={setSelectedParentCollections}
-      />
+    <div className="admin-categories">
+      <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Categories</h2>
+      {isContentVisible && (
+        <div className=" admin-config-tab">
+          <CategoriesList
+            categories={categories}
+            editCategoryId={editCategoryId}
+            setEditCategoryId={setEditCategoryId}
+            editedCategoryName={editedCategoryName}
+            selectedParentCollections={selectedParentCollections}
+            collections={collections}
+            handleEditClick={handleEditClick}
+            handleDeleteCategory={handleDeleteCategory}
+            handleSaveClick={handleSaveClick}
+            setEditedCategoryName={setEditedCategoryName}
+            setSelectedParentCollections={setSelectedParentCollections}
+          />
+          <AddCategoryForm
+            newCategoryName={newCategoryName}
+            selectedParentCollections={selectedParentCollections}
+            collections={collections}
+            handleAddCategory={handleAddCategory}
+            setNewCategoryName={setNewCategoryName}
+            setSelectedParentCollections={setSelectedParentCollections}
+          />
+        </div>
+      )}
     </div>
   );
 };

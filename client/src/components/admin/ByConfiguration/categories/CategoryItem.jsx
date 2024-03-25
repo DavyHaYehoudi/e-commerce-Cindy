@@ -1,17 +1,19 @@
 import React from "react";
+import { BsTrash } from "react-icons/bs";
+import { MdEdit } from "react-icons/md";
 
 const CategoryItem = ({
   category,
   editCategoryId,
+  setEditCategoryId,
   editedCategoryName,
   selectedParentCollections,
   collections,
   handleEditClick,
   handleDeleteCategory,
-  handleEditCategory,
   handleSaveClick,
   setEditedCategoryName,
-  setSelectedParentCollections
+  setSelectedParentCollections,
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
@@ -20,58 +22,101 @@ const CategoryItem = ({
   };
 
   return (
-    <li key={category?._id}>
+    <li key={category?._id} className="content-block-wrapper">
       {editCategoryId === category?._id ? (
-        <>
-          <input
-            type="text"
-            value={editedCategoryName}
-            onChange={(e) => setEditedCategoryName(e.target.value)}
-          />
-          <div>
-            {collections?.map((collection) => (
-              <label key={collection._id}>
-                <input
-                  type="checkbox"
-                  value={collection._id}
-                  checked={selectedParentCollections.includes(collection._id)}
-                  onChange={(e) => {
-                    const checkedCollectionId = e.target.value;
-                    setSelectedParentCollections((prevState) =>
-                      prevState.includes(checkedCollectionId)
-                        ? prevState.filter((id) => id !== checkedCollectionId)
-                        : [...prevState, checkedCollectionId]
-                    );
-                  }}
-                />
-                {collection.name}
-              </label>
-            ))}
+        <div className="content-block">
+          <div className="content-block-left">
+            <div>
+              <input
+                type="text"
+                className="account-input-config"
+                value={editedCategoryName}
+                onChange={(e) => setEditedCategoryName(e.target.value)}
+              />
+              <div className="content-category-checkbox">
+                {collections?.map((collection) => (
+                  <label key={collection._id}>
+                    <input
+                      type="checkbox"
+                      value={collection._id}
+                      checked={selectedParentCollections.includes(
+                        collection._id
+                      )}
+                      onChange={(e) => {
+                        const checkedCollectionId = e.target.value;
+                        setSelectedParentCollections((prevState) =>
+                          prevState.includes(checkedCollectionId)
+                            ? prevState.filter(
+                                (id) => id !== checkedCollectionId
+                              )
+                            : [...prevState, checkedCollectionId]
+                        );
+                      }}
+                    />
+                    {collection.name}
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
-          <button onClick={handleSaveClick}>Save</button>
-        </>
+          <div className="content-block-right">
+            <button
+              className="account-btn validate-btn"
+              onClick={handleSaveClick}
+            >
+              Enregistrer
+            </button>
+            <button
+              className="account-btn icon-trash"
+              onClick={() => setEditCategoryId("")}
+            >
+              Annuler
+            </button>
+          </div>
+        </div>
       ) : (
         <>
-          {category?.name}{" "}
-          {"(collection parente : " +
-            parentCollection(category?.parentCollection)
-              ?.map((item) => item?.name)
-              .join(", ") +
-            ")"}
-          <button
-            onClick={() =>
-              handleEditClick(
-                category?._id,
-                category?.name,
-                category?.parentCollection
-              )
-            }
-          >
-            Edit
-          </button>
-          <button onClick={() => handleDeleteCategory(category?._id)}>
-            Delete
-          </button>
+          <div>
+            <p>{category?.name} </p>
+            <div className="content-block-left details">
+              <p>
+                <small>
+                  {category?.parentCollection?.length > 1
+                    ? "Collections parentes :"
+                    : "Collection parente :"}
+                </small>{" "}
+              </p>
+              <ul>
+                {parentCollection(category?.parentCollection)?.map(
+                  ({ name }) => (
+                    <small key={name}>
+                      <li>{name}</li>
+                    </small>
+                  )
+                )}
+              </ul>
+            </div>
+          </div>
+          <div className="content-block-right">
+            <button
+              className="icon-edit account-btn"
+              onClick={() =>
+                handleEditClick(
+                  category?._id,
+                  category?.name,
+                  category?.parentCollection
+                )
+              }
+            >
+              <MdEdit />
+            </button>
+            <button
+              className="icon-trash account-btn"
+              onClick={() => handleDeleteCategory(category?._id)}
+            >
+              <BsTrash />
+            </button>
+          </div>
         </>
       )}
     </li>
