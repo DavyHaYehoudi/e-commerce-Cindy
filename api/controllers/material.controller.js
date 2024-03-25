@@ -23,7 +23,6 @@ const materialController = {
   updateMaterials: async (req, res) => { 
     try {
       const { materialId } = req.params;
-      console.log('req.body:', req.body)
       const { name, value } = req.body;
 
       const updateMaterial = await Material.findByIdAndUpdate(

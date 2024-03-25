@@ -3,16 +3,13 @@ import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
 
-const fetchMaterials = createAsyncThunk(
-  "material/fetchMaterials",
-  async () => {
-    try {
-      return customFetch("materials");
-    } catch (error) {
-      handleFetchError(error);
-    }
+const fetchMaterials = createAsyncThunk("material/fetchMaterials", async () => {
+  try {
+    return customFetch("materials");
+  } catch (error) {
+    handleFetchError(error);
   }
-);
+});
 const addMaterial = createAsyncThunk(
   "material/addMaterials",
   async (materialData) => {
@@ -26,10 +23,10 @@ const addMaterial = createAsyncThunk(
 
 const updateMaterial = createAsyncThunk(
   "material/updateMaterial",
-  async ({ materialId, editedproperty}) => {
+  async ({ materialId, name, value }) => {
     const response = await customFetch(`materials/${materialId}`, {
       method: "PATCH",
-      body: JSON.stringify(editedproperty),
+      body: JSON.stringify({ name, value }),
     });
     return response;
   }
@@ -46,8 +43,7 @@ const deleteMaterial = createAsyncThunk(
 const materialSlice = createSlice({
   name: "material",
   initialState: { data: [], status: "idle", error: null },
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchMaterials.pending, (state) => {
