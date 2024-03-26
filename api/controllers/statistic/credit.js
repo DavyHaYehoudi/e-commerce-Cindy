@@ -3,8 +3,7 @@ import { filterByYear } from "../../utils/filterByYear.js";
 
 export const credit = async (year) => {
   try {
-
-    const filter = filterByYear(year)
+    const filter = filterByYear(year);
     // Requête pour obtenir le nombre total de crédits et leur montant total
     const totalCredits = await Credit.aggregate([
       {
@@ -101,11 +100,11 @@ export const credit = async (year) => {
       },
     ]);
 
-    return{
-      totalCredits: totalCredits[0],
-      usedCredits: usedCredits[0],
+    return {
+      totalCredits: totalCredits[0] || { count: 0, totalAmount: 0 },
+      usedCredits: usedCredits[0] || { count: 0, totalAmount: 0 },
       usedCreditDetails,
-      activeCredits: activeCredits[0],
+      activeCredits: activeCredits[0] || { count: 0, totalAmount: 0 },
       activeCreditDetails,
     };
   } catch (error) {

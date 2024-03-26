@@ -19,7 +19,21 @@ export const exchange = async (year) => {
         },
       },
     ]);
-
+    // Nombre d'échanges par client
+    const exchangesByClient = await OrderProducts.aggregate([
+      {
+        $match: {
+          ...filter,
+          "orderProductsActions.exchange": { $exists: true },
+        },
+      },
+      {
+        $group: {
+          _id: "$clientId",
+          totalExchanges: { $sum: "$orderProductsActions.exchange" },
+        },
+      },
+    ]);
     // Liste des échanges avec détails
     const exchangeDetails = await OrderProducts.aggregate([
       {
@@ -91,7 +105,11 @@ export const exchange = async (year) => {
       },
     ]);
 
-    return { totalExchanges: totalExchanges[0], exchangeDetails };
+    return {
+      totalExchanges: totalExchanges[0]?.totalExchanges || 0,
+      exchangesByClient,
+      exchangeDetails,
+    };
   } catch (error) {
     console.log("Error folder statistic exchange.js :", error);
     throw error;

@@ -14,7 +14,7 @@ const statisticController = {
         ordersCount,
         totalOrderAmount,
         ordersCanceled,
-        totalCanceledAmount,
+        totalOrdersCanceledAmount,
         currentMonthOrdersCount,
         averageByOrder,
         topSellingProducts,
@@ -34,7 +34,9 @@ const statisticController = {
       const { totalExchanges, exchangeDetails } = await exchange(year);
 
       // Refund
-      const { refundDetails } = await refund(year);
+      const { refundDetails, totalRefundAmount, totalRefunds } = await refund(
+        year
+      );
 
       // Giftcard
       const {
@@ -52,7 +54,7 @@ const statisticController = {
         ordersCount,
         totalOrderAmount,
         ordersCanceled,
-        totalCanceledAmount,
+        totalOrdersCanceledAmount,
         currentMonthOrdersCount,
         averageByOrder,
         topSellingProducts,
@@ -73,6 +75,8 @@ const statisticController = {
         totalAmountUsedGiftcards,
         usedGiftcardsDetails,
         refundDetails,
+        totalRefundAmount,
+        totalRefunds,
       });
     } catch (error) {
       res.status(500).json({ error: error.message });

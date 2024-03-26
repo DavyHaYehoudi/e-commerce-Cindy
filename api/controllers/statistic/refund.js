@@ -107,7 +107,16 @@ export const refund = async (year) => {
       },
     ]);
 
-    return { refundDetails: refundDetails[0] };
+    // return { refundDetails: refundDetails[0] };
+    const { refundDetails: refundDetailsData, totalRefundAmount } =
+      refundDetails[0] || {};
+
+    // Retourne les variables distinctement
+    return {
+      refundDetails: refundDetailsData || [],
+      totalRefundAmount: totalRefundAmount || 0,
+      totalRefunds:refundDetailsData?.length||0
+    };
   } catch (error) {
     console.log("Error folder statistic refund.js :", error);
     throw error;

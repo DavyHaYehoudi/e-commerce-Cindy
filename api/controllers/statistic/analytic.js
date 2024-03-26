@@ -114,7 +114,6 @@ export const analytic = async (year) => {
           totalQuantity: { $sum: "$cart.quantity" },
         },
       }, // Regrouper par produit et calculer la quantité totale dans les paniers
-      { $sort: { totalQuantity: -1 } }, // Trier par quantité totale vendue
       {
         $lookup: {
           from: "products", // Nom de la collection des produits
@@ -144,6 +143,16 @@ export const analytic = async (year) => {
           totalQuantity: { $sum: "$totalQuantity" },
         },
       }, // Regrouper par produit et matériau et calculer la quantité totale
+      {
+        $project: {
+          _id: 0, // Masquer l'ID
+          productId: "$_id.productId", // Récupérer l'ID du produit
+          productName: "$_id.productName", // Récupérer le nom du produit
+          materialId: "$_id.materialId", // Récupérer l'ID du matériau
+          materialName: "$_id.materialName", // Récupérer le nom du matériau
+          totalQuantity: 1, // Afficher la quantité totale vendue
+        },
+      }, 
       { $sort: { totalQuantity: -1 } }, // Trier par quantité totale dans le panier
     ]);
 
@@ -152,7 +161,7 @@ export const analytic = async (year) => {
       totalOrderAmount:
         totalOrderAmount.length > 0 ? totalOrderAmount[0].totalAmount : 0,
       ordersCanceled,
-      totalCanceledAmount:
+      totalOrdersCanceledAmount:
         totalCanceledAmount.length > 0 ? totalCanceledAmount[0].totalAmount : 0,
       currentMonthOrdersCount,
       averageByOrder,
