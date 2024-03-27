@@ -1810,7 +1810,6 @@ components:
           items: 
             type: string
             example: 65f2d2b24db605d02020061c
-               
     Promocode:
       type: array
       items:
@@ -1899,9 +1898,252 @@ components:
     Statistics:
       type: object
       properties:
-        credits:
-          type: string
-          
+        ordersCount:
+          type: integer
+          format: int16
+          example: 1
+        totalOrderAmount:
+          type: integer
+          format: int16
+          example: 80
+        ordersCanceled:
+          type: integer
+          format: int16
+          example: 0
+        totalOrdersCanceledAmount:
+          type: integer
+          format: int16
+          example: 1
+        currentMonthOrdersCount:
+          type: integer
+          format: int16
+          example: 1
+        averageByOrder:
+          type: integer
+          format: int16
+          example: 45.55
+        topSellingProducts:
+          type: array
+          items: 
+            type: object
+            properties:
+              productName:
+               type: string
+               example: Bracelet élégant
+              materialName:
+                type: string
+                example: GOLD FILLED
+              totalQuantity:
+                type: integer
+                format: int16
+                example: 2
+              productId:
+                type: string
+                example: 65fc736e7ad361077560d259
+        topCartProducts:
+          type: array
+          items: 
+            type: object
+            properties:
+              productName:
+               type: string
+               example: Bracelet élégant
+              materialName:
+                type: string
+                example: GOLD FILLED
+              materialId:
+                type : string
+                example: 65f2d2df4db605d020200620
+              totalQuantity:
+                type: integer
+                format: int16
+                example: 2
+              productId:
+                type: string
+                example: 65fc736e7ad361077560d259
+        totalCredits:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int16
+              example: 2
+            totalAmount:
+              type: integer
+              format: int16
+              example: 7
+        usedCredits:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int16
+              example: 4
+            totalAmount:
+              type: integer
+              format: int16
+              example: 25
+        usedCreditDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: integer
+                format: int16
+                example: 6
+              firstName:
+                type: string
+                example: William
+              lastName:
+                type: string
+                example: Eva
+              usedAt:
+                type: string
+                example: 2024-03-19T19:15:01.672Z
+        activeCredits:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int16
+              example: 6
+            totalAmount:
+              type: integer
+              format: int16
+              example: 16
+        activeCreditDetails:
+          type: array
+          items: 
+            type: object
+            properties:
+              amount:
+                type: integer
+                format: int16
+                example: 2
+              firstName:
+                type: string
+                example: Alice
+              lastName:
+                type: string
+                example: Smith
+        totalExchanges:
+          type: integer
+          format: int16
+          example: 12
+        exchangeDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              firstName:
+                type: string
+                example: John
+              lastName:
+                type: string
+                example: Doe
+              exchangeDate:
+                type: string
+                example: 2024-03-19T19:15:01.672Z
+              productName:
+                type: string
+                example: Bracelet smart
+              exchangedQuantity:
+                type: integer
+                format: int16
+                example: 3
+        totalGiftcards:
+          type: integer
+          format: int16
+          example: 4
+        totalAmountGiftcards:
+          type: integer
+          format: int16
+          example: 311
+        validGiftcards:
+          type: integer
+          format: int16
+          example: 23
+        totalAmountValidGiftcards:
+          type: integer
+          format: int16
+          example: 170
+        validGiftcardsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: integer
+                format: int16
+                example: 4
+              createdAt:
+                type: string
+                example: 2024-03-19T19:15:01.672Z
+              firstName:
+                type: string
+                example: John
+              lastName:
+                type: string
+                example: Doe
+        usedGiftcards:
+          type: integer
+          format: int16
+          example: 2
+        totalAmountUsedGiftcards:
+          type: integer
+          format: int16
+          example: 141
+        usedGiftcardsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: integer
+                format: int16
+                example: 10.5
+              updatedAt:
+                type: string
+                example: 2024-03-19T19:15:01.672Z
+              firstName:
+                type: string
+                example: John
+              lastName:
+                type: string
+                example: Doe
+        refundDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              firstName:
+                type: string
+                example: Bob
+              lastName:
+                type: string
+                example: Johnson
+              productName:
+                type: string
+                example: Broche florale
+              materialName:
+                type: string
+                example: ARGENT MASSIF
+              refundAmount:
+                type: integer
+                format: int16
+                example: 25
+              refundDate:
+                type: string
+                example: 2024-03-19T19:15:01.672Z
+        totalRefundAmount:
+          type: integer
+          format: int16
+          example: 30
+        totalRefunds:
+          type: integer
+          format: int16
+          example: 2
   securitySchemes:
     petstore_auth:
       type: oauth2
