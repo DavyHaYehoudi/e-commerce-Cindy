@@ -9,6 +9,9 @@ import { formatPrice } from "../../helpers/utils/prices";
 const CartItem = ({ cart }) => {
   const [coefficient, setCoefficient] = useState(1);
   const productStore = useSelector((state) => state?.product?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
   const handleChangeQuantity = (quantity) => {
     setCoefficient(quantity);
   };
@@ -19,9 +22,25 @@ const CartItem = ({ cart }) => {
           <Link>
             <img
               src={`/photos/${
-                getProductProperties(cart.productsId, productStore).image
+                getProductProperties(
+                  cart?.productsId,
+                  productStore,
+                  collectionStore,
+                  categoryStore,
+                  tagStore,
+                  cart?.material
+                ).main_image
               }`}
-              alt={getProductProperties(cart.productsId, productStore).name}
+              alt={
+                getProductProperties(
+                  cart?.productsId,
+                  productStore,
+                  collectionStore,
+                  categoryStore,
+                  tagStore,
+                  cart?.material
+                ).name
+              }
               width="75px"
               height="75px"
             />
@@ -29,20 +48,41 @@ const CartItem = ({ cart }) => {
         </div>
 
         <div className="cart-item-name">
-          {getProductProperties(cart.productsId, productStore).name}
+          {
+            getProductProperties(
+              cart?.productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              cart?.material
+            ).name
+          }
         </div>
       </div>
       <div className="cart-item-bottom">
         <div className="cart-item-subtotal">
           {coefficient} x{" "}
           {formatPrice(
-            getProductProperties(cart.productsId, productStore)?.pricing
-              .currentPrice
+            getProductProperties(
+              cart?.productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              cart?.material
+            )?.pricing.currentPrice
           )}{" "}
           ={" "}
           {formatPrice(
-            getProductProperties(cart.productsId, productStore)?.pricing
-              .currentPrice * coefficient
+            getProductProperties(
+              cart?.productsId,
+              productStore,
+              collectionStore,
+              categoryStore,
+              tagStore,
+              cart?.material
+            )?.pricing.currentPrice * coefficient
           )}
         </div>
         <div className="cart-item-quantity">

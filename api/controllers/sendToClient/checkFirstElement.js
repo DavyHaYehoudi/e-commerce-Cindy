@@ -1,5 +1,5 @@
 import OrderProducts from "../../models/orderProducts.model.js";
-import Product from "../../models/product.model.js";
+import Product from "../../models/product/product.model.js";
 
 export async function checkFirstElement(orderProductsArray) {
   let outTotalAmountCalc = 0;
@@ -66,26 +66,27 @@ export async function checkFirstElement(orderProductsArray) {
 
         // Récupérer le document Product en utilisant productsId
         const productInDB = await Product.findOne({ _id: productsId });
-
-        if (
-          !productInDB ||
-          !productInDB.pricing ||
-          !productInDB.pricing.currentPrice
-        ) {
-          throw new Error(
-            `La propriété 'currentPrice' n'est pas définie pour le document Product avec l'ID ${productsId}.`
-          );
-        }
-
-        const { currentPrice } = productInDB.pricing;
-
-        // Vérification spécifique pour material dans OrderProducts
         const { material } = orderProducts;
-        if (material === undefined || material < 0 || material > 10) {
-          throw new Error(
-            `La propriété 'material' doit être présente et comprise entre 0 et 10.`
-          );
+
+        if (!productInDB) {
+          throw new Error(`Le produit avec l'ID ${productsId} n'a pas été trouvé.`);
         }
+        
+        let currentPrice;
+        
+        if (productInDB.materials && material) {
+          const materialEntry = productInDB.materials.find(entry => entry._id.equals(material));
+          if (!materialEntry || !materialEntry.pricing || !materialEntry.pricing.currentPrice) {
+            throw new Error(`Le prix actuel n'est pas défini pour le matériau ${material}.`);
+          }
+          currentPrice = materialEntry.pricing.currentPrice;
+        } else {
+          if (!productInDB.pricing || !productInDB.pricing.currentPrice) {
+            throw new Error(`Le prix actuel n'est pas défini pour le produit avec l'ID ${productsId}.`);
+          }
+          currentPrice = productInDB.pricing.currentPrice;
+        }
+
         // Vérification spécifique pour quantity dans OrderProducts
         const { quantity } = orderProducts;
         if (quantity === undefined || quantity < 1 || quantity > 100) {

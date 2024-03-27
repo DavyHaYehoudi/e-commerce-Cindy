@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PromocodesCard from "./PromocodesCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import useCreatePromocode from "./hooks/useCreatePromocode";
-import useDeletePromocode from "./hooks/useDeletePromocode";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
+import {
+  createPromocode,
+  deletePromocode,
+} from "../../../features/admin/promocodeSlice";
 
 const Promocodes = () => {
   const promocodes = useSelector((state) => state?.promocode?.data);
@@ -16,8 +17,8 @@ const Promocodes = () => {
     dateExpire: "",
   });
   const [error, setError] = useState(false);
-  const { createPromoCode } = useCreatePromocode();
-  const { deletePromoCode } = useDeletePromocode();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const currentDate = new Date();
     const expirationDate = new Date(formData.dateExpire);
@@ -40,9 +41,8 @@ const Promocodes = () => {
   };
 
   const handleSubmit = () => {
-    const id = uuidv4();
-    const formatData = { ...formData, id };
-    createPromoCode(formatData);
+    const formatData = { ...formData };
+    dispatch(createPromocode(formatData));
     setIsModalOpen(false);
     setFormData({
       code: "",
@@ -51,8 +51,13 @@ const Promocodes = () => {
     });
   };
 
-  const handleDeletePromocode = (id) => {
-    deletePromoCode(id);
+  const handleDeletePromocode = (promocodeId) => {
+    const isConfirmed = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer ce code promo ?"
+    );
+    if (isConfirmed) {
+      dispatch(deletePromocode(promocodeId));
+    }
   };
 
   const isFormCompleted =
@@ -67,9 +72,9 @@ const Promocodes = () => {
       </div>
       {promocodes.map((promocode) => (
         <PromocodesCard
-          key={promocode.id}
+          key={promocode._id}
           promocode={promocode}
-          handleDeletePromocode={handleDeletePromocode}
+          handleDeletePromocode={() => handleDeletePromocode(promocode._id)}
         />
       ))}
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateActionContent } from "../../../../../../../features/admin/orderProductsSlice";
 import { handleActionClick } from "./handler/item";
 import { getProductProperties } from "../../../../../../../selectors/product";
@@ -8,6 +8,7 @@ import { useValidateEntryHandler } from "./hooks/transaction/useValidateEntryHan
 import { useCancelEntryHandler } from "./hooks/transaction/useCancelEntryHandler";
 
 const Transaction = ({
+  material,
   interaction,
   action,
   actions,
@@ -18,7 +19,7 @@ const Transaction = ({
   orderProducts,
   textCancel,
   orderProductsInfo,
-  orderProductsState,
+  productStore,
   isActionSelected,
   inputQuantityValue,
   orderProductsActions,
@@ -29,8 +30,17 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
-  const productPrice = getProductProperties(productsId, orderProductsState)?.pricing
-    ?.currentPrice;
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
+  const productPrice = getProductProperties(
+    productsId,
+    productStore,
+    collectionStore,
+    categoryStore,
+    tagStore,
+    material
+  )?.pricing?.currentPrice;
   const { handleChangeInputQuantity } = useInputQuantityHandler(
     actions,
     setProductActions

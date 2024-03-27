@@ -53,7 +53,7 @@ export async function checkSecondElement(req, step, trackingNumberList) {
           const { orderProductsId } = productByOrder;
 
           if (
-            !orderProductsDetails.find((item) => item.productsId === productsId)
+            !orderProductsDetails.find((item) => item.productsId.equals(productsId) )
           ) {
             throw new Error(
               "ProductsId inexistant ou non associé à la commande."

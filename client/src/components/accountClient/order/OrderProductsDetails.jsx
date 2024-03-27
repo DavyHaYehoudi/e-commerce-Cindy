@@ -12,7 +12,10 @@ const OrderProductsDetails = ({
   orderProductsStore,
   orderId,
 }) => {
-  const state = useSelector((state) => state?.product?.data);
+  const productStore = useSelector((state) => state?.product?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
   const materialStore = useSelector((state) => state?.material?.data);
   const ordersStore = useSelector((state) => state?.customer?.data?.orders);
   const creditStore = useSelector((state) => state?.customer?.data?.credit);
@@ -28,10 +31,15 @@ const OrderProductsDetails = ({
     orderProductsItem._id
   );
 
-  const { name, pricing, image, reference } = getProductProperties(
-    productsId,
-    state
-  );
+  const { name, pricing, main_image, collection, category } =
+    getProductProperties(
+      productsId,
+      productStore,
+      collectionStore,
+      categoryStore,
+      tagStore,
+      material
+    );
   const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
     <div key={productsId} className="order-item-user-account">
@@ -44,7 +52,8 @@ const OrderProductsDetails = ({
           {quantity > 1 ? "s" : ""} -{" "}
           {sumPriceArticle(quantity, pricing?.currentPrice)}
         </p>
-        <p>Référence : {reference}</p>
+        <p>Collection : {collection}</p>
+        <p>Catégorie : {category}</p>
       </div>
       <div
         className="image-container info-tooltip"
@@ -52,7 +61,7 @@ const OrderProductsDetails = ({
       >
         <Link>
           <img
-            src={`/photos/${image}`}
+            src={`/photos/${main_image}`}
             alt={name || "Non disponible"}
             style={{ width: "100px", height: "150px" }}
           />

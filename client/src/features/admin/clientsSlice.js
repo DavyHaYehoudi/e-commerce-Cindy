@@ -50,30 +50,15 @@ const fetchClients = createAsyncThunk(
   }
 );
 
-const addNoteAdmin = createAsyncThunk(
-  "clients/addNoteAdmin",
-  async ({ clientId, content }) => {
+const notesAdmin = createAsyncThunk(
+  "clients/notesAdmin",
+  async ({ clientId, noteId,content }) => {
     try {
-      const response = await customFetch(`clients/${clientId}/addNote`, {
+      const response = await customFetch(`clients/${clientId}/notesAdmin`, {
         method: "PATCH",
-        body: JSON.stringify({ content }),
+        body: JSON.stringify({ content,noteId }),
       });
-      return response;
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
-  }
-);
-
-const removeNoteAdmin = createAsyncThunk(
-  "clients/removeNoteAdmin",
-  async ({ clientId, noteId }) => {
-    try {
-      await customFetch(`clients/${clientId}/removeNote/${noteId}`, {
-        method: "PATCH",
-      });
-      return { clientId, noteId };
+return response;
     } catch (error) {
       handleFetchError(error);
       throw error;
@@ -106,51 +91,43 @@ const clientsSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(addNoteAdmin.pending, (state) => {
-        state.status = "loading";
+      .addCase(notesAdmin.pending, (state) => {
+        state.loading = "loading";
       })
-      .addCase(addNoteAdmin.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.error = null;
-        const { clientId, _id, content, date } = action.payload;
-        state.data = state.data.map((user) =>
-          user._id === clientId
-            ? {
-                ...user,
-                notesAdmin: user.notesAdmin
-                  ? [...user.notesAdmin, { _id, content, date }]
-                  : [{ _id, content, date }],
-              }
-            : user
-        );
+      .addCase(notesAdmin.fulfilled, (state, action) => {
+        state.loading = false;
+        if (action.payload.type === "addingNote") {
+          const { clientId, _id, content, date } = action.payload;
+          state.data = state.data.map((user) =>
+            user._id === clientId
+              ? {
+                  ...user,
+                  notesAdmin: user.notesAdmin
+                    ? [...user.notesAdmin, { _id, content, date }]
+                    : [{ _id, content, date }],
+                }
+              : user
+          );
+        } else if (action.payload.type==="deletingNote") {
+          const { clientId, noteId} = action.payload;
+          console.log('action.payload :',action.payload);
+          state.data = state.data.map((user) =>
+            user._id === clientId
+              ? {
+                  ...user,
+                  notesAdmin: user.notesAdmin
+                    ? user.notesAdmin.filter((note) => note._id !== noteId)
+                    : user.notesAdmin,
+                }
+              : user
+          );
+        }
       })
-      .addCase(addNoteAdmin.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
-      .addCase(removeNoteAdmin.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(removeNoteAdmin.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.error = null;
-        const { clientId, noteId } = action.payload;
-        state.data = state.data.map((user) =>
-          user._id === clientId
-            ? {
-                ...user,
-                notesAdmin: user.notesAdmin
-                  ? user.notesAdmin.filter((note) => note._id !== noteId)
-                  : user.notesAdmin,
-              }
-            : user
-        );
-      })
-      .addCase(removeNoteAdmin.rejected, (state, action) => {
-        state.status = "failed";
+      .addCase(notesAdmin.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.error.message;
       });
   },
 });
-export { fetchClients, addNoteAdmin, removeNoteAdmin };
+export { fetchClients, notesAdmin};
 export default clientsSlice.reducer;

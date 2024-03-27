@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ToggleButtonNote from "../ToggleButtonNote";
 import Header from "./Header";
 import List from "./action/List";
-import ConfirmationModal from "../../../../../../shared/confirmationModal"
+import ConfirmationModal from "../../../../../../shared/confirmationModal";
 import * as actions from "../../../../../../constants/orderProductsActions";
 import { useSelector } from "react-redux";
 import Totals from "./Totals";
@@ -10,7 +10,7 @@ import { getProductsInfo } from "../../../../../../selectors/orderProducts";
 import { getCreditsInfo } from "../../../../../../selectors/credit";
 
 const Main = ({ orderProducts, client, orderId }) => {
-  const { productsId, material, quantity } = orderProducts;
+  const { productsId, material, quantity } = orderProducts || {};
   const ordersStore = useSelector((state) => state?.orders?.data);
   const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const productStore = useSelector((state) => state?.product?.data);
@@ -18,12 +18,13 @@ const Main = ({ orderProducts, client, orderId }) => {
     getCreditsInfo(state, { productsId: orderProducts._id })
   );
 
-  const { orderProductsInfo, isTagProductExisted, articleNumber } = getProductsInfo(
-    ordersStore,
-    orderProductsStore,
-    orderId,
-    orderProducts._id,
-  ); 
+  const { orderProductsInfo, isTagProductExisted, articleNumber } =
+    getProductsInfo(
+      ordersStore,
+      orderProductsStore,
+      orderId,
+      orderProducts._id
+    );
 
   const [interaction, setInteraction] = useState({
     isActionsOpen: false,
@@ -57,7 +58,7 @@ const Main = ({ orderProducts, client, orderId }) => {
   return (
     <li
       className={`product-content ${interaction.isActionsOpen ? "open" : ""}`}
-      data-testid ={`product-content-${orderProducts?._id}`}
+      data-testid={`product-content-${orderProducts?._id}`}
     >
       <Header
         interaction={interaction}
@@ -72,6 +73,7 @@ const Main = ({ orderProducts, client, orderId }) => {
       />
       {interaction.isActionsOpen && (
         <List
+          material={material}
           interaction={interaction}
           orderProductsActions={orderProductsActions}
           orderProductsInfo={orderProductsInfo}
@@ -89,6 +91,7 @@ const Main = ({ orderProducts, client, orderId }) => {
       )}
       {isConfirmationVisible && (
         <ConfirmationModal
+          material={material}
           message="⚠️ Cette action entraîne une suppression définitive !"
           confirmation={confirmation}
           orderProductsActions={orderProductsActions}
@@ -118,6 +121,7 @@ const Main = ({ orderProducts, client, orderId }) => {
         orderProductsInfo={orderProductsInfo}
         productsId={productsId}
         orderProducts={orderProducts}
+        material={material}
       />
     </li>
   );

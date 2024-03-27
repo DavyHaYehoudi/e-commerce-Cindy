@@ -1,43 +1,75 @@
-export const getProductProperties = (productsId, state) => {
-  const product = state?.find((product) => product._id === productsId);
+export const getProductProperties = (
+  productsId,
+  productStore,
+  collectionStore,
+  categoryStore,
+  tagStore,
+  materialId
+) => {
+
+  const product = productStore?.find((product) => product._id === productsId);
 
   if (product) {
     const {
-      id,
-      reference,
+      _id,
+      _collection,
       category,
-      releaseDate,
-      name,
-      image,
-      description,
-      materials,
-      promotion,
-      pricing,
-      stock,
-      ratings,
-      options,
       tags,
-      isNew,
+      main_description,
+      secondary_images,
+      createdAt,
+      updatedAt,
+      name,
+      materials,
     } = product;
 
+    const collectionTitle = getPropertyById(
+      collectionStore,
+      _collection,
+      "name"
+    );
+    const categoryName = getPropertyById(categoryStore, category, "name");
+    const tagNames = getTagNamesByIds(tagStore, tags);
+
+    const { main_image, pricing, untilNew, promotion, stock, isActive } =
+      getDetailsProperty(materialId, materials) || {};
+
     return {
-      id,
-      reference,
-      category,
-      releaseDate,
+      _id,
       name,
-      image,
-      description,
-      materials,
-      promotion,
+      collection: collectionTitle,
+      category: categoryName,
+      tags: tagNames,
+      main_description,
+      secondary_images,
+      main_image,
       pricing,
+      untilNew,
+      promotion,
       stock,
-      ratings,
-      options,
-      tags,
-      isNew,
+      isActive,
+      createdAt,
+      updatedAt,
     };
   }
 
   return {};
 };
+
+function getPropertyById(objects, objectId, propertyName) {
+  const object = objects.find((obj) => obj._id === objectId);
+  return object ? object[propertyName] : "NC";
+}
+function getTagNamesByIds(tags, tagIds) {
+  if (!tags) {
+    return [];
+  }
+
+  return tags.filter((tag) => tagIds?.includes(tag._id)).map((tag) => tag.name);
+}
+function getDetailsProperty(materialId, materials) {
+  const material = materials?.find((mat) => mat._id === materialId);
+  const { main_image, pricing, untilNew, promotion, stock, isActive } =
+    material || {};
+  return { main_image, pricing, untilNew, promotion, stock, isActive };
+}

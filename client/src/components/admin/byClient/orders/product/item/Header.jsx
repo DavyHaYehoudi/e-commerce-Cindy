@@ -26,10 +26,20 @@ const Header = ({
     useSelector((state) =>
       getCreditsInfo(state, { productsId: orderProducts._id })
     ) || {};
-    const materialStore = useSelector((state) => state?.material?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
+  const materialStore = useSelector((state) => state?.material?.data);
 
-  const { reference, name, pricing, image } =
-    getProductProperties(productsId, productStore) || {};
+  const { collection, category, name, pricing, main_image } =
+    getProductProperties(
+      productsId,
+      productStore,
+      collectionStore,
+      categoryStore,
+      tagStore,
+      material
+    ) || {};
   const { exchange, refund, credit } = orderProductsInfo ?? {};
   return (
     <>
@@ -48,16 +58,17 @@ const Header = ({
       <div className="product-content-details">
         <div>
           <h3>
-            {name} {getMaterialProperty(material,materialStore)?.name}
+            {name} {getMaterialProperty(material, materialStore)?.name}
           </h3>
           <p className="pricing inPricing">
             {quantity} article
             {quantity > 1 ? "s" : ""} -{" "}
             {sumPriceArticle(quantity, pricing?.currentPrice)}
           </p>
-          <p>Référence : {reference}</p>
+          <p>Collection : {collection}</p>
+          <p>Catégorie : {category}</p>
         </div>
-        <img src={`/photos/${image}`} alt={name} width="150px" />
+        <img src={`/photos/${main_image}`} alt={name} width="150px" />
         <ul>
           <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
             {exchange && (

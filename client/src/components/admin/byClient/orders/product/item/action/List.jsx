@@ -4,6 +4,7 @@ import Credit from "./Credit";
 import { generateItemTransactionComponent } from "./handler/item";
 
 const List = ({
+  material,
   interaction,
   orderProductsActions,
   orderProductsInfo,
@@ -28,13 +29,14 @@ const List = ({
   } = orderProductsActions;
 
   return (
-    <ul className="actions-list" >
+    <ul className="actions-list">
       {generateItemTransactionComponent(
         actions.EXCHANGE,
         actions.EXCHANGE_LABEL,
         isAddExchange,
         exchangeContent,
         "Nombre d'articles à échanger",
+        material, 
         actions,
         interaction,
         productsId,
@@ -55,6 +57,7 @@ const List = ({
         isAddRefund,
         refundContent,
         "Nombre d'articles à rembourser",
+        material,
         actions,
         interaction,
         productsId,
@@ -70,6 +73,7 @@ const List = ({
         setConfirmation
       )}
       <Credit
+        material={material}
         interaction={interaction}
         action={actions?.CREDIT}
         actions={actions}

@@ -1,0 +1,30 @@
+/* ********************* START DASHBOARD VIEW ********************* */
+.admin-dashboard {
+    max-width: 1400px;
+    margin: 20px auto;
+}
+
+.admin-dashboard .darkMode {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-dashboard-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+.admin-dashboard-menu button {
+    margin: 20px;
+    color: var(--text-whitesmoke);
+    background-color: var(--secondary);
+}
+
+.admin-dashboard-menu button span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+/* ********************* END DASHBOARD VIEW ********************* */

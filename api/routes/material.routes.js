@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", materialController.getAllMaterials);
 router.post("/", materialController.createMaterials);
-router.put("/:materialId", materialController.updateMaterials);
+router.patch("/:materialId", materialController.updateMaterials);
 router.delete("/:materialId", materialController.deleteMaterial);
 
 export default router;

@@ -27,7 +27,7 @@ const creditSchema = new mongoose.Schema(
       default: generateSecretCode,
     },
     dateExpire: {
-      type: String,
+      type: Date,
       required: true,
       validate: {
         validator: function (dateExpire) {
@@ -42,7 +42,7 @@ const creditSchema = new mongoose.Schema(
           "La date d'expiration choisie doit être au moins celle du lendemain.",
       },
     },
-    archived: {
+    isArchived: {
       type: Boolean,
       default: false,
     },

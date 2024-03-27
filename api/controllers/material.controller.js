@@ -46,18 +46,17 @@ const materialController = {
     try {
       const { materialId } = req.params;
       const deleteMaterial = await Material.findByIdAndDelete(materialId);
-  
+
       if (!deleteMaterial) {
         return res.status(404).json({ error: "Material not found" });
       }
-  
-      res.status(200).json(deleteMaterial);
+
+      res.status(204).json();
     } catch (error) {
       console.error("Error deleting material:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   },
-  
 };
 
 export default materialController;

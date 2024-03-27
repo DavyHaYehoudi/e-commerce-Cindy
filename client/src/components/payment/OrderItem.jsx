@@ -8,6 +8,9 @@ import { getProductProperties } from "../../selectors/product";
 const OrderItem = ({ cart }) => {
   const [coefficient, setCoefficient] = useState(1);
   const productStore = useSelector((state) => state?.product?.data);
+  const collectionStore = useSelector((state) => state?.collection?.data);
+  const categoryStore = useSelector((state) => state?.category?.data);
+  const tagStore = useSelector((state) => state?.tag?.data);
 
   const handleChangeQuantity = (quantity) => {
     setCoefficient(quantity);
@@ -22,9 +25,25 @@ const OrderItem = ({ cart }) => {
           <Link>
             <img
               src={`/photos/${
-                getProductProperties(cart.productsId, productStore).image
+                getProductProperties(
+                  cart.productsId,
+                  productStore,
+                  collectionStore,
+                  categoryStore,
+                  tagStore,
+                  cart.material
+                ).main_image
               }`}
-              alt={getProductProperties(cart.productsId, productStore).name}
+              alt={
+                getProductProperties(
+                  cart.productsId,
+                  productStore,
+                  collectionStore,
+                  categoryStore,
+                  tagStore,
+                  cart.material
+                ).name
+              }
               width="100px"
               height="150px"
             />
@@ -32,12 +51,27 @@ const OrderItem = ({ cart }) => {
         </div>
         <div className="orderItem-details">
           <div className="orderItem-name">
-            {getProductProperties(cart.productsId, productStore).name}
+            {
+              getProductProperties(
+                cart.productsId,
+                productStore,
+                collectionStore,
+                categoryStore,
+                tagStore,
+                cart.material
+              ).name
+            }
           </div>
           <div className="orderItem-price">
             {formatPrice(
-              getProductProperties(cart.productsId, productStore)?.pricing
-                .currentPrice
+              getProductProperties(
+                cart.productsId,
+                productStore,
+                collectionStore,
+                categoryStore,
+                tagStore,
+                cart.material
+              )?.pricing.currentPrice
             )}{" "}
           </div>
         </div>
@@ -48,8 +82,14 @@ const OrderItem = ({ cart }) => {
       </div>
       <div className="orderItem-total">
         {formatPrice(
-          getProductProperties(cart.productsId, productStore)?.pricing
-            .currentPrice * coefficient
+          getProductProperties(
+            cart.productsId,
+            productStore,
+            collectionStore,
+            categoryStore,
+            tagStore,
+            cart.material
+          )?.pricing.currentPrice * coefficient
         )}{" "}
       </div>
     </div>

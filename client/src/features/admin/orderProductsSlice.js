@@ -41,7 +41,7 @@ const orderProductsSlice = createSlice({
         productActionContent,
       } = action.payload;
 
-      const timestamp = new Date();
+      const timestamp = new Date().toISOString();
 
       state.data = state?.data.map((orderProducts) => {
         if (orderProductsId === orderProducts._id) {

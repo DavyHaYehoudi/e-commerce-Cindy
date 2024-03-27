@@ -23,6 +23,9 @@ const AccountClient = () => {
   useFetchSlice("customer", clientIdForDevelopment);
   useFetchSlice("product");
   useFetchSlice("material");
+  useFetchSlice("collection")
+  useFetchSlice("tag")
+  useFetchSlice("category")
 
   return (
     <div className="user-profile-container" data-testid="account-dashboard">

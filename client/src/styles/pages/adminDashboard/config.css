@@ -1,0 +1,99 @@
+.admin-configuration h2 {
+    cursor: pointer;
+    color: var(--text-whitesmoke);
+    background: var(--secondary);
+    border-radius: 5px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.admin-configuration h2:hover {
+    transform: translateY(-3px);
+}
+
+.admin-categories, .admin-tags, .admin-materials, .admin-collections {
+
+    margin: 40px;
+}
+
+.admin-configuration .content-block-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--dark);
+    margin: 20px 10px;
+    transition: transform 0.3s ease;
+}
+
+.admin-configuration .content-block-wrapper:hover {
+    transform: translateY(-3px);
+}
+
+.admin-configuration .content-block {
+    display: flex;
+}
+
+.admin-configuration .content-block-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-configuration .content-block-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.admin-configuration .validate-btn {
+    background-color: var(--success);
+    color: var(--dark);
+}
+
+.adding {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.account-input-config {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.account-input-config:focus {
+    outline: none;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 3px var(--dark);
+}
+
+.content-category-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px;
+}
+
+.content-category-checkbox input {
+    margin: 10px;
+}
+
+.content-block-left.details {
+    margin-bottom: 10px;
+}
+
+.content-block-left.details ul {
+    display: flex;
+    gap: 10px;
+}
+
+.content-block-left.details li {
+    background: var(--info);
+    padding: 2px;
+    border-radius: 5px;
+}

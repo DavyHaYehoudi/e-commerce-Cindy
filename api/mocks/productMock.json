@@ -1,53 +1,95 @@
 [
   {
-    "reference": "QER2345OIJD1",
-    "category": "Jewelry",
-    "releaseDate": "2023-11-01",
     "name": "Boucles d'oreilles",
-    "image": "bo.png",
-    "description": "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": ["65fafe8fab75220625f55dc0",
+    "65fafe98ab75220625f55dc2"],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Magnifiques boucles d'oreilles pour des occasions uniques et qui vous mettront en valeur.",
     "materials": [
-      0,
-      1,
-      2,
-      3
-    ],
-    "promotion": {
-      "amount": "10%",
-      "startDate": "2023-11-15",
-      "endDate": "2023-11-30"
-    },
-    "pricing": {
-      "currentPrice": 50,
-      "oldPrice": 65
-    },
-    "stock": 7,
-    "ratings": 4.5,
-    "options": {
-      "size": [
-        "S",
-        "M",
-        "L"
-      ],
-      "color": [
-        "Red",
-        "Blue",
-        "Green"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Summer"
-    ],
-    "isNew": true
+      {
+        "_id": "65f2d29d4db605d02020061a",
+        "main_image": "bo.png",
+        "pricing": {
+          "currentPrice": 20,
+          "oldPrice": 30
+        },
+        "untilNew": "2024-01-15",
+        "promotion": null,
+        "stock": 5,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2b24db605d02020061c",
+        "main_image": "bar.png",
+        "pricing": {
+          "currentPrice": 40,
+          "oldPrice": null
+        },
+        "untilNew": "2024-02-15",
+        "promotion": null,
+        "stock": 4,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2c44db605d02020061e",
+        "main_image": "bra.png",
+        "pricing": {
+          "currentPrice": 15,
+          "oldPrice": null
+        },
+        "untilNew": "2024-03-15",
+        "promotion": null,
+        "stock": 7,
+        "isActive": true
+      },
+      {
+        "_id": "65f2d2df4db605d020200620",
+        "main_image": "col.png",
+        "pricing": {
+          "currentPrice": 10,
+          "oldPrice": 20
+        },
+        "untilNew": "2024-04-15",
+        "promotion": {
+          "amount": 50,
+          "startDate": "2024-04-01",
+          "endDate": "2024-05-01"
+        },
+        "stock": 12,
+        "isActive": true
+      }
+    ]
   },
   {
-    "reference": "ABC123XYZ2",
-    "category": "Clothing",
-    "releaseDate": "2023-10-15",
     "name": "Robe élégante",
-    "image": "bar.png",
-    "description": "Une robe élégante parfaite pour les soirées spéciales. Confortable et stylée.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe2fab75220625f55db9",
+    "tags": [
+      "65fafe8fab75220625f55dc0",
+      "65fafe98ab75220625f55dc2",
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca",
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce",
+      "65fafedbab75220625f55dd0",
+      "65fafee5ab75220625f55dd2"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Une robe élégante parfaite pour les soirées spéciales. Confortable et stylée.",
     "materials": [
       2,
       3
@@ -62,31 +104,23 @@
       "oldPrice": 140
     },
     "stock": 15,
-    "ratings": 4.2,
-    "options": {
-      "size": [
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "Black",
-        "White"
-      ]
-    },
-    "tags": [
-      "Evening Wear",
-      "Formal"
-    ],
-    "isNew": false
+    "untilNew": "2024-02-15"
   },
   {
-    "reference": "ABC123XYZ3",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-10-20",
     "name": "Peigne en cristal",
-    "image": "col.png",
-    "description": "Un peigne élégant en cristal pour ajouter une touche de glamour à votre coiffure.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": [
+      "65fafedbab75220625f55dd0",
+      "65fafee5ab75220625f55dd2"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un peigne élégant en cristal pour ajouter une touche de glamour à votre coiffure.",
     "materials": [
       2,
       3
@@ -101,26 +135,23 @@
       "oldPrice": 30
     },
     "stock": 10,
-    "ratings": 4,
-    "options": {
-      "color": [
-        "Silver",
-        "Gold"
-      ]
-    },
-    "tags": [
-      "Wedding",
-      "Special Occasion"
-    ],
-    "isNew": false
+    "untilNew": "2024-03-15"
   },
   {
-    "reference": "DEF567LMN4",
-    "category": "Bracelets",
-    "releaseDate": "2023-11-05",
     "name": "Bracelet en perles",
-    "image": "bra.png",
-    "description": "Un bracelet élégant en perles pour compléter votre look avec style.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un bracelet élégant en perles pour compléter votre look avec style.",
     "materials": null,
     "promotion": {
       "amount": "",
@@ -132,31 +163,23 @@
       "oldPrice": null
     },
     "stock": 15,
-    "ratings": 4.7,
-    "options": {
-      "size": [
-        "Small",
-        "Medium",
-        "Large"
-      ],
-      "color": [
-        "White",
-        "Black"
-      ]
-    },
-    "tags": [
-      "Formal",
-      "Evening Wear"
-    ],
-    "isNew": true
+    "untilNew": "2024-04-15"
   },
   {
-    "reference": "GHI789JKL5",
-    "category": "Necklaces",
-    "releaseDate": "2023-11-10",
     "name": "Collier de perles",
-    "image": "bo.png",
-    "description": "Un collier de perles classique qui ajoute une touche d'élégance à n'importe quelle tenue.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un collier de perles classique qui ajoute une touche d'élégance à n'importe quelle tenue.",
     "materials": [
       0,
       2
@@ -171,26 +194,27 @@
       "oldPrice": 70
     },
     "stock": 12,
-    "ratings": 4.8,
-    "options": {
-      "color": [
-        "White",
-        "Gray"
-      ]
-    },
-    "tags": [
-      "Formal",
-      "Wedding"
-    ],
-    "isNew": true
+    "untilNew": "2024-05-15"
   },
   {
-    "reference": "MNO456PQR6",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-11-02",
     "name": "Broche en strass",
-    "image": "bar.png",
-    "description": "Une broche scintillante en strass pour ajouter une touche de glamour à votre coiffure.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": [
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca",
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Une broche scintillante en strass pour ajouter une touche de glamour à votre coiffure.",
     "materials": [
       1
     ],
@@ -204,26 +228,23 @@
       "oldPrice": 40
     },
     "stock": 8,
-    "ratings": 4.6,
-    "options": {
-      "color": [
-        "Gold",
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Special Occasion",
-      "Party"
-    ],
-    "isNew": false
+    "untilNew": "2024-06-15"
   },
   {
-    "reference": "STU012VWX7",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-11-08",
     "name": "Collier de dos en perles",
-    "image": "col.png",
-    "description": "Un collier de dos en perles pour sublimer vos tenues dos nu avec élégance.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": [
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un collier de dos en perles pour sublimer vos tenues dos nu avec élégance.",
     "materials": null,
     "promotion": {
       "amount": "8%",
@@ -235,26 +256,24 @@
       "oldPrice": 50
     },
     "stock": 10,
-    "ratings": 4.4,
-    "options": {
-      "color": [
-        "White",
-        "Ivory"
-      ]
-    },
-    "tags": [
-      "Wedding",
-      "Special Occasion"
-    ],
-    "isNew": false
+    "untilNew": "2024-07-15"
   },
   {
-    "reference": "YZA345BCD8",
-    "category": "Earrings",
-    "releaseDate": "2023-11-06",
     "name": "Boucles d'oreilles pendantes",
-    "image": "bra.png",
-    "description": "Des boucles d'oreilles pendantes chic et modernes pour compléter votre look avec style.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafecaab75220625f55dce",
+      "65fafedbab75220625f55dd0",
+      "65fafee5ab75220625f55dd2"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Des boucles d'oreilles pendantes chic et modernes pour compléter votre look avec style.",
     "materials": [
       1,
       3
@@ -269,26 +288,23 @@
       "oldPrice": 38
     },
     "stock": 15,
-    "ratings": 4.7,
-    "options": {
-      "color": [
-        "Silver",
-        "Rose Gold"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Evening Wear"
-    ],
-    "isNew": true
+    "untilNew": "2024-08-15"
   },
   {
-    "reference": "EFG678HIJ9",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-11-12",
     "name": "Peigne vintage",
-    "image": "col.png",
-    "description": "Un peigne vintage orné de détails élégants pour ajouter une touche rétro à votre coiffure.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": [
+      "65fafecaab75220625f55dce",
+      "65fafee5ab75220625f55dd2"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un peigne vintage orné de détails élégants pour ajouter une touche rétro à votre coiffure.",
     "materials": [
       1,
       2
@@ -303,26 +319,26 @@
       "oldPrice": 42
     },
     "stock": 12,
-    "ratings": 4.6,
-    "options": {
-      "color": [
-        "Gold",
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Vintage",
-      "Retro"
-    ],
-    "isNew": false
+    "untilNew": "2024-09-15"
   },
   {
-    "reference": "KLM901NOP_10",
-    "category": "Bracelets",
-    "releaseDate": "2023-11-10",
     "name": "Bracelet en cuir tressé",
-    "image": "bo.png",
-    "description": "Un bracelet en cuir tressé avec une fermeture magnétique pour un look décontracté et tendance.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafe8fab75220625f55dc0",
+      "65fafe98ab75220625f55dc2",
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un bracelet en cuir tressé avec une fermeture magnétique pour un look décontracté et tendance.",
     "materials": [
       0,
       3
@@ -337,31 +353,25 @@
       "oldPrice": 32
     },
     "stock": 18,
-    "ratings": 4.3,
-    "options": {
-      "size": [
-        "Small",
-        "Medium",
-        "Large"
-      ],
-      "color": [
-        "Brown",
-        "Black"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Everyday Wear"
-    ],
-    "isNew": true
+    "untilNew": "2024-10-15"
   },
   {
-    "reference": "PQR234STU_11",
-    "category": "Brooches",
-    "releaseDate": "2023-11-18",
     "name": "Broche florale en argent",
-    "image": "bar.png",
-    "description": "Une élégante broche florale en argent pour ajouter une touche de délicatesse à vos tenues.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafe8fab75220625f55dc0",
+      "65fafe98ab75220625f55dc2",
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Une élégante broche florale en argent pour ajouter une touche de délicatesse à vos tenues.",
     "materials": [
       2,
       3
@@ -376,25 +386,25 @@
       "oldPrice": 25
     },
     "stock": 15,
-    "ratings": 4.2,
-    "options": {
-      "color": [
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Formal",
-      "Special Occasion"
-    ],
-    "isNew": false
+    "untilNew": "2024-11-15"
   },
   {
-    "reference": "UVW567XYZ_12",
-    "category": "Earrings",
-    "releaseDate": "2023-11-15",
     "name": "Boucles d'oreilles pendantes en perles",
-    "image": "bra.png",
-    "description": "Des boucles d'oreilles pendantes en perles pour un look sophistiqué et raffiné.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafe98ab75220625f55dc2",
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Des boucles d'oreilles pendantes en perles pour un look sophistiqué et raffiné.",
     "materials": [
       0,
       2
@@ -409,25 +419,24 @@
       "oldPrice": 35
     },
     "stock": 20,
-    "ratings": 4.5,
-    "options": {
-      "color": [
-        "White"
-      ]
-    },
-    "tags": [
-      "Evening Wear",
-      "Wedding"
-    ],
-    "isNew": true
+    "untilNew": "2024-12-15"
   },
   {
-    "reference": "XYZ890ABC_13",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-11-25",
     "name": "Serre-tête en perles",
-    "image": "col.png",
-    "description": "Un serre-tête élégant en perles pour ajouter une touche sophistiquée à votre coiffure.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe2fab75220625f55db9",
+    "tags": [
+      "65fafe8fab75220625f55dc0",
+      "65fafea0ab75220625f55dc4",
+      "65fafeb5ab75220625f55dc8"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un serre-tête élégant en perles pour ajouter une touche sophistiquée à votre coiffure.",
     "materials": null,
     "promotion": {
       "amount": "10%",
@@ -439,26 +448,27 @@
       "oldPrice": 20
     },
     "stock": 25,
-    "ratings": 4.1,
-    "options": {
-      "color": [
-        "Ivory",
-        "Black"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Everyday Wear"
-    ],
-    "isNew": false
+    "untilNew": "2025-01-15"
   },
   {
-    "reference": "BCD123EFG_14",
-    "category": "Bracelets",
-    "releaseDate": "2023-11-22",
     "name": "Bracelet jonc en argent",
-    "image": "bo.png",
-    "description": "Un bracelet jonc en argent avec des détails ciselés pour une allure élégante au quotidien.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca",
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un bracelet jonc en argent avec des détails ciselés pour une allure élégante au quotidien.",
     "materials": [
       2,
       3
@@ -473,30 +483,25 @@
       "oldPrice": 38
     },
     "stock": 18,
-    "ratings": 4.3,
-    "options": {
-      "size": [
-        "Small",
-        "Medium",
-        "Large"
-      ],
-      "color": [
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Everyday Wear",
-      "Casual"
-    ],
-    "isNew": true
+    "untilNew": "2025-02-15"
   },
   {
-    "reference": "EFG456HIJ_15",
-    "category": "Earrings",
-    "releaseDate": "2023-11-30",
     "name": "Boucles d'oreilles créoles en argent",
-    "image": "bar.png",
-    "description": "Des boucles d'oreilles créoles en argent pour un look moderne et élégant.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": [
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Des boucles d'oreilles créoles en argent pour un look moderne et élégant.",
     "materials": [
       1,
       3
@@ -511,25 +516,26 @@
       "oldPrice": 32
     },
     "stock": 20,
-    "ratings": 4.6,
-    "options": {
-      "color": [
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Everyday Wear"
-    ],
-    "isNew": false
+    "untilNew": "2025-03-15"
   },
   {
-    "reference": "HIJ789KLM_16",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-11-28",
     "name": "Pin à cheveux en perles",
-    "image": "bra.png",
-    "description": "Un pin à cheveux élégant en perles pour rehausser votre coiffure avec une touche de sophistication.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": [
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca",
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un pin à cheveux élégant en perles pour rehausser votre coiffure avec une touche de sophistication.",
     "materials": [
       0,
       2
@@ -544,26 +550,20 @@
       "oldPrice": null
     },
     "stock": 15,
-    "ratings": 4.2,
-    "options": {
-      "color": [
-        "White",
-        "Gold"
-      ]
-    },
-    "tags": [
-      "Wedding",
-      "Special Occasion"
-    ],
-    "isNew": true
+    "untilNew": "2025-04-15"
   },
   {
-    "reference": "LMN012OPQ_17",
-    "category": "Necklaces",
-    "releaseDate": "2023-12-05",
     "name": "Collier pendentif en cristal",
-    "image": "col.png",
-    "description": "Un collier pendentif en cristal pour ajouter une touche de glamour à vos tenues de soirée.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": null,
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un collier pendentif en cristal pour ajouter une touche de glamour à vos tenues de soirée.",
     "materials": [
       2,
       3
@@ -578,26 +578,20 @@
       "oldPrice": 50
     },
     "stock": 12,
-    "ratings": 4.7,
-    "options": {
-      "color": [
-        "Silver",
-        "Gold"
-      ]
-    },
-    "tags": [
-      "Evening Wear",
-      "Formal"
-    ],
-    "isNew": false
+    "untilNew": "2025-05-15"
   },
   {
-    "reference": "OPQ345RST_18",
-    "category": "Hair Accessories",
-    "releaseDate": "2023-12-01",
     "name": "Serre-tête floral",
-    "image": "bo.png",
-    "description": "Un serre-tête floral avec des détails délicats pour une coiffure féminine et romantique.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe1eab75220625f55db5",
+    "tags": null,
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un serre-tête floral avec des détails délicats pour une coiffure féminine et romantique.",
     "materials": [
       0,
       1
@@ -612,26 +606,20 @@
       "oldPrice": 22
     },
     "stock": 18,
-    "ratings": 4.5,
-    "options": {
-      "color": [
-        "Pink",
-        "White"
-      ]
-    },
-    "tags": [
-      "Romantic",
-      "Casual"
-    ],
-    "isNew": true
+    "untilNew": "2025-06-15"
   },
   {
-    "reference": "RST678UVW_19",
-    "category": "Bracelets",
-    "releaseDate": "2023-12-10",
     "name": "Bracelet charm en perles",
-    "image": "bar.png",
-    "description": "Un bracelet charm en perles pour exprimer votre style unique et personnel.",
+    "_collection": "65fafde9ab75220625f55daf",
+    "category": "65fafe25ab75220625f55db7",
+    "tags": null,
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Un bracelet charm en perles pour exprimer votre style unique et personnel.",
     "materials": [
       1,
       2
@@ -646,31 +634,27 @@
       "oldPrice": 30
     },
     "stock": 15,
-    "ratings": 4.4,
-    "options": {
-      "size": [
-        "Small",
-        "Medium",
-        "Large"
-      ],
-      "color": [
-        "Blue",
-        "White"
-      ]
-    },
-    "tags": [
-      "Casual",
-      "Everyday Wear"
-    ],
-    "isNew": false
+    "untilNew": "2024-01-15"
   },
   {
-    "reference": "UVW890XYZ_20",
-    "category": "Earrings",
-    "releaseDate": "2023-12-08",
     "name": "Boucles d'oreilles pendantes en argent",
-    "image": "bra.png",
-    "description": "Des boucles d'oreilles pendantes en argent pour un look élégant et intemporel.",
+    "_collection": "65fafdf6ab75220625f55db1",
+    "category": "65fafe2fab75220625f55db9",
+    "tags": [
+      "65fafea0ab75220625f55dc4",
+      "65fafea7ab75220625f55dc6",
+      "65fafeb5ab75220625f55dc8",
+      "65fafebaab75220625f55dca",
+      "65fafec3ab75220625f55dcc",
+      "65fafecaab75220625f55dce"
+    ],
+    "secondary_images": [
+      "bo.png",
+      "bar.png",
+      "col.png",
+      "bra.png"
+    ],
+    "main_description": "Des boucles d'oreilles pendantes en argent pour un look élégant et intemporel.",
     "materials": [
       0,
       3
@@ -685,16 +669,6 @@
       "oldPrice": 36
     },
     "stock": 20,
-    "ratings": 4.6,
-    "options": {
-      "color": [
-        "Silver"
-      ]
-    },
-    "tags": [
-      "Evening Wear",
-      "Formal"
-    ],
-    "isNew": true
+    "untilNew": "2025-07-15"
   }
 ]

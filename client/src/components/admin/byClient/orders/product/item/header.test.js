@@ -71,7 +71,6 @@ describe("Header Component", () => {
     // Add assertions based on your component's output
     expect(screen.getByTestId("header-component")).toBeInTheDocument();
     expect(screen.getByText(/Boucles d'oreilles/i)).toBeInTheDocument();
-    expect(screen.getByText("Référence : QER2345OIJD")).toBeInTheDocument();
   });
   test("display ECHANGE,REMBOURSEMENT,AVOIR", () => {
     const orderProductsInfo = {
