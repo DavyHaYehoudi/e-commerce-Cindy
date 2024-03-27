@@ -1,9 +1,23 @@
-import Product from "../models/product/product.model.js";
+import Product from "../../models/product/product.model.js";
+import process from "./filter/process.js";
 const productController = {
-  getAllProduct: async (req, res) => {
+  getAllProducts: async (req, res) => {
+    console.log('dans le controller getAllProducts');
     try {
-      const product = await Product.find();
-      res.status(200).json(product);
+      let totalProductsCount;
+      let products;
+
+      if (Object.keys(req.query).length === 0) {
+        totalProductsCount = await Product.countDocuments();
+        products = await Product.find();
+      } else {
+        const { processedProducts, processedTotalProductsCount } =
+          await process(req.query);
+        products = processedProducts;
+        totalProductsCount = processedTotalProductsCount;
+      }
+
+      res.status(200).json({ products, totalProductsCount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -17,14 +31,14 @@ const productController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
-
+  }, 
+ 
   createProduct: async (req, res) => {
     try {
-      const product = await Product.create(req.body);
-      res.status(201).json(product);
+      const product = await Product.create(req.body); 
+      res.status(201).json(product); 
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });  
     }
   },
 

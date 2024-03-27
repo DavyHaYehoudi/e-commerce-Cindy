@@ -9,8 +9,8 @@ import ClientFilterPanel from "./byClient/list/filters";
 import List from "./byClient/list";
 import Operations from "./byOperation";
 import Statistics from "./byStatistic";
-import Products from "./byProduct";
 import Configuration from "./ByConfiguration";
+import ProductFilterPanel from "./byProduct";
 
 const Menu = ({
   totalClientsCount,
@@ -28,7 +28,7 @@ const Menu = ({
       <div className="admin-dashboard-menu">
         <div>
           <button
-            className="account-btn"
+            className={`account-btn ${selectedTab === "Clients" ? "selected" : ""}`}
             onClick={() => handleTabChange("Clients")}
           >
             <span>
@@ -37,7 +37,7 @@ const Menu = ({
             </span>
           </button>
           <button
-            className="account-btn"
+            className={`account-btn ${selectedTab === "Operations" ? "selected" : ""}`}
             onClick={() => handleTabChange("Operations")}
           >
             <span>
@@ -46,7 +46,7 @@ const Menu = ({
             </span>
           </button>
           <button
-            className="account-btn"
+            className={`account-btn ${selectedTab === "Produits" ? "selected" : ""}`}
             onClick={() => handleTabChange("Produits")}
           >
             <span>
@@ -55,7 +55,7 @@ const Menu = ({
             </span>
           </button>
           <button
-            className="account-btn"
+            className={`account-btn ${selectedTab === "Statistiques" ? "selected" : ""}`}
             onClick={() => handleTabChange("Statistiques")}
           >
             <span>
@@ -64,7 +64,7 @@ const Menu = ({
             </span>
           </button>
           <button
-            className="account-btn"
+            className={`account-btn ${selectedTab === "Configurations" ? "selected" : ""}`}
             onClick={() => handleTabChange("Configurations")}
           >
             <span>
@@ -91,7 +91,7 @@ const Menu = ({
         </>
       )}
       {selectedTab === "Operations" && <Operations />}
-      {selectedTab === "Produits" && <Products />}
+      {selectedTab === "Produits" && <ProductFilterPanel />}
       {selectedTab === "Statistiques" && <Statistics />}
       {selectedTab === "Configurations" && <Configuration />}
     </>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import SearchBar from "./SearchBar";
 import Block from "./Block";
 import { useDispatch } from "react-redux";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
+import SearchBarAdmin from "../../../../../shared/searchBar/SearchBarAdmin";
 
 const ClientFilterPanel = ({
   totalClientsCount,
@@ -42,9 +42,10 @@ const ClientFilterPanel = ({
           <option value="TOUS">TOUS</option>
         </select>
       </div>
-      <SearchBar
+      <SearchBarAdmin
         searchBarValue={searchBarValue}
         handleSearchChange={handleSearchChange}
+        placeholder="Nom ou prénom (au moins 3 lettres)"
       />
       <Block
         itemsPerPage={itemsPerPage}

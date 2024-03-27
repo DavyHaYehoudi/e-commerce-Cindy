@@ -1,0 +1,41 @@
+.productsFilterPanel-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.products {
+    margin: 50px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: auto;
+}
+
+.products .card {
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--background);
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+.products .card:hover {
+    transform: scale(1.05);
+}
+
+.products .card-wrapper img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.products .card-wrapper {
+    padding: 10px;
+}
