@@ -6,6 +6,7 @@ const Credit = ({ data }) => {
   if (!data) {
     return <div>Chargement en cours...</div>;
   }
+  console.log(data);
   const {
     activeCreditDetails,
     activeCredits,
@@ -45,11 +46,18 @@ const Credit = ({ data }) => {
           )}
         </p>
         <p>
-          Nombre d'avoirs utilisés :
-         { usedCredits?.amount>0?  <>
-           <strong>{usedCredits?.amount}</strong>pour
-          un montant cumulé de {formatPrice(usedCredits?.totalAmount)}
-            </>:" 0"}
+          Nombre d'avoirs utilisés :{" "}
+          {usedCredits?.totalAmount > 0 ? (
+            <>
+              <strong>{usedCredits?.count}</strong> pour un montant cumulé de{" "}
+              <span className="in">
+                {" "}
+                {formatPrice(usedCredits?.totalAmount)}
+              </span>
+            </>
+          ) : (
+            " 0"
+          )}
         </p>
       </div>
       <div className="tab-tables-container ">

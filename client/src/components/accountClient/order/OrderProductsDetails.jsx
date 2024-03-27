@@ -45,7 +45,7 @@ const OrderProductsDetails = ({
     <div key={productsId} className="order-item-user-account">
       <div>
         <h3>
-          {name} {getMaterialProperty(material, materialStore)?.name}m,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+          {name} {getMaterialProperty(material, materialStore)?.name}
         </h3>
         <p className="pricing">
           {quantity} article

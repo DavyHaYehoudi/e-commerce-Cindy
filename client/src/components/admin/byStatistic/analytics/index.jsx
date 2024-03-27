@@ -25,7 +25,7 @@ const Analytic = ({ data }) => {
           Nombre de commandes pour ce mois ({currentMonth}) :{" "}
          <strong>{currentMonthOrdersCount}</strong> 
         </p>
-        <p>Montant moyen par commande : <strong>{formatPrice(averageByOrder)}</strong>  </p>
+        <p>Montant moyen par commande : <strong className="in">{formatPrice(averageByOrder)}</strong>  </p>
       </div>
       <div className="tab-tables-container">
         <div className="content-table">

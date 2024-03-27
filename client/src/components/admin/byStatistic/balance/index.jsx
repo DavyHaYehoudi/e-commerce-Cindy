@@ -13,33 +13,41 @@ const Balance = ({ data }) => {
     totalRefundAmount,
     totalCredits,
   } = data;
-  const {balance,inTotal,outTotal}= statsBalance(totalOrderAmount,
+  const { balance, inTotal, outTotal } = statsBalance(
+    totalOrderAmount,
     totalAmountGiftcards,
     totalOrdersCanceledAmount,
     totalRefundAmount,
-    totalCredits?.totalAmount)
+    totalCredits?.totalAmount
+  );
   return (
     <div className="balance-stats">
       <div className="tab-stats-content">
-        <h2>Balance : <span className="in">{formatPrice(balance)}</span>  </h2>
+        <h2>
+          Balance : <span className="in">{formatPrice(balance)}</span>{" "}
+        </h2>
         <div className="balance-content">
           <div className="block">
-            <p className="underline">
-              Total des entrées :<span className="in">{" "} {formatPrice(inTotal)} </span>{" "}
+            <p>
+              <span className="underline">Total des entrées :</span>{" "}
+              <span className="in"> {formatPrice(inTotal)} </span>{" "}
             </p>
             <p>
               <small>Commandes :</small> {formatPrice(totalOrderAmount)}
-            </p> 
+            </p>
             <p>
-              <small>Cartes-cadeaux :</small> {formatPrice(totalAmountGiftcards)}
+              <small>Cartes-cadeaux :</small>{" "}
+              {formatPrice(totalAmountGiftcards)}
             </p>
           </div>
           <div className="block">
-            <p className="underline">
-              Total des sorties :<span className="out">{" "} {formatPrice(outTotal)} </span>
+            <p>
+              <span className="underline">Total des sorties :</span>
+              <span className="out"> {formatPrice(outTotal)} </span>
             </p>
             <p>
-              <small>Commandes annulées :</small> {formatPrice(totalOrdersCanceledAmount)}
+              <small>Commandes annulées :</small>{" "}
+              {formatPrice(totalOrdersCanceledAmount)}
             </p>
             <p>
               <small>Remboursements :</small> {formatPrice(totalRefundAmount)}

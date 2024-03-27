@@ -26,10 +26,7 @@ const Giftcard = ({ data }) => {
           {totalGiftcards > 0 ? (
             <>
               <strong> {totalGiftcards}</strong> pour un montant cumulé de{" "}
-              
-              <span className="out">
-                {formatPrice(totalAmountGiftcards)}
-              </span>
+              <span className="out">{formatPrice(totalAmountGiftcards)}</span>
             </>
           ) : (
             " 0"
@@ -53,8 +50,10 @@ const Giftcard = ({ data }) => {
           Nombre de cartes-cadeaux utilisées :{" "}
           {usedGiftcards > 0 ? (
             <>
-              <strong>{usedGiftcards}{" "}</strong>pour un montant cumulé de{" "}
-              <span className="in">{formatPrice(totalAmountUsedGiftcards)}</span> 
+              <strong>{usedGiftcards} </strong>pour un montant cumulé de{" "}
+              <span className="in">
+                {formatPrice(totalAmountUsedGiftcards)}
+              </span>
             </>
           ) : (
             " 0"

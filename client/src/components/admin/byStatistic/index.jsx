@@ -3,7 +3,7 @@ import TabBar from "./TabBar";
 
 const Statistics = () => {
   const currentYear = new Date().getFullYear().toString();
-  const [selectedYear, setSelectedYear] = useState(currentYear); 
+  const [selectedYear, setSelectedYear] = useState(currentYear);
 
   const handleYearChange = (event) => {
     setSelectedYear(event.target.value);
@@ -12,8 +12,12 @@ const Statistics = () => {
   return (
     <div className="statistics">
       <h1>STATISTIQUES</h1>
-      
-      <select className="select-date account-input" value={selectedYear} onChange={handleYearChange}>
+
+      <select
+        className="select-date account-input"
+        value={selectedYear}
+        onChange={handleYearChange}
+      >
         <option value="">Sélectionner une année</option>
         <option value="2022">2022</option>
         <option value="2023">2023</option>
@@ -26,7 +30,7 @@ const Statistics = () => {
         <option value="2030">2030</option>
         <option value="-1">Toutes années confondues</option>
       </select>
-      
+
       <TabBar selectedYear={selectedYear} />
     </div>
   );

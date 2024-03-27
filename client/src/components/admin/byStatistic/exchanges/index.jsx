@@ -5,16 +5,12 @@ const Exchange = ({ data }) => {
   if (!data) {
     return <div>Chargement en cours...</div>;
   }
-  const {
-    exchangeDetails,totalExchanges
-  } = data;
+  const { exchangeDetails, totalExchanges } = data;
 
   return (
     <div className="exchanges-stats">
       <div className="tab-stats-content">
-        <p>
-          Nombre total d'échanges effectués :{" "}{totalExchanges}
-        </p>
+        <p>Nombre total d'échanges effectués : {totalExchanges}</p>
       </div>
       <div className="tab-tables-container ">
         <div className="content-table ">
@@ -38,16 +34,10 @@ const Exchange = ({ data }) => {
                     <td>
                       {exchange?.firstName} {exchange?.lastName}{" "}
                     </td>
-                    <td>
-                      {exchange?.productName}
-                    </td>
-                    <td>
-                      {exchange?.materialName}
-                    </td>
+                    <td>{exchange?.productName}</td>
+                    <td>{exchange?.materialName}</td>
                     <td>{formatDate(exchange?.exchangeDate)}</td>
-                    <td className="center">
-                      {exchange?.exchangedQuantity}
-                    </td>
+                    <td className="center">{exchange?.exchangedQuantity}</td>
                   </tr>
                 ))}
               </tbody>

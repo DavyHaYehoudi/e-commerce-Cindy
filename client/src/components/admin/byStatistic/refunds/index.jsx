@@ -6,9 +6,7 @@ const Refund = ({ data }) => {
   if (!data) {
     return <div>Chargement en cours...</div>;
   }
-  const {
-   totalRefundAmount,refundDetails,totalRefunds
-  } = data;
+  const { totalRefundAmount, refundDetails, totalRefunds } = data;
 
   return (
     <div className="refunds-stats">
@@ -18,9 +16,7 @@ const Refund = ({ data }) => {
           {totalRefunds > 0 ? (
             <>
               <strong> {totalRefunds}</strong> pour un montant cumulé de{" "}
-              <span className="out">
-                {formatPrice(totalRefundAmount)}
-              </span>
+              <span className="out">{formatPrice(totalRefundAmount)}</span>
             </>
           ) : (
             " 0"
@@ -49,12 +45,8 @@ const Refund = ({ data }) => {
                     <td>
                       {refund?.firstName} {refund?.lastName}{" "}
                     </td>
-                    <td>
-                      {refund?.productName}
-                    </td>
-                    <td>
-                      {refund?.materialName}
-                    </td>
+                    <td>{refund?.productName}</td>
+                    <td>{refund?.materialName}</td>
                     <td>{formatDate(refund?.refundDate)}</td>
                     <td className="center">{refund?.refundAmount}</td>
                   </tr>
