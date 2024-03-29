@@ -6,12 +6,12 @@ import Category from "./Category";
 import Collection from "./Collection";
 import Status from "./Status";
 import { formattedDataProduct } from "../../../../helpers/utils/filter/formattedDataProduct";
+import { fetchProduct } from "../../../../features/admin/productSlice";
 
 const Block = ({ setSearchBarValue }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [collectionSelected, setCollectionSelected] = useState("");
-  console.log('collectionSelected:', collectionSelected)
   const categoriesStore = useSelector((state) => state?.category?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
 
@@ -21,45 +21,34 @@ const Block = ({ setSearchBarValue }) => {
     const { name, checked } = event.target;
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
-      [name]: checked, 
+      [name]: checked,
     }));
   };
 
   const handleValidation = () => {
-    const formattedData = formattedDataProduct(
-      checkedItems,
-      collectionSelected,
-      categoriesStore,
-      collectionsStore
-      );
-      console.log('formattedData:', formattedData)
+    const { collection, categories, other } =
+      formattedDataProduct(
+        checkedItems,
+        collectionSelected,
+        categoriesStore,
+        collectionsStore
+      ) || {};
 
-    // dispatch(
-    //   fetchClients({
-    //     itemsPerPage: -1,
-    //     steps,
-    //     credit,
-    //     refund,
-    //     exchange,
-    //     trackingNumber,
-    //     note,
-    //     preciseDate,
-    //     rangeDateStart: rangeDate.start,
-    //     rangeDateEnd: rangeDate.end,
-    //   })
-    // );
+    dispatch(
+      fetchProduct({
+        collection,
+        categories,
+        others: other.join(","),
+      })
+    );
     setIsFilterOpen(false);
     setSearchBarValue("");
-    setCollectionSelected("")
+    setCollectionSelected("");
   };
   const handleReset = () => {
     setCheckedItems({});
     setCollectionSelected("");
-    // dispatch(
-    //   fetchClients({
-    //     itemsPerPage,
-    //   })
-    // );
+    dispatch(fetchProduct());
   };
 
   const toggleFilter = () => {

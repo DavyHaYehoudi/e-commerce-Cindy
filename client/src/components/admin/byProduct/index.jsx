@@ -15,9 +15,9 @@ const ProductFilterPanel = () => {
     const name = e.target.value;
     setSearchBarValue(name);
     if (name.length > 2) {
-      dispatch(fetchProduct(name));
-    }else{
-        dispatch(fetchProduct())
+      dispatch(fetchProduct({ name }));
+    } else {
+      dispatch(fetchProduct());
     }
   };
 

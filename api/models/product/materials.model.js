@@ -26,19 +26,22 @@ const materialsSchema = new mongoose.Schema({
         default: new Date(),
       },
       promotion: {
-        amount: {
-          type: Number,
-          default: null,
+        type: {
+            amount: {
+                type: Number,
+                default: null,
+            },
+            startDate: {
+                type: Date,
+                default: null,
+            },
+            endDate: {
+                type: Date,
+                default: null,
+            },
         },
-        startDate: {
-          type: Date,
-          default: null,
-        },
-        endDate: {
-          type: Date,
-          default: null,
-        },
-      },
+        default: null
+    },
       stock: {
         type: Number,
         default: 1,

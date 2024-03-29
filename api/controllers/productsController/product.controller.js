@@ -10,7 +10,7 @@ const productController = {
       if (Object.keys(req.query).length === 0) {
         totalProductsCount = await Product.countDocuments();
         products = await Product.find();
-      } else {
+      } else { 
         const { processedProducts, processedTotalProductsCount } =
           await process(req.query);
         products = processedProducts;
@@ -22,7 +22,7 @@ const productController = {
       res.status(500).json({ error: error.message });
     }
   },
-
+ 
   getProductById: async (req, res) => {
     try {
       const { productId } = req.params;
@@ -34,11 +34,11 @@ const productController = {
   }, 
  
   createProduct: async (req, res) => {
-    try {
+    try { 
       const product = await Product.create(req.body); 
       res.status(201).json(product); 
-    } catch (error) {
-      res.status(500).json({ error: error.message });  
+    } catch (error) { 
+      res.status(500).json({ error: error.message });   
     }
   },
 
@@ -56,7 +56,6 @@ const productController = {
         "secondary_images",
         "main_description",
         "materials",
-        "noMaterials",
       ];
 
       // Vérifie si le produit existe
