@@ -130,12 +130,12 @@
     color: var(--background);
 }
 
+.promocodes-modal-close:hover {
+    transform: rotate(180deg) translateY(25%);
+}
 .promocodes .validate-btn {
     background-color: var(--success);
 }
 
-.promocodes-modal-close:hover {
-    transform: rotate(180deg) translateY(25%);
-}
 
 /* ********************* END PAGE PROMOCODE ********************* */

@@ -1,3 +1,4 @@
+/* **********************************START LISTING ********************************** */
 .productsFilterPanel-content {
     display: flex;
     justify-content: space-between;
@@ -6,6 +7,7 @@
 }
 
 .products {
+    position: relative;
     margin: 50px;
 }
 
@@ -39,3 +41,62 @@
 .products .card-wrapper {
     padding: 10px;
 }
+
+.addProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProduct span {
+    font-size: 100px;
+}
+/* **********************************END LISTING ********************************** */
+/* **********************************START MODAL ********************************** */
+.product-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 30px;
+    transition: transform 0.3s ease;
+    color: var(--dark);
+}
+
+.product-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin: 20px;
+}
+.product-modal-content h2{
+    text-align: center;
+}
+.product-modal-close:hover {
+    transform: rotate(180deg) translateY(25%);
+}
+
+.products .overlay {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1400px;
+    height: 75%;
+    background: var(--background);
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+/* ******* NAME ******* */
+.product-modal-content .name-section {
+text-align: center;
+}
+/* ******* GROUPS ******* */
+.groups-section{
+    display: flex;
+    justify-content: space-between;
+}
+.groups-section .account-input{
+width: 100%;
+}
+/* **********************************END LISTING ********************************** */
