@@ -2,39 +2,35 @@ import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Name from "./Name";
 import Groups from "./Groups";
-import Materials from "./Materials";
 import Description from "./Description";
 import ImagesSecondary from "./ImagesSecondary";
 import Confirmation from "./Confirmation";
-import Tags from "./Tags";
+import Tags from "./tags/Tags";
 import { useSelector } from "react-redux";
+import useTagManagement from "./hooks/useTagManagment";
+import useImageManagement from "./hooks/useImageManagment";
+import useFormFields from "./hooks/useFormFields";
+import MaterialsSelect from "./materials";
 
 const Modal = ({ handleCloseModal }) => {
-  const [fields, setFields] = useState({
+  const { fields, handleChangeFields } = useFormFields({
     name: "",
     collection: "",
     category: "",
-    tags: [],
     description: "",
-    ImagesSecondary: [],
   });
+
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
 
-  console.log("fields dans modal parent :", fields);
+  const { tags, addTag, removeTag } = useTagManagement();
+  const { images, handleChangeImagesSecondary } = useImageManagement(5);
 
-  const handleChangeFields = (e, field) => {
-    const value = e.target.value;
-    const tag = tagsStore.find((tag) => tag._id === value); // Trouver l'objet tag correspondant à l'ID sélectionné
-    const newValue = { _id: value, name: tag ? tag.name : "" }; // Construire l'objet avec _id et name
-    setFields((prev) => {
-      if (Array.isArray(prev[field])) {
-        return { ...prev, [field]: [...prev[field], newValue] };
-      } else {
-        return { ...prev, [field]: newValue };
-      }
-    });
+  const [showMaterials, setShowMaterials] = useState(true);
+
+  const handleMaterialsToggle = () => {
+    setShowMaterials(!showMaterials);
   };
 
   return (
@@ -48,16 +44,22 @@ const Modal = ({ handleCloseModal }) => {
         <Groups
           fields={fields}
           handleChangeFields={handleChangeFields}
+          tags={tags}
+          handleAddTag={addTag}
           collectionsStore={collectionsStore}
           categoriesStore={categoriesStore}
           tagsStore={tagsStore}
         />
-        <Tags fields={fields} handleChangeFields={handleChangeFields} />
-        <Materials />
+        <Tags tags={tags} handleRemoveTag={removeTag} />
+        <MaterialsSelect
+          showMaterials={showMaterials}
+          handleMaterialsToggle={handleMaterialsToggle}
+        />
+        
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
-          fields={fields}
-          handleChangeFields={handleChangeFields}
+          imagesSecondary={images}
+          handleChangeImagesSecondary={handleChangeImagesSecondary}
         />
         <Confirmation fields={fields} handleChangeFields={handleChangeFields} />
       </div>

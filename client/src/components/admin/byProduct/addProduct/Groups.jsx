@@ -3,6 +3,8 @@ import React from "react";
 const Groups = ({
   fields,
   handleChangeFields,
+  handleAddTag,
+  tags,
   collectionsStore,
   categoriesStore,
   tagsStore,
@@ -48,16 +50,22 @@ const Groups = ({
         <select
           id="tags"
           className="account-input"
-          value={fields?.tags}
-          onChange={(e) => handleChangeFields(e, "tags")}
+          onChange={(e) =>
+            handleAddTag(e, {
+              _id: e.target.value,
+              name: e.target.options[e.target.selectedIndex].text,
+            })
+          }
         >
-          <option value="">Choisir un ou plusieurs tags</option>
+          <option value="">Ajouter un tag</option>
           {tagsStore &&
-            tagsStore.map((tag) => (
-              <option key={tag._id} value={tag._id}>
-                {tag.name}
-              </option>
-            ))}
+            tagsStore
+              .filter((tag) => !tags.some((t) => t._id === tag._id))
+              .map((tag) => (
+                <option key={tag._id} value={tag._id}>
+                  {tag.name}
+                </option>
+              ))}
         </select>
       </div>
     </div>
