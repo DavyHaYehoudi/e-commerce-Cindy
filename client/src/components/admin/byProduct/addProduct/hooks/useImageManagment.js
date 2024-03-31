@@ -11,7 +11,7 @@ const useImageManagement = (initialImageCount) => {
     });
   };
 
-  const handleChangeImagesSecondary = (e, index) => {
+  const handleMainImageUpload = (e, index) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
@@ -29,7 +29,7 @@ const useImageManagement = (initialImageCount) => {
 
   return {
     images,
-    handleChangeImagesSecondary,
+    handleMainImageUpload,
   };
 };
 

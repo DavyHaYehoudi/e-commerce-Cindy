@@ -4,10 +4,10 @@ const ImagesSecondary = ({ imagesSecondary, handleChangeImagesSecondary }) => {
   return (
     <div className="images-secondary-section">
       <p>Images secondaires :</p>
-      <div className="images-secondary-wrapper">
+      <div className="images-wrapper">
         {imagesSecondary.map((image, index) => (
           <label key={index} htmlFor={`file-upload-${index}`}>
-            <div className="image-container">
+            <div className="image-container secondary_image">
               {image ? (
                 <img src={image} alt={`${index + 1}`} />
               ) : (

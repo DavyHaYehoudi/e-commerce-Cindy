@@ -19,20 +19,38 @@ const Modal = ({ handleCloseModal }) => {
     category: "",
     description: "",
   });
+  const [materialsData, setMaterialsData] = useState([]);
+  console.log('materialsData:', materialsData)
+  const [showMaterials, setShowMaterials] = useState(true);
 
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
 
   const { tags, addTag, removeTag } = useTagManagement();
-  const { images, handleChangeImagesSecondary } = useImageManagement(5);
+  const { images, handleMainImageUpload } = useImageManagement(5);
 
-  const [showMaterials, setShowMaterials] = useState(true);
-
-  const handleMaterialsToggle = () => {
+  const handleMaterialsSelectToggle = () => {
     setShowMaterials(!showMaterials);
   };
-
+  const addMaterialData = (newData, materialId) => {
+    console.log('addMaterialData:')
+    setMaterialsData((prevData) => {
+      // Recherchez l'objet correspondant au materialId
+      const updatedData = prevData.map((obj) => {
+        if (obj._id === materialId) {
+          // Mettez à jour les données pour cet objet
+          return { ...obj, ...newData };
+        }
+        return obj; // Renvoyez les autres objets sans modification
+      });
+      return updatedData; // Renvoyez le tableau mis à jour
+    });
+  };
+  
+  // const addMaterialData = (newData) => {
+  //   setMaterialsData((prevData) => [...prevData, newData]);
+  // };
   return (
     <div className="product-modal">
       <div className="product-modal-content">
@@ -53,13 +71,13 @@ const Modal = ({ handleCloseModal }) => {
         <Tags tags={tags} handleRemoveTag={removeTag} />
         <MaterialsSelect
           showMaterials={showMaterials}
-          handleMaterialsToggle={handleMaterialsToggle}
+          handleMaterialsSelectToggle={handleMaterialsSelectToggle}
+          addMaterialData={addMaterialData}
         />
-        
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
           imagesSecondary={images}
-          handleChangeImagesSecondary={handleChangeImagesSecondary}
+          handleChangeImagesSecondary={handleMainImageUpload}
         />
         <Confirmation fields={fields} handleChangeFields={handleChangeFields} />
       </div>

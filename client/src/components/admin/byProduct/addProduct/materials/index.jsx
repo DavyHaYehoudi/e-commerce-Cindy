@@ -1,8 +1,15 @@
 import React from "react";
-import Materials from "./Materials";
 import NoMaterials from "./NoMaterials";
+import MaterialsRow from "./MaterialsRow";
+import { useSelector } from "react-redux";
 
-const MaterialsSelect = ({ showMaterials, handleMaterialsToggle }) => {
+const MaterialsSelect = ({
+  showMaterials,
+  handleMaterialsSelectToggle,
+  addMaterialData,
+}) => {
+  const materials = useSelector((state) => state?.material?.data);
+
   return (
     <div className="materials-section">
       <div className="materials-radio">
@@ -14,7 +21,7 @@ const MaterialsSelect = ({ showMaterials, handleMaterialsToggle }) => {
             name="materialType"
             value="materials"
             checked={showMaterials}
-            onChange={handleMaterialsToggle}
+            onChange={handleMaterialsSelectToggle}
           />
           <label htmlFor="materials">Avec</label>
         </div>
@@ -25,12 +32,22 @@ const MaterialsSelect = ({ showMaterials, handleMaterialsToggle }) => {
             name="materialType"
             value="noMaterials"
             checked={!showMaterials}
-            onChange={handleMaterialsToggle}
+            onChange={handleMaterialsSelectToggle}
           />
           <label htmlFor="noMaterials">Sans</label>
         </div>
       </div>
-        {showMaterials ? <Materials /> : <NoMaterials />}
+      {showMaterials ? (
+        materials.map((material, index) => (
+          <MaterialsRow
+            key={index}
+            material={material}
+            addMaterialData={addMaterialData}
+          />
+        ))
+      ) : (
+        <NoMaterials />
+      )}
     </div>
   );
 };

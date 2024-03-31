@@ -586,7 +586,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductCreate'
       responses:
         '201':
           description: successful posting product
@@ -1593,6 +1593,73 @@ components:
               isActive:
                 type: boolean
                 example: true
+    ProductCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Boucles d'oreilles
+        collection:
+          type: string
+          example: 65fafdf6ab75220625f55db1
+        category:
+          type: string
+          example: 65fafe1eab75220625f55db5
+        tags:
+          type: array
+          items:
+            type: string
+            example: 65fafea0ab75220625f55dc4
+        secondary_images:
+          type: array
+          items: 
+            type: string
+            example: bo.png
+        main_description:
+          type: string
+          example: >-
+            Magnifiques boucles d'oreilles pour des occasions uniques et qui
+            vous mettront en valeur.
+        materials:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 65f2d2df4db605d020200620
+              pricing:
+                type: object
+                properties:
+                  currentPrice:
+                    type: string
+                    example: 15
+                  oldPrice:
+                    type: string
+                    example: 30
+              promotion:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    format: int16
+                    example: 50
+                  startDate:
+                    type: string
+                    example: 2024-04-01T00:00:00.000
+                  endDate:
+                    type: string
+                    example: 2024-05-01T00:00:00.000Z
+              main_image:
+                type: string
+                example: col.png
+              untilNew:
+                type: string
+                example: 2024-04-15T00:00:00.000Z
+              stock:
+                type: integer
+                format: int16
+                example: 7
     Products:
       type: array
       items:
