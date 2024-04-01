@@ -2,58 +2,37 @@
 import React, { useState } from "react";
 import LabelsDetails from "./LabelsDetails";
 
-const MaterialsRowDetails = ({ material, addMaterialData }) => {
+const MaterialsRowDetails = ({
+  material,
+  newDate,
+  setNewDate,
+  handleNewDateChange,
+  promo,
+  setPromo,
+  handlePromoChange,
+  mainImage,
+  handleMainImageChange,
+  fileInputId
+}) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
-  const [newDate, setNewDate] = useState("");
-  const [promoStartDate, setPromoStartDate] = useState("");
-  const [promoDiscount, setPromoDiscount] = useState(0);
 
+  //Réinitialiser checkbox NOUVEAU
   const handleNewCheckboxChange = (e) => {
-    setIsNewChecked(e.target.checked);
-    if (!e.target.checked) {
-      // Reset newDate if unchecked
+    const isNewChecked = e.target.checked;
+    setIsNewChecked(isNewChecked);
+    if (!isNewChecked) {
       setNewDate("");
     }
-    updateMaterialData();
   };
 
+  //Réinitialiser checkbox PROMOTION
   const handlePromoCheckboxChange = (e) => {
-    setIsPromoChecked(e.target.checked);
-    if (!e.target.checked) {
-      // Reset promoStartDate and promoDiscount if unchecked
-      setPromoStartDate("");
-      setPromoDiscount(0);
+    const isPromoChecked = e.target.checked;
+    setIsPromoChecked(isPromoChecked);
+    if (!isPromoChecked) {
+      setPromo({ amount: 0, startDate: "", endDate: "" });
     }
-    updateMaterialData();
-  };
-
-  const handleNewDateChange = (e) => {
-    setNewDate(e.target.value);
-    updateMaterialData();
-  };
-
-  const handlePromoStartDateChange = (e) => {
-    setPromoStartDate(e.target.value);
-    updateMaterialData();
-  };
-
-  const handlePromoDiscountChange = (e) => {
-    setPromoDiscount(e.target.value);
-    updateMaterialData();
-  };
-
-  const updateMaterialData = () => {
-    const newMaterialData = {
-      promotion: {
-        startDate: promoStartDate,
-        endDate: "",
-        amount: promoDiscount,
-      },
-      untilNew: newDate,
-    };
-
-    addMaterialData(newMaterialData,material._id);
   };
 
   return (
@@ -65,11 +44,12 @@ const MaterialsRowDetails = ({ material, addMaterialData }) => {
         handleNewCheckboxChange={handleNewCheckboxChange}
         handlePromoCheckboxChange={handlePromoCheckboxChange}
         handleNewDateChange={handleNewDateChange}
-        promoStartDate={promoStartDate}
-        handlePromoStartDateChange={handlePromoStartDateChange}
-        promoDiscount={promoDiscount}
-        handlePromoDiscountChange={handlePromoDiscountChange}
+        promo={promo}
+        handlePromoChange={handlePromoChange}
         material={material}
+        mainImage={mainImage}
+        handleMainImageChange={handleMainImageChange}
+        fileInputId={fileInputId}
       />
     </div>
   );

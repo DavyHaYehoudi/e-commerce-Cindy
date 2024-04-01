@@ -20,38 +20,37 @@ const Modal = ({ handleCloseModal }) => {
     description: "",
   });
   const [materialsData, setMaterialsData] = useState([]);
-  console.log('materialsData:', materialsData)
+  console.log('materialsData:', materialsData) 
   const [showMaterials, setShowMaterials] = useState(true);
 
-  const collectionsStore = useSelector((state) => state?.collection?.data);
-  const categoriesStore = useSelector((state) => state?.category?.data);
+  const collectionsStore = useSelector((state) => state?.collection?.data);   
+  const categoriesStore = useSelector((state) => state?.category?.data);    
   const tagsStore = useSelector((state) => state?.tag?.data);
-
-  const { tags, addTag, removeTag } = useTagManagement();
+ 
+  const { tags, addTag, removeTag } = useTagManagement(); 
   const { images, handleMainImageUpload } = useImageManagement(5);
-
+ 
   const handleMaterialsSelectToggle = () => {
     setShowMaterials(!showMaterials);
-  };
-  const addMaterialData = (newData, materialId) => {
+  }; 
+  const addMaterialData = (newMaterialData) => {
     console.log('addMaterialData:')
-    setMaterialsData((prevData) => {
-      // Recherchez l'objet correspondant au materialId
-      const updatedData = prevData.map((obj) => {
-        if (obj._id === materialId) {
-          // Mettez à jour les données pour cet objet
-          return { ...obj, ...newData };
-        }
-        return obj; // Renvoyez les autres objets sans modification
-      });
-      return updatedData; // Renvoyez le tableau mis à jour
+    setMaterialsData((prevMaterialsData) => {
+      // Vérifier si le matériau existe déjà dans le state
+      const materialIndex = prevMaterialsData.findIndex((material) => material._id === newMaterialData._id);
+
+      // Si le matériau existe déjà, le mettre à jour
+      if (materialIndex !== -1) {
+        const updatedMaterialsData = [...prevMaterialsData];
+        updatedMaterialsData[materialIndex] = { ...updatedMaterialsData[materialIndex], ...newMaterialData };
+        return updatedMaterialsData;
+      } 
+      // Sinon, ajouter le nouveau matériau
+      return [...prevMaterialsData, newMaterialData];
     });
   };
-  
-  // const addMaterialData = (newData) => {
-  //   setMaterialsData((prevData) => [...prevData, newData]);
-  // };
-  return (
+
+  return ( 
     <div className="product-modal">
       <div className="product-modal-content">
         <h2>Création d'un produit</h2>

@@ -1,26 +1,22 @@
 import React from "react";
-import useImageManagement from "../../hooks/useImageManagment";
 
-const MainImage = () => {
-  const { images, handleMainImageUpload } = useImageManagement(1);
-//   console.log('images:', images)
-
+const MainImage = ({ mainImage, handleMainImageChange, fileInputId }) => {
   return (
     <div className="main-image">
       <figure>
         <div className="images-wrapper">
-          <label htmlFor="file-upload">
+          <label htmlFor={fileInputId}>
             <div className="image-container main_image">
-              {images[0] ? (
-                <img src={images[0]} alt="Uploaded" />
+              {mainImage ? (
+                <img src={mainImage} alt="Uploaded" />
               ) : (
                 <span>+</span>
               )}
               <input
                 type="file"
-                id="file-upload"
+                id={fileInputId}
                 accept="image/*"
-                onChange={(e) => handleMainImageUpload(e, 0)}
+                onChange={(e) => handleMainImageChange(e)}
               />
             </div>
           </label>

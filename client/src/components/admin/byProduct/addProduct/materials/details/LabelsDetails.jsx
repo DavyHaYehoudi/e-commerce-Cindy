@@ -6,77 +6,99 @@ const LabelsDetails = ({
   newDate,
   handleNewDateChange,
   isPromoChecked,
-  promoStartDate,
-  handlePromoStartDateChange,
-  promoDiscount,
-  handlePromoDiscountChange,
   material,
   handleNewCheckboxChange,
+  handlePromoChange,
+  promo,
   handlePromoCheckboxChange,
+  mainImage,
+  handleMainImageChange,
+  fileInputId
 }) => {
   return (
     <div className="labels-details">
       <div className="main_image">
-        <MainImage material={material} />
-      </div>
-      <div className="block">
-        <input
-          type="checkbox"
-          id={`new-checkbox-${material._id}`}
-          checked={isNewChecked}
-          onChange={handleNewCheckboxChange}
+        <MainImage
+          material={material}
+          mainImage={mainImage}
+          handleMainImageChange={handleMainImageChange}
+          fileInputId={fileInputId}
         />
-        <label htmlFor={`new-checkbox-${material._id}`}>Nouveau</label>
       </div>
-      <div className="block">
-        <input
-          type="checkbox"
-          id={`promo-checkbox-${material._id}`}
-          checked={isPromoChecked}
-          onChange={handlePromoCheckboxChange}
-        />
-        <label htmlFor={`promo-checkbox-${material._id}`}>Promotion</label>
-      </div>
-      {isNewChecked && (
-        <div>
-          <label htmlFor={`new-date-${material._id}`}>
-            Nouveau jusqu'au :{" "}
-          </label>
+      <div className="labels-details-wrapper">
+        <div className="block">
           <input
-            type="date"
-            className="account-input"
-            id={`new-date-${material._id}`}
-            value={newDate}
-            onChange={handleNewDateChange}
+            type="checkbox"
+            id={`new-checkbox-${material._id}`}
+            checked={isNewChecked}
+            onChange={handleNewCheckboxChange}
           />
+          <label htmlFor={`new-checkbox-${material._id}`}>Nouveau</label>
+          {isNewChecked && (
+            <div>
+              <label htmlFor={`new-date-${material._id}`}>
+                Nouveau jusqu'au :{" "}
+              </label>
+              <input
+                type="date"
+                className="account-input"
+                id={`new-date-${material._id}`}
+                value={newDate}
+                onChange={handleNewDateChange}
+              />
+            </div>
+          )}
         </div>
-      )}
-      {isPromoChecked && (
-        <div className="promotion">
-          <div className="block1">
-            <label htmlFor={`promo-start-date-${material._id}`}>
-              Promotion jusqu'au :{" "}
-            </label>
-            <input
-              type="date"
-              className="account-input"
-              id={`promo-start-date-${material._id}`}
-              value={promoStartDate}
-              onChange={handlePromoStartDateChange}
-            />
-          </div>
-          <div className="block2">
-            <label htmlFor={`promo-discount-${material._id}`}>Remise ( %) : </label>
-            <input
-              type="number"
-              className="account-input"
-              id={`promo-discount-${material._id}`}
-              value={promoDiscount}
-              onChange={handlePromoDiscountChange}
-            />
-          </div>
+        <div className="block">
+          <input
+            type="checkbox"
+            id={`promo-checkbox-${material._id}`}
+            checked={isPromoChecked}
+            onChange={handlePromoCheckboxChange}
+          />
+          <label htmlFor={`promo-checkbox-${material._id}`}>Promotion</label>
+          {isPromoChecked && (
+            <div className="promotion">
+              <div className="block">
+                <label htmlFor={`promo-start-date-${material._id}`}>
+                  Promotion du :{" "}
+                </label>
+                <input
+                  type="date"
+                  className="account-input"
+                  id={`promo-start-date-${material._id}`}
+                  value={promo?.startDate}
+                  onChange={(e) => handlePromoChange(e, "startDate")}
+                />
+              </div>
+              <div className="block">
+                <label htmlFor={`promo-end-date-${material._id}`}>
+                  jusqu'au :{" "}
+                </label>
+                <input
+                  type="date"
+                  className="account-input"
+                  id={`promo-end-date-${material._id}`}
+                  value={promo?.endDate}
+                  onChange={(e) => handlePromoChange(e, "endDate")}
+                />
+              </div>
+              <div className="block block2">
+                <label htmlFor={`promo-discount-${material._id}`}>
+                  Remise (%) :{" "}
+                </label>
+                <input
+                  type="number"
+                  className="account-input"
+                  id={`promo-discount-${material._id}`}
+                  value={promo?.amount}
+                  onChange={(e) => handlePromoChange(e, "amount")}
+                />
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
