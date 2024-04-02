@@ -20,7 +20,6 @@ export const customFetch = async (endpoint, options = {}) => {
       }
   
       const data = await response.json();
-      console.log('data:', data)
       return data;
     } catch (error) {
         handleFetchError(error);

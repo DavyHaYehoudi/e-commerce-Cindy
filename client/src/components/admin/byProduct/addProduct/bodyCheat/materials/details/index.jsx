@@ -1,6 +1,6 @@
 // MaterialsRowDetails.js
 import React, { useState } from "react";
-import LabelsDetails from "./LabelsDetails";
+import LabelsDetails from "../shared/LabelsDetails";
 
 const MaterialsRowDetails = ({
   material,

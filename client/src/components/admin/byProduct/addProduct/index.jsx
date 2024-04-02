@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import Name from "./Name";
-import Groups from "./Groups";
-import Description from "./Description";
-import ImagesSecondary from "./ImagesSecondary";
-import Confirmation from "./Confirmation";
-import Tags from "./tags/Tags";
+import Name from "./bodyCheat/sections/Name";
+import Groups from "./bodyCheat/sections/Groups";
+import Description from "./bodyCheat/sections/Description";
+import ImagesSecondary from "./bodyCheat/sections/ImagesSecondary";
+import Confirmation from "./bodyCheat/sections/Confirmation";
+import Tags from "./bodyCheat/tags/Tags";
 import { useSelector } from "react-redux";
-import useTagManagement from "./hooks/useTagManagment";
-import useImageManagement from "./hooks/useImageManagment";
-import useFormFields from "./hooks/useFormFields";
-import MaterialsSelect from "./materials";
+import useTagManagement from "./bodyCheat/hooks/useTagManagment";
+import useImageManagement from "./bodyCheat/hooks/useImageManagment";
+import useFormFields from "./bodyCheat/hooks/useFormFields";
+import MaterialsSelect from "./bodyCheat/materials";
 
 const Modal = ({ handleCloseModal }) => {
   const { fields, handleChangeFields } = useFormFields({
@@ -20,37 +20,47 @@ const Modal = ({ handleCloseModal }) => {
     description: "",
   });
   const [materialsData, setMaterialsData] = useState([]);
-  console.log('materialsData:', materialsData) 
+  console.log("materialsData:", materialsData);
   const [showMaterials, setShowMaterials] = useState(true);
 
-  const collectionsStore = useSelector((state) => state?.collection?.data);   
-  const categoriesStore = useSelector((state) => state?.category?.data);    
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
- 
-  const { tags, addTag, removeTag } = useTagManagement(); 
+
+  const { tags, addTag, removeTag } = useTagManagement();
   const { images, handleMainImageUpload } = useImageManagement(5);
- 
+
   const handleMaterialsSelectToggle = () => {
-    setShowMaterials(!showMaterials);
-  }; 
+    const confirm = window.confirm(
+      "En basculant de la section avec ou sans matériau, les données renseignées dans l'une ou l'autre s'effacent. Etes-vous sûr de vouloir basculer ?"
+    );
+    if (confirm) {
+      setShowMaterials(!showMaterials);
+      setMaterialsData([])
+    }
+  };
   const addMaterialData = (newMaterialData) => {
-    console.log('addMaterialData:')
     setMaterialsData((prevMaterialsData) => {
       // Vérifier si le matériau existe déjà dans le state
-      const materialIndex = prevMaterialsData.findIndex((material) => material._id === newMaterialData._id);
+      const materialIndex = prevMaterialsData.findIndex(
+        (material) => material._id === newMaterialData._id
+      );
 
       // Si le matériau existe déjà, le mettre à jour
       if (materialIndex !== -1) {
         const updatedMaterialsData = [...prevMaterialsData];
-        updatedMaterialsData[materialIndex] = { ...updatedMaterialsData[materialIndex], ...newMaterialData };
+        updatedMaterialsData[materialIndex] = {
+          ...updatedMaterialsData[materialIndex],
+          ...newMaterialData,
+        };
         return updatedMaterialsData;
-      } 
+      }
       // Sinon, ajouter le nouveau matériau
       return [...prevMaterialsData, newMaterialData];
     });
   };
 
-  return ( 
+  return (
     <div className="product-modal">
       <div className="product-modal-content">
         <h2>Création d'un produit</h2>

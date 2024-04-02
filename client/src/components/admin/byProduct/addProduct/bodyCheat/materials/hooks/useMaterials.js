@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useMaterialsRowFunctions = (initialMaterial, addMaterialData) => {
+const useMaterials = (initialMaterial, addMaterialData) => {
   const [isChecked, setIsChecked] = useState(false);
   const [stock, setStock] = useState(0);
   const [pricing, setPricing] = useState({ currentPrice: 0, oldPrice: 0 });
@@ -66,7 +66,6 @@ const useMaterialsRowFunctions = (initialMaterial, addMaterialData) => {
     }
   };
 
-
   const updateMaterialsData = (
     newStock,
     newPricing,
@@ -75,7 +74,7 @@ const useMaterialsRowFunctions = (initialMaterial, addMaterialData) => {
     mainImage
   ) => {
     const newMaterialData = {
-      _id: initialMaterial._id,
+      _id: initialMaterial?._id,
       pricing: newPricing,
       promotion: newPromo,
       main_image: mainImage,
@@ -103,4 +102,4 @@ const useMaterialsRowFunctions = (initialMaterial, addMaterialData) => {
   };
 };
 
-export default useMaterialsRowFunctions;
+export default useMaterials;

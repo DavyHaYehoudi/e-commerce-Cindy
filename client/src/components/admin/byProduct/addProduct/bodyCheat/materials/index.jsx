@@ -1,6 +1,6 @@
 import React from "react";
-import NoMaterials from "./NoMaterials";
-import MaterialsRow from "./MaterialsRow";
+import NoMaterials from "./withoutMaterial/NoMaterials";
+import MaterialsRow from "./withMaterial/MaterialsRow";
 import { useSelector } from "react-redux";
 
 const MaterialsSelect = ({
@@ -46,7 +46,7 @@ const MaterialsSelect = ({
           />
         ))
       ) : (
-        <NoMaterials />
+        <NoMaterials addMaterialData={addMaterialData} />
       )}
     </div>
   );

@@ -196,7 +196,7 @@
     text-align: end;
 }
 
-/* ******* MATERIALS ******* */
+/* ******* MATERIALS   materials-row =>avec matériau ******* */
 .product-modal-content .materials-radio {
     display: flex;
     align-items: center;
@@ -214,24 +214,26 @@
     border-bottom: 1px solid var(--dark);
     padding-bottom: 10px;
 }
-
-.product-modal-content .materials-row input {
+.product-modal-content .noMaterials{
+    margin: 50px 0;
+}
+.product-modal-content .materials-row input,.product-modal-content .noMaterials input  {
     width: 100px;
 }
 
-.product-modal-content .materials-row .details-wrapper {
+.product-modal-content .materials-row .details-wrapper,.product-modal-content .noMaterials .details-wrapper {
     display: flex;
     gap: 50px;
     margin-left: 50px;
 }
 
-.product-modal-content .materials-row .details-wrapper .block {
+.product-modal-content .materials-row .details-wrapper .block ,.product-modal-content .noMaterials .details-wrapper .block {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.product-modal-content .materials-row .details-wrapper .block input {
+.product-modal-content .materials-row .details-wrapper .block input,.product-modal-content .noMaterials .details-wrapper .block input {
     height: 10px;
 }
 
