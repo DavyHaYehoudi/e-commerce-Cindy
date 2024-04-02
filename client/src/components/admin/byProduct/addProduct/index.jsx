@@ -11,17 +11,21 @@ import useTagManagement from "./bodyCheat/hooks/useTagManagment";
 import useImageManagement from "./bodyCheat/hooks/useImageManagment";
 import useFormFields from "./bodyCheat/hooks/useFormFields";
 import MaterialsSelect from "./bodyCheat/materials";
+import useMaterialDataManagement from "./hooks/useMaterialDataManagement";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useSubmitForm from "./hooks/useSubmitForm";
+import formatMaterialProduct from "../../../../helpers/utils/formatMaterialProduct";
 
 const Modal = ({ handleCloseModal }) => {
+  const [showMaterials, setShowMaterials] = useState(true);
+
   const { fields, handleChangeFields } = useFormFields({
     name: "",
     collection: "",
     category: "",
     description: "",
   });
-  const [materialsData, setMaterialsData] = useState([]);
-  console.log("materialsData:", materialsData);
-  const [showMaterials, setShowMaterials] = useState(true);
 
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
@@ -29,6 +33,9 @@ const Modal = ({ handleCloseModal }) => {
 
   const { tags, addTag, removeTag } = useTagManagement();
   const { images, handleMainImageUpload } = useImageManagement(5);
+  const { materialsData, addMaterialData, setMaterialsData } =
+    useMaterialDataManagement();
+    const { handleSubmit, isSubmitting } = useSubmitForm();
 
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
@@ -36,28 +43,25 @@ const Modal = ({ handleCloseModal }) => {
     );
     if (confirm) {
       setShowMaterials(!showMaterials);
-      setMaterialsData([])
+      setMaterialsData([]);
     }
   };
-  const addMaterialData = (newMaterialData) => {
-    setMaterialsData((prevMaterialsData) => {
-      // Vérifier si le matériau existe déjà dans le state
-      const materialIndex = prevMaterialsData.findIndex(
-        (material) => material._id === newMaterialData._id
-      );
 
-      // Si le matériau existe déjà, le mettre à jour
-      if (materialIndex !== -1) {
-        const updatedMaterialsData = [...prevMaterialsData];
-        updatedMaterialsData[materialIndex] = {
-          ...updatedMaterialsData[materialIndex],
-          ...newMaterialData,
-        };
-        return updatedMaterialsData;
-      }
-      // Sinon, ajouter le nouveau matériau
-      return [...prevMaterialsData, newMaterialData];
-    });
+  const validateFields = fields?.name && fields?.collection && fields?.category;
+  const validateMaterials =
+    materialsData?.length > 0 &&
+    materialsData?.every((material) => material?.main_image);
+  const confirmationEnabled = validateFields && validateMaterials;
+  
+    // Création du formData
+  const formData = {
+    name: fields.name,
+    _collection: fields.collection,
+    category: fields.category,
+    tags: tags.map((tag) => tag._id),
+    secondary_images: images,
+    main_description: fields.description,
+    materials: formatMaterialProduct(materialsData),
   };
 
   return (
@@ -88,8 +92,13 @@ const Modal = ({ handleCloseModal }) => {
           imagesSecondary={images}
           handleChangeImagesSecondary={handleMainImageUpload}
         />
-        <Confirmation fields={fields} handleChangeFields={handleChangeFields} />
+        <Confirmation
+          handleSubmit={()=> handleSubmit(formData)}
+          confirmationEnabled={confirmationEnabled}
+          isSubmitting={isSubmitting}
+        />
       </div>
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

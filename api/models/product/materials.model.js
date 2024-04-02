@@ -5,7 +5,6 @@ const materialsSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Material",
-        required: true,
       },
       main_image: {
         type: String,
@@ -31,7 +30,7 @@ const materialsSchema = new mongoose.Schema({
                 type: Number,
                 default: null,
             },
-            startDate: {
+            startDate: { 
                 type: Date,
                 default: null,
             },

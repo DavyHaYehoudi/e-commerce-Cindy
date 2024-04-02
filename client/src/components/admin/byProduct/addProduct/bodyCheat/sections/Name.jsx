@@ -3,7 +3,7 @@ import React from 'react';
 const Name = ({fields,handleChangeFields} ) => {
     return (
         <div className="name-section">
-            <label htmlFor="name">Nom :{" "} </label>
+            <label htmlFor="name">Nom* :{" "} </label>
             <input 
             type='text'
             id="name"

@@ -20,10 +20,11 @@ const MaterialsRow = ({ material, addMaterialData }) => {
     mainImage,
     handleCheckboxChange,
     handleStockChange,
-    handleNewDateChange,
+    handleNewDateChange, 
     handlePricingChange,
     handlePromoChange,
     handleMainImageChange,
+    errorMessage,
   } = useMaterials(material, addMaterialData);
   return (
     <>
@@ -63,6 +64,7 @@ const MaterialsRow = ({ material, addMaterialData }) => {
           mainImage={mainImage}
           handleMainImageChange={handleMainImageChange}
           fileInputId={fileInputId}
+          errorMessage={errorMessage}
         />
       )}
     </>

@@ -12,7 +12,8 @@ const MaterialsRowDetails = ({
   handlePromoChange,
   mainImage,
   handleMainImageChange,
-  fileInputId
+  fileInputId,
+  errorMessage,
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
@@ -50,6 +51,7 @@ const MaterialsRowDetails = ({
         mainImage={mainImage}
         handleMainImageChange={handleMainImageChange}
         fileInputId={fileInputId}
+        errorMessage={errorMessage}
       />
     </div>
   );

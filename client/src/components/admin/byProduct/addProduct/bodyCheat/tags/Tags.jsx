@@ -8,6 +8,7 @@ const Tags = ({ tags, handleRemoveTag }) => {
         tags.length > 0 &&
         tags.map((tag) => (
           <Tag
+          key={tag?._id}
             tag={tag}
             handleRemoveTag={handleRemoveTag}
           />

@@ -40,6 +40,7 @@ const NoMaterials = ({ addMaterialData }) => {
     handlePricingChange,
     handlePromoChange,
     handleMainImageChange,
+    errorMessage,
   } = useMaterials(null, addMaterialData);
   return (
     <div className="noMaterials">
@@ -64,6 +65,7 @@ const NoMaterials = ({ addMaterialData }) => {
         handlePromoChange={handlePromoChange}
         mainImage={mainImage}
         handleMainImageChange={handleMainImageChange}
+        errorMessage={errorMessage}
       />
     </div>
   );

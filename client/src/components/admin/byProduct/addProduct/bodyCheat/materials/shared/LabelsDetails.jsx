@@ -14,6 +14,7 @@ const LabelsDetails = ({
   mainImage,
   handleMainImageChange,
   fileInputId,
+  errorMessage
 }) => {
   return (
     <div className="labels-details">
@@ -99,6 +100,7 @@ const LabelsDetails = ({
           )}
         </div>
       </div>
+      {errorMessage && <p className="error-message">{errorMessage} </p>}
     </div>
   );
 };

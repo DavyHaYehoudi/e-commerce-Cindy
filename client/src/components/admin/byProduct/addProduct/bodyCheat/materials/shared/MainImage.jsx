@@ -21,7 +21,7 @@ const MainImage = ({ mainImage, handleMainImageChange, fileInputId }) => {
             </div>
           </label>
         </div>
-        <figcaption>Image principale</figcaption>
+        <figcaption>Image principale*</figcaption>
       </figure>
     </div>
   );

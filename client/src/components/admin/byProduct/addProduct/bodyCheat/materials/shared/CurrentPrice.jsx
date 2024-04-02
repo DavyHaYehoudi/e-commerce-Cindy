@@ -4,13 +4,13 @@ const CurrentPrice = ({material,handlePricingChange,pricing}) => {
     return (
         <div className="block">
         <label htmlFor={`currentPriceInput-${material?._id}`}>
-          Prix en cours (€) :
+          Prix en cours* (€) :
         </label>
         <input
           type="number"
           className="account-input"
           id={`currentPriceInput-${material?._id}`}
-          value={pricing?.currentPrice}
+          value={pricing?.currentPrice ||""}
           onChange={(e) => handlePricingChange(e, "currentPrice")}
         />
       </div>

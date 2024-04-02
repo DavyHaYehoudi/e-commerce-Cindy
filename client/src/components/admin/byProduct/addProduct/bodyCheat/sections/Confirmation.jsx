@@ -1,11 +1,19 @@
-import React from 'react';
+import React from "react";
 
-const Confirmation = ({fields,handleChangeFields}) => {
-    return (
-        <div className="confirm-section">
-            <button className='account-btn icon-validate'>Valider</button>
-        </div>
-    );
+const Confirmation = ({ handleSubmit, confirmationEnabled,isSubmitting }) => {
+  return (
+    <div className="confirm-section">
+      <button
+        disabled={!confirmationEnabled}
+        className={`account-btn ${
+          confirmationEnabled ? "icon-validate" : ""
+        }`}
+        onClick={handleSubmit}
+      >
+        Valider
+      </button>
+    </div>
+  );
 };
 
 export default Confirmation;

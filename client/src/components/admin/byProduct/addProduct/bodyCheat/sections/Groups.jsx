@@ -12,7 +12,7 @@ const Groups = ({
   return (
     <div className="groups-section">
       <div className="group-field">
-        <label htmlFor="collection">Collection : </label>
+        <label htmlFor="collection">Collection* : </label>
         <select
           id="collection"
           className="account-input"
@@ -29,7 +29,7 @@ const Groups = ({
         </select>
       </div>
       <div className="group-field">
-        <label htmlFor="category">Categorie : </label>
+        <label htmlFor="category">Categorie* : </label>
         <select
           id="category"
           className="account-input"
