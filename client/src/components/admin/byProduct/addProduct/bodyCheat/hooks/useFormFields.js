@@ -8,10 +8,11 @@ const useFormFields = (initialState) => {
     setFields({ ...fields, [field]: value });
   };
 
-  return {
-    fields,
-    handleChangeFields,
+  const resetFields = () => {
+    setFields(initialState);
   };
+
+  return { fields, handleChangeFields, resetFields };
 };
 
 export default useFormFields;

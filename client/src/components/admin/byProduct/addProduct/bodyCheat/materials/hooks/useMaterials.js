@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { storage } from "../../../../../../../firebase";
+import { ref, uploadBytes } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 
 const useMaterials = (initialMaterial, addMaterialData) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -8,6 +11,7 @@ const useMaterials = (initialMaterial, addMaterialData) => {
   const [promo, setPromo] = useState({ amount: 0, startDate: "", endDate: "" });
   const [mainImage, setMainImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -91,17 +95,33 @@ const useMaterials = (initialMaterial, addMaterialData) => {
       mainImage
     );
   };
+  // Fonction pour supprimer une image du state
+  const handleDeleteImage = () => {
+    setMainImage(null);
+  };
 
-  const handleMainImageChange = (e) => {
+  const handleMainImageChange = async (e) => {
+    setLoading(true);
     const file = e.target.files[0];
     const reader = new FileReader();
-    reader.onload = () => {
-      setMainImage(reader.result);
-      updateMaterialsData(stock, pricing, promo, newDate, reader.result);
+    reader.onload = async () => {
+      await uploadMainImageToFirebaseStorage(file);
+      setLoading(false);
     };
     if (file) {
       reader.readAsDataURL(file);
     }
+  };
+
+  const uploadMainImageToFirebaseStorage = async (file) => {
+    const uniqueId = uuidv4();
+    const fileExtension = file.name.split(".").pop();
+    const filePath = `products/main/${uniqueId}.${fileExtension}`;
+
+    const storageRef = ref(storage, filePath);
+    await uploadBytes(storageRef, file);
+    setMainImage(filePath);
+    updateMaterialsData(stock, pricing, promo, newDate, filePath);
   };
 
   const updateMaterialsData = (
@@ -138,6 +158,8 @@ const useMaterials = (initialMaterial, addMaterialData) => {
     handlePromoChange,
     handleMainImageChange,
     errorMessage,
+    loading,
+    handleDeleteImage,
   };
 };
 

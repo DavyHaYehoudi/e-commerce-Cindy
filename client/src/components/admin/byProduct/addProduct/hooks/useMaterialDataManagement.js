@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const useMaterialDataManagement = () => {
@@ -12,7 +11,7 @@ const useMaterialDataManagement = () => {
 
       if (materialIndex !== -1) {
         const updatedMaterialsData = [...prevMaterialsData];
-        updatedMaterialsData[materialIndex] = { 
+        updatedMaterialsData[materialIndex] = {
           ...updatedMaterialsData[materialIndex],
           ...newMaterialData,
         };
@@ -21,8 +20,11 @@ const useMaterialDataManagement = () => {
       return [...prevMaterialsData, newMaterialData];
     });
   };
+  const resetMaterials = () => {
+    setMaterialsData([]);
+  };
 
-  return { materialsData, addMaterialData,setMaterialsData };
+  return { materialsData, addMaterialData, setMaterialsData, resetMaterials };
 };
 
 export default useMaterialDataManagement;

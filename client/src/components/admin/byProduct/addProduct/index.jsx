@@ -32,10 +32,11 @@ const Modal = ({ handleCloseModal }) => {
   const tagsStore = useSelector((state) => state?.tag?.data);
 
   const { tags, addTag, removeTag } = useTagManagement();
-  const { images, handleMainImageUpload } = useImageManagement(5);
+  const { images, handleImageUpload, loading, handleDeleteImage } =
+    useImageManagement(5);
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement();
-    const { handleSubmit, isSubmitting } = useSubmitForm();
+  const { handleSubmit, isSubmitting } = useSubmitForm();
 
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
@@ -52,8 +53,7 @@ const Modal = ({ handleCloseModal }) => {
     materialsData?.length > 0 &&
     materialsData?.every((material) => material?.main_image);
   const confirmationEnabled = validateFields && validateMaterials;
-  
-    // Création du formData
+  // Création du formData
   const formData = {
     name: fields.name,
     _collection: fields.collection,
@@ -90,10 +90,12 @@ const Modal = ({ handleCloseModal }) => {
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
           imagesSecondary={images}
-          handleChangeImagesSecondary={handleMainImageUpload}
+          handleChangeImagesSecondary={handleImageUpload}
+          loading={loading}
+          handleDeleteImage={handleDeleteImage}
         />
         <Confirmation
-          handleSubmit={()=> handleSubmit(formData)}
+          handleSubmit={() => handleSubmit(formData)}
           confirmationEnabled={confirmationEnabled}
           isSubmitting={isSubmitting}
         />

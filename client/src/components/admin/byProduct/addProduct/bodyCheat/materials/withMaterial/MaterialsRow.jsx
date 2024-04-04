@@ -25,6 +25,8 @@ const MaterialsRow = ({ material, addMaterialData }) => {
     handlePromoChange,
     handleMainImageChange,
     errorMessage,
+    loading,
+    handleDeleteImage
   } = useMaterials(material, addMaterialData);
   return (
     <>
@@ -65,6 +67,8 @@ const MaterialsRow = ({ material, addMaterialData }) => {
           handleMainImageChange={handleMainImageChange}
           fileInputId={fileInputId}
           errorMessage={errorMessage}
+          loading={loading}
+          handleDeleteImage={handleDeleteImage}
         />
       )}
     </>

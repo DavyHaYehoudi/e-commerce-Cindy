@@ -14,7 +14,9 @@ const LabelsDetails = ({
   mainImage,
   handleMainImageChange,
   fileInputId,
-  errorMessage
+  errorMessage,
+  loading,
+  handleDeleteImage,
 }) => {
   return (
     <div className="labels-details">
@@ -24,6 +26,8 @@ const LabelsDetails = ({
           mainImage={mainImage}
           handleMainImageChange={handleMainImageChange}
           fileInputId={fileInputId}
+          loading={loading}
+          handleDeleteImage={handleDeleteImage}
         />
       </div>
       <div className="labels-details-wrapper">

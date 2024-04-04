@@ -151,6 +151,12 @@
 }
 
 /* ******* IMAGES EN GENERAL SUR CETTE FICHE PRODUIT ******* */
+.product-modal-content .delete-image {
+    color: var(--background);
+    border-radius: 5px;
+    padding: 2px;
+    margin-top: 2px;
+}
 .product-modal-content .images-wrapper {
     display: flex;
     justify-content: space-between;
@@ -161,7 +167,7 @@
     border: 1px solid var(--secondary);
     margin-right: 10px;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 5px;
 }
 
@@ -191,6 +197,13 @@
     height: 150px;
 }
 
+.product-modal-content .image-container.secondary_image .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 /* ******* CONFIRMATION ******* */
 .confirm-section {
     text-align: end;
@@ -214,32 +227,45 @@
     border-bottom: 1px solid var(--dark);
     padding-bottom: 10px;
 }
-.product-modal-content .noMaterials{
+
+.product-modal-content .noMaterials {
     margin: 50px 0;
 }
-.product-modal-content .materials-row input,.product-modal-content .noMaterials input  {
+
+.product-modal-content .materials-row input,
+.product-modal-content .noMaterials input {
     width: 100px;
 }
 
-.product-modal-content .materials-row .details-wrapper,.product-modal-content .noMaterials .details-wrapper {
+.product-modal-content .materials-row .details-wrapper,
+.product-modal-content .noMaterials .details-wrapper {
     display: flex;
     gap: 50px;
     margin-left: 50px;
 }
 
-.product-modal-content .materials-row .details-wrapper .block ,.product-modal-content .noMaterials .details-wrapper .block {
+.product-modal-content .materials-row .details-wrapper .block,
+.product-modal-content .noMaterials .details-wrapper .block {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.product-modal-content .materials-row .details-wrapper .block input,.product-modal-content .noMaterials .details-wrapper .block input {
+.product-modal-content .materials-row .details-wrapper .block input,
+.product-modal-content .noMaterials .details-wrapper .block input {
     height: 10px;
 }
 
 .product-modal-content .image-container.main_image {
     width: 300px;
     height: 300px;
+}
+
+.product-modal-content .image-container.main_image .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .product-modal-content .materials-details {
