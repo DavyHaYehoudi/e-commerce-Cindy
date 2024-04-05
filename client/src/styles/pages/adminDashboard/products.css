@@ -32,15 +32,24 @@
     transform: scale(1.05);
 }
 
+.products .card-wrapper {
+    width: 250px;
+    height: 210px;
+    padding: 10px;
+}
 .products .card-wrapper img {
     width: 100%;
+    height: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-
-.products .card-wrapper {
-    padding: 10px;
+.products .card-wrapper p {
+    max-width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 
 .addProduct {
     display: flex;
