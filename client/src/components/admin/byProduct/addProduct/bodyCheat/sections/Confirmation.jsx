@@ -1,6 +1,6 @@
 import React from "react";
 
-const Confirmation = ({ handleSubmit, confirmationEnabled,isSubmitting }) => {
+const Confirmation = ({ handleSubmit, confirmationEnabled }) => {
   return (
     <div className="confirm-section">
       <button

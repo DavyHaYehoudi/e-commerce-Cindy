@@ -20,11 +20,8 @@ const useMaterialDataManagement = () => {
       return [...prevMaterialsData, newMaterialData];
     });
   };
-  const resetMaterials = () => {
-    setMaterialsData([]);
-  };
 
-  return { materialsData, addMaterialData, setMaterialsData, resetMaterials };
+  return { materialsData, addMaterialData, setMaterialsData };
 };
 
 export default useMaterialDataManagement;

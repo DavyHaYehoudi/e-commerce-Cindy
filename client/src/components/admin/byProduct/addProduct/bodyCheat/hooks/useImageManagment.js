@@ -54,16 +54,11 @@ const useImageManagement = (initialImageCount) => {
     handleChangeImage(index, filePath);
   };
 
-  const resetImages = () => {
-    setImages(Array(initialImageCount).fill(null));
-  };
-  
   return {
     images,
     handleImageUpload,
     loading,
     handleDeleteImage,
-    resetImages
   };
 };
 

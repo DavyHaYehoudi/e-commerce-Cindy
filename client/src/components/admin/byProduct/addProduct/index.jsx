@@ -15,29 +15,30 @@ import useMaterialDataManagement from "./hooks/useMaterialDataManagement";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
-import formatMaterialProduct from "../../../../helpers/utils/formatMaterialProduct";
+import formatMaterialProduct from "../../../../helpers/utils/products/formatMaterialProduct";
+import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 
 const Modal = ({ handleCloseModal }) => {
+  //States
   const [showMaterials, setShowMaterials] = useState(true);
-
+  //Store
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const categoriesStore = useSelector((state) => state?.category?.data);
+  const tagsStore = useSelector((state) => state?.tag?.data);
+  //Hooks
   const { fields, handleChangeFields } = useFormFields({
     name: "",
     collection: "",
     category: "",
     description: "",
   });
-
-  const collectionsStore = useSelector((state) => state?.collection?.data);
-  const categoriesStore = useSelector((state) => state?.category?.data);
-  const tagsStore = useSelector((state) => state?.tag?.data);
-
   const { tags, addTag, removeTag } = useTagManagement();
   const { images, handleImageUpload, loading, handleDeleteImage } =
     useImageManagement(5);
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement();
-  const { handleSubmit, isSubmitting } = useSubmitForm();
-
+  const { handleSubmit } = useSubmitForm(handleCloseModal);
+  //Functions
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
       "En basculant de la section avec ou sans matériau, les données renseignées dans l'une ou l'autre s'effacent. Etes-vous sûr de vouloir basculer ?"
@@ -48,19 +49,16 @@ const Modal = ({ handleCloseModal }) => {
     }
   };
 
-  const validateFields = fields?.name && fields?.collection && fields?.category;
-  const validateMaterials =
-    materialsData?.length > 0 &&
-    materialsData?.every((material) => material?.main_image);
-  const confirmationEnabled = validateFields && validateMaterials;
+  const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
+
   // Création du formData
   const formData = {
-    name: fields.name,
-    _collection: fields.collection,
-    category: fields.category,
+    name: fields?.name,
+    _collection: fields?.collection,
+    category: fields?.category,
     tags: tags.map((tag) => tag._id),
     secondary_images: images,
-    main_description: fields.description,
+    main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
   };
 
@@ -97,7 +95,6 @@ const Modal = ({ handleCloseModal }) => {
         <Confirmation
           handleSubmit={() => handleSubmit(formData)}
           confirmationEnabled={confirmationEnabled}
-          isSubmitting={isSubmitting}
         />
       </div>
       <ToastContainer autoClose={2500} />

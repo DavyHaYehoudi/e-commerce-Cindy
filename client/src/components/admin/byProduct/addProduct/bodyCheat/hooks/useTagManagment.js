@@ -14,15 +14,11 @@ const useTagManagement = () => {
   const removeTag = (tagId) => {
     setTags((prevTags) => prevTags.filter((tag) => tag._id !== tagId));
   };
-  const resetTags = () => {
-    setTags([]);
-  };
 
   return {
     tags,
     addTag,
     removeTag,
-    resetTags,
   };
 };
 
