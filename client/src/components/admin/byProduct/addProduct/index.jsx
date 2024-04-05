@@ -15,7 +15,6 @@ import useMaterialDataManagement from "./hooks/useMaterialDataManagement";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
-import formatMaterialProduct from "../../../../helpers/utils/products/formatMaterialProduct";
 import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 
 const Modal = ({ handleCloseModal }) => {
@@ -37,7 +36,13 @@ const Modal = ({ handleCloseModal }) => {
     useImageManagement(5);
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement();
-  const { handleSubmit } = useSubmitForm(handleCloseModal);
+  const { handleSubmit } = useSubmitForm(
+    handleCloseModal,
+    fields,
+    tags,
+    materialsData,
+    images
+  );
   //Functions
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
@@ -50,17 +55,6 @@ const Modal = ({ handleCloseModal }) => {
   };
 
   const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
-
-  // Création du formData
-  const formData = {
-    name: fields?.name,
-    _collection: fields?.collection,
-    category: fields?.category,
-    tags: tags.map((tag) => tag._id),
-    secondary_images: images,
-    main_description: fields?.description,
-    materials: formatMaterialProduct(materialsData),
-  };
 
   return (
     <div className="product-modal">
@@ -93,7 +87,7 @@ const Modal = ({ handleCloseModal }) => {
           handleDeleteImage={handleDeleteImage}
         />
         <Confirmation
-          handleSubmit={() => handleSubmit(formData)}
+          handleSubmit={handleSubmit}
           confirmationEnabled={confirmationEnabled}
         />
       </div>

@@ -21,7 +21,7 @@ const Products = () => {
         </span>{" "}
       </div>
       {products &&
-        products?.map((product) => <ProductsCard key={product._id} product={product} />)}
+        products?.map((product) => <ProductsCard key={product?._id} product={product} />)}
       {isModalOpen && (
         <div className="overlay">
           <Modal handleCloseModal={handleCloseModal} />

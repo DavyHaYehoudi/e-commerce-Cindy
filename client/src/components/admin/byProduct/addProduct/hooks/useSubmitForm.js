@@ -1,26 +1,31 @@
-import { toast } from "react-toastify";
-import { customFetch } from "../../../../../services/customFetch";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../../../../features/admin/productSlice";
+import formatMaterialProduct from "../../../../../helpers/utils/products/formatMaterialProduct";
 
-const useSubmitForm = (handleCloseModal) => {
-  const handleSubmit = async (formData) => {
-    try {
-      const responseData = await customFetch("products", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
-
-      toast.success(`Le produit a été créé avec succès !`);
-      setTimeout(() => {
-        handleCloseModal();
-      }, 2000);
-      console.log("Réponse de l'API:", responseData);
-    } catch (error) {
-      toast.error(`Une erreur s'est produite avec l'envoi des données`);
-      console.error("Erreur lors de l'envoi des données à l'API:", error);
-    } finally {
-    }
-    console.log("formData :", formData);
+const useSubmitForm = (
+  handleCloseModal,
+  fields,
+  tags,
+  materialsData,
+  images
+) => {
+  const dispatch = useDispatch();
+  const formData = {
+    name: fields?.name,
+    _collection: fields?.collection,
+    category: fields?.category,
+    tags: tags?.map((tag) => tag._id),
+    secondary_images: images,
+    main_description: fields?.description,
+    materials: formatMaterialProduct(materialsData),
   };
+  const handleSubmit = async () => {
+    dispatch(addProduct(formData));
+    setTimeout(() => {
+      handleCloseModal();
+    }, 2000);
+  };
+  console.log("formData :", formData);
 
   return { handleSubmit };
 };

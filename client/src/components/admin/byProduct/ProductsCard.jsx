@@ -74,12 +74,12 @@ const ProductsCard = ({ product }) => {
     // Vérifier si l'URL commence par "products/main"
     if (product?.materials[0]?.main_image?.startsWith("products/main")) {
       // Si oui, c'est une URL Firebase Storage
-      getImageUrlFromStorage(product.materials[0].main_image);
+      getImageUrlFromStorage(product?.materials[0]?.main_image);
     } else {
       // Si non, c'est une URL directe, utilisez-la directement
-      setImageUrl(product.materials[0].main_image);
+      setImageUrl(product?.materials[0]?.main_image);
     }
-  }, [product.materials]);
+  }, [product?.materials]);
 
   return (
     <div className="card">

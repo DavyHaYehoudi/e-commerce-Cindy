@@ -2,14 +2,14 @@ import Product from "../../models/product/product.model.js";
 import process from "./filter/process.js";
 const productController = {
   getAllProducts: async (req, res) => {
-    console.log('dans le controller getAllProducts');
+    // console.log('dans le controller getAllProducts');
     try {
       let totalProductsCount;
       let products;
 
       if (Object.keys(req.query).length === 0) {
         totalProductsCount = await Product.countDocuments();
-        products = await Product.find();
+        products = await Product.find().sort({ createdAt: -1 });
       } else { 
         const { processedProducts, processedTotalProductsCount } =
           await process(req.query);
@@ -34,6 +34,8 @@ const productController = {
   }, 
  
   createProduct: async (req, res) => {
+    console.log('dans le controller createProduct');
+
     try { 
       const product = await Product.create(req.body); 
       res.status(201).json(product); 
