@@ -55,7 +55,7 @@
 import React, { useEffect, useState } from "react";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-const ProductsCard = ({ product }) => {
+const ProductsCard = ({ product,handleOpenModal }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const ProductsCard = ({ product }) => {
 
   return (
     <div className="card">
-      <div className="card-wrapper">
+      <div className="card-wrapper" onClick={()=> handleOpenModal("edit",product?._id)} >
         {imageUrl ? (
           <img src={imageUrl} alt={product?.name} />
         ) : (

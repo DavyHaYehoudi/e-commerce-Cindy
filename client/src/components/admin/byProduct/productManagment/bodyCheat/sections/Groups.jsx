@@ -39,8 +39,8 @@ const Groups = ({
           <option value="">Choisir une catégorie</option>
           {categoriesStore &&
             categoriesStore.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.name}
+              <option key={category?._id} value={category?._id}>
+                {category?.name}
               </option>
             ))}
         </select>
@@ -60,10 +60,10 @@ const Groups = ({
           <option value="">Ajouter un tag</option>
           {tagsStore &&
             tagsStore
-              .filter((tag) => !tags.some((t) => t._id === tag._id))
+              .filter((tag) => !tags?.some((t) => t?._id === tag?._id))
               .map((tag) => (
-                <option key={tag._id} value={tag._id}>
-                  {tag.name}
+                <option key={tag?._id} value={tag?._id}>
+                  {tag?.name}
                 </option>
               ))}
         </select>

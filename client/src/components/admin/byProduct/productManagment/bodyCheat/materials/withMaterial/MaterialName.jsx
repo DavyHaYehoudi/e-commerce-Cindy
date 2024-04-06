@@ -5,10 +5,10 @@ const MaterialName = ({ material, handleCheckboxChange }) => {
     <>
       <input
         type="checkbox"
-        id={`materialsCheckbox-${material._id}`}
+        id={`materialsCheckbox-${material?._id}`}
         onChange={handleCheckboxChange}
       />
-      <label htmlFor={`materialsCheckbox-${material._id}`}>
+      <label htmlFor={`materialsCheckbox-${material?._id}`}>
         <span>{material?.name} </span>
       </label>
       <span

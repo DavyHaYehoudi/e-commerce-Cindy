@@ -7,8 +7,11 @@ const MaterialsSelect = ({
   showMaterials,
   handleMaterialsSelectToggle,
   addMaterialData,
+  data,
+  currentAction,
+  currentProductId
 }) => {
-  const materials = useSelector((state) => state?.material?.data);
+  const materialsStore = useSelector((state) => state?.material?.data);
 
   return (
     <div className="materials-section">
@@ -38,15 +41,17 @@ const MaterialsSelect = ({
         </div>
       </div>
       {showMaterials ? (
-        materials.map((material, index) => (
+        materialsStore.map((material, index) => (
           <MaterialsRow
             key={index}
             material={material}
             addMaterialData={addMaterialData}
+            currentAction={currentAction}
+            currentProductId={currentProductId}
           />
         ))
       ) : (
-        <NoMaterials addMaterialData={addMaterialData} />
+        <NoMaterials addMaterialData={addMaterialData} data={data} />
       )}
     </div>
   );

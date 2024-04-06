@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
 import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 
-const Modal = ({ handleCloseModal }) => {
+const Modal = ({ handleCloseModal, data,currentAction ,currentProductId}) => {
   //States
   const [showMaterials, setShowMaterials] = useState(true);
   //Store
@@ -25,17 +25,19 @@ const Modal = ({ handleCloseModal }) => {
   const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
   //Hooks
+  const { name, collection, category, description } = data || {};
   const { fields, handleChangeFields } = useFormFields({
-    name: "",
-    collection: "",
-    category: "",
-    description: "",
+    name,
+    collection,
+    category,
+    description,
   });
-  const { tags, addTag, removeTag } = useTagManagement();
+  const { tags, addTag, removeTag } = useTagManagement(data);
   const { images, handleImageUpload, loading, handleDeleteImage } =
-    useImageManagement(5);
+    useImageManagement(5, data);
   const { materialsData, addMaterialData, setMaterialsData } =
-    useMaterialDataManagement();
+  useMaterialDataManagement(data);
+  console.log('materialsData:', materialsData)
   const { handleSubmit } = useSubmitForm(
     handleCloseModal,
     fields,
@@ -78,6 +80,9 @@ const Modal = ({ handleCloseModal }) => {
           showMaterials={showMaterials}
           handleMaterialsSelectToggle={handleMaterialsSelectToggle}
           addMaterialData={addMaterialData}
+          data={data}
+          currentAction={currentAction}
+          currentProductId={currentProductId}
         />
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary

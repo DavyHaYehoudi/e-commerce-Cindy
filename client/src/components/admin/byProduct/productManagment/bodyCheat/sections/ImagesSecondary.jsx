@@ -12,22 +12,24 @@ const ImagesSecondary = ({
   const [loadingStates, setLoadingStates] = useState([]);
 
   useEffect(() => {
-    const fetchImageURLs = async () => {
-      const urls = await Promise.all(
-        imagesSecondary.map(async (image) => {
-          if (image) {
-            const storageRef = ref(storage, image);
-            const url = await getDownloadURL(storageRef);
-            return url;
-          }
-          return null;
-        })
-      );
-      setImageURLs(urls);
-      setLoadingStates(new Array(urls.length).fill(false));
-    };
+    if (imagesSecondary) {
+      const fetchImageURLs = async () => {
+        const urls = await Promise.all(
+          imagesSecondary?.map(async (image) => {
+            if (image) {
+              const storageRef = ref(storage, image);
+              const url = await getDownloadURL(storageRef);
+              return url;
+            }
+            return null;
+          })
+        );
+        setImageURLs(urls);
+        setLoadingStates(new Array(urls.length).fill(false));
+      };
 
-    fetchImageURLs();
+      fetchImageURLs();
+    }
   }, [imagesSecondary]);
 
   const handleImageLoading = (index) => {

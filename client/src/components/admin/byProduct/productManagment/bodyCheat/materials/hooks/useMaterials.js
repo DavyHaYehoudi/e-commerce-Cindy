@@ -2,14 +2,37 @@ import { useState } from "react";
 import { storage } from "../../../../../../../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import useInitData from "../../../hooks/initData";
 
-const useMaterials = (initialMaterial, addMaterialData) => {
+const useMaterials = ({initialMaterial, addMaterialData, currentAction,currentProductId}) => {
+  console.log("initialMaterial:", initialMaterial);
+  const { initData } = useInitData({
+    action: currentAction,
+    _id:currentProductId
+    
+  });
+  const data = initData();
+  const initStock = data?.stock;
+  const initCurrentPrice = data?.currentPrice;
+  const initOldPrice = data?.oldPrice;
+  const initNewDate = data?.newDate;
+  const initAmount = data?.amount;
+  const initStartDate = data?.startDate;
+  const initEndDate = data?.endDate;
+  const initMainImage = data?.mainImage;
   const [isChecked, setIsChecked] = useState(false);
-  const [stock, setStock] = useState(1);
-  const [pricing, setPricing] = useState({ currentPrice: 0, oldPrice: 0 });
-  const [newDate, setNewDate] = useState("");
-  const [promo, setPromo] = useState({ amount: 0, startDate: "", endDate: "" });
-  const [mainImage, setMainImage] = useState(null);
+  const [stock, setStock] = useState(initStock);
+  const [pricing, setPricing] = useState({
+    currentPrice: initCurrentPrice,
+    oldPrice: initOldPrice,
+  });
+  const [newDate, setNewDate] = useState(initNewDate);
+  const [promo, setPromo] = useState({
+    amount: initAmount,
+    startDate: initStartDate,
+    endDate: initEndDate,
+  });
+  const [mainImage, setMainImage] = useState(initMainImage);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 

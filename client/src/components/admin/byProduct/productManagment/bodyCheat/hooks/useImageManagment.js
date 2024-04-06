@@ -3,8 +3,9 @@ import { storage } from "../../../../../../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
-const useImageManagement = (initialImageCount) => {
-  const [images, setImages] = useState(Array(initialImageCount).fill(null));
+const useImageManagement = (initialImageCount, data) => {
+  const initImages = data?.images || Array(initialImageCount).fill(null);
+  const [images, setImages] = useState(initImages);
   const [loading, setLoading] = useState(false);
 
   // Fonction pour gérer le changement d'image

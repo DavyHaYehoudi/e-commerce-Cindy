@@ -14,7 +14,7 @@ const useSubmitForm = (
     name: fields?.name,
     _collection: fields?.collection,
     category: fields?.category,
-    tags: tags?.map((tag) => tag._id),
+    tags: tags?.map((tag) => tag?._id),
     secondary_images: images,
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
@@ -25,7 +25,7 @@ const useSubmitForm = (
       handleCloseModal();
     }, 2000);
   };
-  console.log("formData :", formData);
+  // console.log("formData :", formData);
 
   return { handleSubmit };
 };
