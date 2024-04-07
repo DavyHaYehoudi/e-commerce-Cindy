@@ -1,14 +1,19 @@
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../../../../features/admin/productSlice";
+import {
+  addProduct,
+  deleteProduct,
+  editProduct,
+} from "../../../../../features/admin/productSlice";
 import formatMaterialProduct from "../../../../../helpers/utils/products/formatMaterialProduct";
 
-const useSubmitForm = (
+const useSubmitForm = ({
   handleCloseModal,
   fields,
   tags,
   materialsData,
-  images
-) => {
+  images,
+  currentProductId,
+}) => {
   const dispatch = useDispatch();
   const formData = {
     name: fields?.name,
@@ -19,8 +24,24 @@ const useSubmitForm = (
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
   };
-  const handleSubmit = async () => {
-    dispatch(addProduct(formData));
+  const handleSubmit = async (currentAction) => {
+    if (currentAction === "create") {
+      dispatch(addProduct(formData));
+    }
+    if (currentAction === "edit") {
+      dispatch(editProduct({ formData, productId: currentProductId }));
+    }
+    if (currentAction === "delete") {
+      const confirm = window.confirm(
+        "Etes-vous sûr de vouloir supprimer ce produit, cette action est définitive ?"
+      ); 
+      if (confirm) {
+        dispatch(deleteProduct(currentProductId));
+      } else if (!confirm) {
+        return;
+      }
+    }
+
     setTimeout(() => {
       handleCloseModal();
     }, 2000);

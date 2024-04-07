@@ -28,6 +28,39 @@ const addProduct = createAsyncThunk("products/addProduct", async (formData) => {
     throw error;
   }
 });
+const editProduct = createAsyncThunk(
+  "products/editProduct",
+  async ({ formData, productId }) => {
+    try {
+      const response = await customFetch(`products/${productId}`, {
+        method: "PATCH",
+        body: JSON.stringify(formData),
+      });
+      toast.success("Le produit a été modifié avec succès !");
+      return response;
+    } catch (error) {
+      toast.error(`Une erreur s'est produite avec l'envoi des données`);
+      console.error("Erreur lors de l'envoi des données à l'API:", error);
+      throw error;
+    }
+  }
+);
+const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async (productId) => {
+    try {
+      const response = await customFetch(`products/${productId}`, {
+        method: "DELETE",
+      });
+      toast.success("Le produit a été supprimé avec succès !");
+      return response;
+    } catch (error) {
+      toast.error(`Une erreur s'est produite avec l'envoi des données`);
+      console.error("Erreur lors de l'envoi des données à l'API:", error);
+      throw error;
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: "product",
@@ -37,8 +70,7 @@ const productSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
@@ -67,8 +99,32 @@ const productSlice = createSlice({
       .addCase(addProduct.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(editProduct.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+      })
+      .addCase(editProduct.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        const { productId } = action.payload;
+        state.data = state.data.filter((product) => product?._id !== productId);
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
-export { fetchProduct, addProduct };
+export { fetchProduct, addProduct, editProduct, deleteProduct };
 export default productSlice.reducer;

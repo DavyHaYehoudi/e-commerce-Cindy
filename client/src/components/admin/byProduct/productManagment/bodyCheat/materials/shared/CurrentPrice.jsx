@@ -10,7 +10,7 @@ const CurrentPrice = ({material,handlePricingChange,pricing}) => {
           type="number"
           className="account-input"
           id={`currentPriceInput-${material?._id}`}
-          value={pricing?.currentPrice ||""}
+          value={pricing?.currentPrice ||0}
           onChange={(e) => handlePricingChange(e, "currentPrice")}
         />
       </div>

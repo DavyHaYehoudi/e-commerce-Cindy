@@ -86,7 +86,7 @@ const productController = {
     try {
       const { productId } = req.params;
       await Product.findByIdAndDelete(productId);
-      res.status(204).json();
+      res.status(200).json({productId});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

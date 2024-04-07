@@ -217,6 +217,16 @@
 .confirm-section {
     text-align: end;
 }
+.confirm-section .edit-section{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.confirm-section .edit-section .delete{
+background: var(--danger);
+color: var(--dark);
+}
+
 
 /* ******* MATERIALS   materials-row =>avec matériau ******* */
 .product-modal-content .materials-radio {

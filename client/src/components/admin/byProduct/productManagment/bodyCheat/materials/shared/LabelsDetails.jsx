@@ -96,7 +96,7 @@ const LabelsDetails = ({
                   type="number"
                   className="account-input"
                   id={`promo-discount-${material?._id}`}
-                  value={promo?.amount}
+                  value={promo?.amount||0}
                   onChange={(e) => handlePromoChange(e, "amount")}
                 />
               </div>

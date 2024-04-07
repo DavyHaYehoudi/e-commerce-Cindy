@@ -43,13 +43,14 @@ const Modal = ({
     useImageManagement(5, data);
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement(data);
-  const { handleSubmit } = useSubmitForm(
+  const { handleSubmit } = useSubmitForm({
     handleCloseModal,
     fields,
     tags,
     materialsData,
-    images
-  );
+    images,
+    currentProductId
+  });
   //Functions
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
@@ -109,6 +110,7 @@ const Modal = ({
         <Confirmation
           handleSubmit={handleSubmit}
           confirmationEnabled={confirmationEnabled}
+          currentAction={currentAction}
         />
       </div>
       <ToastContainer autoClose={2500} />
