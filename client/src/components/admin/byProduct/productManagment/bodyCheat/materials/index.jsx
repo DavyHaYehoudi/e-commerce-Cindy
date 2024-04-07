@@ -7,39 +7,41 @@ const MaterialsSelect = ({
   showMaterials,
   handleMaterialsSelectToggle,
   addMaterialData,
-  data,
   currentAction,
-  currentProductId
+  currentProductId,
+  isWithMaterial
 }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
 
   return (
     <div className="materials-section">
-      <div className="materials-radio">
-        <span>Matériaux</span>
-        <div className="materials-radio-input">
-          <input
-            type="radio"
-            id="materials"
-            name="materialType"
-            value="materials"
-            checked={showMaterials}
-            onChange={handleMaterialsSelectToggle}
-          />
-          <label htmlFor="materials">Avec</label>
+      {currentAction !== "edit" && (
+        <div className="materials-radio">
+          <span>Matériaux</span>
+          <div className="materials-radio-input">
+            <input
+              type="radio"
+              id="materials"
+              name="materialType"
+              value="materials"
+              checked={showMaterials}
+              onChange={handleMaterialsSelectToggle}
+            />
+            <label htmlFor="materials">Avec</label>
+          </div>
+          <div className="materials-radio-input">
+            <input
+              type="radio"
+              id="noMaterials"
+              name="materialType"
+              value="noMaterials"
+              checked={!showMaterials}
+              onChange={handleMaterialsSelectToggle}
+            />
+            <label htmlFor="noMaterials">Sans</label>
+          </div>
         </div>
-        <div className="materials-radio-input">
-          <input
-            type="radio"
-            id="noMaterials"
-            name="materialType"
-            value="noMaterials"
-            checked={!showMaterials}
-            onChange={handleMaterialsSelectToggle}
-          />
-          <label htmlFor="noMaterials">Sans</label>
-        </div>
-      </div>
+      )}
       {showMaterials ? (
         materialsStore.map((material, index) => (
           <MaterialsRow
@@ -48,10 +50,16 @@ const MaterialsSelect = ({
             addMaterialData={addMaterialData}
             currentAction={currentAction}
             currentProductId={currentProductId}
+            isWithMaterial={isWithMaterial}
           />
         ))
       ) : (
-        <NoMaterials addMaterialData={addMaterialData} data={data} />
+        <NoMaterials
+          addMaterialData={addMaterialData}
+          currentAction={currentAction}
+          currentProductId={currentProductId}
+          isWithMaterial={isWithMaterial}
+        />
       )}
     </div>
   );

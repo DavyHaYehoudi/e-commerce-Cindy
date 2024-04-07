@@ -2,7 +2,13 @@ import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
 const materialSchema = new mongoose.Schema({
-  name: { type: String, default: null, maxlength: 50, required: true },
+  name: {
+    type: String,
+    default: null,
+    maxlength: 50,
+    required: true,
+    unique: true,
+  },
   value: { type: String, maxlength: 50, required: true },
 });
 

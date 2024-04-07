@@ -2,16 +2,23 @@ import { useState } from "react";
 import { storage } from "../../../../../../../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
-import useInitData from "../../../hooks/initData";
+import useInitDataMaterials from "../../../hooks/useInitDataMaterials";
 
-const useMaterials = ({initialMaterial, addMaterialData, currentAction,currentProductId}) => {
-  console.log("initialMaterial:", initialMaterial);
-  const { initData } = useInitData({
+const useMaterials = ({
+  material,
+  addMaterialData,
+  currentAction,
+  currentProductId,
+  isWithMaterial
+}) => {
+  const { initDataMaterials } = useInitDataMaterials({
     action: currentAction,
-    _id:currentProductId
-    
+    productId: currentProductId,
+    material,
+    isWithMaterial
   });
-  const data = initData();
+  const data = initDataMaterials();
+
   const initStock = data?.stock;
   const initCurrentPrice = data?.currentPrice;
   const initOldPrice = data?.oldPrice;
@@ -155,7 +162,7 @@ const useMaterials = ({initialMaterial, addMaterialData, currentAction,currentPr
     mainImage
   ) => {
     const newMaterialData = {
-      _id: initialMaterial?._id,
+      _id: material?._id,
       pricing: newPricing,
       promotion: newPromo,
       main_image: mainImage,

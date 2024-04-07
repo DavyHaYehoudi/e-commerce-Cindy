@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Name from "./bodyCheat/sections/Name";
 import Groups from "./bodyCheat/sections/Groups";
@@ -17,7 +17,13 @@ import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
 import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 
-const Modal = ({ handleCloseModal, data,currentAction ,currentProductId}) => {
+const Modal = ({
+  handleCloseModal,
+  data,
+  currentAction,
+  currentProductId,
+  isWithMaterial,
+}) => {
   //States
   const [showMaterials, setShowMaterials] = useState(true);
   //Store
@@ -36,8 +42,7 @@ const Modal = ({ handleCloseModal, data,currentAction ,currentProductId}) => {
   const { images, handleImageUpload, loading, handleDeleteImage } =
     useImageManagement(5, data);
   const { materialsData, addMaterialData, setMaterialsData } =
-  useMaterialDataManagement(data);
-  console.log('materialsData:', materialsData)
+    useMaterialDataManagement(data);
   const { handleSubmit } = useSubmitForm(
     handleCloseModal,
     fields,
@@ -56,12 +61,22 @@ const Modal = ({ handleCloseModal, data,currentAction ,currentProductId}) => {
     }
   };
 
+  useEffect(() => {
+    if (currentAction === "edit" && !isWithMaterial) {
+      setShowMaterials(false);
+    }
+  }, [currentAction, isWithMaterial]);
   const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
 
   return (
     <div className="product-modal">
       <div className="product-modal-content">
-        <h2>Création d'un produit</h2>
+        {currentAction === "edit" ? (
+          <h2>Modification du produit</h2>
+        ) : (
+          <h2>Création d'un produit</h2>
+        )}
+
         <span className="product-modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </span>
@@ -80,9 +95,9 @@ const Modal = ({ handleCloseModal, data,currentAction ,currentProductId}) => {
           showMaterials={showMaterials}
           handleMaterialsSelectToggle={handleMaterialsSelectToggle}
           addMaterialData={addMaterialData}
-          data={data}
           currentAction={currentAction}
           currentProductId={currentProductId}
+          isWithMaterial={isWithMaterial}
         />
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary

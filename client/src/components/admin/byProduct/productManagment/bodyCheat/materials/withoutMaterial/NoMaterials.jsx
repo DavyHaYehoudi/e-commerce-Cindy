@@ -5,7 +5,7 @@ import OldPrice from "../shared/OldPrice";
 import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
 
-const NoMaterials = ({ addMaterialData }) => {
+const NoMaterials = ({ addMaterialData ,currentAction,currentProductId,isWithMaterial}) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
 
@@ -43,7 +43,8 @@ const NoMaterials = ({ addMaterialData }) => {
     errorMessage,
     loading,
     handleDeleteImage
-  } = useMaterials(null, addMaterialData);
+  } = useMaterials({addMaterialData,currentAction,
+    currentProductId,isWithMaterial});
   return (
     <div className="noMaterials">
       <div className="details-wrapper">

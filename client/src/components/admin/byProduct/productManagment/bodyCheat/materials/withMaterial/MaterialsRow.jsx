@@ -6,8 +6,13 @@ import CurrentPrice from "../shared/CurrentPrice";
 import OldPrice from "../shared/OldPrice";
 import useMaterials from "../hooks/useMaterials";
 
-const MaterialsRow = ({ material, addMaterialData, currentAction,currentProductId }) => {
-  // console.log('material:', material)
+const MaterialsRow = ({
+  material,
+  addMaterialData,
+  currentAction,
+  currentProductId,
+  isWithMaterial
+}) => {
   // Générer un identifiant unique pour l'input de type fichier
   const fileInputId = `file-upload-${material?._id}`;
   const {
@@ -28,7 +33,13 @@ const MaterialsRow = ({ material, addMaterialData, currentAction,currentProductI
     errorMessage,
     loading,
     handleDeleteImage,
-  } = useMaterials({material, addMaterialData, currentAction,currentProductId});
+  } = useMaterials({
+    material,
+    addMaterialData,
+    currentAction,
+    currentProductId,
+    isWithMaterial
+  });
   return (
     <>
       <div className="materials-row">

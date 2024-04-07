@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import ProductsCard from "./ProductsCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "./productManagment";
-import useInitData from "./productManagment/hooks/initData";
+import useInitData from "./productManagment/hooks/useInitDataMain";
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const products = useSelector((state) => state?.product?.data);
+  const productsStore = useSelector((state) => state?.product?.data);
   const [currentAction, setCurrentAction] = useState("create");
   const [currentProductId, setCurrentProductId] = useState(null);
 
@@ -19,12 +19,14 @@ const Products = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const { initData } = useInitData({
+  const { initDataMain } = useInitData({
     action: currentAction,
     initialImageCount: 5,
-    _id: currentProductId,
+    productId: currentProductId,
   });
-  const data = initData();
+  const data = initDataMain();
+  const product= productsStore?.find(product=>product?._id===currentProductId)
+  const isWithMaterial = product?.materials?.every(item=>item._id)
 
   return (
     <div className="products">
@@ -36,8 +38,8 @@ const Products = () => {
           <IoIosAddCircleOutline />
         </span>{" "}
       </div>
-      {products &&
-        products?.map((product) => (
+      {productsStore &&
+        productsStore?.map((product) => (
           <ProductsCard
             key={product?._id}
             product={product}
@@ -51,6 +53,7 @@ const Products = () => {
             data={data}
             currentAction={currentAction}
             currentProductId={currentProductId}
+            isWithMaterial={isWithMaterial}
           />
         </div>
       )}
