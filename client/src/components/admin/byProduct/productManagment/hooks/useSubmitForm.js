@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addProduct,
   deleteProduct,
@@ -7,14 +7,24 @@ import {
 import formatMaterialProduct from "../../../../../helpers/utils/products/formatMaterialProduct";
 
 const useSubmitForm = ({
-  handleCloseModal,
   fields,
   tags,
   materialsData,
   images,
+  editedImages,
   currentProductId,
+  handleCloseModal
 }) => {
+  const productsStore = useSelector((state) => state?.product?.data);
+  const statusStore =useSelector(state=>state?.product?.status)
+  const materialBeforeEditing = productsStore?.find(
+    (product) => product?._id === currentProductId
+  )?.materials;
   const dispatch = useDispatch();
+
+  if (materialsData.length === 0) {
+    materialsData = materialBeforeEditing;
+  }
   const formData = {
     name: fields?.name,
     _collection: fields?.collection,
@@ -24,27 +34,29 @@ const useSubmitForm = ({
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
   };
-  const handleSubmit = async (currentAction) => {
+  const isSucceed = statusStore==="succeeded"
+  const handleSubmit = async (currentAction,paths) => {
     if (currentAction === "create") {
+      formData.secondary_images = paths
       dispatch(addProduct(formData));
+      if(isSucceed){handleCloseModal()}
     }
     if (currentAction === "edit") {
+      formData.secondary_images = editedImages
       dispatch(editProduct({ formData, productId: currentProductId }));
+      if(isSucceed){handleCloseModal()}
     }
     if (currentAction === "delete") {
       const confirm = window.confirm(
         "Etes-vous sûr de vouloir supprimer ce produit, cette action est définitive ?"
-      ); 
+      );
       if (confirm) {
         dispatch(deleteProduct(currentProductId));
+        if(isSucceed){handleCloseModal()}
       } else if (!confirm) {
         return;
       }
     }
-
-    setTimeout(() => {
-      handleCloseModal();
-    }, 2000);
   };
   // console.log("formData :", formData);
 

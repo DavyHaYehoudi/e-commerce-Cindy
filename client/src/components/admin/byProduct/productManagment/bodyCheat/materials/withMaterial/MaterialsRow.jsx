@@ -35,11 +35,12 @@ const MaterialsRow = ({
     handleDeleteImage,
   } = useMaterials({
     material,
-    addMaterialData,
+    addMaterialData, 
     currentAction,
-    currentProductId,
+    currentProductId, 
     isWithMaterial
-  });
+  }); 
+
   return (
     <>
       <div className="materials-row">

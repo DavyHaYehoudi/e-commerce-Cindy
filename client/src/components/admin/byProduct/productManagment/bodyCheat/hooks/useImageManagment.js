@@ -1,14 +1,75 @@
 import { useState, useCallback } from "react";
 import { storage } from "../../../../../../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, deleteObject } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
-const useImageManagement = (initialImageCount, data) => {
-  const initImages = data?.images || Array(initialImageCount).fill(null);
+const useImageManagement = ({ data, currentAction, initialImageCount }) => {
+  const defaultImages = Array(initialImageCount).fill(null);
+  const initImages = data?.images ? 
+  [...data.images, ...Array(initialImageCount - data.images.length).fill(null)] :
+  defaultImages;
   const [images, setImages] = useState(initImages);
+  console.log("images:", images);
   const [loading, setLoading] = useState(false);
+  const [deletedImages, setDeletedImages] = useState([]);
+  console.log("deletedImages:", deletedImages);
+  const [editedImages, setEditedImages] = useState(images);
+  console.log("editedImages:", editedImages);
+  // **************************** DELETE **************************** //
 
-  // Fonction pour gérer le changement d'image
+  const handleDeleteImage = useCallback(
+    (index) => {
+      // En mode "create", supprimer localement l'image du state
+      if (currentAction === "create") {
+        setImages((prevImages) => {
+          const newImages = [...prevImages];
+          newImages[index] = null;
+          return newImages;
+        });
+      } else if (currentAction === "edit") {
+        setDeletedImages((prevDeletedImages) => [...prevDeletedImages, index]);
+        setEditedImages((prev) => prev.filter((image, i) => i !== index));
+      }
+    },
+    [currentAction]
+  );
+
+  // Supprimer les images de Firebase Storage lorsque les changements sont enregistrés
+  const deleteImagesFromStorage = async () => {
+    try {
+      await Promise.all(
+        deletedImages.map(async (index) => {
+          const filePath = images[index];
+          if (filePath) {
+            const storageRef = ref(storage, filePath);
+            await deleteObject(storageRef);
+          }
+        })
+      );
+      setImages([]);
+      setDeletedImages([]);
+    } catch (error) {
+      console.error("Erreur lors de la suppression des images :", error);
+    }
+  };
+
+  // **************************** UPLOAD **************************** //
+
+  const handleImageUpload = async (e, index) => {
+    setLoading(true);
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    // Lit le contenu de l'image sélectionnée
+    reader.onload = async (event) => {
+      handleChangeImage(index, file);
+      setLoading(false);
+    };
+    // Lit le fichier en tant que URL de données
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleChangeImage = useCallback((index, filePath) => {
     setImages((prevImages) => {
       const newImages = [...prevImages];
@@ -17,49 +78,44 @@ const useImageManagement = (initialImageCount, data) => {
     });
   }, []);
 
-  // Fonction pour supprimer une image du state
-  const handleDeleteImage = useCallback((index) => {
-    setImages((prevImages) => {
-      const newImages = [...prevImages];
-      newImages[index] = null;
-      return newImages;
-    });
-  }, []);
-
-  const handleImageUpload = async (e, index) => {
-    setLoading(true);
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    // Lit le contenu de l'image sélectionnée
-    reader.onload = async (event) => {
-      await uploadImageToFirebaseStorage(file, index);
+  // Fonction pour ajouter les images à Firebase Storage uniquement lorsque les changements sont enregistrés
+  const addImagesToFirebaseStorage = async () => {
+    try {
+      setLoading(true);
+      const uploadedImagePaths = await Promise.all(
+        images
+          ?.map(async (image) => {
+            if (image) {
+              const uniqueId = uuidv4();
+              const fileExtension = image.name.split(".").pop();
+              const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
+              const storageRef = ref(storage, filePath);
+              await uploadBytes(storageRef, image);
+              return filePath;
+            }
+            return null;
+          })
+          .map((promise) => promise.catch(() => null)) // Gérer les erreurs pour chaque promesse
+      );
       setLoading(false);
-    };
-
-    // Lit le fichier en tant que URL de données
-    if (file) {
-      reader.readAsDataURL(file);
+      return uploadedImagePaths.filter((path) => path !== null);
+    } catch (error) {
+      console.error(
+        "Erreur lors du chargement des images vers Firebase Storage :",
+        error
+      );
+      setLoading(false);
     }
-  };
-
-  const uploadImageToFirebaseStorage = async (file, index) => {
-    const uniqueId = uuidv4();
-    const fileExtension = file.name.split(".").pop();
-    const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
-
-    const storageRef = ref(storage, filePath);
-    await uploadBytes(storageRef, file);
-
-    // Une fois l'image téléchargée, mettez à jour le state avec le chemin du fichier
-    handleChangeImage(index, filePath);
   };
 
   return {
     images,
-    handleImageUpload,
+    editedImages,
     loading,
+    handleImageUpload,
     handleDeleteImage,
+    addImagesToFirebaseStorage,
+    deleteImagesFromStorage,
   };
 };
 

@@ -8,7 +8,7 @@ const Stock = ({ material, handleStockChange, stock }) => {
         type="number"
         className="account-input"
         id={`stockInput-${material?._id}`}
-        value={stock||0}
+        value={stock || ""}
         onChange={handleStockChange}
       />
     </div>

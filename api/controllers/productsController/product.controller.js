@@ -35,15 +35,15 @@ const productController = {
  
   createProduct: async (req, res) => {
     console.log('dans le controller createProduct');
-
-    try { 
+    console.log('req :',req.body);
+    try {  
       const product = await Product.create(req.body); 
       res.status(201).json(product); 
     } catch (error) { 
       res.status(500).json({ error: error.message });   
     }
   },
-
+ 
   updateProduct: async (req, res) => {
     try {
       const { productId } = req.params;
@@ -56,10 +56,10 @@ const productController = {
         "category",
         "tags",
         "secondary_images",
-        "main_description",
-        "materials",
-      ];
-
+        "main_description", 
+        "materials", 
+      ];  
+  
       // Vérifie si le produit existe
       const existingProduct = await Product.findById(productId);
       if (!existingProduct) {

@@ -48,7 +48,7 @@ const LabelsDetails = ({
                 type="date"
                 className="account-input"
                 id={`new-date-${material?._id}`}
-                value={newDate ||""}
+                value={newDate || ""}
                 onChange={handleNewDateChange}
               />
             </div>
@@ -72,7 +72,7 @@ const LabelsDetails = ({
                   type="date"
                   className="account-input"
                   id={`promo-start-date-${material?._id}`}
-                  value={promo?.startDate ||""}
+                  value={promo?.startDate || ""}
                   onChange={(e) => handlePromoChange(e, "startDate")}
                 />
               </div>
@@ -84,7 +84,7 @@ const LabelsDetails = ({
                   type="date"
                   className="account-input"
                   id={`promo-end-date-${material?._id}`}
-                  value={promo?.endDate ||""}
+                  value={promo?.endDate || ""}
                   onChange={(e) => handlePromoChange(e, "endDate")}
                 />
               </div>
@@ -96,7 +96,7 @@ const LabelsDetails = ({
                   type="number"
                   className="account-input"
                   id={`promo-discount-${material?._id}`}
-                  value={promo?.amount||0}
+                  value={promo?.amount || ""}
                   onChange={(e) => handlePromoChange(e, "amount")}
                 />
               </div>

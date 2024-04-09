@@ -17,11 +17,12 @@ const fetchProduct = createAsyncThunk(
 );
 const addProduct = createAsyncThunk("products/addProduct", async (formData) => {
   try {
-    await customFetch("products", {
+    const response = await customFetch("products", {
       method: "POST",
       body: JSON.stringify(formData),
     });
     toast.success("Le produit a été créé avec succès !");
+    return response;
   } catch (error) {
     toast.error(`Une erreur s'est produite avec l'envoi des données`);
     console.error("Erreur lors de l'envoi des données à l'API:", error);
@@ -106,6 +107,13 @@ const productSlice = createSlice({
       .addCase(editProduct.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
+        const updatedProduct = action.payload;
+        const index = state.data.findIndex(
+          (product) => product?._id === updatedProduct?._id
+        );
+        if (index !== -1) {
+          state.data[index] = updatedProduct;
+        }
       })
       .addCase(editProduct.rejected, (state, action) => {
         state.status = "failed";

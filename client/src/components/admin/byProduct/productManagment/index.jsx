@@ -39,17 +39,27 @@ const Modal = ({
     description,
   });
   const { tags, addTag, removeTag } = useTagManagement(data);
-  const { images, handleImageUpload, loading, handleDeleteImage } =
-    useImageManagement(5, data);
+  //Nombre par défaut de carrés upload images secondaires
+  const initialImageCount = 5;
+  const {
+    images,
+    editedImages,
+    loading,
+    handleImageUpload,
+    handleDeleteImage,
+    addImagesToFirebaseStorage,
+    deleteImagesFromStorage,
+  } = useImageManagement({ data, currentAction, initialImageCount });
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement(data);
   const { handleSubmit } = useSubmitForm({
     handleCloseModal,
     fields,
     tags,
-    materialsData,
     images,
-    currentProductId
+    editedImages,
+    materialsData,
+    currentProductId,
   });
   //Functions
   const handleMaterialsSelectToggle = () => {
@@ -67,6 +77,7 @@ const Modal = ({
       setShowMaterials(false);
     }
   }, [currentAction, isWithMaterial]);
+
   const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
 
   return (
@@ -77,7 +88,6 @@ const Modal = ({
         ) : (
           <h2>Création d'un produit</h2>
         )}
-
         <span className="product-modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </span>
@@ -103,14 +113,18 @@ const Modal = ({
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
           imagesSecondary={images}
+          initialImageCount={initialImageCount}
           handleChangeImagesSecondary={handleImageUpload}
           loading={loading}
           handleDeleteImage={handleDeleteImage}
+          currentAction={currentAction}
         />
         <Confirmation
           handleSubmit={handleSubmit}
           confirmationEnabled={confirmationEnabled}
           currentAction={currentAction}
+          addImagesToFirebaseStorage={addImagesToFirebaseStorage}
+          deleteImagesFromStorage={deleteImagesFromStorage}
         />
       </div>
       <ToastContainer autoClose={2500} />

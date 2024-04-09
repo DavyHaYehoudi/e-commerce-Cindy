@@ -28,7 +28,7 @@ const Products = () => {
   const product = productsStore?.find(
     (product) => product?._id === currentProductId
   );
-  const isWithMaterial = product?.materials?.every((item) => item._id);
+  const isWithMaterial = product?.materials?.every((item) => item?._id);
 
   return (
     <div className="products">

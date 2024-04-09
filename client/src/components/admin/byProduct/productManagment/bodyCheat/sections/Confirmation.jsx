@@ -1,6 +1,12 @@
 import React from "react";
 
-const Confirmation = ({ handleSubmit, confirmationEnabled, currentAction }) => {
+const Confirmation = ({
+  handleSubmit,
+  confirmationEnabled,
+  currentAction,
+  addImagesToFirebaseStorage,
+  deleteImagesFromStorage,
+}) => {
   return (
     <div className="confirm-section">
       {currentAction === "create" && (
@@ -9,7 +15,14 @@ const Confirmation = ({ handleSubmit, confirmationEnabled, currentAction }) => {
           className={`account-btn ${
             confirmationEnabled ? "icon-validate" : ""
           }`}
-          onClick={handleSubmit}
+          onClick={async () => {
+            try {
+              const paths= await addImagesToFirebaseStorage()
+              handleSubmit(currentAction,paths);
+            } catch (error) {
+              console.log("error dans button valider :", error);
+            }
+          }}
         >
           Valider
         </button>
@@ -24,7 +37,17 @@ const Confirmation = ({ handleSubmit, confirmationEnabled, currentAction }) => {
           </button>
           <button
             className="account-btn icon-validate"
-            onClick={() => handleSubmit(currentAction)}
+            onClick={async () => {
+              try {
+                await deleteImagesFromStorage();
+                handleSubmit(currentAction);
+              } catch (error) {
+                console.log(
+                  "error dans button enregistrer les modifications :",
+                  error
+                );
+              }
+            }}
           >
             Enregistrer les modifications
           </button>

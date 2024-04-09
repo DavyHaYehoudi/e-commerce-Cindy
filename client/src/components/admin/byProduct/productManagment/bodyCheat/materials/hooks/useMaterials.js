@@ -95,7 +95,7 @@ const useMaterials = ({
         if (startDateValue < currentDate) {
           updatedErrorMessage =
             "La date de début de la promotion doit être postérieure ou égale à la date actuelle";
-        } else if (endDateValue && endDateValue < startDateValue) {
+        } else if (endDateValue && endDateValue <= startDateValue) {
           updatedErrorMessage =
             "La date de fin de la promotion doit être postérieure à la date de début de la promotion";
         }
