@@ -10,8 +10,6 @@ const useSubmitForm = ({
   fields,
   tags,
   materialsData,
-  images,
-  editedImages,
   currentProductId,
   handleCloseModal
 }) => {
@@ -30,7 +28,7 @@ const useSubmitForm = ({
     _collection: fields?.collection,
     category: fields?.category,
     tags: tags?.map((tag) => tag?._id),
-    secondary_images: images,
+    // secondary_images: images,
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
   };
@@ -42,7 +40,7 @@ const useSubmitForm = ({
       if(isSucceed){handleCloseModal()}
     }
     if (currentAction === "edit") {
-      formData.secondary_images = editedImages
+      formData.secondary_images = paths
       dispatch(editProduct({ formData, productId: currentProductId }));
       if(isSucceed){handleCloseModal()}
     }

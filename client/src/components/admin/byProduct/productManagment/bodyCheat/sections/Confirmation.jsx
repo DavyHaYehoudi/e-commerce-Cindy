@@ -17,8 +17,8 @@ const Confirmation = ({
           }`}
           onClick={async () => {
             try {
-              const paths= await addImagesToFirebaseStorage()
-              handleSubmit(currentAction,paths);
+              const paths = await addImagesToFirebaseStorage();
+              handleSubmit(currentAction, paths);
             } catch (error) {
               console.log("error dans button valider :", error);
             }
@@ -40,14 +40,15 @@ const Confirmation = ({
             onClick={async () => {
               try {
                 await deleteImagesFromStorage();
-                handleSubmit(currentAction);
+                const paths = await addImagesToFirebaseStorage();
+                handleSubmit(currentAction, paths);
               } catch (error) {
-                console.log(
+                console.log( 
                   "error dans button enregistrer les modifications :",
                   error
                 );
               }
-            }}
+            }} 
           >
             Enregistrer les modifications
           </button>

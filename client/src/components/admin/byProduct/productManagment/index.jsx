@@ -42,10 +42,9 @@ const Modal = ({
   //Nombre par défaut de carrés upload images secondaires
   const initialImageCount = 5;
   const {
-    images,
-    editedImages,
+    localImages,
     loading,
-    handleImageUpload,
+    handleChangeImage,
     handleDeleteImage,
     addImagesToFirebaseStorage,
     deleteImagesFromStorage,
@@ -56,8 +55,6 @@ const Modal = ({
     handleCloseModal,
     fields,
     tags,
-    images,
-    editedImages,
     materialsData,
     currentProductId,
   });
@@ -112,11 +109,10 @@ const Modal = ({
         />
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
-          imagesSecondary={images}
-          initialImageCount={initialImageCount}
-          handleChangeImagesSecondary={handleImageUpload}
-          loading={loading}
+          localImages={localImages}
+          handleChangeImage={handleChangeImage}
           handleDeleteImage={handleDeleteImage}
+          loading={loading}
           currentAction={currentAction}
         />
         <Confirmation
