@@ -1,15 +1,20 @@
 import React from "react";
-
+import MoonLoader from "react-spinners/MoonLoader";
 const ImagesSecondary = ({
   localImages,
   handleChangeImage,
   handleDeleteImage,
+  loading,
 }) => {
   const renderFileInputs = () => {
     return localImages.map((image, index) => (
       <label key={index} htmlFor={`file-upload-${index}`}>
         <div className="image-container secondary_image">
-          {image ? (
+          {loading ? (
+            <div className="loader">
+              <MoonLoader color="var(--dark)" />
+            </div>
+          ) : image ? (
             typeof image === "string" ? (
               <img src={image} alt="Chargement1..." />
             ) : (

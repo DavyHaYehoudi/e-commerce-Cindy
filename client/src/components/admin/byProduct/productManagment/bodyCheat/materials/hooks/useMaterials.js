@@ -9,13 +9,13 @@ const useMaterials = ({
   addMaterialData,
   currentAction,
   currentProductId,
-  isWithMaterial
+  isWithMaterial,
 }) => {
   const { initDataMaterials } = useInitDataMaterials({
     action: currentAction,
     productId: currentProductId,
     material,
-    isWithMaterial
+    isWithMaterial,
   });
   const data = initDataMaterials();
 
@@ -91,6 +91,12 @@ const useMaterials = ({
       const currentDate = new Date();
       const startDateValue = new Date(updatedPromo.startDate);
       const endDateValue = new Date(updatedPromo.endDate);
+
+      if (updatedPromo.amount || updatedPromo.startDate || updatedPromo.endDate) {
+        if (!updatedPromo.amount || !updatedPromo.startDate || !updatedPromo.endDate) {
+          updatedErrorMessage = "Remplir les 3 champs promotion"
+        }
+      }
       if (property === "startDate") {
         if (startDateValue < currentDate) {
           updatedErrorMessage =
