@@ -15,15 +15,11 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       : Math.max(initialImageCount, data?.images?.length || 0);
   // State pour stocker les images originales en mode "edit"
   const [originalImages, setOriginalImages] = useState([]);
-  console.log("originalImages:", originalImages);
   // State pour stocker les images locales
   const [localImages, setLocalImages] = useState(
     Array.from({ length: initialImageCount }, () => null)
   );
-  console.log("localImages:", localImages);
-
   const [loading, setLoading] = useState(false);
-
   // **************************** DELETE **************************** //
   const handleDeleteImage = (index) => {
     const updatedImages = [...localImages];
@@ -34,25 +30,43 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
   const deleteImagesFromStorage = async () => {
     try {
       setLoading(true);
-  
-      // Repérer les images originales qui ne sont pas présentes dans les nouvelles images locales
-      const deletedImages = originalImages.filter(
-        (imagePath) => !localImages.includes(imagePath)
-      );
-  
-      // Supprimer chaque image du stockage Firebase
-      await Promise.all(
-        deletedImages.map(async (imagePath) => {
+      // Convertir les chemins originaux en URLs Firebase Storage
+      const originalImagesUrls = await Promise.all(
+        originalImages.map(async (imagePath) => {
           const imageRef = ref(storage, imagePath);
-          // Obtenir l'URL de téléchargement avant de supprimer l'image
-          const downloadURL = await getDownloadURL(imageRef);
-          await deleteObject(imageRef);
-          console.log("Image supprimée avec succès :", downloadURL);
+          return await getDownloadURL(imageRef);
         })
       );
-  
+      // Repérer les URLs des images originales qui ne sont pas présentes dans les nouvelles images locales
+      const deletedImagesUrls = originalImagesUrls.filter(
+        (imageUrl) => !localImages.includes(imageUrl)
+      );
+
+      // Supprimer chaque image du stockage Firebase
+      await Promise.all(
+        deletedImagesUrls.map(async (imageUrl) => {
+          const imageRef = ref(storage, imageUrl);
+          await deleteObject(imageRef);
+        })
+      );
+
       setLoading(false);
-      return deletedImages;
+      // Fonction pour retrouver le chemin du stockage à partir d'une URL
+      function getPathFromStorageUrl(url) {
+        const pathPart = url.split(
+          "firebasestorage.googleapis.com/v0/b/noralyapreprod.appspot.com/o/"
+        )[1];
+        const path = pathPart.split("?")[0];
+        const decodedPath = decodeURIComponent(path.replace(/\+/g, " "));
+        return decodedPath;
+      }
+      // Fonction pour retrouver les chemins du stockage à partir d'un tableau d'URLs
+      function getPathsFromStorageUrls(urls) {
+        return urls.map(getPathFromStorageUrl);
+      }
+      const storagePaths = getPathsFromStorageUrls(deletedImagesUrls);
+      console.log("storagePaths:", storagePaths);
+      return storagePaths;
     } catch (error) {
       console.error(
         "Erreur lors de la suppression des images depuis Firebase Storage :",
@@ -62,6 +76,19 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       return [];
     }
   };
+  const deleteAllImagesFromStorage=async()=>{
+    try {
+      
+      await Promise.all(
+        originalImages.map(async (imageUrl) => {
+          const imageRef = ref(storage, imageUrl);
+          await deleteObject(imageRef);
+        })
+      );
+    } catch (error) {
+      console.log('Erreur dans deleteAllImagesFromStorage :',error);
+    }
+  }
   // **************************** UPLOAD **************************** //
   const handleChangeImage = (e, index) => {
     const updatedImages = [...localImages];
@@ -76,10 +103,10 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       const newImages = localImages.filter(
         (image) => !originalImages.includes(image)
       );
-      console.log("newImages:", newImages);
       const uploadedImagePaths = await Promise.all(
         newImages.map(async (image) => {
           if (image?.name) {
+            // Si image type file et non url
             const uniqueId = uuidv4();
             const fileExtension = image.name.split(".").pop();
             const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
@@ -87,16 +114,19 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
             await uploadBytes(storageRef, image);
             return filePath;
           }
-          return null;
-        }) 
+        })
       );
       setLoading(false);
-      // Filtrer les chemins d'accès uniques des images persistantes
-      const uniqueOriginalImagePaths = originalImages.filter(
-        (image) => typeof image === "string"
+      //Filtrer les nouveaux paths à stocker dans la DB
+      const imagePathsToDB = uploadedImagePaths.filter((image) =>
+        Boolean(image)
       );
+      //Récupérer les paths déjà stockés dans la DB
+      const imagePathsInDB =
+        data?.images.filter((image) => Boolean(image)) || [];
+
       setLoading(false);
-      return [...uniqueOriginalImagePaths, ...uploadedImagePaths]; 
+      return [...imagePathsInDB, ...imagePathsToDB];
     } catch (error) {
       console.error(
         "Erreur lors du chargement des images vers Firebase Storage :",
@@ -147,6 +177,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     handleDeleteImage,
     addImagesToFirebaseStorage,
     deleteImagesFromStorage,
+    deleteAllImagesFromStorage
   };
 };
 

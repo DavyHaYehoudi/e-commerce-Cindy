@@ -6,6 +6,7 @@ const Confirmation = ({
   currentAction,
   addImagesToFirebaseStorage,
   deleteImagesFromStorage,
+  deleteAllImagesFromStorage,
 }) => {
   return (
     <div className="confirm-section">
@@ -31,7 +32,10 @@ const Confirmation = ({
         <div className="edit-section">
           <button
             className="account-btn delete"
-            onClick={() => handleSubmit("delete")}
+            onClick={() => {
+              handleSubmit("delete");
+              deleteAllImagesFromStorage();
+            }}
           >
             Supprimer le produit
           </button>
@@ -39,16 +43,19 @@ const Confirmation = ({
             className="account-btn icon-validate"
             onClick={async () => {
               try {
-                await deleteImagesFromStorage();
-                const paths = await addImagesToFirebaseStorage();
+                const pathsToAdd = await addImagesToFirebaseStorage();
+                const pathsToDelete = await deleteImagesFromStorage();
+                const paths = pathsToAdd.filter(
+                  (path) => !pathsToDelete.includes(path)
+                );
                 handleSubmit(currentAction, paths);
               } catch (error) {
-                console.log( 
+                console.log(
                   "error dans button enregistrer les modifications :",
                   error
                 );
               }
-            }} 
+            }}
           >
             Enregistrer les modifications
           </button>

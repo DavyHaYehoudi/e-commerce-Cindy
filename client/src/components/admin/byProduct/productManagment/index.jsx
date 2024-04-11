@@ -48,13 +48,14 @@ const Modal = ({
     handleDeleteImage,
     addImagesToFirebaseStorage,
     deleteImagesFromStorage,
+    deleteAllImagesFromStorage
   } = useImageManagement({ data, currentAction, initialImageCount });
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement(data);
   const { handleSubmit } = useSubmitForm({
     handleCloseModal,
     fields,
-    tags,
+    tags, 
     materialsData,
     currentProductId,
   });
@@ -121,6 +122,7 @@ const Modal = ({
           currentAction={currentAction}
           addImagesToFirebaseStorage={addImagesToFirebaseStorage}
           deleteImagesFromStorage={deleteImagesFromStorage}
+          deleteAllImagesFromStorage={deleteAllImagesFromStorage}
         />
       </div>
       <ToastContainer autoClose={2500} />
