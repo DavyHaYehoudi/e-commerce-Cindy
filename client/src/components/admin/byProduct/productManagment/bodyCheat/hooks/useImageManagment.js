@@ -7,6 +7,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import {getPathFromStorageUrl} from "../utils/getPathsStorage"
 
 const useImageManagement = ({ data, currentAction, initialImageCount }) => {
   const totalInputs =
@@ -52,14 +53,14 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
 
       setLoading(false);
       // Fonction pour retrouver le chemin du stockage à partir d'une URL
-      function getPathFromStorageUrl(url) {
-        const pathPart = url.split(
-          "firebasestorage.googleapis.com/v0/b/noralyapreprod.appspot.com/o/"
-        )[1];
-        const path = pathPart.split("?")[0];
-        const decodedPath = decodeURIComponent(path.replace(/\+/g, " "));
-        return decodedPath;
-      }
+      // function getPathFromStorageUrl(url) {
+      //   const pathPart = url.split(
+      //     "firebasestorage.googleapis.com/v0/b/noralyapreprod.appspot.com/o/"
+      //   )[1];
+      //   const path = pathPart.split("?")[0];
+      //   const decodedPath = decodeURIComponent(path.replace(/\+/g, " "));
+      //   return decodedPath;
+      // }
       // Fonction pour retrouver les chemins du stockage à partir d'un tableau d'URLs
       function getPathsFromStorageUrls(urls) {
         return urls.map(getPathFromStorageUrl);
@@ -78,7 +79,6 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
   };
   const deleteAllImagesFromStorage=async()=>{
     try {
-      
       await Promise.all(
         originalImages.map(async (imageUrl) => {
           const imageRef = ref(storage, imageUrl);

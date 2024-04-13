@@ -6,7 +6,7 @@ import Description from "./bodyCheat/sections/Description";
 import ImagesSecondary from "./bodyCheat/sections/ImagesSecondary";
 import Confirmation from "./bodyCheat/sections/Confirmation";
 import Tags from "./bodyCheat/tags/Tags";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useTagManagement from "./bodyCheat/hooks/useTagManagment";
 import useImageManagement from "./bodyCheat/hooks/useImageManagment";
 import useFormFields from "./bodyCheat/hooks/useFormFields";
@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
 import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
+import { addProductMaterials } from "../../../../features/admin/productSlice";
 
 const Modal = ({
   handleCloseModal,
@@ -30,7 +31,10 @@ const Modal = ({
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
+  const productMaterials = useSelector((state) => state?.product?.materials);
+
   //Hooks
+  const dispatch = useDispatch();
   const { name, collection, category, description } = data || {};
   const { fields, handleChangeFields } = useFormFields({
     name,
@@ -48,14 +52,14 @@ const Modal = ({
     handleDeleteImage,
     addImagesToFirebaseStorage,
     deleteImagesFromStorage,
-    deleteAllImagesFromStorage
+    deleteAllImagesFromStorage,
   } = useImageManagement({ data, currentAction, initialImageCount });
   const { materialsData, addMaterialData, setMaterialsData } =
     useMaterialDataManagement(data);
   const { handleSubmit } = useSubmitForm({
     handleCloseModal,
     fields,
-    tags, 
+    tags,
     materialsData,
     currentProductId,
   });
@@ -75,6 +79,12 @@ const Modal = ({
       setShowMaterials(false);
     }
   }, [currentAction, isWithMaterial]);
+  useEffect(() => {
+    const initProductMaterials = async () => {
+      dispatch(addProductMaterials(data?.materials));
+    };
+    initProductMaterials();
+  }, [data, dispatch]);
 
   const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
 

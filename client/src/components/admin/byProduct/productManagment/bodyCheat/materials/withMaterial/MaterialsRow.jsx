@@ -33,6 +33,8 @@ const MaterialsRow = ({
     errorMessage,
     loading,
     handleDeleteImage,
+    addNewimage,
+    handleAddNewImage
   } = useMaterials({
     material,
     addMaterialData, 
@@ -82,6 +84,8 @@ const MaterialsRow = ({
           errorMessage={errorMessage}
           loading={loading}
           handleDeleteImage={handleDeleteImage}
+          addNewimage={addNewimage}
+          handleAddNewImage={handleAddNewImage}
         />
       )}
     </>

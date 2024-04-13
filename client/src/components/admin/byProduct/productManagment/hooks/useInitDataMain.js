@@ -25,6 +25,7 @@ const useInitDataMain = ({ action, productId, initialImageCount }) => {
         main_description,
         tags,
         secondary_images,
+        materials,
       } = product || {};
 
       //Concordances des tags
@@ -40,6 +41,7 @@ const useInitDataMain = ({ action, productId, initialImageCount }) => {
       data["description"] = main_description;
       data["tags"] = tagsMatch;
       data["images"] = secondary_images;
+      data["materials"] = materials;
 
       return data;
     }

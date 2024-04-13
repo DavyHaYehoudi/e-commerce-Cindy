@@ -15,7 +15,9 @@ const MaterialsRowDetails = ({
   fileInputId,
   errorMessage,
   loading,
-  handleDeleteImage
+  handleDeleteImage,
+  addNewimage,
+  handleAddNewImage
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
@@ -56,6 +58,8 @@ const MaterialsRowDetails = ({
         errorMessage={errorMessage}
         loading={loading}
         handleDeleteImage={handleDeleteImage}
+        addNewimage={addNewimage}
+        handleAddNewImage={handleAddNewImage}
       />
     </div>
   );

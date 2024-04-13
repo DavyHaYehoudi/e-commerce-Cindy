@@ -68,10 +68,41 @@ const productSlice = createSlice({
   initialState: {
     data: [],
     totalProductsCount: "",
+    materials: [],
+    mainImagesToRemove: [],
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addProductMaterials: (state, action) => {
+      state.materials = action.payload;
+    },
+    changeMainImage: (state, action) => {
+      const { materialId, productId, value } = action.payload;
+      const product = state.data.find((p) => p._id === productId);
+      product.materials = product.materials.map((mat) => {
+        if (mat._id === materialId) {
+          return { ...mat, main_image: value };
+        }
+        return mat;
+      });
+    },
+    deleteMainImage: (state, action) => {
+      const { materialId, productId } = action.payload;
+      const product = state.data.find((p) => p._id === productId);
+      product.materials = product.materials.map((mat) => {
+        if (mat._id === materialId) {
+          return { ...mat, main_image: null };
+        }
+        return mat;
+      });
+    },
+    addMainImagesToRemove: (state, action) => {
+      state.mainImagesToRemove = Array.from(
+        new Set([...state.mainImagesToRemove, action.payload])
+      ).filter((item) => item.includes("products/main/"));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
@@ -135,4 +166,10 @@ const productSlice = createSlice({
   },
 });
 export { fetchProduct, addProduct, editProduct, deleteProduct };
+export const {
+  addProductMaterials,
+  changeMainImage,
+  deleteMainImage,
+  addMainImagesToRemove,
+} = productSlice.actions;
 export default productSlice.reducer;

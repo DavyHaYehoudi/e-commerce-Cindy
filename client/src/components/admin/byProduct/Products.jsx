@@ -7,10 +7,9 @@ import useInitData from "./productManagment/hooks/useInitDataMain";
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const productsStore = useSelector((state) => state?.product?.data);
   const [currentAction, setCurrentAction] = useState("create");
   const [currentProductId, setCurrentProductId] = useState(null);
-
+  const productsStore = useSelector((state) => state?.product?.data);
   const handleOpenModal = (action, _id) => {
     setCurrentAction(action);
     setIsModalOpen(true);
@@ -25,6 +24,7 @@ const Products = () => {
     productId: currentProductId,
   });
   const data = initDataMain();
+
   const product = productsStore?.find(
     (product) => product?._id === currentProductId
   );
