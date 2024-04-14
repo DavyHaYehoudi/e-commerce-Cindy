@@ -41,6 +41,7 @@ export const getProductProperties = (
       category: categoryName,
       tags: tagNames,
       main_description,
+      materials,
       secondary_images,
       main_image,
       pricing,

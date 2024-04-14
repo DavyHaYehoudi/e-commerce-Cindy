@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const MaterialsSelect = ({
   showMaterials,
   handleMaterialsSelectToggle,
-  addMaterialData,
+  // addMaterialData,
   currentAction,
   currentProductId,
   isWithMaterial
@@ -47,7 +47,7 @@ const MaterialsSelect = ({
           <MaterialsRow
             key={index}
             material={material}
-            addMaterialData={addMaterialData}
+            // addMaterialData={addMaterialData}
             currentAction={currentAction}
             currentProductId={currentProductId}
             isWithMaterial={isWithMaterial}
@@ -55,7 +55,7 @@ const MaterialsSelect = ({
         ))
       ) : (
         <NoMaterials
-          addMaterialData={addMaterialData}
+          // addMaterialData={addMaterialData}
           currentAction={currentAction}
           currentProductId={currentProductId}
           isWithMaterial={isWithMaterial}

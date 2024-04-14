@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../firebase";
 
 const fetchProduct = createAsyncThunk(
   "product/fetchProduct",
@@ -62,6 +64,35 @@ const deleteProduct = createAsyncThunk(
     }
   }
 );
+const updateMainImageToFirebaseStorage = createAsyncThunk(
+  "products/updateFirebaseStorage",
+  async ({ originalsMainImagesStore, materialsProduct }) => {
+    try {
+      const mainImagesToRemove = originalsMainImagesStore?.filter((element) =>
+        materialsProduct.some((mat) => mat?.main_image !== element?.main_image)
+      );
+
+      const mainImagesToAdd = materialsProduct?.filter((element) =>
+        originalsMainImagesStore.some(
+          (image) => image?.main_image !== element?.main_image
+        )
+      );
+      console.log("mainImagesToRemove:", mainImagesToRemove);
+      console.log("mainImagesToAdd:", mainImagesToAdd);
+      // const uniqueId = uuidv4();
+      // const fileExtension = file.name.split(".").pop();
+      // const filePath = `products/main/${uniqueId}.${fileExtension}`;
+      if (mainImagesToAdd.length > 0) {
+        mainImagesToAdd.forEach(async (path) => {
+          const storageRef = ref(storage, path);
+          await uploadBytes(storageRef, "products/main");
+        });
+      }
+    } catch (error) {
+      console.log("Erreur lors de l'update à Firebase Storage :", error);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: "product",
@@ -69,38 +100,60 @@ const productSlice = createSlice({
     data: [],
     totalProductsCount: "",
     materials: [],
-    mainImagesToRemove: [],
+    originalsMainImages: [],
+    mainImagesToAddStorage: [],
     status: "idle",
     error: null,
   },
   reducers: {
-    addProductMaterials: (state, action) => {
+    updateProductMaterials: (state, action) => {
+      const { _id, stock, newDate, pricing, promo, main_image } =
+        action.payload || {};
+
+      const existingMaterialIndex = state.materials.findIndex(
+        (material) => material._id === _id
+      );
+      if (existingMaterialIndex !== -1) {
+        const updatedMaterial = { ...state.materials[existingMaterialIndex] };
+
+        if (stock !== undefined) updatedMaterial.stock = stock;
+        if (newDate !== undefined) updatedMaterial.newDate = newDate;
+        if (pricing !== undefined) updatedMaterial.pricing = pricing;
+        if (promo !== undefined) updatedMaterial.promo = promo;
+        if (main_image !== undefined) updatedMaterial.main_image = main_image;
+
+        state.materials[existingMaterialIndex] = updatedMaterial;
+      } else {
+        state.materials = [...state.materials, action.payload];
+      }
+    },
+
+    resetProductMaterials: (state, action) => {
+      state.materials = [];
+    },
+    addOriginalsMainImages: (state, action) => {
+      state.originalsMainImages = action.payload.map(
+        (element) => element?.main_image
+      );
       state.materials = action.payload;
     },
-    changeMainImage: (state, action) => {
-      const { materialId, productId, value } = action.payload;
-      const product = state.data.find((p) => p._id === productId);
-      product.materials = product.materials.map((mat) => {
-        if (mat._id === materialId) {
-          return { ...mat, main_image: value };
-        }
-        return mat;
-      });
-    },
-    deleteMainImage: (state, action) => {
-      const { materialId, productId } = action.payload;
-      const product = state.data.find((p) => p._id === productId);
-      product.materials = product.materials.map((mat) => {
-        if (mat._id === materialId) {
-          return { ...mat, main_image: null };
-        }
-        return mat;
-      });
-    },
-    addMainImagesToRemove: (state, action) => {
-      state.mainImagesToRemove = Array.from(
-        new Set([...state.mainImagesToRemove, action.payload])
-      ).filter((item) => item.includes("products/main/"));
+    addMainImagesToStorage: (state, action) => {
+      const { materialId, file } = action.payload;
+      console.log('action.payload:', action.payload)
+      const existingMaterialIndex = state.mainImagesToAddStorage.findIndex(
+        (material) => material._id === materialId
+      );
+      if (existingMaterialIndex !== -1) {
+        const updatedMainImage = {
+          ...state.mainImagesToAddStorage[existingMaterialIndex],
+        };
+        state.materials[existingMaterialIndex] = updatedMainImage;
+      } else {
+        state.mainImagesToAddStorage = [
+          ...state.mainImagesToAddStorage,
+          { _id: materialId, file },
+        ];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -165,11 +218,17 @@ const productSlice = createSlice({
       });
   },
 });
-export { fetchProduct, addProduct, editProduct, deleteProduct };
+export {
+  fetchProduct,
+  addProduct,
+  editProduct,
+  deleteProduct,
+  updateMainImageToFirebaseStorage,
+};
 export const {
-  addProductMaterials,
-  changeMainImage,
-  deleteMainImage,
-  addMainImagesToRemove,
+  addOriginalsMainImages,
+  updateProductMaterials,
+  resetProductMaterials,
+  addMainImagesToStorage,
 } = productSlice.actions;
 export default productSlice.reducer;

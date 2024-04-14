@@ -18,6 +18,7 @@ const useSubmitForm = ({
   const materialBeforeEditing = productsStore?.find(
     (product) => product?._id === currentProductId
   )?.materials;
+  const productMaterials = useSelector(state=>state?.product?.materials)
   const dispatch = useDispatch();
 
   if (materialsData.length === 0) {
@@ -40,8 +41,10 @@ const useSubmitForm = ({
     }
     if (currentAction === "edit") {
       formData.secondary_images = paths
-      dispatch(editProduct({ formData, productId: currentProductId }));
-      if(isSucceed){handleCloseModal()}
+      formData.materials = productMaterials
+      console.log('formData:', formData)
+      // dispatch(editProduct({ formData, productId: currentProductId }));
+      // if(isSucceed){handleCloseModal()}
     }
     if (currentAction === "delete") {
       const confirm = window.confirm(

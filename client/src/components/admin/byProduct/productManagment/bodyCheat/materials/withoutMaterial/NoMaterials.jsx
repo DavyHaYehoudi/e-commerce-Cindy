@@ -6,7 +6,7 @@ import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
 
 const NoMaterials = ({
-  addMaterialData,
+  // addMaterialData,
   currentAction,
   currentProductId,
   isWithMaterial,
@@ -49,7 +49,7 @@ const NoMaterials = ({
     loading,
     handleDeleteImage,
   } = useMaterials({
-    addMaterialData,
+    // addMaterialData,
     currentAction,
     currentProductId,
     isWithMaterial,

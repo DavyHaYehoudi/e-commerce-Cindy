@@ -6,8 +6,8 @@ import {
   deleteObject,
   getDownloadURL,
 } from "firebase/storage";
-import { v4 as uuidv4 } from "uuid";
 import {getPathFromStorageUrl} from "../utils/getPathsStorage"
+import { generateFilePath } from "../utils/generateFilePath";
 
 const useImageManagement = ({ data, currentAction, initialImageCount }) => {
   const totalInputs =
@@ -107,9 +107,10 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
         newImages.map(async (image) => {
           if (image?.name) {
             // Si image type file et non url
-            const uniqueId = uuidv4();
-            const fileExtension = image.name.split(".").pop();
-            const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
+            // const uniqueId = uuidv4();
+            // const fileExtension = image.name.split(".").pop();
+            // const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
+            const filePath = generateFilePath(image,"products/secondary/")
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, image);
             return filePath;

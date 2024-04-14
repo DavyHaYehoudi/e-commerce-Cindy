@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 
 const MainImage = ({

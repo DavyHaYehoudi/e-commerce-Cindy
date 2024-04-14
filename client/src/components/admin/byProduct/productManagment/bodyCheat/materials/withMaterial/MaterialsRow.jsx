@@ -8,7 +8,6 @@ import useMaterials from "../hooks/useMaterials";
 
 const MaterialsRow = ({
   material,
-  addMaterialData,
   currentAction,
   currentProductId,
   isWithMaterial
@@ -34,10 +33,9 @@ const MaterialsRow = ({
     loading,
     handleDeleteImage,
     addNewimage,
-    handleAddNewImage
+    handleAddNewImage,
   } = useMaterials({
     material,
-    addMaterialData, 
     currentAction,
     currentProductId, 
     isWithMaterial
@@ -71,7 +69,6 @@ const MaterialsRow = ({
       {isChecked && (
         <MaterialsRowDetails
           material={material}
-          addMaterialData={addMaterialData}
           promo={promo}
           newDate={newDate}
           setNewDate={setNewDate}
