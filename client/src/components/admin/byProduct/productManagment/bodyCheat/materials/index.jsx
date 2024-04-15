@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 const MaterialsSelect = ({
   showMaterials,
   handleMaterialsSelectToggle,
-  // addMaterialData,
   currentAction,
   currentProductId,
-  isWithMaterial
+  isWithMaterial,
+  addMainImageToStorage,
+  deleteMainImageFromStorage
 }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
 
@@ -47,18 +48,20 @@ const MaterialsSelect = ({
           <MaterialsRow
             key={index}
             material={material}
-            // addMaterialData={addMaterialData}
             currentAction={currentAction}
             currentProductId={currentProductId}
             isWithMaterial={isWithMaterial}
+            addMainImageToStorage={addMainImageToStorage}
+            deleteMainImageFromStorage={deleteMainImageFromStorage}
           />
         ))
       ) : (
         <NoMaterials
-          // addMaterialData={addMaterialData}
           currentAction={currentAction}
           currentProductId={currentProductId}
           isWithMaterial={isWithMaterial}
+          addMainImageToStorage={addMainImageToStorage}
+          deleteMainImageFromStorage={deleteMainImageFromStorage}
         />
       )}
     </div>

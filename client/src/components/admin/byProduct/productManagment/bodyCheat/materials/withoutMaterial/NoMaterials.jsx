@@ -6,10 +6,11 @@ import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
 
 const NoMaterials = ({
-  // addMaterialData,
+  addMainImageToStorage,
   currentAction,
   currentProductId,
   isWithMaterial,
+  deleteMainImageFromStorage
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
@@ -49,11 +50,13 @@ const NoMaterials = ({
     loading,
     handleDeleteImage,
   } = useMaterials({
-    // addMaterialData,
     currentAction,
     currentProductId,
     isWithMaterial,
+    addMainImageToStorage,
+    deleteMainImageFromStorage
   });
+
   return (
     <div className="noMaterials">
       <div className="details-wrapper">
@@ -80,6 +83,7 @@ const NoMaterials = ({
         errorMessage={errorMessage}
         loading={loading}
         handleDeleteImage={handleDeleteImage}
+        addMainImageToStorage={addMainImageToStorage}
       />
     </div>
   );

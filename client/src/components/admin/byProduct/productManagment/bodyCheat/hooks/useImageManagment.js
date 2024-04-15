@@ -6,7 +6,7 @@ import {
   deleteObject,
   getDownloadURL,
 } from "firebase/storage";
-import {getPathFromStorageUrl} from "../utils/getPathsStorage"
+import { getPathFromStorageUrl } from "../utils/getPathsStorage";
 import { generateFilePath } from "../utils/generateFilePath";
 
 const useImageManagement = ({ data, currentAction, initialImageCount }) => {
@@ -14,9 +14,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     currentAction === "create"
       ? initialImageCount
       : Math.max(initialImageCount, data?.images?.length || 0);
-  // State pour stocker les images originales en mode "edit"
   const [originalImages, setOriginalImages] = useState([]);
-  // State pour stocker les images locales
   const [localImages, setLocalImages] = useState(
     Array.from({ length: initialImageCount }, () => null)
   );
@@ -28,7 +26,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     setLocalImages(updatedImages);
   };
   // Supprimer les images du stockage et de la base de données
-  const deleteImagesFromStorage = async () => {
+  const deleteSecondariesImagesFromStorage = async () => {
     try {
       setLoading(true);
       // Convertir les chemins originaux en URLs Firebase Storage
@@ -52,15 +50,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       );
 
       setLoading(false);
-      // Fonction pour retrouver le chemin du stockage à partir d'une URL
-      // function getPathFromStorageUrl(url) {
-      //   const pathPart = url.split(
-      //     "firebasestorage.googleapis.com/v0/b/noralyapreprod.appspot.com/o/"
-      //   )[1];
-      //   const path = pathPart.split("?")[0];
-      //   const decodedPath = decodeURIComponent(path.replace(/\+/g, " "));
-      //   return decodedPath;
-      // }
+
       // Fonction pour retrouver les chemins du stockage à partir d'un tableau d'URLs
       function getPathsFromStorageUrls(urls) {
         return urls.map(getPathFromStorageUrl);
@@ -77,7 +67,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       return [];
     }
   };
-  const deleteAllImagesFromStorage=async()=>{
+  const deleteAllSecondariesImagesFromStorage = async () => {
     try {
       await Promise.all(
         originalImages.map(async (imageUrl) => {
@@ -86,9 +76,9 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
         })
       );
     } catch (error) {
-      console.log('Erreur dans deleteAllImagesFromStorage :',error);
+      console.log("Erreur dans deleteAllSecondariesImagesFromStorage :", error);
     }
-  }
+  };
   // **************************** UPLOAD **************************** //
   const handleChangeImage = (e, index) => {
     const updatedImages = [...localImages];
@@ -96,7 +86,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     setLocalImages(updatedImages);
   };
   // Ajouter les nouvelles images à Firebase Storage et mettre à jour la base de données
-  const addImagesToFirebaseStorage = async () => {
+  const addSecondariesImagesToFirebaseStorage = async () => {
     try {
       setLoading(true);
       // Filtrer les nouvelles images
@@ -110,7 +100,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
             // const uniqueId = uuidv4();
             // const fileExtension = image.name.split(".").pop();
             // const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
-            const filePath = generateFilePath(image,"products/secondary/")
+            const filePath = generateFilePath(image, "products/secondary/");
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, image);
             return filePath;
@@ -176,9 +166,9 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     loading,
     handleChangeImage,
     handleDeleteImage,
-    addImagesToFirebaseStorage,
-    deleteImagesFromStorage,
-    deleteAllImagesFromStorage
+    addSecondariesImagesToFirebaseStorage,
+    deleteSecondariesImagesFromStorage,
+    deleteAllSecondariesImagesFromStorage,
   };
 };
 

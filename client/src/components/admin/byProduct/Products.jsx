@@ -4,12 +4,15 @@ import ProductsCard from "./ProductsCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "./productManagment";
 import useInitData from "./productManagment/hooks/useInitDataMain";
+import useMainImagesToAddStorage from "./productManagment/bodyCheat/sections/hooks/useMainImagesToAddStorage";
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentAction, setCurrentAction] = useState("create");
   const [currentProductId, setCurrentProductId] = useState(null);
   const productsStore = useSelector((state) => state?.product?.data);
+  const { reset } = useMainImagesToAddStorage();
+  
   const handleOpenModal = (action, _id) => {
     setCurrentAction(action);
     setIsModalOpen(true);
@@ -17,6 +20,7 @@ const Products = () => {
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    reset();
   };
   const { initDataMain } = useInitData({
     action: currentAction,

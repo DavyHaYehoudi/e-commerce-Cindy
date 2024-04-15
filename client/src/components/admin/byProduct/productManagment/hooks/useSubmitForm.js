@@ -11,14 +11,20 @@ const useSubmitForm = ({
   tags,
   materialsData,
   currentProductId,
-  handleCloseModal
+  handleCloseModal,
+  uploadMainImagesToStorage,
+  deleteMainImagesFromStorage,
+  deleteAllMainImagesFromStorage,
+  deleteAllSecondariesImagesFromStorage,
+  reset,
+  data
 }) => {
   const productsStore = useSelector((state) => state?.product?.data);
-  const statusStore =useSelector(state=>state?.product?.status)
+  const statusStore = useSelector((state) => state?.product?.status);
   const materialBeforeEditing = productsStore?.find(
     (product) => product?._id === currentProductId
   )?.materials;
-  const productMaterials = useSelector(state=>state?.product?.materials)
+  const productMaterials = useSelector((state) => state?.product?.materials);
   const dispatch = useDispatch();
 
   if (materialsData.length === 0) {
@@ -30,35 +36,46 @@ const useSubmitForm = ({
     category: fields?.category,
     tags: tags?.map((tag) => tag?._id),
     main_description: fields?.description,
-    materials: formatMaterialProduct(materialsData),
+    materials: formatMaterialProduct(productMaterials),
   };
-  const isSucceed = statusStore==="succeeded"
-  const handleSubmit = async (currentAction,paths) => {
+  const isSucceed = statusStore === "succeeded";
+  const handleSubmit = async (currentAction, paths) => {
     if (currentAction === "create") {
-      formData.secondary_images = paths
+      formData.secondary_images = paths;
+      await uploadMainImagesToStorage();
       dispatch(addProduct(formData));
-      if(isSucceed){handleCloseModal()}
+      reset();
+      if (isSucceed) {
+        handleCloseModal();
+      }
     }
     if (currentAction === "edit") {
-      formData.secondary_images = paths
-      formData.materials = productMaterials
-      console.log('formData:', formData)
-      // dispatch(editProduct({ formData, productId: currentProductId }));
-      // if(isSucceed){handleCloseModal()}
+      formData.secondary_images = paths;
+      await uploadMainImagesToStorage();
+      await deleteMainImagesFromStorage();
+      dispatch(editProduct({ formData, productId: currentProductId }));
+      reset();
+      if (isSucceed) {
+        handleCloseModal();
+      }
     }
     if (currentAction === "delete") {
       const confirm = window.confirm(
         "Etes-vous sûr de vouloir supprimer ce produit, cette action est définitive ?"
       );
       if (confirm) {
+        await deleteAllMainImagesFromStorage(data);
+        await deleteAllSecondariesImagesFromStorage();
         dispatch(deleteProduct(currentProductId));
-        if(isSucceed){handleCloseModal()}
+        reset();
+        if (isSucceed) {
+          handleCloseModal();
+        }
       } else if (!confirm) {
         return;
       }
     }
   };
-  // console.log("formData :", formData);
 
   return { handleSubmit };
 };

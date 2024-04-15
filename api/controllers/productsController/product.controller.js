@@ -48,6 +48,7 @@ const productController = {
     try {
       const { productId } = req.params;
       const updateFields = req.body;
+      console.log("********** req body :**********",req.body);
 
       // Liste blanche des champs autorisés à être modifiés
       const allowedFields = [

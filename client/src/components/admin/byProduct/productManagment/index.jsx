@@ -16,9 +16,10 @@ import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
 import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 import {
-  addOriginalsMainImages,
+  initProductMaterials,
   resetProductMaterials,
 } from "../../../../features/admin/productSlice";
+import useMainImagesToAddStorage from "./bodyCheat/sections/hooks/useMainImagesToAddStorage";
 
 const Modal = ({
   handleCloseModal,
@@ -52,17 +53,31 @@ const Modal = ({
     loading,
     handleChangeImage,
     handleDeleteImage,
-    addImagesToFirebaseStorage,
-    deleteImagesFromStorage,
-    deleteAllImagesFromStorage,
+    addSecondariesImagesToFirebaseStorage,
+    deleteSecondariesImagesFromStorage,
+    deleteAllSecondariesImagesFromStorage,
   } = useImageManagement({ data, currentAction, initialImageCount });
-
+  const {
+    mainImagesToAddStorage,
+    addMainImageToStorage,
+    deleteMainImageFromStorage,
+    uploadMainImagesToStorage,
+    deleteMainImagesFromStorage,
+    deleteAllMainImagesFromStorage,
+    reset,
+  } = useMainImagesToAddStorage(data);
   const { handleSubmit } = useSubmitForm({
     handleCloseModal,
     fields,
     tags,
     materialsData,
     currentProductId,
+    data,
+    uploadMainImagesToStorage,
+    deleteMainImagesFromStorage,
+    deleteAllMainImagesFromStorage,
+    deleteAllSecondariesImagesFromStorage,
+    reset
   });
   //Functions
   const handleMaterialsSelectToggle = () => {
@@ -71,7 +86,6 @@ const Modal = ({
     );
     if (confirm) {
       setShowMaterials(!showMaterials);
-      // setMaterialsData([]);
       dispatch(resetProductMaterials());
     }
   };
@@ -83,9 +97,9 @@ const Modal = ({
   }, [currentAction, isWithMaterial]);
 
   useEffect(() => {
-    //Initialisation du state originaslMainImages et materials dans le store
     if (data?.materials) {
-      dispatch(addOriginalsMainImages(data?.materials));
+      dispatch(initProductMaterials(data?.materials));
+      console.log("data materials ******* :",data?.materials);
     }
   }, [data?.materials, dispatch]);
 
@@ -119,6 +133,8 @@ const Modal = ({
           currentAction={currentAction}
           currentProductId={currentProductId}
           isWithMaterial={isWithMaterial}
+          addMainImageToStorage={addMainImageToStorage}
+          deleteMainImageFromStorage={deleteMainImageFromStorage}
         />
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
@@ -132,9 +148,11 @@ const Modal = ({
           handleSubmit={handleSubmit}
           confirmationEnabled={confirmationEnabled}
           currentAction={currentAction}
-          addImagesToFirebaseStorage={addImagesToFirebaseStorage}
-          deleteImagesFromStorage={deleteImagesFromStorage}
-          deleteAllImagesFromStorage={deleteAllImagesFromStorage}
+          addSecondariesImagesToFirebaseStorage={addSecondariesImagesToFirebaseStorage}
+          deleteSecondariesImagesFromStorage={deleteSecondariesImagesFromStorage}
+          mainImagesToAddStorage={mainImagesToAddStorage}
+          uploadMainImagesToStorage={uploadMainImagesToStorage}
+          deleteMainImagesFromStorage={deleteMainImagesFromStorage}
         />
       </div>
       <ToastContainer autoClose={2500} />

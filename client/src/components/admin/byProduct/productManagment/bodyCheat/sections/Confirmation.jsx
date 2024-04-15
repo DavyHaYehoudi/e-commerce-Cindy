@@ -1,20 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateMainImageToFirebaseStorage } from "../../../../../../features/admin/productSlice";
 
 const Confirmation = ({
   handleSubmit,
   confirmationEnabled,
   currentAction,
-  addImagesToFirebaseStorage,
-  deleteImagesFromStorage,
-  deleteAllImagesFromStorage,
+  addSecondariesImagesToFirebaseStorage,
+  deleteSecondariesImagesFromStorage,
 }) => {
-  const dispatch=useDispatch()
-  const originalsMainImagesStore = useSelector(
-    (state) => state?.product?.originalsMainImages
-  );
-  const materialsProduct = useSelector((state) => state?.product?.materials);
   return (
     <div className="confirm-section">
       {currentAction === "create" && (
@@ -25,7 +17,7 @@ const Confirmation = ({
           }`}
           onClick={async () => {
             try {
-              const paths = await addImagesToFirebaseStorage();
+              const paths = await addSecondariesImagesToFirebaseStorage();
               handleSubmit(currentAction, paths);
             } catch (error) {
               console.log("error dans button valider :", error);
@@ -41,7 +33,6 @@ const Confirmation = ({
             className="account-btn delete"
             onClick={() => {
               handleSubmit("delete");
-              deleteAllImagesFromStorage();
             }}
           >
             Supprimer le produit
@@ -50,29 +41,17 @@ const Confirmation = ({
             className="account-btn icon-validate"
             onClick={async () => {
               try {
-                console.log('originalsMainImagesStore:', originalsMainImagesStore)
-                const mainImagesToRemove = originalsMainImagesStore?.filter((path) =>
-                !materialsProduct?.some((mat) => mat?.main_image === path)
-              ).filter(Boolean);
-        
-              console.log('materialsProduct:', materialsProduct)
-              const mainImagesToAdd = materialsProduct?.filter((element) =>
-              !originalsMainImagesStore?.some(
-                (path) => path === element?.main_image
-              )
-            ).map(item => item?.main_image);
-              console.log("mainImagesToRemove:", mainImagesToRemove);
-              console.log("mainImagesToAdd:", mainImagesToAdd);
-                // dispatch(updateMainImageToFirebaseStorage({originalsMainImagesStore,materialsProduct}))
-                const pathsToAdd = await addImagesToFirebaseStorage();
-                const pathsToDelete = await deleteImagesFromStorage();
+                const pathsToAdd =
+                  await addSecondariesImagesToFirebaseStorage();
+                const pathsToDelete =
+                  await deleteSecondariesImagesFromStorage();
                 const paths = pathsToAdd.filter(
                   (path) => !pathsToDelete.includes(path)
                 );
                 handleSubmit(currentAction, paths);
               } catch (error) {
                 console.log(
-                  "error dans button enregistrer les modifications :", 
+                  "error dans button enregistrer les modifications :",
                   error
                 );
               }

@@ -4,8 +4,8 @@ import { getDownloadURL, ref } from "firebase/storage";
 import useInitDataMaterials from "../../../hooks/useInitDataMaterials";
 import { useDispatch } from "react-redux";
 import {
-  addMainImagesToStorage,
   updateProductMaterials,
+  mainImagesToRemoveStorage,
 } from "../../../../../../../features/admin/productSlice";
 import { generateFilePath } from "../../utils/generateFilePath";
 
@@ -14,6 +14,8 @@ const useMaterials = ({
   currentAction,
   currentProductId,
   isWithMaterial,
+  addMainImageToStorage,
+  deleteMainImageFromStorage,
 }) => {
   const dispatch = useDispatch();
   const { initDataMaterials } = useInitDataMaterials({
@@ -45,7 +47,6 @@ const useMaterials = ({
     endDate: initEndDate,
   });
   const [mainImage, setMainImage] = useState(initMainImage);
-  console.log('mainImage:', mainImage)
   const [addNewimage, setAddNewImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -141,6 +142,9 @@ const useMaterials = ({
     );
   };
   const handleDeleteImage = () => {
+    if (mainImage && !mainImage?.name) {
+      dispatch(mainImagesToRemoveStorage(mainImage));
+    }
     setMainImage(null);
     dispatch(updateProductMaterials({ _id: material._id, main_image: null }));
   };
@@ -148,13 +152,24 @@ const useMaterials = ({
   const handleAddNewImage = () => {
     setAddNewImage(false);
     const value = generateFilePath(mainImage, "products/main/");
-    dispatch(updateProductMaterials({ _id: material._id, main_image: value }));
-    dispatch(
-      addMainImagesToStorage({ materialId: material._id, file: mainImage })
-    );
+    dispatch(updateProductMaterials({ _id: material?._id, main_image: value }));
+    addMainImageToStorage({
+      materialId: material._id,
+      file: mainImage,
+      path: value,
+    });
   };
+  //Supprimer l'image du state des images à ajouter à storage si l'utilisateur clique sur une image déja sélectionnée puis annule
+  useEffect(() => {
+    if (!mainImage) {
+      // deleteMainImageFromStorage(material._id);
+    }
+  }, [mainImage, material?._id, deleteMainImageFromStorage]);
   //Afficher une image principale simplement localement
   const handleMainImageChange = async (e) => {
+    if (mainImage && !mainImage?.name) {
+      dispatch(mainImagesToRemoveStorage(mainImage));
+    }
     const file = e.target.files[0];
     setMainImage(file);
     setAddNewImage(true);

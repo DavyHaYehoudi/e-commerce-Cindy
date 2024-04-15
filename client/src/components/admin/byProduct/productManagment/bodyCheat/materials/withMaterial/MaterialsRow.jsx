@@ -10,7 +10,9 @@ const MaterialsRow = ({
   material,
   currentAction,
   currentProductId,
-  isWithMaterial
+  isWithMaterial,
+  addMainImageToStorage,
+  deleteMainImageFromStorage
 }) => {
   // Générer un identifiant unique pour l'input de type fichier
   const fileInputId = `file-upload-${material?._id}`;
@@ -38,7 +40,9 @@ const MaterialsRow = ({
     material,
     currentAction,
     currentProductId, 
-    isWithMaterial
+    isWithMaterial,
+    addMainImageToStorage,
+    deleteMainImageFromStorage
   }); 
 
   return (

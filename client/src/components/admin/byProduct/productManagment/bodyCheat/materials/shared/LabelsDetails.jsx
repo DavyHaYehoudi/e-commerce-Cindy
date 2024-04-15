@@ -18,7 +18,7 @@ const LabelsDetails = ({
   loading,
   handleDeleteImage,
   addNewimage,
-  handleAddNewImage
+  handleAddNewImage,
 }) => {
   return (
     <div className="labels-details">
