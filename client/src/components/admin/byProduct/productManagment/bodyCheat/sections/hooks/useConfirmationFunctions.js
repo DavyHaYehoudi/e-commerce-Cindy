@@ -30,7 +30,7 @@ const useConfirmationFunctions = ({
   const handleDeleteProduct = () => {
     handleSubmit("delete");
   };
-
+ 
   return {
     confirmationEnabled,
     setConfirmationEnabled,

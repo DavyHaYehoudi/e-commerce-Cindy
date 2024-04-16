@@ -1,38 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import ProductsCard from "./ProductsCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "./productManagment";
-import useInitData from "./productManagment/hooks/useInitDataMain";
 import useMainImagesToAddStorage from "./productManagment/bodyCheat/sections/hooks/useMainImagesToAddStorage";
+import useProductModal from "./productManagment/hooks/useProductModal";
 
 const Products = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentAction, setCurrentAction] = useState("create");
-  const [currentProductId, setCurrentProductId] = useState(null);
   const productsStore = useSelector((state) => state?.product?.data);
   const { reset } = useMainImagesToAddStorage();
-  
-  const handleOpenModal = (action, _id) => {
-    setCurrentAction(action);
-    setIsModalOpen(true);
-    setCurrentProductId(_id);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    reset();
-  };
-  const { initDataMain } = useInitData({
-    action: currentAction,
-    initialImageCount: 5,
-    productId: currentProductId,
-  });
-  const data = initDataMain();
 
-  const product = productsStore?.find(
-    (product) => product?._id === currentProductId
-  );
-  const isWithMaterial = product?.materials?.every((item) => item?._id);
+  const {
+    handleOpenModal,
+    handleCloseModal,
+    data,
+    isWithMaterial,
+    isModalOpen,
+    currentAction,
+    currentProductId,
+  } = useProductModal({
+    currentAction: "create",
+    currentProductId: null,
+    reset,
+  });
 
   return (
     <div className="products">

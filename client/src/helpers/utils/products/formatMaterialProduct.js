@@ -6,17 +6,17 @@ const formatMaterialProduct = (materialsData) => {
       oldPrice: parseFloat(material?.pricing?.oldPrice),
     },
     promotion: {
-      amount: parseFloat(material?.promotion?.amount),
-      startDate: material?.promotion?.startDate
-        ? new Date(material?.promotion?.startDate).toISOString()
+      amount: parseFloat(material?.promo?.amount),
+      startDate: material?.promo?.startDate
+        ? new Date(material?.promo?.startDate).toISOString()
         : null,
-      endDate: material?.promotion?.endDate
-        ? new Date(material?.promotion?.endDate).toISOString()
+      endDate: material?.promo?.endDate
+        ? new Date(material?.promo?.endDate).toISOString()
         : null,
     },
     main_image: material?.main_image,
-    untilNew: material?.untilNew
-      ? new Date(material?.untilNew).toISOString()
+    untilNew: material?.newDate
+      ? new Date(material?.newDate).toISOString()
       : new Date().toISOString(),
     stock: parseInt(material?.stock),
   }));

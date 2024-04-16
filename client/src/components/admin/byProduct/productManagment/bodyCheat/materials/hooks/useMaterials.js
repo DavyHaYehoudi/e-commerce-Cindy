@@ -55,7 +55,7 @@ const useMaterials = ({
   const handleStockChange = (e) => {
     const newStock = parseInt(e.target.value);
     setStock(newStock);
-    dispatch(updateProductMaterials({ _id: material._id, stock: newStock }));
+    dispatch(updateProductMaterials({ _id: material?._id, stock: newStock }));
   };
   const handleNewDateChange = (e) => {
     const newDateValue = e.target.value;
@@ -69,7 +69,7 @@ const useMaterials = ({
       setErrorMessage("");
     }
     dispatch(
-      updateProductMaterials({ _id: material._id, newDate: newDateValue })
+      updateProductMaterials({ _id: material?._id, newDate: newDateValue })
     );
   };
   const handlePricingChange = (e, property) => {
@@ -80,7 +80,7 @@ const useMaterials = ({
     }));
     dispatch(
       updateProductMaterials({
-        _id: material._id,
+        _id: material?._id,
         pricing: { ...pricing, [property]: newValue },
       })
     );
@@ -134,7 +134,7 @@ const useMaterials = ({
     });
     dispatch(
       updateProductMaterials({
-        _id: material._id,
+        _id: material?._id,
         promo: { ...promo, [property]: newValue },
       })
     );
@@ -144,7 +144,7 @@ const useMaterials = ({
       dispatch(mainImagesToRemoveStorage(mainImage));
     }
     setMainImage(null);
-    dispatch(updateProductMaterials({ _id: material._id, main_image: null }));
+    dispatch(updateProductMaterials({ _id: material?._id, main_image: null }));
   };
   const handleMainImageChange = async (e) => {
     if (mainImage && !mainImage?.name) {
@@ -155,7 +155,7 @@ const useMaterials = ({
     const path = generateFilePath(file, "products/main/");
     dispatch(updateProductMaterials({ _id: material?._id, main_image: path }));
     addMainImageToStorage({
-      materialId: material._id,
+      materialId: material?._id,
       file,
       path,
     });

@@ -98,7 +98,6 @@ const Modal = ({
   useEffect(() => {
     if (data?.materials) {
       dispatch(initProductMaterials(data?.materials));
-      console.log("data materials ******* :",data?.materials);
     }
   }, [data?.materials, dispatch]);
 

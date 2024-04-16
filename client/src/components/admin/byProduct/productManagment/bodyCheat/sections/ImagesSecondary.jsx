@@ -8,8 +8,8 @@ const ImagesSecondary = ({
 }) => {
   const renderFileInputs = () => {
     return localImages.map((image, index) => (
-      <div className="section-secondary_images">
-      <label key={index} htmlFor={`file-upload-${index}`}>
+      <div key={index} className="section-secondary_images">
+      <label  htmlFor={`file-upload-${index}`}>
         <div className="image-container secondary_image">
           {loading ? (
             <div className="loader">
