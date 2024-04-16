@@ -16,6 +16,7 @@ const MaterialsRowDetails = ({
   errorMessage,
   loading,
   handleDeleteImage,
+  currentProductId,
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
@@ -41,6 +42,7 @@ const MaterialsRowDetails = ({
   return (
     <div className="materials-details">
       <LabelsDetails
+        currentProductId={currentProductId}
         isNewChecked={isNewChecked}
         isPromoChecked={isPromoChecked}
         newDate={newDate}

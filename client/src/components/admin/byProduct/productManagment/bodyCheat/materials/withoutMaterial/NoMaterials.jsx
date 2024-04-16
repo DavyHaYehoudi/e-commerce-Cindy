@@ -6,6 +6,7 @@ import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
 
 const NoMaterials = ({
+  data,
   addMainImageToStorage,
   currentAction,
   currentProductId,
@@ -66,6 +67,8 @@ const NoMaterials = ({
         <OldPrice pricing={pricing} handlePricingChange={handlePricingChange} />
       </div>
       <LabelsDetails
+        data={data}
+        currentProductId={currentProductId}
         handleNewCheckboxChange={handleNewCheckboxChange}
         handlePromoCheckboxChange={handlePromoCheckboxChange}
         isNewChecked={isNewChecked}

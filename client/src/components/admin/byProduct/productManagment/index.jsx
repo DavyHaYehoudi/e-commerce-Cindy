@@ -76,7 +76,7 @@ const Modal = ({
     deleteMainImagesFromStorage,
     deleteAllMainImagesFromStorage,
     deleteAllSecondariesImagesFromStorage,
-    reset
+    reset,
   });
   //Functions
   const handleMaterialsSelectToggle = () => {
@@ -126,6 +126,7 @@ const Modal = ({
         />
         <Tags tags={tags} handleRemoveTag={removeTag} />
         <MaterialsSelect
+          data={data}
           showMaterials={showMaterials}
           handleMaterialsSelectToggle={handleMaterialsSelectToggle}
           currentAction={currentAction}
@@ -145,8 +146,12 @@ const Modal = ({
           handleSubmit={handleSubmit}
           // confirmationEnabled={confirmationEnabled}
           currentAction={currentAction}
-          addSecondariesImagesToFirebaseStorage={addSecondariesImagesToFirebaseStorage}
-          deleteSecondariesImagesFromStorage={deleteSecondariesImagesFromStorage}
+          addSecondariesImagesToFirebaseStorage={
+            addSecondariesImagesToFirebaseStorage
+          }
+          deleteSecondariesImagesFromStorage={
+            deleteSecondariesImagesFromStorage
+          }
           mainImagesToAddStorage={mainImagesToAddStorage}
           uploadMainImagesToStorage={uploadMainImagesToStorage}
           deleteMainImagesFromStorage={deleteMainImagesFromStorage}

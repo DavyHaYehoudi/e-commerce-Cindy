@@ -37,14 +37,16 @@
     height: 210px;
     padding: 10px;
 }
+
 .products .card-wrapper img {
     width: 100%;
     height: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .products .card-wrapper p {
-    max-width: 200px; 
+    max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -217,14 +219,16 @@
 .confirm-section {
     text-align: end;
 }
-.confirm-section .edit-section{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+
+.confirm-section .edit-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.confirm-section .edit-section .delete{
-background: var(--danger);
-color: var(--dark);
+
+.confirm-section .edit-section .delete {
+    background: var(--danger);
+    color: var(--dark);
 }
 
 
@@ -287,17 +291,18 @@ color: var(--dark);
     height: 100%;
 }
 
-.product-modal-content .materials-details {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-}
-
 .product-modal-content .labels-content label {
     margin: 5px;
 }
 
 .product-modal-content .labels-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px;
+}
+
+.product-modal-content .labels-details .block1 {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -313,7 +318,7 @@ color: var(--dark);
 .product-modal-content .labels-details input {
     width: auto;
     height: 10px;
-
+    margin: 5px;
 }
 
 .product-modal-content .labels-details .promotion {
@@ -323,7 +328,6 @@ color: var(--dark);
 
 .product-modal-content .labels-details .promotion .block2 input {
     width: 100px;
-
 }
 
 /* **********************************END LISTING ********************************** */

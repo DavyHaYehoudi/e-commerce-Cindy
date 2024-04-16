@@ -85,9 +85,9 @@ const productSlice = createSlice({
         const updatedMaterial = { ...state.materials[existingMaterialIndex] };
 
         if (stock !== undefined) updatedMaterial.stock = stock;
-        if (newDate !== undefined) updatedMaterial.newDate = newDate;
+        if (newDate !== undefined) updatedMaterial.untilNew = newDate;
         if (pricing !== undefined) updatedMaterial.pricing = pricing;
-        if (promo !== undefined) updatedMaterial.promo = promo;
+        if (promo !== undefined) updatedMaterial.promotion = promo;
         if (main_image !== undefined) updatedMaterial.main_image = main_image;
 
         state.materials[existingMaterialIndex] = updatedMaterial;

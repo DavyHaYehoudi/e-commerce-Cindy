@@ -7,6 +7,7 @@ import OldPrice from "../shared/OldPrice";
 import useMaterials from "../hooks/useMaterials";
 
 const MaterialsRow = ({
+  data,
   material,
   currentAction,
   currentProductId,
@@ -36,10 +37,10 @@ const MaterialsRow = ({
   } = useMaterials({
     material,
     currentAction,
-    currentProductId, 
+    currentProductId,
     isWithMaterial,
     addMainImageToStorage,
-  }); 
+  });
 
   return (
     <>
@@ -68,6 +69,8 @@ const MaterialsRow = ({
       </div>
       {isChecked && (
         <MaterialsRowDetails
+          data={data}
+          currentProductId={currentProductId}
           material={material}
           promo={promo}
           newDate={newDate}
