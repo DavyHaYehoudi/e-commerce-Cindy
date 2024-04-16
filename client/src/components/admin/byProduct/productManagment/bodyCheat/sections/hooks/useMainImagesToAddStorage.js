@@ -77,7 +77,6 @@ const useMainImagesToAddStorage = (data) => {
   };
   const deleteAllMainImagesFromStorage = async (data) => {
     if (data && data?.materials) {
-      console.log('data?.materials:', data?.materials)
       try {
         const mainImagesURL = await Promise.all(
             data?.materials.map(async ({ main_image }) => {
@@ -85,7 +84,6 @@ const useMainImagesToAddStorage = (data) => {
                 return await getDownloadURL(imageRef);
             })
         );
-        console.log('mainImagesURL:', mainImagesURL)
         await Promise.all(
           mainImagesURL.map(async (imageUrl) => {
             const imageRef = ref(storage, imageUrl);
