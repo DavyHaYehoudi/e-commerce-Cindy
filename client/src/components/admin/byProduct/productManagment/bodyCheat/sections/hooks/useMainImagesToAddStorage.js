@@ -35,11 +35,6 @@ const useMainImagesToAddStorage = (data) => {
       ]);
     }
   };
-  const deleteMainImageFromStorage = (materialId) => {
-    setMainImagesToAddStorage((prevMainImages) =>
-      prevMainImages.filter((image) => image._id !== materialId)
-    );
-  };
   const uploadMainImagesToStorage = async () => {
     try {
       if (mainImagesToAddStorage.length > 0) {
@@ -104,7 +99,6 @@ const useMainImagesToAddStorage = (data) => {
     mainImagesToAddStorage,
     addMainImageToStorage,
     uploadMainImagesToStorage,
-    deleteMainImageFromStorage,
     deleteMainImagesFromStorage,
     deleteAllMainImagesFromStorage,
     reset,

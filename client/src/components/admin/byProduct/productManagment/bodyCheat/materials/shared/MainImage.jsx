@@ -7,10 +7,7 @@ const MainImage = ({
   fileInputId,
   loading,
   handleDeleteImage,
-  addNewimage,
-  handleAddNewImage,
 }) => {
-  const isFileType = mainImage?.name;
   return (
     <div className="main-image">
       <figure>
@@ -47,23 +44,12 @@ const MainImage = ({
         </div>
       </figure>
       {mainImage && (
-        <div className="actionImage">
           <button
             className="delete-image account-btn"
             onClick={handleDeleteImage}
           >
             Supprimer{" "}
           </button>
-          {addNewimage && (
-            <button
-              className="add-image account-btn"
-              onClick={handleAddNewImage}
-            >
-              Ajouter cette nouvelle image <br />
-              <span className=" underline">{isFileType || ""} </span>
-            </button>
-          )}
-        </div>
       )}
     </div>
   );

@@ -10,7 +10,6 @@ const MaterialsSelect = ({
   currentProductId,
   isWithMaterial,
   addMainImageToStorage,
-  deleteMainImageFromStorage
 }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
 
@@ -52,7 +51,6 @@ const MaterialsSelect = ({
             currentProductId={currentProductId}
             isWithMaterial={isWithMaterial}
             addMainImageToStorage={addMainImageToStorage}
-            deleteMainImageFromStorage={deleteMainImageFromStorage}
           />
         ))
       ) : (
@@ -61,7 +59,6 @@ const MaterialsSelect = ({
           currentProductId={currentProductId}
           isWithMaterial={isWithMaterial}
           addMainImageToStorage={addMainImageToStorage}
-          deleteMainImageFromStorage={deleteMainImageFromStorage}
         />
       )}
     </div>

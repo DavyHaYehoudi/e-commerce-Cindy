@@ -15,7 +15,6 @@ const useMaterials = ({
   currentProductId,
   isWithMaterial,
   addMainImageToStorage,
-  deleteMainImageFromStorage,
 }) => {
   const dispatch = useDispatch();
   const { initDataMaterials } = useInitDataMaterials({
@@ -47,7 +46,6 @@ const useMaterials = ({
     endDate: initEndDate,
   });
   const [mainImage, setMainImage] = useState(initMainImage);
-  const [addNewimage, setAddNewImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -148,31 +146,19 @@ const useMaterials = ({
     setMainImage(null);
     dispatch(updateProductMaterials({ _id: material._id, main_image: null }));
   };
-  //Placer une image principale en staging avant confirmation
-  const handleAddNewImage = () => {
-    setAddNewImage(false);
-    const value = generateFilePath(mainImage, "products/main/");
-    dispatch(updateProductMaterials({ _id: material?._id, main_image: value }));
-    addMainImageToStorage({
-      materialId: material._id,
-      file: mainImage,
-      path: value,
-    });
-  };
-  //Supprimer l'image du state des images à ajouter à storage si l'utilisateur clique sur une image déja sélectionnée puis annule
-  useEffect(() => {
-    if (!mainImage) {
-      // deleteMainImageFromStorage(material._id);
-    }
-  }, [mainImage, material?._id, deleteMainImageFromStorage]);
-  //Afficher une image principale simplement localement
   const handleMainImageChange = async (e) => {
     if (mainImage && !mainImage?.name) {
       dispatch(mainImagesToRemoveStorage(mainImage));
     }
     const file = e.target.files[0];
     setMainImage(file);
-    setAddNewImage(true);
+    const path = generateFilePath(file, "products/main/");
+    dispatch(updateProductMaterials({ _id: material?._id, main_image: path }));
+    addMainImageToStorage({
+      materialId: material._id,
+      file,
+      path,
+    });
   };
 
   useEffect(() => {
@@ -215,8 +201,6 @@ const useMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    addNewimage,
-    handleAddNewImage,
   };
 };
 

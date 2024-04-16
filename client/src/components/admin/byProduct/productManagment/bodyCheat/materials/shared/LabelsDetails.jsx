@@ -17,8 +17,6 @@ const LabelsDetails = ({
   errorMessage,
   loading,
   handleDeleteImage,
-  addNewimage,
-  handleAddNewImage,
 }) => {
   return (
     <div className="labels-details">
@@ -30,8 +28,6 @@ const LabelsDetails = ({
           fileInputId={fileInputId}
           loading={loading}
           handleDeleteImage={handleDeleteImage}
-          addNewimage={addNewimage}
-          handleAddNewImage={handleAddNewImage}
         />
       </div>
       <div className="labels-details-wrapper">

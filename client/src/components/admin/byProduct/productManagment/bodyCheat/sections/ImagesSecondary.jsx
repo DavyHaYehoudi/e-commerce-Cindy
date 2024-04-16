@@ -8,6 +8,7 @@ const ImagesSecondary = ({
 }) => {
   const renderFileInputs = () => {
     return localImages.map((image, index) => (
+      <div className="section-secondary_images">
       <label key={index} htmlFor={`file-upload-${index}`}>
         <div className="image-container secondary_image">
           {loading ? (
@@ -33,13 +34,16 @@ const ImagesSecondary = ({
             onChange={(e) => handleChangeImage(e, index)}
           />
         </div>
-        <button
-          className="delete-image account-btn"
-          onClick={() => handleDeleteImage(index)}
-        >
-          Supprimer
-        </button>
       </label>
+        {image && (
+          <button
+            className="delete-image account-btn"
+            onClick={() => handleDeleteImage(index)}
+          >
+            Supprimer
+          </button>
+        )}
+      </div>
     ));
   };
 

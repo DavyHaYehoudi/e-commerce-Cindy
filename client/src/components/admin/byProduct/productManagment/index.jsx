@@ -14,7 +14,7 @@ import MaterialsSelect from "./bodyCheat/materials";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
-import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
+// import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 import {
   initProductMaterials,
   resetProductMaterials,
@@ -60,7 +60,6 @@ const Modal = ({
   const {
     mainImagesToAddStorage,
     addMainImageToStorage,
-    deleteMainImageFromStorage,
     uploadMainImagesToStorage,
     deleteMainImagesFromStorage,
     deleteAllMainImagesFromStorage,
@@ -103,7 +102,7 @@ const Modal = ({
     }
   }, [data?.materials, dispatch]);
 
-  const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
+  // const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
 
   return (
     <div className="product-modal">
@@ -134,7 +133,6 @@ const Modal = ({
           currentProductId={currentProductId}
           isWithMaterial={isWithMaterial}
           addMainImageToStorage={addMainImageToStorage}
-          deleteMainImageFromStorage={deleteMainImageFromStorage}
         />
         <Description fields={fields} handleChangeFields={handleChangeFields} />
         <ImagesSecondary
@@ -146,7 +144,7 @@ const Modal = ({
         />
         <Confirmation
           handleSubmit={handleSubmit}
-          confirmationEnabled={confirmationEnabled}
+          // confirmationEnabled={confirmationEnabled}
           currentAction={currentAction}
           addSecondariesImagesToFirebaseStorage={addSecondariesImagesToFirebaseStorage}
           deleteSecondariesImagesFromStorage={deleteSecondariesImagesFromStorage}

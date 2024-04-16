@@ -17,63 +17,70 @@ const useSubmitForm = ({
   deleteAllMainImagesFromStorage,
   deleteAllSecondariesImagesFromStorage,
   reset,
-  data
+  data,
 }) => {
+  const dispatch = useDispatch();
   const productsStore = useSelector((state) => state?.product?.data);
-  const statusStore = useSelector((state) => state?.product?.status);
+
   const materialBeforeEditing = productsStore?.find(
     (product) => product?._id === currentProductId
   )?.materials;
-  const productMaterials = useSelector((state) => state?.product?.materials);
-  const dispatch = useDispatch();
-
   if (materialsData.length === 0) {
     materialsData = materialBeforeEditing;
   }
+
   const formData = {
     name: fields?.name,
     _collection: fields?.collection,
     category: fields?.category,
     tags: tags?.map((tag) => tag?._id),
     main_description: fields?.description,
-    materials: formatMaterialProduct(productMaterials),
+    materials: formatMaterialProduct(materialsData),
   };
-  const isSucceed = statusStore === "succeeded";
+
   const handleSubmit = async (currentAction, paths) => {
-    if (currentAction === "create") {
+    const handleCreateProduct = async () => {
       formData.secondary_images = paths;
       await uploadMainImagesToStorage();
       dispatch(addProduct(formData));
       reset();
-      if (isSucceed) {
-        handleCloseModal();
-      }
-    }
-    if (currentAction === "edit") {
+      handleCloseModal();
+    };
+
+    const handleEditProduct = async () => {
       formData.secondary_images = paths;
       await uploadMainImagesToStorage();
       await deleteMainImagesFromStorage();
       dispatch(editProduct({ formData, productId: currentProductId }));
       reset();
-      if (isSucceed) {
-        handleCloseModal();
-      }
-    }
-    if (currentAction === "delete") {
-      const confirm = window.confirm(
+      handleCloseModal();
+    };
+
+    const handleDeleteProduct = async () => {
+      const confirmDelete = window.confirm(
         "Etes-vous sûr de vouloir supprimer ce produit, cette action est définitive ?"
       );
-      if (confirm) {
+      if (confirmDelete) {
         await deleteAllMainImagesFromStorage(data);
         await deleteAllSecondariesImagesFromStorage();
         dispatch(deleteProduct(currentProductId));
         reset();
-        if (isSucceed) {
-          handleCloseModal();
-        }
-      } else if (!confirm) {
-        return;
+        handleCloseModal();
       }
+    };
+
+    switch (currentAction) {
+      case "create":
+        await handleCreateProduct();
+        break;
+      case "edit":
+        await handleEditProduct();
+        break;
+      case "delete":
+        await handleDeleteProduct();
+        break;
+      default:
+        break;
     }
   };
 

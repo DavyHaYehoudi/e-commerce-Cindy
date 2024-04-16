@@ -164,24 +164,13 @@
     color: var(--danger);
     border-radius: 5px;
     padding: 4px;
-    margin-top: 2px;
-}
-.product-modal-content .add-image {
-    background:  var(--success);
-    border-radius: 5px;
-    padding: 15px;
+    margin-top: 10px;
 }
 
 .product-modal-content .images-wrapper {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
-}
-.product-modal-content .actionImage{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
 }
 
 .product-modal-content .image-container {

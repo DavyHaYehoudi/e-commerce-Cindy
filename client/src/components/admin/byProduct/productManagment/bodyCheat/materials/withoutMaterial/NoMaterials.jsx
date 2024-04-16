@@ -10,7 +10,6 @@ const NoMaterials = ({
   currentAction,
   currentProductId,
   isWithMaterial,
-  deleteMainImageFromStorage
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
@@ -54,7 +53,6 @@ const NoMaterials = ({
     currentProductId,
     isWithMaterial,
     addMainImageToStorage,
-    deleteMainImageFromStorage
   });
 
   return (

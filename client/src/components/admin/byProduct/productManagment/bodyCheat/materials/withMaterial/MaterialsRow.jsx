@@ -12,7 +12,6 @@ const MaterialsRow = ({
   currentProductId,
   isWithMaterial,
   addMainImageToStorage,
-  deleteMainImageFromStorage
 }) => {
   // Générer un identifiant unique pour l'input de type fichier
   const fileInputId = `file-upload-${material?._id}`;
@@ -34,15 +33,12 @@ const MaterialsRow = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    addNewimage,
-    handleAddNewImage,
   } = useMaterials({
     material,
     currentAction,
     currentProductId, 
     isWithMaterial,
     addMainImageToStorage,
-    deleteMainImageFromStorage
   }); 
 
   return (
@@ -85,8 +81,6 @@ const MaterialsRow = ({
           errorMessage={errorMessage}
           loading={loading}
           handleDeleteImage={handleDeleteImage}
-          addNewimage={addNewimage}
-          handleAddNewImage={handleAddNewImage}
         />
       )}
     </>
