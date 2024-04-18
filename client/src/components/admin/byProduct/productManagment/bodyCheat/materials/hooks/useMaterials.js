@@ -33,6 +33,7 @@ const useMaterials = ({
   const initStartDate = data?.startDate;
   const initEndDate = data?.endDate;
   const initMainImage = data?.mainImage;
+  const initIsActive = data?.isActive;
   const [isChecked, setIsChecked] = useState(false);
   const [stock, setStock] = useState(initStock);
   const [pricing, setPricing] = useState({
@@ -48,7 +49,14 @@ const useMaterials = ({
   const [mainImage, setMainImage] = useState(initMainImage);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [productActive, setProductActive] = useState(initIsActive);
 
+  const handleSwitchChange = (isChecked) => {
+    setProductActive(isChecked);
+    dispatch(
+      updateProductMaterials({ _id: material?._id, isActive: isChecked })
+    );
+  };
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
@@ -201,6 +209,8 @@ const useMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
+    productActive,
+    handleSwitchChange,
   };
 };
 

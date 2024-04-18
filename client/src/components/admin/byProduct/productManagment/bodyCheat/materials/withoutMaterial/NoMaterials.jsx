@@ -4,6 +4,7 @@ import CurrentPrice from "../shared/CurrentPrice";
 import OldPrice from "../shared/OldPrice";
 import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
+import Switch from "../shared/Switch";
 
 const NoMaterials = ({
   data,
@@ -49,6 +50,8 @@ const NoMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
+    productActive,
+    handleSwitchChange,
   } = useMaterials({
     currentAction,
     currentProductId,
@@ -58,6 +61,10 @@ const NoMaterials = ({
 
   return (
     <div className="noMaterials">
+      <div className="switch-materials-btn">
+        {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+        <Switch checked={productActive} onChange={handleSwitchChange} />
+      </div>
       <div className="details-wrapper">
         <Stock stock={stock} handleStockChange={handleStockChange} />
         <CurrentPrice

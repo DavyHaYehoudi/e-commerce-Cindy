@@ -1,6 +1,8 @@
 // MaterialsRowDetails.js
 import React, { useState } from "react";
 import LabelsDetails from "../shared/LabelsDetails";
+import Switch from "../shared/Switch";
+import useMaterials from "../hooks/useMaterials";
 
 const MaterialsRowDetails = ({
   material,
@@ -17,9 +19,11 @@ const MaterialsRowDetails = ({
   loading,
   handleDeleteImage,
   currentProductId,
+  productActive,
+  handleSwitchChange
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
-  const [isPromoChecked, setIsPromoChecked] = useState(false);
+  const [isPromoChecked, setIsPromoChecked] = useState(false); 
 
   //Réinitialiser checkbox NOUVEAU
   const handleNewCheckboxChange = (e) => {
@@ -41,6 +45,10 @@ const MaterialsRowDetails = ({
 
   return (
     <div className="materials-details">
+      <div className="switch-materials-btn">
+        {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+        <Switch checked={productActive} onChange={handleSwitchChange} />
+      </div>
       <LabelsDetails
         currentProductId={currentProductId}
         isNewChecked={isNewChecked}

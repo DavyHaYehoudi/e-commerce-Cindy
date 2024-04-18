@@ -19,6 +19,7 @@ const formatMaterialProduct = (materialsData) => {
       ? new Date(material?.untilNew).toISOString()
       : new Date().toISOString(),
     stock: parseInt(material?.stock),
+    isActive: material?.isActive,
   }));
 };
 
