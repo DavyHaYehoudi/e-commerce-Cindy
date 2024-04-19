@@ -6,6 +6,7 @@ const Confirmation = ({
   currentAction,
   addSecondariesImagesToFirebaseStorage,
   deleteSecondariesImagesFromStorage,
+  fields,
 }) => {
   const {
     confirmationEnabled,
@@ -16,13 +17,14 @@ const Confirmation = ({
     handleSubmit,
     addSecondariesImagesToFirebaseStorage,
     deleteSecondariesImagesFromStorage,
+    fields,
   });
 
   return (
     <div className="confirm-section">
       {currentAction === "create" && (
         <button
-          // disabled={!confirmationEnabled}
+          disabled={!confirmationEnabled}
           className={`account-btn ${
             confirmationEnabled ? "icon-validate" : ""
           }`}
@@ -42,7 +44,10 @@ const Confirmation = ({
               Supprimer le produit
             </button>
             <button
-              className="account-btn icon-validate"
+                className={`account-btn ${
+                  confirmationEnabled ? "icon-validate" : ""
+                }`}
+              disabled={!confirmationEnabled}
               onClick={handleSaveChanges}
             >
               Enregistrer les modifications

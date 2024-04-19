@@ -1,4 +1,4 @@
-import { orderStep } from "../../../constants/orderStep";
+import { orderStep } from "../../../../constants/orderStep";
 
 export const formattedDataClient = (inputObject) => {
   const stepsConstants = orderStep;

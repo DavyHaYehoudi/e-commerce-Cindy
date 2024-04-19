@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const useConfirmationFunctions = ({
   handleSubmit,
   addSecondariesImagesToFirebaseStorage,
   deleteSecondariesImagesFromStorage,
+  fields,
 }) => {
   const [confirmationEnabled, setConfirmationEnabled] = useState(false);
+  const productMaterials = useSelector((state) => state?.product?.materials);
+  useEffect(() => {
+    const validateFields =
+      fields?.name && fields?.collection && fields?.category;
+    const validateMaterials =
+      productMaterials?.length > 0 &&
+      productMaterials?.every(
+        (material) => material?.main_image && material?.pricing?.currentPrice
+      );
+    setConfirmationEnabled(validateFields && validateMaterials);
+  }, [productMaterials, fields]);
 
   const handleValidate = async () => {
     try {
@@ -30,7 +43,7 @@ const useConfirmationFunctions = ({
   const handleDeleteProduct = () => {
     handleSubmit("delete");
   };
- 
+
   return {
     confirmationEnabled,
     setConfirmationEnabled,

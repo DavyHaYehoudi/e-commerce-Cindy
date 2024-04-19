@@ -14,7 +14,6 @@ import MaterialsSelect from "./bodyCheat/materials";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSubmitForm from "./hooks/useSubmitForm";
-// import { validationBeforeSubmit } from "../../../../helpers/utils/products/validationBeforeSubmit";
 import {
   initProductMaterials,
   resetProductMaterials,
@@ -101,8 +100,6 @@ const Modal = ({
     }
   }, [data?.materials, dispatch]);
 
-  // const confirmationEnabled = validationBeforeSubmit(fields, materialsData);
-
   return (
     <div className="product-modal">
       <div className="product-modal-content">
@@ -143,8 +140,8 @@ const Modal = ({
           currentAction={currentAction}
         />
         <Confirmation
+          fields={fields}
           handleSubmit={handleSubmit}
-          // confirmationEnabled={confirmationEnabled}
           currentAction={currentAction}
           addSecondariesImagesToFirebaseStorage={
             addSecondariesImagesToFirebaseStorage

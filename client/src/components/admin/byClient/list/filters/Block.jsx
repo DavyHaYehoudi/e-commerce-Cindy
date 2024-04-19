@@ -4,7 +4,7 @@ import { BsFilterSquareFill } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import Criteria from "./Criteria";
 import Dates from "./Dates";
-import { formattedDataClient } from "../../../../../helpers/utils/filter/formattedDataClient";
+import { formattedDataClient } from "../../utils/formattedDataClient";
 import { fetchClients } from "../../../../../features/admin/clientsSlice";
 
 const Block = ({ itemsPerPage, setSearchBarValue }) => {

@@ -4,7 +4,7 @@ import {
   deleteProduct,
   editProduct,
 } from "../../../../../features/admin/productSlice";
-import formatMaterialProduct from "../../../../../helpers/utils/products/formatMaterialProduct";
+import formatMaterialProduct from "../../utils/formatMaterialProduct";
 
 const useSubmitForm = ({
   fields,

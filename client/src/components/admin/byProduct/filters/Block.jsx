@@ -5,7 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Category from "./Category";
 import Collection from "./Collection";
 import Status from "./Status";
-import { formattedDataProduct } from "../../../../helpers/utils/filter/formattedDataProduct";
+import { formattedDataProduct } from "../utils/filter/formattedDataProduct"
 import { fetchProduct } from "../../../../features/admin/productSlice";
 
 const Block = ({ setSearchBarValue }) => {

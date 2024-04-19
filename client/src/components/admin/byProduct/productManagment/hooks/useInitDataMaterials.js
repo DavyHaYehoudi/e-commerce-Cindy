@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import formatDateMaterials from "../../../../../helpers/utils/products/formatDateMaterials";
+import formatDateMaterials from "../../utils/formatDateMaterials";
 
 const useInitDataMaterials = ({
   action,
