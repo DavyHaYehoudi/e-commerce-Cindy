@@ -4,5 +4,6 @@ export const tabs = [
   "REMBOURSEMENTS",
   "ECHANGES",
   "CARTES-CADEAUX",
+  "IMAGES",
   "BALANCE",
 ];

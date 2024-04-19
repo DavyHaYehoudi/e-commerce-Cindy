@@ -32,6 +32,7 @@ const TabBar = ({ selectedYear }) => {
     React.lazy(() => import("./refunds")),
     React.lazy(() => import("./exchanges")),
     React.lazy(() => import("./giftcards")),
+    React.lazy(() => import("./productImages")),
     React.lazy(() => import("./balance")),
   ];
 
