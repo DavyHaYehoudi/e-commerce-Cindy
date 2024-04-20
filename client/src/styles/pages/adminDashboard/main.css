@@ -19,12 +19,36 @@
 .admin-dashboard-menu button {
     margin: 20px;
     color: var(--text-whitesmoke);
-    background-color: var(--secondary);
+    background-color: var(--dark);
 }
 
 .admin-dashboard-menu button span {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+.admin-dashboard-menu .selected{
+    color: var(--danger);
+}
+.searchBarAdmin-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+}
+
+.searchBarAdmin-filter {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.searchBarAdmin-filter:focus {
+    outline: var(--dark);
+}
+
+.searchBarAdmin-icon {
+    font-size: 1.2rem;
+    color: var(--secondary);
 }
 /* ********************* END DASHBOARD VIEW ********************* */

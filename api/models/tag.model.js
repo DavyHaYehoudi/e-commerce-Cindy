@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
 
 const tagSchema = new mongoose.Schema({
-  name: { type: String, maxLength: 50, required: true },
+  name: { type: String, maxLength: 50, required: true, unique: true },
 });
 
 tagSchema.pre("validate", function (next) {

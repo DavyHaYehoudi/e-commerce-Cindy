@@ -16,28 +16,6 @@
     outline: var(--dark);
 }
 
-.searchBar-client-filter-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 300px;
-}
-
-.searchBar-client-filter {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.searchBar-client-filter:focus {
-    outline: var(--dark);
-}
-
-.searchBar-client-filter-icon {
-    font-size: 1.2rem;
-    color: var(--secondary);
-}
-
 .filter-block {
     position: relative;
 }

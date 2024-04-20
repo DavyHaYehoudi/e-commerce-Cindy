@@ -51,7 +51,7 @@ const materialController = {
         return res.status(404).json({ error: "Material not found" });
       }
 
-      res.status(204).json();
+      res.status(200).json(deleteMaterial);
     } catch (error) {
       console.error("Error deleting material:", error);
       res.status(500).json({ error: "Internal server error" });

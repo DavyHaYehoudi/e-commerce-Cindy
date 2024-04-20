@@ -1,19 +1,23 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ handleSearchChange, searchBarValue }) => {
+const SearchBarAdmin = ({
+  handleSearchChange,
+  searchBarValue,
+  placeholder,
+}) => {
   return (
     <div>
-      <div className="searchBar-client-filter-wrapper">
+      <div className="searchBarAdmin-wrapper">
         <input
           type="search"
           id="searchInput"
-          placeholder="Nom ou prénom (au moins 3 lettres)"
+          placeholder={placeholder}
           onChange={handleSearchChange}
-          className="searchBar-client-filter"
+          className="searchBarAdmin-filter"
           value={searchBarValue}
         />
-        <span className="searchBar-client-filter-icon">
+        <span className="searchBarAdmin-icon">
           {" "}
           <FaSearch />
         </span>
@@ -22,4 +26,4 @@ const SearchBar = ({ handleSearchChange, searchBarValue }) => {
   );
 };
 
-export default SearchBar;
+export default SearchBarAdmin;
