@@ -15,7 +15,10 @@ const useConfirmationFunctions = ({
     const validateMaterials =
       productMaterials?.length > 0 &&
       productMaterials?.every(
-        (material) => material?.main_image && material?.pricing?.currentPrice
+        (material) =>
+          material?.main_image &&
+          material?.pricing?.currentPrice &&
+          material?.stock
       );
     setConfirmationEnabled(validateFields && validateMaterials);
   }, [productMaterials, fields]);

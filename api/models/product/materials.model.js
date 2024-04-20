@@ -43,7 +43,7 @@ const materialsSchema = new mongoose.Schema({
     },
       stock: {
         type: Number,
-        default: 1,
+        required: true,
       },
       isActive: {
         type: Boolean,

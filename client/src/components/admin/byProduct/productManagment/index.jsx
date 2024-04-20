@@ -111,6 +111,9 @@ const Modal = ({
         <span className="product-modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </span>
+        <small className="asterix">
+          Les champs marqués par une étoile * sont obligatoires.
+        </small>
         <Name fields={fields} handleChangeFields={handleChangeFields} />
         <Groups
           fields={fields}

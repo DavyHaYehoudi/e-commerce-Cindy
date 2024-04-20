@@ -11,7 +11,9 @@ const MainImage = ({
   return (
     <div className="main-image">
       <figure>
-        <figcaption>Image principale</figcaption>
+        <figcaption>
+          Image principale<span className="asterix">*</span>{" "}
+        </figcaption>
         <div className="images-wrapper">
           <label htmlFor={fileInputId}>
             <div className="image-container main_image">
@@ -44,12 +46,12 @@ const MainImage = ({
         </div>
       </figure>
       {mainImage && (
-          <button
-            className="delete-image account-btn"
-            onClick={handleDeleteImage}
-          >
-            Supprimer{" "}
-          </button>
+        <button
+          className="delete-image account-btn"
+          onClick={handleDeleteImage}
+        >
+          Supprimer{" "}
+        </button>
       )}
     </div>
   );

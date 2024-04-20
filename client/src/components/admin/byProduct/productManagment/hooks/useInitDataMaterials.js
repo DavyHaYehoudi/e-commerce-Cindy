@@ -13,7 +13,7 @@ const useInitDataMaterials = ({
     let data = {};
 
     if (action === "create") {
-      data["stock"] = 1;
+      data["stock"] = "";
       data["currentPrice"] = 0;
       data["oldPrice"] = 0;
       data["newDate"] = "";

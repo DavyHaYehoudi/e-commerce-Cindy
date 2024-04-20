@@ -4,7 +4,7 @@ const CurrentPrice = ({ material, handlePricingChange, pricing }) => {
   return (
     <div className="block">
       <label htmlFor={`currentPriceInput-${material?._id}`}>
-        Prix en cours* (€) :
+        Prix en cours<span className="asterix">*</span> (€) :
       </label>
       <input
         type="number"

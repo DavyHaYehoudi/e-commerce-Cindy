@@ -18,10 +18,11 @@ const MaterialsRowDetails = ({
   handleDeleteImage,
   currentProductId,
   productActive,
-  handleSwitchChange
+  handleSwitchChange,
+  currentAction,
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
-  const [isPromoChecked, setIsPromoChecked] = useState(false); 
+  const [isPromoChecked, setIsPromoChecked] = useState(false);
 
   //Réinitialiser checkbox NOUVEAU
   const handleNewCheckboxChange = (e) => {
@@ -43,10 +44,12 @@ const MaterialsRowDetails = ({
 
   return (
     <div className="materials-details">
-      <div className="switch-materials-btn">
-        {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
-        <Switch checked={productActive} onChange={handleSwitchChange} />
-      </div>
+      {currentAction !== "create" && (
+        <div className="switch-materials-btn">
+          {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+          <Switch checked={productActive} onChange={handleSwitchChange} />
+        </div>
+      )}
       <LabelsDetails
         currentProductId={currentProductId}
         isNewChecked={isNewChecked}

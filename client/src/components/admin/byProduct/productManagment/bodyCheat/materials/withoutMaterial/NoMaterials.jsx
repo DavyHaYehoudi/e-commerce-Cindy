@@ -61,10 +61,12 @@ const NoMaterials = ({
 
   return (
     <div className="noMaterials">
-      <div className="switch-materials-btn">
-        {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
-        <Switch checked={productActive} onChange={handleSwitchChange} />
-      </div>
+      {currentAction !== "create" && (
+        <div className="switch-materials-btn">
+          {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+          <Switch checked={productActive} onChange={handleSwitchChange} />
+        </div>
+      )}
       <div className="details-wrapper">
         <Stock stock={stock} handleStockChange={handleStockChange} />
         <CurrentPrice

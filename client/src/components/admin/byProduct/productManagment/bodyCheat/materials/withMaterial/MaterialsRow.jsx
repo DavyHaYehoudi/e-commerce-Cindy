@@ -88,6 +88,7 @@ const MaterialsRow = ({
           handleDeleteImage={handleDeleteImage}
           productActive={productActive}
           handleSwitchChange={handleSwitchChange}
+          currentAction={currentAction}
         />
       )}
     </>
