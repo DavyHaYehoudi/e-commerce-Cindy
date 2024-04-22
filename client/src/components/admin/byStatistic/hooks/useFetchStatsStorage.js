@@ -36,7 +36,7 @@ const useFetchStatsStorage = (paths) => {
     };
 
     fetchStats();
-  }, []);
+  }, [paths]);
 
   return stats;
 };

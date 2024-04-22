@@ -28,9 +28,6 @@ const clientController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
-  createClient: async (req, res) => {
-    // Implementation for creating a new client
-  },
   updateClient: async (req, res) => {
     const { clientId } = req.params;
     const updateFields = req.body;

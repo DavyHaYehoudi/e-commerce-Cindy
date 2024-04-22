@@ -12,6 +12,7 @@ import statisticsRoutes from "./routes/statistic.routes.js";
 import collectionRoutes from "./routes/collection.route.js";
 import tagRoutes from "./routes/tag.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
 const app = express();
 const port = 3001;
@@ -34,6 +35,7 @@ app.use("/giftcards", giftcardRoutes);
 app.use("/statistics", statisticsRoutes);
 app.use("/collections", collectionRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/auth", authRoutes);
 app.use("/tags", tagRoutes);
 
 app.listen(port, () => {

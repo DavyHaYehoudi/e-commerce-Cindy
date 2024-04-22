@@ -4,8 +4,8 @@ import calculatePercentage from "../utils/calculatePercentage";
 import { formatSize } from "../utils/formatSize";
 import { getColor } from "../utils/getColor";
 
+const paths = ["products/secondary", "products/main"];
 const ProductImages = () => {
-  const paths = ["products/secondary", "products/main"];
   const { totalImages, totalSize } = useFetchStatsStorage(paths);
   const percentage = calculatePercentage(totalSize);
 

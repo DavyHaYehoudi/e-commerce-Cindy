@@ -35,7 +35,7 @@ const MaterialsRow = ({
     loading,
     handleDeleteImage,
     productActive,
-    handleSwitchChange
+    handleSwitchChange,
   } = useMaterials({
     material,
     currentAction,
@@ -76,10 +76,8 @@ const MaterialsRow = ({
           material={material}
           promo={promo}
           newDate={newDate}
-          setNewDate={setNewDate}
           handleNewDateChange={handleNewDateChange}
           handlePromoChange={handlePromoChange}
-          setPromo={setPromo}
           mainImage={mainImage}
           handleMainImageChange={handleMainImageChange}
           fileInputId={fileInputId}

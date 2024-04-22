@@ -1,18 +1,20 @@
 import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
+import bcrypt from 'bcrypt'
 
 const clientSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true, maxlength: 50 },
-    lastName: { type: String, required: true, maxlength: 50 },
+    firstName: { type: String, maxlength: 50 },
+    lastName: { type: String, maxlength: 50 },
     email: {
       type: String,
       required: true,
       unique: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
+    password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
-    shippingAddress: { type: String, required: true, maxlength: 200 },
+    shippingAddress: { type: String, maxlength: 200 },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
     notesAdmin: [
@@ -53,6 +55,26 @@ const clientSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+// Middleware to hash the password before saving
+clientSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    console.log("Error to save password in middleware client schema :", error);
+    next(error);
+  }
+});
+
+// Method to compare passwords
+clientSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 clientSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
