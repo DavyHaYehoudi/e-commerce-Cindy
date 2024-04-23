@@ -42,17 +42,13 @@ const orderSchema = new mongoose.Schema(
       },
     },
     billingAddress: {
+      companyName: {
+        type: String,
+        maxlength: 200,
+        default:""
+      },
       firstName: { type: String, maxlength: 50, trim: true, required: true },
       lastName: { type: String, maxlength: 50, trim: true, required: true },
-      phone: { type: String, maxlength: 20, default: "" },
-      email: {
-        type: String,
-        unique: true,
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        lowercase: true,
-        trim: true,
-        required: true,
-      },
       street: {
         type: String,
         required: true,

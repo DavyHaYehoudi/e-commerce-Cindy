@@ -17,10 +17,9 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
   } = order?.shippingAddress || {};
 
   const {
+    companyName,
     firstName,
     lastName,
-    email,
-    phone,
     street,
     postalCode,
     city,
@@ -43,7 +42,7 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
             hiddenText="Fermer"
             buttonClass="account-btn toggle"
             content={
-              <div  className="order-header-details">
+              <div className="order-header-details">
                 {" "}
                 <div>
                   <span className="dotted">Adresse de livraison</span> :
@@ -60,11 +59,10 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
                 </div>
                 <div>
                   <span className="dotted">Adresse de facturation</span> :
+                  <p>{companyName}</p>
                   <p>
                     {firstName} {lastName}
                   </p>
-                  <p>{email}</p>
-                  <p>{phone}</p>
                   <p>{street}</p>
                   <p>
                     {postalCode} {city}
