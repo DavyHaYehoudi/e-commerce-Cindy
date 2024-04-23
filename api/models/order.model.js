@@ -8,6 +8,72 @@ const orderSchema = new mongoose.Schema(
       ref: "Client",
       required: true,
     },
+    recipientName: {
+      type: String,
+      required: true,
+    },
+    recipientSurname: {
+      type: String,
+      required: true,
+    },
+    shippingAddress: {
+      firstName: { type: String, maxlength: 50, trim: true, required: true },
+      lastName: { type: String, maxlength: 50, trim: true, required: true },
+      phone: { type: String, maxlength: 20, default: "" },
+      street: {
+        type: String,
+        required: true,
+      },
+      apartment: {
+        type: String,
+        maxlength: 200,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      postalCode: {
+        type: String,
+        required: true,
+      },
+      country: {
+        type: String,
+        required: true,
+      },
+    },
+    billingAddress: {
+      firstName: { type: String, maxlength: 50, trim: true, required: true },
+      lastName: { type: String, maxlength: 50, trim: true, required: true },
+      phone: { type: String, maxlength: 20, default: "" },
+      email: {
+        type: String,
+        unique: true,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        required: true,
+      },
+      street: {
+        type: String,
+        required: true,
+      },
+      apartment: {
+        type: String,
+        maxlength: 200,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      postalCode: {
+        type: String,
+        required: true,
+      },
+      country: {
+        type: String,
+        required: true,
+      },
+    },
     step: {
       type: Number,
       required: true,
@@ -101,6 +167,7 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
 orderSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
@@ -108,5 +175,6 @@ orderSchema.pre("validate", function (next) {
   }
   next();
 });
+
 const Order = mongoose.model("Order", orderSchema);
 export default Order;

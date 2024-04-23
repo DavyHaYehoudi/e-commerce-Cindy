@@ -1,20 +1,47 @@
 import mongoose from "mongoose";
 import { handleValidationErrors } from "./errorModelHandler.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 const clientSchema = new mongoose.Schema(
   {
-    firstName: { type: String, maxlength: 50 },
-    lastName: { type: String, maxlength: 50 },
+    firstName: { type: String, maxlength: 50, trim: true, required: true },
+    lastName: { type: String, maxlength: 50, trim: true, required: true },
     email: {
       type: String,
-      required: true,
       unique: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      lowercase: true,
+      trim: true,
+      required: true,
     },
     password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
-    shippingAddress: { type: String, maxlength: 200 },
+    shippingAddress: {
+      street: {
+        type: String,
+        maxlength: 200,
+        required: true,
+      },
+      apartment: {
+        type: String,
+        maxlength: 200,
+      },
+      city: {
+        type: String,
+        maxlength: 200,
+        required: true,
+      },
+      postalCode: {
+        type: String,
+        maxlength: 200,
+        required: true,
+      },
+      country: {
+        type: String,
+        maxlength: 200,
+        required: true,
+      },
+    },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
     notesAdmin: [

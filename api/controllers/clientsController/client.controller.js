@@ -61,7 +61,7 @@ const clientController = {
     }
   },
   deleteClient: async (req, res) => {
-    // Implementation for deleting a client
+    
   },
   notesAdmin: async (req, res) => {
     try {

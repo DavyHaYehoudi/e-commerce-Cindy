@@ -230,12 +230,16 @@
 .admin-order-item-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.admin-order-item-header.order-header {
+.admin-order-item-header .order-header {
+  text-align: left;
+}
+.admin-order-item-header .order-header-details {
     display: flex;
-    gap: 10px;
+    gap: 50px;
+    margin: 20px;
+  font-size: 0.75rem;
 }
 
 /* Icon email client */
