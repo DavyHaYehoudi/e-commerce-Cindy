@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Stock from "../shared/Stock";
 import CurrentPrice from "../shared/CurrentPrice";
 import OldPrice from "../shared/OldPrice";
@@ -20,18 +20,12 @@ const NoMaterials = ({
   const handleNewCheckboxChange = (e) => {
     const isNewChecked = e.target.checked;
     setIsNewChecked(isNewChecked);
-    if (!isNewChecked) {
-      setNewDate("");
-    }
   };
 
   //Réinitialiser checkbox PROMOTION
   const handlePromoCheckboxChange = (e) => {
     const isPromoChecked = e.target.checked;
     setIsPromoChecked(isPromoChecked);
-    if (!isPromoChecked) {
-      setPromo({ amount: 0, startDate: "", endDate: "" });
-    }
   };
 
   const {
@@ -58,6 +52,11 @@ const NoMaterials = ({
     isWithMaterial,
     addMainImageToStorage,
   });
+  
+  useEffect(() => {
+    setIsNewChecked(!!newDate);
+    setIsPromoChecked(!!promo?.startDate);
+  }, [newDate, promo]);
 
   return (
     <div className="noMaterials">

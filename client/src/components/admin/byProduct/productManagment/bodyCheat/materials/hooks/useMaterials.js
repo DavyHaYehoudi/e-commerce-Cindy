@@ -191,6 +191,9 @@ const useMaterials = ({
       fetchImagesFromStorage();
     }
   }, [currentAction, data?.mainImage]);
+  useEffect(() => {
+    setIsChecked(!!initMainImage);
+  }, [initMainImage]);
   return {
     isChecked,
     stock,
