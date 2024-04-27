@@ -68,7 +68,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           type="text"
           id="apartment"
           name="apartment"
-          placeholder="Appartement (optionnel)"
+          placeholder="Appartement"
           onChange={handleChange}
         />
         <div className="location-details">
@@ -97,10 +97,16 @@ const PaymentFormDelivery = ({ onUpdate }) => {
         aria-label="Uniquement pour vous joindre éventuellement dans le cadre de votre commande"
       >
         <input
+          type="email"
+          id="emailRecipient"
+          name="emailRecipient"
+          placeholder="Email"
+        />
+        <input
           type="tel"
           id="phone"
           name="phone"
-          placeholder="Téléphone (optionnel)"
+          placeholder="Téléphone"
           onChange={handleChange}
         />
       </div>

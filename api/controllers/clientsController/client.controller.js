@@ -60,9 +60,6 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-  deleteClient: async (req, res) => {
-    
-  },
   notesAdmin: async (req, res) => {
     try {
       const { clientId } = req.params;

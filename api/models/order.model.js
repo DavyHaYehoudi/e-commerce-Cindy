@@ -8,18 +8,28 @@ const orderSchema = new mongoose.Schema(
       ref: "Client",
       required: true,
     },
-    recipientName: {
+    emailContact: {
       type: String,
-      required: true,
+      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      lowercase: true,
+      trim: true,
+      default: null,
     },
-    recipientSurname: {
+    phoneContact: {
       type: String,
-      required: true,
+      default: null,
     },
     shippingAddress: {
       firstName: { type: String, maxlength: 50, trim: true, required: true },
       lastName: { type: String, maxlength: 50, trim: true, required: true },
-      phone: { type: String, maxlength: 20, default: "" },
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,
+      },
+      phone: { type: String, maxlength: 20, default: null },
       street: {
         type: String,
         required: true,
@@ -45,10 +55,18 @@ const orderSchema = new mongoose.Schema(
       companyName: {
         type: String,
         maxlength: 200,
-        default:""
+        default: "",
       },
       firstName: { type: String, maxlength: 50, trim: true, required: true },
       lastName: { type: String, maxlength: 50, trim: true, required: true },
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,
+      },
+      phone: { type: String, maxlength: 20, default: null },
       street: {
         type: String,
         required: true,

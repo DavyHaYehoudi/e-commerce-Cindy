@@ -20,11 +20,15 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
     companyName,
     firstName,
     lastName,
+    email,
     street,
     postalCode,
     city,
     country,
+    phone
   } = order?.billingAddress || {};
+
+  const{emailContact,phoneContact}=order
 
   return (
     <div
@@ -45,6 +49,11 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
               <div className="order-header-details">
                 {" "}
                 <div>
+                  <span className="dotted">Contact</span> :
+                  <p>{emailContact}</p>
+                  <p>{phoneContact}</p>
+                </div>
+                <div>
                   <span className="dotted">Adresse de livraison</span> :
                   <p>
                     {firstNameShipping} {lastNameShipping}
@@ -63,6 +72,8 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
                   <p>
                     {firstName} {lastName}
                   </p>
+                  <p>{email}</p>
+                  <p>{phone}</p>
                   <p>{street}</p>
                   <p>
                     {postalCode} {city}

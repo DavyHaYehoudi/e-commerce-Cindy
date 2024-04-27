@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiMail } from "react-icons/ci";
 
 const PaymentFormContact = ({ onUpdate }) => {
+  const [subscribe, setSubscribe] = useState(false);
 
   const handleChange = (e) => {
-    onUpdate({ [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    const inputValue = type === "checkbox" ? checked : value;
+    onUpdate({ [name]: inputValue });
   };
 
   return (
@@ -22,6 +25,26 @@ const PaymentFormContact = ({ onUpdate }) => {
         aria-required="true"
         onChange={handleChange}
       />
+      <input
+        type="text"
+        id="phoneContact"
+        name="phoneContact"
+        placeholder="Téléphone"
+        aria-required="true"
+        onChange={handleChange}
+      />
+      <div className="subscribe">
+        <label htmlFor="subscribe">
+          <input
+            type="checkbox"
+            id="subscribe"
+            name="subscribe"
+            checked={subscribe}
+            onChange={() => setSubscribe(!subscribe)}
+          />
+          Envoyez-moi les nouvelles et les offres par e-mail
+        </label>
+      </div>
     </>
   );
 };
