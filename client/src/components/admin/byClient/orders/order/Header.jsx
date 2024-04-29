@@ -28,8 +28,6 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
     phone:phoneBilling
   } = order?.billingAddress || {};
 
-  const{emailContact,phoneContact}=order
-
   return (
     <div
       className="admin-order-item-header"
@@ -48,11 +46,6 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
             content={
               <div className="order-header-details">
                 {" "}
-                <div>
-                  <span className="dotted">Contact</span> :
-                  <p>{emailContact}</p>
-                  <p>{phoneContact}</p>
-                </div>
                 <div>
                   <span className="dotted">Adresse de livraison</span> :
                   <p>

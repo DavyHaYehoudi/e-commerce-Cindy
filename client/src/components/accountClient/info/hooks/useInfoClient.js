@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateClientField } from "../../../../features/accountClient/customerSlice";
 
-const useInfoClient = (dataClient, setIsModified) => {
-  const [fields, setFields] = useState([]);
+const useInfoClient = (
+  dataClient,
+  setIsModified,
+  handleChangeProfilSave,
+  clientId
+) => {
+  const [profileFields, setProfileFields] = useState([]);
+  const [shippingFields, setShippingFields] = useState([]);
+  const [billingFields, setBillingFields] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,18 +60,19 @@ const useInfoClient = (dataClient, setIsModified) => {
       billingAddress,
     } = dataClient;
 
-    const fields = [
+    const profileFields = [
       { label: "Prénom", name: "firstName", value: firstName, required: true },
       { label: "Nom", name: "lastName", value: lastName, required: true },
       { label: "Email", name: "email", value: email, required: true },
       { label: "Téléphone", name: "phone", value: phone },
-      // Billing Address Fields
-      ...mapAddressFields(billingAddress, "billingAddress"),
-      // Shipping Address Fields
-      ...mapAddressFields(shippingAddress, "shippingAddress"),
     ];
 
-    setFields(fields);
+    const shippingFields = mapAddressFields(shippingAddress, "shippingAddress");
+    const billingFields = mapAddressFields(billingAddress, "billingAddress");
+
+    setProfileFields(profileFields);
+    setShippingFields(shippingFields);
+    setBillingFields(billingFields);
   }, [dataClient, dispatch]);
 
   const mapAddressFields = (address, nestedFieldName) => {
@@ -98,7 +106,24 @@ const useInfoClient = (dataClient, setIsModified) => {
     ];
   };
 
-  return { fields, handleInputChange, errorMessages };
+  const handleSaveChanges = () => {
+    // Vérifier s'il y a des erreurs avant de sauvegarder les modifications
+    const hasErrors = Object.values(errorMessages).some(
+      (message) => message !== null
+    );
+    if (!hasErrors) {
+      handleChangeProfilSave(dataClient, clientId);
+    }
+  };
+
+  return {
+    profileFields,
+    shippingFields,
+    billingFields,
+    handleInputChange,
+    errorMessages,
+    handleSaveChanges,
+  };
 };
 
 export default useInfoClient;

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import OtherOrders from './OtherOrders';
 import DeliveredOrders from './Delivered';
 import { getStepColor } from '../../../helpers/utils/getStepColor';
-import Giftcards from './Giftcards';
 
 const Menu = () => {
     const orderHistory = useSelector((state) => state?.customer?.data?.orders);
@@ -48,7 +47,6 @@ const Menu = () => {
               getStepColor={getStepColor}
             />
           )}
-          {isActive === "cartesCadeaux" && <Giftcards />}
         </div>
       </div>
     );

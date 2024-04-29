@@ -100,13 +100,13 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           type="email"
           id="emailRecipient"
           name="emailRecipient"
-          placeholder="Email"
+          placeholder="Email *"
         />
         <input
           type="tel"
           id="phone"
           name="phone"
-          placeholder="Téléphone"
+          placeholder="Téléphone *"
           onChange={handleChange}
         />
       </div>

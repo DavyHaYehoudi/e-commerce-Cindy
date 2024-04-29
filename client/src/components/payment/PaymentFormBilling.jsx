@@ -39,7 +39,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
           onChange={handleChange}
         />
         <label htmlFor="useShippingAddress">
-          Utiliser l'adresse de livraison comme adresse de facturation
+          Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
@@ -120,7 +120,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             type="email"
             id="emailBill"
             name="emailBill"
-            placeholder="Email"
+            placeholder="Email *"
           />
           <input
             type="text"

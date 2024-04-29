@@ -14,11 +14,11 @@ const UserInfoField = ({
   return (
     <p>
       <b>
-        <span className="dotted">
-          {label}
-          {required ? <span className="asterix"> *</span> : ""}
+        <span className="dotted label">
+          {label}{" "}:
+          {required ? <span className="asterix"> * </span> : ""}
         </span>{" "}
-        :
+        
       </b>{" "}
       {isEditing ? (
         <input
