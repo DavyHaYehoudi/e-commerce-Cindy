@@ -53,11 +53,17 @@ const customer = createSlice({
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     updateClientField: (state, action) => {
-      const { clientId, field, value } = action.payload;
-      const client = state?.data?.client;
-
-      if (clientId === client._id) {
-        client[field] = value;
+      const { fieldName, nestedFieldName, value } = action.payload;
+      if (nestedFieldName) {
+        state.data.client = {
+          ...state.data.client,
+          [nestedFieldName]: {
+            ...state.data.client[nestedFieldName],
+            [fieldName]: value,
+          },
+        };
+      } else {
+        state.data.client = { ...state.data.client, [fieldName]: value };
       }
     },
   },

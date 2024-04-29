@@ -17,15 +17,15 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
   } = order?.shippingAddress || {};
 
   const {
-    companyName,
-    firstName,
-    lastName,
-    email,
-    street,
-    postalCode,
-    city,
-    country,
-    phone
+    companyName:companyNameBilling,
+    firstName:firstNameBilling,
+    lastName:lastNameBilling,
+    email:emailBilling,
+    street:streetBilling,
+    postalCode:postalCodeBilling,
+    city:cityBilling,
+    country:countryBilling,
+    phone:phoneBilling
   } = order?.billingAddress || {};
 
   const{emailContact,phoneContact}=order
@@ -68,17 +68,17 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
                 </div>
                 <div>
                   <span className="dotted">Adresse de facturation</span> :
-                  <p>{companyName}</p>
+                  <p>{companyNameBilling}</p>
                   <p>
-                    {firstName} {lastName}
+                    {firstNameBilling} {lastNameBilling}
                   </p>
-                  <p>{email}</p>
-                  <p>{phone}</p>
-                  <p>{street}</p>
+                  <p>{emailBilling}</p>
+                  <p>{phoneBilling}</p>
+                  <p>{streetBilling}</p>
                   <p>
-                    {postalCode} {city}
+                    {postalCodeBilling} {cityBilling}
                   </p>
-                  <p>{country}</p>
+                  <p>{countryBilling}</p>
                 </div>
               </div>
             }

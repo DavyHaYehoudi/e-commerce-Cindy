@@ -40,6 +40,7 @@ const PaymentForm = () => {
 
   return (
     <div id="payment-form" data-testid="payment-form">
+      <p className="asterix">Les champs marqués par une étoile * sont obligatoires.</p>
       <PaymentFormContact onUpdate={updateContactData} />
       <PaymentFormDelivery onUpdate={updateDeliveryData} />
       <PaymentFormCard onUpdate={updateCardData} />

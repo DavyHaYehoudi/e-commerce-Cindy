@@ -17,10 +17,11 @@ const clientSchema = new mongoose.Schema(
     password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
     shippingAddress: {
+      firstName: { type: String, maxlength: 50, trim: true },
+      lastName: { type: String, maxlength: 50, trim: true },
       street: {
         type: String,
         maxlength: 200,
-        required: true,
       },
       apartment: {
         type: String,
@@ -29,17 +30,55 @@ const clientSchema = new mongoose.Schema(
       city: {
         type: String,
         maxlength: 200,
-        required: true,
       },
       postalCode: {
         type: String,
         maxlength: 200,
-        required: true,
       },
       country: {
         type: String,
         maxlength: 200,
-        required: true,
+      },
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,
+      },
+      phone: { type: String, maxlength: 20, default: null },
+    },
+    billingAddress: {
+      companyName: {
+        type: String,
+        maxlength: 200,
+        default: "",
+      },
+      firstName: { type: String, maxlength: 50, trim: true},
+      lastName: { type: String, maxlength: 50, trim: true},
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,
+      },
+      phone: { type: String, maxlength: 20, default: null },
+      street: {
+        type: String,
+      },
+      apartment: {
+        type: String,
+        maxlength: 200,
+      },
+      city: {
+        type: String,
+      },
+      postalCode: {
+        type: String,
+      },
+      country: {
+        type: String,
       },
     },
     totalOrders: { type: Number, default: 0 },

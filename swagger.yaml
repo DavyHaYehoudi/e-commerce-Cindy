@@ -195,32 +195,6 @@ paths:
             permission.
       security:
         - api_key: []
-    delete:
-      tags:
-        - client
-      summary: Delete client
-      description: This can only be done by the logged in client.
-      operationId: deleteClient
-      parameters:
-        - name: clientId
-          in: path
-          description: The id that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Successful deleted client
-        '400':
-          description: Invalid clientId supplied
-        '401':
-          description: Unauthorized - Client is not authenticated
-        '403':
-          description: >-
-            Forbidden - The client is authenticated, but does not have
-            permission.
-      security:
-        - api_key: []
   /clients/{clientId}/notesAdmin:
     patch:
       tags:
@@ -1256,8 +1230,49 @@ components:
           type: string
           example: 06 90 12 34 56
         shippingAddress:
-          type: string
-          example: 12 Rue de la République, 75001 Paris
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
+        billingingAddress:
+          type: object
+          properties:
+            companyName:
+              type: string
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
         totalOrders:
           type: integer
           format: int16
@@ -1313,8 +1328,16 @@ components:
           type: string
           example: 06 90 12 34 56
         shippingAddress:
-          type: string
-          example: 12 Rue de la République, 75001 Paris
+          type: object
+          properties:
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
         totalOrders:
           type: integer
           format: int16
@@ -1433,6 +1456,54 @@ components:
                       - 10m4d22b45a0fb3fd4a7l53
                   _id:
                     type: string
+        shippingAddress:
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
+        billingingAddress:
+          type: object
+          properties:
+            companyName:
+              type: string
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
+        phoneContact:
+          type: string
+        emailContact:
+          type: string
     Orders:
       type: array
       items:
@@ -1465,6 +1536,54 @@ components:
               - 2884d22b45a0fb3fd4a75p2
               - 7774d22b45a0fb3fd4a7bn0
               - 10m4d22b45a0fb3fd4a7l53
+        shippingAddress:
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
+        billingingAddress:
+          type: object
+          properties:
+            companyName:
+              type: string
+            firstName:
+              type: string
+            lastName: 
+              type: string
+            street: 
+              type: string
+            apartment: 
+              type: string
+            city:
+              type: string
+            postalCode: 
+              type: string
+            country: 
+              type: string
+            email: 
+              type: string
+            phone: 
+              type: string
+        phoneContact:
+          type: string
+        emailContact:
+          type: string
     OrderProducts:
       type: array
       items:
