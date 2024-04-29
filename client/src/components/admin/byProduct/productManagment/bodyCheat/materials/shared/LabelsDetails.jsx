@@ -1,5 +1,5 @@
 import React from "react";
-import MainImage from "./MainImage";
+import MainImage from "../../../../../../../shared/MainImage";
 import { formatDate } from "../../../../../../../helpers/utils/formatDate";
 import useLabelsDetails from "./hooks/useLabelsDetails";
 
@@ -38,6 +38,8 @@ const LabelsDetails = ({
             fileInputId={fileInputId}
             loading={loading}
             handleDeleteImage={handleDeleteImage}
+            required={true}
+            legend="Image principale"
           />
         </div>
         <div className="labels-details-wrapper">

@@ -16,6 +16,7 @@ const clientSchema = new mongoose.Schema(
     },
     password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
+    avatar:{type: String, defaut:null},
     shippingAddress: {
       firstName: { type: String, maxlength: 50, trim: true },
       lastName: { type: String, maxlength: 50, trim: true },

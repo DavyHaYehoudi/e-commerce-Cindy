@@ -10,16 +10,6 @@ const BillingAddress = ({
   return (
     <div className="card">
       <h3>Adresse de facturation</h3>
-      {errorMessages && (
-        <small className="error-message">
-          {Object.values(errorMessages).map((message, index) => (
-            <span key={index}>
-              {message}
-              <br />
-            </span>
-          ))}
-        </small>
-      )}
       {fields.map((field, index) => (
         <UserInfoField
           key={index}

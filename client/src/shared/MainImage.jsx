@@ -7,12 +7,15 @@ const MainImage = ({
   fileInputId,
   loading,
   handleDeleteImage,
+  required,
+  legend,
 }) => {
   return (
     <div className="main-image">
       <figure>
         <figcaption>
-          Image principale<span className="asterix">*</span>{" "}
+          {legend}
+          {required ? <span className="asterix">*</span> : ""}
         </figcaption>
         <div className="images-wrapper">
           <label htmlFor={fileInputId}>

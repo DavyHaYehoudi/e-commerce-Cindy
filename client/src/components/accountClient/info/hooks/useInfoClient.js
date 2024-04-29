@@ -16,18 +16,29 @@ const useInfoClient = (
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateField = (fieldName, value) => {
-    if (fieldName === "email") {
-      return emailRegex.test(value);
-    } else {
-      return value.trim() !== "";
+    if (["firstName", "lastName", "email"].includes(fieldName)) {
+      // Validation spécifique pour les champs de profil
+      if (fieldName === "email") {
+        return emailRegex.test(value);
+      } else {
+        return value.trim() !== "";
+      }
     }
+    // Ne pas appliquer de validation pour les autres champs
+    return true;
   };
 
   const handleInputChange =
     (fieldName, nestedFieldName = null, label) =>
     (e) => {
       const { name, value } = e.target;
-      const isValid = validateField(name, value);
+      // Vérifier si le champ appartient aux champs de profil
+      const isProfileField =
+        ["firstName", "lastName", "email"].includes(fieldName) &&
+        !nestedFieldName;
+
+      // Appliquer la validation uniquement pour les champs de profil
+      const isValid = isProfileField ? validateField(name, value) : true;
 
       if (!isValid) {
         setErrorMessages((prevErrors) => ({
