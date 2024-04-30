@@ -235,7 +235,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Auth'
+              $ref: '#/components/schemas/AuthRegister'
       responses:
         '201':
           description: successful account creation
@@ -255,7 +255,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Auth'
+              $ref: '#/components/schemas/AuthLogin'
       responses:
         '200':
           description: successful authentication
@@ -2234,9 +2234,22 @@ components:
           type: integer
           format: int16
           example: 2
-    Auth:
+    AuthLogin:
       type: object
       properties:
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+    AuthRegister:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
         email:
           type: string
           example: john@email.com
