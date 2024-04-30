@@ -13,6 +13,7 @@ const InfoClient = ({
   handleChangeProfilEdit,
   clientId,
   setIsModified,
+  isModified
 }) => {
   const {
     mainImage,
@@ -75,7 +76,7 @@ const InfoClient = ({
       </div>
 
       {isEditing ? (
-        <button className="btn" onClick={handleSaveChanges}>
+        <button  className={`btn ${isModified?"modified":""}`} onClick={handleSaveChanges}>
           Enregistrer les modifications
         </button>
       ) : (

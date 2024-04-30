@@ -48,7 +48,9 @@ const useFetchStatsStorage = (pathsProducts, pathAvatars) => {
         const avatarRes = await listAll(avatarRef);
         const totalImagesAvatars = avatarRes.items.length;
 
-        const avatarPromises = avatarRes.items.map((itemRef) => getMetadata(itemRef));
+        const avatarPromises = avatarRes.items.map((itemRef) =>
+          getMetadata(itemRef)
+        );
         const avatarMetadatas = await Promise.all(avatarPromises);
 
         const totalSizeAvatars = avatarMetadatas.reduce((acc, metadata) => {

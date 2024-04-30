@@ -6,14 +6,10 @@ import { useDispatch } from "react-redux";
 import { updateAvatar } from "../../../../features/accountClient/customerSlice";
 
 const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
-  console.log("initAvatar:", initAvatar);
   const [mainImage, setMainImage] = useState(initAvatar);
-  console.log("mainImage:", mainImage);
   const [loading, setLoading] = useState(false);
   const [addAvatarToStorage, setAddAvatarToStorage] = useState(null);
-  console.log("addAvatarToStorage:", addAvatarToStorage);
   const [removeAvatarToStorage, setRemoveAvatarToStorage] = useState(null);
-  console.log("removeAvatarToStorage:", removeAvatarToStorage);
   const dispatch = useDispatch();
   const handleMainImageChange = async (e) => {
     setIsModified(true);

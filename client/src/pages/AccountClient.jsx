@@ -21,7 +21,7 @@ const AccountClient = () => {
     setSelectedTab(tab);
   };
 
-  const { handleChangeProfilSave, isEditing, setIsEditing, setIsModified } =
+  const { handleChangeProfilSave, isEditing, setIsEditing, setIsModified,isModified } =
     useProfilChange();
 
   const handleChangeProfilEdit = () => {
@@ -86,6 +86,7 @@ const AccountClient = () => {
           handleChangeProfilEdit={handleChangeProfilEdit}
           clientId={clientIdForDevelopment}
           setIsModified={setIsModified}
+          isModified={isModified}
         />
       )}
       {selectedTab === "Commandes" && <Menu />}
