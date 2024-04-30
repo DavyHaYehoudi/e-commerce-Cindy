@@ -1229,6 +1229,8 @@ components:
         phone:
           type: string
           example: 06 90 12 34 56
+        avatar:
+          type: string
         shippingAddress:
           type: object
           properties:
@@ -1580,10 +1582,6 @@ components:
               type: string
             phone: 
               type: string
-        phoneContact:
-          type: string
-        emailContact:
-          type: string
     OrderProducts:
       type: array
       items:
