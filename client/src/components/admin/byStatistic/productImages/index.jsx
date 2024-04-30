@@ -4,10 +4,12 @@ import calculatePercentage from "../utils/calculatePercentage";
 import { formatSize } from "../utils/formatSize";
 import { getColor } from "../utils/getColor";
 
+const pathsProducts = ["products/secondary", "products/main"];
+const pathAvatars = "avatars";
 const ProductImages = () => {
   const { statsProducts, statsAvatars } = useFetchStatsStorage(
-    ["products/secondary", "products/main"],
-    "avatars"
+    pathsProducts,
+    pathAvatars
   );
   const { totalImagesProducts, totalSizeProducts } = statsProducts;
   const { totalImagesAvatars, totalSizeAvatars } = statsAvatars;
@@ -28,14 +30,17 @@ const ProductImages = () => {
     <div>
       <p>
         Nombre total d'images des produits :{" "}
-        <strong>{totalImagesProducts}</strong> {` (${formatSize(totalSizeProducts)})`}
+        <strong>{totalImagesProducts}</strong>{" "}
+        {` (${formatSize(totalSizeProducts)})`}
       </p>
       <p>
         Nombre total d'images des avatars :{" "}
-        <strong>{totalImagesAvatars}</strong> {` (${formatSize(totalSizeAvatars)})`}
+        <strong>{totalImagesAvatars}</strong>{" "}
+        {` (${formatSize(totalSizeAvatars)})`}
       </p>
       <p>
-        Nombre total d'images : <strong>{totalImages}</strong>{` (${formatSize(totalSize)})`}
+        Nombre total d'images : <strong>{totalImages}</strong>
+        {` (${formatSize(totalSize)})`}
       </p>
       <p>
         Espace restant sur les 5 Go :{" "}

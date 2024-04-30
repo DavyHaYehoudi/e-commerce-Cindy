@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { customFetch } from "../services/customFetch";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,9 +9,19 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [forgotPassword] = useState(false);
 
-  const handleLogin = () => {
-    // Logique de connexion (à implémenter)
-    console.log("Login with:", email, password);
+  const handleLogin = async() => {
+    try {
+      const response = await customFetch('auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      });
+
+      localStorage.setItem('token', response.token);
+
+      // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+    }
   };
 
   return (

@@ -16,8 +16,9 @@ const login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ message: "Mot de passe incorrect." });
     }
-
-    const token = generateJWTToken(client);
+    console.log('client.role :', client.role )
+    const isAdmin = client.role === 'admin';
+    const token = generateJWTToken(client,isAdmin);
 
     res.status(200).json({ token });
   } catch (error) {
