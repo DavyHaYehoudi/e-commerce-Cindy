@@ -41,11 +41,18 @@ const useProfilChange = () => {
       setError(error.message);
     } finally {
       setLoading(false);
-      setIsModified(false)
+      setIsModified(false);
     }
   };
 
-  return { loading, error, handleChangeProfilSave, isEditing, setIsEditing, setIsModified };
+  return {
+    loading,
+    error,
+    handleChangeProfilSave,
+    isEditing,
+    setIsEditing,
+    setIsModified,
+  };
 };
 
 export default useProfilChange;

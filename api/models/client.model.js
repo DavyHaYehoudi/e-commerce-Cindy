@@ -16,7 +16,7 @@ const clientSchema = new mongoose.Schema(
     },
     password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
-    avatar:{type: String, defaut:null},
+    avatar: { type: String, defaut: null },
     shippingAddress: {
       firstName: { type: String, maxlength: 50, trim: true },
       lastName: { type: String, maxlength: 50, trim: true },
@@ -55,8 +55,8 @@ const clientSchema = new mongoose.Schema(
         maxlength: 200,
         default: "",
       },
-      firstName: { type: String, maxlength: 50, trim: true},
-      lastName: { type: String, maxlength: 50, trim: true},
+      firstName: { type: String, maxlength: 50, trim: true },
+      lastName: { type: String, maxlength: 50, trim: true },
       email: {
         type: String,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,

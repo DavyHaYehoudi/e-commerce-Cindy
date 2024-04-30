@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateClientField } from "../../../../features/accountClient/customerSlice";
+import { storage } from "../../../../firebase";
+import { deleteObject, ref, uploadBytes } from "firebase/storage";
 
 const useInfoClient = (
   dataClient,
   setIsModified,
   handleChangeProfilSave,
-  clientId
+  clientId,
+  addAvatarToStorage,
+  setAddAvatarToStorage,
+  removeAvatarToStorage,
+  setRemoveAvatarToStorage
 ) => {
   const [profileFields, setProfileFields] = useState([]);
   const [shippingFields, setShippingFields] = useState([]);
   const [billingFields, setBillingFields] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
+  const avatarStore = useSelector((state) => state?.customer?.avatar);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateField = (fieldName, value) => {
@@ -117,13 +124,39 @@ const useInfoClient = (
     ];
   };
 
-  const handleSaveChanges = () => {
-    // Vérifier s'il y a des erreurs avant de sauvegarder les modifications
+  const handleSaveChanges = async () => {
     const hasErrors = Object.values(errorMessages).some(
       (message) => message !== null
     );
     if (!hasErrors) {
-      handleChangeProfilSave(dataClient, clientId);
+      const formatDataClient = { ...dataClient };
+      formatDataClient.avatar = avatarStore;
+      await handleChangeProfilSave(formatDataClient, clientId);
+
+      try {
+        if (addAvatarToStorage) {
+          const { path, file } = addAvatarToStorage;
+          const storageRef = ref(storage, path);
+          await uploadBytes(storageRef, file);
+          //Pour relancer le useEffect sur initAvatar dans useProfilClientImage et que mainImage soit issue de firebase Storage et non en local
+          dispatch(updateClientField({ fieldName: "avatar", value: path }));
+          console.log("Image avatar envoyée avec succès !");
+        }
+        if (removeAvatarToStorage) {
+          const imageUrl = removeAvatarToStorage;
+          const imageRef = ref(storage, imageUrl);
+          await deleteObject(imageRef);
+          console.log("Image avatar supprimée avec succès !");
+        }
+      } catch (error) {
+        console.error(
+          "Erreur lors de la mise à jour de l'image avatar dans firebase storage :",
+          error
+        );
+      } finally {
+        setAddAvatarToStorage(null);
+        setRemoveAvatarToStorage(null);
+      }
     }
   };
 

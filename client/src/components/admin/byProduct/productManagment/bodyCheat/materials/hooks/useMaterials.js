@@ -7,7 +7,7 @@ import {
   updateProductMaterials,
   mainImagesToRemoveStorage,
 } from "../../../../../../../features/admin/productSlice";
-import { generateFilePath } from "../../utils/generateFilePath";
+import {generateFilePath} from "../../../../../../../helpers/utils/generateFilePath"
 
 const useMaterials = ({
   material,

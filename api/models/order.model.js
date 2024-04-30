@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema(
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         lowercase: true,
         trim: true,
-        default: null,
+        default: null,  
         required: true,
       },
       phone: { type: String, maxlength: 20, default: null, required: true },

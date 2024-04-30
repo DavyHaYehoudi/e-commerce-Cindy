@@ -6,8 +6,8 @@ import {
   deleteObject,
   getDownloadURL,
 } from "firebase/storage";
-import { getPathFromStorageUrl } from "../utils/getPathsStorage";
-import { generateFilePath } from "../utils/generateFilePath";
+import {generateFilePath} from "../../../../../../helpers/utils/generateFilePath"
+import {getPathFromStorageUrl} from "../../../../../../helpers/utils/getPathsStorage"
 
 const useImageManagement = ({ data, currentAction, initialImageCount }) => {
   const totalInputs =

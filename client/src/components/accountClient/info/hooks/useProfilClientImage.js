@@ -1,48 +1,55 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { storage } from "../../../../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
+import { generateFilePath } from "../../../../helpers/utils/generateFilePath";
+import { useDispatch } from "react-redux";
+import { updateAvatar } from "../../../../features/accountClient/customerSlice";
 
-const useProfilClientImage = (initAvatar) => {
-  const [initImage, setInitImage] = useState(initAvatar);
+const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
+  console.log("initAvatar:", initAvatar);
   const [mainImage, setMainImage] = useState(initAvatar);
+  console.log("mainImage:", mainImage);
   const [loading, setLoading] = useState(false);
+  const [addAvatarToStorage, setAddAvatarToStorage] = useState(null);
+  console.log("addAvatarToStorage:", addAvatarToStorage);
+  const [removeAvatarToStorage, setRemoveAvatarToStorage] = useState(null);
+  console.log("removeAvatarToStorage:", removeAvatarToStorage);
   const dispatch = useDispatch();
   const handleMainImageChange = async (e) => {
-    // if (mainImage && !mainImage?.name) {
-    //   dispatch(mainImagesToRemoveStorage(mainImage));
-    // }
+    setIsModified(true);
+    setIsEditing(true);
+    if (mainImage && !mainImage?.name) {
+      setRemoveAvatarToStorage(mainImage);
+    }
     const file = e.target.files[0];
     setMainImage(file);
-    // const path = generateFilePath(file, "avatars/");
-    // dispatch(updateProductMaterials({ _id: material?._id, main_image: path }));
-    // addMainImageToStorage({
-    //   materialId: material?._id,
-    //   file,
-    //   path,
-    // });
+    const path = generateFilePath(file, "avatars/");
+    setAddAvatarToStorage({ file, path });
+    dispatch(updateAvatar(path));
   };
   const handleDeleteImage = () => {
-    // if (mainImage && !mainImage?.name) {
-    //   dispatch(mainImagesToRemoveStorage(mainImage));
-    // }
+    setIsModified(true);
+    setIsEditing(true);
+    if (mainImage && !mainImage?.name) {
+      setRemoveAvatarToStorage(mainImage);
+    }
     setMainImage(null);
-    // dispatch(updateProductMaterials({ _id: material?._id, main_image: null }));
+    setAddAvatarToStorage(null);
+    dispatch(updateAvatar(""));
   };
   useEffect(() => {
-    if (initImage) {
+    if (initAvatar && initAvatar.startsWith("avatars")) {
       const fetchImagesFromStorage = async () => {
         try {
-          if (initImage.startsWith("avatars")) {
-            setLoading(true);
-            const url = await getDownloadURL(ref(storage, initImage));
-            setMainImage(url);
-            setLoading(false);
-          }
+          setLoading(true);
+          const url = await getDownloadURL(ref(storage, initAvatar));
+          setMainImage(url);
+          setLoading(false);
+          dispatch(updateAvatar(initAvatar))
         } catch (error) {
           console.error(
             "Erreur lors du chargement de l'image principale depuis Firebase Storage :",
-            error
+            error 
           );
           setLoading(false);
         }
@@ -50,7 +57,17 @@ const useProfilClientImage = (initAvatar) => {
 
       fetchImagesFromStorage();
     }
-  }, [initImage]);
-  return { mainImage, handleMainImageChange, handleDeleteImage, loading };
+  }, [initAvatar,dispatch]);
+
+  return {
+    mainImage,
+    handleMainImageChange,
+    handleDeleteImage,
+    loading,
+    addAvatarToStorage,
+    setAddAvatarToStorage,
+    removeAvatarToStorage,
+    setRemoveAvatarToStorage,
+  };
 };
 export default useProfilClientImage;

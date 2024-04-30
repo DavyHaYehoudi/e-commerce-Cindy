@@ -82,6 +82,7 @@ const AccountClient = () => {
           dataClient={dataClient}
           handleChangeProfilSave={handleChangeProfilSave}
           isEditing={isEditing}
+          setIsEditing={setIsEditing}
           handleChangeProfilEdit={handleChangeProfilEdit}
           clientId={clientIdForDevelopment}
           setIsModified={setIsModified}

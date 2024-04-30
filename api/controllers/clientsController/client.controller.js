@@ -31,6 +31,7 @@ const clientController = {
   updateClient: async (req, res) => {
     const { clientId } = req.params;
     const updateFields = req.body;
+    console.log('updateFields:', updateFields)
 
     try {
       const client = await Client.findById(clientId);
@@ -52,7 +53,7 @@ const clientController = {
         {
           $set: filteredUpdateFields,
         },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true } 
       );
 
       res.status(200).json({});
