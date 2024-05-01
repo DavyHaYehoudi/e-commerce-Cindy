@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { customFetch } from "../services/customFetch";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useLogin from "./hooks/useLogin";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [forgotPassword] = useState(false);
-
-  const handleLogin = async() => {
-    try {
-      const response = await customFetch('auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-      });
-
-      localStorage.setItem('token', response.token);
-
-      // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
-    } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-    }
-  };
+  const {
+    email,
+    password,
+    showPassword,
+    forgotPassword,
+    handleLogin,
+    togglePasswordVisibility,
+    handleChangeEmail,
+    handleChangePassword,
+  } = useLogin();
 
   return (
     <div className="login-container">
@@ -37,7 +30,7 @@ const Login = () => {
               autoFocus
               required
               aria-required="true"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChangeEmail}
             />
 
             <label>
@@ -48,19 +41,22 @@ const Login = () => {
                   value={password}
                   required
                   aria-required="true"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleChangePassword}
                 />
-                <div className="password-icon-container" aria-label="Montrer le mot de passe">
+                <div
+                  className="password-icon-container"
+                  aria-label="Montrer le mot de passe"
+                >
                   {showPassword ? (
                     <AiOutlineEye
                       className="password-icon"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={togglePasswordVisibility}
                       aria-hidden="true"
                     />
                   ) : (
                     <AiOutlineEyeInvisible
                       className="password-icon"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onClick={togglePasswordVisibility}
                       aria-hidden="true"
                     />
                   )}
@@ -85,6 +81,7 @@ const Login = () => {
           </>
         )}
       </form>
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

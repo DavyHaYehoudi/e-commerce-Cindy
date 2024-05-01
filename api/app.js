@@ -26,39 +26,20 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use("/auth", authRoutes);
+app.use("/products", productRoutes);
+app.use("/materials", materialRoutes);
+app.use("/collections", collectionRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/tags", tagRoutes);
 app.use(authenticateJWT); 
 app.use("/clients", clientRoutes);
 app.use("/orders", orderRoutes);
 app.use("/orderProducts", orderProductsRoutes);
-app.use("/products", productRoutes);
 app.use("/credits", creditRoutes);
-app.use("/materials", materialRoutes);
 app.use("/promocodes", promocodeRoutes);
 app.use("/giftcards", giftcardRoutes);
 app.use("/statistics", statisticsRoutes);
-app.use("/collections", collectionRoutes);
-app.use("/categories", categoryRoutes);
-app.use("/tags", tagRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);
 });
-
-// const someControllerAction = async (req, res) => {
-//   const { client } = req;
-
-//   // Vérifiez si l'utilisateur est un administrateur
-//   if (client.role === 'admin') {
-//     // Logique pour les administrateurs
-//     return res.status(200).json({ message: "Vous êtes un administrateur." });
-//   } else {
-//     // Logique pour les utilisateurs non-administrateurs
-//     // Vérifiez si le client a la permission d'accéder à cette ressource
-//     if (!client.canAccessSomeResource) {
-//       return res.status(403).json({ message: "Accès refusé." });
-//     }
-
-//     // Logique pour les utilisateurs non-administrateurs
-//     return res.status(200).json({ message: "Vous êtes un utilisateur." });
-//   }
-// };

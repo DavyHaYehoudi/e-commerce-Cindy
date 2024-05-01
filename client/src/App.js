@@ -1,7 +1,7 @@
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./pages/authentication/Login";
 import ShoppingCart from "./pages/ShoppingCart";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -14,8 +14,8 @@ import SubCategory from "./pages/SubCategory";
 import Deliveries from "./pages/Deliveries";
 import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
-import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
+import Register from "./pages/authentication/Register";
+import ForgotPassword from "./pages/authentication/ForgotPassword";
 import AccountClient from "./pages/AccountClient";
 import AdminDashboard from "./pages/AdminDashboard";
 

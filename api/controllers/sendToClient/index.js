@@ -6,6 +6,10 @@ import { updateCredit } from "./updateCredit.js";
 
 const sendToClientController = {
   updateOrder: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
     const { orderId } = req.params;
     const orderProductsArray = req.body[0];
     const { step, trackingNumberList } = req.body[1];
