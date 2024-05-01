@@ -1,31 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useRegistration from "./hooks/useRegistration";
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleRegister = () => {
-    // Logique d'inscription (à implémenter)
-    console.log("Register with:", email, password);
-  };
-
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
+    error,
+    handleRegister,
+  } = useRegistration();
   return (
     <div className="register-container">
       <h2>Inscription</h2>
       <form>
+        {error && <p className="error-message">{error}</p>}
         <label>Prénom * :</label>
         <input
           type="text"
           value={firstName}
           required
-          aria-required="true"
           onChange={(e) => setFirstName(e.target.value)}
         />
 
@@ -34,16 +42,13 @@ const Register = () => {
           type="text"
           value={lastName}
           required
-          aria-required="true"
           onChange={(e) => setLastName(e.target.value)}
         />
         <label>Email * :</label>
         <input
           type="email"
           value={email}
-          autoFocus
           required
-          aria-required="true"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -54,25 +59,16 @@ const Register = () => {
               type={showPassword ? "text" : "password"}
               value={password}
               required
-              aria-required="true"
               onChange={(e) => setPassword(e.target.value)}
             />
             <div
               className="password-icon-container"
-              aria-label="Montrer le mot de passe"
+              onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <AiOutlineEyeInvisible
-                  className="password-icon"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-hidden="true"
-                />
+                <AiOutlineEyeInvisible className="password-icon" />
               ) : (
-                <AiOutlineEye
-                  className="password-icon"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-hidden="true"
-                />
+                <AiOutlineEye className="password-icon" />
               )}
             </div>
           </div>
@@ -85,23 +81,16 @@ const Register = () => {
               type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               required
-              aria-required="true"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <div
               className="password-icon-container"
-              aria-label="Montrer le mot de passe"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
               {showConfirmPassword ? (
-                <AiOutlineEyeInvisible
-                  className="password-icon"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                />
+                <AiOutlineEyeInvisible className="password-icon" />
               ) : (
-                <AiOutlineEye
-                  className="password-icon"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                />
+                <AiOutlineEye className="password-icon" />
               )}
             </div>
           </div>
@@ -120,6 +109,7 @@ const Register = () => {
           </Link>
         </p>
       </form>
+      <ToastContainer autoClose={2500} />
     </div>
   );
 };

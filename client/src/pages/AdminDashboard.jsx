@@ -3,8 +3,10 @@ import useFetchSlice from "../selectors/useFetchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClients } from "../features/admin/clientsSlice";
 import Menu from "../components/admin";
+import useTokenExpiration from "./authentication/hooks/useTokenExpiration";
 
 const AdminDashboard = () => {
+  useTokenExpiration();
   const [clientDetails, setClientDetails] = useState({});
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const dispatch = useDispatch();

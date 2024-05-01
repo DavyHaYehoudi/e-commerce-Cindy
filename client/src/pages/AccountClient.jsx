@@ -11,8 +11,10 @@ import { IoMdPricetag } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { MdCardGiftcard } from "react-icons/md";
 import Giftcards from "../components/accountClient/menu/Giftcards";
+import useTokenExpiration from "./authentication/hooks/useTokenExpiration";
 
 const AccountClient = () => {
+  useTokenExpiration();
   const clientIdForDevelopment = "65bc8c5b7f890edc1f63182e";
   const dataClient = useSelector((state) => state?.customer?.data?.client);
 
