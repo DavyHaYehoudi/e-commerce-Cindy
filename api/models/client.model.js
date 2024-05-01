@@ -122,6 +122,11 @@ const clientSchema = new mongoose.Schema(
       },
     ],
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+    verified: { type: Boolean, default: false },
+    emailVerificationToken: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,

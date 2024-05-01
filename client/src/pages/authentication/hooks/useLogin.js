@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { customFetch } from "../../../services/customFetch";
 import { toast } from "react-toastify";
 
 const useLogin = () => {
@@ -12,15 +11,35 @@ const useLogin = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await customFetch("auth/login", {
+      const baseUrl = process.env.REACT_APP_BASE_URL;
+      const url = `${baseUrl}/${"auth/login"}`;
+      const response = await fetch(url, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email, password }),
       });
-      localStorage.setItem("token", response.token);
-      if (response.isAdmin) {
-        navigate("/admin/dashboard");
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("token", data?.token);
+
+        if (data?.isAdmin) {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/account");
+        }
       } else {
-        navigate("/account");
+        if (data?.message === "Adresse e-mail non vérifiée.") {
+          toast.error(
+            "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification."
+          );
+        } else {
+          toast.error(
+            data?.message ||
+              "Une erreur est survenue avec les informations fournies."
+          );
+        }
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { customFetch } from "../../../services/customFetch";
 
 const useRegistration = () => {
   const [firstName, setFirstName] = useState("");
@@ -31,21 +30,34 @@ const useRegistration = () => {
     }
 
     try {
-      const response = await customFetch("auth/register", {
+      const baseUrl = process.env.REACT_APP_BASE_URL;
+      const url = `${baseUrl}/${"auth/register"}`;
+
+      const response = await fetch(url, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ firstName, lastName, email, password }),
       });
-      if (response.message) {
+
+      const data = await response.json();
+
+      if (response.ok) {
         window.alert(
           "Compte utilisateur créé avec succès 😃 ! Vous allez être redirigé vers la page de connexion."
         );
         navigate("/account/login");
+      } else if (data.messageError) {
+        window.alert(
+          `${data.messageError}. Veuillez choisir une autre adresse email.`
+        );
       } else {
         toast.error("Une erreur est survenue avec les informations fournies.");
         throw new Error("Erreur lors de l'inscription.");
       }
     } catch (error) {
-      console.log("error:", error);
+      console.error("error:", error);
       toast.error("Une erreur est survenue avec les informations fournies.");
     }
   };

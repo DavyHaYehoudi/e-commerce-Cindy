@@ -18,6 +18,7 @@ import Register from "./pages/authentication/Register";
 import ForgotPassword from "./pages/authentication/ForgotPassword";
 import AccountClient from "./pages/AccountClient";
 import AdminDashboard from "./pages/AdminDashboard";
+import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/account/login" element={<Login />} />
         <Route path="account/register" element={<Register />} />
         <Route path="account/forgot-password" element={<ForgotPassword />} />
+        <Route path="account/verify-email-register" element={<VerifyEmailRegister />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />

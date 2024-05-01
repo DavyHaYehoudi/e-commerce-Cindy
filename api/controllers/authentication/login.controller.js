@@ -3,6 +3,7 @@ import { generateJWTToken } from "./utils/jwt.js";
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+  console.log('email:', email)
 
   try {
     const client = await Client.findOne({ email });
@@ -10,7 +11,9 @@ const login = async (req, res) => {
     if (!client) {
       return res.status(404).json({ message: "L'utilisateur n'existe pas." });
     }
-
+    if (!client.verified) {
+      return res.status(401).json({ message: "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification." });
+    }
     // const isMatch = await client.comparePassword(password);
 
     // if (!isMatch) {
