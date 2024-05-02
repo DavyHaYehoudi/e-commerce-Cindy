@@ -33,6 +33,7 @@
 @import "pages/authentication/login.css";
 @import "pages/authentication/register.css";
 @import "pages/authentication/forgotPassword.css";
+@import "pages/authentication/resetPassword.css";
 @import "pages/authentication/verifyEmailRegister.css";
 @import "pages/contact.css";
 @import "pages/legalDocs.css";

@@ -3,7 +3,6 @@ import { generateJWTToken } from "./utils/jwt.js";
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log('email:', email)
 
   try {
     const client = await Client.findOne({ email });
@@ -11,22 +10,29 @@ const login = async (req, res) => {
     if (!client) {
       return res.status(404).json({ message: "L'utilisateur n'existe pas." });
     }
-    if (!client.verified) {
-      return res.status(401).json({ message: "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification." });
+    if (!client.authentication.verified) {
+      return res
+        .status(401)
+        .json({
+          message:
+            "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification.",
+        });
     }
-    // const isMatch = await client.comparePassword(password);
+    const isMatch = await client.comparePassword(password);
 
-    // if (!isMatch) {
-    //   return res.status(401).json({ message: "Mot de passe incorrect." });
-    // }
-    console.log('client.role :', client.role )
-    const isAdmin = client.role === 'admin';
-    const token = generateJWTToken(client,isAdmin);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Mot de passe incorrect." });
+    }
+    console.log("client.role :", client.role);
+    const isAdmin = client.role === "admin";
+    const token = generateJWTToken(client, isAdmin);
 
-    res.status(200).json({ token ,isAdmin});
+    res.status(200).json({ token, isAdmin });
   } catch (error) {
     console.error("Erreur lors de l'authentification :", error);
-    res.status(500).json({ message: "Erreur serveur lors de l'authentification." });
+    res
+      .status(500)
+      .json({ message: "Erreur serveur lors de l'authentification." });
   }
 };
 

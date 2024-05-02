@@ -19,7 +19,6 @@ const clientSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    password: { type: String, required: true },
     phone: { type: String, default: "", maxlength: 20 },
     avatar: { type: String, defaut: null },
     shippingAddress: {
@@ -122,12 +121,23 @@ const clientSchema = new mongoose.Schema(
       },
     ],
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
-    verified: { type: Boolean, default: false },
-    emailVerificationToken: {
-      type: String,
-      default: null,
+    authentication: {
+      password: { type: String, required: true },
+      verified: { type: Boolean, default: false },
+      emailVerificationToken: {
+        type: String,
+        default: null,
+      },
+      emailVerificationExpires: { type: Date, default: null },
+      resetPasswordToken: {
+        type: String,
+        default: null,
+      },
+      resetPasswordExpires: {
+        type: Date,
+        default: null,
+      },
     },
-    emailVerificationExpires: { type: Date, default: null },
   },
   {
     timestamps: true,
@@ -135,23 +145,28 @@ const clientSchema = new mongoose.Schema(
 );
 // Middleware to hash the password before saving
 clientSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
+  if (!this.authentication || !this.isModified("authentication.password")) {
     return next();
   }
   try {
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    this.authentication.password = await bcrypt.hash(this.authentication.password, salt);
     next();
   } catch (error) {
-    console.log("Error to save password in middleware client schema :", error);
+    console.log("Erreur lors de la sauvegarde du mot de passe dans le middleware du schéma client :", error);
     next(error);
   }
 });
 
+
 // Method to compare passwords
 clientSchema.methods.comparePassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  if (!this.authentication || !this.authentication.password) {
+    return false; // Aucun mot de passe enregistré
+  }
+  return await bcrypt.compare(password, this.authentication.password);
 };
+
 
 clientSchema.pre("validate", function (next) {
   const error = this.validateSync();

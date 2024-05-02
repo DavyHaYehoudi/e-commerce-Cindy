@@ -19,7 +19,9 @@ const register = async (req, res) => {
       firstName,
       lastName,
       email,
-      password, // Le mot de passe sera hashé automatiquement grâce au middleware dans le modèle
+      authentication: {
+        password, // Le mot de passe sera hashé automatiquement grâce au middleware dans le modèle
+      },
     });
 
     // Enregistrement de l'utilisateur dans la base de données
@@ -27,10 +29,11 @@ const register = async (req, res) => {
     // Génération et envoi du token de vérification par e-mail
     const verificationToken = generateVerificationToken(newClient);
     // Enregistrement du token de vérification dans la base de données du client
-    newClient.emailVerificationToken = verificationToken;
-    newClient.emailVerificationExpires = new Date(
+    newClient.authentication.emailVerificationToken = verificationToken;
+    newClient.authentication.emailVerificationExpires = new Date(
       Date.now() + 24 * 60 * 60 * 1000
     ); // 24 heures d'expiration
+    
     await newClient.save();
     await sendVerificationEmail(newClient, verificationToken);
 

@@ -19,6 +19,7 @@ import ForgotPassword from "./pages/authentication/ForgotPassword";
 import AccountClient from "./pages/AccountClient";
 import AdminDashboard from "./pages/AdminDashboard";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
+import ResetPassword from "./pages/authentication/ResetPassword";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/account/register" element={<Register />} />
         <Route path="/account/forgot-password" element={<ForgotPassword />} />
         <Route path="/account/verify-email-register/:token" element={<VerifyEmailRegister />} />
+        <Route path="/account/reset-password/:token" element={<ResetPassword />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />

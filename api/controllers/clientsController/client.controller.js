@@ -8,7 +8,7 @@ const clientController = {
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
     try {
-      const client = await Client.findById(clientId).select("-notesAdmin -password");
+      const client = await Client.findById(clientId).select("-notesAdmin -authentication");
       const orders = await Order.find({ clientId });
       const orderIds = orders.map((order) => order._id.toString());
       const orderProducts = await OrderProducts.find({
