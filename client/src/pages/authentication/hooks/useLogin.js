@@ -39,6 +39,7 @@ const useLogin = () => {
       if (response.ok) {
         localStorage.setItem("token", data?.token);
         setLoading(false);
+        setError(false)
 
         if (data?.isAdmin) {
           navigate("/admin/dashboard");

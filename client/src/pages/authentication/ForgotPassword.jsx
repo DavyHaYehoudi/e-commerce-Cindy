@@ -16,7 +16,7 @@ const ForgotPassword = () => {
       setError("Veuillez saisir une adresse e-mail valide.");
       return;
     }
-
+  
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const url = `${baseUrl}/${"auth/request-password-reset"}`;
     try {
@@ -32,6 +32,7 @@ const ForgotPassword = () => {
       if (response.ok) {
         setLoading(false);
         setResetSent(true);
+        setError(null)
       } else {
         const data = await response.json();
         setError(data.message);
@@ -58,7 +59,7 @@ const ForgotPassword = () => {
         </div>
       ) : (
         <>
-          <h2>Mot de passe oublié</h2>
+          {!resetSent&&<h2>Mot de passe oublié</h2>}
           <form>
             {!resetSent && (
               <>
@@ -88,7 +89,7 @@ const ForgotPassword = () => {
             {resetSent && (
               <>
                 <p>
-                  Un email de récupération a été envoyé à l'adresse {email}.
+                📩 Un email de récupération a été envoyé à l'adresse {email}.
                   Veuillez suivre les instructions pour réinitialiser votre mot
                   de passe.
                 </p>

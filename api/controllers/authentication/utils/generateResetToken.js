@@ -7,8 +7,8 @@ export const generateResetToken = async (client) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "15m",
-      }
-    );
+      })
+    // const resetToken = 666
 
     // Enregistrement du token dans la base de données
     client.authentication.resetPasswordToken = resetToken;
