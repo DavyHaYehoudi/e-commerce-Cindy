@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const useRegistration = () => {
@@ -11,7 +10,8 @@ const useRegistration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [messageResponse, setMessageResponse] = useState(null);
 
   const handleRegister = async () => {
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
@@ -30,6 +30,7 @@ const useRegistration = () => {
     }
 
     try {
+      setLoading(true);
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const url = `${baseUrl}/${"auth/register"}`;
 
@@ -44,14 +45,11 @@ const useRegistration = () => {
       const data = await response.json();
 
       if (response.ok) {
-        window.alert(
-          "Compte utilisateur créé avec succès 😃 ! Vous allez être redirigé vers la page de connexion."
-        );
-        navigate("/account/login");
+        setLoading(false);
+        setMessageResponse(`Un email de confirmation vient d'être envoyé à l'adresse mail
+        indiquée 📩 !`);
       } else if (data.messageError) {
-        window.alert(
-          `${data.messageError}. Veuillez choisir une autre adresse email.`
-        );
+        toast.error(`${data.messageError}`);
       } else {
         toast.error("Une erreur est survenue avec les informations fournies.");
         throw new Error("Erreur lors de l'inscription.");
@@ -59,6 +57,8 @@ const useRegistration = () => {
     } catch (error) {
       console.error("error:", error);
       toast.error("Une erreur est survenue avec les informations fournies.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,6 +83,8 @@ const useRegistration = () => {
     setShowConfirmPassword,
     error,
     handleRegister,
+    loading,
+    messageResponse,
   };
 };
 

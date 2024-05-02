@@ -50,7 +50,12 @@ const deleteTrackingNumber = createAsyncThunk(
 
 const customer = createSlice({
   name: "customer",
-  initialState: { data: [], status: "idle", error: null, avatar: "" },
+  initialState: {
+    data: [],
+    status: "idle",
+    error: null,
+    avatar: "",
+  },
   reducers: {
     updateClientField: (state, action) => {
       const { fieldName, nestedFieldName, value } = action.payload;
@@ -133,6 +138,7 @@ const customer = createSlice({
       });
   },
 });
-export const { updateClientField, updateAvatar } = customer.actions;
+export const { updateClientField, updateAvatar, addCredentials } =
+  customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

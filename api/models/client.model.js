@@ -6,8 +6,8 @@ const clientSchema = new mongoose.Schema(
   {
     role: {
       type: String,
-      enum: ['admin', 'user'],
-      default: 'user'
+      enum: ["admin", "user"],
+      default: "user",
     },
     firstName: { type: String, maxlength: 50, trim: true, required: true },
     lastName: { type: String, maxlength: 50, trim: true, required: true },
@@ -127,6 +127,7 @@ const clientSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    emailVerificationExpires: { type: Date, default: null },
   },
   {
     timestamps: true,

@@ -22,9 +22,16 @@ const sendVerificationEmail = async (client, verificationToken) => {
     from: process.env.EMAIL_USERNAME_REGISTER,
     to: client.email,
     subject: "Vérifiez votre adresse e-mail",
-    html: `<p>Bonjour ${client.firstName},</p>
-           <p>Veuillez cliquer sur le lien suivant pour vérifier votre adresse e-mail :</p>
-           <a href="${process.env.BASE_URL_FRONT}/verify-email-register?token=${verificationToken}">Vérifier votre e-mail</a>`,
+    html: ` <div style="text-align: center;">
+    <p style="font-size: 18px;">Bonjour ${client.firstName},</p>
+    <p style="font-size: 16px;">Veuillez cliquer sur le bouton ci-dessous pour vérifier votre adresse e-mail :</p>
+    <p style="margin-top: 20px;">
+      <a href="${process.env.BASE_URL_FRONT}/account/verify-email-register/${verificationToken}" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 4px; font-size: 16px;">Vérifier votre e-mail</a>
+    </p>
+    <p style="font-size: 14px;>Ce lient est valable 24 heures</p>
+     <p style="font-size: 14px; margin-top: 20px;">Si le bouton ne fonctionne pas, veuillez copier et coller le lien suivant dans votre navigateur :</p>
+     <p style="font-size: 14px;">${process.env.BASE_URL_FRONT}/account/verify-email-register/${verificationToken}</p>
+    </div>`,
   };
 
   await transporter.sendMail(mailOptions);

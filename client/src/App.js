@@ -29,9 +29,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<AccountClient />} />
         <Route path="/account/login" element={<Login />} />
-        <Route path="account/register" element={<Register />} />
-        <Route path="account/forgot-password" element={<ForgotPassword />} />
-        <Route path="account/verify-email-register" element={<VerifyEmailRegister />} />
+        <Route path="/account/register" element={<Register />} />
+        <Route path="/account/forgot-password" element={<ForgotPassword />} />
+        <Route path="/account/verify-email-register/:token" element={<VerifyEmailRegister />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/menu-tab/:tab" element={<Tab />} />
         <Route path="/menu-tab-category/:category" element={<Category />} />

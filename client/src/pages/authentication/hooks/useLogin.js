@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const useLogin = () => {
@@ -7,10 +7,20 @@ const useLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [forgotPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  //Récupération de l'email après l'inscription
+  let { state } = useLocation();
+  useEffect(() => {
+    if (state) {
+      setEmail(state);
+    }
+  }, [state]);
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const url = `${baseUrl}/${"auth/login"}`;
       const response = await fetch(url, {
@@ -23,6 +33,7 @@ const useLogin = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data?.token);
+        setLoading(false);
 
         if (data?.isAdmin) {
           navigate("/admin/dashboard");
@@ -44,6 +55,8 @@ const useLogin = () => {
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
       toast.error("Une erreur est survenue avec les informations fournies.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,6 +77,7 @@ const useLogin = () => {
     password,
     showPassword,
     forgotPassword,
+    loading,
     handleLogin,
     togglePasswordVisibility,
     handleChangeEmail,
