@@ -8,6 +8,7 @@ const useLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [forgotPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   //Récupération de l'email après l'inscription
@@ -19,6 +20,10 @@ const useLogin = () => {
   }, [state]);
 
   const handleLogin = async () => {
+    if ( !email.trim() || !password.trim() ) {
+        setError("Veuillez remplir tous les champs.");
+        return;
+      }
     try {
       setLoading(true);
       const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -78,6 +83,7 @@ const useLogin = () => {
     showPassword,
     forgotPassword,
     loading,
+    error,
     handleLogin,
     togglePasswordVisibility,
     handleChangeEmail,

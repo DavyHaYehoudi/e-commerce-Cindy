@@ -13,6 +13,7 @@ const Login = () => {
     showPassword,
     forgotPassword,
     loading,
+    error,
     handleLogin,
     togglePasswordVisibility,
     handleChangeEmail,
@@ -21,6 +22,7 @@ const Login = () => {
 
   return (
     <div className="authentication login-container">
+      
       {loading ? (
         <div className="loader">
           <MoonLoader color="var(--dark)" />
@@ -32,6 +34,7 @@ const Login = () => {
             {forgotPassword ? "Réinitialiser le mot de passe" : "Connexion"}
           </h2>
           <form>
+          {error && <p className="error-message">{error}</p>}
             {!forgotPassword && (
               <>
                 <label>Email * :</label>

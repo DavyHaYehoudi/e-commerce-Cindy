@@ -14,7 +14,7 @@ const useRegistration = () => {
   const [messageResponse, setMessageResponse] = useState(null);
 
   const handleRegister = async () => {
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim() || !confirmPassword) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
