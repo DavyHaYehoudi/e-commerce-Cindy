@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import useFetchSlice from "../selectors/useFetchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClients } from "../features/admin/clientsSlice";
 import Menu from "../components/admin";
 import useTokenExpiration from "./authentication/hooks/useTokenExpiration";
+import useFetchSliceAdmin from "../selectors/useFetchSliceAdmin";
+import useClientFromToken from "./authentication/hooks/useClientFromToken";
 
 const AdminDashboard = () => {
   useTokenExpiration();
+  const { role } = useClientFromToken() || "";
+  useFetchSliceAdmin(role);
   const [clientDetails, setClientDetails] = useState({});
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const dispatch = useDispatch();
@@ -14,17 +17,12 @@ const AdminDashboard = () => {
     (state) => state?.clients?.totalClientsCount
   );
 
-  useFetchSlice("clients", undefined, itemsPerPage);
-  useFetchSlice("product");
-  useFetchSlice("material")
-  useFetchSlice("promocode")
-  useFetchSlice("collection")
-  useFetchSlice("tag")
-  useFetchSlice("category")
-
   useEffect(() => {
-    dispatch(fetchClients({ itemsPerPage }));
-  }, [dispatch, itemsPerPage]);
+    if (role === "admin") {
+      dispatch(fetchClients({ itemsPerPage }));
+    }
+    return;
+  }, [dispatch, itemsPerPage, role]);
 
   const handleChangeItemPerPage = (event) => {
     const selectedValue = event.target.value;

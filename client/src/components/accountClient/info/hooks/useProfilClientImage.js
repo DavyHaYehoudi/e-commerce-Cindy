@@ -51,7 +51,7 @@ const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
         }
       };
 
-      fetchImagesFromStorage();
+      fetchImagesFromStorage(); 
     }
   }, [initAvatar,dispatch]);
 

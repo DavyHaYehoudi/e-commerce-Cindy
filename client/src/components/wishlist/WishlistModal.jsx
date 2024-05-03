@@ -2,10 +2,8 @@ import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import WishlistProduct from "./WishlistProduct";
 import WishlistModalActions from "./WishlistModalActions";
-import useFetchSlice from "../../selectors/useFetchSlice";
 
 const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
-  useFetchSlice("product");
 
   return (
     <div

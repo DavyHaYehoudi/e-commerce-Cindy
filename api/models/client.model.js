@@ -135,8 +135,8 @@ const clientSchema = new mongoose.Schema(
       },
       resetPasswordExpires: {
         type: Date,
-        default: null,
-      },
+        default: null,  
+      }, 
     },
   },
   {

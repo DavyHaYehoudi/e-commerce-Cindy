@@ -1,54 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
+import useForgotPassword from "./hooks/useForgotPassword";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-  const [resetSent, setResetSent] = useState(false);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleResetPassword = async () => {
-    const validateEmail = (email) => {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
-    if (!validateEmail(email)) {
-      setError("Veuillez saisir une adresse e-mail valide.");
-      return;
-    }
-  
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-    const url = `${baseUrl}/${"auth/request-password-reset"}`;
-    try {
-      setLoading(true);
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setLoading(false);
-        setResetSent(true);
-        setError(null)
-      } else {
-        const data = await response.json();
-        setError(data.message);
-      }
-    } catch (error) {
-      console.error(
-        "Erreur lors de la demande de réinitialisation du mot de passe :",
-        error
-      );
-      setError(
-        "Erreur serveur lors de la demande de réinitialisation du mot de passe."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    email,
+    setEmail,
+    resetSent,
+    error,
+    loading,
+    handleResetPassword,
+    handleKeyPress,
+  } = useForgotPassword();
 
   return (
     <div className="authentication forgot-password-container">
@@ -59,7 +23,7 @@ const ForgotPassword = () => {
         </div>
       ) : (
         <>
-          {!resetSent&&<h2>Mot de passe oublié</h2>}
+          {!resetSent && <h2>Mot de passe oublié</h2>}
           <form>
             {!resetSent && (
               <>
@@ -71,6 +35,7 @@ const ForgotPassword = () => {
                   required
                   aria-required="true"
                   onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
 
                 <button
@@ -88,10 +53,15 @@ const ForgotPassword = () => {
 
             {resetSent && (
               <>
+                <p>✅</p>
                 <p>
-                📩 Un email de récupération a été envoyé à l'adresse {email}.
-                  Veuillez suivre les instructions pour réinitialiser votre mot
-                  de passe.
+                  📩 Un email de récupération a été envoyé à l'adresse{" "}
+                  <b>
+                    <i>{email}</i>{" "}
+                  </b>{" "}
+                  .<br />
+                  ▶️ Veuillez suivre les instructions pour réinitialiser votre
+                  mot de passe.
                 </p>
                 <Link to="/account/login">
                   <b>

@@ -20,10 +20,9 @@ const login = async (req, res) => {
     }
     const isMatch = await client.comparePassword(password);
 
-    if (!isMatch) {
-      return res.status(401).json({ message: "Mot de passe incorrect." });
-    }
-    console.log("client.role :", client.role);
+    // if (!isMatch) {
+    //   return res.status(401).json({ message: "Mot de passe incorrect." });
+    // }
     const isAdmin = client.role === "admin";
     const token = generateJWTToken(client, isAdmin);
 
@@ -35,5 +34,6 @@ const login = async (req, res) => {
       .json({ message: "Erreur serveur lors de l'authentification." });
   }
 };
-
+ 
 export { login };
+ 

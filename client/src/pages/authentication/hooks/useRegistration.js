@@ -66,6 +66,11 @@ const useRegistration = () => {
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleRegister();
+    }
+  };
 
   return {
     firstName,
@@ -84,6 +89,7 @@ const useRegistration = () => {
     setShowConfirmPassword,
     error,
     handleRegister,
+    handleKeyPress,
     loading,
     messageResponse,
   };

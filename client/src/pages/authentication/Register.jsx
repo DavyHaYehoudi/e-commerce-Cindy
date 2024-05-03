@@ -24,6 +24,7 @@ const Register = () => {
     setShowConfirmPassword,
     error,
     handleRegister,
+    handleKeyPress,
     loading,
     messageResponse,
   } = useRegistration();
@@ -46,6 +47,7 @@ const Register = () => {
               value={firstName}
               required
               onChange={(e) => setFirstName(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
 
             <label>Nom * :</label>
@@ -54,6 +56,7 @@ const Register = () => {
               value={lastName}
               required
               onChange={(e) => setLastName(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <label>Email * :</label>
             <input
@@ -61,6 +64,7 @@ const Register = () => {
               value={email}
               required
               onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
 
             <label>
@@ -71,6 +75,7 @@ const Register = () => {
                   value={password}
                   required
                   onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
                 <div
                   className="password-icon-container"
@@ -93,6 +98,7 @@ const Register = () => {
                   value={confirmPassword}
                   required
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
                 <div
                   className="password-icon-container"
@@ -125,9 +131,7 @@ const Register = () => {
       {messageResponse && (
         <div className="modal">
           <div className="modal-content">
-            <p>
-              {messageResponse}
-            </p>
+            <p>{messageResponse}</p>
             <p>Vous pouvez fermer cette page 👋</p>
           </div>
         </div>

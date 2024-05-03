@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InfoClient from "../components/accountClient/info";
 import { useSelector } from "react-redux";
-import useFetchSlice from "../selectors/useFetchSlice";
+import useFetchSliceCustomer from "../selectors/useFetchSliceCustomer";
 import useProfilChange from "./hooks/useProfilChange";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,10 +12,13 @@ import { FaUser } from "react-icons/fa";
 import { MdCardGiftcard } from "react-icons/md";
 import Giftcards from "../components/accountClient/menu/Giftcards";
 import useTokenExpiration from "./authentication/hooks/useTokenExpiration";
+import useClientFromToken from "./authentication/hooks/useClientFromToken";
 
 const AccountClient = () => {
   useTokenExpiration();
-  const clientIdForDevelopment = "65bc8c5b7f890edc1f63182e";
+  const { clientId } = useClientFromToken() || "";
+  useFetchSliceCustomer(clientId);
+
   const dataClient = useSelector((state) => state?.customer?.data?.client);
 
   const [selectedTab, setSelectedTab] = useState("Compte");
@@ -34,12 +37,6 @@ const AccountClient = () => {
   const handleChangeProfilEdit = () => {
     setIsEditing(true);
   };
-  useFetchSlice("customer", clientIdForDevelopment);
-  useFetchSlice("product");
-  useFetchSlice("material");
-  useFetchSlice("collection");
-  useFetchSlice("tag");
-  useFetchSlice("category");
 
   return (
     <div className="user-profile-container" data-testid="account-dashboard">
@@ -91,7 +88,7 @@ const AccountClient = () => {
           isEditing={isEditing}
           setIsEditing={setIsEditing}
           handleChangeProfilEdit={handleChangeProfilEdit}
-          clientId={clientIdForDevelopment}
+          clientId={clientId}
           setIsModified={setIsModified}
           isModified={isModified}
         />

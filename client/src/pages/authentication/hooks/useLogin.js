@@ -24,6 +24,10 @@ const useLogin = () => {
         setError("Veuillez remplir tous les champs.");
         return;
       }
+      if (!validateEmail(email)) {
+        setError("Veuillez saisir une adresse e-mail valide.");
+        return;
+      }
     try {
       setLoading(true);
       const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -77,6 +81,14 @@ const useLogin = () => {
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   return {
     email,
@@ -89,6 +101,7 @@ const useLogin = () => {
     togglePasswordVisibility,
     handleChangeEmail,
     handleChangePassword,
+    handleKeyPress
   };
 };
 

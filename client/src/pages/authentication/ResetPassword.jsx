@@ -1,54 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import useResetPassword from "./hooks/useResetPassword";
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const navigate = useNavigate();
-
-  const { token } = useParams();
-
-  const handleResetPassword = async () => {
-    if (password !== confirmPassword) {
-      setError("Les mots de passe ne correspondent pas");
-      return;
-    }
-    if (!password || !confirmPassword) {
-      setError("Veuillez remplir tous les champs de mot de passe");
-      return;
-    }
-
-    try {
-      const baseUrl = process.env.REACT_APP_BASE_URL;
-      const url = `${baseUrl}/${"auth/reset-password"}`;
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password, token }),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccess(true);
-      } else {
-        setError(
-          data.message ||
-            "Une erreur s'est produite lors de la réinitialisation du mot de passe"
-        );
-      }
-    } catch (error) {
-      setError(
-        "Une erreur s'est produite lors de la réinitialisation du mot de passe"
-      );
-    }
-  };
+  const {
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    error,
+    success,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
+    handleResetPassword,
+    navigate,
+  } = useResetPassword();
 
   if (success) {
     return (
@@ -57,13 +25,10 @@ const ResetPassword = () => {
           <div className="modal-content">
             <p>
               ✅ Votre mot de passe a été réinitialisé avec succès 😃 !<br />
-              <button
-                className="login-button"
-                onClick={() => navigate("/account/login")}
-              >
-                SE CONNECTER
-              </button>
             </p>
+            <button className="login-button" onClick={() => navigate("/account/login")}>
+              SE CONNECTER
+            </button>
           </div>
         </div>
       </div>

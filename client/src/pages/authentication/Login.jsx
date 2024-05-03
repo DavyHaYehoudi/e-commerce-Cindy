@@ -18,11 +18,11 @@ const Login = () => {
     togglePasswordVisibility,
     handleChangeEmail,
     handleChangePassword,
+    handleKeyPress,
   } = useLogin();
 
   return (
     <div className="authentication login-container">
-      
       {loading ? (
         <div className="loader">
           <MoonLoader color="var(--dark)" />
@@ -34,7 +34,7 @@ const Login = () => {
             {forgotPassword ? "Réinitialiser le mot de passe" : "Connexion"}
           </h2>
           <form>
-          {error && <p className="error-message">{error}</p>}
+            {error && <p className="error-message">{error}</p>}
             {!forgotPassword && (
               <>
                 <label>Email * :</label>
@@ -45,6 +45,7 @@ const Login = () => {
                   required
                   aria-required="true"
                   onChange={handleChangeEmail}
+                  onKeyDown={handleKeyPress}
                 />
 
                 <label>
@@ -56,6 +57,7 @@ const Login = () => {
                       required
                       aria-required="true"
                       onChange={handleChangePassword}
+                      onKeyDown={handleKeyPress}
                     />
                     <div
                       className="password-icon-container"

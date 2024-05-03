@@ -14,7 +14,10 @@ const useTokenExpiration = () => {
         navigate("/account/login");
       } else {
         // Le token est valide, vérifier le rôle de l'utilisateur
-        if (window.location.pathname.startsWith('/admin') && tokenData.role !== 'admin') {
+        if (
+          window.location.pathname.startsWith("/admin") &&
+          tokenData.role !== "admin"
+        ) {
           // L'utilisateur n'a pas le rôle d'administrateur, rediriger vers la page de connexion
           navigate("/account/login");
         }

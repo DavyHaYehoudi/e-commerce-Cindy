@@ -1,9 +1,7 @@
 import Client from "../../models/client.model.js";
-import bcrypt from "bcrypt";
 
 const resetPassword = async (req, res) => {
   const { password, token } = req.body;
-  console.log('password:', password)
 
   try {
     // Vérification si le token est valide et s'il est encore dans la période de validité
@@ -21,17 +19,10 @@ const resetPassword = async (req, res) => {
         });
     }
 
-    // Hash du nouveau mot de passe
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    console.log('hashedPassword:', hashedPassword)
-
-    // Mise à jour du mot de passe dans la base de données
-    client.authentication.password = hashedPassword;
+    client.authentication.password = password;
     client.authentication.resetPasswordToken = null;
     client.authentication.resetPasswordExpires = null; 
     await client.save();
-    console.log('client:', client)
 
     res.status(200).json({ message: "Mot de passe réinitialisé avec succès" });
   } catch (error) {
