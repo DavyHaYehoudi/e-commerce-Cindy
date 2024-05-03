@@ -9,8 +9,8 @@ const clientSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
-    firstName: { type: String, maxlength: 50, trim: true, required: true },
-    lastName: { type: String, maxlength: 50, trim: true, required: true },
+    firstName: { type: String, maxlength: 100, trim: true, required: true },
+    lastName: { type: String, maxlength: 100, trim: true, required: true },
     email: {
       type: String,
       unique: true,
@@ -19,30 +19,30 @@ const clientSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    phone: { type: String, default: "", maxlength: 20 },
+    phone: { type: String, default: "", maxlength: 100 },
     avatar: { type: String, defaut: null },
     shippingAddress: {
-      firstName: { type: String, maxlength: 50, trim: true },
-      lastName: { type: String, maxlength: 50, trim: true },
+      firstName: { type: String, maxlength: 100, trim: true },
+      lastName: { type: String, maxlength: 100, trim: true },
       street: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       apartment: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       city: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       postalCode: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       country: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       email: {
         type: String,
@@ -51,16 +51,16 @@ const clientSchema = new mongoose.Schema(
         trim: true,
         default: null,
       },
-      phone: { type: String, maxlength: 20, default: null },
+      phone: { type: String, maxlength: 100, default: null },
     },
     billingAddress: {
       companyName: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
         default: "",
       },
-      firstName: { type: String, maxlength: 50, trim: true },
-      lastName: { type: String, maxlength: 50, trim: true },
+      firstName: { type: String, maxlength: 100, trim: true },
+      lastName: { type: String, maxlength: 100, trim: true },
       email: {
         type: String,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -68,22 +68,26 @@ const clientSchema = new mongoose.Schema(
         trim: true,
         default: null,
       },
-      phone: { type: String, maxlength: 20, default: null },
+      phone: { type: String, maxlength: 100, default: null },
       street: {
         type: String,
+        maxlength: 100,
       },
       apartment: {
         type: String,
-        maxlength: 200,
+        maxlength: 100,
       },
       city: {
         type: String,
+        maxlength: 100,
       },
       postalCode: {
         type: String,
+        maxlength: 100,
       },
       country: {
         type: String,
+        maxlength: 100,
       },
     },
     totalOrders: { type: Number, default: 0 },

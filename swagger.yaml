@@ -275,7 +275,47 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthResetpassword'
+              $ref: '#/components/schemas/AuthRequestPassword'
+      responses:
+        '200':
+          description: successful authentication
+        '400':
+          description: Invalid username/password supplied
+        '401':
+          description: Client not authenticated.
+  /auth/verify-email:
+    post:
+      tags:
+        - auth
+      summary: Logs client into the system
+      description: ''
+      operationId: confirm client email before registration
+      requestBody:
+        description: confirm registration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthVerifyEmail'
+      responses:
+        '200':
+          description: successful authentication
+        '400':
+          description: Invalid username/password supplied
+        '401':
+          description: Client not authenticated.
+  /auth/reset-password:
+    post:
+      tags:
+        - auth
+      summary: Logs client into the system
+      description: ''
+      operationId: reset password
+      requestBody:
+        description: reinit password after forgetting it
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthResetPassword'
       responses:
         '200':
           description: successful authentication
@@ -1231,6 +1271,9 @@ components:
           example: 06 90 12 34 56
         avatar:
           type: string
+        role:
+          type: string
+          example: user
         shippingAddress:
           type: object
           properties:
@@ -2256,7 +2299,21 @@ components:
         password:
           type: string
           example: '12345'
-    AuthResetpassword:
+    AuthRequestPassword:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+    AuthResetPassword:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+        token:
+          type: string
+    AuthVerifyEmail:
       type: object
       properties:
         email:

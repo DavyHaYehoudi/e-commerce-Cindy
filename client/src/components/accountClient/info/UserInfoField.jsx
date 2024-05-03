@@ -27,6 +27,7 @@ const UserInfoField = ({
           className="account-input"
           value={value}
           onChange={handleChange}
+          maxlength="99"
         />
       ) : (
         value

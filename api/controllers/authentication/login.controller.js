@@ -34,6 +34,5 @@ const login = async (req, res) => {
       .json({ message: "Erreur serveur lors de l'authentification." });
   }
 };
- 
+
 export { login };
- 

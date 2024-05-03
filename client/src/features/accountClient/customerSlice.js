@@ -74,6 +74,11 @@ const customer = createSlice({
     updateAvatar: (state, action) => {
       state.avatar = action.payload;
     },
+    resetCustomerStore: (state, action) => {
+      state.data = [];
+      state.avatar = "";
+      state.status = "idle";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -138,7 +143,7 @@ const customer = createSlice({
       });
   },
 });
-export const { updateClientField, updateAvatar, addCredentials } =
+export const { updateClientField, updateAvatar, addCredentials,resetCustomerStore } =
   customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;
