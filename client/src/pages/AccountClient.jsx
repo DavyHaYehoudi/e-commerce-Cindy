@@ -17,7 +17,7 @@ import useClientFromToken from "./authentication/hooks/useClientFromToken";
 const AccountClient = () => {
   useTokenExpiration();
   const { clientId } = useClientFromToken() || "";
-  console.log('clientId:', clientId)
+  // console.log('clientId:', clientId)
   useFetchSliceCustomer(clientId);
 
   const dataClient = useSelector((state) => state?.customer?.data?.client);

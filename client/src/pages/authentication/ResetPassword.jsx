@@ -16,6 +16,7 @@ const ResetPassword = () => {
     setShowConfirmPassword,
     handleResetPassword,
     navigate,
+    handleKeyPress
   } = useResetPassword();
 
   if (success) {
@@ -46,6 +47,7 @@ const ResetPassword = () => {
           placeholder="Nouveau mot de passe"
           required
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <div
           className="password-icon-container"
@@ -65,6 +67,7 @@ const ResetPassword = () => {
           placeholder="Confirmer le mot de passe"
           required
           onChange={(e) => setConfirmPassword(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <div
           className="password-icon-container"

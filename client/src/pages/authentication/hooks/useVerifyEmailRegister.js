@@ -23,6 +23,7 @@ const useVerifyEmailRegister = (token) => {
       const data = await response.json();
       setEmail(data?.email);
       setVerificationStatus("verified");
+      setError(null)
     } catch (error) {
       setError(error);
       setVerificationStatus("failed");

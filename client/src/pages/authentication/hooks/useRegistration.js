@@ -47,7 +47,7 @@ const useRegistration = () => {
       if (response.ok) {
         setLoading(false);
         setError(false)
-        setMessageResponse(`Un email de confirmation vient d'être envoyé à l'adresse mail
+        setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à l'adresse mail
         indiquée 📩 !`);
       } else if (data.messageError) {
         toast.error(`${data.messageError}`);

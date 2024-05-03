@@ -47,7 +47,11 @@ const useResetPassword = () => {
       );
     }
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleResetPassword();
+    }
+  };
   return {
     password,
     setPassword,
@@ -61,6 +65,7 @@ const useResetPassword = () => {
     setShowConfirmPassword,
     handleResetPassword,
     navigate,
+    handleKeyPress
   };
 };
 
