@@ -39,21 +39,21 @@ const PaymentFormBilling = ({ onUpdate }) => {
           onChange={handleChange}
         />
         <label htmlFor="useShippingAddress">
-          Utiliser l'adresse d'expédition comme adresse de facturation
+          Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
       {!useShippingAddress && (
-          <div className="billing-fields">
-            <input
-              type="text"
-              id="billingCompany"
-              name="billingCompany"
-              placeholder="Nom de la société ou raison sociale"
-              onChange={(e) =>
-                handleBillingChange("billingCompany", e.target.value)
-              }
-            />
+        <div className="billing-fields">
+          <input
+            type="text"
+            id="billingCompany"
+            name="billingCompany"
+            placeholder="Nom de la société ou raison sociale"
+            onChange={(e) =>
+              handleBillingChange("billingCompany", e.target.value)
+            }
+          />
           <input
             type="text"
             id="billingFirstName"
@@ -91,7 +91,7 @@ const PaymentFormBilling = ({ onUpdate }) => {
             type="text"
             id="billingApartment"
             name="billingApartment"
-            placeholder="Appartement (optionnel)"
+            placeholder="Appartement"
             onChange={(e) =>
               handleBillingChange("billingApartment", e.target.value)
             }
@@ -116,6 +116,18 @@ const PaymentFormBilling = ({ onUpdate }) => {
             aria-required="true"
             onChange={(e) => handleBillingChange("billingCity", e.target.value)}
           />
+          <input
+            type="email"
+            id="emailBill"
+            name="emailBill"
+            placeholder="Email *"
+          />
+          <input
+            type="text"
+            id="phoneBill"
+            name="phoneBill"
+            placeholder="Téléphone"
+          />
         </div>
       )}
     </div>
@@ -123,4 +135,3 @@ const PaymentFormBilling = ({ onUpdate }) => {
 };
 
 export default PaymentFormBilling;
-

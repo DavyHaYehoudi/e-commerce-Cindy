@@ -183,7 +183,10 @@ img {
     color: var(--text-whitesmoke);
     background-color: var(--success);
 }
-
+.asterix{
+    color: var(--danger);
+}
+  
 /* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 
 /* ********************* START INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */

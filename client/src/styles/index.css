@@ -29,9 +29,12 @@
 @import "./layout/footer.css";
 
 /* PAGES */
-@import "pages/login.css";
-@import "pages/register.css";
-@import "pages/forgotPassword.css";
+@import "pages/authentication/index.css";
+@import "pages/authentication/login.css";
+@import "pages/authentication/register.css";
+@import "pages/authentication/forgotPassword.css";
+@import "pages/authentication/resetPassword.css";
+@import "pages/authentication/verifyEmailRegister.css";
 @import "pages/contact.css";
 @import "pages/legalDocs.css";
 @import "pages/about.css";

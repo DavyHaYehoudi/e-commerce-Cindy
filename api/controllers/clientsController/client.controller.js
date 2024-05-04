@@ -8,7 +8,7 @@ const clientController = {
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
     try {
-      const client = await Client.findById(clientId).select("-notesAdmin");
+      const client = await Client.findById(clientId).select("-notesAdmin -authentication");
       const orders = await Order.find({ clientId });
       const orderIds = orders.map((order) => order._id.toString());
       const orderProducts = await OrderProducts.find({
@@ -28,12 +28,10 @@ const clientController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
-  createClient: async (req, res) => {
-    // Implementation for creating a new client
-  },
   updateClient: async (req, res) => {
     const { clientId } = req.params;
     const updateFields = req.body;
+    // console.log('updateFields:', updateFields)
 
     try {
       const client = await Client.findById(clientId);
@@ -55,7 +53,7 @@ const clientController = {
         {
           $set: filteredUpdateFields,
         },
-        { new: true, runValidators: true }
+        { new: true, runValidators: true } 
       );
 
       res.status(200).json({});
@@ -63,10 +61,12 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-  deleteClient: async (req, res) => {
-    // Implementation for deleting a client
-  },
   notesAdmin: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
+  
     try {
       const { clientId } = req.params;
       const { content, noteId } = req.body;
@@ -121,3 +121,4 @@ const clientController = {
 };
 
 export default clientController;
+ 

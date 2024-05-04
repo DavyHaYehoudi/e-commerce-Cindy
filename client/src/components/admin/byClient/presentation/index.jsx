@@ -37,8 +37,10 @@ const Infos = ({ client, orders, handleClientClick }) => {
         <span className="dotted">Téléphone </span>: {phone}
       </p>
       <p>
-        <span className="dotted">Adresse de livraison </span>: {shippingAddress}
+        <span className="dotted">Adresse de livraison</span> :
+        {` ${shippingAddress.street} - ${shippingAddress.postalCode} ${shippingAddress.city} - ${shippingAddress.country}`}
       </p>
+
       <p>
         <span className="dotted">Compte créé le </span>: {formatDate(createdAt)}{" "}
       </p>

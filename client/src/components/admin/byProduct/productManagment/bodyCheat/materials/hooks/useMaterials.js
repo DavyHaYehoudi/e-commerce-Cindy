@@ -7,7 +7,7 @@ import {
   updateProductMaterials,
   mainImagesToRemoveStorage,
 } from "../../../../../../../features/admin/productSlice";
-import { generateFilePath } from "../../utils/generateFilePath";
+import {generateFilePath} from "../../../../../../../helpers/utils/generateFilePath"
 
 const useMaterials = ({
   material,
@@ -191,6 +191,9 @@ const useMaterials = ({
       fetchImagesFromStorage();
     }
   }, [currentAction, data?.mainImage]);
+  useEffect(() => {
+    setIsChecked(!!initMainImage);
+  }, [initMainImage]);
   return {
     isChecked,
     stock,

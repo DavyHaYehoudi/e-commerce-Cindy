@@ -1,0 +1,63 @@
+.authentication .loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.authentication .modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* Activer le défilement si nécessaire */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenu de la modal */
+.authentication .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: var(--background);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  /* height: 250px; */
+}
+
+/* Bouton de fermeture */
+.authentication .close {
+  color: var(--secondary);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.authentication .close:hover,
+.authentication .close:focus {
+  color: var(--dark);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.authentication .login-button {
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.authentication .login-button:hover {
+  background-color: #0056b3;
+}

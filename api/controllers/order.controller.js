@@ -2,6 +2,10 @@ import Order from "../models/order.model.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
     try {
       const { orderIds } = req.query;
       const parsedOrderIds = JSON.parse(orderIds);

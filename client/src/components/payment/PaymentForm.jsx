@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PaymentFormContact from "./PaymentFormContact";
 import PaymentFormDelivery from "./PaymentFormDelivery";
 import PaymentFormCard from "./PaymentFormCard";
 import PaymentFormBilling from "./PaymentFormBilling";
@@ -7,15 +6,11 @@ import axios from "axios";
 
 const PaymentForm = () => {
   const [formData, setFormData] = useState({
-    contact: {},
     delivery: {},
     card: {},
     billing: {},
+    saveInfo: true, 
   });
-
-  const updateContactData = (data) => {
-    setFormData((prevData) => ({ ...prevData, contact: data }));
-  };
 
   const updateDeliveryData = (data) => {
     setFormData((prevData) => ({ ...prevData, delivery: data }));
@@ -29,6 +24,10 @@ const PaymentForm = () => {
     setFormData((prevData) => ({ ...prevData, billing: data }));
   };
 
+  const handleCheckboxChange = () => {
+    setFormData((prevData) => ({ ...prevData, saveInfo: !prevData.saveInfo }));
+  };
+
   const handleSubmit = () => {
     axios.post("/endpoint", formData)
       .then((response) => {
@@ -36,14 +35,24 @@ const PaymentForm = () => {
       .catch((error) => {
       });
   };
-  
 
   return (
     <div id="payment-form" data-testid="payment-form">
-      <PaymentFormContact onUpdate={updateContactData} />
+      <p className="asterix">Les champs marqués par une étoile * sont obligatoires.</p>
       <PaymentFormDelivery onUpdate={updateDeliveryData} />
       <PaymentFormCard onUpdate={updateCardData} />
       <PaymentFormBilling onUpdate={updateBillingData} />
+      <div className="checkbox">
+
+        <input
+          type="checkbox"
+          checked={formData.saveInfo}
+          onChange={handleCheckboxChange}
+        />
+      <label>
+        Enregistrer ces informations pour les prochaines commandes.
+      </label>
+      </div>
       <button type="button" onClick={handleSubmit}>
         Vérifier la commande
       </button>

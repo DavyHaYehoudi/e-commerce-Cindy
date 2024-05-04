@@ -66,8 +66,8 @@ const Item = ({
     orderReqBody["trackingNumberList"] = trackingNumberList;
     orderReqBody["step"] = step;
 
-    console.log('orderProductsReqBody:', orderProductsReqBody) /////////
-    console.log('orderReqBody:', orderReqBody) /////////
+    // console.log('orderProductsReqBody:', orderProductsReqBody) /////////
+    // console.log('orderReqBody:', orderReqBody) /////////
     sendToClient(order?._id, orderProductsReqBody, orderReqBody);
   };
 
@@ -80,7 +80,6 @@ const Item = ({
         <Header
           order={order}
           orderIndex={orderIndex}
-          client={client}
           step={step}
           lastSentDateToClient={lastSentDateToClient}
           handleSendToClient={handleSendToClient}

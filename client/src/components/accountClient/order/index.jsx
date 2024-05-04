@@ -11,6 +11,7 @@ import TrackingNumberCreate from "./trackingFiled/TrackingNumberCreate";
 
 const List = ({ orderHistory, filter }) => {
   const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
+
   return (
     <div className="other-orders" data-testid="list-orders">
       {orderHistory &&
@@ -27,20 +28,62 @@ const List = ({ orderHistory, filter }) => {
               <div className="details">
                 <p>
                   <span className="dotted">Prix total</span> :{" "}
-                  <span className="outPricing">{formatPrice(order?.inTotalAmount) || "Total NC"}</span> 
-                </p>
-                <p>
-                  <span className="dotted">Moyen de paiement</span> :{" "}
-                  {order?.paymentMethod["cardType"]}
-                </p>
-                <p>
-                  {" "}
-                  <span className="dotted">Se terminant par</span> :{" "}
-                  {order?.paymentMethod["last4Digits"]}{" "}
+                  <span className="outPricing">
+                    {formatPrice(order?.inTotalAmount) || "Total NC"}
+                  </span>
                 </p>
               </div>
             </div>
-
+            <ToggleButton
+              initialText="Détails"
+              hiddenText="Fermer"
+              buttonClass="account-btn toggle"
+              content={
+                <div className="order-header-details">
+                  {" "}
+                  <p>
+                    <span className="dotted">Moyen de paiement</span> :{" "}
+                    {order?.paymentMethod["cardType"]}
+                  </p>
+                  <p>
+                    {" "}
+                    <span className="dotted">Se terminant par</span> :{" "}
+                    {order?.paymentMethod["last4Digits"]}{" "}
+                  </p>
+                  <div>
+                    <span className="dotted">Adresse de livraison</span> :
+                    <p>
+                      {order?.shippingAddress?.firstName}{" "}
+                      {order?.shippingAddress?.lastName}
+                    </p>
+                    <p>{order?.shippingAddress?.email}</p>
+                    <p>{order?.shippingAddress?.phone}</p>
+                    <p>{order?.shippingAddress?.street}</p>
+                    <p>
+                      {order?.shippingAddress?.postalCode} {" "}
+                      {order?.shippingAddress?.city}
+                    </p>
+                    <p>{order?.shippingAddress?.country}</p>
+                  </div>
+                  <div>
+                    <span className="dotted">Adresse de facturation</span> :
+                    <p>{order?.billingAddress?.companyName}</p>
+                    <p>
+                      {order?.billingAddress?.firstName}{" "}
+                      {order?.billingAddress?.lastName}
+                    </p>
+                    <p>{order?.billingAddress?.email}</p>
+                    <p>{order?.billingAddress?.phone}</p>
+                    <p>{order?.billingAddress?.street}</p>
+                    <p>
+                      {order?.billingAddress?.postalCode}{" "}
+                      {order?.billingAddress?.city}
+                    </p>
+                    <p>{order?.billingAddress?.country}</p>
+                  </div>
+                </div>
+              }
+            />
             <ToggleButton
               initialText="Afficher les articles"
               hiddenText="Fermer les articles"

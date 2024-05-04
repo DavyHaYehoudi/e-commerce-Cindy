@@ -8,6 +8,85 @@ const orderSchema = new mongoose.Schema(
       ref: "Client",
       required: true,
     },
+    shippingAddress: {
+      firstName: { type: String, maxlength: 100, trim: true, required: true },
+      lastName: { type: String, maxlength: 100, trim: true, required: true },
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,  
+        required: true,
+      },
+      phone: { type: String, maxlength: 100, default: null, required: true },
+      street: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      apartment: {
+        type: String,
+        maxlength: 100,
+      },
+      city: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      postalCode: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      country: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+    },
+    billingAddress: {
+      companyName: {
+        type: String,
+        maxlength: 100,
+        default: "",
+      },
+      firstName: { type: String, maxlength: 100, trim: true, required: true },
+      lastName: { type: String, maxlength: 100, trim: true, required: true },
+      email: {
+        type: String,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        lowercase: true,
+        trim: true,
+        default: null,
+        required: true,
+      },
+      phone: { type: String, maxlength: 100, default: null },
+      street: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      apartment: {
+        type: String,
+        maxlength: 100,
+      },
+      city: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      postalCode: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+      country: {
+        type: String,
+        required: true,
+        maxlength: 100,
+      },
+    },
     step: {
       type: Number,
       required: true,
@@ -101,6 +180,7 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
 orderSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
@@ -108,5 +188,6 @@ orderSchema.pre("validate", function (next) {
   }
   next();
 });
+
 const Order = mongoose.model("Order", orderSchema);
 export default Order;

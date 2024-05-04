@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LabelsDetails from "../shared/LabelsDetails";
 import Switch from "../shared/Switch";
 
 const MaterialsRowDetails = ({
   material,
   newDate,
-  setNewDate,
   handleNewDateChange,
   promo,
-  setPromo,
   handlePromoChange,
   mainImage,
   handleMainImageChange,
@@ -23,23 +21,21 @@ const MaterialsRowDetails = ({
 }) => {
   const [isNewChecked, setIsNewChecked] = useState(false);
   const [isPromoChecked, setIsPromoChecked] = useState(false);
+  useEffect(() => {
+    setIsNewChecked(!!newDate);
+    setIsPromoChecked(!!promo?.startDate);
+  }, [newDate, promo]);
 
-  //Réinitialiser checkbox NOUVEAU
+  //Checkbox NOUVEAU
   const handleNewCheckboxChange = (e) => {
     const isNewChecked = e.target.checked;
     setIsNewChecked(isNewChecked);
-    if (!isNewChecked) {
-      setNewDate("");
-    }
   };
 
-  //Réinitialiser checkbox PROMOTION
+  //Checkbox PROMOTION
   const handlePromoCheckboxChange = (e) => {
     const isPromoChecked = e.target.checked;
     setIsPromoChecked(isPromoChecked);
-    if (!isPromoChecked) {
-      setPromo({ amount: 0, startDate: "", endDate: "" });
-    }
   };
 
   return (

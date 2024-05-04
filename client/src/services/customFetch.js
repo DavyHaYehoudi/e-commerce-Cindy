@@ -8,6 +8,7 @@ export const customFetch = async (endpoint, options = {}) => {
       method: "GET", 
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       ...options,
     };

@@ -12,7 +12,9 @@ import statisticsRoutes from "./routes/statistic.routes.js";
 import collectionRoutes from "./routes/collection.route.js";
 import tagRoutes from "./routes/tag.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
+import authenticateJWT from "./controllers/authentication/authenticateJWT.js";
 const app = express();
 const port = 3001;
 
@@ -23,18 +25,20 @@ const corsOptions = {
 };
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use("/clients", clientRoutes);
-app.use("/orders", orderRoutes);
-app.use("/orderProducts", orderProductsRoutes);
+app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
-app.use("/credits", creditRoutes);
 app.use("/materials", materialRoutes);
-app.use("/promocodes", promocodeRoutes);
-app.use("/giftcards", giftcardRoutes);
-app.use("/statistics", statisticsRoutes);
 app.use("/collections", collectionRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/tags", tagRoutes);
+app.use(authenticateJWT); 
+app.use("/clients", clientRoutes);
+app.use("/orders", orderRoutes);
+app.use("/orderProducts", orderProductsRoutes);
+app.use("/credits", creditRoutes);
+app.use("/promocodes", promocodeRoutes);
+app.use("/giftcards", giftcardRoutes);
+app.use("/statistics", statisticsRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est démarré sur le port ${port}`);

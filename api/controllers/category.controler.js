@@ -11,6 +11,10 @@ const categoryController = {
     }
   },
   createCategory: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
     try {
       const { name, parentCollection } = req.body;
       const category = await Category.create({ name, parentCollection});
@@ -21,6 +25,10 @@ const categoryController = {
     }
   },
   updateCategory: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
     try {
       const { categoryId } = req.params;
       const { name, parentCollection } = req.body;
@@ -44,6 +52,10 @@ const categoryController = {
   },
 
   deleteCategory: async (req, res) => {
+    const { client } = req;
+    if (client.role !== 'admin') {
+      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
+    }
     try {
       const { categoryId } = req.params;
       const deleteCategory = await Category.findByIdAndDelete(categoryId);
@@ -61,3 +73,4 @@ const categoryController = {
 };
 
 export default categoryController;
+ 
