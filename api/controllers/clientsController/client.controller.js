@@ -9,6 +9,9 @@ const clientController = {
     const { clientId } = req.params;
     try {
       const client = await Client.findById(clientId).select("-notesAdmin -authentication");
+      if (!client) {
+        return res.status(404).json({ message: "L'utilisateur n'existe pas." });
+      }
       const orders = await Order.find({ clientId });
       const orderIds = orders.map((order) => order._id.toString());
       const orderProducts = await OrderProducts.find({
@@ -36,7 +39,7 @@ const clientController = {
     try {
       const client = await Client.findById(clientId);
       if (!client) {
-        return res.status(404).json({ error: "Client not found" });
+        return res.status(404).json({ error: "L'utilisateur n'existe pas." });
       }
       // Liste des champs à exclure de la mise à jour
       const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
@@ -75,7 +78,7 @@ const clientController = {
         try {
           const client = await Client.findById(clientId);
           if (!client) {
-            return res.status(404).json({ error: "Client not found" });
+            return res.status(404).json({ error: "L'utilisateur n'existe pas." });
           }
           const currentDate = new Date();
           const newNote = { content, date: currentDate };
@@ -102,7 +105,7 @@ const clientController = {
         try {
           const client = await Client.findById(clientId);
           if (!client) {
-            return res.status(404).json({ error: "Client not found" });
+            return res.status(404).json({ error: "L'utilisateur n'existe pas." });
           }
           await Client.findOneAndUpdate(
             { _id: clientId },

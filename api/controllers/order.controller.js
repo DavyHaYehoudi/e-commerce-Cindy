@@ -25,7 +25,7 @@ const orderController = {
       const existingOrder = await Order.findById(orderId);
 
       if (!existingOrder) {
-        return res.status(404).json({ error: "Order not found" });
+        return res.status(404).json({ error: "La commande n'existe pas" });
       }
 
       const isAdminFalseTrackingNumber = existingOrder.trackingNumber.find(
@@ -55,7 +55,7 @@ const orderController = {
       const existingOrder = await Order.findById(orderId);
 
       if (!existingOrder) {
-        return res.status(404).json({ error: "Order not found" });
+        return res.status(404).json({ error: "La commande n'existe pas" });
       }
 
       existingOrder.trackingNumber.pull({ id: trackingNumberId });
@@ -66,10 +66,6 @@ const orderController = {
       res.status(500).json({ error: error.message });
     }
   },
-  getOrderById: async (req, res) => {
-    // Implementation for getting a client by ID
-  },
-
   createOrder: async (req, res) => {
     // Implementation for creating a new client
   },

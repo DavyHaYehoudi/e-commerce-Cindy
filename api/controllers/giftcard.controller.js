@@ -28,7 +28,7 @@ const giftcardController = {
       const { giftcardId, consumerId } = req.body;
       const giftcard = await Giftcard.findById(giftcardId);
       if (!giftcard || giftcard.consumerId) {
-        res.status(400).json("Error ressource not found or not available");
+        res.status(404).json("La carte-cadeau n'existe pas.");
         return;
       }
       const consumerGiftcard = await Giftcard.findByIdAndUpdate(

@@ -40,7 +40,7 @@ const materialController = {
       );
 
       if (!updateMaterial) {
-        return res.status(404).json({ error: "Material not found" });
+        return res.status(404).json({ error: "Le matériau n'existe pas." });
       }
 
       res.status(200).json(updateMaterial);
@@ -60,7 +60,7 @@ const materialController = {
       const deleteMaterial = await Material.findByIdAndDelete(materialId);
 
       if (!deleteMaterial) {
-        return res.status(404).json({ error: "Material not found" });
+        return res.status(404).json({ error: "Le matériau n'existe pas." });
       }
 
       res.status(200).json(deleteMaterial);
