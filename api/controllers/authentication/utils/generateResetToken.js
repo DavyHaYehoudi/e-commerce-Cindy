@@ -8,7 +8,6 @@ export const generateResetToken = async (client) => {
       {
         expiresIn: "15m",
       })
-    // const resetToken = 666
 
     // Enregistrement du token dans la base de données
     client.authentication.resetPasswordToken = resetToken;

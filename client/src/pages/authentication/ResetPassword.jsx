@@ -46,6 +46,7 @@ const ResetPassword = () => {
           value={password}
           placeholder="Nouveau mot de passe"
           required
+          autoFocus
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={handleKeyPress}
         />
