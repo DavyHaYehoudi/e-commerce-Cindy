@@ -11,36 +11,43 @@ info:
     Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
   contact:
     email: davy.programa@gmail.com
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.11
-externalDocs:
-  description: Find out more about Swagger
-  url: http://swagger.io
+  version: 1.0.0
 servers:
-  - url: https://petstore3.swagger.io/api/v3
+  - url: https://ateliernoralya.com
 tags:
+  - name: auth
+    description: Authentication
   - name: client
     description: Customers
   - name: order
-    description: Orders customers
+    description: Customer orders
   - name: orderProducts
-    description: List of products for each order
+    description: Products for each order
   - name: product
-    description: Product description
+    description: Products on sale
   - name: credit
-    description: Credits customers
+    description: Customer credits
   - name: material
-    description: Material products
-  - name: auth
-    description: Authentication
+    description: Product materials
+  - name: promocode
+    description : Promotional codes
+  - name: giftcard
+    description: Gift cards
+  - name: statistic
+    description: Statistics
+  - name: collection
+    description: Product collections
+  - name: category
+    description: Product categories
+  - name: tag
+    description: Product tags
 paths:
   /clients:
     get:
       tags:
         - client
-      description: Getting paramater number of clients
+      summary: Get all customers
+      description: This route retrieves a list of all the customers registered in the system. Information about each customer, such as their name, address, e-mail address, etc., can be included in the response.Route reserved for administrators
       operationId: getAllClients
       parameters:
         - name: itemsPerPage
@@ -129,16 +136,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Clients'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /clients/{clientId}:
     get:
       tags:
         - client
-      summary: Get customer infos by id
-      description: ''
+      summary: Obtain a customer by ID
+      description: This route retrieves detailed information about a specific client based on its unique identifier (clientId). Customer details such as name, address, email etc. are returned in the response.
       operationId: getCustomerInfos
       parameters:
         - name: clientId
@@ -154,21 +169,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientDetails'
-        '400':
-          description: Invalid clientId supplied
-        '401':
-          description: Unauthorized - Client is not authenticated
-        '403':
-          description: >-
-            Forbidden - The client is authenticated, but does not have
-            permission to access the requested resource.
+        '404':
+          description: The user does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'utilisateur n'existe pas.
       security:
         - api_key: []
     patch:
       tags:
         - client
-      summary: Edit partially client
-      description: This can only be done by the logged in client.
+      summary: Update a client
+      description: This route is used to update information for a specific client identified by its unique identifier (clientId). The fields to be updated, such as name, address, email, etc., are provided in the body of the PATCH request.
       operationId: updateClient
       parameters:
         - name: clientId
@@ -185,22 +202,24 @@ paths:
       responses:
         '200':
           description: Successful updated client
-        '400':
-          description: Invalid clientId supplied
-        '401':
-          description: Unauthorized - Client is not authenticated
-        '403':
-          description: >-
-            Forbidden - The client is authenticated, but does not have
-            permission.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'utilisateur n'existe pas.
       security:
         - api_key: []
   /clients/{clientId}/notesAdmin:
     patch:
       tags:
         - client
-      summary: Add/Remove admin notes
-      description: This can only be done by admin.
+      summary: Update admin notes
+      description: This route is used by administrators to update administrative notes associated with a specific customer. Administrative notes can contain remarks, observations or other relevant information about the customer, and can be updated via a PATCH request by providing the new notes in the body of the request.
       operationId: add notes about the order or the client
       parameters:
         - name: clientId
@@ -217,18 +236,34 @@ paths:
       responses:
         '200':
           description: Successful added notes
-        '400':
-          description: Invalid clientId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'utilisateur n'existe pas.
       security:
         - api_key: []
   /auth/register:
     post:
       tags:
         - auth
-      summary: Create a new client
-      description: Create an account.
+      summary: Create a customer account.
+      description: This route enables a user to create a new customer account by providing the necessary information such as e-mail address, password, etc. Once the account has been successfully created, the user can use their credentials to log in and access the application's features.
       operationId: createClient
       requestBody:
         description: Created client object
@@ -239,16 +274,30 @@ paths:
       responses:
         '201':
           description: successful account creation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Compte utilisateur créé avec succès.
         '400':
-          description: Invalid username/password supplied
-        '422':
-          description: Failed validation. The email is already taken.
+          description: Email address already in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Adresse email déjà utilisée 🤨
   /auth/login:
     post:
       tags:
         - auth
-      summary: Logs client into the system
-      description: ''
+      summary: User authentication
+      description: This route is used to authenticate a user by checking the credentials provided, such as email address and password. If the information is valid, an authentication token is generated and sent back to the user, allowing them to access the application's protected resources.
       operationId: loginClient
       requestBody:
         description: Logged client object
@@ -259,16 +308,43 @@ paths:
       responses:
         '200':
           description: successful authentication
-        '400':
-          description: Invalid username/password supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Authentication token for the user
+                  isAdmin:
+                    type: boolean
+                    description: Indicates whether the user is an admin or not
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'utilisateur n'existe pas.
         '401':
-          description: Client not authenticated.
+          description: Email address not verified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification.
   /auth/request-password-reset:
     post:
       tags:
         - auth
-      summary: Logs client into the system
-      description: ''
+      summary: Request password reset
+      description: When a user forgets their password, they can use this route to request a password reset. A reset email containing a secure link with a unique token is sent to the user. This token is used to validate the reset request and allow the user to choose a new password.
       operationId: resetPasswordClient
       requestBody:
         description: Logged client object
@@ -279,16 +355,22 @@ paths:
       responses:
         '200':
           description: successful authentication
-        '400':
-          description: Invalid username/password supplied
-        '401':
-          description: Client not authenticated.
+        '404':
+          description: The ressource does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'utilisateur n'existe pas.
   /auth/verify-email:
     post:
       tags:
         - auth
-      summary: Logs client into the system
-      description: ''
+      summary: Check e-mail
+      description: After registration, this route is used to verify the e-mail address provided by the user. A confirmation e-mail is sent to the address provided, containing a secure link to activate the account. The user must click on this link to confirm their e-mail address and activate their account.
       operationId: confirm client email before registration
       requestBody:
         description: confirm registration
@@ -300,15 +382,21 @@ paths:
         '200':
           description: successful authentication
         '400':
-          description: Invalid username/password supplied
-        '401':
-          description: Client not authenticated.
+          description: The verification link is invalid or expired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le lien de vérification est invalide ou a expiré.
   /auth/reset-password:
     post:
       tags:
         - auth
-      summary: Logs client into the system
-      description: ''
+      summary: Reset password
+      description: Once the user has requested a password reset and received a reset token via a secure email, they can use this route to provide the token and set a new password. This action completes the password reset process and allows the user to log in with their new credentials.
       operationId: reset password
       requestBody:
         description: reinit password after forgetting it
@@ -320,9 +408,36 @@ paths:
         '200':
           description: successful authentication
         '400':
-          description: Invalid username/password supplied
+          description: The password reset link is invalid or expired.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré.
+  /orders:
+    post:
+      tags:
+        - order
+      summary: Create an order
+      description: This route is used by a customer to create a new order after making a purchase on the site. The details of the order, such as the products purchased, quantities, delivery addresses, etc., are provided in the body of the POST request.
+      operationId: placeOrder00
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstOrder'
+      responses:
+        '201':
+          description: successful posting order
+        '400':
+          description: Bad Request - Invalid parameters
         '401':
-          description: Client not authenticated.
+          description: Unauthorized - Client is not authenticated
+      security:
+        - api_key: []
   /orders{orderIds}:
     get:
       tags:
@@ -339,8 +454,8 @@ paths:
             items:
               type: string
 
-      summary: Returns orders depend on the number parameter
-      description: Returns the list of orders
+      summary: Get orders by ID
+      description: Route reserved for administrators.This route retrieves details of multiple orders based on order identifiers (orderIds) supplied as request parameters. Information about each order, such as products purchased, delivery status, delivery addresses, etc., is returned in the response.
       responses:
         '200':
           description: successful getting all orders
@@ -348,74 +463,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
-    post:
-      tags:
-        - order
-      parameters: 
-      - name: orderIds
-        in: path
-        required: true
-        schema:
-          type: object
-          properties:
-              orderIds:
-                type: array
-                items:
-                  type: string
-            
-      summary: Place an order for a purchase
-      description: Place a new order in the list
-      operationId: placeOrder
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FirstOrder'
-      responses:
-        '201':
-          description: successful posting order
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
-          description: Unauthorized - Client is not authenticated
-      security:
-        - api_key: []
-  /orders/{orderId}:
-    get:
-      tags:
-        - order
-      summary: Find purchase order by ID
-      description: ''
-      operationId: getOrderById
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of order that needs to be fetched
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid ID supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
+  /orders/{orderId}:
     patch:
       tags:
         - order
-      summary: Edit partially an order for a purchase
-      description: Edit an order
+      summary: Modifying an order
+      description: Route reserved for administrators.This route is used to modify the processing step for a specific order identified by its unique identifier (orderId). Changes may include the allocation of a processing step as well as other relevant details relating to the order.
       operationId: editOrder
       parameters:
         - name: orderId
@@ -433,17 +498,25 @@ paths:
         '200':
           description: Successful updated order
         '400':
-          description: Invalid orderId supplied
-        '401':
+          description: Invalids elements supplied
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /orders/{orderId}/trackingnumber_client:
     post:
       tags:
         - order
-      summary: Create a tracking Number client
-      description: This can only be done by client.
+      summary: Create customer tracking number
+      description: This route enables the customer to create a parcel tracking number for their specific order identified by its unique identifier (orderId), particularly in the event of goods being returned. The parcel tracking number is provided in the body of the POST request.
       operationId: The client creates his tracking number
       parameters:
         - name: orderId
@@ -460,20 +533,24 @@ paths:
       responses:
         '201':
           description: Successful creation tracking number
-        '400':
-          description: Invalid orderId supplied
         '404':
-          description: Order not found
-        '401':
-          description: Unauthorized - Admin is not authenticated
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La commande n'existe pas.
       security:
         - api_key: []
   /orders/{orderId}/trackingnumber_client/{trackingNumberId} :
     delete:
       tags:
         - order
-      summary: Delete a tracking Number client
-      description: This can only be done by client.
+      summary: Delete a customer tracking number
+      description: This route is used to delete a specific tracking number associated with a given order, identified by its unique identifier (orderId) and the tracking number identifier (trackingNumberId) supplied as a parameter to the DELETE request.
       operationId: The client deletes his tracking number
       parameters:
         - name: orderId
@@ -491,12 +568,16 @@ paths:
       responses:
         '200':
           description: Successful creation tracking number
-        '400':
-          description: Invalid orderId or trackingNumberId supplied
         '404':
-          description: Order or trackingNumberId not found
-        '401':
-          description: Unauthorized - Admin is not authenticated
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La commande n'existe pas.
       security:
         - api_key: []
   /orderProducts{orderProductsIds}:
@@ -515,8 +596,8 @@ paths:
             items:
               type: string
 
-      summary: Returns all products that are in order
-      description: Returns a list of products
+      summary: Get products by ID
+      description: This route retrieves the details of several products in an order based on the product identifiers (orderProductsIds) supplied as query parameters. Information about each product, such as its name, quantity, price, etc., is returned in the response.
       responses:
         '200':
           description: successful operation
@@ -524,43 +605,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderProducts'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
-  /orderProducts/{orderProductsId}:
-    get:
-      tags:
-        - orderProducts
-      summary: Find purchase orderProducts by ID
-      description: ''
-      operationId: getProductsById
-      parameters:
-        - name: orderProductsId
-          in: path
-          description: ID of products that needs to be fetched
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful get orderProducts by id
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderProducts'
-        '400':
-          description: Invalid ID supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /orderProducts/{orderProductsId}/note:
     patch:
       tags:
         - orderProducts
-      summary: Edit note orderProducts by ID
-      description: ''
+      summary: Add product note
+      description: This route is used by administrators to add a specific note to a given product as part of an order. The note can contain additional information or remarks about the product. The product identifier (orderProductsId) and the contents of the note are provided in the body of the PATCH request.
       operationId: editNoteOrderProducts
       parameters:
         - name: orderProductsId
@@ -576,18 +638,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderProductsNote'
-        '400':
-          description: Invalid ID supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: orderProducts n'existe pas.
       security:
         - api_key: []
   /products:
     get:
       tags:
         - product
-      summary: Returns all products
-      description: Returns the list of all products
+      summary: Get all products
+      description: This route retrieves a list of all the products available in the catalogue. Information about each product, such as its name, description, price, etc., is returned in the response.
       responses:
         '200':
           description: successful getting all products
@@ -595,15 +673,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Products'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     post:
       tags:
         - product
-      summary: Place an product for a purchase
-      description: Place a new product in the list
+      summary: Create a product
+      description: This route is used by administrators to add a new product to the catalogue. The details of the product, such as its name, description, price, etc., are provided in the body of the POST request.
       operationId: placeOrderProductsId
       requestBody:
         content:
@@ -613,20 +687,28 @@ paths:
       responses:
         '201':
           description: successful posting product
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /products/{productsId}:
     get:
       tags:
         - product
-      summary: Find purchase order by ID
-      description: >-
-        For valid response try integer IDs with value <= 5 or > 10. Other values
-        will generate exceptions.
+      summary: Get a product by ID
+      description: This route retrieves details of a specific product based on its unique identifier (productsId). Information about the product, such as its name, description, price, etc., is returned in the response.
       operationId: getProductById
       parameters:
         - name: productsId
@@ -642,17 +724,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-        '400':
-          description: Invalid ID supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
+        '404':
+          description: The product does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le produit n'existe pas.
     patch:
       tags:
         - product
-      summary: Edit partially a product
-      description: Edit a new product
+      summary: Modifying a product
+      description: This route is used by administrators to modify the details of a specific product identified by its unique identifier (productsId). The fields to be updated, such as name, description, price, etc., are provided in the body of the PATCH request.
       operationId: editProduct
       parameters:
         - name: productsId
@@ -669,17 +755,37 @@ paths:
       responses:
         '200':
           description: Successful updated product
-        '400':
-          description: Invalid product ID supplied
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The product does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le produit n'existe pas.
       security:
         - api_key: []
     delete:
       tags:
         - product
-      summary: Delete product by ID
-      description: ''
+      summary: Delete product
+      description: This route is used by administrators to remove a specific product from the catalogue based on its unique identifier (productsId).
       operationId: deleteProduct
       parameters:
         - name: productsId
@@ -689,12 +795,35 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        '200':
           description: Successful deleted product
-        '400':
-          description: Invalid productsId supplied
-        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  productId:
+                    type: string
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le produit n'existe pas.
       security:
         - api_key: []
   /credits:
@@ -711,8 +840,8 @@ paths:
             type: array
             items:
               type: string
-      summary: Returns all credits
-      description: Returns the list of credits
+      summary: Get all assets
+      description: This route, reserved for administrators, is used to retrieve a list of all the credit notes issued to customers. Information about each credit note, such as its value, expiry date, code, etc., is returned in the response.
       responses:
         '200':
           description: successful getting all credits
@@ -720,17 +849,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Credits'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /credits/{orderProductsId}:
     patch:
       tags:
         - credit
-      summary: Use of customer credit
-      description: This can only be done by the logged in client.
-      operationId: updateCredit to be archived
+      summary: Archiving a used credit note
+      description: This route is automatically called up when a user uses their credit to make a purchase. When their credit note is used, it is automatically marked as used and archived. The order product identifier (orderProductsId) associated with the credit note is supplied in the body of the PATCH request to perform this operation.
       parameters:
         - name: orderProductsId
           in: path
@@ -746,22 +882,28 @@ paths:
       responses:
         '200':
           description: Successful updated credit
-        '400':
-          description: Invalid creditId supplied
-        '401':
-          description: Unauthorized - Client is not authenticated
-        '403':
-          description: >-
-            Forbidden - The client is authenticated, but does not have
-            permission.
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/CreditUpdated'
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le crédit n'existe pas.
       security:
         - api_key: []
   /materials:
     get:
       tags:
         - material
-      summary: Returns all materials
-      description: Returns the list of all materials
+      summary: Get all materials
+      description: This route retrieves a list of all available materials. Information about each material, such as its name and color, is returned in the response.
       responses:
         '200':
           description: successful getting all materials
@@ -769,15 +911,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Material'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     post:
       tags:
         - material
-      summary: Place a material for a product
-      description: Place a new material in the list
+      summary: Create a material"
+      description: This route, reserved for administrators, allows adding a new material to the list of available materials. Details of the material, such as its name and color, are provided in the POST request body.
       operationId: placeMaterialById
       requestBody:
         content:
@@ -787,18 +925,28 @@ paths:
       responses:
         '201':
           description: successful posting material
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreateResponse'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /materials/{materialId}:
     patch:
       tags:
         - material
-      summary: Update material by ID
-      description: ''
+      summary: Update a material
+      description: This route, reserved for administrators, is used to modify the details of a specific material identified by its unique identifier (materialId). Fields to be updated, such as the material's name and color, are provided in the PATCH request body.
       operationId: updateMaterial
       parameters:
         - name: materialId
@@ -815,17 +963,33 @@ paths:
       responses:
         '200':
           description: Successful deleted material
-        '400':
-          description: Invalid materialId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le matériau n'existe pas.
       security:
         - api_key: []
     delete:
       tags:
         - material
-      summary: Delete material by ID
-      description: ''
+      summary: Delete a material
+      description: This route, reserved for administrators, allows deleting a specific material from the list of available materials based on its unique identifier (materialId).
       operationId: deleteMaterial
       parameters:
         - name: materialId
@@ -837,18 +1001,34 @@ paths:
       responses:
         '204':
           description: Successful deleted material
-        '400':
-          description: Invalid materialId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le matériau n'existe pas.
       security:
         - api_key: []
   /promocodes:
     get:
       tags:
         - promocode
-      summary: Returns all promocodes
-      description: Returns the list of all promocodes
+      summary: Get all promotional codes
+      description: This route, reserved for administrators, retrieves a list of all promotional codes. Information about each promotional code, such as its discount percentage, expiration date, and code, is returned in the response.
       responses:
         '200':
           description: successful getting all promocodes
@@ -856,15 +1036,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Promocode'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
     post:
       tags:
         - promocode
-      summary: Place a promocode 
-      description: Place a new promocode in the list
+      summary: Create a promotional code 
+      description: This route, reserved for administrators, allows adding a new promotional code. Details of the promotional code, such as its discount percentage, expiration date, and code, are provided in the POST request body.
       operationId: placePromocodeById
       requestBody:
         content:
@@ -874,18 +1062,24 @@ paths:
       responses:
         '201':
           description: successful posting promocode
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /promocodes/{promocodeId}:
     delete:
       tags:
         - promocode
-      summary: Delete promocode by ID
-      description: ''
+      summary: Delete a promocode 
+      description: This route, reserved for administrators, allows deleting a specific promotional code. The promotional code to be deleted is identified by its unique code.
       operationId: deletePromocode
       parameters:
         - name: promocodeId
@@ -897,18 +1091,34 @@ paths:
       responses:
         '200':
           description: Successful deleted promocode
-        '400':
-          description: Invalid promocodeId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le code promo n'existe pas.
       security:
         - api_key: []
   /giftcards:
     get:
       tags:
         - giftcard
-      summary: Returns all giftcards
-      description: Returns the list of all giftCards
+      summary: Get all gift cards"
+      description: This route retrieves a list of all gift cards available. Information about each gift card, such as its value, expiration date, and status, is returned in the response.
       responses:
         '200':
           description: successful getting all giftCards
@@ -916,15 +1126,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GiftCard'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
     post:
       tags:
         - giftcard
-      summary: Place a giftcard 
-      description: Place a new giftCard 
+      summary: Create a giftcard 
+      description: This route is used to create a new gift card when a customer purchases one. The details of the gift card, such as its value and expiration date, are provided in the POST request body. 
       operationId: placeGiftCardsById
       requestBody:
         content:
@@ -934,17 +1152,13 @@ paths:
       responses:
         '201':
           description: successful posting giftCard
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
-          description: Unauthorized - Admin is not authenticated
       security:
         - api_key: []
     patch:
       tags:
         - giftcard
-      summary: Consuming giftcard 
-      description: ''
+      summary: Update a gift card 
+      description: This route is automatically called when a customer uses a gift card. The gift card's status is updated to reflect its usage. The gift card and the user who is using it are identified in the PATCH request body.
       operationId: archiveGiftcardById
       requestBody:
         content:
@@ -954,18 +1168,24 @@ paths:
       responses:
         '200':
           description: Successful archiving giftcard
-        '400':
-          description: Invalid giftcardId supplied
-        '401':
-          description: Unauthorized - Admin is not authenticated
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La carte-cadeau n'existe pas.
       security:
         - api_key: []
   /statistics/{year}:
     get:
       tags:
         - statistic
-      summary: Get statistics
-      description: ''
+      summary: Get statistics by year
+      description: This route, reserved for administrators, retrieves statistics related to orders, products, exchanges, refunds, credits, and other relevant data for a specific year. The year parameter allows filtering the statistics by year.
       operationId: getStatistics
       parameters:
         - name: year
@@ -981,16 +1201,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Statistics'
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /collections:
     get:
       tags:
         - collection
-      summary: Returns all collections
-      description: Returns the list of all collections
+      summary: Get all collections
+      description: This route retrieves a list of all collections. Collections are groupings of products. Information about each collection, such as its name and the products it contains, is returned in the response.
       responses:
         '200':
           description: successful getting all collections
@@ -998,15 +1226,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Collection'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     post:
       tags:
         - collection
-      summary: Place a collection 
-      description: Place a new collection in the list
+      summary: Create a collection 
+      description: This route, reserved for administrators, allows adding a new collection. Details of the collection, such as its name and the products it contains, are provided in the POST request body.
       requestBody:
         content:
           application/json:
@@ -1015,18 +1239,24 @@ paths:
       responses:
         '201':
           description: successful posting collection
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /collections/{collectionId}:
     put:
       tags:
         - collection
-      summary: Update collection by ID
-      description: ''
+      summary: Update a collection
+      description: This route, reserved for administrators, allows updating an existing collection. Details of the collection to be updated, such as its name and the products it contains, are provided in the PUT request body.
       operationId: updateCollection
       parameters:
         - name: collectionId
@@ -1043,17 +1273,37 @@ paths:
       responses:
         '200':
           description: Successful deleted collection
-        '400':
-          description: Invalid collectionId supplied
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La collection n'existe pas.
       security:
         - api_key: []
     delete:
       tags:
         - collection
-      summary: Delete collection by ID
-      description: ''
+      summary: Delete collection
+      description: This route, reserved for administrators, allows deleting a specific collection.
       operationId: deleteCollection
       parameters:
         - name: collectionId
@@ -1065,18 +1315,38 @@ paths:
       responses:
         '200':
           description: Successful deleted collection
-        '400':
-          description: Invalid collectionId supplied
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La collection n'existe pas.
       security:
         - api_key: []
   /categories:
     get:
       tags:
         - category
-      summary: Returns all categories
-      description: Returns the list of all categories
+      summary: Get all categories
+      description: This route retrieves a list of all categories. Categories are associated with a collection and group similar types of products. Information about each category, such as its name and the products it contains, is returned in the response.
       responses:
         '200':
           description: successful getting all categories
@@ -1084,15 +1354,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Category'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     post:
       tags:
         - category
-      summary: Place a category 
-      description: Place a new category in the list
+      summary: Create a category 
+      description: This route, reserved for administrators, allows adding a new category. Details of the category, such as its name, the collection it belongs to, and the products it contains, are provided in the POST request body.
       requestBody:
         content:
           application/json:
@@ -1101,18 +1367,28 @@ paths:
       responses:
         '201':
           description: successful posting category
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /categories/{categoryId}:
     patch:
       tags:
         - category
-      summary: Update category by ID
-      description: ''
+      summary: Update a category
+      description: This route, reserved for administrators, allows updating an existing category. Details of the category to be updated, such as its name, the collection it belongs to, and the products it contains, are provided in the PATCH request body
       operationId: updateCategory
       parameters:
         - name: categoryId
@@ -1129,17 +1405,33 @@ paths:
       responses:
         '200':
           description: Successful deleted category
-        '400':
-          description: Invalid categoryId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La catégorie n'existe pas.
       security:
         - api_key: []
     delete:
       tags:
         - category
-      summary: Delete category by ID
-      description: ''
+      summary: Delete a category
+      description: This route, reserved for administrators, allows deleting a specific category
       operationId: deleteCategory
       parameters:
         - name: categoryId
@@ -1151,18 +1443,34 @@ paths:
       responses:
         '200':
           description: Successful deleted category
-        '400':
-          description: Invalid collectionId supplied
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La catégorie n'existe pas.
       security:
         - api_key: []
   /tags:
     get:
       tags:
         - tag
-      summary: Returns all tags
-      description: Returns the list of all tags
+      summary: Get all tags
+      description: This route retrieves a list of all tags. Tags allow associating products based on common criteria. Information about each tag, such as its name and the products it is associated with, is returned in the response.
       responses:
         '200':
           description: successful getting all tags
@@ -1170,15 +1478,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tag'
-        '401':
-          description: Unauthorized - Admin is not authenticated
-      security:
-        - api_key: []
     post:
       tags:
         - tag
-      summary: Place a tag 
-      description: Place a new tag in the list
+      summary: Create a tag 
+      description: This route, reserved for administrators, allows adding a new tag. Details of the tag, such as its name and the products it is associated with, are provided in the POST request body.
       requestBody:
         content:
           application/json:
@@ -1187,18 +1491,24 @@ paths:
       responses:
         '201':
           description: successful posting tag
-        '400':
-          description: Bad Request - Invalid parameters
-        '401':
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
   /tags/{tagId}:
     put:
       tags:
         - tag
-      summary: Update tag by ID
-      description: ''
+      summary: Update a tag
+      description: This route, reserved for administrators, allows updating an existing tag. Details of the tag to be updated, such as its name and the products it is associated with, are provided in the PUT request body.
       operationId: updateTag
       parameters:
         - name: tagId
@@ -1214,18 +1524,38 @@ paths:
               $ref: '#/components/schemas/TagCreate'
       responses:
         '200':
-          description: Successful deleted tag
-        '400':
-          description: Invalid tagId supplied
-        '401':
+          description: Successful updated tag
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le tag n'existe pas.
       security:
         - api_key: []
     delete:
       tags:
         - tag
-      summary: Delete tag by ID
-      description: ''
+      summary: Delete a tag
+      description: This route, reserved for administrators, allows deleting a specific tag.
       operationId: deleteTag
       parameters:
         - name: tagId
@@ -1237,10 +1567,30 @@ paths:
       responses:
         '200':
           description: Successful deleted tag
-        '400':
-          description: Invalid tagId supplied
-        '401':
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreate'
+        '403':
           description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le tag n'existe pas.
       security:
         - api_key: []
 components:
@@ -1847,6 +2197,31 @@ components:
         isArchived:
           type: boolean
           example: false
+    CreditUpdated:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6vbhd22b45a0fb3fd4a7599
+        clientId: 
+          type: string
+          example: 65b50eb0624d950f874b9838
+        orderProductsId:
+          type: string
+          example: 2884d22b45a0fb3fd4a75p2
+        amount:
+          type: integer
+          format: int16
+          example: 7
+        code:
+          type: string
+          example: 1156JHUfJNBdfdf
+        dateExpire:
+          type: string
+          example: 2023-04-05 09:55
+        isArchived:
+          type: boolean
+          example: true
     Credits:
       type: array
       items:
@@ -1874,6 +2249,18 @@ components:
     MaterialCreate:
       type: object
       properties:
+        name:
+          type: string
+          example: Or rose
+        value:
+          type: string
+          example: "#F0F0F0"
+    MaterialCreateResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 2884d22b45a0fb3fd4a75p2
         name:
           type: string
           example: Or rose

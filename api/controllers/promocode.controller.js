@@ -43,7 +43,7 @@ const promocodeController = {
       const deletePromocode = await Promocode.findByIdAndDelete(promocodeId);
 
       if (!deletePromocode) {
-        return res.status(404).json({ error: "Promocode not found" });
+        return res.status(404).json({ message: "Le code promo n'existe pas." });
       }
 
       res.status(200).json(promocodeId);

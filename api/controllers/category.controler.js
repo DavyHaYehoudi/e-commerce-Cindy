@@ -41,7 +41,7 @@ const categoryController = {
       );
 
       if (!updateCategory) {
-        return res.status(404).json({ error: "Category not found" });
+        return res.status(404).json({ message: "La catégorie n'existe pas." });
       }
 
       res.status(200).json(updateCategory);
@@ -61,7 +61,7 @@ const categoryController = {
       const deleteCategory = await Category.findByIdAndDelete(categoryId);
 
       if (!deleteCategory) {
-        return res.status(404).json({ error: "Category not found" });
+        return res.status(404).json({ message: "La catégorie n'existe pas." });
       }
 
       res.status(200).json(deleteCategory);

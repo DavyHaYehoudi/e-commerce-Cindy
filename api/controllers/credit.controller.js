@@ -39,7 +39,7 @@ const creditController = {
         if (!updatedCredit) {
           return res
             .status(404)
-            .json({ error: "Ressource dans Credit non trouvée" });
+            .json({ message: "Le crédit n'existe pas." });
         }
 
         // Mettre à jour les OrderProducts
@@ -52,14 +52,14 @@ const creditController = {
         if (!updatedOrderProducts) {
           return res
             .status(404)
-            .json({ error: "Ressource dans OrderProducts non trouvée" });
+            .json({ message: "OrderProducts n'existe pas" });
         }
 
         // Trouver l'ID de l'Order associé à l'OrderProducts
         const order = await Order.findOne({ orderProducts: orderProductsId });
 
         if (!order) {
-          return res.status(404).json({ error: "Order associé non trouvé" });
+          return res.status(404).json({ message: "La commande associée n'existe pas." });
         }
 
         // Mettre à jour outTotalAmount de l'Order

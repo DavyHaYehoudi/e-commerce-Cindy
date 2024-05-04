@@ -19,9 +19,6 @@ const orderProductsController = {
     }
   },
 
-  getProductsById: async (req, res) => {
-    // Implementation for getting a client by ID
-  },
   addNote: async (req, res) => {
     const { client } = req;
     if (client.role !== 'admin') {
@@ -32,7 +29,7 @@ const orderProductsController = {
     try {
       const orderProducts = await OrderProducts.findById(orderProductsId);
       if (!orderProducts) {
-        return res.status(404).json({ error: "OrderProducts not found" });
+        return res.status(404).json({ error: "OrderProducts n'existe pas" });
       }
       const note = await OrderProducts.updateOne(
         { _id: orderProductsId },

@@ -40,7 +40,7 @@ const tagController = {
       );
 
       if (!updateTag) {
-        return res.status(404).json({ error: "Tag not found" });
+        return res.status(404).json({ message: "Le tag n'existe pas" });
       }
 
       res.status(200).json(updateTag);
@@ -60,7 +60,7 @@ const tagController = {
       const deleteTag = await Tag.findByIdAndDelete(tagId);
 
       if (!deleteTag) {
-        return res.status(404).json({ error: "Tag not found" });
+        return res.status(404).json({ message: "Le tag n'existe pas" });
       }
 
       res.status(200).json(deleteTag);

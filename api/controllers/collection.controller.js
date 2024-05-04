@@ -40,7 +40,7 @@ const collectionController = {
       );
 
       if (!updateCollection) {
-        return res.status(404).json({ error: "Collection not found" });
+        return res.status(404).json({ message: "La collection n'existe pas." });
       }
  
       res.status(200).json(updateCollection);
@@ -60,7 +60,7 @@ const collectionController = {
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
 
       if (!deleteCollection) {
-        return res.status(404).json({ error: "Collection not found" });
+        return res.status(404).json({ message: "La collection n'existe pas." });
       }
 
       res.status(200).json(deleteCollection);
