@@ -1,10 +1,6 @@
 import OrderProducts from "../models/orderProducts.model.js";
 const orderProductsController = {
   getAllProducts: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { orderProductsIds } = req.query;
       const parsedProductsByOrderIds = JSON.parse(orderProductsIds);
@@ -20,10 +16,6 @@ const orderProductsController = {
   },
 
   addNote: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     const { orderProductsId } = req.params;
     const { content } = req.body;
     try {

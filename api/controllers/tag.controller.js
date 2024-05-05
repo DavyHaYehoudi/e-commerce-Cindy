@@ -11,10 +11,6 @@ const tagController = {
     }
   },
   createTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name } = req.body;
       const tag = await Tag.create({ name });
@@ -25,10 +21,6 @@ const tagController = {
     }
   },
   updateTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { tagId } = req.params;
       const { name } = req.body;
@@ -51,10 +43,6 @@ const tagController = {
   },
 
   deleteTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { tagId } = req.params;
       const deleteTag = await Tag.findByIdAndDelete(tagId);

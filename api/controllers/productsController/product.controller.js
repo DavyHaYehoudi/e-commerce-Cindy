@@ -37,12 +37,6 @@ const productController = {
   },
 
   createProduct: async (req, res) => {
-    const { client } = req;
-    if (client.role !== "admin") {
-      return res
-        .status(403)
-        .json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const product = await Product.create(req.body);
       res.status(201).json(product);
@@ -52,12 +46,6 @@ const productController = {
   },
 
   updateProduct: async (req, res) => {
-    const { client } = req;
-    if (client.role !== "admin") {
-      return res
-        .status(403)
-        .json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { productId } = req.params;
       const updateFields = req.body;
@@ -97,12 +85,6 @@ const productController = {
   },
 
   deleteProduct: async (req, res) => {
-    const { client } = req;
-    if (client.role !== "admin") {
-      return res
-        .status(403)
-        .json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { productId } = req.params;
       const product = await Product.findByIdAndDelete(productId);

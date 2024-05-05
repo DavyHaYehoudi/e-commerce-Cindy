@@ -1,8 +1,8 @@
 import React from "react";
-import Collections from "./Collections";
+import Collections from "./collections/Collections.jsx";
 import Categories from "./categories/index.jsx";
-import Tags from "./Tags";
-import Materials from "./Materials";
+import Tags from "./tags/Tags.jsx";
+import Materials from "./materials/Materials.jsx";
 
 const Configuration = () => {
   return (

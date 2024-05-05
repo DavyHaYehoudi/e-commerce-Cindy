@@ -11,10 +11,6 @@ const materialController = {
     }
   },
   createMaterials: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name, value } = req.body;
       const material = await Material.create({ name, value });
@@ -25,10 +21,6 @@ const materialController = {
     }
   },
   updateMaterials: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { materialId } = req.params;
       const { name, value } = req.body;
@@ -51,10 +43,6 @@ const materialController = {
   },
 
   deleteMaterial: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { materialId } = req.params;
       const deleteMaterial = await Material.findByIdAndDelete(materialId);

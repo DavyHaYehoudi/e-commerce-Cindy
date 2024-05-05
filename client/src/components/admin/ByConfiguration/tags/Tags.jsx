@@ -1,51 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTag, deleteTag, updateTag } from "../../../features/admin/tagSlice";
+import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import useTags from "../hooks/useTags";
 
 const Tags = () => {
-  const [editTagId, setEditTagId] = useState(null);
-  const [editedTagName, setEditedTagName] = useState("");
-  const [newTagName, setNewTagName] = useState("");
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const tags = useSelector((state) => state?.tag?.data);
-
-  const dispatch = useDispatch();
-
-  const handleAddTag = () => {
-    if (newTagName.trim() !== "") {
-      const formatData = {
-        name: newTagName,
-      };
-      dispatch(addTag(formatData));
-      setNewTagName("");
-    }
-  };
-  const handleDeleteTag = (tagId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cet tag ?"
-    );
-    if (confirmation) {
-      dispatch(deleteTag(tagId));
-    }
-  };
-  const handleEditTag = (tagId, name) => {
-    dispatch(updateTag({ tagId, name }));
-  };
-  const handleEditClick = (tagId, tagName) => {
-    setEditTagId(tagId);
-    setEditedTagName(tagName);
-  };
-
-  const handleSaveClick = () => {
-    if (editedTagName.trim() !== "") {
-      handleEditTag(editTagId, editedTagName);
-      setEditTagId(null);
-      setEditedTagName("");
-    }
-  };
-
+  const {
+    editTagId,
+    editedTagName,
+    newTagName,
+    isContentVisible,
+    tags,
+    setEditTagId,
+    setEditedTagName,
+    setNewTagName,
+    setIsContentVisible,
+    handleAddTag,
+    handleKeyPress,
+    handleDeleteTag,
+    handleEditClick,
+    handleSaveClick,
+  } = useTags();
   return (
     <div className="admin-tags">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Tags</h2>
@@ -108,6 +82,7 @@ const Tags = () => {
               className="account-input-config"
               value={newTagName}
               onChange={(e) => setNewTagName(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button
               className={`account-btn ${newTagName ? "validate-btn" : ""}`}

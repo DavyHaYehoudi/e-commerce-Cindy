@@ -1,62 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addMaterial,
-  deleteMaterial,
-  updateMaterial,
-} from "../../../features/admin/materialSlice";
+import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import useMaterials from "../hooks/useMaterials";
 
 const Materials = () => {
-  const [editMaterialId, setEditMaterialId] = useState(null);
-  const [editedMaterial, setEditedMaterial] = useState(() => ({
-    name: "",
-    value: "",
-  }));
-  const [newMaterial, setNewMaterial] = useState(() => ({
-    name: "",
-    value: "",
-  }));
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const materials = useSelector((state) => state?.material?.data);
-
-  const dispatch = useDispatch();
-
-  const handleChange = (e, type, isEdited) => {
-    const value = e.target.value;
-    const setter = isEdited ? setEditedMaterial : setNewMaterial;
-    setter((prevMaterial) => ({ ...prevMaterial, [type]: value }));
-  };
-
-  const handleAddMaterial = () => {
-    if (newMaterial.name.trim() !== "" && newMaterial.value.trim() !== "") {
-      dispatch(addMaterial(newMaterial));
-      setNewMaterial({ name: "", value: "" });
-    }
-  };
-  const handleDeleteMaterial = (materialId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer ce matériau ?"
-    );
-    if (confirmation) {
-      dispatch(deleteMaterial(materialId));
-    }
-  };
-  const handleEditMaterial = (materialId) => {
-    if (
-      editedMaterial.name.trim() !== "" ||
-      editedMaterial.value.trim() !== ""
-    ) {
-      dispatch(updateMaterial({ materialId, ...editedMaterial }));
-      setEditMaterialId(null);
-      setEditedMaterial({ name: "", value: "" });
-    }
-  };
-  const handleEditClick = (materialId, materialName, materialValue) => {
-    setEditMaterialId(materialId);
-    setEditedMaterial({ name: materialName, value: materialValue });
-  };
+  const {
+    editMaterialId,
+    editedMaterial,
+    newMaterial,
+    isContentVisible,
+    materials,
+    setEditMaterialId,
+    setIsContentVisible,
+    handleChange,
+    handleAddMaterial,
+    handleDeleteMaterial,
+    handleEditMaterial,
+    handleEditClick,
+  } = useMaterials();
 
   return (
     <div className="admin-materials">
@@ -72,14 +33,14 @@ const Materials = () => {
                       <input
                         type="text"
                         className="account-input-config"
-                        value={editedMaterial["name"]}
+                        value={editedMaterial.name}
                         onChange={(e) => handleChange(e, "name", true)}
                       />
-                      <span>{editedMaterial["value"]} </span>
+                      <span>{editedMaterial.value}</span>
                       <input
                         type="color"
                         placeholder="Choisir une couleur"
-                        value={editedMaterial["value"]}
+                        value={editedMaterial.value}
                         onChange={(e) => handleChange(e, "value", true)}
                       />
                     </div>
@@ -101,7 +62,7 @@ const Materials = () => {
                 ) : (
                   <>
                     <div className="content-block-left">
-                      <span> {material?.name} </span>
+                      <span>{material?.name}</span>
                       <span
                         style={{
                           display: "inline-block",
@@ -110,7 +71,7 @@ const Materials = () => {
                           backgroundColor: material?.value,
                         }}
                       ></span>
-                      <span> {material?.value} </span>
+                      <span>{material?.value}</span>
                     </div>
                     <div className="content-block-right">
                       <button
@@ -142,23 +103,22 @@ const Materials = () => {
               type="text"
               placeholder="Nouveau matériau"
               className="account-input-config"
-              value={newMaterial["name"]}
+              value={newMaterial.name}
               onChange={(e) => handleChange(e, "name", false)}
             />
-            <label htmlFor="colorPicker">Couleur </label>
+            <label htmlFor="colorPicker">Couleur</label>
             <input
               id="colorPicker"
               type="color"
-              value={newMaterial["value"]}
+              value={newMaterial.value}
               onChange={(e) => handleChange(e, "value", false)}
             />
-
             <button
               className={`account-btn ${
                 newMaterial.name && newMaterial.value ? "validate-btn" : ""
               }`}
               disabled={newMaterial.name === ""}
-              onClick={() => handleAddMaterial(newMaterial)}
+              onClick={handleAddMaterial}
             >
               Ajouter
             </button>

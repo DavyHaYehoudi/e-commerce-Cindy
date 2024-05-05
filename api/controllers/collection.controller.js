@@ -11,10 +11,6 @@ const collectionController = {
     }
   },
   createCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name } = req.body;
       const collection = await Collection.create({ name });
@@ -25,10 +21,6 @@ const collectionController = {
     }
   },
   updateCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { collectionId } = req.params;
       const { name } = req.body;
@@ -36,13 +28,13 @@ const collectionController = {
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
         { name },
-        { new: true, runValidators: true } 
+        { new: true, runValidators: true }
       );
 
       if (!updateCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
- 
+
       res.status(200).json(updateCollection);
     } catch (error) {
       console.error("Error updateCollection :", error);
@@ -51,10 +43,6 @@ const collectionController = {
   },
 
   deleteCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { collectionId } = req.params;
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
@@ -69,7 +57,6 @@ const collectionController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
-};  
+};
 
-export default collectionController; 
- 
+export default collectionController;

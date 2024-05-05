@@ -6,10 +6,6 @@ import { refund } from "./refund.js";
 
 const statisticController = {
   getAllStatistics: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { year } = req.params;
 

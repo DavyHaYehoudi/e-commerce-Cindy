@@ -2,10 +2,6 @@ import Promocode from "../models/promocode.model.js";
 
 const promocodeController = {
   getAllPromocode: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const promocode = await Promocode.find();
       res.status(200).json(promocode);
@@ -15,10 +11,6 @@ const promocodeController = {
     }
   },
   createPromocode: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { code, percentage, dateExpire } = req.body;
       const promocode = await Promocode.create({
@@ -34,10 +26,6 @@ const promocodeController = {
   },
 
   deletePromocode: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { promocodeId } = req.params;
       const deletePromocode = await Promocode.findByIdAndDelete(promocodeId);

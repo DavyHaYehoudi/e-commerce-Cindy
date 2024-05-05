@@ -53,7 +53,7 @@ paths:
         - name: itemsPerPage
           in: query
           description: Number of items per page
-          required: false
+          required: true
           schema:
             type: integer
             default: "5"
@@ -236,6 +236,10 @@ paths:
       responses:
         '200':
           description: Successful added notes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotesAdminResponse"
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -567,7 +571,7 @@ paths:
             type: string
       responses:
         '200':
-          description: Successful creation tracking number
+          description: Successful deleted tracking number
         '404':
           description: The ressource does not exist.
           content:
@@ -637,7 +641,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderProductsNote'
+                $ref: '#/components/schemas/OrderProducts'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -690,7 +694,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/ProductCreate'
+              $ref: '#/components/schemas/ProductCreateResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -723,7 +727,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/ProductCreateResponse'
         '404':
           description: The product does not exist.
           content:
@@ -758,7 +762,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductCreateResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -959,10 +963,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MaterialCreate'
+              $ref: '#/components/schemas/MaterialEdit'
       responses:
         '200':
-          description: Successful deleted material
+          description: successful updated material
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaterialCreateResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -999,8 +1007,12 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          description: Successful deleted material
+        '200':
+          description: successful deleted material
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaterialCreateResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1062,6 +1074,10 @@ paths:
       responses:
         '201':
           description: successful posting promocode
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromocodeCreateResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1091,6 +1107,10 @@ paths:
       responses:
         '200':
           description: Successful deleted promocode
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromocodeDeleteResponse'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1152,6 +1172,10 @@ paths:
       responses:
         '201':
           description: successful posting giftCard
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCard'
       security:
         - api_key: []
     patch:
@@ -1168,6 +1192,10 @@ paths:
       responses:
         '200':
           description: Successful archiving giftcard
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCardUsedResponse'
         '404':
           description: The ressource does not exist.
           content:
@@ -1239,6 +1267,10 @@ paths:
       responses:
         '201':
           description: successful posting collection
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/Collection'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1269,14 +1301,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CollectionCreate'
+              $ref: '#/components/schemas/CollectionEdit'
       responses:
         '200':
-          description: Successful deleted collection
+          description: Successful updated collection
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/CollectionCreate'
+              $ref: '#/components/schemas/Collection'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1318,7 +1350,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/CollectionCreate'
+              $ref: '#/components/schemas/Collection'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1370,7 +1402,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/CategoryCreate'
+              $ref: '#/components/schemas/Category'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1401,10 +1433,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CategoryCreate'
+              $ref: '#/components/schemas/CategoryEdit'
       responses:
         '200':
-          description: Successful deleted category
+          description: Successful updated category
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1443,6 +1479,10 @@ paths:
       responses:
         '200':
           description: Successful deleted category
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1491,6 +1531,10 @@ paths:
       responses:
         '201':
           description: successful posting tag
+          content:
+           application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1528,7 +1572,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/TagCreate'
+              $ref: '#/components/schemas/Tag'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1570,7 +1614,7 @@ paths:
           content:
            application/json:
             schema:
-              $ref: '#/components/schemas/TagCreate'
+              $ref: '#/components/schemas/Tag'
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1775,11 +1819,34 @@ components:
         content:
           type: string
           example: Echange cordial avec le client
+    NotesAdminResponse:
+      type: object
+      properties:
+       _id: 
+        type: string
+       content:
+          type: string
+          example: Echange cordial avec le client
+       clientId:
+        type: string
+        example: 65bc8c5b7f890edc1f63182f
+       date:
+        type: string
+       type: 
+        type: string
+        example: addingNote
     TrackingNumberClient:
       type: object
+      required:
+            - trackingNumber
       properties:
         trackingNumber:
           type: object
+          required:
+            - id
+            - isAdmin
+            - value
+            - date
           properties:
             id: 
               type: string
@@ -1793,9 +1860,6 @@ components:
             date:
               type: string
               example: 2024-03-24
-            orderProductsId :
-              type: string
-              example: 10m4d22b45a0fb3fd4a7l53
     Order:
       type: object
       properties:
@@ -2019,12 +2083,6 @@ components:
               note:
                 type: string
                 example: Des notes pour l'exemple
-    OrderProductsNote:
-      type: object  
-      properties:
-
-        content:
-          type: string
     Product:
       type: object
       properties:
@@ -2103,6 +2161,10 @@ components:
                 example: true
     ProductCreate:
       type: object
+      required:
+        - name
+        - collection
+        - category
       properties:
         name:
           type: string
@@ -2132,6 +2194,87 @@ components:
           type: array
           items:
             type: object
+            required:
+              - _id
+              - pricing
+              - main_image
+              - untilNew
+              - stock
+            properties:
+              _id:
+                type: string
+                example: 65f2d2df4db605d020200620
+              pricing:
+                type: object
+                properties:
+                  currentPrice:
+                    type: string
+                    example: 15
+                  oldPrice:
+                    type: string
+                    example: 30
+              promotion:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    format: int16
+                    example: 50
+                  startDate:
+                    type: string
+                    example: 2024-04-01T00:00:00.000
+                  endDate:
+                    type: string
+                    example: 2024-05-01T00:00:00.000Z
+              main_image:
+                type: string
+                example: col.png
+              untilNew:
+                type: string
+                example: 2024-04-15T00:00:00.000Z
+              stock:
+                type: integer
+                format: int16
+                example: 7
+    ProductCreateResponse:
+      type: object
+      properties:
+        _id: 
+          type: string
+        name:
+          type: string
+          example: Boucles d'oreilles
+        collection:
+          type: string
+          example: 65fafdf6ab75220625f55db1
+        category:
+          type: string
+          example: 65fafe1eab75220625f55db5
+        tags:
+          type: array
+          items:
+            type: string
+            example: 65fafea0ab75220625f55dc4
+        secondary_images:
+          type: array
+          items: 
+            type: string
+            example: bo.png
+        main_description:
+          type: string
+          example: >-
+            Magnifiques boucles d'oreilles pour des occasions uniques et qui
+            vous mettront en valeur.
+        materials:
+          type: array
+          items:
+            type: object
+            required:
+              - _id
+              - pricing
+              - main_image
+              - untilNew
+              - stock
             properties:
               _id:
                 type: string
@@ -2228,6 +2371,8 @@ components:
         $ref: '#/components/schemas/Credit'
     EditCredit:
       type: object
+      required:
+        - isArchived
       properties:
         isArchived:
           type: boolean
@@ -2248,6 +2393,9 @@ components:
             example: "#FFFFFF"
     MaterialCreate:
       type: object
+      required:
+        - name
+        - value
       properties:
         name:
           type: string
@@ -2255,6 +2403,12 @@ components:
         value:
           type: string
           example: "#F0F0F0"
+    MaterialEdit:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Or rose
     MaterialCreateResponse:
       type: object
       properties:
@@ -2280,6 +2434,8 @@ components:
             example: Elégance
     TagCreate:
       type: object
+      required:
+        - name
       properties:
         name:
           type: string
@@ -2295,12 +2451,24 @@ components:
           name:
             type: string
             example: Pour un jour unique
+          main_image:
+            type: string
     CollectionCreate:
       type: object
+      required:
+        - name
+        - main_image
       properties:
         name:
           type: string
           example: Pour le quotidien
+        main_image:
+          type: string
+    CollectionEdit:
+      type: object
+      properties:
+        main_image:
+          type: string
     Category:
       type: array
       items:
@@ -2321,6 +2489,9 @@ components:
                 - "65f2d2b24db605d02020061d"
     CategoryCreate:
       type: object
+      required:
+        - name
+        - parentCollection
       properties:
         name:
           type: string
@@ -2330,6 +2501,12 @@ components:
           items: 
             type: string
             example: 65f2d2b24db605d02020061c
+    CategoryEdit:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sport
     Promocode:
       type: array
       items:
@@ -2356,6 +2533,10 @@ components:
             example: 2024-03-15T11:59:26.905+00:00
     PromocodeCreate:
       type: object
+      required:
+        - code
+        - name
+        - value
       properties:
         code:
           type: string
@@ -2366,6 +2547,25 @@ components:
         value:
           type: string
           example: "#F0F0F0"
+    PromocodeCreateResponse:
+      type: object
+      properties:
+        _id: 
+          type: string
+        code:
+          type: string
+          example: Bonjour-10
+        name:
+          type: string
+          example: Or rose
+        value:
+          type: string
+          example: "#F0F0F0"
+    PromocodeDeleteResponse:
+      type: object
+      properties:
+        promocodeId:
+          type: string
     GiftCard:
       type: array
       items:
@@ -2398,6 +2598,9 @@ components:
             example: 2024-03-15T11:59:26.905+00:00
     GiftCardCreate:
       type: object
+      required:
+        - buyerId
+        - amount
       properties:
         buyerId:
           type: string
@@ -2408,6 +2611,9 @@ components:
           example: 50
     GiftCardUsed:
       type: object
+      required:
+        - giftcardId
+        - consumerId
       properties:
         giftcardId:
           type: string
@@ -2415,6 +2621,36 @@ components:
         consumerId:
           type: string
           example: 61f2d2df4db605d0202b0af5 
+    GiftCardUsedResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: string
+            example: 65f2d2b24db605d02020061c
+          buyerId:
+            type: string
+            example: 65b50eb0624d950f874b983a
+          amount:
+            type: number
+            format: int16
+            example: 50
+          dateExpire: 
+            type: string
+            example: 2025-12-18
+          code:
+            type: string
+            example: ut984bsl_+opj12
+          consumerId: 
+            type: string
+            example: 61f2d2df4db605d0202b0af5
+          createdAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
+          updatedAt:
+            type: string
+            example: 2024-03-15T11:59:26.905+00:00
     Statistics:
       type: object
       properties:
@@ -2666,6 +2902,9 @@ components:
           example: 2
     AuthLogin:
       type: object
+      required:
+        - email
+        - password
       properties:
         email:
           type: string
@@ -2675,6 +2914,11 @@ components:
           example: '12345'
     AuthRegister:
       type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
       properties:
         firstName:
           type: string
@@ -2688,12 +2932,17 @@ components:
           example: '12345'
     AuthRequestPassword:
       type: object
+      required:
+      - email
       properties:
         email:
           type: string
           example: john@email.com
     AuthResetPassword:
       type: object
+      required:
+      - email
+      - token
       properties:
         email:
           type: string
@@ -2702,19 +2951,18 @@ components:
           type: string
     AuthVerifyEmail:
       type: object
+      required:
+        - email
       properties:
         email:
           type: string
           example: john@email.com
   securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
+    jwt_auth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: JWT authorization header using the Bearer scheme.
     api_key:
       type: apiKey
       name: api_key

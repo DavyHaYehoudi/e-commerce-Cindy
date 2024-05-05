@@ -2,10 +2,6 @@ import Giftcard from "../models/giftcard.model.js";
 
 const giftcardController = {
   getAllGiftcards: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const giftcards = await Giftcard.find();
       res.status(200).json(giftcards);

@@ -1,54 +1,25 @@
-import React, { useState } from "react";
-import {
-  addCollection,
-  deleteCollection,
-  updateCollection,
-} from "../../../features/admin/collectionSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import useCollections from "../hooks/useCollections";
 
 const Collections = () => {
-  const [editCollectionId, setEditCollectionId] = useState(null);
-  const [editedCollectionName, setEditedCollectionName] = useState("");
-  const [newCollectionName, setNewCollectionName] = useState("");
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const collections = useSelector((state) => state?.collection?.data);
-
-  const dispatch = useDispatch();
-
-  const handleAddCollection = () => {
-    if (newCollectionName.trim() !== "") {
-      const formatData = {
-        name: newCollectionName,
-      };
-      dispatch(addCollection(formatData));
-      setNewCollectionName("");
-    }
-  };
-  const handleDeleteCollection = (collectionId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette collection ?"
-    );
-    if (confirmation) {
-      dispatch(deleteCollection(collectionId));
-    }
-  };
-  const handleEditCollection = (collectionId, name) => {
-    dispatch(updateCollection({ collectionId, name }));
-  };
-  const handleEditClick = (collectionId, collectionName) => {
-    setEditCollectionId(collectionId);
-    setEditedCollectionName(collectionName);
-  };
-
-  const handleSaveClick = () => {
-    if (editedCollectionName.trim() !== "") {
-      handleEditCollection(editCollectionId, editedCollectionName);
-      setEditCollectionId(null);
-      setEditedCollectionName("");
-    }
-  };
+  const {
+    editCollectionId,
+    editedCollectionName,
+    newCollectionName,
+    isContentVisible,
+    collections,
+    setEditCollectionId,
+    setEditedCollectionName,
+    setNewCollectionName,
+    setIsContentVisible,
+    handleAddCollection,
+    handleDeleteCollection,
+    handleEditClick,
+    handleSaveClick,
+    handleKeyPress,
+  } = useCollections();
 
   return (
     <div className="admin-collections">
@@ -118,13 +89,14 @@ const Collections = () => {
               className="account-input-config"
               value={newCollectionName}
               onChange={(e) => setNewCollectionName(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button
               className={`account-btn ${
                 newCollectionName ? "validate-btn" : ""
               }`}
               disabled={newCollectionName === ""}
-              onClick={() => handleAddCollection(newCollectionName)}
+              onClick={handleAddCollection}
             >
               Ajouter
             </button>
