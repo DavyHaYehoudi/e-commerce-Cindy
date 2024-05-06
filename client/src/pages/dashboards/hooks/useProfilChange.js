@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { customFetch } from "../../services/customFetch";
+import { customFetch } from "../../../services/customFetch";
 import { toast } from "react-toastify";
 
 const useProfilChange = () => {
@@ -19,7 +19,7 @@ const useProfilChange = () => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(editedUserData),
       });
@@ -45,6 +45,9 @@ const useProfilChange = () => {
       setIsModified(false);
     }
   };
+  const handleChangeProfilEdit = () => {
+    setIsEditing(true);
+  };
 
   return {
     loading,
@@ -54,6 +57,7 @@ const useProfilChange = () => {
     setIsEditing,
     isModified,
     setIsModified,
+    handleChangeProfilEdit,
   };
 };
 

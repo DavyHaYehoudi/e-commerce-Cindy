@@ -14,7 +14,7 @@ const useClientFromToken = () => {
   }, [token]);
 
   console.log("role:", role, "clientId:", clientId);
-  return { clientId, role };
+  return { clientId, role, token };
 };
 
 export default useClientFromToken;

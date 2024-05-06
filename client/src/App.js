@@ -16,8 +16,8 @@ import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
 import Register from "./pages/authentication/Register";
 import ForgotPassword from "./pages/authentication/ForgotPassword";
-import AccountClient from "./pages/AccountClient";
-import AdminDashboard from "./pages/AdminDashboard";
+import AccountClient from "./pages/dashboards/AccountClient";
+import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 import ResetPassword from "./pages/authentication/ResetPassword";
 import { Provider } from "react-redux";
@@ -27,7 +27,7 @@ import { configureStoreWithRole } from "./app/configureStoreWithRole";
 function App() {
   const { role } = useClientFromToken();
   const store = configureStoreWithRole(role);
-  
+
   return (
     <Provider store={store}>
       <BrowserRouter>

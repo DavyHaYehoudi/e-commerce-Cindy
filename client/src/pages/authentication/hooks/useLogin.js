@@ -20,14 +20,14 @@ const useLogin = () => {
   }, [state]);
 
   const handleLogin = async () => {
-    if ( !email.trim() || !password.trim() ) {
-        setError("Veuillez remplir tous les champs.");
-        return;
-      }
-      if (!validateEmail(email)) {
-        setError("Veuillez saisir une adresse e-mail valide.");
-        return;
-      }
+    if (!email.trim() || !password.trim()) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Veuillez saisir une adresse e-mail valide.");
+      return;
+    }
     try {
       setLoading(true);
       const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -43,8 +43,7 @@ const useLogin = () => {
       if (response.ok) {
         localStorage.setItem("token", data?.token);
         setLoading(false);
-        setError(false)
-
+        setError(false);
         if (data?.isAdmin) {
           navigate("/admin/dashboard");
         } else {
@@ -101,7 +100,7 @@ const useLogin = () => {
     togglePasswordVisibility,
     handleChangeEmail,
     handleChangePassword,
-    handleKeyPress
+    handleKeyPress,
   };
 };
 

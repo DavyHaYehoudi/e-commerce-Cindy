@@ -33,7 +33,7 @@ const fetchClients = createAsyncThunk(
         note,
         preciseDate,
         rangeDateStart,
-        rangeDateEnd
+        rangeDateEnd,
       }).toString();
 
       const { clients, totalClientsCount } = await customFetch(
@@ -52,13 +52,13 @@ const fetchClients = createAsyncThunk(
 
 const notesAdmin = createAsyncThunk(
   "clients/notesAdmin",
-  async ({ clientId, noteId,content }) => {
+  async ({ clientId, noteId, content }) => {
     try {
       const response = await customFetch(`clients/${clientId}/notesAdmin`, {
         method: "PATCH",
-        body: JSON.stringify({ content,noteId }),
+        body: JSON.stringify({ content, noteId }),
       });
-return response;
+      return response;
     } catch (error) {
       handleFetchError(error);
       throw error;
@@ -108,9 +108,8 @@ const clientsSlice = createSlice({
                 }
               : user
           );
-        } else if (action.payload.type==="deletingNote") {
-          const { clientId, noteId} = action.payload;
-          console.log('action.payload :',action.payload);
+        } else if (action.payload.type === "deletingNote") {
+          const { clientId, noteId } = action.payload;
           state.data = state.data.map((user) =>
             user._id === clientId
               ? {
@@ -129,5 +128,5 @@ const clientsSlice = createSlice({
       });
   },
 });
-export { fetchClients, notesAdmin};
+export { fetchClients, notesAdmin };
 export default clientsSlice.reducer;

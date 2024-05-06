@@ -17,6 +17,7 @@ const Materials = () => {
     handleDeleteMaterial,
     handleEditMaterial,
     handleEditClick,
+    handleKeyPress,
   } = useMaterials();
 
   return (
@@ -105,6 +106,7 @@ const Materials = () => {
               className="account-input-config"
               value={newMaterial.name}
               onChange={(e) => handleChange(e, "name", false)}
+              onKeyDown={handleKeyPress}
             />
             <label htmlFor="colorPicker">Couleur</label>
             <input
@@ -112,12 +114,13 @@ const Materials = () => {
               type="color"
               value={newMaterial.value}
               onChange={(e) => handleChange(e, "value", false)}
+              onKeyDown={handleKeyPress}
             />
             <button
               className={`account-btn ${
                 newMaterial.name && newMaterial.value ? "validate-btn" : ""
               }`}
-              disabled={newMaterial.name === ""}
+              disabled={newMaterial.name === "" || newMaterial.value === ""}
               onClick={handleAddMaterial}
             >
               Ajouter

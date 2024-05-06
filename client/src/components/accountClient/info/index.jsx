@@ -13,7 +13,7 @@ const InfoClient = ({
   handleChangeProfilEdit,
   clientId,
   setIsModified,
-  isModified
+  isModified,
 }) => {
   const {
     mainImage,
@@ -45,7 +45,7 @@ const InfoClient = ({
     addAvatarToStorage,
     setAddAvatarToStorage,
     removeAvatarToStorage,
-    setRemoveAvatarToStorage,
+    setRemoveAvatarToStorage
   );
 
   return (
@@ -76,7 +76,10 @@ const InfoClient = ({
       </div>
 
       {isEditing ? (
-        <button  className={`btn ${isModified?"modified":""}`} onClick={handleSaveChanges}>
+        <button
+          className={`btn ${isModified ? "modified" : ""}`}
+          onClick={handleSaveChanges}
+        >
           Enregistrer les modifications
         </button>
       ) : (

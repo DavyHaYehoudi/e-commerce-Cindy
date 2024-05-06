@@ -11,6 +11,7 @@ import promocodeReducer from "../features/admin/promocodeSlice";
 import categoryReducer from "../features/admin/categorySlice";
 import tagReducer from "../features/admin/tagSlice";
 import collectionReducer from "../features/admin/collectionSlice";
+import authenticationReducer from "../features/authentication/authenticationSlice";
 
 export const configureStoreWithRole = (role) => {
   let reducers;
@@ -26,6 +27,7 @@ export const configureStoreWithRole = (role) => {
       category: categoryReducer,
       tag: tagReducer,
       collection: collectionReducer,
+      authentication: authenticationReducer,
     };
   } else {
     reducers = {
@@ -35,6 +37,7 @@ export const configureStoreWithRole = (role) => {
       material: materialReducer,
       product: productReducer,
       collection: collectionReducer,
+      authentication: authenticationReducer,
     };
   }
 

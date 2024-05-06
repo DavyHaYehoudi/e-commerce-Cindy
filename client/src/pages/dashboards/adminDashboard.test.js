@@ -2,7 +2,7 @@ import React from "react";
 import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AdminDashboard from "./AdminDashboard";
-import { render } from "../test/utils";
+import { render } from "../../test/utils";
 
 // Mock des composants qui utilisent useFetchSlice
 jest.mock("../selectors/useFetchSlice", () => jest.fn());

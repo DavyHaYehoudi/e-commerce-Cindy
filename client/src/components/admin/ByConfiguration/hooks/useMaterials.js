@@ -26,6 +26,11 @@ const useMaterials = () => {
       setNewMaterial({ name: "", value: "" });
     }
   };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleAddMaterial();
+    }
+  };
 
   const handleDeleteMaterial = (materialId) => {
     const confirmation = window.confirm(
@@ -65,6 +70,7 @@ const useMaterials = () => {
     handleDeleteMaterial,
     handleEditMaterial,
     handleEditClick,
+    handleKeyPress
   };
 };
 
