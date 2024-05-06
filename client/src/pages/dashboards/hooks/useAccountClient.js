@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useTokenExpiration from "../../authentication/hooks/useTokenExpiration";
 import useClientFromToken from "../../authentication/hooks/useClientFromToken";
 import useFetchSliceCustomer from "../../../selectors/useFetchSliceCustomer";
 import useProfilChange from "./useProfilChange";
 import { addToken } from "../../../features/authentication/authenticationSlice";
+import { useNavigate } from "react-router-dom";
 
 const useAccountClient = () => {
-  useTokenExpiration();
   const { clientId, token, role } = useClientFromToken() || "";
   useFetchSliceCustomer(clientId);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (token && role === "user") {
       dispatch(addToken(token));
     }
+    if (!token) {
+      navigate("/account/login");
+    }
     return;
-  }, [dispatch, role, token]);
+  }, [dispatch, role, token, navigate]);
 
   const dataClient = useSelector((state) => state?.customer?.data?.client);
   const [selectedTab, setSelectedTab] = useState("Compte");

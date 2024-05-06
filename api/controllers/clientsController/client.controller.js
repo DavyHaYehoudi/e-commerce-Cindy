@@ -59,7 +59,7 @@ const clientController = {
         { new: true, runValidators: true } 
       );
 
-      res.status(200).json({});
+      res.status(200).json({message : "Les modifications ont bien été effectuées"});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

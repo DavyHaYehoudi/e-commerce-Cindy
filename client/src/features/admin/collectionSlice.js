@@ -89,7 +89,7 @@ const collectionSlice = createSlice({
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
+        toast.error(action.error.message)
       });
   },
 });

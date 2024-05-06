@@ -17,7 +17,7 @@ const CategoryItem = ({
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
-      collections?.find((collection) => collection._id === pcol)
+      collections?.find((collection) => collection?._id === pcol)
     );
   };
 
@@ -34,13 +34,13 @@ const CategoryItem = ({
                 onChange={(e) => setEditedCategoryName(e.target.value)}
               />
               <div className="content-category-checkbox">
-                {collections?.map((collection) => (
-                  <label key={collection._id}>
+                {collections&&collections.length>0&& collections.map((collection) => (
+                  <label key={collection?._id}>
                     <input
                       type="checkbox"
-                      value={collection._id}
+                      value={collection?._id}
                       checked={selectedParentCollections.includes(
-                        collection._id
+                        collection?._id
                       )}
                       onChange={(e) => {
                         const checkedCollectionId = e.target.value;
@@ -53,7 +53,7 @@ const CategoryItem = ({
                         );
                       }}
                     />
-                    {collection.name}
+                    {collection?.name}
                   </label>
                 ))}
               </div>
@@ -88,9 +88,10 @@ const CategoryItem = ({
               </p>
               <ul>
                 {parentCollection(category?.parentCollection)?.map(
-                  ({ name }) => (
-                    <small key={name}>
-                      <li>{name}</li>
+
+                  ( item ) => (
+                    <small key={item?._id}>
+                      <li>{item?.name}</li>
                     </small>
                   )
                 )}

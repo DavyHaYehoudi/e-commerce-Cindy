@@ -2,6 +2,7 @@ import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useCollections from "../hooks/useCollections";
+import MainImage from "../../../../shared/MainImage";
 
 const Collections = () => {
   const {
@@ -61,6 +62,12 @@ const Collections = () => {
                 ) : (
                   <>
                     <div className="content-block-left">{collection?.name}</div>
+                    <div className="content-block-main_image">
+                      <MainImage
+                        required={true}
+                        legend="Image illustrant la collection"
+                      />
+                    </div>
                     <div className="content-block-right">
                       <button
                         className="icon-edit account-btn"
@@ -82,6 +89,7 @@ const Collections = () => {
               </li>
             ))}
           </ul>
+
           <div className="adding">
             <input
               type="text"
@@ -91,6 +99,9 @@ const Collections = () => {
               onChange={(e) => setNewCollectionName(e.target.value)}
               onKeyDown={handleKeyPress}
             />
+            <div className="main_image-select">
+              <MainImage required={true} legend="Image illustrant la collection" />
+            </div>
             <button
               className={`account-btn ${
                 newCollectionName ? "validate-btn" : ""

@@ -136,6 +136,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Clients'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -169,6 +179,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClientDetails'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The user does not exist.
           content:
@@ -202,6 +222,16 @@ paths:
       responses:
         '200':
           description: Successful updated client
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The ressource does not exist.
           content:
@@ -240,6 +270,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NotesAdminResponse"
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -439,7 +479,15 @@ paths:
         '400':
           description: Bad Request - Invalid parameters
         '401':
-          description: Unauthorized - Client is not authenticated
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
       security:
         - api_key: []
   /orders{orderIds}:
@@ -467,6 +515,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -503,6 +561,16 @@ paths:
           description: Successful updated order
         '400':
           description: Invalids elements supplied
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -537,6 +605,16 @@ paths:
       responses:
         '201':
           description: Successful creation tracking number
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The ressource does not exist.
           content:
@@ -572,6 +650,16 @@ paths:
       responses:
         '200':
           description: Successful deleted tracking number
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The ressource does not exist.
           content:
@@ -609,6 +697,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderProducts'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -642,6 +740,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderProducts'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -695,6 +803,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/ProductCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -763,6 +881,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/ProductCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -808,6 +936,16 @@ paths:
                 properties:
                   productId:
                     type: string
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -853,6 +991,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Credits'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -890,6 +1038,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/CreditUpdated'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The ressource does not exist.
           content:
@@ -933,6 +1091,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/MaterialCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -971,6 +1139,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MaterialCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1013,6 +1191,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MaterialCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1048,6 +1236,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Promocode'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1078,6 +1276,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PromocodeCreateResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1111,6 +1319,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PromocodeDeleteResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1146,6 +1364,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GiftCard'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1176,6 +1404,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/GiftCard'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
       security:
         - api_key: []
     patch:
@@ -1196,6 +1434,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/GiftCardUsedResponse'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '404':
           description: The ressource does not exist.
           content:
@@ -1229,6 +1477,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Statistics'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1271,6 +1529,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1309,6 +1577,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1351,6 +1629,26 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Collection'
+        '400':
+          description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Des catégories sont liées à cette collection. Supprimez d'abord les catégories.
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1403,6 +1701,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1441,6 +1749,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1483,6 +1801,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1535,6 +1863,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1573,6 +1911,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:
@@ -1615,6 +1963,16 @@ paths:
            application/json:
             schema:
               $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
         '403':
           description: Unauthorized - Admin is not authenticated
           content:

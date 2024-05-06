@@ -3,6 +3,8 @@ import Collections from "./collections/Collections.jsx";
 import Categories from "./categories/index.jsx";
 import Tags from "./tags/Tags.jsx";
 import Materials from "./materials/Materials.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Configuration = () => {
   return (
@@ -12,6 +14,7 @@ const Configuration = () => {
       <Categories />
       <Tags />
       <Materials />
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };

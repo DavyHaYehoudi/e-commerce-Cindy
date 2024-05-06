@@ -9,7 +9,7 @@ const generateJWTToken = (client,isAdmin) => {
   };
 
   // Génération du token avec une clé secrète et une expiration
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
 
   return token;
 };

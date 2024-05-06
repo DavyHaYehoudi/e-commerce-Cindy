@@ -4,8 +4,8 @@ import Client from '../../models/client.model.js';
 const authenticateJWT = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res.status(401).json({ message: "Token d'authentification manquant ou invalide." });
+    if (!authHeader || !authHeader.startsWith("Bearer ") || authHeader.split(" ")[1] === "null") {
+      return res.status(401).json({ message: "Token d'authentification manquant ou invalide." });
   }
 
   const token = authHeader.split(" ")[1]; 

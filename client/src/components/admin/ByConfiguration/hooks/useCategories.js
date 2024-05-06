@@ -66,7 +66,7 @@ const useCategories = () => {
 
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
-      collections?.find((collection) => collection._id === pcol)
+      collections?.find((collection) => collection?._id === pcol)
     );
   };
 

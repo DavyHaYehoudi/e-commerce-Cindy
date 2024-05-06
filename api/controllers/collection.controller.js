@@ -1,3 +1,4 @@
+import Category from "../models/category.model.js";
 import Collection from "../models/collection.model.js";
 
 const collectionController = {
@@ -45,8 +46,21 @@ const collectionController = {
   deleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
+      // Vérifier s'il existe des catégories liées à cette collection
+      const categories = await Category.find({
+        parentCollection: collectionId,
+      });
+      if (categories.length > 0) {
+        const categoryCount = categories.length;
+        const message =
+          categoryCount > 1
+            ? `${categoryCount} catégories sont liées à cette collection. Dans ces catégories, supprimez la collection parente.`
+            : `Une catégorie est liée à cette collection. Dans cette catégorie, supprimez la collection parente.`;
+      
+        return res.status(400).json({ message });
+      }
+      
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
-
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
