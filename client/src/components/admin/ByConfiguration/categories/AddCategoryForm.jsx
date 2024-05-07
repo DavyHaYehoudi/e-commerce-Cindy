@@ -11,7 +11,7 @@ const AddCategoryForm = ({
   return (
     <div>
       <input
-        type="text"
+        type="search"
         placeholder="Nouvelle catégorie"
         className="account-input-config"
         value={newCategoryName}

@@ -58,8 +58,8 @@ const collectionController = {
             : `Une catégorie est liée à cette collection.`;
 
         return res
-          .status(400)
-          .json({ message: { messageError: message, collectionId } });
+          .status(200)
+          .json({ message: { alert: message, collectionId } });
       }
 
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
@@ -67,7 +67,7 @@ const collectionController = {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
 
-      res.status(200).json(deleteCollection);
+      res.status(200).json(collectionId);
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });
@@ -98,12 +98,12 @@ const collectionController = {
       }
       res
         .status(200)
-        .json({ message: "La collection a été supprimée avec succès." });
+        .json({});
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });
     }
-  }, 
+  },
 };
 
 export default collectionController;

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { updateCategoriesByCollectionId } from "./categorySlice";
 
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",
@@ -38,25 +39,34 @@ const updateCollection = createAsyncThunk(
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async (collectionId) => {
-    await customFetch(`collections/${collectionId}`, {
+    const response = await customFetch(`collections/${collectionId}`, {
       method: "DELETE",
     });
-    return collectionId;
+    return response;
   }
 );
-const confirmDeleteCollection = createAsyncThunk(
+export const confirmDeleteCollection = createAsyncThunk(
   "collection/confirmDeleteCollection",
-  async (collectionId) => {
+  async (collectionId, { dispatch }) => {
     await customFetch(`collections/confirm-delete/${collectionId}`, {
       method: "DELETE",
     });
+    dispatch(updateCategoriesByCollectionId(collectionId)); // Dispatch l'action pour mettre à jour le slice category
     return collectionId;
   }
 );
 
+
 const collectionSlice = createSlice({
   name: "collection",
-  initialState: { data: [], status: "idle", error: null, collectionId: "" },
+  initialState: {
+    data: [],
+    status: "idle",
+    error: null,
+    collectionId: "",
+    alert: "",
+    confirmationDeletedInDB:false
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -91,27 +101,52 @@ const collectionSlice = createSlice({
         toast.error("Une erreur est survenue !");
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
-        state.data = state.data.filter(
-          (collection) => collection._id !== action.payload
-        );
+        // console.log('action.payload:', action.payload)
+        const { message } = action.payload || {};
+        if (message?.alert && message?.collectionId) {
+          state.alert = message.alert;
+          state.collectionId = message.collectionId;
+        } else {
+          state.data = state.data.filter(
+            (collection) => collection._id !== action.payload
+          );
+          toast.success("La collection a bien été supprimée.");
+        }
       })
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
-        const errorDetails = JSON.parse(action.error.message);
-        state.error =
-          errorDetails?.message?.messageError || "Une erreur s'est produite.";
-        state.collectionId =
-          errorDetails?.message?.collectionId || "Une erreur s'est produite.";
-        try {
-          const errorDetails = JSON.parse(action.error.message);
-          if (errorDetails.status) {
-            state.status = errorDetails.status;
-          } else {
-            toast.error(action.error.message);
-          }
-        } catch (parseError) {
-          toast.error(action.error.message);
-        }
+        state.error = action.error.message;
+        toast.error("Une erreur est survenue !");
+        // const errorDetails = JSON.parse(action.error.message);
+        // state.error =
+        //   errorDetails?.message?.alert || "Une erreur s'est produite.";
+        // state.collectionId =
+        //   errorDetails?.message?.collectionId || "Une erreur s'est produite.";
+        // try {
+        //   const errorDetails = JSON.parse(action.error.message);
+        //   if (errorDetails.status) {
+        //     state.status = errorDetails.status;
+        //   } else {
+        //     toast.error(action.error.message);
+        //   }
+        // } catch (parseError) {
+        //   toast.error(action.error.message);
+        // }
+      })
+      .addCase(confirmDeleteCollection.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(confirmDeleteCollection.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = null;
+        state.data = state.data.filter(
+          (collection) => collection._id !== action.payload
+        );
+        toast.success("La collection a bien été supprimée et le contenu des catégories a été actualisé.");
+      })
+      .addCase(confirmDeleteCollection.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });
@@ -119,7 +154,6 @@ export {
   fetchCollections,
   addCollection,
   deleteCollection,
-  confirmDeleteCollection,
   updateCollection,
 };
 export default collectionSlice.reducer;

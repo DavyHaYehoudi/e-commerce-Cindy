@@ -27,7 +27,7 @@ const CategoryItem = ({
           <div className="content-block-left">
             <div>
               <input
-                type="text"
+                type="search"
                 className="account-input-config"
                 value={editedCategoryName}
                 onChange={(e) => setEditedCategoryName(e.target.value)}
@@ -62,7 +62,10 @@ const CategoryItem = ({
           </div>
           <div className="content-block-right">
             <button
-              className="account-btn validate-btn"
+              className={`account-btn ${!(editedCategoryName === "" || selectedParentCollections.length === 0)? "validate-btn":""}`}
+              disabled={
+                editedCategoryName === "" || selectedParentCollections.length === 0
+              }
               onClick={handleSaveClick}
             >
               Enregistrer

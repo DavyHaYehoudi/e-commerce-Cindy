@@ -14,8 +14,7 @@ const useCollections = () => {
   const [newCollectionName, setNewCollectionName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const collections = useSelector((state) => state?.collection?.data);
-  const error = useSelector((state) => state?.collection.error);
-  const status = useSelector((state) => state?.collection.status);
+  const alert = useSelector((state) => state?.collection.alert);
   const dispatch = useDispatch();
 
   const handleAddCollection = () => {
@@ -60,14 +59,14 @@ const useCollections = () => {
 
   // Afficher le toast de confirmation lorsque l'erreur indique qu'une confirmation est nécessaire
   useEffect(() => {
-    if (error && status === 400) {
-      toast.info(<ConfirmAction message={error} />, {
+    if (alert) {
+      toast.info(<ConfirmAction message={alert} />, {
         position: toast.POSITION.TOP_CENTER,
         autoClose: false,
         closeButton: false,
       });
     }
-  }, [error, status]);
+  }, [alert]);
 
   return {
     editCollectionId,

@@ -21,7 +21,6 @@ const Collections = () => {
     handleSaveClick,
     handleKeyPress,
   } = useCollections();
-
   return (
     <div className="admin-collections">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>
@@ -36,7 +35,7 @@ const Collections = () => {
                   <div className="content-block">
                     <div className="content-block-left">
                       <input
-                        type="text"
+                        type="search"
                         className="account-input-config"
                         value={editedCollectionName}
                         onChange={(e) =>
@@ -92,7 +91,7 @@ const Collections = () => {
 
           <div className="adding">
             <input
-              type="text"
+              type="search"
               placeholder="Nouvelle collection"
               className="account-input-config"
               value={newCollectionName}

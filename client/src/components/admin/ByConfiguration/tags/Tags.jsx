@@ -32,7 +32,7 @@ const Tags = () => {
                   <div className="content-block">
                     <div className="content-block-left">
                       <input
-                        type="text"
+                        type="search"
                         className="account-input-config"
                         value={editedTagName}
                         onChange={(e) => setEditedTagName(e.target.value)}
@@ -77,7 +77,7 @@ const Tags = () => {
           </ul>
           <div className="adding">
             <input
-              type="text"
+              type="search"
               placeholder="Nouveau tag"
               className="account-input-config"
               value={newTagName}

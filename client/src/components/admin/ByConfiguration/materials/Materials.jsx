@@ -32,7 +32,7 @@ const Materials = () => {
                   <div className="content-block">
                     <div className="content-block-left">
                       <input
-                        type="text"
+                        type="search"
                         className="account-input-config"
                         value={editedMaterial.name}
                         onChange={(e) => handleChange(e, "name", true)}
@@ -101,7 +101,7 @@ const Materials = () => {
           </ul>
           <div className="adding">
             <input
-              type="text"
+              type="search"
               placeholder="Nouveau matériau"
               className="account-input-config"
               value={newMaterial.name}
