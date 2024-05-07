@@ -34,9 +34,11 @@ export const customFetch = async (
         );
         unauthorizedCallback();
       }
-      const errorDefault = `HTTP error! Status: ${response.status} `;
-      const errorApi = data?.message;
-      throw new Error(errorApi || errorDefault);
+      const errorDetails = {
+        status: response.status,
+        message: data?.message,
+      };
+      throw new Error(JSON.stringify(errorDetails));
     }
 
     return data;

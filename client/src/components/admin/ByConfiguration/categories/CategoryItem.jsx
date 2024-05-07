@@ -17,10 +17,9 @@ const CategoryItem = ({
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
-      collections?.find((collection) => collection?._id === pcol)
-    );
-  };
-
+    collections?.find((collection) => collection?._id === pcol)
+  );
+};
   return (
     <li key={category?._id} className="content-block-wrapper">
       {editCategoryId === category?._id ? (
@@ -34,28 +33,30 @@ const CategoryItem = ({
                 onChange={(e) => setEditedCategoryName(e.target.value)}
               />
               <div className="content-category-checkbox">
-                {collections&&collections.length>0&& collections.map((collection) => (
-                  <label key={collection?._id}>
-                    <input
-                      type="checkbox"
-                      value={collection?._id}
-                      checked={selectedParentCollections.includes(
-                        collection?._id
-                      )}
-                      onChange={(e) => {
-                        const checkedCollectionId = e.target.value;
-                        setSelectedParentCollections((prevState) =>
-                          prevState.includes(checkedCollectionId)
-                            ? prevState.filter(
-                                (id) => id !== checkedCollectionId
-                              )
-                            : [...prevState, checkedCollectionId]
-                        );
-                      }}
-                    />
-                    {collection?.name}
-                  </label>
-                ))}
+                {collections &&
+                  collections.length > 0 &&
+                  collections.map((collection) => (
+                    <label key={collection?._id}>
+                      <input
+                        type="checkbox"
+                        value={collection?._id}
+                        checked={selectedParentCollections.includes(
+                          collection?._id
+                        )}
+                        onChange={(e) => {
+                          const checkedCollectionId = e.target.value;
+                          setSelectedParentCollections((prevState) =>
+                            prevState.includes(checkedCollectionId)
+                              ? prevState.filter(
+                                  (id) => id !== checkedCollectionId
+                                )
+                              : [...prevState, checkedCollectionId]
+                          );
+                        }}
+                      />
+                      {collection?.name}
+                    </label>
+                  ))}
               </div>
             </div>
           </div>
@@ -87,14 +88,11 @@ const CategoryItem = ({
                 </small>{" "}
               </p>
               <ul>
-                {parentCollection(category?.parentCollection)?.map(
-
-                  ( item ) => (
-                    <small key={item?._id}>
-                      <li>{item?.name}</li>
-                    </small>
-                  )
-                )}
+                {parentCollection(category?.parentCollection)?.map((item) => (
+                  <small key={item?._id + category?.name}>
+                    <li>{item?.name}</li>
+                  </small>
+                ))}
               </ul>
             </div>
           </div>

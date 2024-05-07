@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCollection,
   deleteCollection,
   updateCollection,
 } from "../../../../features/admin/collectionSlice";
+import { toast } from "react-toastify";
+import ConfirmAction from "../collections/ConfirmAction";
 
 const useCollections = () => {
   const [editCollectionId, setEditCollectionId] = useState(null);
@@ -12,6 +14,8 @@ const useCollections = () => {
   const [newCollectionName, setNewCollectionName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const collections = useSelector((state) => state?.collection?.data);
+  const error = useSelector((state) => state?.collection.error);
+  const status = useSelector((state) => state?.collection.status);
   const dispatch = useDispatch();
 
   const handleAddCollection = () => {
@@ -22,7 +26,7 @@ const useCollections = () => {
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-        handleAddCollection();
+      handleAddCollection();
     }
   };
 
@@ -54,6 +58,17 @@ const useCollections = () => {
     }
   };
 
+  // Afficher le toast de confirmation lorsque l'erreur indique qu'une confirmation est nécessaire
+  useEffect(() => {
+    if (error && status === 400) {
+      toast.info(<ConfirmAction message={error} />, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+        closeButton: false,
+      });
+    }
+  }, [error, status]);
+
   return {
     editCollectionId,
     editedCollectionName,
@@ -68,7 +83,7 @@ const useCollections = () => {
     handleDeleteCollection,
     handleEditClick,
     handleSaveClick,
-    handleKeyPress
+    handleKeyPress,
   };
 };
 

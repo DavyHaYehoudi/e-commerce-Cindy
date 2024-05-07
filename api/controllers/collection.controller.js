@@ -54,12 +54,14 @@ const collectionController = {
         const categoryCount = categories.length;
         const message =
           categoryCount > 1
-            ? `${categoryCount} catégories sont liées à cette collection. Dans ces catégories, supprimez la collection parente.`
-            : `Une catégorie est liée à cette collection. Dans cette catégorie, supprimez la collection parente.`;
-      
-        return res.status(400).json({ message });
+            ? `${categoryCount} catégories sont liées à cette collection.`
+            : `Une catégorie est liée à cette collection.`;
+
+        return res
+          .status(400)
+          .json({ message: { messageError: message, collectionId } });
       }
-      
+
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
@@ -71,6 +73,37 @@ const collectionController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
+  confirmDeleteCollection: async (req, res) => {
+    try {
+      const { collectionId } = req.params;
+      console.log("collectionId:", collectionId);
+      // Supprimer la collection de toutes les catégories liées
+      await Category.updateMany(
+        { parentCollection: collectionId },
+        { $pull: { parentCollection: collectionId } }
+      );
+      // Vérifier si les catégories associées sont vides après la suppression
+      const emptyCategories = await Category.find({
+        parentCollection: { $size: 0 },
+      });
+      if (emptyCategories.length > 0) {
+        // Si des catégories sont devenues vides, supprimer les documents correspondants
+        await Category.deleteMany({
+          _id: { $in: emptyCategories.map((category) => category._id) },
+        });
+      }
+      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
+      if (!deleteCollection) {
+        return res.status(404).json({ message: "La collection n'existe pas." });
+      }
+      res
+        .status(200)
+        .json({ message: "La collection a été supprimée avec succès." });
+    } catch (error) {
+      console.error("Error deleting collection:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }, 
 };
 
 export default collectionController;

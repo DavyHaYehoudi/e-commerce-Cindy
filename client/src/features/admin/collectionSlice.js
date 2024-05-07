@@ -44,10 +44,19 @@ const deleteCollection = createAsyncThunk(
     return collectionId;
   }
 );
+const confirmDeleteCollection = createAsyncThunk(
+  "collection/confirmDeleteCollection",
+  async (collectionId) => {
+    await customFetch(`collections/confirm-delete/${collectionId}`, {
+      method: "DELETE",
+    });
+    return collectionId;
+  }
+);
 
 const collectionSlice = createSlice({
   name: "collection",
-  initialState: { data: [], status: "idle", error: null },
+  initialState: { data: [], status: "idle", error: null, collectionId: "" },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -88,10 +97,29 @@ const collectionSlice = createSlice({
       })
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
-        toast.error(action.error.message)
+        const errorDetails = JSON.parse(action.error.message);
+        state.error =
+          errorDetails?.message?.messageError || "Une erreur s'est produite.";
+        state.collectionId =
+          errorDetails?.message?.collectionId || "Une erreur s'est produite.";
+        try {
+          const errorDetails = JSON.parse(action.error.message);
+          if (errorDetails.status) {
+            state.status = errorDetails.status;
+          } else {
+            toast.error(action.error.message);
+          }
+        } catch (parseError) {
+          toast.error(action.error.message);
+        }
       });
   },
 });
-export { fetchCollections, addCollection, deleteCollection, updateCollection };
+export {
+  fetchCollections,
+  addCollection,
+  deleteCollection,
+  confirmDeleteCollection,
+  updateCollection,
+};
 export default collectionSlice.reducer;

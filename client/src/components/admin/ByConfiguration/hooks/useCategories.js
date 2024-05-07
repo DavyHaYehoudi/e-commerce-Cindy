@@ -12,11 +12,13 @@ const useCategories = () => {
   const [selectedParentCollections, setSelectedParentCollections] = useState(
     []
   );
+  console.log('selectedParentCollectiong:', selectedParentCollections)
+
   const [newCategoryName, setNewCategoryName] = useState("");
   const categories = useSelector((state) => state?.category?.data);
   const collections = useSelector((state) => state?.collection?.data);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleAddCategory = () => {
     if (newCategoryName.trim() !== "" && selectedParentCollections.length > 0) {
@@ -40,6 +42,7 @@ const useCategories = () => {
   };
 
   const handleEditCategory = (categoryId, name) => {
+    console.log('selectedParentCollectiong:', selectedParentCollections)
     if (editedCategoryName.trim() !== "") {
       dispatch(
         updateCategory({

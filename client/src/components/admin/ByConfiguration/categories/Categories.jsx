@@ -2,6 +2,7 @@ import React from "react";
 import useCategories from "../hooks/useCategories";
 
 const Categories = () => {
+  console.log('avanmt le hook');
   const {
     editCategoryId,
     editedCategoryName,
@@ -18,7 +19,7 @@ const Categories = () => {
     handleSaveClick,
     parentCollection,
   } = useCategories();
-
+console.log('apres le hook');
   return (
     <div>
       <h2>Categories</h2>
