@@ -12,7 +12,6 @@ const useCategoriesIndex = () => {
   const [selectedParentCollections, setSelectedParentCollections] = useState(
     []
   );
-  console.log('selectedParentCollections:', selectedParentCollections)
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const categories = useSelector((state) => state?.category?.data);

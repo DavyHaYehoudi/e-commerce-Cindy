@@ -26,7 +26,7 @@ export const customFetch = async (
     if (!response.ok) {
       if (
         response.status === 401 ||
-        response.status === 403 ||
+        response.status === 403 || 
         checkTokenBoolean
       ) {
         console.log(

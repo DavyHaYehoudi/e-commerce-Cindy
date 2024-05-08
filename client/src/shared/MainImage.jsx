@@ -9,6 +9,7 @@ const MainImage = ({
   handleDeleteImage,
   required,
   legend,
+  editable = true,
 }) => {
   return (
     <div className="main-image">
@@ -38,12 +39,14 @@ const MainImage = ({
               ) : (
                 <span>+</span>
               )}
-              <input
-                type="file"
-                id={fileInputId}
-                accept="image/*"
-                onChange={(e) => handleMainImageChange(e)}
-              />
+              {editable && (
+                <input
+                  type="file"
+                  id={fileInputId}
+                  accept="image/*"
+                  onChange={(e) => handleMainImageChange(e)}
+                />
+              )}
             </div>
           </label>
         </div>

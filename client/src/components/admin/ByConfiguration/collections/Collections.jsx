@@ -11,6 +11,10 @@ const Collections = () => {
     newCollectionName,
     isContentVisible,
     collections,
+    alert,
+    openModal,
+    handleCancel,
+    handleConfirm,
     setEditCollectionId,
     setEditedCollectionName,
     setNewCollectionName,
@@ -38,10 +42,14 @@ const Collections = () => {
                         type="search"
                         className="account-input-config"
                         value={editedCollectionName}
+                        autoFocus
                         onChange={(e) =>
                           setEditedCollectionName(e.target.value)
                         }
                       />
+                    </div>
+                    <div className="content-block-main_image">
+                      <MainImage />
                     </div>
                     <div className="content-block-right">
                       <button
@@ -62,10 +70,7 @@ const Collections = () => {
                   <>
                     <div className="content-block-left">{collection?.name}</div>
                     <div className="content-block-main_image">
-                      <MainImage
-                        required={true}
-                        legend="Image illustrant la collection"
-                      />
+                      <MainImage editable={false} />
                     </div>
                     <div className="content-block-right">
                       <button
@@ -99,7 +104,7 @@ const Collections = () => {
               onKeyDown={handleKeyPress}
             />
             <div className="main_image-select">
-              <MainImage required={true} legend="Image illustrant la collection" />
+              <MainImage required={true} legend="Illustration" />
             </div>
             <button
               className={`account-btn ${
@@ -112,6 +117,36 @@ const Collections = () => {
             </button>
           </div>
         </div>
+      )}
+      {openModal && (
+        <>
+          <div className="modal">
+            <div className="modal-content">
+              <div className="collection-confirm-action">
+                <span>{alert} </span>
+                <span>
+                  Toute catégorie se retrouvant sans collection apparentée sera
+                  supprimée elle aussi.
+                </span>
+                <span>Voulez-vous vraiment supprimer cette collection ?</span>
+                <div className="buttons">
+                  <button
+                    className="confirm-action-button cancel"
+                    onClick={handleCancel}
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    className="confirm-action-button confirm"
+                    onClick={handleConfirm}
+                  >
+                    Confirmer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

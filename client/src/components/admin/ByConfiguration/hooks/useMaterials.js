@@ -9,7 +9,7 @@ import {
 const useMaterials = () => {
   const [editMaterialId, setEditMaterialId] = useState(null);
   const [editedMaterial, setEditedMaterial] = useState({ name: "", value: "" });
-  const [newMaterial, setNewMaterial] = useState({ name: "", value: "" });
+  const [newMaterial, setNewMaterial] = useState({ name: "", value: "#cc0000" });
   const [isContentVisible, setIsContentVisible] = useState(false);
   const materials = useSelector((state) => state?.material?.data);
   const dispatch = useDispatch();

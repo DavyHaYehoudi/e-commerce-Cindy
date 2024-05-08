@@ -29,6 +29,7 @@ const CategoryItem = ({
               <input
                 type="search"
                 className="account-input-config"
+                autoFocus
                 value={editedCategoryName}
                 onChange={(e) => setEditedCategoryName(e.target.value)}
               />

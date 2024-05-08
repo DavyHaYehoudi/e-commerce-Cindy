@@ -34,6 +34,7 @@ const Materials = () => {
                       <input
                         type="search"
                         className="account-input-config"
+                        autoFocus
                         value={editedMaterial.name}
                         onChange={(e) => handleChange(e, "name", true)}
                       />
@@ -112,7 +113,7 @@ const Materials = () => {
             <input
               id="colorPicker"
               type="color"
-              value={newMaterial.value}
+              value={newMaterial.value||"#cc0000"}
               onChange={(e) => handleChange(e, "value", false)}
               onKeyDown={handleKeyPress}
             />

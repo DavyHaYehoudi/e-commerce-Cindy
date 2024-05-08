@@ -34,6 +34,7 @@ const Tags = () => {
                       <input
                         type="search"
                         className="account-input-config"
+                        autoFocus
                         value={editedTagName}
                         onChange={(e) => setEditedTagName(e.target.value)}
                       />
