@@ -1,4 +1,3 @@
-import checkToken from "../pages/dashboards/utils/checkToken";
 import { handleFetchError } from "./handleFetchError";
 
 export const customFetch = async (
@@ -9,10 +8,8 @@ export const customFetch = async (
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const url = `${baseUrl}/${endpoint}`;
   const token = localStorage.getItem("token");
-  const checkTokenBoolean = checkToken();
 
   const defaultOptions = {
-    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -26,12 +23,8 @@ export const customFetch = async (
     if (!response.ok) {
       if (
         response.status === 401 ||
-        response.status === 403 || 
-        checkTokenBoolean
+        response.status === 403  
       ) {
-        console.log(
-          "(response.status === 401 || response.status === 403 || checkTokenBoolean)"
-        );
         unauthorizedCallback();
       }
       const errorDetails = {

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateClientField } from "../../../../features/accountClient/customerSlice";
 import { storage } from "../../../../firebase";
 import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import { Get } from "../../../../services/httpMethods";
+import useUnauthorizedRedirect from "../../../../services/useUnauthorizedRedirect";
 
 const useInfoClient = (
   dataClient,
@@ -20,6 +22,7 @@ const useInfoClient = (
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
   const avatarStore = useSelector((state) => state?.customer?.avatar);
+  const handleUnauthorized = useUnauthorizedRedirect();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateField = (fieldName, value) => {
@@ -134,6 +137,8 @@ const useInfoClient = (
       await handleChangeProfilSave(formatDataClient, clientId);
 
       try {
+        // Vérifier le token avant d'interagir avec Firebase Storage
+        await Get("auth/verify-token", null, handleUnauthorized);
         if (addAvatarToStorage) {
           const { path, file } = addAvatarToStorage;
           const storageRef = ref(storage, path);

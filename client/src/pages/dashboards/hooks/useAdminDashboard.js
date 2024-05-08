@@ -2,34 +2,20 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useClientFromToken from "../../authentication/hooks/useClientFromToken";
 import useFetchSliceAdmin from "../../../selectors/useFetchSliceAdmin";
-import { fetchClients } from "../../../features/admin/clientsSlice";
 import { addToken } from "../../../features/authentication/authenticationSlice";
-import { useNavigate } from "react-router-dom";
 
 const useAdminDashboard = () => {
   const { role, token } = useClientFromToken() || "";
-  useFetchSliceAdmin(role);
   const [clientDetails, setClientDetails] = useState({});
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const { itemsPerPage, setItemsPerPage } = useFetchSliceAdmin();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const totalClientsCount = useSelector(
     (state) => state?.clients?.totalClientsCount
   );
 
   useEffect(() => {
-    if (token && role === "admin") {
-      dispatch(fetchClients({ itemsPerPage }));
-      dispatch(addToken(token));
-    }
-    if (token && role === "user") {
-      navigate("/account/login");
-    }
-    if (!token) {
-      navigate("/account/login");
-    }
-    return;
-  }, [dispatch, itemsPerPage, role, token, navigate]);
+    dispatch(addToken(token));
+  }, [dispatch, token, itemsPerPage]);
 
   const handleChangeItemPerPage = (event) => {
     const selectedValue = event.target.value;

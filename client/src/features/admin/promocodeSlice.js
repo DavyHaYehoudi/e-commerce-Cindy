@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
+import { Get } from "../../services/httpMethods";
 
 const fetchPromocode = createAsyncThunk(
   "promocode/fetchPromocode",
-  async () => {
+  async ({handleUnauthorized}) => {
     try {
-      return customFetch("promocodes");
+      return Get("promocodes",null,handleUnauthorized);
     } catch (error) {
       handleFetchError(error);
     }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import validateMaterialsFields from "../utils.js/validateMaterialsFields";
 
 const useConfirmationFunctions = ({
   handleSubmit,
@@ -9,19 +10,17 @@ const useConfirmationFunctions = ({
 }) => {
   const [confirmationEnabled, setConfirmationEnabled] = useState(false);
   const productMaterials = useSelector((state) => state?.product?.materials);
+  const isProductModified = useSelector(
+    (state) => state?.product?.isProductCheetModified
+  );
   useEffect(() => {
     const validateFields =
       fields?.name && fields?.collection && fields?.category;
-    const validateMaterials =
-      productMaterials?.length > 0 &&
-      productMaterials?.every(
-        (material) =>
-          material?.main_image &&
-          material?.pricing?.currentPrice &&
-          material?.stock
-      );
-    setConfirmationEnabled(validateFields && validateMaterials);
-  }, [productMaterials, fields]);
+    const validateMaterials = validateMaterialsFields(productMaterials);
+    setConfirmationEnabled(
+      validateFields && validateMaterials && isProductModified
+    );
+  }, [productMaterials, fields, isProductModified]);
 
   const handleValidate = async () => {
     try {

@@ -70,6 +70,7 @@ const productSlice = createSlice({
     totalProductsCount: "",
     materials: [],
     mainImagesToRemoveStorage: [],
+    isProductCheetModified: false,
     status: "idle",
     error: null,
   },
@@ -111,6 +112,9 @@ const productSlice = createSlice({
     resetStore: (state, action) => {
       state.materials = [];
       state.mainImagesToRemoveStorage = [];
+    },
+    modifyProductCheet: (state, action) => {
+      state.isProductCheetModified = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -183,5 +187,6 @@ export const {
   mainImagesToRemoveStorage,
   initProductMaterials,
   resetStore,
+  modifyProductCheet,
 } = productSlice.actions;
 export default productSlice.reducer;

@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux";
 import {
   updateProductMaterials,
   mainImagesToRemoveStorage,
+  modifyProductCheet,
 } from "../../../../../../../features/admin/productSlice";
-import {generateFilePath} from "../../../../../../../helpers/utils/generateFilePath"
+import { generateFilePath } from "../../../../../../../helpers/utils/generateFilePath";
 
 const useMaterials = ({
   material,
@@ -56,14 +57,19 @@ const useMaterials = ({
     dispatch(
       updateProductMaterials({ _id: material?._id, isActive: isChecked })
     );
+    dispatch(modifyProductCheet(true));
   };
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
   const handleStockChange = (e) => {
-    const newStock = parseInt(e.target.value);
+    const newStock = e.target.value.trim();
+    const newStockToSet = newStock === "" ? null : Number(newStock);
     setStock(newStock);
-    dispatch(updateProductMaterials({ _id: material?._id, stock: newStock }));
+    dispatch(
+      updateProductMaterials({ _id: material?._id, stock: newStockToSet })
+    );
+    dispatch(modifyProductCheet(true));
   };
   const handleNewDateChange = (e) => {
     const newDateValue = e.target.value;
@@ -79,19 +85,22 @@ const useMaterials = ({
     dispatch(
       updateProductMaterials({ _id: material?._id, newDate: newDateValue })
     );
+    dispatch(modifyProductCheet(true));
   };
   const handlePricingChange = (e, property) => {
-    const newValue = parseInt(e.target.value);
+    const newValue = e.target.value.trim();
+    const newValueToSet = newValue === "" ? null : Number(newValue);
     setPricing((prevPricing) => ({
       ...prevPricing,
-      [property]: newValue,
+      [property]: newValueToSet,
     }));
     dispatch(
       updateProductMaterials({
         _id: material?._id,
-        pricing: { ...pricing, [property]: newValue },
+        pricing: { ...pricing, [property]: newValueToSet },
       })
     );
+    dispatch(modifyProductCheet(true));
   };
   const handlePromoChange = (e, property) => {
     const newValue = e.target.value;
@@ -146,6 +155,7 @@ const useMaterials = ({
         promo: { ...promo, [property]: newValue },
       })
     );
+    dispatch(modifyProductCheet(true));
   };
   const handleDeleteImage = () => {
     if (mainImage && !mainImage?.name) {
@@ -167,6 +177,7 @@ const useMaterials = ({
       file,
       path,
     });
+    dispatch(modifyProductCheet(true));
   };
 
   useEffect(() => {

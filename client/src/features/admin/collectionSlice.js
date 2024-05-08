@@ -3,6 +3,7 @@ import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
 import { updateCategoriesByCollectionId } from "./categorySlice";
+import { Del, Post, Put } from "../../services/httpMethods";
 
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",
@@ -17,12 +18,10 @@ const fetchCollections = createAsyncThunk(
 const addCollection = createAsyncThunk(
   "collection/addCollection",
   async ({ newCollectionName, handleUnauthorized }) => {
-    const response = await customFetch(
+    const response = await Post(
       "collections",
-      {
-        method: "POST",
-        body: JSON.stringify({ name: newCollectionName }),
-      },
+      { name: newCollectionName },
+      null,
       handleUnauthorized
     );
     return response;
@@ -32,12 +31,10 @@ const addCollection = createAsyncThunk(
 const updateCollection = createAsyncThunk(
   "collection/updateCollection",
   async ({ collectionId, name, handleUnauthorized }) => {
-    const response = await customFetch(
+    const response = await Put(
       `collections/${collectionId}`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ name }),
-      },
+      { name },
+      null,
       handleUnauthorized
     );
     return response;
@@ -47,11 +44,9 @@ const updateCollection = createAsyncThunk(
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async ({ collectionId, handleUnauthorized }) => {
-    const response = await customFetch(
+    const response = await Del(
       `collections/${collectionId}`,
-      {
-        method: "DELETE",
-      },
+      null,
       handleUnauthorized
     );
     return response;
@@ -60,11 +55,9 @@ const deleteCollection = createAsyncThunk(
 export const confirmDeleteCollection = createAsyncThunk(
   "collection/confirmDeleteCollection",
   async ({ collectionId, handleUnauthorized }, { dispatch }) => {
-    await customFetch(
+    await Del(
       `collections/confirm-delete/${collectionId}`,
-      {
-        method: "DELETE",
-      },
+      null,
       handleUnauthorized
     );
     dispatch(updateCategoriesByCollectionId(collectionId)); // Dispatch l'action pour mettre à jour le slice category

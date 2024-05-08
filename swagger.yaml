@@ -461,6 +461,36 @@ paths:
                   message:
                     type: string
                     example: Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré.
+  /auth/verify-token:
+    get:
+      tags:
+        - auth
+      summary: Verify token
+      description: This route makes it possible to verify the user's token for interaction with another API in particular.
+      operationId: verify token
+      responses:
+        '200':
+          description: token is valid
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '403':
+          description: Unauthorized - Admin is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
   /orders:
     post:
       tags:
@@ -1624,12 +1654,32 @@ paths:
             type: string
       responses:
         '200':
-          description: Successful deleted collection
+          description: Alert message before deleting
           content:
-           application/json:
-            schema:
-              $ref: '#/components/schemas/Collection'
-        '400':
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      alert:
+                        type: string
+                        example: Une catégorie est liée à cette collection.
+                      collectionId:
+                        type: string
+    
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '403':
           description: Unauthorized - Admin is not authenticated
           content:
             application/json:
@@ -1638,7 +1688,41 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Des catégories sont liées à cette collection. Supprimez d'abord les catégories.
+                    example: Accès refusé. Vous n'êtes pas un administrateur.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La collection n'existe pas.
+      security:
+        - api_key: []
+  /collections/confirm-delete/{collectionId}:
+    delete:
+      tags:
+        - collection
+      summary: Delete a collection
+      description: This route, reserved for administrators, allows you to delete a collection after confirmation from the client.
+      operationId: deleteCollectionConfirm
+      parameters:
+        - name: collectionId
+          in: path
+          description: ID of the collection that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deleted collection
+          content:
+            application/json:
+              schema:
+                type: string
+                example: collectionIdValue
         '401':
           description: Unauthorized - User is not authenticated
           content:

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { customFetch } from "../../../services/customFetch";
 import { toast } from "react-toastify";
-// import { useNavigate } from "react-router-dom";
 import useUnauthorizedRedirect from "../../../services/useUnauthorizedRedirect";
+import { Patch } from "../../../services/httpMethods";
 
 const useProfilChange = () => {
   const [loading, setLoading] = useState(false);
@@ -10,7 +9,6 @@ const useProfilChange = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isModified, setIsModified] = useState(false);
 
-  // const navigate = useNavigate();
   const handleUnauthorized = useUnauthorizedRedirect();
   const handleChangeProfilSave = async (editedUserData, clientId) => {
     setLoading(true);
@@ -19,20 +17,11 @@ const useProfilChange = () => {
       return toast.info("Aucune modification n'a été apportée.");
     }
     try {
-      const response = await customFetch(
+      const response = await Patch(
         `clients/${clientId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(editedUserData),
-        },
-        // () => {
-        //   navigate("/account/login");
-        // }
-        handleUnauthorized()
+        editedUserData,
+        null,
+        handleUnauthorized
       );
 
       if (response) {

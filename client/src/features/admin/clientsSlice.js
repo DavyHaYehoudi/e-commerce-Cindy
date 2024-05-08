@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { handleFetchError } from "../../services/handleFetchError";
 import { fetchOrders } from "./ordersSlice";
+import { Get } from "../../services/httpMethods";
 
 const fetchClients = createAsyncThunk(
   "clients/fetchClients",
@@ -18,6 +19,7 @@ const fetchClients = createAsyncThunk(
       preciseDate = "",
       rangeDateStart = "",
       rangeDateEnd = "",
+      handleUnauthorized,
     },
     { dispatch }
   ) => {
@@ -36,8 +38,10 @@ const fetchClients = createAsyncThunk(
         rangeDateEnd,
       }).toString();
 
-      const { clients, totalClientsCount } = await customFetch(
-        `clients?${queryString}`
+      const { clients, totalClientsCount } = await Get(
+        `clients?${queryString}`,
+        null,
+        handleUnauthorized
       );
 
       const orderIds = clients.map((client) => client.orders).flat();
