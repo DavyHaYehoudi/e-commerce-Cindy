@@ -138,7 +138,7 @@ const useInfoClient = (
 
       try {
         // Vérifier le token avant d'interagir avec Firebase Storage
-        await Get("auth/verify-token", null, handleUnauthorized);
+        await Get("auth/verify-token/client", null, handleUnauthorized);
         if (addAvatarToStorage) {
           const { path, file } = addAvatarToStorage;
           const storageRef = ref(storage, path);

@@ -461,13 +461,13 @@ paths:
                   message:
                     type: string
                     example: Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré.
-  /auth/verify-token:
+  /auth/verify-token/client:
     get:
       tags:
         - auth
       summary: Verify token
-      description: This route makes it possible to verify the user's token for interaction with another API in particular.
-      operationId: verify token
+      description: This route makes it possible to verify the client's token for interaction with another API in particular.
+      operationId: verify client token
       responses:
         '200':
           description: token is valid
@@ -481,6 +481,16 @@ paths:
                   message:
                     type: string
                     example: Token d'authentification manquant ou invalide.
+  /auth/verify-token/admin:
+    get:
+      tags:
+        - auth
+      summary: Verify token
+      description: This route makes it possible to verify the admin's token for interaction with another API in particular.
+      operationId: verify admin token
+      responses:
+        '200':
+          description: token is valid
         '403':
           description: Unauthorized - Admin is not authenticated
           content:

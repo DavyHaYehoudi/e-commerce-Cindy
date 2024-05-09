@@ -3,6 +3,9 @@ import {
   addProduct,
   deleteProduct,
   editProduct,
+  modifyProductCheet,
+  resetProductMaterials,
+  resetStore,
 } from "../../../../../features/admin/productSlice";
 import formatMaterialProduct from "../../utils/formatMaterialProduct";
 import { Get } from "../../../../../services/httpMethods";
@@ -44,7 +47,7 @@ const useSubmitForm = ({
   const handleSubmit = async (currentAction, paths) => {
     const handleCreateProduct = async () => {
       try {
-        await Get("auth/verify-token", null, handleUnauthorized);
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
         dispatch(addProduct(formData));
@@ -52,12 +55,14 @@ const useSubmitForm = ({
         handleCloseModal();
       } catch (error) {
         console.log("error in handleCreateProduct :", error);
+        dispatch(resetProductMaterials())
+        dispatch(modifyProductCheet(false))
       }
     };
 
     const handleEditProduct = async () => {
       try {
-        await Get("auth/verify-token", null, handleUnauthorized);
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
         await deleteMainImagesFromStorage();
@@ -66,6 +71,9 @@ const useSubmitForm = ({
         handleCloseModal();
       } catch (error) {
         console.log("error in handleEditProduct :", error);
+        dispatch(resetProductMaterials())
+        dispatch(modifyProductCheet(false))
+        dispatch(resetStore())
       }
     };
 
@@ -75,7 +83,7 @@ const useSubmitForm = ({
       );
       if (confirmDelete) {
         try {
-          await Get("auth/verify-token", null, handleUnauthorized);
+          await Get("auth/verify-token/admin", null, handleUnauthorized);
           await deleteAllMainImagesFromStorage(data);
           await deleteAllSecondariesImagesFromStorage();
           dispatch(deleteProduct(currentProductId));
@@ -83,6 +91,9 @@ const useSubmitForm = ({
           handleCloseModal();
         } catch (error) {
           console.log("error in handleDeleteProduct :", error);
+          dispatch(resetProductMaterials())
+          dispatch(modifyProductCheet(false))
+          dispatch(resetStore())
         }
       }
     };

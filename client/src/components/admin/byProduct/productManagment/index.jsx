@@ -19,6 +19,7 @@ import {
   resetProductMaterials,
 } from "../../../../features/admin/productSlice";
 import useMainImagesToAddStorage from "./bodyCheat/sections/hooks/useMainImagesToAddStorage";
+import useConfirmationFunctions from "./bodyCheat/sections/hooks/useConfirmationFunctions";
 
 const Modal = ({
   handleCloseModal,
@@ -34,6 +35,9 @@ const Modal = ({
   const categoriesStore = useSelector((state) => state?.category?.data);
   const tagsStore = useSelector((state) => state?.tag?.data);
   const materialsData = useSelector((state) => state?.product?.materials);
+  const isProductModified = useSelector(
+    (state) => state?.product?.isProductCheetModified
+  );
 
   //Hooks
   const dispatch = useDispatch();
@@ -77,6 +81,9 @@ const Modal = ({
     deleteAllSecondariesImagesFromStorage,
     reset,
   });
+  const { confirmationEnabled } = useConfirmationFunctions({
+    fields,
+  });
   //Functions
   const handleMaterialsSelectToggle = () => {
     const confirm = window.confirm(
@@ -111,9 +118,15 @@ const Modal = ({
         <span className="product-modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </span>
-        <small className="asterix">
-          Les champs marqués par une étoile * sont obligatoires.
-        </small>
+        {confirmationEnabled&&isProductModified ? (
+          <small style={{ color: "var(--success)" }}>
+            Tous les champs obligatoires sont renseignés.
+          </small>
+        ) : (isProductModified&&
+          <small className="asterix">
+            Les champs marqués par une étoile * sont obligatoires.
+          </small>
+        )}
         <Name fields={fields} handleChangeFields={handleChangeFields} />
         <Groups
           fields={fields}
