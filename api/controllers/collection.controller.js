@@ -76,7 +76,6 @@ const collectionController = {
   confirmDeleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      console.log("collectionId:", collectionId);
       // Supprimer la collection de toutes les catégories liées
       await Category.updateMany(
         { parentCollection: collectionId },

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
 import { updateCategoriesByCollectionId } from "./categorySlice";
 import { Del, Post, Put } from "../../services/httpMethods";
+import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",

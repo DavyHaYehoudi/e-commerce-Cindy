@@ -36,6 +36,7 @@ const InfoClient = ({
     billingFields,
     handleInputChange,
     errorMessages,
+    hasErrors,
     handleSaveChanges,
   } = useInfoClient(
     dataClient,
@@ -77,7 +78,8 @@ const InfoClient = ({
 
       {isEditing ? (
         <button
-          className={`btn ${isModified ? "modified" : ""}`}
+          className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
+          disabled={hasErrors}
           onClick={handleSaveChanges}
         >
           Enregistrer les modifications

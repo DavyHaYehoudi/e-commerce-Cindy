@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 const useVerifyEmailRegister = (token) => {
   const [verificationStatus, setVerificationStatus] = useState("pending");
   const [email, setEmail] = useState("");
-  const [error, setError] = useState(null);
 
   const verifyEmail = async (token) => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -23,9 +22,7 @@ const useVerifyEmailRegister = (token) => {
       const data = await response.json();
       setEmail(data?.email);
       setVerificationStatus("verified");
-      setError(null)
     } catch (error) {
-      setError(error);
       setVerificationStatus("failed");
     }
   };
@@ -47,7 +44,7 @@ const useVerifyEmailRegister = (token) => {
     verifyEmailToken();
   }, [token, verificationStatus]);
 
-  return { verificationStatus, email, error };
+  return { verificationStatus, email };
 };
 
 export default useVerifyEmailRegister;

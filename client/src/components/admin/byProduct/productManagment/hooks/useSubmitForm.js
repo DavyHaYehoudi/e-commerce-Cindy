@@ -9,7 +9,7 @@ import {
 } from "../../../../../features/admin/productSlice";
 import formatMaterialProduct from "../../utils/formatMaterialProduct";
 import { Get } from "../../../../../services/httpMethods";
-import useUnauthorizedRedirect from "../../../../../services/useUnauthorizedRedirect";
+import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
 
 const useSubmitForm = ({
   fields,
@@ -54,7 +54,6 @@ const useSubmitForm = ({
         reset();
         handleCloseModal();
       } catch (error) {
-        console.log("error in handleCreateProduct :", error);
         dispatch(resetProductMaterials())
         dispatch(modifyProductCheet(false))
       }
@@ -70,7 +69,6 @@ const useSubmitForm = ({
         reset();
         handleCloseModal();
       } catch (error) {
-        console.log("error in handleEditProduct :", error);
         dispatch(resetProductMaterials())
         dispatch(modifyProductCheet(false))
         dispatch(resetStore())
@@ -90,7 +88,6 @@ const useSubmitForm = ({
           reset();
           handleCloseModal();
         } catch (error) {
-          console.log("error in handleDeleteProduct :", error);
           dispatch(resetProductMaterials())
           dispatch(modifyProductCheet(false))
           dispatch(resetStore())

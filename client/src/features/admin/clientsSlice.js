@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { fetchOrders } from "./ordersSlice";
 import { Get } from "../../services/httpMethods";
+import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchClients = createAsyncThunk(
   "clients/fetchClients",

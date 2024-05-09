@@ -7,19 +7,18 @@ import { addToken } from "../../../features/authentication/authenticationSlice";
 import { useNavigate } from "react-router-dom";
 
 const useAccountClient = () => {
-  const { clientId, token, role } = useClientFromToken() || "";
+  const { clientId, token } = useClientFromToken() || "";
   useFetchSliceCustomer(clientId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    if (token && role === "user") {
+    if (token) {
       dispatch(addToken(token));
-    }
-    if (!token) {
+    } else if (!token) {
       navigate("/account/login");
+      dispatch(addToken(""));
     }
-    return;
-  }, [dispatch, role, token, navigate]);
+  }, [token, dispatch, navigate]);
 
   const dataClient = useSelector((state) => state?.customer?.data?.client);
   const [selectedTab, setSelectedTab] = useState("Compte");

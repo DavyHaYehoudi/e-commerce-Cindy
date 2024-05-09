@@ -6,7 +6,7 @@ const VerifyEmailRegister = () => {
   const { token } = useParams();
   const navigate = useNavigate();
 
-  const { verificationStatus, email, error } = useVerifyEmailRegister(token);
+  const { verificationStatus, email } = useVerifyEmailRegister(token);
 
   return (
     <div className="authentication verify-email-register">
@@ -31,7 +31,6 @@ const VerifyEmailRegister = () => {
           <p>La vérification de votre e-mail a échoué. 🙁</p>
         </div>
       )}
-      {error && <p>Erreur lors de la validation de l'e-mail : {error.message}</p>}
     </div>
   );
 };

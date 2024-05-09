@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Get } from "../../services/httpMethods";
+import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchCustomer = createAsyncThunk(
   "client/fetchCustomer",
-  async (clientId) => {
+  async ({ clientId, handleUnauthorized }) => {
     try {
-      return customFetch(`clients/${clientId}`);
+      return Get(`clients/${clientId}`, null, handleUnauthorized);
     } catch (error) {
       handleFetchError(error);
     }
@@ -143,7 +144,11 @@ const customer = createSlice({
       });
   },
 });
-export const { updateClientField, updateAvatar, addCredentials,resetCustomerStore } =
-  customer.actions;
+export const {
+  updateClientField,
+  updateAvatar,
+  addCredentials,
+  resetCustomerStore,
+} = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

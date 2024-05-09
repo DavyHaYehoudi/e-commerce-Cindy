@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { Get } from "../../services/httpMethods";
+import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchPromocode = createAsyncThunk(
   "promocode/fetchPromocode",

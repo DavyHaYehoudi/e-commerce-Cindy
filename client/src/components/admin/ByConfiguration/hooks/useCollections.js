@@ -7,7 +7,7 @@ import {
   resetStore,
   updateCollection,
 } from "../../../../features/admin/collectionSlice";
-import useUnauthorizedRedirect from "../../../../services/useUnauthorizedRedirect";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useCollections = () => {
   const [editCollectionId, setEditCollectionId] = useState(null);

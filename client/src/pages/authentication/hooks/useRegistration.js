@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { Post } from "../../../services/httpMethods";
+import { handleFetchError } from "../../../services/errors/handleFetchError";
 
 const useRegistration = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,7 +15,13 @@ const useRegistration = () => {
   const [messageResponse, setMessageResponse] = useState(null);
 
   const handleRegister = async () => {
-    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim() || !confirmPassword) {
+    if (
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !confirmPassword
+    ) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
@@ -31,33 +38,18 @@ const useRegistration = () => {
 
     try {
       setLoading(true);
-      const baseUrl = process.env.REACT_APP_BASE_URL;
-      const url = `${baseUrl}/${"auth/register"}`;
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setLoading(false);
-        setError(false)
-        setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à l'adresse mail
-        indiquée 📩 !`);
-      } else if (data.messageError) {
-        toast.error(`${data.messageError}`);
-      } else {
-        toast.error("Une erreur est survenue avec les informations fournies.");
-        throw new Error("Erreur lors de l'inscription.");
-      }
+      await Post(
+        "auth/register",
+        { firstName, lastName, email, password },
+        null
+      );
+      setLoading(false);
+      setError(false);
+      setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à l'adresse mail
+     indiquée 📩 !`);
     } catch (error) {
-      console.error("error:", error);
-      toast.error("Une erreur est survenue avec les informations fournies.");
+      console.log("error dans handleRegister:", error);
+      handleFetchError(error);
     } finally {
       setLoading(false);
     }

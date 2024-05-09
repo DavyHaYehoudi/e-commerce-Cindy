@@ -7,7 +7,7 @@ import { fetchPromocode } from "../features/admin/promocodeSlice";
 import { fetchCollections } from "../features/admin/collectionSlice";
 import { fetchTags } from "../features/admin/tagSlice";
 import { fetchCategories } from "../features/admin/categorySlice";
-import useUnauthorizedRedirect from "../services/useUnauthorizedRedirect";
+import useUnauthorizedRedirect from "../services/errors/useUnauthorizedRedirect";
 
 const useFetchSliceAdmin = () => {
   const [itemsPerPage, setItemsPerPage] = useState(5);

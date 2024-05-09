@@ -4,7 +4,9 @@ import { updateClientField } from "../../../../features/accountClient/customerSl
 import { storage } from "../../../../firebase";
 import { deleteObject, ref, uploadBytes } from "firebase/storage";
 import { Get } from "../../../../services/httpMethods";
-import useUnauthorizedRedirect from "../../../../services/useUnauthorizedRedirect";
+import { validateMainFields } from "../utils/validateMainFields";
+import { errorMessagesContent } from "../utils/errorMessagesContent";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useInfoClient = (
   dataClient,
@@ -20,23 +22,10 @@ const useInfoClient = (
   const [shippingFields, setShippingFields] = useState([]);
   const [billingFields, setBillingFields] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
+  const [hasErrors, setHasErrors] = useState(false);
   const dispatch = useDispatch();
   const avatarStore = useSelector((state) => state?.customer?.avatar);
   const handleUnauthorized = useUnauthorizedRedirect();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const validateField = (fieldName, value) => {
-    if (["firstName", "lastName", "email"].includes(fieldName)) {
-      // Validation spécifique pour les champs de profil
-      if (fieldName === "email") {
-        return emailRegex.test(value);
-      } else {
-        return value.trim() !== "";
-      }
-    }
-    // Ne pas appliquer de validation pour les autres champs
-    return true;
-  };
 
   const handleInputChange =
     (fieldName, nestedFieldName = null, label) =>
@@ -48,7 +37,7 @@ const useInfoClient = (
         !nestedFieldName;
 
       // Appliquer la validation uniquement pour les champs de profil
-      const isValid = isProfileField ? validateField(name, value) : true;
+      const isValid = isProfileField ? validateMainFields(name, value) : true;
 
       if (!isValid) {
         setErrorMessages((prevErrors) => ({
@@ -127,10 +116,11 @@ const useInfoClient = (
     ];
   };
 
+  useEffect(() => {
+    setHasErrors(errorMessagesContent(errorMessages));
+  }, [errorMessages]);
+
   const handleSaveChanges = async () => {
-    const hasErrors = Object.values(errorMessages).some(
-      (message) => message !== null
-    );
     if (!hasErrors) {
       const formatDataClient = { ...dataClient };
       formatDataClient.avatar = avatarStore;
@@ -171,6 +161,7 @@ const useInfoClient = (
     billingFields,
     handleInputChange,
     errorMessages,
+    hasErrors,
     handleSaveChanges,
   };
 };

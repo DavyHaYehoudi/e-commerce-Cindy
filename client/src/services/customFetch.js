@@ -1,5 +1,3 @@
-import { handleFetchError } from "./handleFetchError";
-
 export const customFetch = async (
   endpoint,
   options = {},
@@ -19,23 +17,20 @@ export const customFetch = async (
 
   try {
     const response = await fetch(url, defaultOptions);
-    const data = await response.json();
     if (!response.ok) {
-      if (
-        response.status === 401 ||
-        response.status === 403  
-      ) {
+      if (response.status === 401 || response.status === 403) {
         unauthorizedCallback();
       }
+      const responseData = await response.json();
       const errorDetails = {
         status: response.status,
-        message: data?.message,
+        message: responseData.message || "Une erreur est survenue",
+        route: response.url
       };
       throw new Error(JSON.stringify(errorDetails));
     }
-
-    return data;
+    return await response.json();
   } catch (error) {
-    handleFetchError(error);
+    throw error;
   }
 };
