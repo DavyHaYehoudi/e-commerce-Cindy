@@ -1,4 +1,5 @@
 const validateMaterialsFields = (productMaterials) => {
+  //Pour chaque rangée, soit les propriétés obligatoires sont toutes remplies, soit toutes ne le sont pas.
   const validateMaterials =
     productMaterials?.length > 0 &&
     productMaterials
@@ -16,6 +17,16 @@ const validateMaterialsFields = (productMaterials) => {
       })
       .every((result) => result === true);
 
-  return validateMaterials;
+      //Au moins une rangée doit être définie,et ce, avec les champs obligatoires valides.
+  const hasDefinedMaterials = productMaterials?.some((material) => {
+    const {
+      main_image = null,
+      pricing: { currentPrice = null } = {},
+      stock = null,
+    } = material;
+    return main_image !== null && currentPrice !== null && stock !== null;
+  });
+
+  return validateMaterials && hasDefinedMaterials;
 };
-export default validateMaterialsFields
+export default validateMaterialsFields;
