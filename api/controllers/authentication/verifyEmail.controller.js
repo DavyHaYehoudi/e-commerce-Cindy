@@ -5,18 +5,15 @@ const verifyEmail = async (req, res) => {
 
   try {
     const client = await Client.findOneAndUpdate(
-        {
-            "authentication.emailVerificationToken": token,
-            "authentication.emailVerificationExpires": { $gt: Date.now() },
-          },
-          {
-            $set: {
-              "authentication.verified": true,
-              "authentication.emailVerificationToken": null,
-              "authentication.emailVerificationExpires": null,
-            },
-          },
-          { new: true }
+      {
+        "authentication.emailVerificationToken": token,
+        "authentication.emailVerificationExpires": { $gt: Date.now() },
+      },
+      {
+        $set: {
+          "authentication.verified": true,
+        },
+      }
     );
     if (!client) {
       return res

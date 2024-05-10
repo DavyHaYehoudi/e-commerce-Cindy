@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
 import { toast } from "react-toastify";
 import { updateCategoriesByCollectionId } from "./categorySlice";
-import { Del, Post, Put } from "../../services/httpMethods";
+import { Del, Get, Post, Put } from "../../services/httpMethods";
 import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",
   async () => {
     try {
-      return customFetch("collections");
+      return Get("collections");
     } catch (error) {
       handleFetchError(error);
     }

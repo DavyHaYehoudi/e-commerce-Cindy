@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import useResetPassword from "./hooks/useResetPassword";
+import { ToastContainer } from "react-toastify";
 
 const ResetPassword = () => {
   const {
@@ -84,6 +85,7 @@ const ResetPassword = () => {
       <button className="btn" onClick={handleResetPassword}>
         Réinitialiser le mot de passe
       </button>
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchClients } from "../features/admin/clientsSlice";
 import { fetchProduct } from "../features/admin/productSlice";
@@ -11,10 +11,10 @@ import useUnauthorizedRedirect from "../services/errors/useUnauthorizedRedirect"
 
 const useFetchSliceAdmin = () => {
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
+  const handleUnauthorized = useUnauthorizedRedirect();
 
-  useEffect(() => {
+  const fetchSliceAdmin = useCallback(() => {
     dispatch(fetchClients({ itemsPerPage, handleUnauthorized }));
     dispatch(fetchProduct());
     dispatch(fetchMaterials());
@@ -23,6 +23,11 @@ const useFetchSliceAdmin = () => {
     dispatch(fetchCategories());
     dispatch(fetchTags());
   }, [dispatch, itemsPerPage, handleUnauthorized]);
+
+  useEffect(() => {
+    fetchSliceAdmin();
+  }, [fetchSliceAdmin]);
+
   return { itemsPerPage, setItemsPerPage };
 };
 

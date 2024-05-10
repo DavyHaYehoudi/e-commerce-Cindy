@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { customFetch } from "../../services/customFetch";
 import { toast } from "react-toastify";
-import { Get } from "../../services/httpMethods";
+import { Get, Post } from "../../services/httpMethods";
 import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchCustomer = createAsyncThunk(
@@ -16,14 +16,14 @@ const fetchCustomer = createAsyncThunk(
 );
 const addClientTrackingNumber = createAsyncThunk(
   "orders/addClientTrackingNumber",
-  async ({ orderId, trackingNumber }) => {
+  async ({ orderId, trackingNumber, handleUnauthorized }) => {
     try {
-      await customFetch(`orders/${orderId}/trackingnumber_client`, {
-        method: "POST",
-        body: JSON.stringify({
-          trackingNumber,
-        }),
-      });
+      await Post(
+        `orders/${orderId}/trackingnumber_client`,
+        {trackingNumber},
+        null,
+        handleUnauthorized
+      );
       return { orderId, trackingNumber };
     } catch (error) {
       handleFetchError(error);
@@ -115,7 +115,6 @@ const customer = createSlice({
         );
       })
       .addCase(addClientTrackingNumber.rejected, (state, action) => {
-        toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -127,18 +126,18 @@ const customer = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.data.orders = state?.data?.orders?.map((order) =>
-          order._id === action.payload.orderId
+          order?._id === action.payload.orderId
             ? {
                 ...order,
                 trackingNumber: order.trackingNumber.filter(
-                  (tn) => tn.id !== action.payload.trackingNumberId
+                  (tn) => tn?.id !== action.payload.trackingNumberId
                 ),
               }
             : order
         );
       })
       .addCase(deleteTrackingNumber.rejected, (state, action) => {
-        toast.error("Une erreur est survenue avec les informations fournies.");
+        // toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       });

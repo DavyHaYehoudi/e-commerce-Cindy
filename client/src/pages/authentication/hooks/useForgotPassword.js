@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { handleFetchError } from "../../../services/errors/handleFetchError";
+import { Post } from "../../../services/httpMethods";
 
 const useForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -12,34 +14,14 @@ const useForgotPassword = () => {
       return;
     }
 
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-    const url = `${baseUrl}/${"auth/request-password-reset"}`;
     try {
       setLoading(true);
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setLoading(false);
-        setResetSent(true);
-        setError(null);
-      } else {
-        const data = await response.json();
-        setError(data.message);
-      }
+      await Post("auth/request-password-reset", { email });
+      setLoading(false);
+      setResetSent(true);
+      setError(null);
     } catch (error) {
-      console.error(
-        "Erreur lors de la demande de réinitialisation du mot de passe :",
-        error
-      );
-      setError(
-        "Erreur serveur lors de la demande de réinitialisation du mot de passe."
-      );
+      handleFetchError(error);
     } finally {
       setLoading(false);
     }

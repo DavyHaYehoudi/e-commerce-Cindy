@@ -1,26 +1,29 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { tabs } from "../../../constants/statisticsTabs";
-import { customFetch } from "../../../services/customFetch";
+import { Get } from "../../../services/httpMethods";
+import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
+import { handleFetchError } from "../../../services/errors/handleFetchError";
 
 const TabBar = ({ selectedYear }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState(null);
+  const handleUnauthorized = useUnauthorizedRedirect();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const endpoint = `statistics/${selectedYear}`;
-        const responseData = await customFetch(endpoint);
+        const responseData = await Get(endpoint, null, handleUnauthorized);
         setData(responseData);
       } catch (error) {
-        console.error("Erreur lors de la récupération des données:", error);
+        handleFetchError(error);
       }
     };
 
     if (selectedYear !== "") {
       fetchData();
     }
-  }, [selectedYear]);
+  }, [selectedYear, handleUnauthorized]);
 
   const handleTabClick = (index) => {
     setActiveTab(index);

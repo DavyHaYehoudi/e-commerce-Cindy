@@ -1,3 +1,5 @@
+import { handleFetchError } from "./errors/handleFetchError";
+
 export const customFetch = async (
   endpoint,
   options = {},
@@ -31,6 +33,7 @@ export const customFetch = async (
     }
     return await response.json();
   } catch (error) {
-    throw error;
+    handleFetchError(error)
+    // throw error;
   }
 };

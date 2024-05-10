@@ -40,8 +40,7 @@ const useRegistration = () => {
       setLoading(true);
       await Post(
         "auth/register",
-        { firstName, lastName, email, password },
-        null
+        { firstName, lastName, email, password }
       );
       setLoading(false);
       setError(false);

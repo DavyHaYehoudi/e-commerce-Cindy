@@ -17,7 +17,7 @@ const sendToClientController = {
 
       if (firstElementErrors.length > 0) {
         console.log("firstElementErrors:", firstElementErrors);
-        return res.status(400).json({ errors: firstElementErrors });
+        return res.status(400).json({ message: "Erreur côté client, requête invalide." });
       }
 
       const { errors: secondElementErrors } = await checkSecondElement(
@@ -28,12 +28,12 @@ const sendToClientController = {
 
       if (secondElementErrors.length > 0) {
         console.log("secondElementErrors:", secondElementErrors);
-        return res.status(400).json({ errors: secondElementErrors });
+        return res.status(400).json({ message: "Erreur côté client, requête invalide." });
       }
       outTotalAmount = outTotalAmountCalc;
     } catch (error) {
       return res.status(500).json({
-        error: `** Erreur interne du serveur dans index.js **: ${error.message}`,
+        message: `** Erreur interne du serveur dans index.js **: ${error.message}`,
       });
     }
 
@@ -67,7 +67,7 @@ const sendToClientController = {
           await updateOrderProductsActions(orderProducts, orderProductsActions);
         } catch (error) {
           return res.status(400).json({
-            error: error.message,
+            message: error.message,
           });
         }
       }
@@ -79,7 +79,7 @@ const sendToClientController = {
     } catch (error) {
       console.log("error:", error);
       return res.status(500).json({
-        error: `Erreur interne du serveur : ${error.message}`,
+        message: `Erreur interne du serveur : ${error.message}`,
       });
     }
   },

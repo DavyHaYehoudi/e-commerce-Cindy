@@ -15,10 +15,10 @@ const Item = ({ orderProducts, orderId }) => {
       {orderProducts &&
         orderProductsStore &&
         orderProductsStore
-          .filter((ps) => orderProducts.some((p) => ps.orderId === orderId))
+          .filter((ps) => orderProducts.some((p) => ps?.orderId === orderId))
           .map((orderProductsItem) => (
             <OrderProductsDetails
-              key={orderProductsItem._id}
+              key={orderProductsItem?._id}
               orderProductsItem={orderProductsItem}
               orderProductsStore={orderProductsStore}
               orderId={orderId}

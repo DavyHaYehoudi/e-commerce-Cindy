@@ -10,13 +10,13 @@ import TrackingNumberList from "./trackingFiled";
 import TrackingNumberCreate from "./trackingFiled/TrackingNumberCreate";
 
 const List = ({ orderHistory, filter }) => {
-  const [trackingNumberBoxOpen, setTrackingNumberBoxOpen] = useState(false);
+  const [openOrderId, setOpenOrderId] = useState(null);
 
   return (
     <div className="other-orders" data-testid="list-orders">
       {orderHistory &&
         orderHistory.filter(filter).map((order) => (
-          <div key={order._id} className="order-item-wrapper-user-account">
+          <div key={order?._id} className="order-item-wrapper-user-account">
             <div className="header">
               <div className="date-step">
                 <span>
@@ -60,7 +60,7 @@ const List = ({ orderHistory, filter }) => {
                     <p>{order?.shippingAddress?.phone}</p>
                     <p>{order?.shippingAddress?.street}</p>
                     <p>
-                      {order?.shippingAddress?.postalCode} {" "}
+                      {order?.shippingAddress?.postalCode}{" "}
                       {order?.shippingAddress?.city}
                     </p>
                     <p>{order?.shippingAddress?.country}</p>
@@ -91,35 +91,34 @@ const List = ({ orderHistory, filter }) => {
               content={
                 <Item
                   orderProducts={order?.orderProducts}
-                  orderId={order._id}
+                  orderId={order?._id}
                 />
               }
             />
-            {getOrderStepProperty(order?.step).name === orderStep[3].name &&
+            {getOrderStepProperty(order?.step)?.name === orderStep[3].name &&
               order.trackingNumber &&
-              order.trackingNumber.every((tn) => tn.isAdmin !== false) && (
+              order.trackingNumber.every((tn) => tn?.isAdmin !== false) && (
                 <div>
                   <button
                     className="account-btn addTrackingNumberClientBtn"
                     onClick={() =>
-                      setTrackingNumberBoxOpen(!trackingNumberBoxOpen)
+                      setOpenOrderId(
+                        openOrderId === order._id ? null : order._id
+                      )
                     }
                   >
                     Ajouter un numéro de suivi pour un retour
                   </button>
-                  {trackingNumberBoxOpen && (
-                    <TrackingNumberCreate
-                      orderId={order._id}
-                      setTrackingNumberBoxOpen={setTrackingNumberBoxOpen}
-                    />
+                  {openOrderId === order._id && (
+                    <TrackingNumberCreate orderId={order._id} />
                   )}
                 </div>
               )}
 
             <div className="trackingNumber">
-              {order?.trackingNumber?.length > 0
+              {order?.trackingNumber.length > 0
                 ? order.trackingNumber.map((trk) => (
-                    <TrackingNumberList key={trk.id} trk={trk} order={order} />
+                    <TrackingNumberList key={trk?.id} trk={trk} order={order} />
                   ))
                 : "№ suivi de commande en attente d'être communiqué"}
             </div>

@@ -4,21 +4,21 @@ import useClientFromToken from "../../authentication/hooks/useClientFromToken";
 import useFetchSliceCustomer from "../../../selectors/useFetchSliceCustomer";
 import useProfilChange from "./useProfilChange";
 import { addToken } from "../../../features/authentication/authenticationSlice";
-import { useNavigate } from "react-router-dom";
+import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
 
 const useAccountClient = () => {
   const { clientId, token } = useClientFromToken() || "";
   useFetchSliceCustomer(clientId);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const handleUnauthorized = useUnauthorizedRedirect();
   useEffect(() => {
     if (token) {
       dispatch(addToken(token));
     } else if (!token) {
-      navigate("/account/login");
+      handleUnauthorized();
       dispatch(addToken(""));
     }
-  }, [token, dispatch, navigate]);
+  }, [token, dispatch, handleUnauthorized]);
 
   const dataClient = useSelector((state) => state?.customer?.data?.client);
   const [selectedTab, setSelectedTab] = useState("Compte");

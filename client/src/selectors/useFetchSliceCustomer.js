@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProduct } from "../features/admin/productSlice";
 import { fetchCustomer } from "../features/accountClient/customerSlice";
@@ -6,16 +6,13 @@ import { fetchMaterials } from "../features/admin/materialSlice";
 import { fetchCollections } from "../features/admin/collectionSlice";
 import { fetchTags } from "../features/admin/tagSlice";
 import { fetchCategories } from "../features/admin/categorySlice";
-import { useNavigate } from "react-router-dom";
+import useUnauthorizedRedirect from "../services/errors/useUnauthorizedRedirect";
 
 const useFetchSliceCustomer = (clientId) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const handleUnauthorized = useUnauthorizedRedirect();
 
-  useEffect(() => {
-    const handleUnauthorized = () => {
-      navigate("/account/login");
-    };
+  const fetchSliceCustomer = useCallback(() => {
     if (clientId) {
       dispatch(fetchProduct());
       dispatch(fetchMaterials());
@@ -24,8 +21,13 @@ const useFetchSliceCustomer = (clientId) => {
       dispatch(fetchCategories());
       dispatch(fetchCustomer({ clientId, handleUnauthorized }));
     }
-    return;
-  }, [clientId, dispatch, navigate]);
+  }, [clientId, dispatch, handleUnauthorized]);
+
+  useEffect(() => {
+    fetchSliceCustomer();
+  }, [fetchSliceCustomer]);
+
+  return fetchSliceCustomer;
 };
 
 export default useFetchSliceCustomer;

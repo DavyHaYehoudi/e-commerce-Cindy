@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { addClientTrackingNumber } from "../../../../../features/accountClient/customerSlice";
+import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
 
 const useTrackingNumberCreate = ({
   setErrors,
@@ -8,6 +9,7 @@ const useTrackingNumberCreate = ({
   orderId,
   setTrackingNumberBoxOpen,
 }) => {
+  const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
   const handleValidate = (trackingInfo) => {
@@ -37,6 +39,7 @@ const useTrackingNumberCreate = ({
           value: trackingField,
           date: date,
         },
+        handleUnauthorized,
       })
     );
 
@@ -48,7 +51,7 @@ const useTrackingNumberCreate = ({
   const handleCancel = () => {
     setTrackingInfo({ trackingField: "", date: "" });
     setErrors({});
-    setTrackingNumberBoxOpen(false)
+    setTrackingNumberBoxOpen(false);
   };
 
   return {

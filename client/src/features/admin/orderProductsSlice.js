@@ -110,7 +110,7 @@ const orderProductsSlice = createSlice({
       .addCase(orderProductsNote.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue avec les informations fournies.");
+        // toast.error("Une erreur est survenue avec les informations fournies.");
       });
   },
 });
