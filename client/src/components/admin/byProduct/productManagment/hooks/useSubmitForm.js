@@ -47,31 +47,37 @@ const useSubmitForm = ({
   const handleSubmit = async (currentAction, paths) => {
     const handleCreateProduct = async () => {
       try {
-        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        await Get("auth/verify-token/admin");
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
-        dispatch(addProduct(formData));
+        dispatch(addProduct({ formData, handleUnauthorized }));
         reset();
         handleCloseModal();
       } catch (error) {
-        dispatch(resetProductMaterials())
-        dispatch(modifyProductCheet(false))
+        dispatch(resetProductMaterials());
+        dispatch(modifyProductCheet(false));
       }
     };
 
     const handleEditProduct = async () => {
       try {
-        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        await Get("auth/verify-token/admin");
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
         await deleteMainImagesFromStorage();
-        dispatch(editProduct({ formData, productId: currentProductId }));
+        dispatch(
+          editProduct({
+            formData,
+            productId: currentProductId,
+            handleUnauthorized,
+          })
+        );
         reset();
         handleCloseModal();
       } catch (error) {
-        dispatch(resetProductMaterials())
-        dispatch(modifyProductCheet(false))
-        dispatch(resetStore())
+        dispatch(resetProductMaterials());
+        dispatch(modifyProductCheet(false));
+        dispatch(resetStore());
       }
     };
 
@@ -81,16 +87,18 @@ const useSubmitForm = ({
       );
       if (confirmDelete) {
         try {
-          await Get("auth/verify-token/admin", null, handleUnauthorized);
+          await Get("auth/verify-token/admin");
           await deleteAllMainImagesFromStorage(data);
           await deleteAllSecondariesImagesFromStorage();
-          dispatch(deleteProduct(currentProductId));
+          dispatch(
+            deleteProduct({ productId: currentProductId, handleUnauthorized })
+          );
           reset();
           handleCloseModal();
         } catch (error) {
-          dispatch(resetProductMaterials())
-          dispatch(modifyProductCheet(false))
-          dispatch(resetStore())
+          dispatch(resetProductMaterials());
+          dispatch(modifyProductCheet(false));
+          dispatch(resetStore());
         }
       }
     };

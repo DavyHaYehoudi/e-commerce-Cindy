@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useRegistration from "./hooks/useRegistration";
 import MoonLoader from "react-spinners/MoonLoader";
 

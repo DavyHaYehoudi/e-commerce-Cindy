@@ -44,9 +44,9 @@ const Confirmation = ({
               Supprimer le produit
             </button>
             <button
-                className={`account-btn ${
-                  confirmationEnabled ? "icon-validate" : ""
-                }`}
+              className={`account-btn ${
+                confirmationEnabled ? "icon-validate" : ""
+              }`}
               disabled={!confirmationEnabled}
               onClick={handleSaveChanges}
             >

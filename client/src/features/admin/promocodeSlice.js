@@ -1,42 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { Get } from "../../services/httpMethods";
-import { handleFetchError } from "../../services/errors/handleFetchError";
+import { Del, Get, Post } from "../../services/httpMethods";
+import { toast } from "react-toastify";
 
 const fetchPromocode = createAsyncThunk(
   "promocode/fetchPromocode",
-  async ({handleUnauthorized}) => {
-    try {
-      return Get("promocodes",null,handleUnauthorized);
-    } catch (error) {
-      handleFetchError(error);
-    }
+  async ({ handleUnauthorized }) => {
+    return Get("promocodes", null, handleUnauthorized);
   }
 );
 const createPromocode = createAsyncThunk(
   "promocode/createPromocode",
-  async (promocodeData) => {
-    try {
-      return customFetch("promocodes", {
-        method: "POST",
-        body: JSON.stringify(promocodeData),
-      });
-    } catch (error) {
-      handleFetchError(error);
-    }
+  async ({ formatData, handleUnauthorized }) => {
+    return Post("promocodes",  formatData , null, handleUnauthorized);
   }
 );
 const deletePromocode = createAsyncThunk(
   "promocodes/deletePromocode",
-  async (promocodeId) => {
-    try {
-      const response = await customFetch(`promocodes/${promocodeId}`, {
-        method: "DELETE",
-      });
-      return response;
-    } catch (error) {
-      handleFetchError(error);
-    }
+  async ({ promocodeId, handleUnauthorized }) => {
+    return await Del(`promocodes/${promocodeId}`, null, handleUnauthorized);
   }
 );
 
@@ -62,6 +43,7 @@ const promocodeSlice = createSlice({
         state.status = "loading";
       })
       .addCase(createPromocode.fulfilled, (state, action) => {
+        toast.success("Le code promo a bien été enregistré 😀");
         state.status = "succeeded";
         state.error = null;
         state.data = [...state.data, action.payload];
@@ -74,6 +56,7 @@ const promocodeSlice = createSlice({
         state.status = "loading";
       })
       .addCase(deletePromocode.fulfilled, (state, action) => {
+        toast.success("Le code promo a bien été supprimé 😀");
         state.status = "succeeded";
         state.error = null;
         const promocodeId = action.payload;

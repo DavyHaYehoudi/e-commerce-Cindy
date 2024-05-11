@@ -1,38 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import ToggleButton from "../../../../../shared/ToggleButton";
-import { useDispatch } from "react-redux";
-import {
-  orderProductsNote,
-  updateActionContent,
-} from "../../../../../features/admin/orderProductsSlice";
 import { IoSave } from "react-icons/io5";
+import useToggleButtonNote from "./item/hooks/useToggleButtonNote";
 
 const ToggleButtonNote = ({ orderProductsInfo, orderProducts }) => {
-  const [isEdited, setIsEdited] = useState(false);
-  const dispatch = useDispatch();
+  const {
+    isEdited,
+    handleChangeNoteValue,
+    handleNoteValidate,
+    handleKeyPress,
+  } = useToggleButtonNote(orderProductsInfo, orderProducts);
 
-  const handleChangeNoteValue = (e) => {
-    setIsEdited(true);
-    const enteredText = e.target.value;
-    if (enteredText.length <= 500) {
-      dispatch(
-        updateActionContent({
-          orderProductsId: orderProducts._id,
-          updatedProperty: "note",
-          productActionContent: e.target.value,
-        })
-      );
-    }
-  };
-  const handleNoteValidate = () => {
-    setIsEdited(false);
-    dispatch(
-      orderProductsNote({
-        orderProductsId: orderProducts._id,
-        content: orderProductsInfo?.note,
-      })
-    );
-  };
   return (
     <ToggleButton
       initialText="Note"
@@ -50,6 +28,7 @@ const ToggleButtonNote = ({ orderProductsInfo, orderProducts }) => {
               className="product-note"
               value={orderProductsInfo?.note || ""}
               onChange={(e) => handleChangeNoteValue(e)}
+              onKeyDown={handleKeyPress}
             >
               {" "}
             </textarea>

@@ -7,7 +7,7 @@ const tagController = {
       res.status(200).json(tags);
     } catch (error) {
       console.error("Error getTags:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   createTag: async (req, res) => {
@@ -17,7 +17,7 @@ const tagController = {
       res.status(201).json(tag);
     } catch (error) {
       console.error("Error createTag :", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   updateTag: async (req, res) => {
@@ -38,7 +38,7 @@ const tagController = {
       res.status(200).json(updateTag);
     } catch (error) {
       console.error("Error updateTag :", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -54,7 +54,7 @@ const tagController = {
       res.status(200).json(deleteTag);
     } catch (error) {
       console.error("Error deleting tag:", error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ message: "Internal server error" });
     }
   },
 };

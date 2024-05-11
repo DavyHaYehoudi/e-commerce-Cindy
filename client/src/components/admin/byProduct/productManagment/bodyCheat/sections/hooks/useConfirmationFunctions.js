@@ -27,7 +27,7 @@ const useConfirmationFunctions = ({
 
   const handleValidate = async () => {
     try {
-      await Get("auth/verify-token/admin", null, handleUnauthorized);
+      await Get("auth/verify-token/admin");
       const paths = await addSecondariesImagesToFirebaseStorage();
       handleSubmit("create", paths);
     } catch (error) {
@@ -37,7 +37,7 @@ const useConfirmationFunctions = ({
 
   const handleSaveChanges = async () => {
     try {
-      await Get("auth/verify-token/admin", null, handleUnauthorized);
+      await Get("auth/verify-token/admin");
       const pathsToAdd = await addSecondariesImagesToFirebaseStorage();
       const pathsToDelete = await deleteSecondariesImagesFromStorage();
       const paths = pathsToAdd.filter((path) => !pathsToDelete.includes(path));
@@ -48,8 +48,12 @@ const useConfirmationFunctions = ({
   };
 
   const handleDeleteProduct = async () => {
-    await Get("auth/verify-token/admin", null, handleUnauthorized);
-    handleSubmit("delete");
+    try {
+      await Get("auth/verify-token/admin", null, handleUnauthorized);
+      handleSubmit("delete");
+    } catch (error) {
+      console.error("Erreur dans useConfirmationFunctions :", error);
+    }
   };
 
   return {

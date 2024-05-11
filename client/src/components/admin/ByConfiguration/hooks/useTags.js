@@ -5,6 +5,7 @@ import {
   deleteTag,
   updateTag,
 } from "../../../../features/admin/tagSlice";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useTags = () => {
   const [editTagId, setEditTagId] = useState(null);
@@ -13,6 +14,7 @@ const useTags = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const tags = useSelector((state) => state?.tag?.data);
 
+  const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
   const handleAddTag = () => {
@@ -20,7 +22,7 @@ const useTags = () => {
       const formatData = {
         name: newTagName,
       };
-      dispatch(addTag(formatData));
+      dispatch(addTag({ formatData, handleUnauthorized }));
       setNewTagName("");
     }
   };
@@ -34,11 +36,11 @@ const useTags = () => {
       "Etes-vous sûr de vouloir supprimer cet tag ?"
     );
     if (confirmation) {
-      dispatch(deleteTag(tagId));
+      dispatch(deleteTag({ tagId, handleUnauthorized }));
     }
   };
   const handleEditTag = (tagId, name) => {
-    dispatch(updateTag({ tagId, name }));
+    dispatch(updateTag({ tagId, name, handleUnauthorized }));
   };
   const handleKeyPressEdit = (event) => {
     if (event.key === "Enter") {

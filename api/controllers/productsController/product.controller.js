@@ -19,7 +19,7 @@ const productController = {
 
       res.status(200).json({ products, totalProductsCount });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -32,7 +32,7 @@ const productController = {
       }
       res.status(200).json(product);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -41,7 +41,7 @@ const productController = {
       const product = await Product.create(req.body);
       res.status(201).json(product);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -65,7 +65,7 @@ const productController = {
       // Vérifie si le produit existe
       const existingProduct = await Product.findById(productId);
       if (!existingProduct) {
-        return res.status(404).json({ error: "Le produit n'existe pas." });
+        return res.status(404).json({ message: "Le produit n'existe pas." });
       }
 
       // Mettre à jour les champs autorisés selon les données fournies dans req.body
@@ -80,7 +80,7 @@ const productController = {
 
       res.status(200).json(updatedProduct);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
@@ -93,7 +93,7 @@ const productController = {
       }
       res.status(200).json({ productId });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 };
