@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Post } from "../../../services/httpMethods";
-import { handleFetchError } from "../../../services/errors/handleFetchError";
 
 const useVerifyEmailRegister = (token) => {
   const [verificationStatus, setVerificationStatus] = useState("pending");
@@ -13,7 +12,10 @@ const useVerifyEmailRegister = (token) => {
       setVerificationStatus("verified");
     } catch (error) {
       setVerificationStatus("failed");
-      handleFetchError(error);
+      console.error(
+        "Erreur lors de la validation de l'e-mail (verifyEmail) :",
+        error
+      );
     }
   };
 
@@ -22,7 +24,10 @@ const useVerifyEmailRegister = (token) => {
       try {
         await verifyEmail(token);
       } catch (error) {
-        console.error("Erreur lors de la validation de l'e-mail :", error);
+        console.error( 
+          "Erreur lors de la validation de l'e-mail (verifyEmailToken) :",
+          error
+        );
       }
     };
 

@@ -10,7 +10,7 @@ const VerifyEmailRegister = () => {
 
   return (
     <div className="authentication verify-email-register">
-      {verificationStatus === "pending" && <p>Vérification en cours...</p>}
+      {verificationStatus === "pending" && <p className="verify-loading">Vérification en cours...</p>}
       {verificationStatus === "verified" && (
         <div className="modal">
           <div className="modal-content">

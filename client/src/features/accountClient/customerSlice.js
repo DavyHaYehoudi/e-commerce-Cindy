@@ -1,51 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
 import { toast } from "react-toastify";
-import { Get, Post } from "../../services/httpMethods";
-import { handleFetchError } from "../../services/errors/handleFetchError";
+import { Del, Get, Post } from "../../services/httpMethods";
 
 const fetchCustomer = createAsyncThunk(
   "client/fetchCustomer",
   async ({ clientId, handleUnauthorized }) => {
-    try {
-      return Get(`clients/${clientId}`, null, handleUnauthorized);
-    } catch (error) {
-      handleFetchError(error);
-    }
+    return Get(`clients/${clientId}`, null, handleUnauthorized);
   }
 );
 const addClientTrackingNumber = createAsyncThunk(
   "orders/addClientTrackingNumber",
   async ({ orderId, trackingNumber, handleUnauthorized }) => {
-    try {
-      await Post(
-        `orders/${orderId}/trackingnumber_client`,
-        {trackingNumber},
-        null,
-        handleUnauthorized
-      );
-      return { orderId, trackingNumber };
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+    await Post(
+      `orders/${orderId}/trackingnumber_client`,
+      { trackingNumber },
+      null,
+      handleUnauthorized
+    );
+    return { orderId, trackingNumber };
   }
 );
 const deleteTrackingNumber = createAsyncThunk(
   "orders/deleteClientTrackingNumber",
-  async ({ orderId, trackingNumberId }) => {
-    try {
-      await customFetch(
-        `orders/${orderId}/trackingnumber_client/${trackingNumberId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      return { orderId, trackingNumberId };
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+  async ({ orderId, trackingNumberId, handleUnauthorized }) => {
+    await Del(
+      `orders/${orderId}/trackingnumber_client/${trackingNumberId}`,
+      null,
+      handleUnauthorized
+    );
+    return { orderId, trackingNumberId };
   }
 );
 
@@ -137,7 +120,6 @@ const customer = createSlice({
         );
       })
       .addCase(deleteTrackingNumber.rejected, (state, action) => {
-        // toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       });

@@ -1,38 +1,22 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { TbInputX, TbInputCheck } from "react-icons/tb";
 import { formatDate } from "../helpers/utils/formatDate";
 import { getNotesEditorInfo } from "../selectors/client";
-import { notesAdmin } from "../features/admin/clientsSlice";
+import useNotesEditor from "./hooks/useNotesEditor";
+import { ToastContainer } from "react-toastify";
 
 const NotesEditor = ({ clientId, notesPropName }) => {
-  const [currentNote, setCurrentNote] = useState("");
-  const dispatch = useDispatch();
   const state = useSelector((state) => state?.clients?.data);
+  const {
+    currentNote,
+    handleNotesChange,
+    handleSaveNotes,
+    handleDeleteNote,
+    isNotesEmpty,
+    handleKeyPress,
+  } = useNotesEditor(clientId, notesPropName);
   const { notes } = getNotesEditorInfo(state, clientId, notesPropName);
-
-  const handleNotesChange = (e) => {
-    const enteredText = e.target.value;
-    if (enteredText.length <= 500) {
-      setCurrentNote(enteredText);
-    }
-  };
-
-  const handleSaveNotes = () => {
-    dispatch(
-      notesAdmin({
-        clientId,
-        content: currentNote,
-      })
-    );
-    setCurrentNote("");
-  };
-
-  const handleDeleteNote = (noteId) => {
-    dispatch(notesAdmin({ clientId, noteId }));
-  };
-
-  const isNotesEmpty = currentNote.length === 0;
 
   return (
     <div className="notes-editor">
@@ -64,6 +48,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
           value={currentNote}
           onChange={handleNotesChange}
           placeholder="Ajouter des notes..."
+          onKeyDown={handleKeyPress}
         />
 
         {isNotesEmpty ? null : (
@@ -76,6 +61,7 @@ const NotesEditor = ({ clientId, notesPropName }) => {
           </button>
         )}
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import {
   deleteCategory,
   updateCategory,
 } from "../../../../features/admin/categorySlice";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useCategoriesIndex = () => {
   const [editCategoryId, setEditCategoryId] = useState(null);
@@ -16,6 +17,7 @@ const useCategoriesIndex = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const categories = useSelector((state) => state?.category?.data);
   const collections = useSelector((state) => state?.collection?.data);
+  const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
   const handleAddCategory = () => {
@@ -24,6 +26,7 @@ const useCategoriesIndex = () => {
         addCategory({
           name: newCategoryName,
           parentCollection: selectedParentCollections,
+          handleUnauthorized,
         })
       );
       resetState();
@@ -35,7 +38,7 @@ const useCategoriesIndex = () => {
       "Etes-vous sûr de vouloir supprimer cette categorie ?"
     );
     if (confirmation) {
-      dispatch(deleteCategory(categoryId));
+      dispatch(deleteCategory({ categoryId, handleUnauthorized }));
     }
   };
 
@@ -46,6 +49,7 @@ const useCategoriesIndex = () => {
           categoryId: editCategoryId,
           name: editedCategoryName,
           parentCollection: selectedParentCollections,
+          handleUnauthorized,
         })
       );
       resetState();

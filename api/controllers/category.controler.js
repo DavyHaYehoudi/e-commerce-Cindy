@@ -7,7 +7,7 @@ const categoryController = {
       res.status(200).json(categories);
     } catch (error) {
       console.error("Error getCategories:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   createCategory: async (req, res) => {
@@ -17,7 +17,7 @@ const categoryController = {
       res.status(201).json(category);
     } catch (error) {
       console.error("Error createCategory :", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   updateCategory: async (req, res) => {
@@ -39,7 +39,7 @@ const categoryController = {
       res.status(200).json(updateCategory);
     } catch (error) {
       console.error("Error updateCategory :", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 

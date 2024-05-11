@@ -6,18 +6,18 @@ export const handleFetchError = (error) => {
   const { status, message, route } = errorDetails;
 
   if (route.includes("auth/")) {
-   return toast.error(message)
+    return toast.error(message);
   }
-  if (error.message.includes("Error 400")) {
+  if (status === 400) {
     toast.error("Informations fournies non valides 🚫 ");
   }
-  if (error.message.includes("Error 404")) {
+  if (status === 404) {
     toast.error("Ressource non trouvée 🧐 ");
   }
-  if (error.message.includes("Error 409")) {
+  if (status === 409) {
     toast.error("Déjà enregistré, veuillez modifier 🔀 ");
   }
-  if (error.message.includes("Error 500")) {
-    toast.error("Erreur de réseau 🌐 ou du serveur 🛠️ ");
+  if (status === 500) {
+    toast.error("Erreur de réseau  🌐  ou du serveur 🛠️ ");
   }
 };

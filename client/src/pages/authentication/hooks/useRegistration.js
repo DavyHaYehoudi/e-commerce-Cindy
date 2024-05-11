@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Post } from "../../../services/httpMethods";
-import { handleFetchError } from "../../../services/errors/handleFetchError";
 
 const useRegistration = () => {
   const [firstName, setFirstName] = useState("");
@@ -47,8 +46,7 @@ const useRegistration = () => {
       setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à l'adresse mail
      indiquée 📩 !`);
     } catch (error) {
-      console.log("error dans handleRegister:", error);
-      handleFetchError(error);
+      console.error("Erreur lors de l'inscription :", error);
     } finally {
       setLoading(false);
     }

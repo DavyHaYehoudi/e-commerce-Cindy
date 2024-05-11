@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { handleFetchError } from "../../../services/errors/handleFetchError";
 import { Post } from "../../../services/httpMethods";
 
 const useForgotPassword = () => {
@@ -21,7 +20,10 @@ const useForgotPassword = () => {
       setResetSent(true);
       setError(null);
     } catch (error) {
-      handleFetchError(error);
+      console.error(
+        "Erreur lors de la demande de réinitialisation du mot de passe :",
+        error
+      );
     } finally {
       setLoading(false);
     }

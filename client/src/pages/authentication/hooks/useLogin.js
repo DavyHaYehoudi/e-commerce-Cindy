@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Post } from "../../../services/httpMethods";
-import { handleFetchError } from "../../../services/errors/handleFetchError";
 
 const useLogin = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +41,6 @@ const useLogin = () => {
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
-      handleFetchError(error);
     } finally {
       setLoading(false);
     }

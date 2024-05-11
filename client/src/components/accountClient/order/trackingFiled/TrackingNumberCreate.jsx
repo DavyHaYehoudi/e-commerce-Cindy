@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useTrackingNumberCreate from "./hooks/useTrackingNumberCreate";
 
-const TrackingNumberCreate = ({ orderId, setTrackingNumberBoxOpen }) => {
+const TrackingNumberCreate = ({ orderId }) => {
   const [errors, setErrors] = useState({ trackingField: "", date: "" });
   const [trackingInfo, setTrackingInfo] = useState({
     trackingField: "",
@@ -12,7 +12,6 @@ const TrackingNumberCreate = ({ orderId, setTrackingNumberBoxOpen }) => {
     setErrors,
     setTrackingInfo,
     orderId,
-    setTrackingNumberBoxOpen,
   });
 
   const isFormValid = !errors.trackingField && !errors.date;

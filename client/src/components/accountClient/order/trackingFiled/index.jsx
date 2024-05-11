@@ -5,15 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTrackingNumber } from "../../../../features/accountClient/customerSlice";
 import { getProductProperties } from "../../../../selectors/product";
 import { getMaterialProperty } from "../../../../selectors/material";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const TrackingNumberList = ({ trk, order }) => {
   const [isTrashConfirm, setIsTrashConfirm] = useState(false);
-  const dispatch = useDispatch();
   const productStore = useSelector((state) => state?.product?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
   const materialStore = useSelector((state) => state?.material?.data);
+  const dispatch = useDispatch();
+  const handleUnauthorized = useUnauthorizedRedirect();
 
   const handleConfirmCancel = (trackingNumberId) => {
     const orderId = order._id;
@@ -21,6 +23,7 @@ const TrackingNumberList = ({ trk, order }) => {
       deleteTrackingNumber({
         orderId,
         trackingNumberId,
+        handleUnauthorized,
       })
     );
   };

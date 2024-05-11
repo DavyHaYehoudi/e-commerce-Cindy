@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleFetchError } from "../../../services/errors/handleFetchError";
 import { Post } from "../../../services/httpMethods";
 
 const useResetPassword = () => {
@@ -27,8 +26,7 @@ const useResetPassword = () => {
       await Post("auth/reset-password", { password, token });
       setSuccess(true);
     } catch (error) {
-      handleFetchError(error);
-    }
+      console.error("Erreur lors de la réinitialisation du mot de passe :", error);    }
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {

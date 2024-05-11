@@ -27,13 +27,13 @@ export const customFetch = async (
       const errorDetails = {
         status: response.status,
         message: responseData.message || "Une erreur est survenue",
-        route: response.url
+        route: response.url,
       };
       throw new Error(JSON.stringify(errorDetails));
     }
     return await response.json();
   } catch (error) {
-    handleFetchError(error)
-    // throw error;
+    handleFetchError(error);
+    throw error;
   }
 };

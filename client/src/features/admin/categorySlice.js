@@ -1,46 +1,41 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
 import { toast } from "react-toastify";
-import { handleFetchError } from "../../services/errors/handleFetchError";
+import { Del, Get, Patch, Post } from "../../services/httpMethods";
 
 const fetchCategories = createAsyncThunk(
   "category/fetchCategories",
   async () => {
-    try {
-      return customFetch("categories");
-    } catch (error) {
-      handleFetchError(error);
-    }
+    return Get("categories");
   }
 );
 
 const addCategory = createAsyncThunk(
   "category/addCategories",
-  async (categoryData) => {
-    const response = await customFetch("categories", {
-      method: "POST",
-      body: JSON.stringify(categoryData),
-    });
-    return response;
+  async ({ name, parentCollection, handleUnauthorized }) => {
+    return await Post(
+      "categories",
+      { name, parentCollection },
+      null,
+      handleUnauthorized
+    );
   }
 );
 
 const updateCategory = createAsyncThunk(
   "category/updateCategory",
-  async ({ categoryId, name ,parentCollection}) => {
-    const response = await customFetch(`categories/${categoryId}`, {
-      method: "PATCH",
-      body: JSON.stringify({ name,parentCollection }),
-    });
-    return response;
+  async ({ categoryId, name, parentCollection, handleUnauthorized }) => {
+    return await Patch(
+      `categories/${categoryId}`,
+      { name, parentCollection },
+      null,
+      handleUnauthorized
+    );
   }
 );
 const deleteCategory = createAsyncThunk(
   "category/deleteCategory",
-  async (categoryId) => {
-    await customFetch(`categories/${categoryId}`, {
-      method: "DELETE",
-    });
+  async ({ categoryId, handleUnauthorized }) => {
+    await Del(`categories/${categoryId}`, null, handleUnauthorized);
     return categoryId;
   }
 );
@@ -50,7 +45,7 @@ const categoriesSlice = createSlice({
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     updateCategoriesByCollectionId: (state, action) => {
-      const  collectionId  = action.payload;
+      const collectionId = action.payload;
       state.data.forEach((category) => {
         // Filtrer les IDs de parentCollection différents de collectionId
         const filteredParentCollection = category.parentCollection.filter(
@@ -59,10 +54,12 @@ const categoriesSlice = createSlice({
         category.parentCollection = filteredParentCollection;
       });
       // Filtrer les catégories avec une parentCollection vide
-      state.data = state.data.filter((category) => category.parentCollection.length > 0);
+      state.data = state.data.filter(
+        (category) => category.parentCollection.length > 0
+      );
     },
   },
-  
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -79,31 +76,31 @@ const categoriesSlice = createSlice({
       })
       .addCase(addCategory.fulfilled, (state, action) => {
         state.data = state.data.concat(action.payload);
+        toast.success("La catégorie a bien été créée 😀");
       })
       .addCase(addCategory.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.data = state.data.map((category) =>
           category._id === action.payload._id ? action.payload : category
         );
+        toast.success("La catégorie a bien été modifiée 😀");
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(deleteCategory.fulfilled, (state, action) => {
         state.data = state.data.filter(
           (category) => category._id !== action.payload
         );
+        toast.success("La catégorie a bien été supprimée 😀");
       })
       .addCase(deleteCategory.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       });
   },
 });

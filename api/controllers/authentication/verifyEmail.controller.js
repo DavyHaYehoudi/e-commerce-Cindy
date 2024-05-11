@@ -12,6 +12,8 @@ const verifyEmail = async (req, res) => {
       {
         $set: {
           "authentication.verified": true,
+          // "authentication.emailVerificationToken": null,
+          // "authentication.emailVerificationExpires": null,
         },
       }
     );
@@ -31,3 +33,4 @@ const verifyEmail = async (req, res) => {
 };
 
 export { verifyEmail };
+  

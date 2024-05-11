@@ -65,11 +65,6 @@ const clientController = {
     }
   },
   notesAdmin: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
-  
     try {
       const { clientId } = req.params;
       const { content, noteId } = req.body;
