@@ -32,7 +32,11 @@ const useCategoriesIndex = () => {
       resetState();
     }
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleAddCategory();
+    }
+  };
   const handleDeleteCategory = (categoryId) => {
     const confirmation = window.confirm(
       "Etes-vous sûr de vouloir supprimer cette categorie ?"
@@ -53,6 +57,11 @@ const useCategoriesIndex = () => {
         })
       );
       resetState();
+    }
+  };
+  const handleKeyPressEdit = (event) => {
+    if (event.key === "Enter") {
+      handleEditCategory();
     }
   };
 
@@ -90,6 +99,8 @@ const useCategoriesIndex = () => {
     handleDeleteCategory,
     handleEditClick,
     handleSaveClick,
+    handleKeyPress,
+    handleKeyPressEdit,
   };
 };
 

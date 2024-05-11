@@ -5,13 +5,18 @@ import {
   deleteMaterial,
   updateMaterial,
 } from "../../../../features/admin/materialSlice";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useMaterials = () => {
   const [editMaterialId, setEditMaterialId] = useState(null);
   const [editedMaterial, setEditedMaterial] = useState({ name: "", value: "" });
-  const [newMaterial, setNewMaterial] = useState({ name: "", value: "#cc0000" });
+  const [newMaterial, setNewMaterial] = useState({
+    name: "",
+    value: "#cc0000",
+  });
   const [isContentVisible, setIsContentVisible] = useState(false);
   const materials = useSelector((state) => state?.material?.data);
+  const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
   const handleChange = (e, type, isEdited) => {
@@ -22,7 +27,7 @@ const useMaterials = () => {
 
   const handleAddMaterial = () => {
     if (newMaterial.name.trim() !== "" && newMaterial.value.trim() !== "") {
-      dispatch(addMaterial(newMaterial));
+      dispatch(addMaterial({ newMaterial, handleUnauthorized }));
       setNewMaterial({ name: "", value: "" });
     }
   };
@@ -37,7 +42,7 @@ const useMaterials = () => {
       "Etes-vous sûr de vouloir supprimer ce matériau ?"
     );
     if (confirmation) {
-      dispatch(deleteMaterial(materialId));
+      dispatch(deleteMaterial({ materialId, handleUnauthorized }));
     }
   };
 
@@ -46,9 +51,19 @@ const useMaterials = () => {
       editedMaterial.name.trim() !== "" ||
       editedMaterial.value.trim() !== ""
     ) {
-      dispatch(updateMaterial({ materialId, ...editedMaterial }));
+      dispatch(
+        updateMaterial({
+          data: { materialId, ...editedMaterial },
+          handleUnauthorized,
+        })
+      );
       setEditMaterialId(null);
       setEditedMaterial({ name: "", value: "" });
+    }
+  };
+  const handleKeyPressEdit = (event, materialId) => {
+    if (event.key === "Enter") {
+      handleEditMaterial(materialId);
     }
   };
 
@@ -70,7 +85,8 @@ const useMaterials = () => {
     handleDeleteMaterial,
     handleEditMaterial,
     handleEditClick,
-    handleKeyPress
+    handleKeyPress,
+    handleKeyPressEdit,
   };
 };
 

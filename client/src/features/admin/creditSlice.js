@@ -1,15 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/errors/handleFetchError";
-
+import { Get } from "../../services/httpMethods";
 const fetchCredits = createAsyncThunk(
   "credit/fetchCredits",
   async ({ orderProductsIds }) => {
-    try {
-      return customFetch(`credits?orderProductsIds=${orderProductsIds}`);
-    } catch (error) {
-      handleFetchError(error);
-    }
+    return Get(`credits?orderProductsIds=${orderProductsIds}`);
   }
 );
 
@@ -18,8 +12,11 @@ const creditSlice = createSlice({
   initialState: { data: [], status: "idle", error: null },
   reducers: {
     addCredit: (state, action) => {
-      const { orderProductsId, amount, dateExpire,clientId } = action.payload;
-      state.data = [...state.data, { orderProductsId, amount, dateExpire,clientId }];
+      const { orderProductsId, amount, dateExpire, clientId } = action.payload;
+      state.data = [
+        ...state.data,
+        { orderProductsId, amount, dateExpire, clientId },
+      ];
     },
     deleteCredit: (state, action) => {
       const { orderProductsId } = action.payload;

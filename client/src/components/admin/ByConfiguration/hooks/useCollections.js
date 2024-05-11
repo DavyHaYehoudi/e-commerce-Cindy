@@ -56,6 +56,11 @@ const useCollections = () => {
       setEditedCollectionName("");
     }
   };
+  const handleKeyPressEdit = (event, collectionId) => {
+    if (event.key === "Enter") {
+      handleEditCollection(collectionId);
+    }
+  };
 
   const handleEditClick = (collectionId, collectionName) => {
     setEditCollectionId(collectionId);
@@ -107,6 +112,7 @@ const useCollections = () => {
     handleEditClick,
     handleSaveClick,
     handleKeyPress,
+    handleKeyPressEdit,
   };
 };
 

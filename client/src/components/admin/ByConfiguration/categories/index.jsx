@@ -21,6 +21,8 @@ const Categories = () => {
     handleDeleteCategory,
     handleEditClick,
     handleSaveClick,
+    handleKeyPress,
+    handleKeyPressEdit
   } = useCategoriesIndex();
 
   return (
@@ -40,6 +42,7 @@ const Categories = () => {
             handleSaveClick={handleSaveClick}
             setEditedCategoryName={setEditedCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
+            handleKeyPressEdit={handleKeyPressEdit}
           />
           <AddCategoryForm
             newCategoryName={newCategoryName}
@@ -48,6 +51,7 @@ const Categories = () => {
             handleAddCategory={handleAddCategory}
             setNewCategoryName={setNewCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
+            handleKeyPress={handleKeyPress}
           />
         </div>
       )}

@@ -14,6 +14,7 @@ const CategoryItem = ({
   handleSaveClick,
   setEditedCategoryName,
   setSelectedParentCollections,
+  handleKeyPressEdit
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
@@ -32,6 +33,7 @@ const CategoryItem = ({
                 autoFocus
                 value={editedCategoryName}
                 onChange={(e) => setEditedCategoryName(e.target.value)}
+                onKeyDown={handleKeyPressEdit}
               />
               <div className="content-category-checkbox">
                 {collections &&
@@ -54,6 +56,7 @@ const CategoryItem = ({
                               : [...prevState, checkedCollectionId]
                           );
                         }}
+                        onKeyDown={handleKeyPressEdit}
                       />
                       {collection?.name}
                     </label>

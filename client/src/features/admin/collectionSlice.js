@@ -2,53 +2,45 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { updateCategoriesByCollectionId } from "./categorySlice";
 import { Del, Get, Post, Put } from "../../services/httpMethods";
-import { handleFetchError } from "../../services/errors/handleFetchError";
 
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",
   async () => {
-    try {
       return Get("collections");
-    } catch (error) {
-      handleFetchError(error);
-    }
   }
 );
 const addCollection = createAsyncThunk(
   "collection/addCollection",
   async ({ newCollectionName, handleUnauthorized }) => {
-    const response = await Post(
+    return await Post(
       "collections",
       { name: newCollectionName },
       null,
       handleUnauthorized
     );
-    return response;
   }
 );
 
 const updateCollection = createAsyncThunk(
   "collection/updateCollection",
   async ({ collectionId, name, handleUnauthorized }) => {
-    const response = await Put(
+    return await Put(
       `collections/${collectionId}`,
       { name },
       null,
       handleUnauthorized
     );
-    return response;
   }
 );
 
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async ({ collectionId, handleUnauthorized }) => {
-    const response = await Del(
+    return await Del(
       `collections/${collectionId}`,
       null,
       handleUnauthorized
     );
-    return response;
   }
 );
 export const confirmDeleteCollection = createAsyncThunk(
@@ -95,13 +87,14 @@ const collectionSlice = createSlice({
       })
       .addCase(addCollection.fulfilled, (state, action) => {
         state.data = state.data.concat(action.payload);
+        toast.success("La collection a bien été enregistrée 😀");
       })
       .addCase(addCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(updateCollection.fulfilled, (state, action) => {
+        toast.success("La collection a bien été modifiée 😀");
         state.data = state.data.map((collection) =>
           collection._id === action.payload._id ? action.payload : collection
         );
@@ -109,7 +102,6 @@ const collectionSlice = createSlice({
       .addCase(updateCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
         const { message } = action.payload || {};
@@ -126,22 +118,6 @@ const collectionSlice = createSlice({
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
-        // const errorDetails = JSON.parse(action.error.message);
-        // state.error =
-        //   errorDetails?.message?.alert || "Une erreur s'est produite.";
-        // state.collectionId =
-        //   errorDetails?.message?.collectionId || "Une erreur s'est produite.";
-        // try {
-        //   const errorDetails = JSON.parse(action.error.message);
-        //   if (errorDetails.status) {
-        //     state.status = errorDetails.status;
-        //   } else {
-        //     toast.error(action.error.message);
-        //   }
-        // } catch (parseError) {
-        //   toast.error(action.error.message);
-        // }
       })
       .addCase(confirmDeleteCollection.pending, (state) => {
         state.status = "loading";

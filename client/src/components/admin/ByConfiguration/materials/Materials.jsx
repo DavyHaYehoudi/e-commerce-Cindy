@@ -18,6 +18,7 @@ const Materials = () => {
     handleEditMaterial,
     handleEditClick,
     handleKeyPress,
+    handleKeyPressEdit,
   } = useMaterials();
 
   return (
@@ -37,6 +38,7 @@ const Materials = () => {
                         autoFocus
                         value={editedMaterial.name}
                         onChange={(e) => handleChange(e, "name", true)}
+                        onKeyDown={(e) => handleKeyPressEdit(e, material._id)}
                       />
                       <span>{editedMaterial.value}</span>
                       <input
@@ -105,6 +107,7 @@ const Materials = () => {
               type="search"
               placeholder="Nouveau matériau"
               className="account-input-config"
+              autoFocus
               value={newMaterial.name}
               onChange={(e) => handleChange(e, "name", false)}
               onKeyDown={handleKeyPress}
@@ -113,7 +116,7 @@ const Materials = () => {
             <input
               id="colorPicker"
               type="color"
-              value={newMaterial.value||"#cc0000"}
+              value={newMaterial.value || "#cc0000"}
               onChange={(e) => handleChange(e, "value", false)}
               onKeyDown={handleKeyPress}
             />

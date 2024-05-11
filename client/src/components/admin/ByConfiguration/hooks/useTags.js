@@ -40,6 +40,11 @@ const useTags = () => {
   const handleEditTag = (tagId, name) => {
     dispatch(updateTag({ tagId, name }));
   };
+  const handleKeyPressEdit = (event) => {
+    if (event.key === "Enter") {
+      handleSaveClick();
+    }
+  };
   const handleEditClick = (tagId, tagName) => {
     setEditTagId(tagId);
     setEditedTagName(tagName);
@@ -65,6 +70,7 @@ const useTags = () => {
     setIsContentVisible,
     handleAddTag,
     handleKeyPress,
+    handleKeyPressEdit,
     handleDeleteTag,
     handleEditTag,
     handleEditClick,

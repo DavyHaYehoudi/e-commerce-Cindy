@@ -7,7 +7,7 @@ const materialController = {
       res.status(200).json(materials);
     } catch (error) {
       console.error("Error getAllMaterials:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   createMaterials: async (req, res) => {
@@ -17,7 +17,7 @@ const materialController = {
       res.status(201).json(material);
     } catch (error) {
       console.error("Error createMaterials:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   updateMaterials: async (req, res) => {
@@ -32,7 +32,7 @@ const materialController = {
       );
 
       if (!updateMaterial) {
-        return res.status(404).json({ error: "Le matériau n'existe pas." });
+        return res.status(404).json({ message: "Le matériau n'existe pas." });
       }
 
       res.status(200).json(updateMaterial);
@@ -48,14 +48,14 @@ const materialController = {
       const deleteMaterial = await Material.findByIdAndDelete(materialId);
 
       if (!deleteMaterial) {
-        return res.status(404).json({ error: "Le matériau n'existe pas." });
+        return res.status(404).json({ message: "Le matériau n'existe pas." });
       }
 
       res.status(200).json(deleteMaterial);
     } catch (error) {
       console.error("Error deleting material:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
+      res.status(500).json({ message: "Internal server error" });
+    } 
   },
 };
 

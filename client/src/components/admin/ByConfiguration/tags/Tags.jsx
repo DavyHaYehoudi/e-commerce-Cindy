@@ -16,6 +16,7 @@ const Tags = () => {
     setIsContentVisible,
     handleAddTag,
     handleKeyPress,
+    handleKeyPressEdit,
     handleDeleteTag,
     handleEditClick,
     handleSaveClick,
@@ -37,6 +38,7 @@ const Tags = () => {
                         autoFocus
                         value={editedTagName}
                         onChange={(e) => setEditedTagName(e.target.value)}
+                        onKeyDown={handleKeyPressEdit}
                       />
                     </div>
                     <div className="content-block-right">
@@ -81,6 +83,7 @@ const Tags = () => {
               type="search"
               placeholder="Nouveau tag"
               className="account-input-config"
+              autoFocus
               value={newTagName}
               onChange={(e) => setNewTagName(e.target.value)}
               onKeyDown={handleKeyPress}

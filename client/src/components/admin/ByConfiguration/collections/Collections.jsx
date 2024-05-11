@@ -24,6 +24,7 @@ const Collections = () => {
     handleEditClick,
     handleSaveClick,
     handleKeyPress,
+    handleKeyPressEdit,
   } = useCollections();
   return (
     <div className="admin-collections">
@@ -46,6 +47,7 @@ const Collections = () => {
                         onChange={(e) =>
                           setEditedCollectionName(e.target.value)
                         }
+                        onKeyDown={(e) => handleKeyPressEdit(e, collection._id)}
                       />
                     </div>
                     <div className="content-block-main_image">
@@ -99,6 +101,7 @@ const Collections = () => {
               type="search"
               placeholder="Nouvelle collection"
               className="account-input-config"
+              autoFocus
               value={newCollectionName}
               onChange={(e) => setNewCollectionName(e.target.value)}
               onKeyDown={handleKeyPress}
