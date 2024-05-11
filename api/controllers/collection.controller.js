@@ -17,8 +17,12 @@ const collectionController = {
       const collection = await Collection.create({ name });
       res.status(201).json(collection);
     } catch (error) {
-      console.error("Error createCollection :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+      } else {
+        console.error("Error createCollection:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateCollection: async (req, res) => {
@@ -38,8 +42,12 @@ const collectionController = {
 
       res.status(200).json(updateCollection);
     } catch (error) {
-      console.error("Error updateCollection :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+      } else {
+        console.error("Error updateCollection:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 

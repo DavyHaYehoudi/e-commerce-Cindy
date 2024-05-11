@@ -16,8 +16,12 @@ const categoryController = {
       const category = await Category.create({ name, parentCollection});
       res.status(201).json(category);
     } catch (error) {
-      console.error("Error createCategory :", error);
-      res.status(500).json({ message: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+      } else {
+        console.error("Error createCategory:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateCategory: async (req, res) => {
@@ -38,8 +42,12 @@ const categoryController = {
 
       res.status(200).json(updateCategory);
     } catch (error) {
-      console.error("Error updateCategory :", error);
-      res.status(500).json({ message: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+      } else {
+        console.error("Error updateCategory:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 

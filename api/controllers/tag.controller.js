@@ -16,8 +16,12 @@ const tagController = {
       const tag = await Tag.create({ name });
       res.status(201).json(tag);
     } catch (error) {
-      console.error("Error createTag :", error);
-      res.status(500).json({ message: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom du tag doit être unique." });
+      } else {
+        console.error("Error createTags:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateTag: async (req, res) => {
@@ -37,8 +41,12 @@ const tagController = {
 
       res.status(200).json(updateTag);
     } catch (error) {
-      console.error("Error updateTag :", error);
-      res.status(500).json({ message: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom du tag doit être unique." });
+      } else {
+        console.error("Error updateTags:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 
