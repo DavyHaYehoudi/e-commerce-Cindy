@@ -7,7 +7,7 @@ const Name = ({ fields, handleChangeFields }) => {
         Nom<span className="asterix">*</span> :{" "}
       </label>
       <input
-        type="text"
+        type="search"
         id="name"
         placeholder="Nom du produit"
         value={fields?.name || ""}

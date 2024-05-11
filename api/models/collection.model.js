@@ -3,6 +3,10 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const collectionSchema = new mongoose.Schema({
   name: { type: String, maxLength: 50, required: true, unique: true },
+  // main_image: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
 collectionSchema.pre("validate", function (next) {
@@ -16,3 +20,4 @@ collectionSchema.pre("validate", function (next) {
 const Collection = mongoose.model("Collection", collectionSchema);
 
 export default Collection;
+ 

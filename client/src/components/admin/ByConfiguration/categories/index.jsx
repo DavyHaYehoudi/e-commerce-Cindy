@@ -1,74 +1,29 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addCategory,
-  deleteCategory,
-  updateCategory,
-} from "../../../../features/admin/categorySlice";
+import React from "react";
 import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
+import useCategoriesIndex from "../hooks/useCategoriesIndex";
 
 const Categories = () => {
-  const [editCategoryId, setEditCategoryId] = useState(null);
-  const [editedCategoryName, setEditedCategoryName] = useState("");
-  const [selectedParentCollections, setSelectedParentCollections] = useState(
-    []
-  );
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const categories = useSelector((state) => state?.category?.data);
-  const collections = useSelector((state) => state?.collection?.data);
-  const dispatch = useDispatch();
-
-  const handleAddCategory = () => {
-    if (newCategoryName.trim() !== "" && selectedParentCollections.length > 0) {
-      const formatData = {
-        name: newCategoryName,
-        parentCollection: selectedParentCollections,
-      };
-      dispatch(addCategory(formatData));
-      setNewCategoryName("");
-      setSelectedParentCollections([]);
-    }
-  };
-
-  const handleDeleteCategory = (categoryId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette categorie ?"
-    );
-    if (confirmation) {
-      dispatch(deleteCategory(categoryId));
-    }
-  };
-
-  const handleEditCategory = (categoryId, name) => {
-    if (editedCategoryName.trim() !== "") {
-      dispatch(
-        updateCategory({
-          categoryId,
-          name: editedCategoryName,
-          parentCollection: selectedParentCollections,
-        })
-      );
-      resetEditState();
-    }
-  };
-
-  const handleEditClick = (categoryId, categoryName, parentCollections) => {
-    setEditCategoryId(categoryId);
-    setEditedCategoryName(categoryName);
-    setSelectedParentCollections(parentCollections);
-  };
-
-  const handleSaveClick = () => {
-    handleEditCategory(editCategoryId, editedCategoryName);
-  };
-
-  const resetEditState = () => {
-    setEditCategoryId(null);
-    setEditedCategoryName("");
-    setSelectedParentCollections([]);
-  };
+  const {
+    editCategoryId,
+    editedCategoryName,
+    selectedParentCollections,
+    newCategoryName,
+    isContentVisible,
+    categories,
+    collections,
+    setEditCategoryId,
+    setEditedCategoryName,
+    setNewCategoryName,
+    setIsContentVisible,
+    setSelectedParentCollections,
+    handleAddCategory,
+    handleDeleteCategory,
+    handleEditClick,
+    handleSaveClick,
+    handleKeyPress,
+    handleKeyPressEdit
+  } = useCategoriesIndex();
 
   return (
     <div className="admin-categories">
@@ -87,6 +42,7 @@ const Categories = () => {
             handleSaveClick={handleSaveClick}
             setEditedCategoryName={setEditedCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
+            handleKeyPressEdit={handleKeyPressEdit}
           />
           <AddCategoryForm
             newCategoryName={newCategoryName}
@@ -95,6 +51,7 @@ const Categories = () => {
             handleAddCategory={handleAddCategory}
             setNewCategoryName={setNewCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
+            handleKeyPress={handleKeyPress}
           />
         </div>
       )}

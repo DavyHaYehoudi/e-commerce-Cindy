@@ -3,8 +3,13 @@ import {
   addProduct,
   deleteProduct,
   editProduct,
+  modifyProductCheet,
+  resetProductMaterials,
+  resetStore,
 } from "../../../../../features/admin/productSlice";
 import formatMaterialProduct from "../../utils/formatMaterialProduct";
+import { Get } from "../../../../../services/httpMethods";
+import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
 
 const useSubmitForm = ({
   fields,
@@ -20,6 +25,7 @@ const useSubmitForm = ({
   data,
 }) => {
   const dispatch = useDispatch();
+  const handleUnauthorized = useUnauthorizedRedirect();
   const productsStore = useSelector((state) => state?.product?.data);
 
   const materialBeforeEditing = productsStore?.find(
@@ -40,20 +46,39 @@ const useSubmitForm = ({
 
   const handleSubmit = async (currentAction, paths) => {
     const handleCreateProduct = async () => {
-      formData.secondary_images = paths;
-      await uploadMainImagesToStorage();
-      dispatch(addProduct(formData));
-      reset();
-      handleCloseModal();
+      try {
+        await Get("auth/verify-token/admin");
+        formData.secondary_images = paths;
+        await uploadMainImagesToStorage();
+        dispatch(addProduct({ formData, handleUnauthorized }));
+        reset();
+        handleCloseModal();
+      } catch (error) {
+        dispatch(resetProductMaterials());
+        dispatch(modifyProductCheet(false));
+      }
     };
 
     const handleEditProduct = async () => {
-      formData.secondary_images = paths;
-      await uploadMainImagesToStorage();
-      await deleteMainImagesFromStorage();
-      dispatch(editProduct({ formData, productId: currentProductId }));
-      reset();
-      handleCloseModal();
+      try {
+        await Get("auth/verify-token/admin");
+        formData.secondary_images = paths;
+        await uploadMainImagesToStorage();
+        await deleteMainImagesFromStorage();
+        dispatch(
+          editProduct({
+            formData,
+            productId: currentProductId,
+            handleUnauthorized,
+          })
+        );
+        reset();
+        handleCloseModal();
+      } catch (error) {
+        dispatch(resetProductMaterials());
+        dispatch(modifyProductCheet(false));
+        dispatch(resetStore());
+      }
     };
 
     const handleDeleteProduct = async () => {
@@ -61,11 +86,20 @@ const useSubmitForm = ({
         "Etes-vous sûr de vouloir supprimer ce produit, cette action est définitive ?"
       );
       if (confirmDelete) {
-        await deleteAllMainImagesFromStorage(data);
-        await deleteAllSecondariesImagesFromStorage();
-        dispatch(deleteProduct(currentProductId));
-        reset();
-        handleCloseModal();
+        try {
+          await Get("auth/verify-token/admin");
+          await deleteAllMainImagesFromStorage(data);
+          await deleteAllSecondariesImagesFromStorage();
+          dispatch(
+            deleteProduct({ productId: currentProductId, handleUnauthorized })
+          );
+          reset();
+          handleCloseModal();
+        } catch (error) {
+          dispatch(resetProductMaterials());
+          dispatch(modifyProductCheet(false));
+          dispatch(resetStore());
+        }
       }
     };
 

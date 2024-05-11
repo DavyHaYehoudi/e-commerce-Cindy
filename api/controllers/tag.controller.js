@@ -7,28 +7,24 @@ const tagController = {
       res.status(200).json(tags);
     } catch (error) {
       console.error("Error getTags:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   createTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name } = req.body;
       const tag = await Tag.create({ name });
       res.status(201).json(tag);
     } catch (error) {
-      console.error("Error createTag :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom du tag doit être unique." });
+      } else {
+        console.error("Error createTags:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { tagId } = req.params;
       const { name } = req.body;
@@ -45,16 +41,16 @@ const tagController = {
 
       res.status(200).json(updateTag);
     } catch (error) {
-      console.error("Error updateTag :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom du tag doit être unique." });
+      } else {
+        console.error("Error updateTags:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 
   deleteTag: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { tagId } = req.params;
       const deleteTag = await Tag.findByIdAndDelete(tagId);
@@ -66,7 +62,7 @@ const tagController = {
       res.status(200).json(deleteTag);
     } catch (error) {
       console.error("Error deleting tag:", error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ message: "Internal server error" });
     }
   },
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 import useForgotPassword from "./hooks/useForgotPassword";
+import { ToastContainer } from "react-toastify";
 
 const ForgotPassword = () => {
   const {
@@ -77,6 +78,7 @@ const ForgotPassword = () => {
           </form>
         </>
       )}
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };

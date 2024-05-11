@@ -9,3 +9,7 @@
     padding: 10px 20px;
     border-radius: 5px;
 }
+.authentication .verify-loading{
+    text-align: center;
+    font-size: 2.5rem;
+}

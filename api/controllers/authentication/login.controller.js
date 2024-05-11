@@ -8,11 +8,11 @@ const login = async (req, res) => {
     const client = await Client.findOne({ email });
 
     if (!client) {
-      return res.status(404).json({ message: "L'utilisateur n'existe pas." });
+      return res.status(404).json({ message: "Identifiants non valides" });
     }
     if (!client.authentication.verified) {
       return res
-        .status(401)
+        .status(400)
         .json({
           message:
             "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification.",
@@ -20,9 +20,9 @@ const login = async (req, res) => {
     }
     const isMatch = await client.comparePassword(password);
 
-    if (!isMatch) {
-      return res.status(401).json({ message: "Mot de passe incorrect." });
-    }
+    // if (!isMatch) {
+    //   return res.status(404).json({ message: "Identifiants non valides" });
+    // }
     const isAdmin = client.role === "admin";
     const token = generateJWTToken(client, isAdmin);
 

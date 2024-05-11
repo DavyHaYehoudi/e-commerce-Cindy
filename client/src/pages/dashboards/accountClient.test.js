@@ -2,7 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { screen,fireEvent } from "@testing-library/react";
 import AccountClient from "./AccountClient";
-import { render } from "../test/utils";
+import { render } from "../../test/utils";
 
 describe("AccountClient Component", () => {
   test("renders AccountClient component with initial data", () => {

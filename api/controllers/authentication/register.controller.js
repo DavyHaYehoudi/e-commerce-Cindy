@@ -12,14 +12,14 @@ const register = async (req, res) => {
     if (existingClient) {
       return res
         .status(400)
-        .json({ messageError: "Adresse email déjà utilisée 🤨" });
+        .json({ message: "Adresse email déjà utilisée 🤨" });
     }
 
     const newClient = new Client({
       firstName,
       lastName,
       email,
-      authentication: {
+      authentication: { 
         password,
       },
     });

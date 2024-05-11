@@ -1,10 +1,6 @@
 import OrderProducts from "../models/orderProducts.model.js";
 const orderProductsController = {
   getAllProducts: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { orderProductsIds } = req.query;
       const parsedProductsByOrderIds = JSON.parse(orderProductsIds);
@@ -15,21 +11,17 @@ const orderProductsController = {
 
       res.status(200).json(orders);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 
   addNote: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     const { orderProductsId } = req.params;
     const { content } = req.body;
     try {
       const orderProducts = await OrderProducts.findById(orderProductsId);
       if (!orderProducts) {
-        return res.status(404).json({ error: "OrderProducts n'existe pas" });
+        return res.status(404).json({ message: "OrderProducts n'existe pas" });
       }
       const note = await OrderProducts.updateOne(
         { _id: orderProductsId },
@@ -39,7 +31,7 @@ const orderProductsController = {
       res.status(200).json({ note });
     } catch (error) {
       return res.status(500).json({
-        error: `Erreur interne du serveur : ${error.message}`,
+        message: `Erreur interne du serveur : ${error.message}`,
       });
     }
   },

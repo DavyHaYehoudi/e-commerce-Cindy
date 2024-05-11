@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useMainImagesToAddStorage from "../bodyCheat/sections/hooks/useMainImagesToAddStorage";
 import useInitDataMain from "./useInitDataMain";
+import { modifyProductCheet } from "../../../../../features/admin/productSlice";
 
 const useProductModal = ({
   currentAction: initialAction,
@@ -10,10 +11,12 @@ const useProductModal = ({
 }) => {
   const [isModalOpen, setIsModalOpenLocal] = useState(false);
   const [currentAction, setCurrentActionLocal] = useState(initialAction);
-  const [currentProductId, setCurrentProductIdLocal] = useState(initialProductId);
+  const [currentProductId, setCurrentProductIdLocal] =
+    useState(initialProductId);
 
   const productsStore = useSelector((state) => state?.product?.data);
   const { reset: resetMainImagesToAddStorage } = useMainImagesToAddStorage();
+  const dispatch = useDispatch();
 
   const { initDataMain } = useInitDataMain({
     action: currentAction,
@@ -37,6 +40,7 @@ const useProductModal = ({
     setIsModalOpenLocal(false);
     reset();
     resetMainImagesToAddStorage();
+    dispatch(modifyProductCheet(false));
   };
 
   return {

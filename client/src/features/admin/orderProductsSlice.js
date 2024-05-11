@@ -1,32 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as actions from "../../constants/orderProductsActions";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Get, Patch } from "../../services/httpMethods";
 
 const fetchProductsByOrder = createAsyncThunk(
   "orderProducts/fetchProductsByOrder",
   async ({ orderProductsIds }) => {
-    try {
-      return customFetch(`orderProducts?orderProductsIds=${orderProductsIds}`);
-    } catch (error) {
-      handleFetchError(error);
-    }
+    return Get(`orderProducts?orderProductsIds=${orderProductsIds}`);
   }
 );
 const orderProductsNote = createAsyncThunk(
   "orderProducts/note",
-  async ({ orderProductsId, content }) => {
-    try {
-      await customFetch(`orderProducts/${orderProductsId}/note`, {
-        method: "PATCH",
-        body: JSON.stringify({ content }),
-      });
-      return { orderProductsId, content };
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+  async ({ orderProductsId, content, handleUnauthorized }) => {
+    await Patch(
+      `orderProducts/${orderProductsId}/note`,
+      { content },
+      null,
+      handleUnauthorized
+    );
+    return { orderProductsId, content };
   }
 );
 const orderProductsSlice = createSlice({
@@ -110,7 +102,6 @@ const orderProductsSlice = createSlice({
       .addCase(orderProductsNote.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue avec les informations fournies.");
       });
   },
 });

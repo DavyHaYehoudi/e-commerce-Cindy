@@ -6,10 +6,13 @@ import {
   deleteObject,
   getDownloadURL,
 } from "firebase/storage";
-import {generateFilePath} from "../../../../../../helpers/utils/generateFilePath"
-import {getPathFromStorageUrl} from "../../../../../../helpers/utils/getPathsStorage"
+import { generateFilePath } from "../../../../../../helpers/utils/generateFilePath";
+import { getPathFromStorageUrl } from "../../../../../../helpers/utils/getPathsStorage";
+import { useDispatch } from "react-redux";
+import { modifyProductCheet } from "../../../../../../features/admin/productSlice";
 
 const useImageManagement = ({ data, currentAction, initialImageCount }) => {
+  const dispatch = useDispatch();
   const totalInputs =
     currentAction === "create"
       ? initialImageCount
@@ -24,6 +27,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     const updatedImages = [...localImages];
     updatedImages[index] = null;
     setLocalImages(updatedImages);
+    dispatch(modifyProductCheet(true));
   };
   // Supprimer les images du stockage et de la base de données
   const deleteSecondariesImagesFromStorage = async () => {
@@ -84,6 +88,7 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
     const updatedImages = [...localImages];
     updatedImages[index] = e.target.files[0];
     setLocalImages(updatedImages);
+    dispatch(modifyProductCheet(true));
   };
   // Ajouter les nouvelles images à Firebase Storage et mettre à jour la base de données
   const addSecondariesImagesToFirebaseStorage = async () => {
@@ -96,10 +101,6 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
       const uploadedImagePaths = await Promise.all(
         newImages.map(async (image) => {
           if (image?.name) {
-            // Si image type file et non url
-            // const uniqueId = uuidv4();
-            // const fileExtension = image.name.split(".").pop();
-            // const filePath = `products/secondary/${uniqueId}.${fileExtension}`;
             const filePath = generateFilePath(image, "products/secondary/");
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, image);

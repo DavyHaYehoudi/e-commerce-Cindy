@@ -1,42 +1,33 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Del, Get, Patch, Post } from "../../services/httpMethods";
 
 const fetchMaterials = createAsyncThunk("material/fetchMaterials", async () => {
-  try {
-    return customFetch("materials");
-  } catch (error) {
-    handleFetchError(error);
-  }
+  return Get("materials");
 });
 const addMaterial = createAsyncThunk(
   "material/addMaterials",
-  async (materialData) => {
-    const response = await customFetch("materials", {
-      method: "POST",
-      body: JSON.stringify(materialData),
-    });
-    return response;
+  async ({ newMaterial, handleUnauthorized }) => {
+    return await Post("materials", newMaterial, null, handleUnauthorized);
   }
 );
 
 const updateMaterial = createAsyncThunk(
   "material/updateMaterial",
-  async ({ materialId, name, value }) => {
-    const response = await customFetch(`materials/${materialId}`, {
-      method: "PATCH",
-      body: JSON.stringify({ name, value }),
-    });
-    return response;
+  async ({ data, handleUnauthorized }) => {
+    const { materialId, name, value } = data;
+    return await Patch(
+      `materials/${materialId}`,
+      { name, value },
+      null,
+      handleUnauthorized
+    );
   }
 );
 const deleteMaterial = createAsyncThunk(
   "material/deleteMaterial",
-  async (materialId) => {
-    await customFetch(`materials/${materialId}`, {
-      method: "DELETE",
-    });
+  async ({ materialId, handleUnauthorized }) => {
+    await Del(`materials/${materialId}`, null, handleUnauthorized);
     return materialId;
   }
 );
@@ -59,14 +50,15 @@ const materialSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addMaterial.fulfilled, (state, action) => {
+        toast.success("Le nouveau matériau a bien été enregistré 😀");
         state.data = state.data.concat(action.payload);
       })
       .addCase(addMaterial.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(updateMaterial.fulfilled, (state, action) => {
+        toast.success("Le matériau a bien été modifié 😀");
         state.data = state.data.map((material) =>
           material._id === action.payload._id ? action.payload : material
         );
@@ -74,9 +66,9 @@ const materialSlice = createSlice({
       .addCase(updateMaterial.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(deleteMaterial.fulfilled, (state, action) => {
+        toast.success("Le matériau a bien été supprimé 😀");
         state.data = state.data.filter(
           (material) => material._id !== action.payload
         );
@@ -84,7 +76,6 @@ const materialSlice = createSlice({
       .addCase(deleteMaterial.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       });
   },
 });

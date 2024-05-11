@@ -5,14 +5,16 @@ import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetCustomerStore } from "../../features/accountClient/customerSlice";
+import { removeToken } from "../../features/authentication/authenticationSlice";
 
 const NavIcons = ({ onClickHeart }) => {
+  const token = useSelector((state) => state?.authentication?.token) || "";
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
   const logout = () => {
     dispatch(resetCustomerStore());
+    dispatch(removeToken());
     localStorage.clear();
   };
 

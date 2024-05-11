@@ -1,55 +1,31 @@
-import React, { useState } from "react";
-import {
-  addCollection,
-  deleteCollection,
-  updateCollection,
-} from "../../../features/admin/collectionSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import useCollections from "../hooks/useCollections";
+import MainImage from "../../../../shared/MainImage";
 
 const Collections = () => {
-  const [editCollectionId, setEditCollectionId] = useState(null);
-  const [editedCollectionName, setEditedCollectionName] = useState("");
-  const [newCollectionName, setNewCollectionName] = useState("");
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const collections = useSelector((state) => state?.collection?.data);
-
-  const dispatch = useDispatch();
-
-  const handleAddCollection = () => {
-    if (newCollectionName.trim() !== "") {
-      const formatData = {
-        name: newCollectionName,
-      };
-      dispatch(addCollection(formatData));
-      setNewCollectionName("");
-    }
-  };
-  const handleDeleteCollection = (collectionId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette collection ?"
-    );
-    if (confirmation) {
-      dispatch(deleteCollection(collectionId));
-    }
-  };
-  const handleEditCollection = (collectionId, name) => {
-    dispatch(updateCollection({ collectionId, name }));
-  };
-  const handleEditClick = (collectionId, collectionName) => {
-    setEditCollectionId(collectionId);
-    setEditedCollectionName(collectionName);
-  };
-
-  const handleSaveClick = () => {
-    if (editedCollectionName.trim() !== "") {
-      handleEditCollection(editCollectionId, editedCollectionName);
-      setEditCollectionId(null);
-      setEditedCollectionName("");
-    }
-  };
-
+  const {
+    editCollectionId,
+    editedCollectionName,
+    newCollectionName,
+    isContentVisible,
+    collections,
+    alert,
+    openModal,
+    handleCancel,
+    handleConfirm,
+    setEditCollectionId,
+    setEditedCollectionName,
+    setNewCollectionName,
+    setIsContentVisible,
+    handleAddCollection,
+    handleDeleteCollection,
+    handleEditClick,
+    handleSaveClick,
+    handleKeyPress,
+    handleKeyPressEdit,
+  } = useCollections();
   return (
     <div className="admin-collections">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>
@@ -64,13 +40,18 @@ const Collections = () => {
                   <div className="content-block">
                     <div className="content-block-left">
                       <input
-                        type="text"
+                        type="search"
                         className="account-input-config"
                         value={editedCollectionName}
+                        autoFocus
                         onChange={(e) =>
                           setEditedCollectionName(e.target.value)
                         }
+                        onKeyDown={(e) => handleKeyPressEdit(e, collection._id)}
                       />
+                    </div>
+                    <div className="content-block-main_image">
+                      <MainImage />
                     </div>
                     <div className="content-block-right">
                       <button
@@ -90,6 +71,9 @@ const Collections = () => {
                 ) : (
                   <>
                     <div className="content-block-left">{collection?.name}</div>
+                    <div className="content-block-main_image">
+                      <MainImage editable={false} />
+                    </div>
                     <div className="content-block-right">
                       <button
                         className="icon-edit account-btn"
@@ -111,25 +95,61 @@ const Collections = () => {
               </li>
             ))}
           </ul>
+
           <div className="adding">
             <input
-              type="text"
+              type="search"
               placeholder="Nouvelle collection"
               className="account-input-config"
+              autoFocus
               value={newCollectionName}
               onChange={(e) => setNewCollectionName(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
+            <div className="main_image-select">
+              <MainImage required={true} legend="Illustration" />
+            </div>
             <button
               className={`account-btn ${
                 newCollectionName ? "validate-btn" : ""
               }`}
               disabled={newCollectionName === ""}
-              onClick={() => handleAddCollection(newCollectionName)}
+              onClick={handleAddCollection}
             >
               Ajouter
             </button>
           </div>
         </div>
+      )}
+      {openModal && (
+        <>
+          <div className="modal">
+            <div className="modal-content">
+              <div className="collection-confirm-action">
+                <span>{alert} </span>
+                <span>
+                  Toute catégorie se retrouvant sans collection apparentée sera
+                  supprimée elle aussi.
+                </span>
+                <span>Voulez-vous vraiment supprimer cette collection ?</span>
+                <div className="buttons">
+                  <button
+                    className="confirm-action-button cancel"
+                    onClick={handleCancel}
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    className="confirm-action-button confirm"
+                    onClick={handleConfirm}
+                  >
+                    Confirmer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

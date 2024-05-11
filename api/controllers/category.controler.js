@@ -7,28 +7,24 @@ const categoryController = {
       res.status(200).json(categories);
     } catch (error) {
       console.error("Error getCategories:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
   createCategory: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name, parentCollection } = req.body;
       const category = await Category.create({ name, parentCollection});
       res.status(201).json(category);
     } catch (error) {
-      console.error("Error createCategory :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+      } else {
+        console.error("Error createCategory:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateCategory: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { categoryId } = req.params;
       const { name, parentCollection } = req.body;
@@ -46,16 +42,16 @@ const categoryController = {
 
       res.status(200).json(updateCategory);
     } catch (error) {
-      console.error("Error updateCategory :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+      } else {
+        console.error("Error updateCategory:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 
   deleteCategory: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { categoryId } = req.params;
       const deleteCategory = await Category.findByIdAndDelete(categoryId);

@@ -1,10 +1,15 @@
 import express from "express";
 import tagController from "../controllers/tag.controller.js";
+import authenticateJWT from "../controllers/authentication/authenticateJWT.js";
+import authenticateAdmin from "../controllers/authentication/authenticateAdmin.js";
 const router = express.Router();
 
+//Public
 router.get("/", tagController.getTags);
-router.post("/", tagController.createTag);
-router.put("/:tagId", tagController.updateTag);
-router.delete("/:tagId", tagController.deleteTag);
+//Privé ADMIN
+router.use(authenticateJWT);
+router.post("/",authenticateAdmin, tagController.createTag);
+router.put("/:tagId",authenticateAdmin, tagController.updateTag);
+router.delete("/:tagId",authenticateAdmin, tagController.deleteTag);
 
 export default router;

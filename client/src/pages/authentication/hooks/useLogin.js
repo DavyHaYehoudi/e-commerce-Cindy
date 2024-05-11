@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Post } from "../../../services/httpMethods";
 
 const useLogin = () => {
   const [email, setEmail] = useState("");
@@ -20,51 +20,27 @@ const useLogin = () => {
   }, [state]);
 
   const handleLogin = async () => {
-    if ( !email.trim() || !password.trim() ) {
-        setError("Veuillez remplir tous les champs.");
-        return;
-      }
-      if (!validateEmail(email)) {
-        setError("Veuillez saisir une adresse e-mail valide.");
-        return;
-      }
+    if (!email.trim() || !password.trim()) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Veuillez saisir une adresse e-mail valide.");
+      return;
+    }
     try {
       setLoading(true);
-      const baseUrl = process.env.REACT_APP_BASE_URL;
-      const url = `${baseUrl}/${"auth/login"}`;
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data?.token);
-        setLoading(false);
-        setError(false)
-
-        if (data?.isAdmin) {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/account");
-        }
+      const data = await Post("auth/login", { email, password });
+      localStorage.setItem("token", data?.token);
+      setLoading(false);
+      setError(false);
+      if (data?.isAdmin) {
+        navigate("/admin/dashboard");
       } else {
-        if (data?.message === "Adresse e-mail non vérifiée.") {
-          toast.error(
-            "Adresse e-mail non vérifiée. Veuillez vérifier votre boîte de réception pour le lien de vérification."
-          );
-        } else {
-          toast.error(
-            data?.message ||
-              "Une erreur est survenue avec les informations fournies."
-          );
-        }
+        navigate("/account");
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
-      toast.error("Une erreur est survenue avec les informations fournies.");
     } finally {
       setLoading(false);
     }
@@ -101,7 +77,7 @@ const useLogin = () => {
     togglePasswordVisibility,
     handleChangeEmail,
     handleChangePassword,
-    handleKeyPress
+    handleKeyPress,
   };
 };
 

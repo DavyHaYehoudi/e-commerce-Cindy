@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateClientField } from "../../../../features/accountClient/customerSlice";
 import { storage } from "../../../../firebase";
 import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import { Get } from "../../../../services/httpMethods";
+import { validateMainFields } from "../utils/validateMainFields";
+import { errorMessagesContent } from "../utils/errorMessagesContent";
+import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
 
 const useInfoClient = (
   dataClient,
@@ -18,22 +22,10 @@ const useInfoClient = (
   const [shippingFields, setShippingFields] = useState([]);
   const [billingFields, setBillingFields] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
+  const [hasErrors, setHasErrors] = useState(false);
   const dispatch = useDispatch();
   const avatarStore = useSelector((state) => state?.customer?.avatar);
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const validateField = (fieldName, value) => {
-    if (["firstName", "lastName", "email"].includes(fieldName)) {
-      // Validation spécifique pour les champs de profil
-      if (fieldName === "email") {
-        return emailRegex.test(value);
-      } else {
-        return value.trim() !== "";
-      }
-    }
-    // Ne pas appliquer de validation pour les autres champs
-    return true;
-  };
+  const handleUnauthorized = useUnauthorizedRedirect();
 
   const handleInputChange =
     (fieldName, nestedFieldName = null, label) =>
@@ -45,7 +37,7 @@ const useInfoClient = (
         !nestedFieldName;
 
       // Appliquer la validation uniquement pour les champs de profil
-      const isValid = isProfileField ? validateField(name, value) : true;
+      const isValid = isProfileField ? validateMainFields(name, value) : true;
 
       if (!isValid) {
         setErrorMessages((prevErrors) => ({
@@ -124,16 +116,19 @@ const useInfoClient = (
     ];
   };
 
+  useEffect(() => {
+    setHasErrors(errorMessagesContent(errorMessages));
+  }, [errorMessages]);
+
   const handleSaveChanges = async () => {
-    const hasErrors = Object.values(errorMessages).some(
-      (message) => message !== null
-    );
     if (!hasErrors) {
       const formatDataClient = { ...dataClient };
       formatDataClient.avatar = avatarStore;
       await handleChangeProfilSave(formatDataClient, clientId);
 
       try {
+        // Vérifier le token avant d'interagir avec Firebase Storage
+        await Get("auth/verify-token/client", null, handleUnauthorized);
         if (addAvatarToStorage) {
           const { path, file } = addAvatarToStorage;
           const storageRef = ref(storage, path);
@@ -166,6 +161,7 @@ const useInfoClient = (
     billingFields,
     handleInputChange,
     errorMessages,
+    hasErrors,
     handleSaveChanges,
   };
 };

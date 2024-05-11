@@ -3,10 +3,19 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const categorySchema = new mongoose.Schema({
   name: { type: String, maxLength: 50, required: true, unique: true },
-  parentCollection: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "Collection" },
-  ],
+  parentCollection: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
+    validate: [
+      {
+        validator: function(arr) {
+          return arr.length > 0; 
+        },
+        message: "Le champ 'parentCollection' ne peut pas être vide."
+      }
+    ]
+  },
 });
+
 
 categorySchema.pre("validate", function (next) {
   const error = this.validateSync();

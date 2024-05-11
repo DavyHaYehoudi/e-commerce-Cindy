@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Post } from "../../../services/httpMethods";
 
 const useResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -22,30 +23,10 @@ const useResetPassword = () => {
     }
 
     try {
-      const baseUrl = process.env.REACT_APP_BASE_URL;
-      const url = `${baseUrl}/${"auth/reset-password"}`;
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password, token }),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccess(true);
-      } else {
-        setError(
-          data.message ||
-            "Une erreur s'est produite lors de la réinitialisation du mot de passe"
-        );
-      }
+      await Post("auth/reset-password", { password, token });
+      setSuccess(true);
     } catch (error) {
-      setError(
-        "Une erreur s'est produite lors de la réinitialisation du mot de passe"
-      );
-    }
+      console.error("Erreur lors de la réinitialisation du mot de passe :", error);    }
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -65,7 +46,7 @@ const useResetPassword = () => {
     setShowConfirmPassword,
     handleResetPassword,
     navigate,
-    handleKeyPress
+    handleKeyPress,
   };
 };
 

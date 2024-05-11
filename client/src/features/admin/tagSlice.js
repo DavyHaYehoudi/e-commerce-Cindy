@@ -1,36 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Del, Get, Post, Put } from "../../services/httpMethods";
 
 const fetchTags = createAsyncThunk("tag/fetchTags", async () => {
-  try {
-    return customFetch("tags");
-  } catch (error) {
-    handleFetchError(error);
+  return Get("tags");
+});
+const addTag = createAsyncThunk(
+  "tag/adTag",
+  async ({ formatData, handleUnauthorized }) => {
+    return await Post("tags", formatData, null, handleUnauthorized);
   }
-});
-const addTag = createAsyncThunk("tag/adTag", async (tagData) => {
-  const response = await customFetch("tags", {
-    method: "POST",
-    body: JSON.stringify(tagData),
-  });
-  return response;
-});
+);
 
-const updateTag = createAsyncThunk("tag/updateTag", async ({ tagId, name }) => {
-  const response = await customFetch(`tags/${tagId}`, {
-    method: "PUT",
-    body: JSON.stringify({ name }),
-  });
-  return response;
-});
-const deleteTag = createAsyncThunk("tag/deleteTag", async (tagId) => {
-  await customFetch(`tags/${tagId}`, {
-    method: "DELETE",
-  });
-  return tagId;
-});
+const updateTag = createAsyncThunk(
+  "tag/updateTag",
+  async ({ tagId, name, handleUnauthorized }) => {
+    return await Put(`tags/${tagId}`, { name }, null, handleUnauthorized);
+  }
+);
+const deleteTag = createAsyncThunk(
+  "tag/deleteTag",
+  async ({ tagId, handleUnauthorized }) => {
+    await Del(`tags/${tagId}`, null, handleUnauthorized);
+    return tagId;
+  }
+);
 
 const tagSlice = createSlice({
   name: "tag",
@@ -52,13 +46,14 @@ const tagSlice = createSlice({
       })
       .addCase(addTag.fulfilled, (state, action) => {
         state.data = state.data.concat(action.payload);
+        toast.success("Le tag a bien été enregistré 😀");
       })
       .addCase(addTag.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(updateTag.fulfilled, (state, action) => {
+        toast.success("Le tag a bien été modifié 😀");
         state.data = state.data.map((tag) =>
           tag._id === action.payload._id ? action.payload : tag
         );
@@ -66,17 +61,14 @@ const tagSlice = createSlice({
       .addCase(updateTag.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       })
       .addCase(deleteTag.fulfilled, (state, action) => {
-        state.data = state.data.filter(
-          (tag) => tag._id !== action.payload
-        );
+        toast.success("Le tag a bien été supprimé 😀");
+        state.data = state.data.filter((tag) => tag._id !== action.payload);
       })
       .addCase(deleteTag.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-        toast.error("Une erreur est survenue !");
       });
   },
 });

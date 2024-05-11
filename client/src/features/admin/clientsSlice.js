@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { fetchOrders } from "./ordersSlice";
+import { Get, Patch } from "../../services/httpMethods";
+import { toast } from "react-toastify";
 
 const fetchClients = createAsyncThunk(
   "clients/fetchClients",
@@ -18,6 +18,7 @@ const fetchClients = createAsyncThunk(
       preciseDate = "",
       rangeDateStart = "",
       rangeDateEnd = "",
+      handleUnauthorized,
     },
     { dispatch }
   ) => {
@@ -33,11 +34,13 @@ const fetchClients = createAsyncThunk(
         note,
         preciseDate,
         rangeDateStart,
-        rangeDateEnd
+        rangeDateEnd,
       }).toString();
 
-      const { clients, totalClientsCount } = await customFetch(
-        `clients?${queryString}`
+      const { clients, totalClientsCount } = await Get(
+        `clients?${queryString}`,
+        null,
+        handleUnauthorized
       );
 
       const orderIds = clients.map((client) => client.orders).flat();
@@ -45,24 +48,20 @@ const fetchClients = createAsyncThunk(
 
       return { clients, totalClientsCount };
     } catch (error) {
-      handleFetchError(error);
+      console.error("Erreur dans clientsSlice :",error)
     }
   }
 );
 
 const notesAdmin = createAsyncThunk(
   "clients/notesAdmin",
-  async ({ clientId, noteId,content }) => {
-    try {
-      const response = await customFetch(`clients/${clientId}/notesAdmin`, {
-        method: "PATCH",
-        body: JSON.stringify({ content,noteId }),
-      });
-return response;
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+  async ({ clientId, noteId, content, handleUnauthorized }) => {
+    return Patch(
+      `clients/${clientId}/notesAdmin`,
+      { content, noteId },
+      null,
+      handleUnauthorized
+    );
   }
 );
 
@@ -97,6 +96,7 @@ const clientsSlice = createSlice({
       .addCase(notesAdmin.fulfilled, (state, action) => {
         state.loading = false;
         if (action.payload.type === "addingNote") {
+          toast.success("La note sur le client a bien été enregistrée 😀");
           const { clientId, _id, content, date } = action.payload;
           state.data = state.data.map((user) =>
             user._id === clientId
@@ -108,9 +108,9 @@ const clientsSlice = createSlice({
                 }
               : user
           );
-        } else if (action.payload.type==="deletingNote") {
-          const { clientId, noteId} = action.payload;
-          console.log('action.payload :',action.payload);
+        } else if (action.payload.type === "deletingNote") {
+          toast.success("La note sur le client a bien été supprimée 😀");
+          const { clientId, noteId } = action.payload;
           state.data = state.data.map((user) =>
             user._id === clientId
               ? {
@@ -129,5 +129,5 @@ const clientsSlice = createSlice({
       });
   },
 });
-export { fetchClients, notesAdmin};
+export { fetchClients, notesAdmin };
 export default clientsSlice.reducer;

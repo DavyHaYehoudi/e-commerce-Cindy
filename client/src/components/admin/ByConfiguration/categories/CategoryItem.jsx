@@ -14,13 +14,13 @@ const CategoryItem = ({
   handleSaveClick,
   setEditedCategoryName,
   setSelectedParentCollections,
+  handleKeyPressEdit
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
-      collections?.find((collection) => collection._id === pcol)
-    );
-  };
-
+    collections?.find((collection) => collection?._id === pcol)
+  );
+};
   return (
     <li key={category?._id} className="content-block-wrapper">
       {editCategoryId === category?._id ? (
@@ -28,40 +28,48 @@ const CategoryItem = ({
           <div className="content-block-left">
             <div>
               <input
-                type="text"
+                type="search"
                 className="account-input-config"
+                autoFocus
                 value={editedCategoryName}
                 onChange={(e) => setEditedCategoryName(e.target.value)}
+                onKeyDown={handleKeyPressEdit}
               />
               <div className="content-category-checkbox">
-                {collections?.map((collection) => (
-                  <label key={collection._id}>
-                    <input
-                      type="checkbox"
-                      value={collection._id}
-                      checked={selectedParentCollections.includes(
-                        collection._id
-                      )}
-                      onChange={(e) => {
-                        const checkedCollectionId = e.target.value;
-                        setSelectedParentCollections((prevState) =>
-                          prevState.includes(checkedCollectionId)
-                            ? prevState.filter(
-                                (id) => id !== checkedCollectionId
-                              )
-                            : [...prevState, checkedCollectionId]
-                        );
-                      }}
-                    />
-                    {collection.name}
-                  </label>
-                ))}
+                {collections &&
+                  collections.length > 0 &&
+                  collections.map((collection) => (
+                    <label key={collection?._id}>
+                      <input
+                        type="checkbox"
+                        value={collection?._id}
+                        checked={selectedParentCollections.includes(
+                          collection?._id
+                        )}
+                        onChange={(e) => {
+                          const checkedCollectionId = e.target.value;
+                          setSelectedParentCollections((prevState) =>
+                            prevState.includes(checkedCollectionId)
+                              ? prevState.filter(
+                                  (id) => id !== checkedCollectionId
+                                )
+                              : [...prevState, checkedCollectionId]
+                          );
+                        }}
+                        onKeyDown={handleKeyPressEdit}
+                      />
+                      {collection?.name}
+                    </label>
+                  ))}
               </div>
             </div>
           </div>
           <div className="content-block-right">
             <button
-              className="account-btn validate-btn"
+              className={`account-btn ${!(editedCategoryName === "" || selectedParentCollections.length === 0)? "validate-btn":""}`}
+              disabled={
+                editedCategoryName === "" || selectedParentCollections.length === 0
+              }
               onClick={handleSaveClick}
             >
               Enregistrer
@@ -87,13 +95,11 @@ const CategoryItem = ({
                 </small>{" "}
               </p>
               <ul>
-                {parentCollection(category?.parentCollection)?.map(
-                  ({ name }) => (
-                    <small key={name}>
-                      <li>{name}</li>
-                    </small>
-                  )
-                )}
+                {parentCollection(category?.parentCollection)?.map((item) => (
+                  <small key={item?._id + category?.name}>
+                    <li>{item?.name}</li>
+                  </small>
+                ))}
               </ul>
             </div>
           </div>

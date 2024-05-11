@@ -1,50 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Del, Get, Post } from "../../services/httpMethods";
 
 const fetchCustomer = createAsyncThunk(
   "client/fetchCustomer",
-  async (clientId) => {
-    try {
-      return customFetch(`clients/${clientId}`);
-    } catch (error) {
-      handleFetchError(error);
-    }
+  async ({ clientId, handleUnauthorized }) => {
+    return Get(`clients/${clientId}`, null, handleUnauthorized);
   }
 );
 const addClientTrackingNumber = createAsyncThunk(
   "orders/addClientTrackingNumber",
-  async ({ orderId, trackingNumber }) => {
-    try {
-      await customFetch(`orders/${orderId}/trackingnumber_client`, {
-        method: "POST",
-        body: JSON.stringify({
-          trackingNumber,
-        }),
-      });
-      return { orderId, trackingNumber };
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+  async ({ orderId, trackingNumber, handleUnauthorized }) => {
+    await Post(
+      `orders/${orderId}/trackingnumber_client`,
+      { trackingNumber },
+      null,
+      handleUnauthorized
+    );
+    return { orderId, trackingNumber };
   }
 );
 const deleteTrackingNumber = createAsyncThunk(
   "orders/deleteClientTrackingNumber",
-  async ({ orderId, trackingNumberId }) => {
-    try {
-      await customFetch(
-        `orders/${orderId}/trackingnumber_client/${trackingNumberId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      return { orderId, trackingNumberId };
-    } catch (error) {
-      handleFetchError(error);
-      throw error;
-    }
+  async ({ orderId, trackingNumberId, handleUnauthorized }) => {
+    await Del(
+      `orders/${orderId}/trackingnumber_client/${trackingNumberId}`,
+      null,
+      handleUnauthorized
+    );
+    return { orderId, trackingNumberId };
   }
 );
 
@@ -114,7 +98,6 @@ const customer = createSlice({
         );
       })
       .addCase(addClientTrackingNumber.rejected, (state, action) => {
-        toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -126,24 +109,27 @@ const customer = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.data.orders = state?.data?.orders?.map((order) =>
-          order._id === action.payload.orderId
+          order?._id === action.payload.orderId
             ? {
                 ...order,
                 trackingNumber: order.trackingNumber.filter(
-                  (tn) => tn.id !== action.payload.trackingNumberId
+                  (tn) => tn?.id !== action.payload.trackingNumberId
                 ),
               }
             : order
         );
       })
       .addCase(deleteTrackingNumber.rejected, (state, action) => {
-        toast.error("Une erreur est survenue avec les informations fournies.");
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
-export const { updateClientField, updateAvatar, addCredentials,resetCustomerStore } =
-  customer.actions;
+export const {
+  updateClientField,
+  updateAvatar,
+  addCredentials,
+  resetCustomerStore,
+} = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

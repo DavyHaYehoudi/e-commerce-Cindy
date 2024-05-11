@@ -1,3 +1,4 @@
+import Category from "../models/category.model.js";
 import Collection from "../models/collection.model.js";
 
 const collectionController = {
@@ -11,24 +12,20 @@ const collectionController = {
     }
   },
   createCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { name } = req.body;
       const collection = await Collection.create({ name });
       res.status(201).json(collection);
     } catch (error) {
-      console.error("Error createCollection :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+      } else {
+        console.error("Error createCollection:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
   updateCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { collectionId } = req.params;
       const { name } = req.body;
@@ -36,40 +33,84 @@ const collectionController = {
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
         { name },
-        { new: true, runValidators: true } 
+        { new: true, runValidators: true }
       );
 
       if (!updateCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
- 
+
       res.status(200).json(updateCollection);
     } catch (error) {
-      console.error("Error updateCollection :", error);
-      res.status(500).json({ error: error.message });
+      if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
+        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+      } else {
+        console.error("Error updateCollection:", error);
+        res.status(500).json({ message: error.message });
+      }
     }
   },
 
   deleteCollection: async (req, res) => {
-    const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       const { collectionId } = req.params;
-      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
+      // Vérifier s'il existe des catégories liées à cette collection
+      const categories = await Category.find({
+        parentCollection: collectionId,
+      });
+      if (categories.length > 0) {
+        const categoryCount = categories.length;
+        const message =
+          categoryCount > 1
+            ? `${categoryCount} catégories sont liées à cette collection.`
+            : `Une catégorie est liée à cette collection.`;
 
+        return res
+          .status(200)
+          .json({ message: { alert: message, collectionId } });
+      }
+
+      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
 
-      res.status(200).json(deleteCollection);
+      res.status(200).json(collectionId);
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });
     }
   },
-};  
+  confirmDeleteCollection: async (req, res) => {
+    try {
+      const { collectionId } = req.params;
+      // Supprimer la collection de toutes les catégories liées
+      await Category.updateMany(
+        { parentCollection: collectionId },
+        { $pull: { parentCollection: collectionId } }
+      );
+      // Vérifier si les catégories associées sont vides après la suppression
+      const emptyCategories = await Category.find({
+        parentCollection: { $size: 0 },
+      });
+      if (emptyCategories.length > 0) {
+        // Si des catégories sont devenues vides, supprimer les documents correspondants
+        await Category.deleteMany({
+          _id: { $in: emptyCategories.map((category) => category._id) },
+        });
+      }
+      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
+      if (!deleteCollection) {
+        return res.status(404).json({ message: "La collection n'existe pas." });
+      }
+      res
+        .status(200)
+        .json({});
+    } catch (error) {
+      console.error("Error deleting collection:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+};
 
-export default collectionController; 
- 
+export default collectionController;

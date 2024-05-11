@@ -14,7 +14,6 @@ import tagRoutes from "./routes/tag.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
-import authenticateJWT from "./controllers/authentication/authenticateJWT.js";
 const app = express();
 const port = 3001;
 
@@ -31,7 +30,6 @@ app.use("/materials", materialRoutes);
 app.use("/collections", collectionRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/tags", tagRoutes);
-app.use(authenticateJWT); 
 app.use("/clients", clientRoutes);
 app.use("/orders", orderRoutes);
 app.use("/orderProducts", orderProductsRoutes);

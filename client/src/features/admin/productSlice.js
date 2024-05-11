@@ -1,65 +1,35 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { customFetch } from "../../services/customFetch";
-import { handleFetchError } from "../../services/handleFetchError";
 import { toast } from "react-toastify";
+import { Del, Get, Patch, Post } from "../../services/httpMethods";
 
 const fetchProduct = createAsyncThunk(
   "product/fetchProduct",
   async (query = {}) => {
     const queryString = new URLSearchParams(query).toString();
-
-    try {
-      return customFetch(`products?${queryString}`);
-    } catch (error) {
-      handleFetchError(error);
-    }
+    return Get(`products?${queryString}`);
   }
 );
-const addProduct = createAsyncThunk("products/addProduct", async (formData) => {
-  try {
-    const response = await customFetch("products", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
-    toast.success("Le produit a été créé avec succès !");
-    return response;
-  } catch (error) {
-    toast.error(`Une erreur s'est produite avec l'envoi des données`);
-    console.error("Erreur lors de l'envoi des données à l'API:", error);
-    throw error;
+const addProduct = createAsyncThunk(
+  "products/addProduct",
+  async ({ formData, handleUnauthorized }) => {
+    return await Post("products", formData, null, handleUnauthorized);
   }
-});
+);
 const editProduct = createAsyncThunk(
   "products/editProduct",
-  async ({ formData, productId }) => {
-    try {
-      const response = await customFetch(`products/${productId}`, {
-        method: "PATCH",
-        body: JSON.stringify(formData),
-      });
-      toast.success("Le produit a été modifié avec succès !");
-      return response;
-    } catch (error) {
-      toast.error(`Une erreur s'est produite avec l'envoi des données`);
-      console.error("Erreur lors de l'envoi des données à l'API:", error);
-      throw error;
-    }
+  async ({ formData, productId, handleUnauthorized }) => {
+    return await Patch(
+      `products/${productId}`,
+      { formData },
+      null,
+      handleUnauthorized
+    );
   }
 );
 const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
-  async (productId) => {
-    try {
-      const response = await customFetch(`products/${productId}`, {
-        method: "DELETE",
-      });
-      toast.success("Le produit a été supprimé avec succès !");
-      return response;
-    } catch (error) {
-      toast.error(`Une erreur s'est produite avec l'envoi des données`);
-      console.error("Erreur lors de l'envoi des données à l'API:", error);
-      throw error;
-    }
+  async ({ productId, handleUnauthorized }) => {
+    return await Del(`products/${productId}`, null, handleUnauthorized);
   }
 );
 
@@ -70,6 +40,7 @@ const productSlice = createSlice({
     totalProductsCount: "",
     materials: [],
     mainImagesToRemoveStorage: [],
+    isProductCheetModified: false,
     status: "idle",
     error: null,
   },
@@ -112,6 +83,9 @@ const productSlice = createSlice({
       state.materials = [];
       state.mainImagesToRemoveStorage = [];
     },
+    modifyProductCheet: (state, action) => {
+      state.isProductCheetModified = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -137,6 +111,7 @@ const productSlice = createSlice({
         state.error = null;
         state.data = [action.payload].concat(state.data);
         state.totalProductsCount += 1;
+        toast.success("Le produit a bien été enregistré 😀");
       })
       .addCase(addProduct.rejected, (state, action) => {
         state.status = "failed";
@@ -146,6 +121,7 @@ const productSlice = createSlice({
         state.status = "loading";
       })
       .addCase(editProduct.fulfilled, (state, action) => {
+        toast.success("Le produit a bien été modifié 😀");
         state.status = "succeeded";
         state.error = null;
         const updatedProduct = action.payload;
@@ -164,6 +140,7 @@ const productSlice = createSlice({
         state.status = "loading";
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
+        toast.success("Le produit a bien été supprimé 😀");
         state.status = "succeeded";
         state.error = null;
         state.totalProductsCount -= 1;
@@ -183,5 +160,6 @@ export const {
   mainImagesToRemoveStorage,
   initProductMaterials,
   resetStore,
+  modifyProductCheet,
 } = productSlice.actions;
 export default productSlice.reducer;

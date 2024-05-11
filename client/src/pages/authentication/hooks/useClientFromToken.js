@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useClientFromToken = () => {
   const [clientId, setClientId] = useState(null);
   const [role, setRole] = useState(null);
 
-  const token = localStorage.getItem("token");
+  const getToken = useCallback(() => localStorage.getItem("token"), []);
+
   useEffect(() => {
-    if (token) {
+    const token = getToken();
+    if (token && token !== undefined) {
       const tokenData = JSON.parse(atob(token.split(".")[1])); // Décoder le payload du token
       setClientId(tokenData.clientId);
       setRole(tokenData.role);
     }
-  }, [token]);
+  }, [getToken]);
 
   console.log("role:", role, "clientId:", clientId);
-  return { clientId, role };
+  return { clientId, role, token: getToken() };
 };
 
 export default useClientFromToken;

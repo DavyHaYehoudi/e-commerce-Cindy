@@ -4,9 +4,6 @@ import process from "./process.js";
 const clientsController = {
   getAllClients: async (req, res) => {
     const { client } = req;
-    if (client.role !== 'admin') {
-      return res.status(403).json({ message: "Accès refusé. Vous n'êtes pas un administrateur." });
-    }
     try {
       // console.log("req.query :", req.query);
       let totalClientsCount;
@@ -58,7 +55,7 @@ const clientsController = {
       totalClientsCount = clients.length;
       res.status(200).json({ clients, totalClientsCount });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
 };

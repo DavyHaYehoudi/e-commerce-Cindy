@@ -7,15 +7,18 @@ const AddCategoryForm = ({
   handleAddCategory,
   setNewCategoryName,
   setSelectedParentCollections,
+  handleKeyPress
 }) => {
   return (
     <div>
       <input
-        type="text"
+        type="search"
         placeholder="Nouvelle catégorie"
         className="account-input-config"
+        autoFocus
         value={newCategoryName}
         onChange={(e) => setNewCategoryName(e.target.value)}
+        onKeyDown={handleKeyPress}
       />
       {newCategoryName && (
         <div className="content-category-checkbox">
@@ -34,6 +37,7 @@ const AddCategoryForm = ({
                       : [...prevState, checkedCollectionId]
                   );
                 }}
+                onKeyDown={handleKeyPress}
               />
               {collection.name}
             </label>
