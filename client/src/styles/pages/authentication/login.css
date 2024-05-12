@@ -31,7 +31,7 @@
 
 .login-container h2 {
     text-align: center;
-    color: #333;
+    color:var(--dark);
 }
 
 .login-container button {
@@ -39,6 +39,7 @@
     margin: 10px 0;
     border: 1px solid var(--border-color);
     border-radius: 5px;
+    color: var(--dark);
 }
 
 .password-input {

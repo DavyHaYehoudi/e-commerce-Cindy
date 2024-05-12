@@ -46,7 +46,7 @@ const ForgotPassword = () => {
                 >
                   Envoyer l'email de récupération
                 </button>
-                <Link to="/account/login" style={{ color: "blue" }}>
+                <Link to="/account/login" style={{ color: "var(--primary)" }}>
                   Retour à la page de connexion
                 </Link>
               </>

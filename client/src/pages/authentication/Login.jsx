@@ -78,7 +78,7 @@ const Login = () => {
                       )}
                     </div>
                   </div>
-                  <Link to="/account/forgot-password" style={{ color: "blue" }}>
+                  <Link to="/account/forgot-password" style={{ color: "var(--primary)" }}>
                     Mot de passe oublié ?
                   </Link>
                 </label>

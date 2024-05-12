@@ -459,6 +459,14 @@ paths:
       responses:
         '200':
           description: successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: john@example.com
         '400':
           description: The password reset link is invalid or expired.
           content:

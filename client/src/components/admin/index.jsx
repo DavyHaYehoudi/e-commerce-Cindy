@@ -4,7 +4,6 @@ import { FaUser } from "react-icons/fa";
 import { TbDiscount2 } from "react-icons/tb";
 import { IoMdAnalytics } from "react-icons/io";
 import { FcDataConfiguration } from "react-icons/fc";
-import DarkMode from "../darkMode/DarkMode";
 import ClientFilterPanel from "./byClient/list/filters";
 import List from "./byClient/list";
 import Operations from "./byOperation";
@@ -72,9 +71,6 @@ const Menu = ({
               Configurations
             </span>
           </button>
-        </div>
-        <div className="darkMode">
-          <DarkMode />
         </div>
       </div>
       {selectedTab === "Clients" && (

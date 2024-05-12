@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Langs from "../components/menu/Langs";
 import NavIcons from "../components/menu/NavIcons";
 import NavMenu from "../components/menu/NavMenu";
 import { Link } from "react-router-dom";
@@ -7,6 +6,7 @@ import MegaMenu from "../components/menu/MegaMenu";
 import logo from "../assets/logo.png";
 import WishlistModal from "../components/wishlist/WishlistModal";
 import { useSelector } from "react-redux";
+import DarkMode from "../components/darkMode/DarkMode";
 
 const HeaderWrapper = () => {
   const [megaMenuSection, setMegaMenuSection] = useState(null);
@@ -36,13 +36,13 @@ const HeaderWrapper = () => {
   return (
     <div id="headerWrapper" onClick={handleCloseWishlistModal}>
       <div id="flex-item">
-        <Langs />
+        <DarkMode />
         <h1>
           <Link to="/">
             <img src={logo} alt="logo" width="200px" />{" "}
           </Link>
         </h1>
-        <div>
+        <div className="flex-item-navIcons">
           <NavIcons onClickHeart={handleOpenWishlistModal} />
         </div>
       </div>

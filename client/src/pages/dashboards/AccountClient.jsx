@@ -61,9 +61,6 @@ const AccountClient = () => {
             </span>
           </button>
         </div>
-        <div className="darkMode">
-          <DarkMode />
-        </div>
       </div>
 
       {selectedTab === "Compte" && (

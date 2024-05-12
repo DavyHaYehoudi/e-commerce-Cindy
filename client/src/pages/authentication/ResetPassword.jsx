@@ -17,7 +17,8 @@ const ResetPassword = () => {
     setShowConfirmPassword,
     handleResetPassword,
     navigate,
-    handleKeyPress
+    handleKeyPress,
+    email
   } = useResetPassword();
 
   if (success) {
@@ -28,7 +29,7 @@ const ResetPassword = () => {
             <p>
               ✅ Votre mot de passe a été réinitialisé avec succès 😃 !<br />
             </p>
-            <button className="login-button" onClick={() => navigate("/account/login")}>
+            <button className="login-button" onClick={() => navigate("/account/login", { state: email })}>
               SE CONNECTER
             </button>
           </div>

@@ -46,7 +46,7 @@ ul {
 }
 
 .btn:hover {
-    color: var(--text-color-white);
+    /* color: var(--text-color-white); */
     background-position: -100% 0;
 }
 
