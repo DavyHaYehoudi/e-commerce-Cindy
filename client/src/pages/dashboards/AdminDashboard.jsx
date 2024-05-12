@@ -10,7 +10,6 @@ const AdminDashboard = () => {
     handleChangeItemPerPage,
     handleClientClick,
   } = useAdminDashboard();
- 
   return (
     <div className="admin-dashboard" data-testid="admin-dashboard">
       <Menu

@@ -372,8 +372,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: L'utilisateur n'existe pas.
-        '401':
+                    example: Identifiants non valides.
+        '400':
           description: Email address not verified
           content:
             application/json:
@@ -425,6 +425,14 @@ paths:
       responses:
         '200':
           description: successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: john@example.com.
         '400':
           description: The verification link is invalid or expired.
           content:
@@ -481,6 +489,8 @@ paths:
                   message:
                     type: string
                     example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
   /auth/verify-token/admin:
     get:
       tags:
@@ -501,6 +511,8 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+      security:
+        - api_key: []
   /orders:
     post:
       tags:
@@ -516,8 +528,6 @@ paths:
       responses:
         '201':
           description: successful posting order
-        '400':
-          description: Bad Request - Invalid parameters
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -599,8 +609,14 @@ paths:
       responses:
         '200':
           description: Successful updated order
-        '400':
-          description: Invalids elements supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lastSentDateToClient:
+                    type: string
+                    example: 2024-10-09
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -1151,6 +1167,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /materials/{materialId}:
@@ -1209,6 +1235,16 @@ paths:
                   message:
                     type: string
                     example: Le matériau n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1589,6 +1625,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /collections/{collectionId}:
@@ -1647,6 +1693,16 @@ paths:
                   message:
                     type: string
                     example: La collection n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1815,6 +1871,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /categories/{categoryId}:
@@ -1873,6 +1939,16 @@ paths:
                   message:
                     type: string
                     example: La catégorie n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1977,6 +2053,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /tags/{tagId}:
@@ -2035,6 +2121,16 @@ paths:
                   message:
                     type: string
                     example: Le tag n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:

@@ -20,12 +20,17 @@ import AccountClient from "./pages/dashboards/AccountClient";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 import ResetPassword from "./pages/authentication/ResetPassword";
+import useAuthWrappers from "./useAuthWrappers";
 import { Provider } from "react-redux";
-import useClientFromToken from "./pages/authentication/hooks/useClientFromToken";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
 
 function App() {
-  const { role } = useClientFromToken();
+  const {
+    RequireAuthAdmin,
+    RequireAuthUser,
+    role: getRole,
+  } = useAuthWrappers();
+  const role = getRole();
   const store = configureStoreWithRole(role);
 
   return (
@@ -34,9 +39,23 @@ function App() {
         <div className="App">
           <Header />
           <Routes>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <RequireAuthAdmin>
+                  <AdminDashboard />
+                </RequireAuthAdmin>
+              }
+            />
             <Route path="/" element={<Home />} />
-            <Route path="/account" element={<AccountClient />} />
+            <Route
+              path="/account"
+              element={
+                <RequireAuthUser>
+                  <AccountClient />
+                </RequireAuthUser>
+              }
+            />
             <Route path="/account/login" element={<Login />} />
             <Route path="/account/register" element={<Register />} />
             <Route
