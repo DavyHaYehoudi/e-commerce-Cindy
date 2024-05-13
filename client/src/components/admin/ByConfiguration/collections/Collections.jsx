@@ -183,11 +183,9 @@ const Collections = () => {
                           ? "ces produits-là ou bien de supprimer les produits concernés."
                           : "ce produit-là ou bien de supprimer le produit concerné"}
                       </p>
-                      {/* <div className="btn-understand"> */}
                         <button className="account-btn btn-understand" onClick={handleCancel}>
                           J'ai compris
                         </button>
-                      {/* </div> */}
                     </div>
                   </>
                 )}

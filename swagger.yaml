@@ -1742,6 +1742,16 @@ paths:
                         example: Une catégorie est liée à cette collection.
                       collectionId:
                         type: string
+                      categoriesName:
+                        type: array
+                        items:
+                          type: string
+                          example: soirée,détente
+                      productsName:
+                        type: array
+                        items:
+                          type: string
+                          example: Bracelet ancien, Ceinture vintage
     
         '401':
           description: Unauthorized - User is not authenticated
