@@ -74,5 +74,6 @@
     --text-golden:#FFFFFF;
     --dark:#FFFFFF;
     --secondary:#FFFFFF;
-    --danger:#d2483d;
+    /* --danger:#d2483d; */
+    --danger:#ff754c;
 }

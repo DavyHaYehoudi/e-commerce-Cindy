@@ -18,6 +18,10 @@ const useCollections = () => {
   const collections = useSelector((state) => state?.collection?.data);
   const alert = useSelector((state) => state?.collection.alert);
   const collectionId = useSelector((state) => state?.collection?.collectionId);
+  const categoriesName = useSelector(
+    (state) => state?.collection?.categoriesName
+  );
+  const productsName = useSelector((state) => state?.collection?.productsName);
 
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
@@ -100,6 +104,8 @@ const useCollections = () => {
     isContentVisible,
     collections,
     alert,
+    categoriesName,
+    productsName,
     openModal,
     handleCancel,
     handleConfirm,

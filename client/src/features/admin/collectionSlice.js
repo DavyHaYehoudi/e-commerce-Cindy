@@ -6,7 +6,7 @@ import { Del, Get, Post, Put } from "../../services/httpMethods";
 const fetchCollections = createAsyncThunk(
   "collection/fetchCollections",
   async () => {
-      return Get("collections");
+    return Get("collections");
   }
 );
 const addCollection = createAsyncThunk(
@@ -36,11 +36,7 @@ const updateCollection = createAsyncThunk(
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async ({ collectionId, handleUnauthorized }) => {
-    return await Del(
-      `collections/${collectionId}`,
-      null,
-      handleUnauthorized
-    );
+    return await Del(`collections/${collectionId}`, null, handleUnauthorized);
   }
 );
 export const confirmDeleteCollection = createAsyncThunk(
@@ -64,11 +60,15 @@ const collectionSlice = createSlice({
     error: null,
     collectionId: "",
     alert: "",
+    categoriesName: [],
+    productsName:[]
   },
   reducers: {
     resetStore: (state, payload) => {
       state.collectionId = "";
       state.alert = "";
+      state.categoriesName = [];
+      state.productsName=[]
     },
   },
   extraReducers: (builder) => {
@@ -105,9 +105,16 @@ const collectionSlice = createSlice({
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
         const { message } = action.payload || {};
-        if (message?.alert && message?.collectionId) {
-          state.alert = message.alert;
-          state.collectionId = message.collectionId;
+        if (
+          message?.alert ||
+          message?.collectionId ||
+          message?.categoriesName ||
+          message?.productsName
+        ) {
+          state.alert = message?.alert;
+          state.collectionId = message?.collectionId;
+          state.categoriesName = message?.categoriesName;
+          state.productsName = message?.productsName
         } else {
           state.data = state.data.filter(
             (collection) => collection._id !== action.payload

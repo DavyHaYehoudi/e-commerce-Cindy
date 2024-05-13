@@ -48,36 +48,21 @@ const productController = {
   updateProduct: async (req, res) => {
     try {
       const { productId } = req.params;
-      const updateFields = req.body;
+      const { formData } = req.body;
       console.log("********** req body :**********", req.body);
-
-      // Liste blanche des champs autorisés à être modifiés
-      const allowedFields = [
-        "name",
-        "_collection",
-        "category",
-        "tags",
-        "secondary_images",
-        "main_description",
-        "materials",
-      ];
-
+      const updateFields = formData;
       // Vérifie si le produit existe
       const existingProduct = await Product.findById(productId);
       if (!existingProduct) {
         return res.status(404).json({ message: "Le produit n'existe pas." });
       }
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        updateFields,
+        { new: true }
+      );
 
-      // Mettre à jour les champs autorisés selon les données fournies dans req.body
-      for (const key in updateFields) {
-        if (allowedFields.includes(key)) {
-          existingProduct[key] = updateFields[key];
-        }
-      }
-
-      // Enregistrer les modifications
-      const updatedProduct = await existingProduct.save();
-
+      console.log("updatedProduct:", updatedProduct);
       res.status(200).json(updatedProduct);
     } catch (error) {
       res.status(500).json({ message: error.message });

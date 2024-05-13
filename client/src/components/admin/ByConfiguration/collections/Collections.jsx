@@ -12,6 +12,8 @@ const Collections = () => {
     isContentVisible,
     collections,
     alert,
+    categoriesName,
+    productsName,
     openModal,
     handleCancel,
     handleConfirm,
@@ -126,26 +128,69 @@ const Collections = () => {
           <div className="modal">
             <div className="modal-content">
               <div className="collection-confirm-action">
-                <span>{alert} </span>
-                <span>
-                  Toute catégorie se retrouvant sans collection apparentée sera
-                  supprimée elle aussi.
-                </span>
-                <span>Voulez-vous vraiment supprimer cette collection ?</span>
-                <div className="buttons">
-                  <button
-                    className="confirm-action-button cancel"
-                    onClick={handleCancel}
-                  >
-                    Annuler
-                  </button>
-                  <button
-                    className="confirm-action-button confirm"
-                    onClick={handleConfirm}
-                  >
-                    Confirmer
-                  </button>
-                </div>
+                <p className="alert">{alert} </p>
+                {categoriesName && categoriesName.length > 0 && (
+                  <>
+                    <ul>
+                      {categoriesName.map((category, i) => (
+                        <li>
+                          Catégorie {i + 1} : {category}
+                        </li>
+                      ))}
+                    </ul>
+                    <p>
+                      <br />
+                      Toute catégorie se retrouvant sans collection apparentée
+                      sera supprimée elle aussi.
+                    </p>
+                    <p>
+                      <br />
+                      Voulez-vous vraiment supprimer cette collection ?
+                    </p>
+                    <div className="buttons">
+                      <button
+                        className="confirm-action-button cancel"
+                        onClick={handleCancel}
+                      >
+                        Annuler
+                      </button>
+                      <button
+                        className="confirm-action-button confirm"
+                        onClick={handleConfirm}
+                      >
+                        Confirmer
+                      </button>
+                    </div>
+                  </>
+                )}
+                {productsName && productsName.length > 0 && (
+                  <>
+                    <ul>
+                      {productsName.map((product, i) => (
+                        <li>
+                          Produit {i + 1} : {product}{" "}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="understand">
+                      <p>
+                        <br />
+                        Vous ne pouvez donc pas supprimer cette collection.{" "}
+                        <br />
+                        Il vous suffit de modifier la collection qui sera alors
+                        attribuée automatiquement à{" "}
+                        {productsName.length > 1
+                          ? "ces produits-là ou bien de supprimer les produits concernés."
+                          : "ce produit-là ou bien de supprimer le produit concerné"}
+                      </p>
+                      {/* <div className="btn-understand"> */}
+                        <button className="account-btn btn-understand" onClick={handleCancel}>
+                          J'ai compris
+                        </button>
+                      {/* </div> */}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

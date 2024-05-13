@@ -1,5 +1,6 @@
 import Category from "../models/category.model.js";
 import Collection from "../models/collection.model.js";
+import Product from "../models/product/product.model.js";
 
 const collectionController = {
   getCollections: async (req, res) => {
@@ -18,7 +19,9 @@ const collectionController = {
       res.status(201).json(collection);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
-        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+        res
+          .status(409)
+          .json({ message: "Le nom de la collection doit être unique." });
       } else {
         console.error("Error createCollection:", error);
         res.status(500).json({ message: error.message });
@@ -43,7 +46,9 @@ const collectionController = {
       res.status(200).json(updateCollection);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
-        res.status(409).json({ message: "Le nom de la collection doit être unique." });
+        res
+          .status(409)
+          .json({ message: "Le nom de la collection doit être unique." });
       } else {
         console.error("Error updateCollection:", error);
         res.status(500).json({ message: error.message });
@@ -54,20 +59,44 @@ const collectionController = {
   deleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
+      // Vérifier s'il existe des produits liés à cette collection
+      const products = await Product.find({ _collection: collectionId });
+      console.log('products:', products)
+      if (products.length > 0) {
+        const productCount = products.length;
+        const productsName = products
+        .map((product) => product.name)
+        
+        console.log('productsName:', productsName)
+        const message =
+          productCount > 1
+            ? `${productCount} produits sont liés à cette collection.`
+            : `Un produit est lié à cette collection.`;
+
+        return res
+          .status(200)
+          .json({
+            message: {
+              alert: message,
+              collectionId,
+              productsName,
+            },
+          });
+      }
       // Vérifier s'il existe des catégories liées à cette collection
       const categories = await Category.find({
         parentCollection: collectionId,
       });
       if (categories.length > 0) {
         const categoryCount = categories.length;
+        const categoriesName = categories.map((category) => category.name);
         const message =
           categoryCount > 1
             ? `${categoryCount} catégories sont liées à cette collection.`
             : `Une catégorie est liée à cette collection.`;
-
         return res
           .status(200)
-          .json({ message: { alert: message, collectionId } });
+          .json({ message: { alert: message, collectionId, categoriesName } });
       }
 
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
@@ -103,9 +132,7 @@ const collectionController = {
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
-      res
-        .status(200)
-        .json({});
+      res.status(200).json({});
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });
