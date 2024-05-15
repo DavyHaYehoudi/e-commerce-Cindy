@@ -27,7 +27,7 @@ const useVerifyEmailRegister = (token) => {
         console.error( 
           "Erreur lors de la validation de l'e-mail (verifyEmailToken) :",
           error
-        );
+        ); 
       }
     };
 

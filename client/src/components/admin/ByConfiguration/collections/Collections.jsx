@@ -3,6 +3,7 @@ import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useCollections from "../hooks/useCollections";
 import MainImage from "../../../../shared/MainImage";
+import Modal from "./Modal";
 
 const Collections = () => {
   const {
@@ -10,11 +11,11 @@ const Collections = () => {
     editedCollectionName,
     newCollectionName,
     isContentVisible,
-    collections,
-    alert,
-    categoriesName,
-    productsName,
+    collectionsStore,
     openModal,
+    productsLinkedToCollectionId,
+    categoriesLinkedToCollectionId,
+    productsLinkedToCategories,
     handleCancel,
     handleConfirm,
     setEditCollectionId,
@@ -36,7 +37,7 @@ const Collections = () => {
       {isContentVisible && (
         <div className=" admin-config-tab">
           <ul>
-            {collections?.map((collection) => (
+            {collectionsStore?.map((collection) => (
               <li key={collection?._id} className="content-block-wrapper">
                 {editCollectionId === collection?._id ? (
                   <div className="content-block">
@@ -124,75 +125,13 @@ const Collections = () => {
         </div>
       )}
       {openModal && (
-        <>
-          <div className="modal">
-            <div className="modal-content">
-              <div className="collection-confirm-action">
-                <p className="alert">{alert} </p>
-                {categoriesName && categoriesName.length > 0 && (
-                  <>
-                    <ul>
-                      {categoriesName.map((category, i) => (
-                        <li>
-                          Catégorie {i + 1} : {category}
-                        </li>
-                      ))}
-                    </ul>
-                    <p>
-                      <br />
-                      Toute catégorie se retrouvant sans collection apparentée
-                      sera supprimée elle aussi.
-                    </p>
-                    <p>
-                      <br />
-                      Voulez-vous vraiment supprimer cette collection ?
-                    </p>
-                    <div className="buttons">
-                      <button
-                        className="confirm-action-button cancel"
-                        onClick={handleCancel}
-                      >
-                        Annuler
-                      </button>
-                      <button
-                        className="confirm-action-button confirm"
-                        onClick={handleConfirm}
-                      >
-                        Confirmer
-                      </button>
-                    </div>
-                  </>
-                )}
-                {productsName && productsName.length > 0 && (
-                  <>
-                    <ul>
-                      {productsName.map((product, i) => (
-                        <li>
-                          Produit {i + 1} : {product}{" "}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="understand">
-                      <p>
-                        <br />
-                        Vous ne pouvez donc pas supprimer cette collection.{" "}
-                        <br />
-                        Il vous suffit de modifier la collection qui sera alors
-                        attribuée automatiquement à{" "}
-                        {productsName.length > 1
-                          ? "ces produits-là ou bien de supprimer les produits concernés."
-                          : "ce produit-là ou bien de supprimer le produit concerné"}
-                      </p>
-                        <button className="account-btn btn-understand" onClick={handleCancel}>
-                          J'ai compris
-                        </button>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </>
+        <Modal
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+          productsLinkedToCollectionId={productsLinkedToCollectionId}
+          categoriesLinkedToCollectionId={categoriesLinkedToCollectionId}
+          productsLinkedToCategories={productsLinkedToCategories}
+        />
       )}
     </div>
   );

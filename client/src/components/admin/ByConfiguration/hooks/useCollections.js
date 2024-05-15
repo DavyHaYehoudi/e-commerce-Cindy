@@ -15,13 +15,16 @@ const useCollections = () => {
   const [newCollectionName, setNewCollectionName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const collections = useSelector((state) => state?.collection?.data);
-  const alert = useSelector((state) => state?.collection.alert);
-  const collectionId = useSelector((state) => state?.collection?.collectionId);
-  const categoriesName = useSelector(
-    (state) => state?.collection?.categoriesName
+  const [productsLinkedToCollectionId, setProductsLinkedToCollectionId] =
+    useState([]);
+  const [categoriesLinkedToCollectionId, setCategoriesLinkedToCollectionId] =
+    useState([]);
+  const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
+    []
   );
-  const productsName = useSelector((state) => state?.collection?.productsName);
+  const productsStore = useSelector((state) => state?.product?.data);
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const categoriesStore = useSelector((state) => state?.category?.data);
 
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
@@ -43,7 +46,32 @@ const useCollections = () => {
       "Etes-vous sûr de vouloir supprimer cette collection ?"
     );
     if (confirmation) {
-      dispatch(deleteCollection({ collectionId, handleUnauthorized }));
+      const productsLinkedToCollectionIdSearch = productsStore.filter(
+        (product) => product._collection === collectionId
+      );
+
+      const categoriesLinkedToCollectionIdSearch = categoriesStore.filter(
+        (category) =>
+          category?.parentCollection.some((item) => item === collectionId)
+      );
+      console.log('categoriesLinkedToCollectionIdSearch:', categoriesLinkedToCollectionIdSearch)
+
+
+      const productsLinkedToCategoriesSearch = productsStore.filter(product=>categoriesLinkedToCollectionIdSearch.some(item=>item._id===product.category))
+      console.log('productsLinkedToCategoriesSearch:', productsLinkedToCategoriesSearch)
+
+
+      if (productsLinkedToCollectionIdSearch.length > 0) {
+        setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
+        setOpenModal(true);
+      }
+      if (categoriesLinkedToCollectionIdSearch.length > 0) {
+        setCategoriesLinkedToCollectionId(categoriesLinkedToCollectionIdSearch);
+        setOpenModal(true);
+      }
+      if(productsLinkedToCategoriesSearch.length>0){
+        setProductsLinkedToCategories(productsLinkedToCategoriesSearch)
+      }
     }
   };
 
@@ -77,11 +105,11 @@ const useCollections = () => {
     }
   };
 
-  useEffect(() => {
-    if (alert) {
-      setOpenModal(true);
-    }
-  }, [alert]);
+  // useEffect(() => {
+  //   if (alert) {
+  //     setOpenModal(true);
+  //   }
+  // }, [alert]);
   const handleCancel = () => {
     setOpenModal(false);
     dispatch(resetStore());
@@ -89,7 +117,7 @@ const useCollections = () => {
 
   const handleConfirm = () => {
     try {
-      dispatch(confirmDeleteCollection({ collectionId, handleUnauthorized }));
+      // dispatch(confirmDeleteCollection({ collectionId, handleUnauthorized }));
       dispatch(resetStore());
       setOpenModal(false);
     } catch (error) {
@@ -102,11 +130,11 @@ const useCollections = () => {
     editedCollectionName,
     newCollectionName,
     isContentVisible,
-    collections,
-    alert,
-    categoriesName,
-    productsName,
+    collectionsStore,
     openModal,
+    productsLinkedToCollectionId,
+    categoriesLinkedToCollectionId,
+    productsLinkedToCategories,
     handleCancel,
     handleConfirm,
     setEditCollectionId,

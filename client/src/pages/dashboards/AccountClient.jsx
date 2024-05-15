@@ -3,7 +3,6 @@ import InfoClient from "../../components/accountClient/info";
 import useAccountClient from "./hooks/useAccountClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DarkMode from "../../components/darkMode/DarkMode";
 import Menu from "../../components/accountClient/menu";
 import { IoMdPricetag } from "react-icons/io";
 import { FaUser } from "react-icons/fa";

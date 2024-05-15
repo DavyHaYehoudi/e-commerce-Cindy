@@ -49,7 +49,7 @@ const productController = {
     try {
       const { productId } = req.params;
       const { formData } = req.body;
-      console.log("********** req body :**********", req.body);
+      // console.log("********** req body :**********", req.body);
       const updateFields = formData;
       // Vérifie si le produit existe
       const existingProduct = await Product.findById(productId);
@@ -62,7 +62,6 @@ const productController = {
         { new: true }
       );
 
-      console.log("updatedProduct:", updatedProduct);
       res.status(200).json(updatedProduct);
     } catch (error) {
       res.status(500).json({ message: error.message });

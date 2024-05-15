@@ -2,9 +2,9 @@ import Client from "../../models/client.model.js";
 
 const verifyEmail = async (req, res) => {
   const { token } = req.body;
-
+ 
   try {
-    const client = await Client.findOneAndUpdate(
+    const client = await Client.findOne(
       {
         "authentication.emailVerificationToken": token,
         "authentication.emailVerificationExpires": { $gt: Date.now() },
@@ -12,11 +12,12 @@ const verifyEmail = async (req, res) => {
       {
         $set: {
           "authentication.verified": true,
-          // "authentication.emailVerificationToken": null,
-          // "authentication.emailVerificationExpires": null,
+          "authentication.emailVerificationToken": null,
+          "authentication.emailVerificationExpires": null,
         },
-      }
+      } 
     );
+    console.log('client:', client)
     if (!client) {
       return res
         .status(400)
@@ -32,5 +33,5 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-export { verifyEmail };
+export { verifyEmail }; 
   

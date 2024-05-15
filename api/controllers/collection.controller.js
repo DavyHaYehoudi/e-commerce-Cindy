@@ -59,51 +59,11 @@ const collectionController = {
   deleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      // Vérifier s'il existe des produits liés à cette collection
-      const products = await Product.find({ _collection: collectionId });
-      console.log('products:', products)
-      if (products.length > 0) {
-        const productCount = products.length;
-        const productsName = products
-        .map((product) => product.name)
-        
-        console.log('productsName:', productsName)
-        const message =
-          productCount > 1
-            ? `${productCount} produits sont liés à cette collection.`
-            : `Un produit est lié à cette collection.`;
-
-        return res
-          .status(200)
-          .json({
-            message: {
-              alert: message,
-              collectionId,
-              productsName,
-            },
-          });
-      }
-      // Vérifier s'il existe des catégories liées à cette collection
-      const categories = await Category.find({
-        parentCollection: collectionId,
-      });
-      if (categories.length > 0) {
-        const categoryCount = categories.length;
-        const categoriesName = categories.map((category) => category.name);
-        const message =
-          categoryCount > 1
-            ? `${categoryCount} catégories sont liées à cette collection.`
-            : `Une catégorie est liée à cette collection.`;
-        return res
-          .status(200)
-          .json({ message: { alert: message, collectionId, categoriesName } });
-      }
-
       const deleteCollection = await Collection.findByIdAndDelete(collectionId);
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
-
+ 
       res.status(200).json(collectionId);
     } catch (error) {
       console.error("Error deleting collection:", error);
