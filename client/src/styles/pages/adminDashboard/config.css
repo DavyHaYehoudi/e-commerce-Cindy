@@ -128,8 +128,8 @@
 .admin-collections .modal-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     gap: 30px;
     background-color: var(--background);
     margin: 15% auto;

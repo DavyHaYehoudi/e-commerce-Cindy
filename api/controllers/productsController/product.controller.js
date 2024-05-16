@@ -1,3 +1,4 @@
+import OrderProducts from "../../models/orderProducts.model.js";
 import Product from "../../models/product/product.model.js";
 import process from "./filter/process.js";
 const productController = {
@@ -71,15 +72,33 @@ const productController = {
   deleteProduct: async (req, res) => {
     try {
       const { productId } = req.params;
-      const product = await Product.findByIdAndDelete(productId);
-      if (!product) {
+  
+      // Vérification si le produit existe
+      const productExisted = await Product.findById(productId);
+      if (!productExisted) {
         return res.status(404).json({ error: "Le produit n'existe pas." });
       }
-      res.status(200).json({ productId });
+  
+      // Vérification si le produit a déjà été vendu
+      const isProductSolded = await OrderProducts.find({ productsId: productId });
+      if (isProductSolded.length > 0) {
+        // Mettre à jour le champ isArchived
+        const updatedProduct = await Product.findByIdAndUpdate(
+          productId,
+          { isArchived: true },
+          { new: true }
+        );
+        return res.status(200).json(updatedProduct);
+      } else {
+        // Supprimer le produit
+        await Product.findByIdAndDelete(productId);
+        return res.status(200).json({ message: "Produit supprimé avec succès." });
+      }
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
     }
-  },
+  }
+  
 };
 
 export default productController;

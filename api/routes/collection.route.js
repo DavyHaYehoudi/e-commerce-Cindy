@@ -20,11 +20,5 @@ router.delete(
   authenticateAdmin,
   collectionController.deleteCollection
 );
-router.delete(
-  "/confirm-delete/:collectionId",
-  authenticateAdmin,
-  collectionController.confirmDeleteCollection
-);
-
 export default router;
     

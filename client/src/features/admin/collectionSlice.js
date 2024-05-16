@@ -35,19 +35,10 @@ const updateCollection = createAsyncThunk(
 
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
-  async ({ collectionId, handleUnauthorized }) => {
-    return await Del(`collections/${collectionId}`, null, handleUnauthorized);
-  }
-);
-export const confirmDeleteCollection = createAsyncThunk(
-  "collection/confirmDeleteCollection",
   async ({ collectionId, handleUnauthorized }, { dispatch }) => {
-    await Del(
-      `collections/confirm-delete/${collectionId}`,
-      null,
-      handleUnauthorized
-    );
-    dispatch(updateCategoriesByCollectionId(collectionId)); // Dispatch l'action pour mettre à jour le slice category
+    const url = `collections/${collectionId}`;
+    await Del(url, null, handleUnauthorized);
+    dispatch(updateCategoriesByCollectionId(collectionId));
     return collectionId;
   }
 );
@@ -59,16 +50,16 @@ const collectionSlice = createSlice({
     status: "idle",
     error: null,
     collectionId: "",
-    alert: "",
-    categoriesName: [],
-    productsName:[]
   },
   reducers: {
+    addCollectionToRemove: (state, action) => {
+      state.collectionId = action.payload;
+    },
     resetStore: (state, payload) => {
       state.collectionId = "";
       state.alert = "";
-      state.categoriesName = [];
-      state.productsName=[]
+      state.categoriesToRemove = [];
+      state.productsToRemove = [];
     },
   },
   extraReducers: (builder) => {
@@ -104,47 +95,17 @@ const collectionSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
-        const { message } = action.payload || {};
-        if (
-          message?.alert ||
-          message?.collectionId ||
-          message?.categoriesName ||
-          message?.productsName
-        ) {
-          state.alert = message?.alert;
-          state.collectionId = message?.collectionId;
-          state.categoriesName = message?.categoriesName;
-          state.productsName = message?.productsName
-        } else {
-          state.data = state.data.filter(
-            (collection) => collection._id !== action.payload
-          );
-          toast.success("La collection a bien été supprimée.");
-        }
-      })
-      .addCase(deleteCollection.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
-      .addCase(confirmDeleteCollection.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(confirmDeleteCollection.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.error = null;
         state.data = state.data.filter(
           (collection) => collection._id !== action.payload
         );
-        toast.success(
-          "La collection a bien été supprimée et le contenu des catégories a été actualisé."
-        );
+        toast.success("La collection a bien été supprimée.");
       })
-      .addCase(confirmDeleteCollection.rejected, (state, action) => {
+      .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 export { fetchCollections, addCollection, deleteCollection, updateCollection };
-export const { resetStore } = collectionSlice.actions;
+export const { addCollectionToRemove, resetStore } = collectionSlice.actions;
 export default collectionSlice.reducer;

@@ -14,63 +14,90 @@ const Modal = ({
   const productsLinkedToCategoriesNumber = productsLinkedToCategories.length;
 
   let alertProductLinkedToCollectionId = `Cette collection est reliée à ${productsLinkedToCollectionIdNumber} produit${
-    productsLinkedToCollectionIdNumber > 1 ? "s" : ""
+    productsLinkedToCollectionIdNumber > 1 ? "s." : "."
   }`;
   let alertCategoriesLinkedToCollectionId = `Cette collection est reliée à ${categoriesLinkedToCollectionIdNumber} catégorie${
-    categoriesLinkedToCollectionIdNumber > 1 ? "s" : ""
+    categoriesLinkedToCollectionIdNumber > 1 ? "s." : "."
   }`;
   let alertProductsLinkedToCategories =
     categoriesLinkedToCollectionIdNumber > 1
       ? `Ces ${categoriesLinkedToCollectionIdNumber} catégories sont elles-mêmes reliées à ${productsLinkedToCategoriesNumber} ${
           productsLinkedToCategoriesNumber > 1
-            ? "produits qui seront supprimés également"
-            : "produit qui sera supprimé également"
+            ? "produits qui perdent le lien avec leur catégorie."
+            : "produit qui perd le lien avec sa catégorie."
         }`
       : `Cette catégorie est elle-même reliée à ${productsLinkedToCategoriesNumber} ${
           productsLinkedToCategoriesNumber > 1
-            ? "produits qui seront supprimés également."
-            : "produit qui sera supprimé également."
+            ? "produits qui perdent le lien avec leur catégorie."
+            : "produit qui perd le lien avec sa catégorie."
         }`;
 
   return (
     <div className="modal">
       <div className="modal-content">
         <div className="collection-confirm-action">
-          <p className="alert">
-            Tout ce qui est relié à cette collection sera supprimé aussi en même
-            temps si vous confirmez. {alertProductLinkedToCollectionId}{" "}
-          </p>
-
-          {productsLinkedToCollectionId &&
-            productsLinkedToCollectionId.length > 0 && (
-              <ol>
-                {productsLinkedToCollectionId.map((product) => (
-                  <li key={product?._id}>{product?.name} </li>
-                ))}
-              </ol>
-            )}
-          {categoriesLinkedToCollectionId &&
-            categoriesLinkedToCollectionId.length > 0 && (
-              <>
-                <p>{alertCategoriesLinkedToCollectionId}</p>
-                <ol>
-                  {categoriesLinkedToCollectionId.map((category) => (
-                    <li key={category?._id}>{category?.name} </li>
-                  ))}
-                </ol>
-              </>
-            )}
-          {alertProductsLinkedToCategories &&
-            alertProductsLinkedToCategories.length > 0 && (
-              <>
-                <p>{alertProductsLinkedToCategories} </p>
-                <ol>
-                  {productsLinkedToCategories.map((product) => (
-                    <li key={product._id}>{product?.name} </li>
-                  ))}
-                </ol>
-              </>
-            )}
+          <div className="block">
+            <p className="alert">
+              ⚠️ Les produits reliés à cette collection et aux catégories
+              associées se retrouveront sans collection ou catégorie affectée ce
+              qui les suspendra de l'affichage sur le site.
+              <br />
+              <br />
+              ⚠️ Les catégories associées à cette collection seront supprimées.
+              <br />
+              <br />
+            </p>
+          </div>
+          <div className="block">
+            {productsLinkedToCollectionId &&
+              productsLinkedToCollectionId.length > 0 && (
+                <>
+                  <hr />
+                  <br />
+                  {productsLinkedToCollectionIdNumber > 0 &&
+                    alertProductLinkedToCollectionId}{" "}
+                  <ul>
+                    {productsLinkedToCollectionId.map((product) => (
+                      <li key={product?._id}>{product?.name} </li>
+                    ))}
+                  </ul>
+                  <br />
+                  <hr />
+                </>
+              )}
+          </div>
+          <div className="block">
+            {categoriesLinkedToCollectionId &&
+              categoriesLinkedToCollectionId.length > 0 && (
+                <>
+                  <br />
+                  <p>{alertCategoriesLinkedToCollectionId}</p>
+                  <ul>
+                    {categoriesLinkedToCollectionId.map((category) => (
+                      <li key={category?._id}>{category?.name} </li>
+                    ))}
+                  </ul>
+                  <br />
+                  <hr />
+                </>
+              )}
+          </div>
+          <div className="block">
+            {alertProductsLinkedToCategories &&
+              alertProductsLinkedToCategories.length > 0 && (
+                <>
+                  <br />
+                  <p>{alertProductsLinkedToCategories} </p>
+                  <ul>
+                    {productsLinkedToCategories.map((product) => (
+                      <li key={product._id}>{product?.name} </li>
+                    ))}
+                  </ul>
+                  <br />
+                  <hr />
+                </>
+              )}
+          </div>
           <div className="buttons">
             <button
               className="confirm-action-button cancel"

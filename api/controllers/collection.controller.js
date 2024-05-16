@@ -59,20 +59,6 @@ const collectionController = {
   deleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
-      if (!deleteCollection) {
-        return res.status(404).json({ message: "La collection n'existe pas." });
-      }
- 
-      res.status(200).json(collectionId);
-    } catch (error) {
-      console.error("Error deleting collection:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  },
-  confirmDeleteCollection: async (req, res) => {
-    try {
-      const { collectionId } = req.params;
       // Supprimer la collection de toutes les catégories liées
       await Category.updateMany(
         { parentCollection: collectionId },
@@ -92,7 +78,7 @@ const collectionController = {
       if (!deleteCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
-      res.status(200).json({});
+      res.status(200).json({collectionId});
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });

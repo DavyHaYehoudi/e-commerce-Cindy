@@ -16,7 +16,7 @@ width: 33%;
 }
 #headerWrapper .flex-item-navIcons{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 #iconCart {
     position: relative;

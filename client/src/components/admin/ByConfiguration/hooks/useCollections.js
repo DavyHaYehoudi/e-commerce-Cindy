@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCollection,
-  confirmDeleteCollection,
+  addCollectionToRemove,
   deleteCollection,
   resetStore,
   updateCollection,
@@ -25,7 +25,7 @@ const useCollections = () => {
   const productsStore = useSelector((state) => state?.product?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
-
+  const collectionId = useSelector((state) => state?.collection?.collectionId);
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
 
@@ -46,6 +46,7 @@ const useCollections = () => {
       "Etes-vous sûr de vouloir supprimer cette collection ?"
     );
     if (confirmation) {
+      dispatch(addCollectionToRemove(collectionId));
       const productsLinkedToCollectionIdSearch = productsStore.filter(
         (product) => product._collection === collectionId
       );
@@ -54,12 +55,12 @@ const useCollections = () => {
         (category) =>
           category?.parentCollection.some((item) => item === collectionId)
       );
-      console.log('categoriesLinkedToCollectionIdSearch:', categoriesLinkedToCollectionIdSearch)
 
-
-      const productsLinkedToCategoriesSearch = productsStore.filter(product=>categoriesLinkedToCollectionIdSearch.some(item=>item._id===product.category))
-      console.log('productsLinkedToCategoriesSearch:', productsLinkedToCategoriesSearch)
-
+      const productsLinkedToCategoriesSearch = productsStore.filter((product) =>
+        categoriesLinkedToCollectionIdSearch.some(
+          (item) => item._id === product.category
+        )
+      );
 
       if (productsLinkedToCollectionIdSearch.length > 0) {
         setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
@@ -69,8 +70,8 @@ const useCollections = () => {
         setCategoriesLinkedToCollectionId(categoriesLinkedToCollectionIdSearch);
         setOpenModal(true);
       }
-      if(productsLinkedToCategoriesSearch.length>0){
-        setProductsLinkedToCategories(productsLinkedToCategoriesSearch)
+      if (productsLinkedToCategoriesSearch.length > 0) {
+        setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
       }
     }
   };
@@ -105,11 +106,6 @@ const useCollections = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (alert) {
-  //     setOpenModal(true);
-  //   }
-  // }, [alert]);
   const handleCancel = () => {
     setOpenModal(false);
     dispatch(resetStore());
@@ -117,11 +113,11 @@ const useCollections = () => {
 
   const handleConfirm = () => {
     try {
-      // dispatch(confirmDeleteCollection({ collectionId, handleUnauthorized }));
+      dispatch(deleteCollection({ collectionId, handleUnauthorized }));
       dispatch(resetStore());
       setOpenModal(false);
     } catch (error) {
-      console.log("error in ConfimAction", error);
+      console.log("error in handleConfirm", error);
     }
   };
 
