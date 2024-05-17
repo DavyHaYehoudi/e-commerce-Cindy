@@ -12,8 +12,8 @@ const verifyEmail = async (req, res) => {
       {
         $set: {
           "authentication.verified": true,
-          "authentication.emailVerificationToken": null,
-          "authentication.emailVerificationExpires": null,
+          // "authentication.emailVerificationToken": null,
+          // "authentication.emailVerificationExpires": null,
         },
       } 
     );

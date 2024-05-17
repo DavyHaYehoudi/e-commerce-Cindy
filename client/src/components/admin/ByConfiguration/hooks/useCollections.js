@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCollection,
-  addCollectionToRemove,
+  collectionToRemove,
   deleteCollection,
-  resetStore,
   updateCollection,
 } from "../../../../features/admin/collectionSlice";
 import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
@@ -42,38 +41,32 @@ const useCollections = () => {
   };
 
   const handleDeleteCollection = (collectionId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette collection ?"
+    dispatch(collectionToRemove(collectionId));
+    const productsLinkedToCollectionIdSearch = productsStore.filter(
+      (product) => product._collection === collectionId
     );
-    if (confirmation) {
-      dispatch(addCollectionToRemove(collectionId));
-      const productsLinkedToCollectionIdSearch = productsStore.filter(
-        (product) => product._collection === collectionId
-      );
 
-      const categoriesLinkedToCollectionIdSearch = categoriesStore.filter(
-        (category) =>
-          category?.parentCollection.some((item) => item === collectionId)
-      );
+    const categoriesLinkedToCollectionIdSearch = categoriesStore.filter(
+      (category) =>
+        category?.parentCollection.some((item) => item === collectionId)
+    );
 
-      const productsLinkedToCategoriesSearch = productsStore.filter((product) =>
-        categoriesLinkedToCollectionIdSearch.some(
-          (item) => item._id === product.category
-        )
-      );
+    const productsLinkedToCategoriesSearch = productsStore.filter((product) =>
+      categoriesLinkedToCollectionIdSearch.some(
+        (item) => item._id === product.category
+      )
+    );
 
-      if (productsLinkedToCollectionIdSearch.length > 0) {
-        setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
-        setOpenModal(true);
-      }
-      if (categoriesLinkedToCollectionIdSearch.length > 0) {
-        setCategoriesLinkedToCollectionId(categoriesLinkedToCollectionIdSearch);
-        setOpenModal(true);
-      }
-      if (productsLinkedToCategoriesSearch.length > 0) {
-        setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
-      }
+    if (productsLinkedToCollectionIdSearch.length > 0) {
+      setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
     }
+    if (categoriesLinkedToCollectionIdSearch.length > 0) {
+      setCategoriesLinkedToCollectionId(categoriesLinkedToCollectionIdSearch);
+    }
+    if (productsLinkedToCategoriesSearch.length > 0) {
+      setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
+    }
+    setOpenModal(true);
   };
 
   const handleEditCollection = (collectionId) => {
@@ -108,17 +101,19 @@ const useCollections = () => {
 
   const handleCancel = () => {
     setOpenModal(false);
-    dispatch(resetStore());
+    dispatch(collectionToRemove(""));
+    setProductsLinkedToCollectionId([]);
+    setCategoriesLinkedToCollectionId([]);
+    setProductsLinkedToCategories([]);
   };
 
   const handleConfirm = () => {
-    try {
-      dispatch(deleteCollection({ collectionId, handleUnauthorized }));
-      dispatch(resetStore());
-      setOpenModal(false);
-    } catch (error) {
-      console.log("error in handleConfirm", error);
-    }
+    dispatch(deleteCollection({ collectionId, handleUnauthorized }));
+    dispatch(collectionToRemove(""));
+    setProductsLinkedToCollectionId([]);
+    setCategoriesLinkedToCollectionId([]);
+    setProductsLinkedToCategories([]);
+    setOpenModal(false);
   };
 
   return {

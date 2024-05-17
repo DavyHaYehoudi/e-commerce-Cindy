@@ -3,7 +3,7 @@ import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useCollections from "../hooks/useCollections";
 import MainImage from "../../../../shared/MainImage";
-import Modal from "./Modal";
+import Modal from "../shared/Modal";
 
 const Collections = () => {
   const {
@@ -30,7 +30,7 @@ const Collections = () => {
     handleKeyPressEdit,
   } = useCollections();
   return (
-    <div className="admin-collections">
+    <div className="admin-collections configuration">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>
         Collections
       </h2>

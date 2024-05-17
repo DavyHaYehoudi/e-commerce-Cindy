@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addMaterial,
   deleteMaterial,
+  materialIdToRemove,
   updateMaterial,
 } from "../../../../features/admin/materialSlice";
 import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
@@ -14,8 +15,13 @@ const useMaterials = () => {
     name: "",
     value: "#cc0000",
   });
+  const [openModal, setOpenModal] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const materials = useSelector((state) => state?.material?.data);
+  const [productsLinkedToMaterialId, setProductsLinkedToMaterialId] =
+    useState([]);
+  const materialsStore = useSelector((state) => state?.material?.data);
+  const productsStore=useSelector(state=>state?.product?.data)
+  const materialId = useSelector(state=>state?.material?.materialId)
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -38,14 +44,23 @@ const useMaterials = () => {
   };
 
   const handleDeleteMaterial = (materialId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer ce matériau ?"
-    );
-    if (confirmation) {
-      dispatch(deleteMaterial({ materialId, handleUnauthorized }));
-    }
+    dispatch(materialIdToRemove(materialId))
+    const productsLinkedToMaterialSearch = productsStore.filter(product=>
+      product?.materials.some(material=>material._id===materialId)
+    )
+if(productsLinkedToMaterialSearch.length>0){
+  setProductsLinkedToMaterialId(productsLinkedToMaterialSearch)
+}
+setOpenModal(true)
   };
-
+const handleConfirm =()=>{
+  dispatch(deleteMaterial({ materialId, handleUnauthorized }));
+  setOpenModal(false)
+}
+const handleCancel=()=>{
+  dispatch(materialIdToRemove(""))
+  setOpenModal(false)
+}
   const handleEditMaterial = (materialId) => {
     if (
       editedMaterial.name.trim() !== "" ||
@@ -77,7 +92,9 @@ const useMaterials = () => {
     editedMaterial,
     newMaterial,
     isContentVisible,
-    materials,
+    materialsStore,
+    productsLinkedToMaterialId,
+    openModal,
     setEditMaterialId,
     setIsContentVisible,
     handleChange,
@@ -87,6 +104,8 @@ const useMaterials = () => {
     handleEditClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleCancel,
+    handleConfirm
   };
 };
 

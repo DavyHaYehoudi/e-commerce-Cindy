@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
+  categoryToRemove,
   deleteCategory,
   updateCategory,
 } from "../../../../features/admin/categorySlice";
@@ -17,6 +18,12 @@ const useCategoriesIndex = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const categories = useSelector((state) => state?.category?.data);
   const collections = useSelector((state) => state?.collection?.data);
+  const [openModal, setOpenModal] = useState(false);
+  const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
+    []
+  );
+  const categoryId = useSelector((state) => state?.category?.categoryId);
+  const productsStore = useSelector((state) => state?.product?.data);
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -38,12 +45,26 @@ const useCategoriesIndex = () => {
     }
   };
   const handleDeleteCategory = (categoryId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette categorie ?"
+    dispatch(categoryToRemove(categoryId));
+    const productsLinkedToCategoriesSearch = productsStore.filter(
+      (product) => product.category === categoryId
     );
-    if (confirmation) {
-      dispatch(deleteCategory({ categoryId, handleUnauthorized }));
+    if (productsLinkedToCategoriesSearch.length > 0) {
+      setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
     }
+    setOpenModal(true);
+  };
+  const handleConfirm = () => {
+    console.log("handleConfirm:");
+    dispatch(deleteCategory({ categoryId, handleUnauthorized }));
+    dispatch(categoryToRemove(""));
+    setProductsLinkedToCategories([]);
+    setOpenModal(false);
+  };
+  const handleCancel = () => {
+    dispatch(categoryToRemove(""));
+    setProductsLinkedToCategories([]);
+    setOpenModal(false);
   };
 
   const handleEditCategory = () => {
@@ -90,6 +111,8 @@ const useCategoriesIndex = () => {
     isContentVisible,
     categories,
     collections,
+    openModal,
+    productsLinkedToCategories,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,
@@ -101,6 +124,8 @@ const useCategoriesIndex = () => {
     handleSaveClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   };
 };
 

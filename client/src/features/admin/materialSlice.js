@@ -33,8 +33,12 @@ const deleteMaterial = createAsyncThunk(
 );
 const materialSlice = createSlice({
   name: "material",
-  initialState: { data: [], status: "idle", error: null },
-  reducers: {},
+  initialState: { data: [], materialId: "", status: "idle", error: null },
+  reducers: {
+    materialIdToRemove: (state, action) => {
+      state.materialId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMaterials.pending, (state) => {
@@ -80,4 +84,5 @@ const materialSlice = createSlice({
   },
 });
 export { fetchMaterials, addMaterial, deleteMaterial, updateMaterial };
+export const { materialIdToRemove } = materialSlice.actions;
 export default materialSlice.reducer;

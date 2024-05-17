@@ -2,6 +2,7 @@ import React from "react";
 import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
 import useCategoriesIndex from "../hooks/useCategoriesIndex";
+import Modal from "../shared/Modal";
 
 const Categories = () => {
   const {
@@ -12,6 +13,8 @@ const Categories = () => {
     isContentVisible,
     categories,
     collections,
+    openModal,
+    productsLinkedToCategories,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,
@@ -22,11 +25,13 @@ const Categories = () => {
     handleEditClick,
     handleSaveClick,
     handleKeyPress,
-    handleKeyPressEdit
+    handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   } = useCategoriesIndex();
 
   return (
-    <div className="admin-categories">
+    <div className="admin-categories configuration">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Categories</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
@@ -54,6 +59,13 @@ const Categories = () => {
             handleKeyPress={handleKeyPress}
           />
         </div>
+      )}
+      {openModal && (
+        <Modal
+          productsLinkedToCategories={productsLinkedToCategories}
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+        />
       )}
     </div>
   );

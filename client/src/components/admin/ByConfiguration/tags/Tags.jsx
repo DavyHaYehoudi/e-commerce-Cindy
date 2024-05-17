@@ -2,6 +2,7 @@ import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useTags from "../hooks/useTags";
+import Modal from "../shared/Modal";
 
 const Tags = () => {
   const {
@@ -10,6 +11,7 @@ const Tags = () => {
     newTagName,
     isContentVisible,
     tags,
+    openModal,
     setEditTagId,
     setEditedTagName,
     setNewTagName,
@@ -20,9 +22,11 @@ const Tags = () => {
     handleDeleteTag,
     handleEditClick,
     handleSaveClick,
+    handleConfirm,
+    handleCancel,
   } = useTags();
   return (
-    <div className="admin-tags">
+    <div className="admin-tags configuration">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Tags</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
@@ -97,6 +101,9 @@ const Tags = () => {
             </button>
           </div>
         </div>
+      )}
+      {openModal && (
+        <Modal handleConfirm={handleConfirm} handleCancel={handleCancel} />
       )}
     </div>
   );

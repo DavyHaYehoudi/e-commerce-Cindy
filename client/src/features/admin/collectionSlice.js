@@ -52,14 +52,8 @@ const collectionSlice = createSlice({
     collectionId: "",
   },
   reducers: {
-    addCollectionToRemove: (state, action) => {
+    collectionToRemove: (state, action) => {
       state.collectionId = action.payload;
-    },
-    resetStore: (state, payload) => {
-      state.collectionId = "";
-      state.alert = "";
-      state.categoriesToRemove = [];
-      state.productsToRemove = [];
     },
   },
   extraReducers: (builder) => {
@@ -107,5 +101,5 @@ const collectionSlice = createSlice({
   },
 });
 export { fetchCollections, addCollection, deleteCollection, updateCollection };
-export const { addCollectionToRemove, resetStore } = collectionSlice.actions;
+export const { collectionToRemove } = collectionSlice.actions;
 export default collectionSlice.reducer;

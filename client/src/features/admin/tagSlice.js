@@ -28,8 +28,12 @@ const deleteTag = createAsyncThunk(
 
 const tagSlice = createSlice({
   name: "tag",
-  initialState: { data: [], status: "idle", error: null },
-  reducers: {},
+  initialState: { data: [], tagId: "", status: "idle", error: null },
+  reducers: {
+    tagIdToRemove: (state, action) => {
+      state.tagId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTags.pending, (state) => {
@@ -73,4 +77,5 @@ const tagSlice = createSlice({
   },
 });
 export { fetchTags, addTag, deleteTag, updateTag };
+export const { tagIdToRemove } = tagSlice.actions;
 export default tagSlice.reducer;

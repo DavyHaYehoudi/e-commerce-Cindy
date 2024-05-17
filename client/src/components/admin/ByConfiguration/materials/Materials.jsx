@@ -2,6 +2,7 @@ import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useMaterials from "../hooks/useMaterials";
+import Modal from "../shared/Modal";
 
 const Materials = () => {
   const {
@@ -9,7 +10,9 @@ const Materials = () => {
     editedMaterial,
     newMaterial,
     isContentVisible,
-    materials,
+    materialsStore,
+    productsLinkedToMaterialId,
+    openModal,
     setEditMaterialId,
     setIsContentVisible,
     handleChange,
@@ -19,15 +22,17 @@ const Materials = () => {
     handleEditClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   } = useMaterials();
 
   return (
-    <div className="admin-materials">
+    <div className="admin-materials configuration">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Materials</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
           <ul>
-            {materials?.map((material) => (
+            {materialsStore?.map((material) => (
               <li key={material?._id} className="content-block-wrapper">
                 {editMaterialId === material?._id ? (
                   <div className="content-block">
@@ -131,6 +136,13 @@ const Materials = () => {
             </button>
           </div>
         </div>
+      )}
+      {openModal && (
+        <Modal
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+          productsLinkedToMaterialId={productsLinkedToMaterialId}
+        />
       )}
     </div>
   );

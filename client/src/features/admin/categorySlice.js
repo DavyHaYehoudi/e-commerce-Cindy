@@ -42,7 +42,7 @@ const deleteCategory = createAsyncThunk(
 
 const categoriesSlice = createSlice({
   name: "category",
-  initialState: { data: [], status: "idle", error: null },
+  initialState: { data: [], categoryId: "", status: "idle", error: null },
   reducers: {
     updateCategoriesByCollectionId: (state, action) => {
       const collectionId = action.payload;
@@ -57,6 +57,9 @@ const categoriesSlice = createSlice({
       state.data = state.data.filter(
         (category) => category.parentCollection.length > 0
       );
+    },
+    categoryToRemove: (state, action) => {
+      state.categoryId = action.payload;
     },
   },
 
@@ -105,5 +108,6 @@ const categoriesSlice = createSlice({
   },
 });
 export { fetchCategories, addCategory, deleteCategory, updateCategory };
-export const { updateCategoriesByCollectionId } = categoriesSlice.actions;
+export const { updateCategoriesByCollectionId, categoryToRemove } =
+  categoriesSlice.actions;
 export default categoriesSlice.reducer;

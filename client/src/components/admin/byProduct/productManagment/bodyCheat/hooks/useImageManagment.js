@@ -60,7 +60,6 @@ const useImageManagement = ({ data, currentAction, initialImageCount }) => {
         return urls.map(getPathFromStorageUrl);
       }
       const storagePaths = getPathsFromStorageUrls(deletedImagesUrls);
-      console.log("storagePaths:", storagePaths);
       return storagePaths;
     } catch (error) {
       console.error(
