@@ -3,7 +3,7 @@ import React from "react";
 const AddCategoryForm = ({
   newCategoryName,
   selectedParentCollections,
-  collections,
+  collectionsStore,
   handleAddCategory,
   setNewCategoryName,
   setSelectedParentCollections,
@@ -23,7 +23,7 @@ const AddCategoryForm = ({
       {newCategoryName && (
         <div className="content-category-checkbox">
           <p className="underline">Parenter à une collection :</p>
-          {collections?.map((collection) => (
+          {collectionsStore?.filter(collection=>!collection?.isArchived).map((collection) => (
             <label key={collection._id}>
               <input
                 type="checkbox"

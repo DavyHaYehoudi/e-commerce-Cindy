@@ -1140,7 +1140,7 @@ paths:
     post:
       tags:
         - material
-      summary: Create a material"
+      summary: Create a material
       description: This route, reserved for administrators, allows adding a new material to the list of available materials. Details of the material, such as its name and color, are provided in the POST request body.
       operationId: placeMaterialById
       requestBody:
@@ -1753,60 +1753,6 @@ paths:
                           type: string
                           example: Bracelet ancien, Ceinture vintage
     
-        '401':
-          description: Unauthorized - User is not authenticated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Token d'authentification manquant ou invalide.
-        '403':
-          description: Unauthorized - Admin is not authenticated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Accès refusé. Vous n'êtes pas un administrateur.
-        '404':
-          description: The ressource does not exist.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: La collection n'existe pas.
-      security:
-        - api_key: []
-  /collections/confirm-delete/{collectionId}:
-    delete:
-      tags:
-        - collection
-      summary: Delete a collection
-      description: This route, reserved for administrators, allows you to delete a collection after confirmation from the client.
-      operationId: deleteCollectionConfirm
-      parameters:
-        - name: collectionId
-          in: path
-          description: ID of the collection that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful deleted collection
-          content:
-            application/json:
-              schema:
-                type: string
-                example: collectionIdValue
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -2725,6 +2671,9 @@ components:
               isActive:
                 type: boolean
                 example: true
+              isArchived:
+                type: boolean
+                example: false
     ProductCreate:
       type: object
       required:
@@ -2802,6 +2751,9 @@ components:
                 type: integer
                 format: int16
                 example: 7
+              isArchived:
+                type: boolean
+                example: false
     ProductCreateResponse:
       type: object
       properties:
@@ -2877,6 +2829,9 @@ components:
                 type: integer
                 format: int16
                 example: 7
+              isArchived:
+                type: boolean
+                example: false
     Products:
       type: array
       items:
@@ -2957,6 +2912,9 @@ components:
           value:
             type: string
             example: "#FFFFFF"
+          isArchived:
+            type: boolean
+            example: false
     MaterialCreate:
       type: object
       required:
@@ -3019,6 +2977,9 @@ components:
             example: Pour un jour unique
           main_image:
             type: string
+          isArchived:
+            type: boolean
+            example: false
     CollectionCreate:
       type: object
       required:
@@ -3053,6 +3014,9 @@ components:
               example: 
                 - "65f2d2b24db605d02020061c"
                 - "65f2d2b24db605d02020061d"
+          isArchived:
+            type: boolean
+            example: false
     CategoryCreate:
       type: object
       required:

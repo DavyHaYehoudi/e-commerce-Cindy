@@ -7,6 +7,10 @@ const collectionSchema = new mongoose.Schema({
   //   type: String,
   //   required: true,
   // },
+  isArchived: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 collectionSchema.pre("validate", function (next) {

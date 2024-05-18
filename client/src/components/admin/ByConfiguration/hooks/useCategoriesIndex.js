@@ -17,7 +17,7 @@ const useCategoriesIndex = () => {
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const categories = useSelector((state) => state?.category?.data);
-  const collections = useSelector((state) => state?.collection?.data);
+  const collectionsStore = useSelector((state) => state?.collection?.data);
   const [openModal, setOpenModal] = useState(false);
   const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
     []
@@ -110,7 +110,7 @@ const useCategoriesIndex = () => {
     newCategoryName,
     isContentVisible,
     categories,
-    collections,
+    collectionsStore,
     openModal,
     productsLinkedToCategories,
     setEditCategoryId,

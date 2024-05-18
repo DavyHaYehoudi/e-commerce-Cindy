@@ -17,11 +17,12 @@ const useMaterials = () => {
   });
   const [openModal, setOpenModal] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const [productsLinkedToMaterialId, setProductsLinkedToMaterialId] =
-    useState([]);
+  const [productsLinkedToMaterialId, setProductsLinkedToMaterialId] = useState(
+    []
+  );
   const materialsStore = useSelector((state) => state?.material?.data);
-  const productsStore=useSelector(state=>state?.product?.data)
-  const materialId = useSelector(state=>state?.material?.materialId)
+  const productsStore = useSelector((state) => state?.product?.data);
+  const materialId = useSelector((state) => state?.material?.materialId);
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -44,23 +45,25 @@ const useMaterials = () => {
   };
 
   const handleDeleteMaterial = (materialId) => {
-    dispatch(materialIdToRemove(materialId))
-    const productsLinkedToMaterialSearch = productsStore.filter(product=>
-      product?.materials.some(material=>material._id===materialId)
-    )
-if(productsLinkedToMaterialSearch.length>0){
-  setProductsLinkedToMaterialId(productsLinkedToMaterialSearch)
-}
-setOpenModal(true)
+    dispatch(materialIdToRemove(materialId));
+    const productsLinkedToMaterialSearch = productsStore.filter((product) =>
+      product?.materials.some((material) => material._id === materialId)
+    );
+    if (productsLinkedToMaterialSearch.length > 0) {
+      setProductsLinkedToMaterialId(productsLinkedToMaterialSearch);
+    }
+    setOpenModal(true);
   };
-const handleConfirm =()=>{
-  dispatch(deleteMaterial({ materialId, handleUnauthorized }));
-  setOpenModal(false)
-}
-const handleCancel=()=>{
-  dispatch(materialIdToRemove(""))
-  setOpenModal(false)
-}
+  const handleConfirm = () => {
+    dispatch(deleteMaterial({ materialId, handleUnauthorized }));
+    setProductsLinkedToMaterialId([]);
+    setOpenModal(false);
+  };
+  const handleCancel = () => {
+    dispatch(materialIdToRemove(""));
+    setProductsLinkedToMaterialId([]);
+    setOpenModal(false);
+  };
   const handleEditMaterial = (materialId) => {
     if (
       editedMaterial.name.trim() !== "" ||
@@ -105,7 +108,7 @@ const handleCancel=()=>{
     handleKeyPress,
     handleKeyPressEdit,
     handleCancel,
-    handleConfirm
+    handleConfirm,
   };
 };
 

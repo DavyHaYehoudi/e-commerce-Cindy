@@ -37,7 +37,7 @@ const Collections = () => {
       {isContentVisible && (
         <div className=" admin-config-tab">
           <ul>
-            {collectionsStore?.map((collection) => (
+            {collectionsStore?.filter(collection=>!collection?.isArchived).map((collection) => (
               <li key={collection?._id} className="content-block-wrapper">
                 {editCollectionId === collection?._id ? (
                   <div className="content-block">

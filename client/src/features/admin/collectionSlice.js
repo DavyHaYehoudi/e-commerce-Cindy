@@ -35,11 +35,11 @@ const updateCollection = createAsyncThunk(
 
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
-  async ({ collectionId, handleUnauthorized }, { dispatch }) => {
+  async ({ collectionId, productSolded, handleUnauthorized }, { dispatch }) => {
     const url = `collections/${collectionId}`;
     await Del(url, null, handleUnauthorized);
     dispatch(updateCategoriesByCollectionId(collectionId));
-    return collectionId;
+    return { collectionId, productSolded };
   }
 );
 
@@ -89,10 +89,20 @@ const collectionSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
-        state.data = state.data.filter(
-          (collection) => collection._id !== action.payload
-        );
-        toast.success("La collection a bien été supprimée.");
+        const { collectionId, productSolded } = action.payload;
+        if (productSolded) {
+          state.data = state.data.map((collection) =>
+            collection._id === collectionId
+              ? { ...collection, isArchived: true }
+              : collection
+          );
+          toast.success("La collection a bien été archivée.");
+        } else {
+          state.data = state.data.filter(
+            (collection) => collection._id !== collectionId
+          );
+          toast.success("La collection a bien été supprimée.");
+        }
       })
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";
@@ -101,5 +111,6 @@ const collectionSlice = createSlice({
   },
 });
 export { fetchCollections, addCollection, deleteCollection, updateCollection };
-export const { collectionToRemove } = collectionSlice.actions;
+export const { collectionToRemove } =
+  collectionSlice.actions;
 export default collectionSlice.reducer;

@@ -1,5 +1,6 @@
 import Category from "../models/category.model.js";
 import Collection from "../models/collection.model.js";
+import OrderProducts from "../models/orderProducts.model.js";
 import Product from "../models/product/product.model.js";
 
 const collectionController = {
@@ -59,27 +60,38 @@ const collectionController = {
   deleteCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      console.log('collectionId:', collectionId)
-      // Supprimer la collection de toutes les catégories liées
-      await Category.updateMany(
-        { parentCollection: collectionId },
-        { $pull: { parentCollection: collectionId } }
-      );
-      // Vérifier si les catégories associées sont vides après la suppression
-      const emptyCategories = await Category.find({
-        parentCollection: { $size: 0 },
+      const products = await Product.find({ _collection: collectionId });
+      const orderProducts = await OrderProducts.findOne({
+        productsId: { $in: products.map((product) => product._id) },
       });
-      if (emptyCategories.length > 0) {
-        // Si des catégories sont devenues vides, supprimer les documents correspondants
-        await Category.deleteMany({
-          _id: { $in: emptyCategories.map((category) => category._id) },
+
+      if (products.length === 0 || !orderProducts) {
+        // Supprimer la collection de toutes les catégories liées
+        await Category.updateMany(
+          { parentCollection: collectionId },
+          { $pull: { parentCollection: collectionId } }
+        );
+        // Vérifier si les catégories associées sont vides après la suppression
+        const emptyCategories = await Category.find({
+          parentCollection: { $size: 0 },
         });
+        if (emptyCategories.length > 0) {
+          // Si des catégories sont devenues vides, supprimer les documents correspondants
+          await Category.deleteMany({
+            _id: { $in: emptyCategories.map((category) => category._id) },
+          });
+        }
+        // Supprimer la collection elle-même
+        await Collection.findByIdAndDelete(collectionId);
+
+        res.status(200).json({ collectionId });
+      } else {
+        await Collection.findOneAndUpdate(
+          { _id: collectionId },
+          { isArchived: true }
+        );
+        res.status(200).json({ message: "Collection archivée avec succès" });
       }
-      const deleteCollection = await Collection.findByIdAndDelete(collectionId);
-      if (!deleteCollection) {
-        return res.status(404).json({ message: "La collection n'existe pas." });
-      }
-      res.status(200).json({collectionId});
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });

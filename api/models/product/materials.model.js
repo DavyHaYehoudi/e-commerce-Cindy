@@ -49,6 +49,10 @@ const materialsSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
       },
+      isArchived: {
+        type: Boolean,
+        default: false,
+      },
 });
 materialsSchema.pre("validate", function (next) {
   const error = this.validateSync();

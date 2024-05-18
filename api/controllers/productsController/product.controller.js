@@ -82,7 +82,6 @@ const productController = {
       // Vérification si le produit a déjà été vendu
       const isProductSolded = await OrderProducts.find({ productsId: productId });
       if (isProductSolded.length > 0) {
-        // Mettre à jour le champ isArchived
         const updatedProduct = await Product.findByIdAndUpdate(
           productId,
           { isArchived: true },
@@ -90,7 +89,6 @@ const productController = {
         );
         return res.status(200).json(updatedProduct);
       } else {
-        // Supprimer le produit
         await Product.findByIdAndDelete(productId);
         return res.status(200).json({ message: "Produit supprimé avec succès." });
       }

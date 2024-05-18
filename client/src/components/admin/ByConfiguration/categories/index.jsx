@@ -12,7 +12,7 @@ const Categories = () => {
     newCategoryName,
     isContentVisible,
     categories,
-    collections,
+    collectionsStore,
     openModal,
     productsLinkedToCategories,
     setEditCategoryId,
@@ -41,7 +41,7 @@ const Categories = () => {
             setEditCategoryId={setEditCategoryId}
             editedCategoryName={editedCategoryName}
             selectedParentCollections={selectedParentCollections}
-            collections={collections}
+            collectionsStore={collectionsStore}
             handleEditClick={handleEditClick}
             handleDeleteCategory={handleDeleteCategory}
             handleSaveClick={handleSaveClick}
@@ -52,7 +52,7 @@ const Categories = () => {
           <AddCategoryForm
             newCategoryName={newCategoryName}
             selectedParentCollections={selectedParentCollections}
-            collections={collections}
+            collectionsStore={collectionsStore}
             handleAddCategory={handleAddCategory}
             setNewCategoryName={setNewCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}

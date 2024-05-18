@@ -21,7 +21,9 @@ const useCollections = () => {
   const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
     []
   );
+  const [productSolded, setProductSolded] = useState(null);
   const productsStore = useSelector((state) => state?.product?.data);
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const collectionId = useSelector((state) => state?.collection?.collectionId);
@@ -59,6 +61,14 @@ const useCollections = () => {
 
     if (productsLinkedToCollectionIdSearch.length > 0) {
       setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
+      const isProductInOrderProducts = orderProductsStore.find((orderProduct) =>
+        productsLinkedToCollectionIdSearch.some(
+          (p) => p._id === orderProduct.productsId
+        )
+      );
+      if (isProductInOrderProducts) {
+        setProductSolded(isProductInOrderProducts);
+      }
     }
     if (categoriesLinkedToCollectionIdSearch.length > 0) {
       setCategoriesLinkedToCollectionId(categoriesLinkedToCollectionIdSearch);
@@ -108,7 +118,9 @@ const useCollections = () => {
   };
 
   const handleConfirm = () => {
-    dispatch(deleteCollection({ collectionId, handleUnauthorized }));
+    dispatch(
+      deleteCollection({ collectionId, productSolded, handleUnauthorized })
+    );
     dispatch(collectionToRemove(""));
     setProductsLinkedToCollectionId([]);
     setCategoriesLinkedToCollectionId([]);

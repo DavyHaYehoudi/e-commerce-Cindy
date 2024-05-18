@@ -8,17 +8,17 @@ const CategoryItem = ({
   setEditCategoryId,
   editedCategoryName,
   selectedParentCollections,
-  collections,
   handleEditClick,
   handleDeleteCategory,
   handleSaveClick,
   setEditedCategoryName,
+  collectionsStore,
   setSelectedParentCollections,
   handleKeyPressEdit
 }) => {
   const parentCollection = (parentCollectionArray) => {
     return parentCollectionArray?.map((pcol) =>
-    collections?.find((collection) => collection?._id === pcol)
+      collectionsStore.filter(collection=>!collection?.isArchived).find((collection) => collection?._id === pcol)
   );
 };
   return (
@@ -36,9 +36,9 @@ const CategoryItem = ({
                 onKeyDown={handleKeyPressEdit}
               />
               <div className="content-category-checkbox">
-                {collections &&
-                  collections.length > 0 &&
-                  collections.map((collection) => (
+                {collectionsStore &&
+                  collectionsStore.length > 0 &&
+                  collectionsStore.filter(collection=>!collection?.isArchived).map((collection) => (
                     <label key={collection?._id}>
                       <input
                         type="checkbox"
@@ -90,7 +90,7 @@ const CategoryItem = ({
               <p>
                 <small>
                   {category?.parentCollection?.length > 1
-                    ? "Collections parentes :"
+                    ? "collections parentes :"
                     : "Collection parente :"}
                 </small>{" "}
               </p>

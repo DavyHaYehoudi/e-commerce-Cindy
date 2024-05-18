@@ -8,12 +8,14 @@ const Modal = ({
   productsLinkedToCategories = [],
   productsLinkedToMaterialId = [],
 }) => {
+  console.log('productsLinkedToMaterialId:', productsLinkedToMaterialId)
   const productsLinkedToCollectionIdNumber =
     productsLinkedToCollectionId.length;
   const categoriesLinkedToCollectionIdNumber =
     categoriesLinkedToCollectionId.length;
   const productsLinkedToCategoriesNumber = productsLinkedToCategories.length;
   const productsLinkedToMaterialIdNumber = productsLinkedToMaterialId.length;
+  console.log('productsLinkedToMaterialIdNumber:', productsLinkedToMaterialIdNumber)
 
   let alertProductLinkedToCollectionId = `Cette collection est reliée à ${productsLinkedToCollectionIdNumber} produit${
     productsLinkedToCollectionIdNumber > 1 ? "s." : "."
