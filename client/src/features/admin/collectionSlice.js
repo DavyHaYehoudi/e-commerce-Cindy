@@ -35,10 +35,15 @@ const updateCollection = createAsyncThunk(
 
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
-  async ({ collectionId, productSolded, handleUnauthorized }, { dispatch }) => {
+  async (
+    { collectionId, productSolded, collectionsStore, handleUnauthorized },
+    { dispatch }
+  ) => {
     const url = `collections/${collectionId}`;
     await Del(url, null, handleUnauthorized);
-    dispatch(updateCategoriesByCollectionId(collectionId));
+    dispatch(
+      updateCategoriesByCollectionId({ collectionId, collectionsStore })
+    );
     return { collectionId, productSolded };
   }
 );
@@ -111,6 +116,5 @@ const collectionSlice = createSlice({
   },
 });
 export { fetchCollections, addCollection, deleteCollection, updateCollection };
-export const { collectionToRemove } =
-  collectionSlice.actions;
+export const { collectionToRemove } = collectionSlice.actions;
 export default collectionSlice.reducer;

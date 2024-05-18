@@ -119,7 +119,12 @@ const useCollections = () => {
 
   const handleConfirm = () => {
     dispatch(
-      deleteCollection({ collectionId, productSolded, handleUnauthorized })
+      deleteCollection({
+        collectionId,
+        productSolded,
+        collectionsStore,
+        handleUnauthorized,
+      })
     );
     dispatch(collectionToRemove(""));
     setProductsLinkedToCollectionId([]);
