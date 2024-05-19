@@ -32,14 +32,14 @@ const collectionController = {
   updateCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      const { name } = req.body;
+      const updatedFields = req.body;
 
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
-        { name },
+        updatedFields,
         { new: true, runValidators: true }
       );
-
+ 
       if (!updateCollection) {
         return res.status(404).json({ message: "La collection n'existe pas." });
       }
@@ -85,13 +85,7 @@ const collectionController = {
         await Collection.findByIdAndDelete(collectionId);
 
         res.status(200).json({ collectionId });
-      } else {
-        await Collection.findOneAndUpdate(
-          { _id: collectionId },
-          { isArchived: true }
-        );
-        res.status(200).json({ message: "Collection archivée avec succès" });
-      }
+      } 
     } catch (error) {
       console.error("Error deleting collection:", error);
       res.status(500).json({ error: "Internal server error" });

@@ -4,6 +4,8 @@ import { MdEdit } from "react-icons/md";
 import useCollections from "../hooks/useCollections";
 import MainImage from "../../../../shared/MainImage";
 import Modal from "../shared/Modal";
+import ToggleButton from "../../../../shared/ToggleButton";
+import Archives from "../shared/Archives";
 
 const Collections = () => {
   const {
@@ -16,6 +18,8 @@ const Collections = () => {
     productsLinkedToCollectionId,
     categoriesLinkedToCollectionId,
     productsLinkedToCategories,
+    productSolded,
+    nameModal,
     handleCancel,
     handleConfirm,
     setEditCollectionId,
@@ -36,67 +40,83 @@ const Collections = () => {
       </h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
+          <div className="archives">
+            <ToggleButton
+              initialText="Afficher les collections archivées"
+              hiddenText="Fermer les archives"
+              buttonClass="account-btn toggle"
+              content={<Archives store={collectionsStore} parameter={'collection'} />}
+            />
+          </div>
           <ul>
-            {collectionsStore?.filter(collection=>!collection?.isArchived).map((collection) => (
-              <li key={collection?._id} className="content-block-wrapper">
-                {editCollectionId === collection?._id ? (
-                  <div className="content-block">
-                    <div className="content-block-left">
-                      <input
-                        type="search"
-                        className="account-input-config"
-                        value={editedCollectionName}
-                        autoFocus
-                        onChange={(e) =>
-                          setEditedCollectionName(e.target.value)
-                        }
-                        onKeyDown={(e) => handleKeyPressEdit(e, collection._id)}
-                      />
+            {collectionsStore
+              ?.filter((collection) => !collection?.isArchived)
+              .map((collection) => (
+                <li key={collection?._id} className="content-block-wrapper">
+                  {editCollectionId === collection?._id ? (
+                    <div className="content-block">
+                      <div className="content-block-left">
+                        <input
+                          type="search"
+                          className="account-input-config"
+                          value={editedCollectionName}
+                          autoFocus
+                          onChange={(e) =>
+                            setEditedCollectionName(e.target.value)
+                          }
+                          onKeyDown={(e) =>
+                            handleKeyPressEdit(e, collection._id)
+                          }
+                        />
+                      </div>
+                      <div className="content-block-main_image">
+                        <MainImage />
+                      </div>
+                      <div className="content-block-right">
+                        <button
+                          className="account-btn validate-btn"
+                          onClick={handleSaveClick}
+                        >
+                          Enregistrer
+                        </button>
+                        <button
+                          className="account-btn icon-trash"
+                          onClick={() => setEditCollectionId("")}
+                        >
+                          Annuler
+                        </button>
+                      </div>
                     </div>
-                    <div className="content-block-main_image">
-                      <MainImage />
-                    </div>
-                    <div className="content-block-right">
-                      <button
-                        className="account-btn validate-btn"
-                        onClick={handleSaveClick}
-                      >
-                        Enregistrer
-                      </button>
-                      <button
-                        className="account-btn icon-trash"
-                        onClick={() => setEditCollectionId("")}
-                      >
-                        Annuler
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className="content-block-left">{collection?.name}</div>
-                    <div className="content-block-main_image">
-                      <MainImage editable={false} />
-                    </div>
-                    <div className="content-block-right">
-                      <button
-                        className="icon-edit account-btn"
-                        onClick={() =>
-                          handleEditClick(collection?._id, collection?.name)
-                        }
-                      >
-                        <MdEdit />
-                      </button>
-                      <button
-                        className="icon-trash account-btn"
-                        onClick={() => handleDeleteCollection(collection?._id)}
-                      >
-                        <BsTrash />
-                      </button>
-                    </div>
-                  </>
-                )}
-              </li>
-            ))}
+                  ) : (
+                    <>
+                      <div className="content-block-left">
+                        {collection?.name}
+                      </div>
+                      <div className="content-block-main_image">
+                        <MainImage editable={false} />
+                      </div>
+                      <div className="content-block-right">
+                        <button
+                          className="icon-edit account-btn"
+                          onClick={() =>
+                            handleEditClick(collection?._id, collection?.name)
+                          }
+                        >
+                          <MdEdit />
+                        </button>
+                        <button
+                          className="icon-trash account-btn"
+                          onClick={() =>
+                            handleDeleteCollection(collection?._id)
+                          }
+                        >
+                          <BsTrash />
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
           </ul>
 
           <div className="adding">
@@ -131,6 +151,8 @@ const Collections = () => {
           productsLinkedToCollectionId={productsLinkedToCollectionId}
           categoriesLinkedToCollectionId={categoriesLinkedToCollectionId}
           productsLinkedToCategories={productsLinkedToCategories}
+          productSolded={productSolded}
+          name={nameModal}
         />
       )}
     </div>

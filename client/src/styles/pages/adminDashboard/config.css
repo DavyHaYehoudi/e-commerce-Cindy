@@ -199,7 +199,12 @@
     border: 1px solid #888;
     width: 30%;
 }
-
+.configuration .configuration-confirm-action .title{
+    text-transform: uppercase;
+    text-align: center;
+    border: 1px dotted var(--dark);
+    margin: 20px;
+}
 .configuration .confirm-action-button {
     color: whitesmoke;
     padding: 10px 20px;
@@ -239,4 +244,21 @@
 
 .configuration .configuration-confirm-action ul {
     text-align: start;
+}
+
+/* *********************** ARCHIVES *********************** */
+.configuration .archives {
+    margin: 10px;
+}
+.configuration .archives-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border-bottom: 1px var(--dark) solid;
+}
+.configuration .archives-container button {
+    background: var(--primary);
+    color: whitesmoke;
 }

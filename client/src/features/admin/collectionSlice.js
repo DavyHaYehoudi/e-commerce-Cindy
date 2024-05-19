@@ -23,20 +23,30 @@ const addCollection = createAsyncThunk(
 
 const updateCollection = createAsyncThunk(
   "collection/updateCollection",
-  async ({ collectionId, name, handleUnauthorized }) => {
-    return await Put(
+  async ({
+    collectionId,
+    productSolded,
+    formData,
+    restore = false,
+    handleUnauthorized,
+  },{ dispatch }) => {
+    await Put(
       `collections/${collectionId}`,
-      { name },
+      formData,
       null,
       handleUnauthorized
     );
+    dispatch(
+      updateCategoriesByCollectionId({ collectionId })
+    );
+    return { collectionId, productSolded, formData, restore };
   }
 );
 
 const deleteCollection = createAsyncThunk(
   "collection/deleteCollection",
   async (
-    { collectionId, productSolded, collectionsStore, handleUnauthorized },
+    { collectionId, collectionsStore, handleUnauthorized },
     { dispatch }
   ) => {
     const url = `collections/${collectionId}`;
@@ -44,7 +54,7 @@ const deleteCollection = createAsyncThunk(
     dispatch(
       updateCategoriesByCollectionId({ collectionId, collectionsStore })
     );
-    return { collectionId, productSolded };
+    return collectionId;
   }
 );
 
@@ -84,30 +94,58 @@ const collectionSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateCollection.fulfilled, (state, action) => {
-        toast.success("La collection a bien été modifiée 😀");
-        state.data = state.data.map((collection) =>
-          collection._id === action.payload._id ? action.payload : collection
+        const { collectionId, productSolded, formData, restore } =
+          action.payload;
+
+        // Trouver l'index de la collection à mettre à jour dans le state
+        const updatedCollectionIndex = state.data.findIndex(
+          (collection) => collection._id === collectionId
         );
+
+        if (updatedCollectionIndex !== -1) {
+          // Créer une nouvelle copie de la collection avec les modifications
+          const updatedCollection = {
+            ...state.data[updatedCollectionIndex],
+            ...formData,
+          };
+
+          // Créer une nouvelle copie du state avec la collection mise à jour
+          const newState = {
+            ...state,
+            data: [
+              ...state.data.slice(0, updatedCollectionIndex),
+              updatedCollection,
+              ...state.data.slice(updatedCollectionIndex + 1),
+            ],
+          };
+
+          // Si productSolded est true, marquer la collection comme archivée
+          if (productSolded) {
+            updatedCollection.isArchived = true;
+            toast.success("La collection a bien été archivée.");
+          } else if (restore) {
+            toast.success("La collection a bien été restaurée.");
+          } else {
+            toast.success("La collection a bien été modifiée 😀");
+          }
+
+          return newState;
+        }
+
+        // Si la collection n'est pas trouvée, retourner simplement le state inchangé
+        return state;
       })
+
       .addCase(updateCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
       .addCase(deleteCollection.fulfilled, (state, action) => {
-        const { collectionId, productSolded } = action.payload;
-        if (productSolded) {
-          state.data = state.data.map((collection) =>
-            collection._id === collectionId
-              ? { ...collection, isArchived: true }
-              : collection
-          );
-          toast.success("La collection a bien été archivée.");
-        } else {
-          state.data = state.data.filter(
-            (collection) => collection._id !== collectionId
-          );
-          toast.success("La collection a bien été supprimée.");
-        }
+        const collectionId = action.payload;
+        state.data = state.data.filter(
+          (collection) => collection._id !== collectionId
+        );
+        toast.success("La collection a bien été supprimée.");
       })
       .addCase(deleteCollection.rejected, (state, action) => {
         state.status = "failed";

@@ -11,10 +11,12 @@ const Categories = () => {
     selectedParentCollections,
     newCategoryName,
     isContentVisible,
-    categories,
+    categoriesStore,
     collectionsStore,
     openModal,
     productsLinkedToCategories,
+    productSolded,
+    nameModal,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,
@@ -36,7 +38,7 @@ const Categories = () => {
       {isContentVisible && (
         <div className=" admin-config-tab">
           <CategoriesList
-            categories={categories}
+            categoriesStore={categoriesStore}
             editCategoryId={editCategoryId}
             setEditCategoryId={setEditCategoryId}
             editedCategoryName={editedCategoryName}
@@ -65,6 +67,8 @@ const Categories = () => {
           productsLinkedToCategories={productsLinkedToCategories}
           handleCancel={handleCancel}
           handleConfirm={handleConfirm}
+          productSolded={productSolded}
+          name={nameModal}
         />
       )}
     </div>

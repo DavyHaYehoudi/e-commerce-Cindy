@@ -16,14 +16,20 @@ const useCategoriesIndex = () => {
   );
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const categories = useSelector((state) => state?.category?.data);
+  const categoriesStore = useSelector((state) => state?.category?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const [openModal, setOpenModal] = useState(false);
+  const [productSolded, setProductSolded] = useState([]);
   const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
     []
   );
   const categoryId = useSelector((state) => state?.category?.categoryId);
   const productsStore = useSelector((state) => state?.product?.data);
+  const nameModal = categoriesStore.find(
+    (category) => category._id === categoryId
+  )?.name;
+
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -51,6 +57,14 @@ const useCategoriesIndex = () => {
     );
     if (productsLinkedToCategoriesSearch.length > 0) {
       setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
+      const isProductInOrderProducts = orderProductsStore.filter((orderProduct) =>
+        productsLinkedToCategoriesSearch.some(
+          (p) => p._id === orderProduct.productsId
+        )
+      );
+      if (isProductInOrderProducts) {
+        setProductSolded(isProductInOrderProducts);
+      }
     }
     setOpenModal(true);
   };
@@ -59,11 +73,13 @@ const useCategoriesIndex = () => {
     dispatch(deleteCategory({ categoryId, handleUnauthorized }));
     dispatch(categoryToRemove(""));
     setProductsLinkedToCategories([]);
+    setProductSolded([])
     setOpenModal(false);
   };
   const handleCancel = () => {
     dispatch(categoryToRemove(""));
     setProductsLinkedToCategories([]);
+    setProductSolded([])
     setOpenModal(false);
   };
 
@@ -109,10 +125,12 @@ const useCategoriesIndex = () => {
     selectedParentCollections,
     newCategoryName,
     isContentVisible,
-    categories,
+    categoriesStore,
     collectionsStore,
     openModal,
     productsLinkedToCategories,
+    productSolded,
+    nameModal,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,

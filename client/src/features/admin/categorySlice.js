@@ -45,41 +45,14 @@ const categoriesSlice = createSlice({
   initialState: { data: [], categoryId: "", status: "idle", error: null },
   reducers: {
     updateCategoriesByCollectionId: (state, action) => {
-      const { collectionId, collectionsStore } = action.payload;
+      const { collectionId } = action.payload;
 
-      // Mise à jour de chaque catégorie
-      const updatedCategories = state.map(category => {
-        // Vérifie si la catégorie contient la collectionId dans parentCollection
-        const indexInParentCollection = category.parentCollection.indexOf(collectionId);
-        const isCategoryEmpty = category.parentCollection.length === 0;
-    
-        if (indexInParentCollection !== -1) {
-          // Si la collectionId est trouvée dans parentCollection, la supprimer
-          category.parentCollection.splice(indexInParentCollection, 1);
-    
-          // Supprimer également d'autres collections archivées
-          category.parentCollection = category.parentCollection.filter(id => {
-            // Vérifie si la collection est archivée
-            const collection = collectionsStore.find(item => item._id === id);
-            return collection && !collection.isArchived;
-          });
-        }
-    
-        // Vérifie si la catégorie est vide après suppression
-        if (category.parentCollection.length === 0 && !isCategoryEmpty) {
-          // Si la catégorie est vide et n'était pas déjà vide, ne la mettez pas à jour
-          return null;
-        }
-    
-        return category;
-      });
-    
-      // Filtrer les catégories nulles (celles qui sont devenues vides)
-      const filteredCategories = updatedCategories.filter(category => category !== null);
-    
-      // Mettre à jour le state
-      return filteredCategories;
+      state.data = state.data.map(category => ({
+        ...category,
+        parentCollection: category.parentCollection.filter(pc => pc !== collectionId)
+      }));
     },
+    
     categoryToRemove: (state, action) => {
       state.categoryId = action.payload;
     },

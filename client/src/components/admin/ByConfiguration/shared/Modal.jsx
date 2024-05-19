@@ -7,15 +7,16 @@ const Modal = ({
   categoriesLinkedToCollectionId = [],
   productsLinkedToCategories = [],
   productsLinkedToMaterialId = [],
+  productSolded,
+  name
 }) => {
-  console.log('productsLinkedToMaterialId:', productsLinkedToMaterialId)
   const productsLinkedToCollectionIdNumber =
     productsLinkedToCollectionId.length;
   const categoriesLinkedToCollectionIdNumber =
     categoriesLinkedToCollectionId.length;
   const productsLinkedToCategoriesNumber = productsLinkedToCategories.length;
   const productsLinkedToMaterialIdNumber = productsLinkedToMaterialId.length;
-  console.log('productsLinkedToMaterialIdNumber:', productsLinkedToMaterialIdNumber)
+  const productSoldedNumber = productSolded.length;
 
   let alertProductLinkedToCollectionId = `Cette collection est reliée à ${productsLinkedToCollectionIdNumber} produit${
     productsLinkedToCollectionIdNumber > 1 ? "s." : "."
@@ -42,20 +43,27 @@ const Modal = ({
         <div className="configuration-confirm-action">
           <div className="block">
             <div className="alert">
+              <p className="title"> {name} </p>
               {productsLinkedToCollectionIdNumber > 0 ||
               productsLinkedToCategoriesNumber > 0 ||
               productsLinkedToMaterialIdNumber > 0 ? (
                 <p>
-                  ⚠️ Il y a des produits reliés. <br />
+                  <br />
+                  {productSoldedNumber>0
+                    ? `⚠️ Des produits déjà vendus sont reliés (${productSoldedNumber}), le paramètre ne sera pas supprimé. Il sera archivé et vous pourrez le restaurer par la suite, au besoin.`
+                    : `⚠️  Il y a des produits reliés.`}
                 </p>
               ) : (
-                <p>Etes-vous sûr de vouloir supprimer ?</p>
+                <p>
+                  Etes-vous sûr de vouloir{" "}
+                  {productSoldedNumber>0 ? "archiver" : "supprimer"} ?
+                </p>
               )}
 
               {categoriesLinkedToCollectionIdNumber > 0 && (
                 <p>
-                  ⚠️ Les catégories associées à cette collection seront
-                  supprimées.
+                  ⚠️ Les catégories associées à cette collection en seront
+                  impactées .
                 </p>
               )}
               <br />

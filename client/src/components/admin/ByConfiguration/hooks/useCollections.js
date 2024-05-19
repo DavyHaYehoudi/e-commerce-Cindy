@@ -21,12 +21,15 @@ const useCollections = () => {
   const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
     []
   );
-  const [productSolded, setProductSolded] = useState(null);
+  const [productSolded, setProductSolded] = useState([]);
   const productsStore = useSelector((state) => state?.product?.data);
   const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const collectionId = useSelector((state) => state?.collection?.collectionId);
+  const nameModal = collectionsStore.find(
+    (collection) => collection._id === collectionId
+  )?.name;
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
 
@@ -61,10 +64,11 @@ const useCollections = () => {
 
     if (productsLinkedToCollectionIdSearch.length > 0) {
       setProductsLinkedToCollectionId(productsLinkedToCollectionIdSearch);
-      const isProductInOrderProducts = orderProductsStore.find((orderProduct) =>
-        productsLinkedToCollectionIdSearch.some(
-          (p) => p._id === orderProduct.productsId
-        )
+      const isProductInOrderProducts = orderProductsStore.filter(
+        (orderProduct) =>
+          productsLinkedToCollectionIdSearch.some(
+            (p) => p._id === orderProduct.productsId
+          )
       );
       if (isProductInOrderProducts) {
         setProductSolded(isProductInOrderProducts);
@@ -81,10 +85,11 @@ const useCollections = () => {
 
   const handleEditCollection = (collectionId) => {
     if (editedCollectionName.trim() !== "") {
+      const formData = { name: editedCollectionName };
       dispatch(
         updateCollection({
           collectionId,
-          name: editedCollectionName,
+          formData,
           handleUnauthorized,
         })
       );
@@ -115,21 +120,34 @@ const useCollections = () => {
     setProductsLinkedToCollectionId([]);
     setCategoriesLinkedToCollectionId([]);
     setProductsLinkedToCategories([]);
+    setProductSolded([]);
   };
 
   const handleConfirm = () => {
-    dispatch(
-      deleteCollection({
-        collectionId,
-        productSolded,
-        collectionsStore,
-        handleUnauthorized,
-      })
-    );
+    if (productSolded.length > 0) {
+      const formData = { isArchived: true };
+      dispatch(
+        updateCollection({
+          collectionId,
+          productSolded,
+          formData,
+          handleUnauthorized,
+        })
+      );
+    } else {
+      dispatch(
+        deleteCollection({
+          collectionId,
+          collectionsStore,
+          handleUnauthorized,
+        })
+      );
+    }
     dispatch(collectionToRemove(""));
     setProductsLinkedToCollectionId([]);
     setCategoriesLinkedToCollectionId([]);
     setProductsLinkedToCategories([]);
+    setProductSolded([]);
     setOpenModal(false);
   };
 
@@ -143,6 +161,8 @@ const useCollections = () => {
     productsLinkedToCollectionId,
     categoriesLinkedToCollectionId,
     productsLinkedToCategories,
+    productSolded,
+    nameModal,
     handleCancel,
     handleConfirm,
     setEditCollectionId,
