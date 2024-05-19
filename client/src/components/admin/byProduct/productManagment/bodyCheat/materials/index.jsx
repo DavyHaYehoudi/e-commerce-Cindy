@@ -44,7 +44,7 @@ const MaterialsSelect = ({
         </div>
       )}
       {showMaterials ? (
-        materialsStore.map((material, index) => (
+        materialsStore.filter((material) => !material?.isArchived).map((material, index) => (
           <MaterialsRow
             key={index}
             data={data}

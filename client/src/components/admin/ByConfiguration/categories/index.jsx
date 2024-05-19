@@ -39,12 +39,14 @@ const Categories = () => {
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Categories</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
-                  <div className="archives">
+          <div className="archives">
             <ToggleButton
               initialText="Afficher les catégories archivées"
               hiddenText="Fermer les archives"
               buttonClass="account-btn toggle"
-              content={<Archives store={categoriesStore} parameter={'catégorie'} />}
+              content={
+                <Archives store={categoriesStore} parameter={"category"} />
+              }
             />
           </div>
           <CategoriesList

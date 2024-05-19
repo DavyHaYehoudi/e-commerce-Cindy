@@ -3,6 +3,8 @@ import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import useMaterials from "../hooks/useMaterials";
 import Modal from "../shared/Modal";
+import ToggleButton from "../../../../shared/ToggleButton";
+import Archives from "../shared/Archives";
 
 const Materials = () => {
   const {
@@ -13,6 +15,8 @@ const Materials = () => {
     materialsStore,
     productsLinkedToMaterialId,
     openModal,
+    productSolded,
+    nameModal,
     setEditMaterialId,
     setIsContentVisible,
     handleChange,
@@ -31,8 +35,18 @@ const Materials = () => {
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Materials</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
+          <div className="archives">
+            <ToggleButton
+              initialText="Afficher les matériaux archivés"
+              hiddenText="Fermer les archives"
+              buttonClass="account-btn toggle"
+              content={
+                <Archives store={materialsStore} parameter={"material"} />
+              }
+            />
+          </div>
           <ul>
-            {materialsStore?.map((material) => (
+            {materialsStore?.filter((material) => !material?.isArchived).map((material) => (
               <li key={material?._id} className="content-block-wrapper">
                 {editMaterialId === material?._id ? (
                   <div className="content-block">
@@ -142,6 +156,8 @@ const Materials = () => {
           handleCancel={handleCancel}
           handleConfirm={handleConfirm}
           productsLinkedToMaterialId={productsLinkedToMaterialId}
+          productSolded={productSolded}
+          name={nameModal}
         />
       )}
     </div>

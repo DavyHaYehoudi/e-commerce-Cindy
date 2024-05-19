@@ -52,7 +52,7 @@ const categoryController = {
         res.status(500).json({ message: error.message });
       }
     }
-  },
+  },  
 
   deleteCategory: async (req, res) => {
     try {

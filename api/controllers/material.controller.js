@@ -29,11 +29,11 @@ const materialController = {
   updateMaterials: async (req, res) => {
     try {
       const { materialId } = req.params;
-      const { name, value } = req.body;
+      const updatedFields = req.body;
 
       const updateMaterial = await Material.findByIdAndUpdate(
         materialId,
-        { name, value },
+        updatedFields,
         { new: true, runValidators: true }
       );
 

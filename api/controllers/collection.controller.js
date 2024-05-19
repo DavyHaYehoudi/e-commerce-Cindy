@@ -32,7 +32,7 @@ const collectionController = {
   updateCollection: async (req, res) => {
     try {
       const { collectionId } = req.params;
-      const v = req.body;
+      const updatedFields = req.body;
 
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
@@ -55,7 +55,7 @@ const collectionController = {
         res.status(500).json({ message: error.message });
       }
     }
-  },
+  },  
 
   deleteCollection: async (req, res) => {
     try {

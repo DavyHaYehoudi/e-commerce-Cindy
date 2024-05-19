@@ -14,14 +14,15 @@ const addMaterial = createAsyncThunk(
 
 const updateMaterial = createAsyncThunk(
   "material/updateMaterial",
-  async ({ data, handleUnauthorized }) => {
-    const { materialId, name, value } = data;
-    return await Patch(
-      `materials/${materialId}`,
-      { name, value },
-      null,
-      handleUnauthorized
-    );
+  async ({
+    materialId,
+    formData,
+    restore = false,
+    productSolded,
+    handleUnauthorized,
+  }) => {
+    await Patch(`materials/${materialId}`, formData, null, handleUnauthorized);
+    return { materialId, productSolded, formData, restore };
   }
 );
 const deleteMaterial = createAsyncThunk(
@@ -62,10 +63,45 @@ const materialSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateMaterial.fulfilled, (state, action) => {
-        toast.success("Le matériau a bien été modifié 😀");
-        state.data = state.data.map((material) =>
-          material._id === action.payload._id ? action.payload : material
+        const { materialId, productSolded, formData, restore } = action.payload;
+
+        // Trouver l'index du matériau à mettre à jour dans le state
+        const updatedMaterialIndex = state.data.findIndex(
+          (material) => material._id === materialId
         );
+
+        if (updatedMaterialIndex !== -1) {
+          // Créer une nouvelle copie du matériau avec les modifications
+          const updatedMaterial = {
+            ...state.data[updatedMaterialIndex],
+            ...formData,
+          };
+
+          // Créer une nouvelle copie du state avec le matériau mise à jour
+          const newState = {
+            ...state,
+            data: [
+              ...state.data.slice(0, updatedMaterialIndex),
+              updatedMaterial,
+              ...state.data.slice(updatedMaterialIndex + 1),
+            ],
+          };
+
+          // Si productSolded est true, marquer le matériau comme archivé
+          if (productSolded) {
+            updatedMaterial.isArchived = true;
+            toast.success("Le matériau a bien été archivé.");
+          } else if (restore) {
+            toast.success("Le matériau a bien été restauré.");
+          } else {
+            toast.success("Le matériau a bien été modifié 😀");
+          }
+
+          return newState;
+        }
+
+        // Si le matériau n'est pas trouvé, retourner simplement le state inchangé
+        return state;
       })
       .addCase(updateMaterial.rejected, (state, action) => {
         state.status = "failed";
