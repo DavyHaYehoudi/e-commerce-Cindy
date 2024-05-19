@@ -16,7 +16,7 @@ const CategoriesList = ({ categoriesStore, collectionsStore, ...props }) => {
 
   return (
     <ul>
-      {filteredCategories?.map((category) => (
+      {filteredCategories?.filter((category) => !category?.isArchived).map((category) => (
         <CategoryItem
           key={category?._id}
           category={category}

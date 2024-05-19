@@ -3,6 +3,8 @@ import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
 import useCategoriesIndex from "../hooks/useCategoriesIndex";
 import Modal from "../shared/Modal";
+import ToggleButton from "../../../../shared/ToggleButton";
+import Archives from "../shared/Archives";
 
 const Categories = () => {
   const {
@@ -37,6 +39,14 @@ const Categories = () => {
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Categories</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
+                  <div className="archives">
+            <ToggleButton
+              initialText="Afficher les catégories archivées"
+              hiddenText="Fermer les archives"
+              buttonClass="account-btn toggle"
+              content={<Archives store={categoriesStore} parameter={'catégorie'} />}
+            />
+          </div>
           <CategoriesList
             categoriesStore={categoriesStore}
             editCategoryId={editCategoryId}

@@ -57,10 +57,11 @@ const useCategoriesIndex = () => {
     );
     if (productsLinkedToCategoriesSearch.length > 0) {
       setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
-      const isProductInOrderProducts = orderProductsStore.filter((orderProduct) =>
-        productsLinkedToCategoriesSearch.some(
-          (p) => p._id === orderProduct.productsId
-        )
+      const isProductInOrderProducts = orderProductsStore.filter(
+        (orderProduct) =>
+          productsLinkedToCategoriesSearch.some(
+            (p) => p._id === orderProduct.productsId
+          )
       );
       if (isProductInOrderProducts) {
         setProductSolded(isProductInOrderProducts);
@@ -69,27 +70,47 @@ const useCategoriesIndex = () => {
     setOpenModal(true);
   };
   const handleConfirm = () => {
-    console.log("handleConfirm:");
-    dispatch(deleteCategory({ categoryId, handleUnauthorized }));
+    if (productSolded.length > 0) {
+      const formData = { isArchived: true };
+      dispatch(
+        updateCategory({
+          categoryId,
+          productSolded,
+          formData,
+          handleUnauthorized,
+        })
+      );
+    } else {
+      dispatch(
+        deleteCategory({
+          categoryId,
+          handleUnauthorized,
+        })
+      );
+    }
+
     dispatch(categoryToRemove(""));
     setProductsLinkedToCategories([]);
-    setProductSolded([])
+    setProductSolded([]);
     setOpenModal(false);
   };
   const handleCancel = () => {
     dispatch(categoryToRemove(""));
     setProductsLinkedToCategories([]);
-    setProductSolded([])
+    setProductSolded([]);
     setOpenModal(false);
   };
 
   const handleEditCategory = () => {
     if (editedCategoryName.trim() !== "") {
+      const formData = {
+        name: editedCategoryName,
+        parentCollection: selectedParentCollections,
+      };
       dispatch(
         updateCategory({
           categoryId: editCategoryId,
-          name: editedCategoryName,
-          parentCollection: selectedParentCollections,
+          formData,
           handleUnauthorized,
         })
       );
