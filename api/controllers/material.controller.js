@@ -1,4 +1,5 @@
 import Material from "../models/material.model.js";
+import Product from "../models/product/product.model.js";
 
 const materialController = {
   getAllMaterials: async (req, res) => {
@@ -62,6 +63,11 @@ const materialController = {
       if (!deleteMaterial) {
         return res.status(404).json({ message: "Le matériau n'existe pas." });
       }
+      // Mettre à jour les produits pour supprimer le matériau de leur liste de matériaux
+      await Product.updateMany(
+        { "materials._id": materialId },
+        { $pull: { materials: { _id: materialId } } }
+      );
 
       res.status(200).json(deleteMaterial);
     } catch (error) {
