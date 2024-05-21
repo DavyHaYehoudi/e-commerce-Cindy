@@ -11,34 +11,30 @@ const fetchCollections = createAsyncThunk(
 );
 const addCollection = createAsyncThunk(
   "collection/addCollection",
-  async ({ newCollectionName, handleUnauthorized }) => {
-    return await Post(
-      "collections",
-      { name: newCollectionName },
-      null,
-      handleUnauthorized
-    );
+  async ({ formData, handleUnauthorized }) => {
+    return await Post("collections", formData, null, handleUnauthorized);
   }
 );
 
 const updateCollection = createAsyncThunk(
   "collection/updateCollection",
-  async ({
-    collectionId,
-    productSolded,
-    formData,
-    restore = false,
-    handleUnauthorized,
-  },{ dispatch }) => {
+  async (
+    {
+      collectionId,
+      productSolded,
+      formData,
+      restore = false,
+      handleUnauthorized,
+    },
+    { dispatch }
+  ) => {
     await Put(
       `collections/${collectionId}`,
       formData,
       null,
       handleUnauthorized
     );
-    dispatch(
-      updateCategoriesByCollectionId({ collectionId })
-    );
+    dispatch(updateCategoriesByCollectionId({ collectionId }));
     return { collectionId, productSolded, formData, restore };
   }
 );
@@ -65,10 +61,18 @@ const collectionSlice = createSlice({
     status: "idle",
     error: null,
     collectionId: "",
+    illustration: "",
+    collectionIdEdit: "",
   },
   reducers: {
     collectionToRemove: (state, action) => {
       state.collectionId = action.payload;
+    },
+    updateIllustration: (state, action) => {
+      state.illustration = action.payload;
+    },
+    updateCollectionIdEdit: (state, action) => {
+      state.collectionIdEdit = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -135,7 +139,6 @@ const collectionSlice = createSlice({
         // Si la collection n'est pas trouvée, retourner simplement le state inchangé
         return state;
       })
-
       .addCase(updateCollection.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
@@ -154,5 +157,9 @@ const collectionSlice = createSlice({
   },
 });
 export { fetchCollections, addCollection, deleteCollection, updateCollection };
-export const { collectionToRemove } = collectionSlice.actions;
+export const {
+  collectionToRemove,
+  updateIllustration,
+  updateCollectionIdEdit,
+} = collectionSlice.actions;
 export default collectionSlice.reducer;

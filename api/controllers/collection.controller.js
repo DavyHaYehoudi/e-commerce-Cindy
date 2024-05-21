@@ -15,8 +15,8 @@ const collectionController = {
   },
   createCollection: async (req, res) => {
     try {
-      const { name } = req.body;
-      const collection = await Collection.create({ name });
+      const fields = req.body;
+      const collection = await Collection.create(fields);
       res.status(201).json(collection);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
@@ -30,13 +30,15 @@ const collectionController = {
     }
   },
   updateCollection: async (req, res) => {
-    try {
+    try { 
       const { collectionId } = req.params;
+      console.log('collectionId:', collectionId)
       const updatedFields = req.body;
+      console.log('updatedFields:', updatedFields)
 
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,
-        updatedFields,
+        updatedFields, 
         { new: true, runValidators: true }
       );
  
@@ -94,3 +96,4 @@ const collectionController = {
 };
 
 export default collectionController;
+    

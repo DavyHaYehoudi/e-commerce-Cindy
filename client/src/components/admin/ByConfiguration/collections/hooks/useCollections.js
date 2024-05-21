@@ -5,8 +5,12 @@ import {
   collectionToRemove,
   deleteCollection,
   updateCollection,
-} from "../../../../features/admin/collectionSlice";
-import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
+} from "../../../../../features/admin/collectionSlice";
+import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
+import { Get } from "../../../../../services/httpMethods";
+import { generateFilePath } from "../../../../../helpers/utils/generateFilePath";
+import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../../../../firebase";
 
 const useCollections = () => {
   const [editCollectionId, setEditCollectionId] = useState(null);
@@ -33,10 +37,29 @@ const useCollections = () => {
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
 
-  const handleAddCollection = () => {
-    if (newCollectionName.trim() !== "") {
-      dispatch(addCollection({ newCollectionName, handleUnauthorized }));
-      setNewCollectionName("");
+  const main_image = useSelector((state) => state?.collection?.illustration);
+  const collectionIdEdit = useSelector(state=>state?.collection?.collectionIdEdit)
+
+  const handleAddCollection = async ({
+    mainImageCreate,
+    setMainImageCreate,
+  }) => {
+    if (newCollectionName.trim() !== "" && mainImageCreate) {
+      try {
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        const path = generateFilePath(mainImageCreate, "collections/");
+        const storageRef = ref(storage, path);
+        await uploadBytes(storageRef, mainImageCreate);
+        setMainImageCreate(null);
+        const formData = { name: newCollectionName, main_image: path };
+        dispatch(addCollection({ formData, handleUnauthorized }));
+        setNewCollectionName("");
+      } catch (error) {
+        console.error(
+          "Erreur ajout illustration collection dans firebase storage :",
+          error
+        );
+      }
     }
   };
   const handleKeyPress = (event) => {
@@ -44,7 +67,6 @@ const useCollections = () => {
       handleAddCollection();
     }
   };
-
   const handleDeleteCollection = (collectionId) => {
     dispatch(collectionToRemove(collectionId));
     const productsLinkedToCollectionIdSearch = productsStore.filter(
@@ -83,12 +105,48 @@ const useCollections = () => {
     setOpenModal(true);
   };
 
-  const handleEditCollection = (collectionId) => {
+  const handleEditCollection = async ({
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
     if (editedCollectionName.trim() !== "") {
-      const formData = { name: editedCollectionName };
+      const formData = {
+        name: editedCollectionName,
+        main_image,
+      };
+
+      try {
+        // Vérifier le token avant d'interagir avec Firebase Storage
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        if (addIllustrationToStorage && collectionIdEdit) {
+          const { path, file } = addIllustrationToStorage;
+          const storageRef = ref(storage, path);
+          await uploadBytes(storageRef, file);
+          dispatch(
+            updateCollection({ formData, collectionId:collectionIdEdit, handleUnauthorized })
+          );
+          console.log("Image illustration envoyée avec succès !");
+        }
+        if (removeIllustrationToStorage) {
+          const imageUrl = removeIllustrationToStorage;
+          const imageRef = ref(storage, imageUrl);
+          await deleteObject(imageRef);
+          console.log("Image illustration supprimée avec succès !");
+        }
+      } catch (error) {
+        console.error(
+          "Erreur lors de la mise à jour de l'image avatar dans firebase storage :",
+          error
+        );
+      } finally {
+        setAddIllustrationToStorage(null);
+        setRemoveIllustrationToStorage(null);
+      }
       dispatch(
         updateCollection({
-          collectionId,
+          collectionId: editCollectionId,
           formData,
           handleUnauthorized,
         })
@@ -108,9 +166,19 @@ const useCollections = () => {
     setEditedCollectionName(collectionName);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = ({
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
     if (editedCollectionName.trim() !== "") {
-      handleEditCollection(editCollectionId);
+      handleEditCollection({
+        addIllustrationToStorage,
+        removeIllustrationToStorage,
+        setAddIllustrationToStorage,
+        setRemoveIllustrationToStorage,
+      });
     }
   };
 
