@@ -32,9 +32,7 @@ const collectionController = {
   updateCollection: async (req, res) => {
     try { 
       const { collectionId } = req.params;
-      console.log('collectionId:', collectionId)
       const updatedFields = req.body;
-      console.log('updatedFields:', updatedFields)
 
       const updateCollection = await Collection.findByIdAndUpdate(
         collectionId,

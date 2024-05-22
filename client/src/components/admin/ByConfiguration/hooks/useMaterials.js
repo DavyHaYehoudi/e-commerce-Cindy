@@ -53,7 +53,7 @@ const useMaterials = () => {
     dispatch(materialIdToRemove(materialId));
     const productsLinkedToMaterialSearch = productsStore.filter((product) =>
       product?.materials.some((material) => material._id === materialId)
-    );
+  );
     if (productsLinkedToMaterialSearch.length > 0) {
       setProductsLinkedToMaterialId(productsLinkedToMaterialSearch);
       const isProductInOrderProducts = orderProductsStore.filter(

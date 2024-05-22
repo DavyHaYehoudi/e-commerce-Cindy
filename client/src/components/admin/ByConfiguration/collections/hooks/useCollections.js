@@ -9,7 +9,12 @@ import {
 import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
 import { Get } from "../../../../../services/httpMethods";
 import { generateFilePath } from "../../../../../helpers/utils/generateFilePath";
-import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { storage } from "../../../../../firebase";
 
 const useCollections = () => {
@@ -38,7 +43,9 @@ const useCollections = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
 
   const main_image = useSelector((state) => state?.collection?.illustration);
-  const collectionIdEdit = useSelector(state=>state?.collection?.collectionIdEdit)
+  const collectionIdEdit = useSelector(
+    (state) => state?.collection?.collectionIdEdit
+  );
 
   const handleAddCollection = async ({
     mainImageCreate,
@@ -125,7 +132,11 @@ const useCollections = () => {
           const storageRef = ref(storage, path);
           await uploadBytes(storageRef, file);
           dispatch(
-            updateCollection({ formData, collectionId:collectionIdEdit, handleUnauthorized })
+            updateCollection({
+              formData,
+              collectionId: collectionIdEdit,
+              handleUnauthorized,
+            })
           );
           console.log("Image illustration envoyée avec succès !");
         }
@@ -191,7 +202,7 @@ const useCollections = () => {
     setProductSolded([]);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (productSolded.length > 0) {
       const formData = { isArchived: true };
       dispatch(
@@ -203,6 +214,14 @@ const useCollections = () => {
         })
       );
     } else {
+      const illustrationToRemove = collectionsStore.find(
+        (collection) => collection._id === collectionId
+      ).main_image;
+      const url = await getDownloadURL(ref(storage, illustrationToRemove));
+      const imageRef = ref(storage, url);
+      await deleteObject(imageRef);
+      console.log("Image illustration supprimée avec succès !");
+
       dispatch(
         deleteCollection({
           collectionId,

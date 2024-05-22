@@ -8,7 +8,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 const useIllustrationEdit = ({
   collectionId,
   setAddIllustrationToStorage,
-  setRemoveIllustrationToStorage, 
+  setRemoveIllustrationToStorage,
 }) => {
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const initIllustration = collectionsStore.find(

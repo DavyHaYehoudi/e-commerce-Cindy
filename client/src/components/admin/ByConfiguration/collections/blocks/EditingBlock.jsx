@@ -43,7 +43,7 @@ const EditingBlock = ({
         addIllustrationToStorage={addIllustrationToStorage}
         removeIllustrationToStorage={removeIllustrationToStorage}
         setAddIllustrationToStorage={setAddIllustrationToStorage}
-          setRemoveIllustrationToStorage={setRemoveIllustrationToStorage}
+        setRemoveIllustrationToStorage={setRemoveIllustrationToStorage}
       />
     </div>
   );

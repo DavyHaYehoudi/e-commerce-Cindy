@@ -10,9 +10,9 @@ import EditingBlock from "./blocks/EditingBlock";
 
 const Collections = () => {
   const [addIllustrationToStorage, setAddIllustrationToStorage] =
-  useState(null);
+    useState(null);
   const [removeIllustrationToStorage, setRemoveIllustrationToStorage] =
-  useState(null);
+    useState(null);
 
   const {
     editCollectionId,
@@ -80,7 +80,9 @@ const Collections = () => {
                       addIllustrationToStorage={addIllustrationToStorage}
                       setAddIllustrationToStorage={setAddIllustrationToStorage}
                       removeIllustrationToStorage={removeIllustrationToStorage}
-                      setRemoveIllustrationToStorage={setRemoveIllustrationToStorage}
+                      setRemoveIllustrationToStorage={
+                        setRemoveIllustrationToStorage
+                      }
                     />
                   ) : (
                     <DisplayBlock

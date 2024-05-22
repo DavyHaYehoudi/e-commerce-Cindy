@@ -6,7 +6,7 @@ const EditValidation = ({
   addIllustrationToStorage,
   removeIllustrationToStorage,
   setAddIllustrationToStorage,
-          setRemoveIllustrationToStorage,
+  setRemoveIllustrationToStorage,
 }) => {
   return (
     <div className="content-block-right">
