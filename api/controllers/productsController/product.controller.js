@@ -1,3 +1,4 @@
+import OrderProducts from "../../models/orderProducts.model.js";
 import Product from "../../models/product/product.model.js";
 import process from "./filter/process.js";
 const productController = {
@@ -48,35 +49,19 @@ const productController = {
   updateProduct: async (req, res) => {
     try {
       const { productId } = req.params;
-      const updateFields = req.body;
-      console.log("********** req body :**********", req.body);
-
-      // Liste blanche des champs autorisés à être modifiés
-      const allowedFields = [
-        "name",
-        "_collection",
-        "category",
-        "tags",
-        "secondary_images",
-        "main_description",
-        "materials",
-      ];
-
+      const { formData } = req.body;
+      // console.log("********** req body :**********", req.body);
+      const updateFields = formData;
       // Vérifie si le produit existe
       const existingProduct = await Product.findById(productId);
       if (!existingProduct) {
         return res.status(404).json({ message: "Le produit n'existe pas." });
       }
-
-      // Mettre à jour les champs autorisés selon les données fournies dans req.body
-      for (const key in updateFields) {
-        if (allowedFields.includes(key)) {
-          existingProduct[key] = updateFields[key];
-        }
-      }
-
-      // Enregistrer les modifications
-      const updatedProduct = await existingProduct.save();
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        updateFields,
+        { new: true }
+      );
 
       res.status(200).json(updatedProduct);
     } catch (error) {
@@ -87,15 +72,31 @@ const productController = {
   deleteProduct: async (req, res) => {
     try {
       const { productId } = req.params;
-      const product = await Product.findByIdAndDelete(productId);
-      if (!product) {
+  
+      // Vérification si le produit existe
+      const productExisted = await Product.findById(productId);
+      if (!productExisted) {
         return res.status(404).json({ error: "Le produit n'existe pas." });
       }
-      res.status(200).json({ productId });
+  
+      // Vérification si le produit a déjà été vendu
+      const isProductSolded = await OrderProducts.find({ productsId: productId });
+      if (isProductSolded.length > 0) {
+        const updatedProduct = await Product.findByIdAndUpdate(
+          productId,
+          { isArchived: true },
+          { new: true }
+        );
+        return res.status(200).json(updatedProduct);
+      } else {
+        await Product.findByIdAndDelete(productId);
+        return res.status(200).json({ message: "Produit supprimé avec succès." });
+      }
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
     }
-  },
+  }
+  
 };
 
 export default productController;

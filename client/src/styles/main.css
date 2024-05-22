@@ -46,7 +46,7 @@ ul {
 }
 
 .btn:hover {
-    color: var(--text-color-white);
+    /* color: var(--text-color-white); */
     background-position: -100% 0;
 }
 
@@ -186,7 +186,7 @@ img {
 .asterix{
     color: var(--danger);
 }
-  
+
 /* ********************* END BOUTON + ICONES  INTERFACES COMPTES ADMIN ET CLIENT ********************* */
 
 /* ********************* START INPUT INTERFACES COMPTES ADMIN ET CLIENT ********************* */

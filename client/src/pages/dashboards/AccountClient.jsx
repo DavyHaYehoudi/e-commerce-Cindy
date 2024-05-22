@@ -3,12 +3,11 @@ import InfoClient from "../../components/accountClient/info";
 import useAccountClient from "./hooks/useAccountClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DarkMode from "../../components/darkMode/DarkMode";
 import Menu from "../../components/accountClient/menu";
 import { IoMdPricetag } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { MdCardGiftcard } from "react-icons/md";
-import Giftcards from "../../components/accountClient/menu/Giftcards"
+import Giftcards from "../../components/accountClient/menu/Giftcards";
 
 const AccountClient = () => {
   const {
@@ -23,7 +22,6 @@ const AccountClient = () => {
     isModified,
     handleChangeProfilEdit,
   } = useAccountClient();
-
   return (
     <div className="user-profile-container" data-testid="account-dashboard">
       <div className="user-profile-menu">
@@ -61,9 +59,6 @@ const AccountClient = () => {
               Cartes-cadeaux
             </span>
           </button>
-        </div>
-        <div className="darkMode">
-          <DarkMode />
         </div>
       </div>
 

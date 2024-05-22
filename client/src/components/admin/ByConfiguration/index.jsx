@@ -1,5 +1,5 @@
 import React from "react";
-import Collections from "./collections/Collections.jsx";
+import Collections from "./collections";
 import Categories from "./categories/index.jsx";
 import Tags from "./tags/Tags.jsx";
 import Materials from "./materials/Materials.jsx";

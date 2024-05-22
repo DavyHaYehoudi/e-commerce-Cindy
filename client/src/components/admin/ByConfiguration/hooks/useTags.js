@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addTag,
   deleteTag,
+  tagIdToRemove,
   updateTag,
 } from "../../../../features/admin/tagSlice";
 import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
@@ -12,7 +13,10 @@ const useTags = () => {
   const [editedTagName, setEditedTagName] = useState("");
   const [newTagName, setNewTagName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const tags = useSelector((state) => state?.tag?.data);
+
+  const tagId = useSelector((state) => state?.tag?.tagId);
 
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
@@ -32,12 +36,17 @@ const useTags = () => {
     }
   };
   const handleDeleteTag = (tagId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cet tag ?"
-    );
-    if (confirmation) {
-      dispatch(deleteTag({ tagId, handleUnauthorized }));
-    }
+    dispatch(tagIdToRemove(tagId));
+    setOpenModal(true);
+  };
+  const handleConfirm = () => {
+    dispatch(deleteTag({ tagId, handleUnauthorized }));
+    dispatch(tagIdToRemove(""));
+    setOpenModal(false);
+  };
+  const handleCancel = () => {
+    dispatch(tagIdToRemove(""));
+    setOpenModal(false);
   };
   const handleEditTag = (tagId, name) => {
     dispatch(updateTag({ tagId, name, handleUnauthorized }));
@@ -66,6 +75,7 @@ const useTags = () => {
     newTagName,
     isContentVisible,
     tags,
+    openModal,
     setEditTagId,
     setEditedTagName,
     setNewTagName,
@@ -77,6 +87,8 @@ const useTags = () => {
     handleEditTag,
     handleEditClick,
     handleSaveClick,
+    handleConfirm,
+    handleCancel,
   };
 };
 

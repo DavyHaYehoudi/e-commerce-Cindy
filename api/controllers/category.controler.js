@@ -13,11 +13,13 @@ const categoryController = {
   createCategory: async (req, res) => {
     try {
       const { name, parentCollection } = req.body;
-      const category = await Category.create({ name, parentCollection});
+      const category = await Category.create({ name, parentCollection });
       res.status(201).json(category);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
-        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+        res
+          .status(409)
+          .json({ message: "Le nom de la catégorie doit être unique." });
       } else {
         console.error("Error createCategory:", error);
         res.status(500).json({ message: error.message });
@@ -27,12 +29,11 @@ const categoryController = {
   updateCategory: async (req, res) => {
     try {
       const { categoryId } = req.params;
-      const { name, parentCollection } = req.body;
+      const updatedFields = req.body;
 
       const updateCategory = await Category.findByIdAndUpdate(
         categoryId,
-        { name, parentCollection },
-
+        updatedFields,
         { new: true, runValidators: true }
       );
 
@@ -43,13 +44,15 @@ const categoryController = {
       res.status(200).json(updateCategory);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {
-        res.status(409).json({ message: "Le nom de la catégorie doit être unique." });
+        res
+          .status(409)
+          .json({ message: "Le nom de la catégorie doit être unique." });
       } else {
         console.error("Error updateCategory:", error);
         res.status(500).json({ message: error.message });
       }
     }
-  },
+  },  
 
   deleteCategory: async (req, res) => {
     try {
@@ -69,4 +72,3 @@ const categoryController = {
 };
 
 export default categoryController;
- 

@@ -219,6 +219,9 @@
 .confirm-section {
     text-align: end;
 }
+.confirm-section button{
+   color: whitesmoke;
+}
 
 .confirm-section .edit-section {
     display: flex;
@@ -338,8 +341,9 @@
 }
 
 .product-modal-content .switch-materials-btn p.actived {
-    color: var(--success);
+    color: var(--text-dark);
 }
+
 
 .product-modal-content .materials-details .switch,
 .product-modal-content .noMaterials .switch {

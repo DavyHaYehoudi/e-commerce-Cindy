@@ -29,7 +29,8 @@ const editProduct = createAsyncThunk(
 const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async ({ productId, handleUnauthorized }) => {
-    return await Del(`products/${productId}`, null, handleUnauthorized);
+    await Del(`products/${productId}`, null, handleUnauthorized);
+    return productId
   }
 );
 
@@ -93,7 +94,7 @@ const productSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
-        const { products, totalProductsCount } = action.payload;
+        const { products, totalProductsCount } = action.payload || {};
         state.status = "succeeded";
         state.error = null;
         state.data = products;
@@ -144,7 +145,7 @@ const productSlice = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.totalProductsCount -= 1;
-        const { productId } = action.payload;
+        const  productId  = action.payload;
         state.data = state.data.filter((product) => product?._id !== productId);
       })
       .addCase(deleteProduct.rejected, (state, action) => {

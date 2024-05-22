@@ -61,7 +61,7 @@ const useSubmitForm = ({
 
     const handleEditProduct = async () => {
       try {
-        await Get("auth/verify-token/admin");
+        await Get("auth/verify-token/admin",null,handleUnauthorized);
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
         await deleteMainImagesFromStorage();
@@ -87,7 +87,7 @@ const useSubmitForm = ({
       );
       if (confirmDelete) {
         try {
-          await Get("auth/verify-token/admin");
+          await Get("auth/verify-token/admin",null,handleUnauthorized);
           await deleteAllMainImagesFromStorage(data);
           await deleteAllSecondariesImagesFromStorage();
           dispatch(

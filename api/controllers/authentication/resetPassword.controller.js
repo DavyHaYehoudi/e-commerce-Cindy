@@ -11,25 +11,23 @@ const resetPassword = async (req, res) => {
     });
 
     if (!client) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré.",
-        });
+      return res.status(400).json({
+        message:
+          "Le lien de réinitialisation du mot de passe n'est pas valide ou a expiré.",
+      });
     }
 
     client.authentication.password = password;
     client.authentication.resetPasswordToken = null;
-    client.authentication.resetPasswordExpires = null; 
+    client.authentication.resetPasswordExpires = null;
     await client.save();
 
-    res.status(200).json({ message: "Mot de passe réinitialisé avec succès" });
+    res.status(200).json({ email: client.email });
   } catch (error) {
     console.error(
       "Erreur lors de la réinitialisation du mot de passe :",
-      error 
-    ); 
+      error
+    );
     res.status(500).json({
       message: "Erreur serveur lors de la réinitialisation du mot de passe",
     });

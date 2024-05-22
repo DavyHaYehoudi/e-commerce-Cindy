@@ -8,7 +8,9 @@ const clientController = {
   getCustomerInfos: async (req, res) => {
     const { clientId } = req.params;
     try {
-      const client = await Client.findById(clientId).select("-notesAdmin -authentication");
+      const client = await Client.findById(clientId).select(
+        "-notesAdmin -authentication"
+      );
       if (!client) {
         return res.status(404).json({ message: "L'utilisateur n'existe pas." });
       }
@@ -41,23 +43,11 @@ const clientController = {
       if (!client) {
         return res.status(404).json({ error: "L'utilisateur n'existe pas." });
       }
-      // Liste des champs à exclure de la mise à jour
-      const fieldsToExclude = ["totalOrders", "totalOrderValue", "orders"];
 
-      // Filtrer les champs indésirables du req.body
-      const filteredUpdateFields = Object.fromEntries(
-        Object.entries(updateFields).filter(
-          ([key]) => !fieldsToExclude.includes(key)
-        )
-      );
-
-      await Client.findOneAndUpdate(
-        { _id: clientId },
-        {
-          $set: filteredUpdateFields,
-        },
-        { new: true, runValidators: true } 
-      );
+      await Client.findOneAndUpdate({ _id: clientId }, updateFields, {
+        new: true,
+        runValidators: true,
+      });
 
       res.status(200).json({});
     } catch (error) {
@@ -73,7 +63,9 @@ const clientController = {
         try {
           const client = await Client.findById(clientId);
           if (!client) {
-            return res.status(404).json({ error: "L'utilisateur n'existe pas." });
+            return res
+              .status(404)
+              .json({ error: "L'utilisateur n'existe pas." });
           }
           const currentDate = new Date();
           const newNote = { content, date: currentDate };
@@ -100,7 +92,9 @@ const clientController = {
         try {
           const client = await Client.findById(clientId);
           if (!client) {
-            return res.status(404).json({ error: "L'utilisateur n'existe pas." });
+            return res
+              .status(404)
+              .json({ error: "L'utilisateur n'existe pas." });
           }
           await Client.findOneAndUpdate(
             { _id: clientId },
@@ -116,6 +110,6 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-}; 
+};
 
 export default clientController;

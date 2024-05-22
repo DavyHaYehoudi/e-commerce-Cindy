@@ -7,14 +7,16 @@ import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCustomerStore } from "../../features/accountClient/customerSlice";
-import { removeToken } from "../../features/authentication/authenticationSlice";
+import { resetStore } from "../../features/authentication/authenticationSlice";
 
 const NavIcons = ({ onClickHeart }) => {
   const token = useSelector((state) => state?.authentication?.token) || "";
+  const role = useSelector((state) => state?.authentication?.role);
+
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(resetCustomerStore());
-    dispatch(removeToken());
+    dispatch(resetStore());
     localStorage.clear();
   };
 
@@ -38,6 +40,16 @@ const NavIcons = ({ onClickHeart }) => {
             )}
           </NavLink>
         </li>
+        {role && (
+          <li className="info-tooltip" aria-label="Mon compte">
+            <NavLink
+              to={role === "admin" ? "admin/dashboard" : "account"}
+              aria-label="Mon compte"
+            >
+              MON COMPTE
+            </NavLink>
+          </li>
+        )}
         <li className="info-tooltip" aria-label="Mes favoris">
           <button onClick={onClickHeart} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />

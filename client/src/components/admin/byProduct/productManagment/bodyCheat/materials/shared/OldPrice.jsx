@@ -11,6 +11,7 @@ const OldPrice = ({ material, handlePricingChange, pricing }) => {
         className="account-input"
         id={`previousPriceInput-${material?._id}`}
         value={pricing?.oldPrice || ""}
+        min={0}
         onChange={(e) => handlePricingChange(e, "oldPrice")}
       />
     </div>

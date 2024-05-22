@@ -48,7 +48,7 @@ const fetchClients = createAsyncThunk(
 
       return { clients, totalClientsCount };
     } catch (error) {
-      console.error("Erreur dans clientsSlice :",error)
+      console.error("Erreur dans clientsSlice :", error);
     }
   }
 );
@@ -80,7 +80,7 @@ const clientsSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchClients.fulfilled, (state, action) => {
-        const { clients, totalClientsCount } = action.payload;
+        const { clients, totalClientsCount } = action.payload || {};
         state.status = "succeeded";
         state.error = null;
         state.data = clients;

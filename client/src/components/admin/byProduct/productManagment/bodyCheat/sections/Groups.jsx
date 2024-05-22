@@ -23,7 +23,7 @@ const Groups = ({
         >
           <option value="">Choisir une collection</option>
           {collectionsStore &&
-            collectionsStore.map((collection) => (
+            collectionsStore.filter(collection=>!collection?.isArchived).map((collection) => (
               <option key={collection?._id} value={collection?._id}>
                 {collection?.name}
               </option>

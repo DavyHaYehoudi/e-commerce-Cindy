@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
+  categoryToRemove,
   deleteCategory,
   updateCategory,
 } from "../../../../features/admin/categorySlice";
@@ -15,8 +16,20 @@ const useCategoriesIndex = () => {
   );
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const categories = useSelector((state) => state?.category?.data);
-  const collections = useSelector((state) => state?.collection?.data);
+  const categoriesStore = useSelector((state) => state?.category?.data);
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
+  const [openModal, setOpenModal] = useState(false);
+  const [productSolded, setProductSolded] = useState([]);
+  const [productsLinkedToCategories, setProductsLinkedToCategories] = useState(
+    []
+  );
+  const categoryId = useSelector((state) => state?.category?.categoryId);
+  const productsStore = useSelector((state) => state?.product?.data);
+  const nameModal = categoriesStore.find(
+    (category) => category._id === categoryId
+  )?.name;
+
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -38,21 +51,66 @@ const useCategoriesIndex = () => {
     }
   };
   const handleDeleteCategory = (categoryId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer cette categorie ?"
+    dispatch(categoryToRemove(categoryId));
+    const productsLinkedToCategoriesSearch = productsStore.filter(
+      (product) => product.category === categoryId
     );
-    if (confirmation) {
-      dispatch(deleteCategory({ categoryId, handleUnauthorized }));
+    if (productsLinkedToCategoriesSearch.length > 0) {
+      setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
+      const isProductInOrderProducts = orderProductsStore.filter(
+        (orderProduct) =>
+          productsLinkedToCategoriesSearch.some(
+            (p) => p._id === orderProduct.productsId
+          )
+      );
+      if (isProductInOrderProducts) {
+        setProductSolded(isProductInOrderProducts);
+      }
     }
+    setOpenModal(true);
+  };
+  const handleConfirm = () => {
+    if (productSolded.length > 0) {
+      const formData = { isArchived: true };
+      dispatch(
+        updateCategory({
+          categoryId,
+          productSolded,
+          formData,
+          handleUnauthorized,
+        })
+      );
+    } else {
+      dispatch(
+        deleteCategory({
+          categoryId,
+          handleUnauthorized,
+        })
+      );
+    }
+
+    dispatch(categoryToRemove(""));
+    setProductsLinkedToCategories([]);
+    setProductSolded([]);
+    setOpenModal(false);
+  };
+  const handleCancel = () => {
+    dispatch(categoryToRemove(""));
+    setProductsLinkedToCategories([]);
+    setProductSolded([]);
+    setOpenModal(false);
   };
 
   const handleEditCategory = () => {
     if (editedCategoryName.trim() !== "") {
+      const formData = {
+        name: editedCategoryName,
+        parentCollection: selectedParentCollections,
+      };
       dispatch(
         updateCategory({
           categoryId: editCategoryId,
-          name: editedCategoryName,
-          parentCollection: selectedParentCollections,
+          formData,
           handleUnauthorized,
         })
       );
@@ -88,8 +146,12 @@ const useCategoriesIndex = () => {
     selectedParentCollections,
     newCategoryName,
     isContentVisible,
-    categories,
-    collections,
+    categoriesStore,
+    collectionsStore,
+    openModal,
+    productsLinkedToCategories,
+    productSolded,
+    nameModal,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,
@@ -101,6 +163,8 @@ const useCategoriesIndex = () => {
     handleSaveClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   };
 };
 

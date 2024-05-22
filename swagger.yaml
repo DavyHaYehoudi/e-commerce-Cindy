@@ -372,8 +372,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: L'utilisateur n'existe pas.
-        '401':
+                    example: Identifiants non valides.
+        '400':
           description: Email address not verified
           content:
             application/json:
@@ -425,6 +425,14 @@ paths:
       responses:
         '200':
           description: successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: john@example.com.
         '400':
           description: The verification link is invalid or expired.
           content:
@@ -451,6 +459,14 @@ paths:
       responses:
         '200':
           description: successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    example: john@example.com
         '400':
           description: The password reset link is invalid or expired.
           content:
@@ -481,6 +497,8 @@ paths:
                   message:
                     type: string
                     example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
   /auth/verify-token/admin:
     get:
       tags:
@@ -501,6 +519,8 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+      security:
+        - api_key: []
   /orders:
     post:
       tags:
@@ -516,8 +536,6 @@ paths:
       responses:
         '201':
           description: successful posting order
-        '400':
-          description: Bad Request - Invalid parameters
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -599,8 +617,14 @@ paths:
       responses:
         '200':
           description: Successful updated order
-        '400':
-          description: Invalids elements supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lastSentDateToClient:
+                    type: string
+                    example: 2024-10-09
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -1116,7 +1140,7 @@ paths:
     post:
       tags:
         - material
-      summary: Create a material"
+      summary: Create a material
       description: This route, reserved for administrators, allows adding a new material to the list of available materials. Details of the material, such as its name and color, are provided in the POST request body.
       operationId: placeMaterialById
       requestBody:
@@ -1151,6 +1175,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /materials/{materialId}:
@@ -1209,6 +1243,16 @@ paths:
                   message:
                     type: string
                     example: Le matériau n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1589,6 +1633,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /collections/{collectionId}:
@@ -1647,6 +1701,16 @@ paths:
                   message:
                     type: string
                     example: La collection n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1678,61 +1742,17 @@ paths:
                         example: Une catégorie est liée à cette collection.
                       collectionId:
                         type: string
+                      categoriesName:
+                        type: array
+                        items:
+                          type: string
+                          example: soirée,détente
+                      productsName:
+                        type: array
+                        items:
+                          type: string
+                          example: Bracelet ancien, Ceinture vintage
     
-        '401':
-          description: Unauthorized - User is not authenticated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Token d'authentification manquant ou invalide.
-        '403':
-          description: Unauthorized - Admin is not authenticated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Accès refusé. Vous n'êtes pas un administrateur.
-        '404':
-          description: The ressource does not exist.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: La collection n'existe pas.
-      security:
-        - api_key: []
-  /collections/confirm-delete/{collectionId}:
-    delete:
-      tags:
-        - collection
-      summary: Delete a collection
-      description: This route, reserved for administrators, allows you to delete a collection after confirmation from the client.
-      operationId: deleteCollectionConfirm
-      parameters:
-        - name: collectionId
-          in: path
-          description: ID of the collection that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful deleted collection
-          content:
-            application/json:
-              schema:
-                type: string
-                example: collectionIdValue
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -1815,6 +1835,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /categories/{categoryId}:
@@ -1873,6 +1903,16 @@ paths:
                   message:
                     type: string
                     example: La catégorie n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -1977,6 +2017,16 @@ paths:
                   message:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
   /tags/{tagId}:
@@ -2035,6 +2085,16 @@ paths:
                   message:
                     type: string
                     example: Le tag n'existe pas.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Déjà enregistré, veuillez modifier 🔀
       security:
         - api_key: []
     delete:
@@ -2611,6 +2671,9 @@ components:
               isActive:
                 type: boolean
                 example: true
+              isArchived:
+                type: boolean
+                example: false
     ProductCreate:
       type: object
       required:
@@ -2688,6 +2751,9 @@ components:
                 type: integer
                 format: int16
                 example: 7
+              isArchived:
+                type: boolean
+                example: false
     ProductCreateResponse:
       type: object
       properties:
@@ -2763,6 +2829,9 @@ components:
                 type: integer
                 format: int16
                 example: 7
+              isArchived:
+                type: boolean
+                example: false
     Products:
       type: array
       items:
@@ -2843,6 +2912,9 @@ components:
           value:
             type: string
             example: "#FFFFFF"
+          isArchived:
+            type: boolean
+            example: false
     MaterialCreate:
       type: object
       required:
@@ -2905,6 +2977,9 @@ components:
             example: Pour un jour unique
           main_image:
             type: string
+          isArchived:
+            type: boolean
+            example: false
     CollectionCreate:
       type: object
       required:
@@ -2939,6 +3014,9 @@ components:
               example: 
                 - "65f2d2b24db605d02020061c"
                 - "65f2d2b24db605d02020061d"
+          isArchived:
+            type: boolean
+            example: false
     CategoryCreate:
       type: object
       required:

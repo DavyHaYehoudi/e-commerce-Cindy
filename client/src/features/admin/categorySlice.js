@@ -23,13 +23,15 @@ const addCategory = createAsyncThunk(
 
 const updateCategory = createAsyncThunk(
   "category/updateCategory",
-  async ({ categoryId, name, parentCollection, handleUnauthorized }) => {
-    return await Patch(
-      `categories/${categoryId}`,
-      { name, parentCollection },
-      null,
-      handleUnauthorized
-    );
+  async ({
+    categoryId,
+    formData,
+    restore = false,
+    productSolded,
+    handleUnauthorized,
+  }) => {
+    await Patch(`categories/${categoryId}`, formData, null, handleUnauthorized);
+    return { categoryId, productSolded, formData, restore };
   }
 );
 const deleteCategory = createAsyncThunk(
@@ -42,21 +44,21 @@ const deleteCategory = createAsyncThunk(
 
 const categoriesSlice = createSlice({
   name: "category",
-  initialState: { data: [], status: "idle", error: null },
+  initialState: { data: [], categoryId: "", status: "idle", error: null },
   reducers: {
     updateCategoriesByCollectionId: (state, action) => {
-      const collectionId = action.payload;
-      state.data.forEach((category) => {
-        // Filtrer les IDs de parentCollection différents de collectionId
-        const filteredParentCollection = category.parentCollection.filter(
-          (parentId) => parentId !== collectionId
-        );
-        category.parentCollection = filteredParentCollection;
-      });
-      // Filtrer les catégories avec une parentCollection vide
-      state.data = state.data.filter(
-        (category) => category.parentCollection.length > 0
-      );
+      const { collectionId } = action.payload;
+
+      state.data = state.data.map((category) => ({
+        ...category,
+        parentCollection: category.parentCollection.filter(
+          (pc) => pc !== collectionId
+        ),
+      }));
+    },
+
+    categoryToRemove: (state, action) => {
+      state.categoryId = action.payload;
     },
   },
 
@@ -83,10 +85,46 @@ const categoriesSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
-        state.data = state.data.map((category) =>
-          category._id === action.payload._id ? action.payload : category
-        );
-        toast.success("La catégorie a bien été modifiée 😀");
+        const { categoryId, productSolded, formData, restore } =
+        action.payload;
+
+      // Trouver l'index de la categorie à mettre à jour dans le state
+      const updatedCategoryIndex = state.data.findIndex(
+        (category) => category._id === categoryId
+      );
+
+      if (updatedCategoryIndex !== -1) {
+        // Créer une nouvelle copie de la categorie avec les modifications
+        const updatedCategory = {
+          ...state.data[updatedCategoryIndex],
+          ...formData,
+        };
+
+        // Créer une nouvelle copie du state avec la categorie mise à jour
+        const newState = {
+          ...state,
+          data: [
+            ...state.data.slice(0, updatedCategoryIndex),
+            updatedCategory,
+            ...state.data.slice(updatedCategoryIndex + 1),
+          ],
+        };
+
+        // Si productSolded est true, marquer la categorie comme archivée
+        if (productSolded) {
+          updatedCategory.isArchived = true;
+          toast.success("La catégorie a bien été archivée.");
+        } else if (restore) {
+          toast.success("La catégorie a bien été restaurée.");
+        } else {
+          toast.success("La catégorie a bien été modifiée 😀");
+        }
+
+        return newState;
+      }
+
+      // Si la categorie n'est pas trouvée, retourner simplement le state inchangé
+      return state;
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = "failed";
@@ -105,5 +143,6 @@ const categoriesSlice = createSlice({
   },
 });
 export { fetchCategories, addCategory, deleteCategory, updateCategory };
-export const { updateCategoriesByCollectionId } = categoriesSlice.actions;
+export const { updateCategoriesByCollectionId, categoryToRemove } =
+  categoriesSlice.actions;
 export default categoriesSlice.reducer;

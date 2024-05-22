@@ -9,6 +9,7 @@ const useResetPassword = () => {
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [email,setEmail]=useState(null)
   const navigate = useNavigate();
   const { token } = useParams();
 
@@ -23,7 +24,8 @@ const useResetPassword = () => {
     }
 
     try {
-      await Post("auth/reset-password", { password, token });
+      const response = await Post("auth/reset-password", { password, token });
+      setEmail(response?.email)
       setSuccess(true);
     } catch (error) {
       console.error("Erreur lors de la réinitialisation du mot de passe :", error);    }
@@ -47,6 +49,7 @@ const useResetPassword = () => {
     handleResetPassword,
     navigate,
     handleKeyPress,
+    email
   };
 };
 

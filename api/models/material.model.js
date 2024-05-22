@@ -10,6 +10,10 @@ const materialSchema = new mongoose.Schema({
     unique: true,
   },
   value: { type: String, maxlength: 50, required: true },
+  isArchived: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 materialSchema.pre("validate", function (next) {

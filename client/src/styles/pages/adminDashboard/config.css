@@ -112,61 +112,6 @@
     justify-content: flex-end;
 }
 
-.admin-collections .modal {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    /* Activer le défilement si nécessaire */
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-/* Contenu de la modal */
-.admin-collections .modal-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    background-color: var(--background);
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    /* height: 250px; */
-}
-
-.admin-collections .confirm-action-button {
-    color: var(--background);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.collection-confirm-action .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 20px;
-} 
-.collection-confirm-action .confirm-action-button.cancel {
-    background-color: #007bff;
-}
-.collection-confirm-action .confirm-action-button.cancel:hover {
-    background-color: #0056b3;
-}
-.collection-confirm-action .confirm-action-button.confirm {
-    background-color: var(--danger);
-}
-.collection-confirm-action .confirm-action-button.confirm:hover {
-    background-color: #cc0000;
-}
-
 /* *********************** IMAGE PRINCIPALE COLLECTION *********************** */
 .admin-collections .content-block-main_image {
     padding: 10px;
@@ -229,4 +174,91 @@
 
 .admin-collections .delete-image {
     color: var(--danger);
+}
+
+/* *********************** MODAL *********************** */
+.configuration .modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenu de la modal */
+.configuration .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: var(--background);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+.configuration .configuration-confirm-action .title{
+    text-transform: uppercase;
+    text-align: center;
+    border: 1px dotted var(--dark);
+    margin: 20px;
+}
+.configuration .confirm-action-button {
+    color: whitesmoke;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.configuration-confirm-action .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.configuration-confirm-action .confirm-action-button.cancel {
+    background-color: #007bff;
+}
+
+.configuration-confirm-action .confirm-action-button.cancel:hover {
+    background-color: #0056b3;
+}
+
+.configuration-confirm-action .confirm-action-button.confirm {
+    background-color: var(--danger);
+}
+
+.configuration-confirm-action .confirm-action-button.confirm:hover {
+    background-color: #cc0000;
+}
+
+.configuration .configuration-confirm-action .alert {
+    text-align: start;
+}
+
+.configuration .configuration-confirm-action ul {
+    text-align: start;
+}
+
+/* *********************** ARCHIVES *********************** */
+.configuration .archives {
+    margin: 10px;
+}
+.configuration .archives-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border-bottom: 1px var(--dark) solid;
+}
+.configuration .archives-container button {
+    background: var(--primary);
+    color: whitesmoke;
 }

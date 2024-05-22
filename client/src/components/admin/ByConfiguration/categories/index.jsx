@@ -2,6 +2,9 @@ import React from "react";
 import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
 import useCategoriesIndex from "../hooks/useCategoriesIndex";
+import Modal from "../shared/Modal";
+import ToggleButton from "../../../../shared/ToggleButton";
+import Archives from "../shared/Archives";
 
 const Categories = () => {
   const {
@@ -10,8 +13,12 @@ const Categories = () => {
     selectedParentCollections,
     newCategoryName,
     isContentVisible,
-    categories,
-    collections,
+    categoriesStore,
+    collectionsStore,
+    openModal,
+    productsLinkedToCategories,
+    productSolded,
+    nameModal,
     setEditCategoryId,
     setEditedCategoryName,
     setNewCategoryName,
@@ -22,21 +29,33 @@ const Categories = () => {
     handleEditClick,
     handleSaveClick,
     handleKeyPress,
-    handleKeyPressEdit
+    handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   } = useCategoriesIndex();
 
   return (
-    <div className="admin-categories">
+    <div className="admin-categories configuration">
       <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Categories</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
+          <div className="archives">
+            <ToggleButton
+              initialText="Afficher les catégories archivées"
+              hiddenText="Fermer les archives"
+              buttonClass="account-btn toggle"
+              content={
+                <Archives store={categoriesStore} parameter={"category"} />
+              }
+            />
+          </div>
           <CategoriesList
-            categories={categories}
+            categoriesStore={categoriesStore}
             editCategoryId={editCategoryId}
             setEditCategoryId={setEditCategoryId}
             editedCategoryName={editedCategoryName}
             selectedParentCollections={selectedParentCollections}
-            collections={collections}
+            collectionsStore={collectionsStore}
             handleEditClick={handleEditClick}
             handleDeleteCategory={handleDeleteCategory}
             handleSaveClick={handleSaveClick}
@@ -47,13 +66,22 @@ const Categories = () => {
           <AddCategoryForm
             newCategoryName={newCategoryName}
             selectedParentCollections={selectedParentCollections}
-            collections={collections}
+            collectionsStore={collectionsStore}
             handleAddCategory={handleAddCategory}
             setNewCategoryName={setNewCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
             handleKeyPress={handleKeyPress}
           />
         </div>
+      )}
+      {openModal && (
+        <Modal
+          productsLinkedToCategories={productsLinkedToCategories}
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+          productSolded={productSolded}
+          name={nameModal}
+        />
       )}
     </div>
   );

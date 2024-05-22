@@ -19,7 +19,7 @@ const register = async (req, res) => {
       firstName,
       lastName,
       email,
-      authentication: { 
+      authentication: {
         password,
       },
     });
@@ -30,7 +30,7 @@ const register = async (req, res) => {
     newClient.authentication.emailVerificationExpires = new Date(
       Date.now() + 24 * 60 * 60 * 1000
     ); // 24 heures d'expiration
-    
+
     await newClient.save();
     await sendVerificationEmail(newClient, verificationToken);
 

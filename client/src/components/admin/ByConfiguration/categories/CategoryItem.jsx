@@ -8,19 +8,21 @@ const CategoryItem = ({
   setEditCategoryId,
   editedCategoryName,
   selectedParentCollections,
-  collections,
   handleEditClick,
   handleDeleteCategory,
   handleSaveClick,
   setEditedCategoryName,
+  collectionsStore,
   setSelectedParentCollections,
-  handleKeyPressEdit
+  handleKeyPressEdit,
 }) => {
   const parentCollection = (parentCollectionArray) => {
-    return parentCollectionArray?.map((pcol) =>
-    collections?.find((collection) => collection?._id === pcol)
-  );
-};
+    const parentCollectionFiltered = parentCollectionArray?.map((pcol) =>
+      collectionsStore?.filter((collection) => !collection?.isArchived).find((collection) => collection?._id === pcol)
+    ).filter(collection => collection !== undefined);
+    return parentCollectionFiltered
+  };
+
   return (
     <li key={category?._id} className="content-block-wrapper">
       {editCategoryId === category?._id ? (
@@ -36,39 +38,49 @@ const CategoryItem = ({
                 onKeyDown={handleKeyPressEdit}
               />
               <div className="content-category-checkbox">
-                {collections &&
-                  collections.length > 0 &&
-                  collections.map((collection) => (
-                    <label key={collection?._id}>
-                      <input
-                        type="checkbox"
-                        value={collection?._id}
-                        checked={selectedParentCollections.includes(
-                          collection?._id
-                        )}
-                        onChange={(e) => {
-                          const checkedCollectionId = e.target.value;
-                          setSelectedParentCollections((prevState) =>
-                            prevState.includes(checkedCollectionId)
-                              ? prevState.filter(
-                                  (id) => id !== checkedCollectionId
-                                )
-                              : [...prevState, checkedCollectionId]
-                          );
-                        }}
-                        onKeyDown={handleKeyPressEdit}
-                      />
-                      {collection?.name}
-                    </label>
-                  ))}
+                {collectionsStore &&
+                  collectionsStore.length > 0 &&
+                  collectionsStore
+                    .filter((collection) => !collection?.isArchived)
+                    .map((collection) => (
+                      <label key={collection?._id}>
+                        <input
+                          type="checkbox"
+                          value={collection?._id}
+                          checked={selectedParentCollections.includes(
+                            collection?._id
+                          )}
+                          onChange={(e) => {
+                            const checkedCollectionId = e.target.value;
+                            setSelectedParentCollections((prevState) =>
+                              prevState.includes(checkedCollectionId)
+                                ? prevState.filter(
+                                    (id) => id !== checkedCollectionId
+                                  )
+                                : [...prevState, checkedCollectionId]
+                            );
+                          }}
+                          onKeyDown={handleKeyPressEdit}
+                        />
+                        {collection?.name}
+                      </label>
+                    ))}
               </div>
             </div>
           </div>
           <div className="content-block-right">
             <button
-              className={`account-btn ${!(editedCategoryName === "" || selectedParentCollections.length === 0)? "validate-btn":""}`}
+              className={`account-btn ${
+                !(
+                  editedCategoryName === "" ||
+                  selectedParentCollections.length === 0
+                )
+                  ? "validate-btn"
+                  : ""
+              }`}
               disabled={
-                editedCategoryName === "" || selectedParentCollections.length === 0
+                editedCategoryName === "" ||
+                selectedParentCollections.length === 0
               }
               onClick={handleSaveClick}
             >
@@ -90,16 +102,17 @@ const CategoryItem = ({
               <p>
                 <small>
                   {category?.parentCollection?.length > 1
-                    ? "Collections parentes :"
+                    ? "collections parentes :"
                     : "Collection parente :"}
                 </small>{" "}
               </p>
               <ul>
-                {parentCollection(category?.parentCollection)?.map((item) => (
+                {parentCollection(category?.parentCollection)?.map(
+                  (item) =>
                   <small key={item?._id + category?.name}>
                     <li>{item?.name}</li>
                   </small>
-                ))}
+                )}
               </ul>
             </div>
           </div>

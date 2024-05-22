@@ -10,11 +10,9 @@ const verifyEmail = async (req, res) => {
         "authentication.emailVerificationExpires": { $gt: Date.now() },
       },
       {
-        $set: {
-          "authentication.verified": true,
-          // "authentication.emailVerificationToken": null,
-          // "authentication.emailVerificationExpires": null,
-        },
+        "authentication.verified": true,
+        "authentication.emailVerificationToken": null,
+        "authentication.emailVerificationExpires": null,
       }
     );
     if (!client) {
@@ -33,4 +31,3 @@ const verifyEmail = async (req, res) => {
 };
 
 export { verifyEmail };
-  

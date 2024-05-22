@@ -3,7 +3,7 @@ import { handleFetchError } from "./errors/handleFetchError";
 export const customFetch = async (
   endpoint,
   options = {},
-  unauthorizedCallback
+  unauthorizedCallback = () => {}
 ) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const url = `${baseUrl}/${endpoint}`;

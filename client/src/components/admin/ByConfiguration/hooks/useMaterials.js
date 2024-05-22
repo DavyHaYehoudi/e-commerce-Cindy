@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addMaterial,
   deleteMaterial,
+  materialIdToRemove,
   updateMaterial,
 } from "../../../../features/admin/materialSlice";
 import useUnauthorizedRedirect from "../../../../services/errors/useUnauthorizedRedirect";
@@ -14,8 +15,19 @@ const useMaterials = () => {
     name: "",
     value: "#cc0000",
   });
+  const [openModal, setOpenModal] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const materials = useSelector((state) => state?.material?.data);
+  const [productsLinkedToMaterialId, setProductsLinkedToMaterialId] = useState(
+    []
+  );
+  const [productSolded, setProductSolded] = useState([]);
+  const materialsStore = useSelector((state) => state?.material?.data);
+  const productsStore = useSelector((state) => state?.product?.data);
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
+  const materialId = useSelector((state) => state?.material?.materialId);
+  const nameModal = materialsStore.find(
+    (material) => material._id === materialId
+  )?.name;
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
@@ -38,22 +50,64 @@ const useMaterials = () => {
   };
 
   const handleDeleteMaterial = (materialId) => {
-    const confirmation = window.confirm(
-      "Etes-vous sûr de vouloir supprimer ce matériau ?"
-    );
-    if (confirmation) {
-      dispatch(deleteMaterial({ materialId, handleUnauthorized }));
+    dispatch(materialIdToRemove(materialId));
+    const productsLinkedToMaterialSearch = productsStore.filter((product) =>
+      product?.materials.some((material) => material._id === materialId)
+  );
+    if (productsLinkedToMaterialSearch.length > 0) {
+      setProductsLinkedToMaterialId(productsLinkedToMaterialSearch);
+      const isProductInOrderProducts = orderProductsStore.filter(
+        (orderProduct) =>
+          productsLinkedToMaterialSearch.some(
+            (p) => p._id === orderProduct.productsId
+          )
+      );
+      if (isProductInOrderProducts) {
+        setProductSolded(isProductInOrderProducts);
+      }
     }
+    setOpenModal(true);
   };
+  const handleConfirm = () => {
+    if (productSolded.length > 0) {
+      const formData = { isArchived: true };
+      dispatch(
+        updateMaterial({
+          materialId,
+          productSolded,
+          formData,
+          handleUnauthorized,
+        })
+      );
+    } else {
+      dispatch(
+        deleteMaterial({
+          materialId,
+          handleUnauthorized,
+        })
+      );
+    }
 
+    setProductsLinkedToMaterialId([]);
+    setProductSolded([]);
+    setOpenModal(false);
+  };
+  const handleCancel = () => {
+    dispatch(materialIdToRemove(""));
+    setProductsLinkedToMaterialId([]);
+    setProductSolded([]);
+    setOpenModal(false);
+  };
   const handleEditMaterial = (materialId) => {
     if (
       editedMaterial.name.trim() !== "" ||
       editedMaterial.value.trim() !== ""
     ) {
+      const formData = {...editedMaterial };
       dispatch(
         updateMaterial({
-          data: { materialId, ...editedMaterial },
+          materialId,
+          formData,
           handleUnauthorized,
         })
       );
@@ -77,7 +131,11 @@ const useMaterials = () => {
     editedMaterial,
     newMaterial,
     isContentVisible,
-    materials,
+    materialsStore,
+    productsLinkedToMaterialId,
+    openModal,
+    productSolded,
+    nameModal,
     setEditMaterialId,
     setIsContentVisible,
     handleChange,
@@ -87,6 +145,8 @@ const useMaterials = () => {
     handleEditClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleCancel,
+    handleConfirm,
   };
 };
 

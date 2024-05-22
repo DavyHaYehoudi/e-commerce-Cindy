@@ -28,6 +28,10 @@ const productSchema = new mongoose.Schema(
     materials: {
       type: [materialsSchema],
     },
+    isArchived: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
