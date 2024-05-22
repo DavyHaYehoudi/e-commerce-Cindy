@@ -24,4 +24,3 @@ collectionSchema.pre("validate", function (next) {
 const Collection = mongoose.model("Collection", collectionSchema);
 
 export default Collection;
- 

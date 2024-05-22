@@ -10,16 +10,19 @@ const VerifyEmailRegister = () => {
 
   return (
     <div className="authentication verify-email-register">
-      {verificationStatus === "pending" && <p className="verify-loading">Vérification en cours...</p>}
+      {verificationStatus === "pending" && (
+        <p className="verify-loading">Vérification en cours...</p>
+      )}
       {verificationStatus === "verified" && (
-        <div className="modal"> 
+        <div className="modal">
           <div className="modal-content">
             <p>
-              ✅ Votre e-mail est confirmé et votre compte est à présent validé 😃 !<br />
+              ✅ Votre e-mail est confirmé et votre compte est à présent validé
+              😃 !<br />
               <button
                 className="login-button"
                 onClick={() => navigate("/account/login", { state: email })}
-              > 
+              >
                 SE CONNECTER
               </button>
             </p>

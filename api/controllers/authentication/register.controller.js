@@ -19,21 +19,19 @@ const register = async (req, res) => {
       firstName,
       lastName,
       email,
-      authentication: { 
+      authentication: {
         password,
       },
     });
 
     await newClient.save();
     const verificationToken = generateVerificationToken(newClient);
-    console.log('verificationToken:', verificationToken)
     newClient.authentication.emailVerificationToken = verificationToken;
     newClient.authentication.emailVerificationExpires = new Date(
       Date.now() + 24 * 60 * 60 * 1000
     ); // 24 heures d'expiration
-    
+
     await newClient.save();
-    console.log('newClient:', newClient)
     await sendVerificationEmail(newClient, verificationToken);
 
     res.status(201).json({ message: "Compte utilisateur créé avec succès." });
