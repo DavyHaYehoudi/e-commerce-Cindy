@@ -5,7 +5,6 @@
 @import "./components/freeShippingBanner.css";
 @import "./components/imageCarousel.css";
 @import "./components/langs.css";
-@import "./components/megaMenu.css";
 @import "./components/navIcons.css";
 @import "./components/navMenu.css";
 @import "./components/productAside.css";
@@ -14,7 +13,6 @@
 @import "./components/orderProductsAssortments.css";
 @import "./components/quantitySelectProduct.css";
 @import "./components/cartOffCanvas.css";
-@import "./components/productList.css";
 @import "./components/cartIem.css";
 @import "./components/trashIcon.css";
 @import "./components/orderItemAdmin.css";
@@ -46,3 +44,4 @@
 @import "pages/adminDashboard/products.css";
 @import "pages/adminDashboard/stats.css";
 @import "pages/adminDashboard/config.css";
+@import "pages/collection.css";

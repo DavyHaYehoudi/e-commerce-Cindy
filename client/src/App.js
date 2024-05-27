@@ -8,9 +8,6 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Footer from "./layout/Footer";
 import Product from "./pages/ProductDetails";
-import Tab from "./pages/Tab";
-import Category from "./pages/Category";
-import SubCategory from "./pages/SubCategory";
 import Deliveries from "./pages/Deliveries";
 import TermsOfSales from "./pages/TermsOfSales";
 import LegalNotice from "./pages/LegalNotice";
@@ -23,6 +20,8 @@ import ResetPassword from "./pages/authentication/ResetPassword";
 import useAuthWrappers from "./useAuthWrappers";
 import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
+import Collection from "./pages/collection/Master";
+import Collections from "./pages/collection";
 
 function App() {
   const {
@@ -71,12 +70,8 @@ function App() {
               element={<ResetPassword />}
             />
             <Route path="/cart" element={<ShoppingCart />} />
-            <Route path="/menu-tab/:tab" element={<Tab />} />
-            <Route path="/menu-tab-category/:category" element={<Category />} />
-            <Route
-              path="/menu-tab-subcategory/:subcategory"
-              element={<SubCategory />}
-            />
+            <Route path="/menu-tab-collections" element={<Collections />} />
+            <Route path="/menu-tab-collections/:collectionId" element={<Collection />} />
             <Route path="/orderProducts/:id" element={<Product />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

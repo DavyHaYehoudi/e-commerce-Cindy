@@ -9,7 +9,7 @@ const formatForURL = (text) => {
   const MegaMenuItem = ({ category, subcategories }) => (
     <div>
       <h3>
-        <Link to={`menu-tab-category/${formatForURL(category)}`}>{category}</Link>
+        <Link to={`menu-tab-categories/${formatForURL(category)}`}>{category}</Link>
       </h3>
       <div>
         <ul>

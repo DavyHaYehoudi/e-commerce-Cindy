@@ -14,7 +14,7 @@ import collectionReducer from "../features/admin/collectionSlice";
 import authenticationReducer from "../features/authentication/authenticationSlice";
 
 export const configureStoreWithRole = (role) => {
-  console.log('role dans configureStoreWithRole:', role)
+  // console.log('role dans configureStoreWithRole:', role)
   let reducers;
   if (role === "admin") {
     reducers = {

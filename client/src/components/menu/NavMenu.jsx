@@ -1,33 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
+const NavMenu = () => {
   return (
-    <nav id="navMenu" role="navigation" >
+    <nav id="navMenu" role="navigation">
       <ul>
-        <li
-          onMouseEnter={() => handleMenuEnter("display1")}
-          
-        >
+        <li>
           <NavLink
-            to="menu-tab/forTheDay"
+            to="menu-tab-collections"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Pour un jour unique
+            Collections
           </NavLink>
         </li>
-        <li
-          onMouseEnter={() => handleMenuEnter("display2")}
-          
-        >
-          <NavLink
-            to="menu-tab/forEveryday"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Pour le quotidien
-          </NavLink>
-        </li>
-        <li onMouseEnter={() => handleMenuLeave()}>
+        <li>
           <NavLink
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -35,7 +21,7 @@ const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
             A propos
           </NavLink>
         </li>
-        <li onMouseEnter={() => handleMenuLeave()}>
+        <li>
           <NavLink
             to="contact"
             className={({ isActive }) => (isActive ? "active" : "")}
