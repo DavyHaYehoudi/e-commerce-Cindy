@@ -50,6 +50,25 @@ ul {
     background-position: -100% 0;
 }
 
+.buy-button {
+    width: 50%;
+    color: var(--dark);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.add-cart-button {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.add-cart-button:hover {
+    color: whitesmoke;
+}
+
 img {
     object-fit: cover;
 }
@@ -183,7 +202,8 @@ img {
     color: var(--text-whitesmoke);
     background-color: var(--success);
 }
-.asterix{
+
+.asterix {
     color: var(--danger);
 }
 

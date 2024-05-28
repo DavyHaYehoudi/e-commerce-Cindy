@@ -1,5 +1,6 @@
 import React from "react";
 import useFirebaseImage from "./hooks/useFirebaseImage";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const CardProduct = ({ product, material }) => {
   const { imageUrl, loading, error } = useFirebaseImage(material?.main_image);
@@ -19,9 +20,12 @@ const CardProduct = ({ product, material }) => {
       </div>
       <div className="card-info">
         <h4>{product?.name}</h4>
-        <p>{material?.pricing?.currentPrice} </p>
+        <p className="manufacture">ATELIER NORALYA</p>
+        <p>{formatPrice(material?.pricing?.currentPrice)} </p>
       </div>
-      <button>Ajouter au panier</button>
+      <div className="card-button">
+        <button className="add-cart-button btn">Ajouter au panier</button>
+      </div>
     </div>
   );
 };

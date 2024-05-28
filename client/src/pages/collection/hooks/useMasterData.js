@@ -4,29 +4,34 @@ import { useParams } from "react-router-dom";
 const useMasterData = () => {
   const { collectionId } = useParams();
 
-  const collections = useSelector((state) => state?.collection?.data);
-  const collectionName = collections.find(
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const collectionName = collectionsStore.find(
     (collection) => collection._id === collectionId
   )?.name;
 
-  const categories = useSelector((state) => state?.category?.data);
-  const categoriesLinkedToCollection = categories.filter((category) =>
-    category?.parentCollection.includes(collectionId)
+  const categoriesStore = useSelector((state) => state?.category?.data);
+  const categoriesLinkedToCollection = categoriesStore.filter(
+    (category) =>
+      category?.parentCollection.includes(collectionId) && !category?.isArchived
   );
 
-  const products = useSelector((state) => state?.product?.data);
-  const productsLinkedToCollectionAndCategory = products.filter(
+  const productsStore = useSelector((state) => state?.product?.data);
+  const productsLinkedToCollectionAndCategory = productsStore.filter(
     (product) =>
       product._collection === collectionId &&
       categoriesLinkedToCollection.some(
         (category) => category._id === product.category
       )
   );
-
+  const totalMaterialsCount = productsLinkedToCollectionAndCategory.reduce((acc, product) => {
+    return acc + (product.materials ? product.materials.length : 0);
+  }, 0);
   return {
     collectionName,
     categoriesLinkedToCollection,
     productsLinkedToCollectionAndCategory,
+    productsNumber:totalMaterialsCount,
+    collectionId
   };
 };
 

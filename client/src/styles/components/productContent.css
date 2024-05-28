@@ -83,8 +83,3 @@
 #product-content .info-tooltip:hover::before{
     left: 55px;
 }
-.buy-button {
-    width: 50%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-}

@@ -5,7 +5,7 @@ import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData";
 
 const Collections = () => {
-  const collections = useSelector((state) => state?.collection?.data);
+  const collectionsStore = useSelector((state) => state?.collection?.data);
   const { role: getRole } = useAuthWrappers();
   const role = getRole();
   useFetchData(role);
@@ -13,9 +13,9 @@ const Collections = () => {
     <div className="collections-ui">
       <h1>TOUTES LES COLLECTIONS</h1>
       <div className="collections-wrapper-ui">
-        {collections &&
-          collections.length > 0 &&
-          collections
+        {collectionsStore &&
+          collectionsStore.length > 0 &&
+          collectionsStore
             .filter((collection) => !collection?.isArchived)
             .map((collection) => (
               <CardCollection collection={collection} key={collection?._id} />

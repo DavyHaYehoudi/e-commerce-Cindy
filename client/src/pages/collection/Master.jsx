@@ -6,17 +6,21 @@ const Master = () => {
   const {
     collectionName,
     categoriesLinkedToCollection,
-    productsLinkedToCollectionAndCategory,
+    productsNumber,
+    collectionId,
   } = useMasterData();
 
   return (
-    <div className="master">
-      <h1>{collectionName}</h1>
+    <div className="collection-master">
+      <div className="title">
+        <h1>Collection : {collectionName}</h1>
+        <small>
+          ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
+        </small>
+      </div>
       <Summary
         categoriesLinkedToCollection={categoriesLinkedToCollection}
-        productsLinkedToCollectionAndCategory={
-          productsLinkedToCollectionAndCategory
-        }
+        collectionId={collectionId}
       />
     </div>
   );
