@@ -23,15 +23,22 @@ const useMasterData = () => {
         (category) => category._id === product.category
       )
   );
-  const totalMaterialsCount = productsLinkedToCollectionAndCategory.reduce((acc, product) => {
-    return acc + (product.materials ? product.materials.length : 0);
-  }, 0);
+  const totalMaterialsCount = productsLinkedToCollectionAndCategory.reduce(
+    (acc, product) => {
+      const filteredMaterials = product.materials.filter(
+        (material) => !material.isArchived && material.isActive
+      );
+      return acc + filteredMaterials.length;
+    },
+    0
+  );
+
   return {
     collectionName,
     categoriesLinkedToCollection,
     productsLinkedToCollectionAndCategory,
-    productsNumber:totalMaterialsCount,
-    collectionId
+    productsNumber: totalMaterialsCount,
+    collectionId,
   };
 };
 

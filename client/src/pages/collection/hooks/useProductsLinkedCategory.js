@@ -6,9 +6,17 @@ const useProductsLinkedCategory = ({ collectionId, categoryId }) => {
     (product) =>
       product._collection === collectionId && product.category === categoryId
   );
-  const totalMaterialsCount = productsLinked.reduce((acc, product) => {
-    return acc + (product.materials ? product.materials.length : 0);
-  }, 0);
+
+  const totalMaterialsCount = productsLinked.reduce(
+    (acc, product) => {
+      const filteredMaterials = product.materials.filter(
+        (material) => !material.isArchived && material.isActive
+      );
+      return acc + filteredMaterials.length;
+    },
+    0
+  );
   return { productsLinked, productsNumber: totalMaterialsCount };
 };
+
 export default useProductsLinkedCategory;

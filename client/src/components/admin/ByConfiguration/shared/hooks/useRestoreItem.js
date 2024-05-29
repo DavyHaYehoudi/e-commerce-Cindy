@@ -8,7 +8,7 @@ const useRestoreItem = () => {
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const handleRestore = (id, parameter) => {
-    const formData = { isArchived: false };
+    let formData = { isArchived: false };
     switch (parameter) {
       case "collection":
         dispatch(
@@ -31,6 +31,7 @@ const useRestoreItem = () => {
         );
         break;
       case "material":
+        formData = { isArchived: false, restore: true };
         dispatch(
           updateMaterial({
             materialId: id,

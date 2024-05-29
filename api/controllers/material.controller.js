@@ -1,4 +1,5 @@
 import Material from "../models/material.model.js";
+import OrderProducts from "../models/orderProducts.model.js";
 import Product from "../models/product/product.model.js";
 
 const materialController = {
@@ -41,7 +42,26 @@ const materialController = {
       if (!updateMaterial) {
         return res.status(404).json({ message: "Le matériau n'existe pas." });
       }
+      //Archivage du matériau dans les produits
+      if (updatedFields.isArchived) {
+        const orderProductsWithMaterial = await OrderProducts.find({
+          material: materialId,
+        });
 
+        if (orderProductsWithMaterial.length > 0) {
+          await Product.updateMany(
+            { "materials._id": materialId },
+            { $set: { "materials.$.isArchived": true } }
+          );
+        }
+      }
+      //Restauration du matériau dans les produits
+      if(updatedFields.restore){
+        await Product.updateMany(
+          { "materials._id": materialId },
+          { $set: { "materials.$.isArchived": false } }
+        );
+      }
       res.status(200).json(updateMaterial);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {

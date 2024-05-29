@@ -64,7 +64,7 @@ const useMaterials = () => {
       );
       if (isProductInOrderProducts) {
         setProductSolded(isProductInOrderProducts);
-      }
+      } 
     }
     setOpenModal(true);
   };

@@ -3,7 +3,7 @@ import CardProduct from "./CardProduct";
 import useProductsLinkedCategory from "./hooks/useProductsLinkedCategory";
 
 const SummaryDetails = ({ category, collectionId }) => {
-  const { productsLinked ,productsNumber} = useProductsLinkedCategory({
+  const { productsLinked, productsNumber } = useProductsLinkedCategory({
     collectionId,
     categoryId: category._id,
   });
@@ -21,13 +21,17 @@ const SummaryDetails = ({ category, collectionId }) => {
             {productsLinked &&
               productsLinked.length > 0 &&
               productsLinked.map((product) =>
-                product?.materials.map((material) => (
-                  <CardProduct
-                    key={material?._id}
-                    product={product}
-                    material={material}
-                  />
-                ))
+                product?.materials
+                  .filter(
+                    (material) => material.isActive && !material.isArchived
+                  )
+                  .map((material) => (
+                    <CardProduct
+                      key={material?._id}
+                      product={product}
+                      material={material}
+                    />
+                  ))
               )}
           </div>
         </>
