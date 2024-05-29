@@ -26,6 +26,7 @@ const Collections = () => {
     productsLinkedToCategories,
     productSolded,
     nameModal,
+    loading,
     handleCancel,
     handleConfirm,
     setEditCollectionId,
@@ -75,6 +76,7 @@ const Collections = () => {
                       setEditedCollectionName={setEditedCollectionName}
                       handleKeyPressEdit={handleKeyPressEdit}
                       collection={collection}
+                      loading={loading}
                       handleSaveClick={handleSaveClick}
                       setEditCollectionId={setEditCollectionId}
                       addIllustrationToStorage={addIllustrationToStorage}
@@ -104,6 +106,7 @@ const Collections = () => {
             handleDeleteImage={handleDeleteImage}
             handleAddCollection={handleAddCollection}
             setMainImageCreate={setMainImageCreate}
+            loading={loading}
           />
         </div>
       )}

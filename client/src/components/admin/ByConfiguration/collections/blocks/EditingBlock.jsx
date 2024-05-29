@@ -7,6 +7,7 @@ const EditingBlock = ({
   setEditedCollectionName,
   handleKeyPressEdit,
   collection,
+  loading,
   handleSaveClick,
   setEditCollectionId,
   addIllustrationToStorage,
@@ -44,6 +45,7 @@ const EditingBlock = ({
         removeIllustrationToStorage={removeIllustrationToStorage}
         setAddIllustrationToStorage={setAddIllustrationToStorage}
         setRemoveIllustrationToStorage={setRemoveIllustrationToStorage}
+        loading={loading}
       />
     </div>
   );

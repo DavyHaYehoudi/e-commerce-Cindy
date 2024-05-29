@@ -21,6 +21,7 @@ import {
 import useMainImagesToAddStorage from "./bodyCheat/sections/hooks/useMainImagesToAddStorage";
 import useConfirmationFunctions from "./bodyCheat/sections/hooks/useConfirmationFunctions";
 import Switch from "./bodyCheat/materials/shared/Switch";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Modal = ({
   handleCloseModal,
@@ -69,19 +70,20 @@ const Modal = ({
     deleteAllMainImagesFromStorage,
     reset,
   } = useMainImagesToAddStorage(data);
-  const { handleSubmit, handleSwitchChange, isProductActive } = useSubmitForm({
-    handleCloseModal,
-    fields,
-    tags,
-    materialsData,
-    currentProductId,
-    data,
-    uploadMainImagesToStorage,
-    deleteMainImagesFromStorage,
-    deleteAllMainImagesFromStorage,
-    deleteAllSecondariesImagesFromStorage,
-    reset,
-  });
+  const { handleSubmit, handleSwitchChange, isProductActive, loadingSubmit } =
+    useSubmitForm({
+      handleCloseModal,
+      fields,
+      tags,
+      materialsData,
+      currentProductId,
+      data,
+      uploadMainImagesToStorage,
+      deleteMainImagesFromStorage,
+      deleteAllMainImagesFromStorage,
+      deleteAllSecondariesImagesFromStorage,
+      reset,
+    });
   const { confirmationEnabled } = useConfirmationFunctions({
     fields,
   });
@@ -110,77 +112,87 @@ const Modal = ({
 
   return (
     <div className="product-modal">
-      <div className="product-modal-content">
-        {currentAction === "edit" ? (
-          <h2>Modification du produit</h2>
-        ) : (
-          <h2>Création d'un produit</h2>
-        )}
-        <div className="switch-product-btn">
-          {isProductActive ? (
-            <p className="actived">PRODUIT PUBLIE</p>
-          ) : (
-            <p>PRODUIT SUSPENDU</p>
-          )}
-          <Switch checked={isProductActive} onChange={handleSwitchChange} />
+      {loadingSubmit ? (
+        <div className="loader loader-submit">
+          <MoonLoader color="var(--dark)" />
+          <p>Veuillez patienter...</p>
         </div>
-        <span className="product-modal-close" onClick={handleCloseModal}>
-          <AiOutlineClose />
-        </span>
-        {confirmationEnabled && isProductModified ? (
-          <small style={{ color: "var(--success)" }}>
-            Tous les champs obligatoires sont renseignés.
-          </small>
-        ) : (
-          isProductModified && (
-            <small className="asterix">
-              Les champs marqués par une étoile * sont obligatoires.
+      ) : (
+        <div className="product-modal-content">
+          {currentAction === "edit" ? (
+            <h2>Modification du produit</h2>
+          ) : (
+            <h2>Création d'un produit</h2>
+          )}
+          <div className="switch-product-btn">
+            {isProductActive ? (
+              <p className="actived">PRODUIT PUBLIE</p>
+            ) : (
+              <p>PRODUIT SUSPENDU</p>
+            )}
+            <Switch checked={isProductActive} onChange={handleSwitchChange} />
+          </div>
+          <span className="product-modal-close" onClick={handleCloseModal}>
+            <AiOutlineClose />
+          </span>
+          {confirmationEnabled && isProductModified ? (
+            <small style={{ color: "var(--success)" }}>
+              Tous les champs obligatoires sont renseignés.
             </small>
-          )
-        )}
-        <Name fields={fields} handleChangeFields={handleChangeFields} />
-        <Groups
-          fields={fields}
-          handleChangeFields={handleChangeFields}
-          tags={tags}
-          handleAddTag={addTag}
-          collectionsStore={collectionsStore}
-          categoriesStore={categoriesStore}
-          tagsStore={tagsStore}
-        />
-        <Tags tags={tags} handleRemoveTag={removeTag} />
-        <MaterialsSelect
-          data={data}
-          showMaterials={showMaterials}
-          handleMaterialsSelectToggle={handleMaterialsSelectToggle}
-          currentAction={currentAction}
-          currentProductId={currentProductId}
-          isWithMaterial={isWithMaterial}
-          addMainImageToStorage={addMainImageToStorage}
-        />
-        <Description fields={fields} handleChangeFields={handleChangeFields} />
-        <ImagesSecondary
-          localImages={localImages}
-          handleChangeImage={handleChangeImage}
-          handleDeleteImage={handleDeleteImage}
-          loading={loading}
-          currentAction={currentAction}
-        />
-        <Confirmation
-          fields={fields}
-          handleSubmit={handleSubmit}
-          currentAction={currentAction}
-          addSecondariesImagesToFirebaseStorage={
-            addSecondariesImagesToFirebaseStorage
-          }
-          deleteSecondariesImagesFromStorage={
-            deleteSecondariesImagesFromStorage
-          }
-          mainImagesToAddStorage={mainImagesToAddStorage}
-          uploadMainImagesToStorage={uploadMainImagesToStorage}
-          deleteMainImagesFromStorage={deleteMainImagesFromStorage}
-        />
-      </div>
+          ) : (
+            isProductModified && (
+              <small className="asterix">
+                Les champs marqués par une étoile * sont obligatoires.
+              </small>
+            )
+          )}
+          <Name fields={fields} handleChangeFields={handleChangeFields} />
+          <Groups
+            fields={fields}
+            handleChangeFields={handleChangeFields}
+            tags={tags}
+            handleAddTag={addTag}
+            collectionsStore={collectionsStore}
+            categoriesStore={categoriesStore}
+            tagsStore={tagsStore}
+          />
+          <Tags tags={tags} handleRemoveTag={removeTag} />
+          <MaterialsSelect
+            data={data}
+            showMaterials={showMaterials}
+            handleMaterialsSelectToggle={handleMaterialsSelectToggle}
+            currentAction={currentAction}
+            currentProductId={currentProductId}
+            isWithMaterial={isWithMaterial}
+            addMainImageToStorage={addMainImageToStorage}
+          />
+          <Description
+            fields={fields}
+            handleChangeFields={handleChangeFields}
+          />
+          <ImagesSecondary
+            localImages={localImages}
+            handleChangeImage={handleChangeImage}
+            handleDeleteImage={handleDeleteImage}
+            loading={loading}
+            currentAction={currentAction}
+          />
+          <Confirmation
+            fields={fields}
+            handleSubmit={handleSubmit}
+            currentAction={currentAction}
+            addSecondariesImagesToFirebaseStorage={
+              addSecondariesImagesToFirebaseStorage
+            }
+            deleteSecondariesImagesFromStorage={
+              deleteSecondariesImagesFromStorage
+            }
+            mainImagesToAddStorage={mainImagesToAddStorage}
+            uploadMainImagesToStorage={uploadMainImagesToStorage}
+            deleteMainImagesFromStorage={deleteMainImagesFromStorage}
+          />
+        </div>
+      )}
       <ToastContainer autoClose={2500} />
     </div>
   );

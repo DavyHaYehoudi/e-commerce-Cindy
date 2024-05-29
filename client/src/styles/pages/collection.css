@@ -1,9 +1,32 @@
+.collections-ui {
+    position: relative;
+    background-image: url('../assets/bg-collections.jpg');
+    background-size: cover;  
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding: 50px;
+    z-index: 1;
+    color: whitesmoke;
+}
+.collections-ui::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
 .collection-master h1,
-h2,h4 {
+h2,
+h4 {
     text-align: center;
     letter-spacing: 5px;
 }
-.collection-master .title{
+
+.collection-master .title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,7 +126,8 @@ h2,h4 {
     margin: 20px auto 10px auto;
     text-align: center;
 }
-.collection-master .manufacture{
+
+.collection-master .manufacture {
     font-size: 0.7rem;
     color: var(--collection-card-manufacture);
 }

@@ -62,7 +62,14 @@
 .addProduct span {
     font-size: 100px;
 }
-
+.loader-submit{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 /* **********************************END LISTING ********************************** */
 /* **********************************START MODAL ********************************** */
 .product-modal-close {

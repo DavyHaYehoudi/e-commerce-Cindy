@@ -1,10 +1,12 @@
 import React from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const EditValidation = ({
   handleSaveClick,
   setEditCollectionId,
   addIllustrationToStorage,
   removeIllustrationToStorage,
+  loading,
   setAddIllustrationToStorage,
   setRemoveIllustrationToStorage,
 }) => {
@@ -21,7 +23,13 @@ const EditValidation = ({
           })
         }
       >
-        Enregistrer
+         {loading ? (
+          <div className="loader-config">
+            <MoonLoader color="var(--dark)" />
+          </div>
+        ) : (
+          "Enregistrer"
+        )}
       </button>
       <button
         className="account-btn icon-trash"

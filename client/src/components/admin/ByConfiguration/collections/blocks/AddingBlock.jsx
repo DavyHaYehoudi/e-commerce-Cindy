@@ -1,5 +1,6 @@
 import React from "react";
 import MainImage from "../../../../../shared/MainImage";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const AddingBlock = ({
   newCollectionName,
@@ -10,6 +11,7 @@ const AddingBlock = ({
   handleDeleteImage,
   handleAddCollection,
   setMainImageCreate,
+  loading,
 }) => {
   return (
     <div className="adding">
@@ -40,7 +42,13 @@ const AddingBlock = ({
           handleAddCollection({ mainImageCreate, setMainImageCreate })
         }
       >
-        Ajouter
+        {loading ? (
+          <div className="loader-config">
+            <MoonLoader color="var(--dark)" />
+          </div>
+        ) : (
+          "Ajouter"
+        )}
       </button>
     </div>
   );
