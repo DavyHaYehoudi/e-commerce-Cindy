@@ -4,7 +4,6 @@ import CurrentPrice from "../shared/CurrentPrice";
 import OldPrice from "../shared/OldPrice";
 import LabelsDetails from "../shared/LabelsDetails";
 import useMaterials from "../hooks/useMaterials";
-import Switch from "../shared/Switch";
 
 const NoMaterials = ({
   data,
@@ -44,15 +43,13 @@ const NoMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    materialActive,
-    handleSwitchChange,
   } = useMaterials({
     currentAction,
     currentProductId,
     isWithMaterial,
     addMainImageToStorage,
   });
-  
+
   useEffect(() => {
     setIsNewChecked(!!newDate);
     setIsPromoChecked(!!promo?.startDate);
@@ -60,12 +57,6 @@ const NoMaterials = ({
 
   return (
     <div className="noMaterials">
-      {currentAction !== "create" && (
-        <div className="switch-product-btn">
-          {materialActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
-          <Switch checked={materialActive} onChange={handleSwitchChange} />
-        </div>
-      )}
       <div className="details-wrapper">
         <Stock stock={stock} handleStockChange={handleStockChange} />
         <CurrentPrice

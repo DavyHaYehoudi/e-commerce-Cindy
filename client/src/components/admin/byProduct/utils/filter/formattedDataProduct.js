@@ -37,6 +37,9 @@ export const formattedDataProduct = (
         if (key === "Nouveau") {
           rename = "untilNew";
         }
+        if (key === "Suspendu") {
+          rename = "pending";
+        }
         formattedData.other.push(rename);
       }
     }

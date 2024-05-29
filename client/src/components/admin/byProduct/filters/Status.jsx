@@ -4,6 +4,7 @@ const Status = ({ handleCheckboxChange, checkedItems }) => {
   const options = [
     { name: "En promotion", label: "promotion" },
     { name: "Nouveau", label: "untilNew" },
+    { name: "Suspendu", label: "pending" },
   ];
   return (
     <div className="filterBlock-content-subBlock">

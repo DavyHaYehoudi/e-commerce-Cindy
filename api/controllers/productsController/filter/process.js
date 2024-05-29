@@ -1,7 +1,7 @@
 import Product from "../../../models/product/product.model.js";
 
 const process = async (queries) => {
-  // console.log("queries:", queries);
+  console.log("queries:", queries);
   const {
     name = null,
     collection = null,
@@ -47,6 +47,8 @@ const process = async (queries) => {
         otherQueries.push({
           "materials.untilNew": { $gt: new Date() },
         });
+      } else if (propertyName === "pending") {
+        otherQueries.push({ isActive: false });
       } else {
         otherQueries.push({
           [`materials.${propertyName}`]: true,
