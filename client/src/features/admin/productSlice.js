@@ -87,7 +87,13 @@ const productSlice = createSlice({
     modifyProductCheet: (state, action) => {
       state.isProductCheetModified = action.payload;
     },
-  },
+    changeProductActiveStatus: (state, action) => {
+      const { productId, status } = action.payload;
+      state.data = state.data.map(product => 
+        product._id === productId ? { ...product, isActive: status } : product
+      );
+    }}
+    ,
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
@@ -162,5 +168,6 @@ export const {
   initProductMaterials,
   resetStore,
   modifyProductCheet,
+  changeProductActiveStatus
 } = productSlice.actions;
 export default productSlice.reducer;

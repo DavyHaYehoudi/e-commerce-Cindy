@@ -50,10 +50,10 @@ const useMaterials = ({
   const [mainImage, setMainImage] = useState(initMainImage);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [productActive, setProductActive] = useState(initIsActive);
+  const [materialActive, setMaterialActive] = useState(initIsActive);
 
   const handleSwitchChange = (isChecked) => {
-    setProductActive(isChecked);
+    setMaterialActive(isChecked);
     dispatch(
       updateProductMaterials({ _id: material?._id, isActive: isChecked })
     );
@@ -223,7 +223,7 @@ const useMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    productActive,
+    materialActive,
     handleSwitchChange,
   };
 };

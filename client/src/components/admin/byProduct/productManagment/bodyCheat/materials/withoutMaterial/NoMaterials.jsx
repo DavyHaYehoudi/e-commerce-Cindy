@@ -44,7 +44,7 @@ const NoMaterials = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    productActive,
+    materialActive,
     handleSwitchChange,
   } = useMaterials({
     currentAction,
@@ -61,9 +61,9 @@ const NoMaterials = ({
   return (
     <div className="noMaterials">
       {currentAction !== "create" && (
-        <div className="switch-materials-btn">
-          {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
-          <Switch checked={productActive} onChange={handleSwitchChange} />
+        <div className="switch-product-btn">
+          {materialActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+          <Switch checked={materialActive} onChange={handleSwitchChange} />
         </div>
       )}
       <div className="details-wrapper">

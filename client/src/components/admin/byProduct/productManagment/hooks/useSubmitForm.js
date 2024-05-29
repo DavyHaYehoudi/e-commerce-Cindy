@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   addProduct,
+  changeProductActiveStatus,
   deleteProduct,
   editProduct,
   modifyProductCheet,
@@ -24,9 +25,12 @@ const useSubmitForm = ({
   reset,
   data,
 }) => {
+  const productsStore = useSelector((state) => state?.product?.data);
+  const isProductActive = productsStore.find(
+    (product) => product._id === currentProductId
+  )?.isActive;
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
-  const productsStore = useSelector((state) => state?.product?.data);
 
   const materialBeforeEditing = productsStore?.find(
     (product) => product?._id === currentProductId
@@ -34,6 +38,15 @@ const useSubmitForm = ({
   if (materialsData.length === 0) {
     materialsData = materialBeforeEditing;
   }
+  const handleSwitchChange = (isChecked) => {
+    dispatch(
+      changeProductActiveStatus({
+        productId: currentProductId,
+        status: isChecked,
+      })
+    );
+    dispatch(modifyProductCheet(true));
+  };
 
   const formData = {
     name: fields?.name,
@@ -42,6 +55,7 @@ const useSubmitForm = ({
     tags: tags?.map((tag) => tag?._id),
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
+    isActive: isProductActive,
   };
 
   const handleSubmit = async (currentAction, paths) => {
@@ -61,7 +75,7 @@ const useSubmitForm = ({
 
     const handleEditProduct = async () => {
       try {
-        await Get("auth/verify-token/admin",null,handleUnauthorized);
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
         formData.secondary_images = paths;
         await uploadMainImagesToStorage();
         await deleteMainImagesFromStorage();
@@ -87,7 +101,7 @@ const useSubmitForm = ({
       );
       if (confirmDelete) {
         try {
-          await Get("auth/verify-token/admin",null,handleUnauthorized);
+          await Get("auth/verify-token/admin", null, handleUnauthorized);
           await deleteAllMainImagesFromStorage(data);
           await deleteAllSecondariesImagesFromStorage();
           dispatch(
@@ -118,7 +132,7 @@ const useSubmitForm = ({
     }
   };
 
-  return { handleSubmit };
+  return { handleSubmit, handleSwitchChange, isProductActive };
 };
 
 export default useSubmitForm;

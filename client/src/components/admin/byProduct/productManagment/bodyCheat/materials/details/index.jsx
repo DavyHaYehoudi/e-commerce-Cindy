@@ -15,7 +15,7 @@ const MaterialsRowDetails = ({
   loading,
   handleDeleteImage,
   currentProductId,
-  productActive,
+  materialActive,
   handleSwitchChange,
   currentAction,
 }) => {
@@ -41,9 +41,9 @@ const MaterialsRowDetails = ({
   return (
     <div className="materials-details">
       {currentAction !== "create" && (
-        <div className="switch-materials-btn">
-          {productActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
-          <Switch checked={productActive} onChange={handleSwitchChange} />
+        <div className="switch-product-btn">
+          {materialActive ? <p className="actived">Activé</p> : <p>Désactivé</p>}
+          <Switch checked={materialActive} onChange={handleSwitchChange} />
         </div>
       )}
       <LabelsDetails

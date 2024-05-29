@@ -20,6 +20,7 @@ import {
 } from "../../../../features/admin/productSlice";
 import useMainImagesToAddStorage from "./bodyCheat/sections/hooks/useMainImagesToAddStorage";
 import useConfirmationFunctions from "./bodyCheat/sections/hooks/useConfirmationFunctions";
+import Switch from "./bodyCheat/materials/shared/Switch";
 
 const Modal = ({
   handleCloseModal,
@@ -68,7 +69,7 @@ const Modal = ({
     deleteAllMainImagesFromStorage,
     reset,
   } = useMainImagesToAddStorage(data);
-  const { handleSubmit } = useSubmitForm({
+  const { handleSubmit, handleSwitchChange, isProductActive } = useSubmitForm({
     handleCloseModal,
     fields,
     tags,
@@ -115,17 +116,27 @@ const Modal = ({
         ) : (
           <h2>Création d'un produit</h2>
         )}
+        <div className="switch-product-btn">
+          {isProductActive ? (
+            <p className="actived">PRODUIT PUBLIE</p>
+          ) : (
+            <p>PRODUIT SUSPENDU</p>
+          )}
+          <Switch checked={isProductActive} onChange={handleSwitchChange} />
+        </div>
         <span className="product-modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </span>
-        {confirmationEnabled&&isProductModified ? (
+        {confirmationEnabled && isProductModified ? (
           <small style={{ color: "var(--success)" }}>
             Tous les champs obligatoires sont renseignés.
           </small>
-        ) : (isProductModified&&
-          <small className="asterix">
-            Les champs marqués par une étoile * sont obligatoires.
-          </small>
+        ) : (
+          isProductModified && (
+            <small className="asterix">
+              Les champs marqués par une étoile * sont obligatoires.
+            </small>
+          )
         )}
         <Name fields={fields} handleChangeFields={handleChangeFields} />
         <Groups

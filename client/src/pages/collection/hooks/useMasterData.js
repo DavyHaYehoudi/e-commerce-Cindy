@@ -18,7 +18,7 @@ const useMasterData = () => {
   const productsStore = useSelector((state) => state?.product?.data);
   const productsLinkedToCollectionAndCategory = productsStore.filter(
     (product) =>
-      product._collection === collectionId &&
+      product._collection === collectionId && product.isActive&&
       categoriesLinkedToCollection.some(
         (category) => category._id === product.category
       )

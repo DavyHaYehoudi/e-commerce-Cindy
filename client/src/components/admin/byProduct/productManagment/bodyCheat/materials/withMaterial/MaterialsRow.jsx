@@ -32,7 +32,7 @@ const MaterialsRow = ({
     errorMessage,
     loading,
     handleDeleteImage,
-    productActive,
+    materialActive,
     handleSwitchChange,
   } = useMaterials({
     material,
@@ -82,7 +82,7 @@ const MaterialsRow = ({
           errorMessage={errorMessage}
           loading={loading}
           handleDeleteImage={handleDeleteImage}
-          productActive={productActive}
+          materialActive={materialActive}
           handleSwitchChange={handleSwitchChange}
           currentAction={currentAction}
         />

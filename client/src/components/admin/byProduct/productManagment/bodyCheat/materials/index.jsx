@@ -44,17 +44,19 @@ const MaterialsSelect = ({
         </div>
       )}
       {showMaterials ? (
-        materialsStore.filter((material) => !material?.isArchived).map((material, index) => (
-          <MaterialsRow
-            key={index}
-            data={data}
-            material={material}
-            currentAction={currentAction}
-            currentProductId={currentProductId}
-            isWithMaterial={isWithMaterial}
-            addMainImageToStorage={addMainImageToStorage}
-          />
-        ))
+        materialsStore
+          .filter((material) => !material?.isArchived)
+          .map((material, index) => (
+            <MaterialsRow
+              key={index}
+              data={data}
+              material={material}
+              currentAction={currentAction}
+              currentProductId={currentProductId}
+              isWithMaterial={isWithMaterial}
+              addMainImageToStorage={addMainImageToStorage}
+            />
+          ))
       ) : (
         <NoMaterials
           data={data}
