@@ -1,20 +1,19 @@
 import Header from "./layout/Header";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./pages/authentication/Login";
-import ShoppingCart from "./pages/ShoppingCart";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+import ShoppingCart from "./pages/shoppingCart";
+import About from "./pages/about";
+import Contact from "./pages/contact";
+import NotFound from "./pages/notFound";
 import Footer from "./layout/Footer";
-import Product from "./pages/ProductDetails";
-import Deliveries from "./pages/Deliveries";
-import TermsOfSales from "./pages/TermsOfSales";
-import LegalNotice from "./pages/LegalNotice";
+import Deliveries from "./pages/deliveries";
+import TermsOfSales from "./pages/termsOfSales";
+import LegalNotice from "./pages/legalNotice";
 import Register from "./pages/authentication/Register";
 import ForgotPassword from "./pages/authentication/ForgotPassword";
-import AccountClient from "./pages/dashboards/AccountClient";
-import AdminDashboard from "./pages/dashboards/AdminDashboard";
+import AccountClient from "./pages/dashboardClient/AccountClient";
+import AdminDashboard from "./pages/dashboardAdmin";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 import ResetPassword from "./pages/authentication/ResetPassword";
 import useAuthWrappers from "./useAuthWrappers";
@@ -22,6 +21,7 @@ import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
 import Collection from "./pages/collection/Master";
 import Collections from "./pages/collection";
+import MasterProduct from "./pages/MasterProduct";
 
 function App() {
   const {
@@ -72,7 +72,7 @@ function App() {
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/menu-tab-collections" element={<Collections />} />
             <Route path="/menu-tab-collections/:collectionId" element={<Collection />} />
-            <Route path="/orderProducts/:id" element={<Product />} />
+            <Route path="/orderProducts/:id" element={<MasterProduct />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/deliveries&returns" element={<Deliveries />} />

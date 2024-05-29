@@ -1,7 +1,7 @@
 import React from "react";
 import { getProductProperties } from "../selectors/product";
-import useConfirmation from "../components/admin/byClient/orders/product/item/action/hooks/useConfirmation";
 import { useSelector } from "react-redux";
+import useConfirmationFunctions from "../pages/dashboardAdmin/admin/byProduct/productManagment/bodyCheat/sections/hooks/useConfirmationFunctions";
 
 const ConfirmationModal = ({
   material,
@@ -31,7 +31,7 @@ const ConfirmationModal = ({
     tagStore,
     material
   )?.pricing?.currentPrice;
-  const { isConfirmed, handleConfirmation, handleCancel } = useConfirmation({
+  const { isConfirmed, handleConfirmation, handleCancel } = useConfirmationFunctions({
     confirmation,
     orderProductsActions,
     actions,
