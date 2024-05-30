@@ -47,7 +47,7 @@ const materialsSchema = new mongoose.Schema({
       },
       isActive: {
         type: Boolean,
-        default: true,
+        default: true,//Important pour un produit sans material dont le statut actif est géré par le bouton de statut général à la fiche produit. Pour un produit sans material, ce champ doit toujours être sur true autrement il n'apparaît pas dans les résultats.
       },
       isArchived: {
         type: Boolean,

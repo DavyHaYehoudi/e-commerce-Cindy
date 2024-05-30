@@ -42,7 +42,8 @@ const useFetchData = ({ role, clientId }) => {
     }
     if (role === "user") {
       fetchSliceCustomer();
-    } else {
+    }
+    else if(role!=="user"||role==="admin") {
       fetchSliceVisit();
     }
   }, [fetchSliceVisit, fetchSliceCustomer, role, dispatch]);

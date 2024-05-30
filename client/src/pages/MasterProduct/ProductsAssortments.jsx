@@ -1,11 +1,8 @@
 import React from "react";
-import bo from "../../assets/bo.png";
-import bar from "../../assets/bar.png";
-import bra from "../../assets/bra.png";
-import col from "../../assets/col.png";
+
 import { Link } from "react-router-dom";
 const ProductsAssortments = () => {
-  const assortedProducts = [bo, bar, bra, col, bo, bar, bra, col];
+  const assortedProducts = [];
   return (
     <div id="orderProducts-assortments-section">
       <h2>Mes assortiments</h2>

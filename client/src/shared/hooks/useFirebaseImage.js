@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { storage } from "../../../firebase";
+import { storage } from "../../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
 
 const useFirebaseImage = (imagePath) => {

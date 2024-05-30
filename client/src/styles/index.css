@@ -3,13 +3,9 @@
 
 /* COMPOSANTS */
 @import "./components/freeShippingBanner.css";
-@import "./components/imageCarousel.css";
 @import "./components/langs.css";
 @import "./components/navIcons.css";
 @import "./components/navMenu.css";
-@import "./components/productAside.css";
-@import "./components/productContent.css";
-@import "./components/productMeta.css";
 @import "./components/orderProductsAssortments.css";
 @import "./components/quantitySelectProduct.css";
 @import "./components/cartOffCanvas.css";
@@ -18,7 +14,6 @@
 @import "./components/orderItemAdmin.css";
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
-@import "./components/colorPicker.css";
 @import "./components/orderActionsDropdown.css";
 @import "./darkMode/darkMode.css";
 
@@ -45,3 +40,4 @@
 @import "pages/adminDashboard/stats.css";
 @import "pages/adminDashboard/config.css";
 @import "pages/collection.css";
+@import "pages/product.css";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductAside from "./ProductAside";
 import ProductContent from "./ProductContent";
 import CartOffcanvas from "./CartOffcanvas";
@@ -7,17 +7,14 @@ import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData";
 
 const MasterProduct = () => {
-  const [showCart, setShowCart] = useState(false);
   const { role: getRole, clientId: getClientId } = useAuthWrappers();
   const role = getRole();
   const clientId = getClientId();
   useFetchData({ role, clientId });
 
-  const handleCartClose = () => setShowCart(false);
-  const handleCartShow = () => setShowCart(true);
   return (
     <section id="product-detail-container">
-      <ProductContent handleCartShow={handleCartShow} />
+      <ProductContent />
       {/* <ProductAside />
       <ProductsAssortments />
       <CartOffcanvas show={showCart} handleClose={handleCartClose} /> */}

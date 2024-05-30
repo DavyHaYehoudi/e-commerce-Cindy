@@ -1,5 +1,5 @@
 import React from "react";
-import useFirebaseImage from "./hooks/useFirebaseImage";
+import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
 import { Link } from "react-router-dom";
 
 const CardCollection = ({ collection }) => {

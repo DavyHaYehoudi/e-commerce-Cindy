@@ -1,36 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import ColorPicker from "../../shared/ColorPicker";
-// import { materials } from "../../constants/materials";
 import { useSelector } from "react-redux";
 
-const ProductColorSelector = () => {
-  const [selectedProductColor, setSelectedProductColor] =
-    useState("GOLD FILLED");
-  const [hoveredColor, setHoveredColor] = useState(null);
-  const materialStore = useSelector((state) => state?.material?.data);
-
-
-  const handleSelectColor = (color) => {
-    setSelectedProductColor(color);
-  };
-
-  const handleHoverColor = (color) => {
-    setHoveredColor(color);
-  };
+const ProductColorSelector = ({
+  materialSelected,
+  handleMaterialSelected,
+  materialsProductId,
+}) => {
+  const materialsStore = useSelector((state) => state?.material?.data);
+  const materialName =
+    materialsStore.find((material) => material._id === materialSelected.id)
+      ?.name || "";
 
   return (
-    <div
-      className="product-color-selector-picker info-tooltip"
-      aria-label={hoveredColor || selectedProductColor}
-    >
+    <div className="product-color-selector-picker">
       <ColorPicker
-        // colors={materials}
-        colors={materialStore}
-        onSelectColor={handleSelectColor}
-        defaultColor={selectedProductColor}
-        onHoverColor={handleHoverColor}
+        materialsStore={materialsStore}
+        materialSelected={materialSelected}
+        handleMaterialSelected={handleMaterialSelected}
+        materialsProductId={materialsProductId}
+        materialName={materialName}
       />
-      <span>Apprêt : {selectedProductColor}</span>
+      {materialName && <span>Matériau : {materialName}</span>}
     </div>
   );
 };
