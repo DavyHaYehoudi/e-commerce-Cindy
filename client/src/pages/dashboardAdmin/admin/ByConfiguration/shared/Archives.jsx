@@ -11,7 +11,7 @@ const Archives = ({ store, parameter }) => {
           {store
             .filter((element) => element?.isArchived)
             .map((item) => (
-              <li>
+              <li key={item._id}>
                 <span>{item?.name} </span>
                 <button
                   className="account-btn"

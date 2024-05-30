@@ -72,7 +72,7 @@ function App() {
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/menu-tab-collections" element={<Collections />} />
             <Route path="/menu-tab-collections/:collectionId" element={<Collection />} />
-            <Route path="/orderProducts/:id" element={<MasterProduct />} />
+            <Route path="/master-product/:productId" element={<MasterProduct />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/deliveries&returns" element={<Deliveries />} />

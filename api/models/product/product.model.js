@@ -24,6 +24,7 @@ const productSchema = new mongoose.Schema(
     secondary_images: { type: [String] },
     main_description: {
       type: String,
+      default:""
     },
     materials: {
       type: [materialsSchema],

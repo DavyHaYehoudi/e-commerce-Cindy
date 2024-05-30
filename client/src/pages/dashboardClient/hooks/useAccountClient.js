@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useFetchSliceCustomer from "../../../selectors/useFetchSliceCustomer";
 import useProfilChange from "./useProfilChange";
-import { addRole, addToken } from "../../../features/authentication/authenticationSlice";
+import {
+  addRole,
+  addToken,
+} from "../../../features/authentication/authenticationSlice";
 
 const useAccountClient = () => {
   const [clientId, setClientId] = useState(null);
@@ -25,7 +28,7 @@ const useAccountClient = () => {
     const tokenParse = JSON.parse(atob(token.split(".")[1]));
     setClientId(tokenParse?.clientId);
     dispatch(addToken(token));
-    dispatch(addRole(tokenParse?.role))
+    dispatch(addRole(tokenParse?.role));
   }, [dispatch]);
   const {
     handleChangeProfilSave,

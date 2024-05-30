@@ -6,9 +6,10 @@ import useFetchData from "../../useFetchData";
 
 const Collections = () => {
   const collectionsStore = useSelector((state) => state?.collection?.data);
-  const { role: getRole } = useAuthWrappers();
+  const { role: getRole, clientId: getClientId } = useAuthWrappers();
   const role = getRole();
-  useFetchData(role);
+  const clientId = getClientId();
+  useFetchData({ role, clientId });
   return (
     <div className="collections-ui">
       <h1>TOUTES LES COLLECTIONS</h1>

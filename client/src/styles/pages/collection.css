@@ -84,6 +84,7 @@ h4 {
 
 
 .collection-master .card-product {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,14 +100,17 @@ h4 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease-in-out;
 }
-
+.collection-master .card-product a{
+    width: 100%;
+    height: 65%;
+}
 .collection-master .card-product:hover {
     transform: scale(1.02);
 }
 
 .collection-master .card-product .img-container {
     width: 100%;
-    height: 65%;
+    height: 100%;
 }
 
 .collection-master .card-product img {

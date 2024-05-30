@@ -1,6 +1,6 @@
 import React from "react";
 import InfoClient from "./accountClient/info";
-import useAccountClient from "../dashboardAdmin/hooks/useAccountClient";
+import useAccountClient from "./hooks/useAccountClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Menu from "./accountClient/menu";

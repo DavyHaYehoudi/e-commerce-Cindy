@@ -26,8 +26,16 @@ const useAuthWrappers = () => {
     const tokenParse = JSON.parse(atob(localStorageToken.split(".")[1]));
     return tokenParse?.role || null;
   };
+  const clientId = () => {
+    const localStorageToken = localStorage.getItem("token");
+    if (!localStorageToken) {
+      return null;
+    }
+    const tokenParse = JSON.parse(atob(localStorageToken.split(".")[1]));
+    return tokenParse?.clientId || null;
+  };
 
-  return { RequireAuthAdmin, RequireAuthUser, role };
+  return { RequireAuthAdmin, RequireAuthUser, role, clientId };
 };
 
 export default useAuthWrappers;
