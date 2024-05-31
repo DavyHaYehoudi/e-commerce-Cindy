@@ -316,6 +316,14 @@
 }
 
 /* ************************** ASSORTMENTS ************************** */
+#master-product-assortments-section {
+    width: calc(100vw);
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50% + 100px);
+    padding: 10px;
+    color: var(--dark);
+}
+
 #master-product-assortments-section h2 {
     text-align: center;
     letter-spacing: var(--letter-spacing);
