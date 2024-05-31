@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const useMainContent = () => {
+const useMainContent = ({ productId,materialId }) => {
   const [materialSelected, setMaterialSelected] = useState({
     id: "",
-    index: 0,
+    index: "",
     currentImage: "",
   });
-  const { productId } = useParams();
   const productsStore = useSelector((state) => state?.product?.data);
   const product = productsStore?.find((product) => product?._id === productId);
 
   useEffect(() => {
     if (product && product.materials && product.materials.length > 0) {
-      const defaultMaterial = product.materials[0];
+      const indexInit = product.materials.findIndex(m=>m._id===materialId)
+      const currentImageInit = product.materials[indexInit].main_image
       setMaterialSelected({
-        id: defaultMaterial._id,
-        index: 0,
-        currentImage: defaultMaterial.main_image,
+        id:materialId,
+        index: indexInit,
+        currentImage: currentImageInit,
       });
     }
-  }, [productId, product]);
+  }, [productId, product,materialId]);
 
   const handleMaterialSelected = (updates) => {
     setMaterialSelected((prev) => ({ ...prev, ...updates }));

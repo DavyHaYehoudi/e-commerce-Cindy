@@ -10,13 +10,9 @@ import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
 
-const MainContent = ({handleCartShow}) => {
-  const {
-    product,
-    materialSelected,
-    handleMaterialSelected,
-    handleAddToCart,
-  } = useMainContent();
+const MainContent = ({ productId,materialId, handleCartShow }) => {
+  const { product, materialSelected, handleMaterialSelected, handleAddToCart } =
+    useMainContent({ productId,materialId });
 
   return (
     <div id="master-product-content">
@@ -40,11 +36,16 @@ const MainContent = ({handleCartShow}) => {
         {isCurrent(
           product?.materials[materialSelected.index]?.promotion?.endDate
         ) && (
-          <p><span className="promo-badge">     PROMOTION{" "}
-          {product?.materials[materialSelected.index]?.promotion?.amount}%{" "}</span>
-       
+          <p>
+            <span className="promo-badge">
+              {" "}
+              PROMOTION{" "}
+              {
+                product?.materials[materialSelected.index]?.promotion?.amount
+              }%{" "}
+            </span>
             <small>
-            (jusqu'au :{" "}
+              (jusqu'au :{" "}
               {formatDate(
                 product?.materials[materialSelected.index]?.promotion?.endDate
               )}

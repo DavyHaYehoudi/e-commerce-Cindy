@@ -1,25 +1,26 @@
 import React from "react";
+import CardProduct from "../../../shared/CardProduct";
+import useAssortedProducts from "./hooks/useAssortedProducts";
 
-import { Link } from "react-router-dom";
-const Assortments = () => {
-  const assortedProducts = [];
+const Assortments = ({ productId }) => {
+  const assortedProducts = useAssortedProducts(productId);
+
   return (
-    <div id="orderProducts-assortments-section">
-      <h2>Mes assortiments</h2>
-      <div className="orderProducts-assortments-container">
-        {assortedProducts.map((product, i) => (
-          <div className="assortment-row" key={i}>
-            <Link>
-              <div className="product-image">
-                <img src={product} alt="" />
-              </div>
-              <div className="product-details">
-                <h3> titre </h3>
-                <p>€95 EUR</p>
-              </div>
-            </Link>
-          </div>
-        ))}
+    <div id="master-product-assortments-section">
+      <h2>Vous pourriez aimer aussi</h2>
+      <div className="master-product-assortments-container">
+        {assortedProducts.length > 0 &&
+          assortedProducts.map((product) =>
+            product?.materials
+              .filter((material) => material.isActive && !material.isArchived)
+              .map((material, i) => (
+                <CardProduct
+                  key={i}
+                  product={product}
+                  material={material}
+                />
+              ))
+          )}
       </div>
     </div>
   );

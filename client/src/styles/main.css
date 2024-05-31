@@ -253,6 +253,62 @@ img {
 
 /* ********************* END PAGINATION ********************* */
 
+/* ********************* START CARD PRODUCT ********************* */
+ .card-product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 400px;
+    width: 400px;
+    height: 500px;
+    border: 1px solid var(--background);
+    border-radius: 20px;
+    cursor: pointer;
+    background: var(--collection-card-bg);
+    color: var(--collection-card-text);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+ .card-product a{
+    width: 100%;
+    height: 65%;
+}
+ .card-product:hover {
+    transform: scale(1.02);
+}
+
+ .card-product .img-container {
+    width: 100%;
+    height: 100%;
+}
+
+ .card-product img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 5px;
+}
+
+ .card-info {
+    text-align: center;
+}
+
+ .card-button {
+    width: 100%;
+    margin: 20px auto 10px auto;
+    text-align: center;
+}
+
+ .manufacture {
+    font-size: 0.7rem;
+    color: var(--manufacture);
+}
+/* ********************* END CARD PRODUCT ********************* */
+
+
 /* *{
     border: 1px red solid;
 } */

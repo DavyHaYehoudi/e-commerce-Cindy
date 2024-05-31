@@ -314,3 +314,30 @@
     background: transparent;
     cursor: pointer;
 }
+
+/* ************************** ASSORTMENTS ************************** */
+#master-product-assortments-section h2 {
+    text-align: center;
+    letter-spacing: var(--letter-spacing);
+}
+
+#master-product-assortments-section h3 {
+    letter-spacing: var(--letter-spacing);
+}
+
+.master-product-assortments-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    overflow-x: scroll;
+    /* -ms-overflow-style: none; */
+    /* Internet Explorer 10+ */
+    /* scrollbar-width: none; */
+    /* Firefox */
+}
+
+.master-product-assortments-container::-webkit-scrollbar {
+    /* display: none; */
+    /* Safari and Chrome */
+}

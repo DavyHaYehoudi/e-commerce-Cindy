@@ -1,20 +1,32 @@
 import React from "react";
-import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
-import { formatPrice } from "../../helpers/utils/prices";
+import useFirebaseImage from "./hooks/useFirebaseImage";
+import { formatPrice } from "../helpers/utils/prices";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import isCurrent from "../../helpers/utils/isCurrentDate";
+import isCurrent from "../helpers/utils/isCurrentDate";
 
 const CardProduct = ({ product, material }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
   const { imageUrl } = useFirebaseImage(material?.main_image);
+
+  //Utile pour les produits suggérés en bas des pages
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const handleAddToCart = () => {};
   const materialName =
     materialsStore.find((mat) => mat._id === material._id)?.name || "";
   return (
     <div className="card-product">
-      <Link to={`/master-product/${product?._id}`}>
+      <Link
+        to={`/master-product/${product?._id}`}
+        state={{ materialId: material?._id }}
+        onClick={scrollToTop}
+      >
         <div className="img-container">
           <img src={imageUrl} alt={product?.name} />
         </div>

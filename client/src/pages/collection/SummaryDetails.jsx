@@ -1,5 +1,5 @@
 import React from "react";
-import CardProduct from "./CardProduct";
+import CardProduct from "../../shared/CardProduct";
 import useProductsLinkedCategory from "./hooks/useProductsLinkedCategory";
 
 const SummaryDetails = ({ category, collectionId }) => {
@@ -25,9 +25,9 @@ const SummaryDetails = ({ category, collectionId }) => {
                   .filter(
                     (material) => material.isActive && !material.isArchived
                   )
-                  .map((material) => (
+                  .map((material,i) => (
                     <CardProduct
-                      key={material?._id}
+                      key={i}
                       product={product}
                       material={material}
                     />
