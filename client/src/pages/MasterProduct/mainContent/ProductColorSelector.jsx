@@ -1,5 +1,5 @@
 import React from "react";
-import ColorPicker from "../../shared/ColorPicker";
+import ColorPicker from "../../../shared/ColorPicker";
 import { useSelector } from "react-redux";
 
 const ProductColorSelector = ({

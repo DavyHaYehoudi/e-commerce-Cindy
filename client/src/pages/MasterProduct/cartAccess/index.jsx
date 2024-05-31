@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import { TfiClose } from "react-icons/tfi";
-import CartItem from "../../pages/MasterProduct/CartItem";
+import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../../helpers/utils/prices";
+import { formatPrice } from "../../../helpers/utils/prices";
 import { useSelector } from "react-redux";
 
 const CartOffcanvas = ({ show, handleClose }) => {

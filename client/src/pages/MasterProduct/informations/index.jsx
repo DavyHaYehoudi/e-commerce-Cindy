@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-const ProductAside = () => {
+const Informations = () => {
   const [isProductionDetailsOpen, setIsProductionDetailsOpen] = useState(false);
   const [isShippingReturnsOpen, setIsShippingReturnsOpen] = useState(false);
 
@@ -92,4 +92,4 @@ const ProductAside = () => {
   );
 };
 
-export default ProductAside;
+export default Informations;

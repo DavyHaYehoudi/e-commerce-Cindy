@@ -5,7 +5,7 @@ const FavoriteButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const heartColor = "var(--button-background)";
+  const heartColor = "var(--favorite-heart-bg)";
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -33,7 +33,7 @@ const FavoriteButton = () => {
         <AiFillHeart color={heartColor} aria-hidden="true" />
       ) : (
         <AiOutlineHeart
-          color={isHovered ? heartColor : "#000000"}
+          color={isHovered ? heartColor : "var(--dark)"}
           aria-hidden="true"
         />
       )}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const useProductContent = () => {
+const useMainContent = () => {
   const [materialSelected, setMaterialSelected] = useState({
     id: "",
     index: 0,
@@ -39,4 +39,4 @@ const useProductContent = () => {
   };
 };
 
-export default useProductContent;
+export default useMainContent;

@@ -14,34 +14,39 @@
     justify-content: space-between;
     width: 40%;
 }
-.description-heading{
+
+.description-heading {
     position: relative;
     display: flex;
     justify-content: space-between;
 }
-.description-heading button{
-   font-size: 1.875rem;
-   cursor: pointer;
-   border: none;
-   background-color: transparent;
+
+.description-heading button {
+    font-size: 1.875rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
+
 .description-heading h2 {
     font-size: var(--product-heading-fontSize);
     letter-spacing: var(--letter-spacing);
 }
+
 /*bouton nouveau*/
 .description-heading h2 span {
     position: absolute;
     top: -10px;
     font-size: 0.5rem;
     color: var(--new-badge-text);
-    background: linear-gradient(var(--new-badge-bkg)) ;
+    background: linear-gradient(var(--new-badge-bkg));
     font-weight: bold;
     padding: 4px 8px;
     animation: blink 2s;
 }
+
 /*bouton promotion*/
-.promo-badge{
+.promo-badge {
     color: var(--new-badge-text);
     background: linear-gradient(45deg, #ffecb3, #ffc107, #ff9800);
     font-weight: bold;
@@ -80,21 +85,27 @@
 .description-container .separator {
     border: 1px solid var(--border-color);
 }
+
 #product-content .product-color-selector-picker {
     display: flex;
     align-items: center;
-  }
+}
+
 #product-content .color-picker {
     display: flex;
-  }
+}
+
 .custom-color-selector {
     display: flex;
-  }
-#product-content .info-tooltip:hover::before{
-    left: 55px;
 }
-  /* ************************** PRODUCT ASIDE ************************** */
-  #product-aside {
+
+.product-description {
+    white-space: pre-wrap;
+    /* Conserve les espaces et les sauts de ligne */
+}
+
+/* ************************** PRODUCT ASIDE ************************** */
+#product-aside {
     width: 30%;
     margin: 100px auto;
 }
@@ -145,28 +156,32 @@
 #product-aside .rotate-open {
     transform: rotate(-180deg);
 }
- /* ************************** PRODUCT META ************************** */
+
+/* ************************** PRODUCT META ************************** */
 
 #product-meta {
     display: flex;
     gap: 20px;
 }
-#product-meta span{
-  letter-spacing: var(--letter-spacing);
-  color: var(--light-text-color);
-  text-transform: uppercase;
-  font-size: 0.75rem;
+
+#product-meta span {
+    letter-spacing: var(--letter-spacing);
+    color: var(--light-text-color);
+    text-transform: uppercase;
+    font-size: 0.75rem;
 }
-#product-meta button{
-border: none;
-background: transparent;
-cursor: pointer;
+
+#product-meta button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .product-meta-shareList {
     display: flex;
     gap: 20px;
 }
+
 /* ************************** COLOR PICKERS ************************** */
 .color-option {
     width: 30px;
@@ -174,19 +189,19 @@ cursor: pointer;
     margin: 5px;
     cursor: pointer;
     border: 1px solid black;
-    padding: 1px; 
+    padding: 1px;
     background-clip: content-box;
     transition: border 0.3s ease-in-out;
-  }
+}
 
-  .selected {
-    border: 2px solid #000; 
-    
-  }
-  /* ************************** IMAGES CAROUSSEL ************************** */
-  .image-carousel-container {
-    display: flex;
-    justify-content: center;
+.selected {
+    border: 2px solid #000;
+
+}
+
+/* ************************** IMAGES CAROUSSEL ************************** */
+.image-carousel-container {
+    margin-right: 50px;
 }
 
 .main-image-container img {
@@ -197,19 +212,48 @@ cursor: pointer;
 
 .thumbnail-container {
     display: flex;
-    flex-direction: column;
     gap: 10px;
-    margin: 10px 20px 0  10px;
+    justify-content: center;
 }
 
 .thumbnail {
-    width: 110px;
-    height: 110px;
+    width: 132px;
+    height: 132px;
     cursor: pointer;
+    border-radius: 15px;
 }
 
-.main-image-container img {
+.main-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.mainImage-zooming {
+    position: relative;
+}
+
+.image-wrapper {
+    position: relative;
+    z-index: 100;
+}
+
+.image-wrapper img {
     display: block;
     margin: 10px auto;
     cursor: zoom-in;
+    border-radius: 15px;
+}
+
+.mainImage-zooming-close {
+    position: absolute;
+    top: 6.5em;
+    right: 1em;
+    color: red;
+    font-size: 1rem;
+    z-index: 200;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
 }

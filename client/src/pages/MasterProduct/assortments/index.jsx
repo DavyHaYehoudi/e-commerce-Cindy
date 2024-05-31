@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-const ProductsAssortments = () => {
+const Assortments = () => {
   const assortedProducts = [];
   return (
     <div id="orderProducts-assortments-section">
@@ -25,4 +25,4 @@ const ProductsAssortments = () => {
   );
 };
 
-export default ProductsAssortments;
+export default Assortments;

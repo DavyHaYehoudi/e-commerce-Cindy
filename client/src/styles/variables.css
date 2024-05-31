@@ -19,6 +19,7 @@
     --text-color-white:#FFFFFF;
     --collection-card-text:#6A6A6A;
     --collection-card-manufacture:#967F71;
+    --color-gray:#6A6A6A;
 
     /* BACKGROUND */
     --background: #FFFFFF;
@@ -32,6 +33,7 @@
     --client-details:#fff;
     --client-header:#f9f9f9;
     --collection-card-bg: #f4f1f1;
+    --favorite-heart-bg:#D9C2B6;
 
     /* FONT WEIGHT */
     --font-weight: 400;

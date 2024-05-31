@@ -1,22 +1,22 @@
 import React from "react";
-import ImageCarousel from "./imagesStorage/ImageCarousel";
-import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
-import ProductMeta from "../../shared/ProductMeta";
-import FavoriteButton from "../../shared/FavoriteButton";
-import AddToCartButton from "../../shared/AddToCartButton";
-import ProductColorSelector from "../../pages/MasterProduct/ProductColorSelector";
-import { formatPrice } from "../../helpers/utils/prices";
-import { formatDate } from "../../helpers/utils/formatDate";
-import useProductContent from "./hooks/useProductContent";
-import isCurrent from "../../helpers/utils/isCurrentDate";
+import ImageCarousel from "../imagesStorage";
+import QuantitySelectProduct from "../../../shared/QuantitySelectProduct";
+import ProductMeta from "../../../shared/ProductMeta";
+import FavoriteButton from "../../../shared/FavoriteButton";
+import AddToCartButton from "../../../shared/AddToCartButton";
+import ProductColorSelector from "./ProductColorSelector";
+import { formatPrice } from "../../../helpers/utils/prices";
+import { formatDate } from "../../../helpers/utils/formatDate";
+import useMainContent from "../hooks/useMainContent";
+import isCurrent from "../../../helpers/utils/isCurrentDate";
 
-const ProductContent = () => {
+const MainContent = ({handleCartShow}) => {
   const {
     product,
     materialSelected,
     handleMaterialSelected,
     handleAddToCart,
-  } = useProductContent();
+  } = useMainContent();
 
   return (
     <div id="product-content">
@@ -78,14 +78,15 @@ const ProductContent = () => {
         <QuantitySelectProduct />
         <AddToCartButton
           buttonText="Ajouter au panier"
+          onClick={handleCartShow}
           additionalFunction={() => handleAddToCart(product?._id)}
           className="buy-button btn"
         />
-        <p>{product?.main_description} </p>
+        <p className="product-description">{product?.main_description} </p>
         <ProductMeta />
       </div>
     </div>
   );
 };
 
-export default ProductContent;
+export default MainContent;

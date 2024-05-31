@@ -4,14 +4,13 @@ import { modifyProductCheet } from "../../../../../../../features/admin/productS
 
 const useFormFields = (initialState) => {
   const [fields, setFields] = useState(initialState);
-  const dispatch=useDispatch()
-  
-  const handleChangeFields = (e, field) => {
-    const value = e.target.value ;
-    setFields({ ...fields, [field]: value });
-    dispatch(modifyProductCheet(true))
-  };
+  const dispatch = useDispatch();
 
+  const handleChangeFields = (e, field) => {
+    const value = e.target.value;
+    setFields({ ...fields, [field]: value });
+    dispatch(modifyProductCheet(true));
+  };
 
   return { fields, handleChangeFields };
 };

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import QuantitySelectProduct from "../../shared/QuantitySelectProduct";
-import TrashIcon from "../../shared/TrashIcon";
-import { getProductProperties } from "../../selectors/product";
 import { useSelector } from "react-redux";
-import { formatPrice } from "../../helpers/utils/prices";
+import { getProductProperties } from "../../../selectors/product";
+import { formatPrice } from "../../../helpers/utils/prices";
+import QuantitySelectProduct from "../../../shared/QuantitySelectProduct";
+import TrashIcon from "../../../shared/TrashIcon";
 
 const CartItem = ({ cart }) => {
   const [coefficient, setCoefficient] = useState(1);

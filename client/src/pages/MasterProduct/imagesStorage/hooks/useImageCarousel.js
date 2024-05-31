@@ -28,13 +28,12 @@ const useImageCarousel = (
     setZoomLevel(1);
   };
 
-  const handleImageClick = () => {
-    const maxZoomLevel = 2;
-    if (zoomLevel < maxZoomLevel) {
-      setZoomLevel((prevZoomLevel) => prevZoomLevel + 0.2);
-    } else {
-      setZoomLevel(1);
-    }
+  const handleImageClick = (level) => {
+    setZoomLevel(level);
+  };
+  const handleCloseClick = (event) => {
+    event.stopPropagation();
+    handleImageClick(1);
   };
 
   return {
@@ -43,6 +42,7 @@ const useImageCarousel = (
     mainImageRef,
     handleThumbnailClick,
     handleImageClick,
+    handleCloseClick,
   };
 };
 
