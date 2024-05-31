@@ -18,7 +18,7 @@
     --text-whitesmoke:#F5F5F5; 
     --text-color-white:#FFFFFF;
     --collection-card-text:#6A6A6A;
-    --collection-card-manufacture:#967F71;
+    --manufacture:#967F71;
     --color-gray:#6A6A6A;
 
     /* BACKGROUND */
@@ -34,6 +34,7 @@
     --client-header:#f9f9f9;
     --collection-card-bg: #f4f1f1;
     --favorite-heart-bg:#D9C2B6;
+    --master-product-information-bg: #f4f1f1;
 
     /* FONT WEIGHT */
     --font-weight: 400;

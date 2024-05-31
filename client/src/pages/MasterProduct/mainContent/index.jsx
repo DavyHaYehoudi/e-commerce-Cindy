@@ -19,7 +19,7 @@ const MainContent = ({handleCartShow}) => {
   } = useMainContent();
 
   return (
-    <div id="product-content">
+    <div id="master-product-content">
       <div className="images-container">
         <ImageCarousel
           mainImage={materialSelected?.currentImage}

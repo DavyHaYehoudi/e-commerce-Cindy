@@ -1,5 +1,11 @@
+#master-product {
+    max-width: 1400px;
+    margin: 100px auto;
+}
+
+
 /* ************************** PRODUCT CONTENT ************************** */
-#product-content {
+#master-product-content {
     display: flex;
     justify-content: center;
 }
@@ -33,7 +39,7 @@
     letter-spacing: var(--letter-spacing);
 }
 
-/*bouton nouveau*/
+/* bouton nouveau */
 .description-heading h2 span {
     position: absolute;
     top: -10px;
@@ -45,7 +51,7 @@
     animation: blink 2s;
 }
 
-/*bouton promotion*/
+/* bouton promotion */
 .promo-badge {
     color: var(--new-badge-text);
     background: linear-gradient(45deg, #ffecb3, #ffc107, #ff9800);
@@ -55,6 +61,7 @@
     animation: blink 2s;
 }
 
+/* animation bouton */
 @keyframes blink {
 
     0%,
@@ -69,6 +76,7 @@
     }
 }
 
+/* prix */
 .description-container .prices {
     font-size: var(--product-price-fontSize);
 }
@@ -86,12 +94,13 @@
     border: 1px solid var(--border-color);
 }
 
-#product-content .product-color-selector-picker {
+/* couleur des matériaux */
+#master-product-content .product-color-selector-picker {
     display: flex;
     align-items: center;
 }
 
-#product-content .color-picker {
+#master-product-content .color-picker {
     display: flex;
 }
 
@@ -104,29 +113,68 @@
     /* Conserve les espaces et les sauts de ligne */
 }
 
-/* ************************** PRODUCT ASIDE ************************** */
-#product-aside {
-    width: 30%;
+/* ************************** INFORMATIONS ************************** */
+#master-product-informations {
+    width: calc(100vw - 8px);
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 50px;
+    background: var(--master-product-information-bg);
+    padding: 10px;
+    color: black;
+}
+
+#master-product-informations .container {
+    width: 50%;
     margin: 100px auto;
+    border: 1px solid var(--color-gray);
+    box-shadow: 0 0 3px var(--dark);
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.additional-details {
-    position: relative;
+#master-product-informations .title {
+    text-align: center;
+    margin: 30px;
 }
 
-.production-details,
+#master-product-informations .manufacture {
+    color: var(--manufacture);
+    font-size: 0.7rem;
+}
+
+#master-product-informations .body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 30px;
+}
+
+#master-product-informations .block-left,
+#master-product-informations .block-right {
+    width: 50%;
+}
+
+#master-product-informations .block-right img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* Dropdowns */
+.master-product-dropdown-body,
 .shipping-returns-info {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
 
-.production-details.open,
+.master-product-dropdown-body.open,
 .shipping-returns-info.open {
-    max-height: 500px;
+    max-height: 1500px;
 }
 
-.details-section {
+.master-product-dropdown-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -137,24 +185,33 @@
     font-size: 0.75rem;
 }
 
-.production-details,
+.master-product-dropdown-body,
 .shipping-returns-info {
     margin-left: 30px;
+    font-size: 0.75rem;
 }
 
-.additional-details button {
+#master-product-informations .body button {
     cursor: pointer;
     border: none;
     background-color: transparent;
 }
 
-#product-aside .rotate {
+#master-product-informations .rotate {
     transition: transform 0.3s ease-in-out;
     transform: rotate(0deg);
 }
 
-#product-aside .rotate-open {
+#master-product-informations .rotate-open {
     transform: rotate(-180deg);
+}
+
+#master-product-informations .link-dropdown {
+    text-align: end;
+}
+
+#master-product-informations .highlights {
+    color: var(--danger);
 }
 
 /* ************************** PRODUCT META ************************** */

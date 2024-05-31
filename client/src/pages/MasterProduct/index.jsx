@@ -17,7 +17,7 @@ const MasterProduct = () => {
   useFetchData({ role, clientId });
 
   return (
-    <section id="product-detail-container">
+    <section id="master-product">
       <MainContent handleCartShow={handleCartShow} />
       <Informations />
       <Assortments />
