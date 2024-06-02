@@ -63,6 +63,32 @@ const customer = createSlice({
       state.avatar = "";
       state.status = "idle";
     },
+    like: (state, action) => {
+      const { productsId, material } = action.payload;
+      if (!productsId) return;
+
+      const existingProductIndex = state.data.client.wishlist.findIndex((item) => {
+        if (material) {
+          return item.productsId === productsId && item.material === material;
+        } else {
+          return item.productsId === productsId;
+        }
+      });
+
+      if (existingProductIndex >= 0) {
+        state.data.client.wishlist = state.data.client.wishlist.filter((item) => {
+          if (material) {
+            return !(
+              item.productsId === productsId && item.material === material
+            );
+          } else {
+            return item.productsId !== productsId;
+          }
+        });
+      } else {
+        state.data.client.wishlist = [...state.data.client.wishlist, action.payload];
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -130,6 +156,7 @@ export const {
   updateAvatar,
   addCredentials,
   resetCustomerStore,
+  like
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

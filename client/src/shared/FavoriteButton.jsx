@@ -1,41 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import useFavorite from "./hooks/useFavoriteButton";
 
-const FavoriteButton = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+const FavoriteButton = ({ productId, materialId }) => {
+  const { isLiked, handleLike } = useFavorite(productId, materialId);
 
   const heartColor = "var(--favorite-heart-bg)";
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!isFavorite) {
-      setIsHovered(false);
-    }
-  };
-
-  const toggleFavorite = () => {
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-  };
-
   return (
     <button
-      onClick={toggleFavorite}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      aria-label="Ajouter aux favoris"
-      className={!isFavorite ? "info-tooltip" : ""}
+      aria-label="Ajouté aux favoris"
+      className={`like ${isLiked ? "info-tooltip" : ""}`}
+      onClick={handleLike}
     >
-      {isFavorite ? (
+      {isLiked ? (
         <AiFillHeart color={heartColor} aria-hidden="true" />
       ) : (
-        <AiOutlineHeart
-          color={isHovered ? heartColor : "var(--dark)"}
-          aria-hidden="true"
-        />
+        <AiOutlineHeart color={heartColor} aria-hidden="true" />
       )}
     </button>
   );

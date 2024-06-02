@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const useMainContent = ({ productId,materialId }) => {
+const useMainContent = ({ productId, materialId }) => {
   const [materialSelected, setMaterialSelected] = useState({
     id: "",
     index: "",
@@ -12,15 +12,17 @@ const useMainContent = ({ productId,materialId }) => {
 
   useEffect(() => {
     if (product && product.materials && product.materials.length > 0) {
-      const indexInit = product.materials.findIndex(m=>m._id===materialId)
-      const currentImageInit = product.materials[indexInit].main_image
+      const indexInit = product.materials.findIndex(
+        (m) => m._id === materialId
+      );
+      const currentImageInit = product.materials[indexInit].main_image;
       setMaterialSelected({
-        id:materialId,
+        id: materialId,
         index: indexInit,
         currentImage: currentImageInit,
       });
     }
-  }, [productId, product,materialId]);
+  }, [productId, product, materialId]);
 
   const handleMaterialSelected = (updates) => {
     setMaterialSelected((prev) => ({ ...prev, ...updates }));

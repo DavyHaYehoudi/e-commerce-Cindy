@@ -27,12 +27,12 @@
     justify-content: space-between;
 }
 
-.description-heading button {
+/* .description-heading .like {
     font-size: 1.875rem;
     cursor: pointer;
     border: none;
     background-color: transparent;
-}
+} */
 
 .description-heading h2 {
     font-size: var(--product-heading-fontSize);

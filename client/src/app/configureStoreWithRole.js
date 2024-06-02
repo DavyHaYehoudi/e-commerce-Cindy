@@ -12,6 +12,7 @@ import categoryReducer from "../features/admin/categorySlice";
 import tagReducer from "../features/admin/tagSlice";
 import collectionReducer from "../features/admin/collectionSlice";
 import authenticationReducer from "../features/authentication/authenticationSlice";
+import visitUserSliceReducer from "../features/visitUser/visitUserSlice"
 
 export const configureStoreWithRole = (role) => {
   // console.log('role dans configureStoreWithRole:', role)
@@ -29,6 +30,7 @@ export const configureStoreWithRole = (role) => {
       tag: tagReducer,
       collection: collectionReducer,
       authentication: authenticationReducer,
+      visitUser : visitUserSliceReducer
     };
   } else {
     reducers = {
@@ -39,6 +41,7 @@ export const configureStoreWithRole = (role) => {
       product: productReducer,
       collection: collectionReducer,
       authentication: authenticationReducer,
+      visitUser : visitUserSliceReducer
     };
   }
 

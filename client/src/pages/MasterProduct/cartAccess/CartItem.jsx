@@ -71,7 +71,7 @@ const CartItem = ({ cart }) => {
               categoryStore,
               tagStore,
               cart?.material
-            )?.pricing.currentPrice
+            )?.pricing?.currentPrice
           )}{" "}
           ={" "}
           {formatPrice(
@@ -82,7 +82,7 @@ const CartItem = ({ cart }) => {
               categoryStore,
               tagStore,
               cart?.material
-            )?.pricing.currentPrice * coefficient
+            )?.pricing?.currentPrice * coefficient
           )}
         </div>
         <div className="cart-item-quantity">

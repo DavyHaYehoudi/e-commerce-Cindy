@@ -4,6 +4,7 @@ import { formatPrice } from "../helpers/utils/prices";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import isCurrent from "../helpers/utils/isCurrentDate";
+import FavoriteButton from "./FavoriteButton";
 
 const CardProduct = ({ product, material }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
@@ -44,6 +45,9 @@ const CardProduct = ({ product, material }) => {
         <button className="add-cart-button btn" onClick={handleAddToCart}>
           Ajouter au panier
         </button>
+      </div>
+      <div className="like-card">
+        <FavoriteButton productId={product?._id} materialId={material._id} />
       </div>
     </div>
   );

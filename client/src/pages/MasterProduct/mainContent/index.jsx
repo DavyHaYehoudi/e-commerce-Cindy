@@ -10,9 +10,9 @@ import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
 
-const MainContent = ({ productId,materialId, handleCartShow }) => {
+const MainContent = ({ productId, materialId, handleCartShow }) => {
   const { product, materialSelected, handleMaterialSelected, handleAddToCart } =
-    useMainContent({ productId,materialId });
+    useMainContent({ productId, materialId });
 
   return (
     <div id="master-product-content">
@@ -31,7 +31,7 @@ const MainContent = ({ productId,materialId, handleCartShow }) => {
               product?.materials[materialSelected.index]?.untilNew
             ) && <span>NOUVEAU</span>}
           </h2>
-          <FavoriteButton />
+          <FavoriteButton  productId={productId} materialId={materialId} />
         </div>
         {isCurrent(
           product?.materials[materialSelected.index]?.promotion?.endDate

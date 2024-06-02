@@ -306,6 +306,18 @@ img {
     font-size: 0.7rem;
     color: var(--manufacture);
 }
+.like-card{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.like{
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
 /* ********************* END CARD PRODUCT ********************* */
 
 
