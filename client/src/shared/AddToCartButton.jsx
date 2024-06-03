@@ -1,20 +1,13 @@
 import React from "react";
 
-const AddToCartButton = ({
-  onClick,
-  additionalFunction,
-  buttonText,
-  className,
-}) => {
-  const handleClick = () => {
-    onClick();
-    additionalFunction();
+const AddToCartButton = ({productsId,material,quantity=1,addDate}) => {
+  const handleAddToCart = () => {
   };
 
   return (
-    <button className={className} onClick={handleClick}>
-      {buttonText}
-    </button>
+    <button className="add-cart-button btn" onClick={handleAddToCart}>
+    Ajouter au panier
+  </button>
   );
 };
 

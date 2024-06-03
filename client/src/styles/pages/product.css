@@ -27,13 +27,6 @@
     justify-content: space-between;
 }
 
-/* .description-heading .like {
-    font-size: 1.875rem;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-} */
-
 .description-heading h2 {
     font-size: var(--product-heading-fontSize);
     letter-spacing: var(--letter-spacing);
@@ -112,7 +105,14 @@
     white-space: pre-wrap;
     /* Conserve les espaces et les sauts de ligne */
 }
-
+#master-product-content .addToCart button{
+    border: 1px solid gray;
+    padding: 5px;
+    color: var(--dark);
+}
+#master-product-content .addToCart button:hover{
+    color: whitesmoke;
+}
 /* ************************** INFORMATIONS ************************** */
 #master-product-informations {
     width: calc(100vw - 8px);

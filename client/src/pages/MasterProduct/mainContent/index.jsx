@@ -31,7 +31,7 @@ const MainContent = ({ productId, materialId, handleCartShow }) => {
               product?.materials[materialSelected.index]?.untilNew
             ) && <span>NOUVEAU</span>}
           </h2>
-          <FavoriteButton  productId={productId} materialId={materialId} />
+          <FavoriteButton productId={productId} materialId={materialId} />
         </div>
         {isCurrent(
           product?.materials[materialSelected.index]?.promotion?.endDate
@@ -77,12 +77,9 @@ const MainContent = ({ productId, materialId, handleCartShow }) => {
         </div>
         <p className="separator"></p>
         <QuantitySelectProduct />
-        <AddToCartButton
-          buttonText="Ajouter au panier"
-          onClick={handleCartShow}
-          additionalFunction={() => handleAddToCart(product?._id)}
-          className="buy-button btn"
-        />
+        <div className="addToCart">
+          <AddToCartButton />
+        </div>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />
       </div>

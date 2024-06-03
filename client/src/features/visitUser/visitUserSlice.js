@@ -26,7 +26,7 @@ const visitUserSlice = createSlice({
     error: null,
   },
   reducers: {
-    likeVisitor: (state, action) => {
+    toggleFavoriteVisitor: (state, action) => {
       const { productsId, material } = action.payload;
       if (!productsId) return;
       const addDate = new Date().toISOString();
@@ -73,6 +73,6 @@ const visitUserSlice = createSlice({
       });
   },
 });
-export const { likeVisitor ,initWishlist} = visitUserSlice.actions;
+export const { toggleFavoriteVisitor ,initWishlist} = visitUserSlice.actions;
 export { fetchCategories };
 export default visitUserSlice.reducer;

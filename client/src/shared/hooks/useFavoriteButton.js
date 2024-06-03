@@ -4,10 +4,10 @@ import useAuthWrappers from "../../useAuthWrappers";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
   initWishlist,
-  likeVisitor,
+  toggleFavoriteVisitor,
 } from "../../features/visitUser/visitUserSlice";
 import { Patch } from "../../services/httpMethods";
-import { like } from "../../features/accountClient/customerSlice";
+import { toggleFavorite } from "../../features/accountClient/customerSlice";
 
 const findIsLiked = (wishlist, productId, materialId) => {
   return wishlist.find((product) => {
@@ -83,12 +83,12 @@ const useFavorite = (productId, materialId) => {
           null,
           handleUnauthorized
         );
-        dispatch(like(productLiked));
+        dispatch(toggleFavorite(productLiked));
       } catch (error) {
         console.log("Une erreur dans handleLike :", error);
       }
     } else {
-      dispatch(likeVisitor(productLiked));
+      dispatch(toggleFavoriteVisitor(productLiked));
       const likedProductsString = localStorage.getItem("likedProducts");
       let likedProducts = likedProductsString
         ? JSON.parse(likedProductsString)

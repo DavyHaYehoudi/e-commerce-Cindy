@@ -63,11 +63,62 @@ const customer = createSlice({
       state.avatar = "";
       state.status = "idle";
     },
-    like: (state, action) => {
+    toggleFavorite: (state, action) => {
       const { productsId, material } = action.payload;
+      console.log('productsId:', productsId)
       if (!productsId) return;
 
-      const existingProductIndex = state.data.client.wishlist.findIndex((item) => {
+      const existingProductIndex = state.data.client.wishlist.findIndex(
+        (item) => {
+          if (material) {
+            return item.productsId === productsId && item.material === material;
+          } else {
+            return item.productsId === productsId;
+          }
+        }
+      );
+
+      if (existingProductIndex >= 0) {
+        state.data.client.wishlist = state.data.client.wishlist.filter(
+          (item) => {
+            if (material) {
+              return !(
+                item.productsId === productsId && item.material === material
+              );
+            } else {
+              return item.productsId !== productsId;
+            }
+          }
+        );
+      } else {
+        state.data.client.wishlist = [
+          ...state.data.client.wishlist,
+          action.payload,
+        ];
+      }
+    },
+    addOneProductToCart: (state, action) => {
+      const { productsId, material, quantity } = action.payload;
+      const addDate = new Date().toISOString();
+      if (!productsId) return;
+      const existingProductIndex = state.data.client.cart.find((item) => {
+        if (material) {
+          return item.productsId === productsId && item.material === material;
+        } else {
+          return item.productsId === productsId;
+        }
+      });
+      if (existingProductIndex.length === 0) {
+        state.data.client.cart = [
+          ...state.data.client.cart,
+          { productsId, material, quantity, addDate },
+        ];
+      }
+    },
+    removeOneProductToCart: (state, action) => {
+      const { productsId, material } = action.payload;
+      if (!productsId) return;
+      const existingProductIndex = state.data.client.cart.findIndex((item) => {
         if (material) {
           return item.productsId === productsId && item.material === material;
         } else {
@@ -76,7 +127,7 @@ const customer = createSlice({
       });
 
       if (existingProductIndex >= 0) {
-        state.data.client.wishlist = state.data.client.wishlist.filter((item) => {
+        state.data.client.cart = state.data.client.cart.filter((item) => {
           if (material) {
             return !(
               item.productsId === productsId && item.material === material
@@ -85,9 +136,14 @@ const customer = createSlice({
             return item.productsId !== productsId;
           }
         });
-      } else {
-        state.data.client.wishlist = [...state.data.client.wishlist, action.payload];
       }
+    },
+    addWishlistToCart: (state, action) => {
+      const { wishlist } = action.payload;
+      state.data.client.cart = [state.data.client.cart, ...wishlist];
+    },
+    clearCart: (state, action) => {
+      state.data.client.cart = [];
     },
   },
   extraReducers: (builder) => {
@@ -156,7 +212,11 @@ export const {
   updateAvatar,
   addCredentials,
   resetCustomerStore,
-  like
+  toggleFavorite,
+  addOneProductToCart,
+  removeOneProductToCart,
+  addWishlistToCart,
+  clearCart,
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

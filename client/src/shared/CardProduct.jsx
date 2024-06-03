@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import isCurrent from "../helpers/utils/isCurrentDate";
 import FavoriteButton from "./FavoriteButton";
+import AddToCartButton from "./AddToCartButton";
 
 const CardProduct = ({ product, material }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
@@ -18,7 +19,6 @@ const CardProduct = ({ product, material }) => {
     });
   };
 
-  const handleAddToCart = () => {};
   const materialName =
     materialsStore.find((mat) => mat?._id === material._id)?.name || "";
   return (
@@ -42,9 +42,7 @@ const CardProduct = ({ product, material }) => {
         </div>
       </Link>
       <div className="card-button">
-        <button className="add-cart-button btn" onClick={handleAddToCart}>
-          Ajouter au panier
-        </button>
+        <AddToCartButton />
       </div>
       <div className="like-card">
         <FavoriteButton productId={product?._id} materialId={material?._id} />

@@ -31,10 +31,6 @@ const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
   );
   const { imageUrl } = useFirebaseImage(productProperties?.main_image);
 
-  const handleAddToCart = (productsId) => {
-    console.log(`Ajouter au panier : ${productsId}`);
-  };
-
   return (
     <div className="modal-product-content">
       <div
@@ -62,11 +58,7 @@ const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
           {formatPrice(productProperties.pricing?.currentPrice)}
         </p>
         <div className="modal-product-actions">
-          <AddToCartButton
-            className="btn"
-            onClick={() => handleAddToCart(product?.productsId)}
-            buttonText="Ajouter au panier"
-          />
+          <AddToCartButton />
         </div>
       </div>
     </div>
