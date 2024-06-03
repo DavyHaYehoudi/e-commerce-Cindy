@@ -20,7 +20,7 @@ const CardProduct = ({ product, material }) => {
 
   const handleAddToCart = () => {};
   const materialName =
-    materialsStore.find((mat) => mat._id === material._id)?.name || "";
+    materialsStore.find((mat) => mat?._id === material._id)?.name || "";
   return (
     <div className="card-product">
       <Link
@@ -47,7 +47,7 @@ const CardProduct = ({ product, material }) => {
         </button>
       </div>
       <div className="like-card">
-        <FavoriteButton productId={product?._id} materialId={material._id} />
+        <FavoriteButton productId={product?._id} materialId={material?._id} />
       </div>
     </div>
   );

@@ -6,13 +6,19 @@ import logo from "../assets/logo.png";
 import WishlistModal from "../components/wishlist/WishlistModal";
 import { useSelector } from "react-redux";
 import DarkMode from "../components/darkMode/DarkMode";
+import useAuthWrappers from "../useAuthWrappers";
 
 const HeaderWrapper = () => {
   const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
-  const favoriteProducts = useSelector(
+  const { clientId: getClientId } = useAuthWrappers();
+  const clientId = getClientId();
+  const wishlistClient = useSelector(
     (state) => state?.customer?.data?.client?.wishlist
   );
-
+  const wishlistVisitor = useSelector(
+    (state) => state?.visitUser?.wishlist || []
+  );
+  const wishlist = clientId ? wishlistClient : wishlistVisitor;
   const handleOpenWishlistModal = () => {
     setWishlistModalOpen(true);
   };
@@ -43,7 +49,8 @@ const HeaderWrapper = () => {
       <WishlistModal
         isOpen={isWishlistModalOpen}
         onClose={handleCloseWishlistModal}
-        favoriteProducts={favoriteProducts}
+        wishlist={wishlist}
+        handleCloseWishlistModal={handleCloseWishlistModal}
       />
     </div>
   );

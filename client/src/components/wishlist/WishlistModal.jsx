@@ -3,8 +3,12 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import WishlistProduct from "./WishlistProduct";
 import WishlistModalActions from "./WishlistModalActions";
 
-const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
-
+const WishlistModal = ({
+  isOpen,
+  onClose,
+  wishlist,
+  handleCloseWishlistModal,
+}) => {
   return (
     <div
       className={`wishlist-modal ${isOpen ? "open" : ""}`}
@@ -27,8 +31,12 @@ const WishlistModal = ({ isOpen, onClose, favoriteProducts }) => {
           </div>
         </div>
         <div className="modal-body">
-          {favoriteProducts?.map((product, i) => (
-            <WishlistProduct key={i} product={product} />
+          {wishlist?.map((product, i) => (
+            <WishlistProduct
+              key={i}
+              product={product}
+              handleCloseWishlistModal={handleCloseWishlistModal}
+            />
           ))}
         </div>
       </div>

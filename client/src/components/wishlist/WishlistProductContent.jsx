@@ -5,20 +5,16 @@ import { getProductProperties } from "../../selectors/product";
 import { formatPrice } from "../../helpers/utils/prices";
 import { getMaterialProperty } from "../../selectors/material";
 import useWishlistProductContent from "./hooks/useWishlistProductContent";
+import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
 
-const WishlistProductContent = ({ product }) => {
+const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
   const {
-    loading,
     productStore,
     collectionStore,
     categoryStore,
     tagStore,
     materialStore,
   } = useWishlistProductContent();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const productProperties = getProductProperties(
     product?.productsId,
@@ -33,6 +29,7 @@ const WishlistProductContent = ({ product }) => {
     product?.material,
     materialStore
   );
+  const { imageUrl } = useFirebaseImage(productProperties?.main_image);
 
   const handleAddToCart = (productsId) => {
     console.log(`Ajouter au panier : ${productsId}`);
@@ -44,18 +41,22 @@ const WishlistProductContent = ({ product }) => {
         className="modal-product-image info-tooltip"
         aria-label="Revenir à l'article"
       >
-        <Link to={`/orderProducts/${product?.productsId}`}>
+        <Link
+          to={`/master-product/${product?.productsId}`}
+          state={{ materialId: product?.material }}
+          onClick={handleCloseWishlistModal}
+        >
           <img
-            src={`/photos/${productProperties.main_image}`}
-            alt={productProperties.name}
-            width="100px"
+            src={imageUrl}
+            alt={productProperties?.name}
+            width="150px"
             height="150px"
           />
         </Link>
       </div>
 
       <div className="modal-product-details">
-        <h3>{productProperties.name}</h3>
+        <h3>{productProperties?.name}</h3>
         <p>{materialProperty?.name}</p>
         <p className="price">
           {formatPrice(productProperties.pricing?.currentPrice)}

@@ -11,11 +11,11 @@ const useMainContent = ({ productId, materialId }) => {
   const product = productsStore?.find((product) => product?._id === productId);
 
   useEffect(() => {
-    if (product && product.materials && product.materials.length > 0) {
+    if (product && product?.materials && product?.materials.length > 0) {
       const indexInit = product.materials.findIndex(
-        (m) => m._id === materialId
+        (m) => m?._id === materialId
       );
-      const currentImageInit = product.materials[indexInit].main_image;
+      const currentImageInit = product.materials[indexInit]?.main_image;
       setMaterialSelected({
         id: materialId,
         index: indexInit,
