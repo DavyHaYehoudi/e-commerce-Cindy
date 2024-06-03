@@ -8,27 +8,25 @@ import useWishlistProductContent from "./hooks/useWishlistProductContent";
 import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
 
 const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
+  const { productsId, material } = product || {};
   const {
     productStore,
     collectionStore,
     categoryStore,
     tagStore,
     materialStore,
-  } = useWishlistProductContent();
+  } = useWishlistProductContent(product);
 
   const productProperties = getProductProperties(
-    product?.productsId,
+    productsId,
     productStore,
     collectionStore,
     categoryStore,
     tagStore,
-    product?.material
+    material
   );
 
-  const materialProperty = getMaterialProperty(
-    product?.material,
-    materialStore
-  );
+  const materialProperty = getMaterialProperty(material, materialStore);
   const { imageUrl } = useFirebaseImage(productProperties?.main_image);
 
   return (
@@ -38,8 +36,8 @@ const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
         aria-label="Revenir à l'article"
       >
         <Link
-          to={`/master-product/${product?.productsId}`}
-          state={{ materialId: product?.material }}
+          to={`/master-product/${productsId}`}
+          state={{ materialId: material }}
           onClick={handleCloseWishlistModal}
         >
           <img
@@ -58,7 +56,7 @@ const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
           {formatPrice(productProperties.pricing?.currentPrice)}
         </p>
         <div className="modal-product-actions">
-          <AddToCartButton />
+          <AddToCartButton productsId={productsId} material={material} />
         </div>
       </div>
     </div>

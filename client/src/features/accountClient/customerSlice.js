@@ -65,7 +65,6 @@ const customer = createSlice({
     },
     toggleFavorite: (state, action) => {
       const { productsId, material } = action.payload;
-      console.log('productsId:', productsId)
       if (!productsId) return;
 
       const existingProductIndex = state.data.client.wishlist.findIndex(
@@ -101,14 +100,14 @@ const customer = createSlice({
       const { productsId, material, quantity } = action.payload;
       const addDate = new Date().toISOString();
       if (!productsId) return;
-      const existingProductIndex = state.data.client.cart.find((item) => {
+      const existingProduct = state.data.client.cart.find((item) => {
         if (material) {
-          return item.productsId === productsId && item.material === material;
+          return item?.productsId === productsId && item?.material === material;
         } else {
-          return item.productsId === productsId;
+          return item?.productsId === productsId;
         }
       });
-      if (existingProductIndex.length === 0) {
+      if (!existingProduct) {
         state.data.client.cart = [
           ...state.data.client.cart,
           { productsId, material, quantity, addDate },

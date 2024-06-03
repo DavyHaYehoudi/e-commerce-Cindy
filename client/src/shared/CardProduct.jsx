@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 import isCurrent from "../helpers/utils/isCurrentDate";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "./AddToCartButton";
+import useAuthWrappers from "../useAuthWrappers";
 
 const CardProduct = ({ product, material }) => {
+  console.log('material:', material)
+  console.log('product:', product)
   const materialsStore = useSelector((state) => state?.material?.data);
   const { imageUrl } = useFirebaseImage(material?.main_image);
 
@@ -20,7 +23,21 @@ const CardProduct = ({ product, material }) => {
   };
 
   const materialName =
-    materialsStore.find((mat) => mat?._id === material._id)?.name || "";
+    materialsStore.find((mat) => mat?._id === material?._id)?.name || "";
+
+  const cartStoreClient = useSelector(
+    (state) => state?.customer?.data?.client?.cart
+  );
+  const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart);
+  const { clientId: getClientId } = useAuthWrappers();
+  const clientId = getClientId();
+  const cartStore = clientId ? cartStoreClient : cartStoreVisitor;
+  const isProductInCart = cartStore.find(
+    (product) =>
+      product?.productsId === product?._id &&
+    product?.material === material?._id
+  );
+  console.log('isProductInCart:', isProductInCart)
   return (
     <div className="card-product">
       <Link
@@ -42,7 +59,11 @@ const CardProduct = ({ product, material }) => {
         </div>
       </Link>
       <div className="card-button">
-        <AddToCartButton />
+        <AddToCartButton
+          productsId={product?._id}
+          material={material?._id}
+          isProductInCart={isProductInCart}
+        />
       </div>
       <div className="like-card">
         <FavoriteButton productId={product?._id} materialId={material?._id} />

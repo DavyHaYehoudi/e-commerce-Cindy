@@ -53,9 +53,60 @@ const visitUserSlice = createSlice({
         state.wishlist = [...state.wishlist, { productsId, material, addDate }];
       }
     },
-    initWishlist:(state,action)=>{
-      state.wishlist = action.payload
-    }
+    initWishlist: (state, action) => {
+      state.wishlist = action.payload;
+    },
+    initCart: (state, action) => {
+      state.cart = action.payload;
+    },
+    addOneProductToCartVisitor: (state, action) => {
+      const { productsId, material, quantity } = action.payload;
+      const addDate = new Date().toISOString();
+      if (!productsId) return;
+      const existingProduct = state.cart.find((item) => {
+        if (material) {
+          return item?.productsId === productsId && item?.material === material;
+        } else {
+          return item?.productsId === productsId;
+        }
+      });
+      if (!existingProduct) {
+        state.cart = [
+          ...state.cart,
+          { productsId, material, quantity, addDate },
+        ];
+      }
+    },
+    removeOneProductToCartVisitor: (state, action) => {
+      const { productsId, material } = action.payload;
+      if (!productsId) return;
+      const existingProductIndex = state.cart.findIndex((item) => {
+        if (material) {
+          return item.productsId === productsId && item.material === material;
+        } else {
+          return item.productsId === productsId;
+        }
+      });
+
+      if (existingProductIndex >= 0) {
+        state.cart = state.cart.filter((item) => {
+          if (material) {
+            return !(
+              item.productsId === productsId && item.material === material
+            );
+          } else {
+            return item.productsId !== productsId;
+          }
+        });
+      }
+    },
+    addWishlistToCartVisitor: (state, action) => {
+      const { wishlist } = action.payload;
+      state.cart = [state.cart, ...wishlist];
+    },
+    clearCartVisitor: (state, action) => {
+      state.cart = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,6 +124,14 @@ const visitUserSlice = createSlice({
       });
   },
 });
-export const { toggleFavoriteVisitor ,initWishlist} = visitUserSlice.actions;
+export const {
+  toggleFavoriteVisitor,
+  initWishlist,
+  initCart,
+  addOneProductToCartVisitor,
+  removeOneProductToCartVisitor,
+  addWishlistToCartVisitor,
+  clearCartVisitor,
+} = visitUserSlice.actions;
 export { fetchCategories };
 export default visitUserSlice.reducer;

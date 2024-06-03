@@ -43,29 +43,27 @@ ul {
     background: linear-gradient(90deg, transparent 50%, var(--button-background) 50%);
     background-size: 200% 100%;
     transition: background-position 0.2s ease-in, color 0.2s ease-in, font-weight 0.2s ease-in;
+    transition: transform 0.3s;
 }
 
 .btn:hover {
-    /* color: var(--text-color-white); */
     background-position: -100% 0;
+    transform: translateY(-2px);
 }
 
-.buy-button {
-    width: 50%;
-    color: var(--dark);
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-}
-
-.add-cart-button {
+.cart-button {
     width: 50%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
 }
+.cart-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.add-cart-button:hover {
+.cart-button:hover {
     color: whitesmoke;
 }
 
@@ -254,7 +252,7 @@ img {
 /* ********************* END PAGINATION ********************* */
 
 /* ********************* START CARD PRODUCT ********************* */
- .card-product {
+.card-product {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -271,20 +269,22 @@ img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease-in-out;
 }
- .card-product a{
+
+.card-product a {
     width: 100%;
     height: 65%;
 }
- .card-product:hover {
-    transform: scale(1.02);
+
+.card-product:hover {
+    transform: scale(1.01);
 }
 
- .card-product .img-container {
+.card-product .img-container {
     width: 100%;
     height: 100%;
 }
 
- .card-product img {
+.card-product img {
     width: 100%;
     height: 100%;
     border-top-left-radius: 25px;
@@ -292,32 +292,35 @@ img {
     padding: 5px;
 }
 
- .card-info {
+.card-info {
     text-align: center;
 }
 
- .card-button {
+.card-button {
     width: 100%;
     margin: 20px auto 10px auto;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
- .manufacture {
+.manufacture {
     font-size: 0.7rem;
     color: var(--manufacture);
 }
-.like-card{
+
+.like-card {
     position: absolute;
     bottom: 15px;
     right: 15px;
 }
 
-.like{
+.like {
     font-size: 2rem;
     cursor: pointer;
     border: none;
     background-color: transparent;
 }
+
 /* ********************* END CARD PRODUCT ********************* */
 
 
