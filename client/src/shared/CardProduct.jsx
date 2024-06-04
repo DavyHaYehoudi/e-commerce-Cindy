@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import isCurrent from "../helpers/utils/isCurrentDate";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "./AddToCartButton";
-import useAuthWrappers from "../useAuthWrappers";
+import useStoreInfo from "./hooks/useStoreInfo";
 
 const CardProduct = ({ product, material }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
@@ -22,19 +22,11 @@ const CardProduct = ({ product, material }) => {
 
   const materialName =
     materialsStore.find((mat) => mat?._id === material?._id)?.name || "";
+  const { isProductInCart } = useStoreInfo({
+    productsId: product?._id,
+    material: material?._id,
+  });
 
-  const cartStoreClient = useSelector(
-    (state) => state?.customer?.data?.client?.cart
-  )||[];
-  const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart)||[];
-  const { clientId: getClientId } = useAuthWrappers();
-  const clientId = getClientId();
-  const cartStore = clientId ? cartStoreClient : cartStoreVisitor;
-  const isProductInCart = cartStore.find(
-    (product) =>
-      product?.productsId === product?._id &&
-    product?.material === material?._id
-  );
   return (
     <div className="card-product">
       <Link

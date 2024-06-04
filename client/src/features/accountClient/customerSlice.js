@@ -139,7 +139,10 @@ const customer = createSlice({
     },
     addWishlistToCart: (state, action) => {
       const { wishlist } = action.payload;
-      state.data.client.cart = [state.data.client.cart, ...wishlist];
+      state.data.client.cart = [...state.data.client.cart, ...wishlist];
+    },
+    clearWishlist:(state,action)=>{
+      state.data.client.wishlist = []
     },
     clearCart: (state, action) => {
       state.data.client.cart = [];
@@ -216,6 +219,7 @@ export const {
   removeOneProductToCart,
   addWishlistToCart,
   clearCart,
+  clearWishlist
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

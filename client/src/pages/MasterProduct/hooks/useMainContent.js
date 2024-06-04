@@ -28,15 +28,10 @@ const useMainContent = ({ productId, materialId }) => {
     setMaterialSelected((prev) => ({ ...prev, ...updates }));
   };
 
-  const handleAddToCart = (productId) => {
-    console.log(`Ajouter au panier : ${productId}`);
-  };
-
   return {
     product,
     materialSelected,
     handleMaterialSelected,
-    handleAddToCart,
   };
 };
 

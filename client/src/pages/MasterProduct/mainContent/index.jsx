@@ -9,11 +9,15 @@ import { formatPrice } from "../../../helpers/utils/prices";
 import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
+import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 
-const MainContent = ({ productId, materialId, handleCartShow }) => {
-  const { product, materialSelected, handleMaterialSelected, handleAddToCart } =
+const MainContent = ({ productId, materialId }) => {
+  const { product, materialSelected, handleMaterialSelected } =
     useMainContent({ productId, materialId });
-
+    const { isProductInCart } = useStoreInfo({
+      productsId: productId,
+      material: materialId,
+    });
   return (
     <div id="master-product-content">
       <div className="images-container">
@@ -76,9 +80,13 @@ const MainContent = ({ productId, materialId, handleCartShow }) => {
           />
         </div>
         <p className="separator"></p>
-        <QuantitySelectProduct />
+        <QuantitySelectProduct productId={productId} materialId={materialId} />
         <div className="addToCart">
-          <AddToCartButton />
+        <AddToCartButton
+          productsId={productId}
+          material={materialId}
+          isProductInCart={isProductInCart}
+        />
         </div>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />

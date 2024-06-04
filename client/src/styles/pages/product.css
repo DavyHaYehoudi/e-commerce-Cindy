@@ -96,6 +96,12 @@
 #master-product-content .color-picker {
     display: flex;
 }
+#master-product-content .color-option {
+    border-radius: 50%;
+}
+#master-product-content .color-option.selected {
+    border: 3px solid var(--dark);
+}
 
 .custom-color-selector {
     display: flex;

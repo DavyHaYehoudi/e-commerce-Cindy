@@ -17,7 +17,7 @@ const useCartButton = (productsId, material, quantity = 1) => {
   const { clientId, cartStore, isProductInCart } = useStoreInfo({
     productsId,
     material,
-  });
+  }); 
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const addDate = new Date().toISOString();

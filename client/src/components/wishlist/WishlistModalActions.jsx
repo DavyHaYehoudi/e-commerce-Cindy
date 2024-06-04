@@ -1,13 +1,12 @@
 import React from "react";
 import { FaCartArrowDown } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+import { BsTrash } from "react-icons/bs";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useWishlistActions from "./hooks/useWishlistActions"
 
 const WishlistModalActions = () => {
-
-  const handleAddAllToCart = () => {
-    toast.success("Tous les produits ont été ajoutés au panier 👍 !");
-  };
+  const { handleAddAllToCart, handleClearWishlist } = useWishlistActions();
 
   return (
     <>
@@ -17,6 +16,13 @@ const WishlistModalActions = () => {
         aria-label="Tout ajouter au panier"
       >
         <FaCartArrowDown className="wishlist-icon-actions" aria-hidden="true" />
+      </div>
+      <div
+        onClick={handleClearWishlist}
+        className="info-tooltip"
+        aria-label="Supprimer la liste"
+      >
+        <BsTrash className="wishlist-icon-actions" />
       </div>
       <ToastContainer autoClose={2500} />
     </>

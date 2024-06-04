@@ -102,7 +102,10 @@ const visitUserSlice = createSlice({
     },
     addWishlistToCartVisitor: (state, action) => {
       const { wishlist } = action.payload;
-      state.cart = [state.cart, ...wishlist];
+      state.cart = [...state.cart, ...wishlist];
+    },
+    clearWishlistVisitor:(state,action)=>{
+      state.wishlist = []
     },
     clearCartVisitor: (state, action) => {
       state.cart = [];
@@ -132,6 +135,7 @@ export const {
   removeOneProductToCartVisitor,
   addWishlistToCartVisitor,
   clearCartVisitor,
+  clearWishlistVisitor
 } = visitUserSlice.actions;
 export { fetchCategories };
 export default visitUserSlice.reducer;
