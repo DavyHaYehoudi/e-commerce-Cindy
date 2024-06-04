@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useAuthWrappers from "../../useAuthWrappers";
+import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
   addOneProductToCartVisitor,
@@ -12,23 +11,17 @@ import {
   addOneProductToCart,
   removeOneProductToCart,
 } from "../../features/accountClient/customerSlice";
+import useStoreInfo from "./useStoreInfo";
 
 const useCartButton = (productsId, material, quantity = 1) => {
-  const cartStoreClient = useSelector(
-    (state) => state?.customer?.data?.client?.cart
-  )||[];
-  const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart)||[];
-  const { clientId: getClientId } = useAuthWrappers();
-  const clientId = getClientId();
+  const { clientId, cartStore, isProductInCart } = useStoreInfo({
+    productsId,
+    material,
+  });
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const addDate = new Date().toISOString();
   const productCart = { productsId, material, quantity, addDate };
-  const cartStore = clientId ? cartStoreClient : cartStoreVisitor;
-  const isProductInCart = cartStore.find(
-    (product) =>
-      product.productsId === productsId && product?.material === material
-  );
 
   useEffect(() => {
     const cartProductsString = localStorage.getItem("cartProducts");

@@ -1,19 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
-import useAuthWrappers from "../../../useAuthWrappers";
 import { Patch } from "../../../services/httpMethods";
 import { toggleFavorite } from "../../../features/accountClient/customerSlice";
 import { toggleFavoriteVisitor } from "../../../features/visitUser/visitUserSlice";
+import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 
 const useWishlistProduct = (product) => {
-  const wishlistClient =
-    useSelector((state) => state?.customer?.data?.client?.wishlist) || [];
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
-  const { clientId: getClientId } = useAuthWrappers();
-  const clientId = getClientId();
   const { productsId, material } = product || {};
-
+  const { clientId, wishlistClient } = useStoreInfo({ productsId, material });
+  
   const handleClickTrash = async () => {
     if (clientId) {
       let wishlistUpdated;
@@ -21,10 +18,10 @@ const useWishlistProduct = (product) => {
       wishlistUpdated = wishlistClient.filter((item) => {
         if (material) {
           return !(
-            item.productsId === productsId && item.material === material
+            item?.productsId === productsId && item?.material === material
           );
         } else {
-          return item.productsId !== productsId;
+          return item?.productsId !== productsId;
         }
       });
 

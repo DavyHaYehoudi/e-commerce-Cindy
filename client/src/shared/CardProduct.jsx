@@ -9,8 +9,6 @@ import AddToCartButton from "./AddToCartButton";
 import useAuthWrappers from "../useAuthWrappers";
 
 const CardProduct = ({ product, material }) => {
-  console.log('material:', material)
-  console.log('product:', product)
   const materialsStore = useSelector((state) => state?.material?.data);
   const { imageUrl } = useFirebaseImage(material?.main_image);
 
@@ -27,8 +25,8 @@ const CardProduct = ({ product, material }) => {
 
   const cartStoreClient = useSelector(
     (state) => state?.customer?.data?.client?.cart
-  );
-  const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart);
+  )||[];
+  const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart)||[];
   const { clientId: getClientId } = useAuthWrappers();
   const clientId = getClientId();
   const cartStore = clientId ? cartStoreClient : cartStoreVisitor;
@@ -37,7 +35,6 @@ const CardProduct = ({ product, material }) => {
       product?.productsId === product?._id &&
     product?.material === material?._id
   );
-  console.log('isProductInCart:', isProductInCart)
   return (
     <div className="card-product">
       <Link

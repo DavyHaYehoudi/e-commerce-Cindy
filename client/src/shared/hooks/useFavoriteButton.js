@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useAuthWrappers from "../../useAuthWrappers";
+import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
   initWishlist,
@@ -8,32 +7,15 @@ import {
 } from "../../features/visitUser/visitUserSlice";
 import { Patch } from "../../services/httpMethods";
 import { toggleFavorite } from "../../features/accountClient/customerSlice";
-
-const findIsLiked = (wishlist, productId, materialId) => {
-  return wishlist.find((product) => {
-    if (materialId) {
-      return (
-        product?.productsId === productId && product?.material === materialId
-      );
-    } else {
-      return product?.productsId === productId;
-    }
-  });
-};
+import useStoreInfo from "./useStoreInfo";
 
 const useFavorite = (productId, materialId) => {
   const dispatch = useDispatch();
-  const { clientId: getClientId } = useAuthWrappers();
-  const clientId = getClientId();
   const handleUnauthorized = useUnauthorizedRedirect();
-
-  const wishlistClient =
-    useSelector((state) => state?.customer?.data?.client?.wishlist) || [];
-  const wishlistVisitor = useSelector(
-    (state) => state?.visitUser?.wishlist || []
-  );
-  const wishlist = clientId ? wishlistClient : wishlistVisitor;
-  const isLiked = findIsLiked(wishlist, productId, materialId);
+  const { clientId, wishlistClient, isLiked } = useStoreInfo({
+    productsId: productId,
+    material: materialId,
+  });
 
   useEffect(() => {
     const likedProductsString = localStorage.getItem("likedProducts");
