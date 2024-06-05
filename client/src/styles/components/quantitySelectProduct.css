@@ -5,19 +5,15 @@
 .quantity-select {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
-
-.quantity-select button {
-    border: var(--border-color);
-    padding: 5px 10px;
-    cursor: pointer;
+.quantity-select input{
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.quantity-select span {
-    margin: 0 10px;
-}
-
-.quantity-icon {
-    color: var(--color-gray);
-}
+  .quantity-select input:focus {
+    outline-color: var(--text-golden);
+  }
+  

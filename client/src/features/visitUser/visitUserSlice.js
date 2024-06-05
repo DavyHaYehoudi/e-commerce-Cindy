@@ -11,15 +11,6 @@ const fetchCategories = createAsyncThunk(
 const visitUserSlice = createSlice({
   name: "visitUser",
   initialState: {
-    // {
-    //     productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-    //     material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
-    //     quantity: { type: Number, default: 1 },
-    //     addDate: {
-    //       type: Date,
-    //       default: Date.now,
-    //     },
-    //   },
     wishlist: [],
     cart: [],
     status: "idle",
@@ -60,7 +51,7 @@ const visitUserSlice = createSlice({
       state.cart = action.payload;
     },
     addOneProductToCartVisitor: (state, action) => {
-      const { productsId, material, quantity } = action.payload;
+      const { productsId, material, quantity = 1 } = action.payload;
       const addDate = new Date().toISOString();
       if (!productsId) return;
       const existingProduct = state.cart.find((item) => {
@@ -100,12 +91,25 @@ const visitUserSlice = createSlice({
         });
       }
     },
+    changeQuantityProductToCartVisitor: (state, action) => {
+      const { productId, materialId, quantity } = action.payload;
+      state.cart = state.cart.map((product) => {
+        if (
+          product?.productsId === productId &&
+          product?.material === materialId
+        ) {
+          return { ...product, quantity };
+        } else {
+          return product;
+        }
+      });
+    },
     addWishlistToCartVisitor: (state, action) => {
       const { wishlist } = action.payload;
       state.cart = [...state.cart, ...wishlist];
     },
-    clearWishlistVisitor:(state,action)=>{
-      state.wishlist = []
+    clearWishlistVisitor: (state, action) => {
+      state.wishlist = [];
     },
     clearCartVisitor: (state, action) => {
       state.cart = [];
@@ -135,7 +139,8 @@ export const {
   removeOneProductToCartVisitor,
   addWishlistToCartVisitor,
   clearCartVisitor,
-  clearWishlistVisitor
+  clearWishlistVisitor,
+  changeQuantityProductToCartVisitor
 } = visitUserSlice.actions;
 export { fetchCategories };
 export default visitUserSlice.reducer;

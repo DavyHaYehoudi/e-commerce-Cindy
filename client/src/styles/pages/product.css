@@ -111,10 +111,10 @@
     white-space: pre-wrap;
     /* Conserve les espaces et les sauts de ligne */
 }
-#master-product-content .addToCart button{
-    border: 1px solid gray;
-    padding: 5px;
+#master-product-content .addToCart {
+    padding: 8px;
     color: var(--dark);
+    height: 30px;
 }
 #master-product-content .addToCart button:hover{
     color: whitesmoke;

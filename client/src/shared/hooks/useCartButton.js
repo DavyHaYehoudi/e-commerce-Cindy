@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
@@ -13,16 +13,15 @@ import {
 } from "../../features/accountClient/customerSlice";
 import useStoreInfo from "./useStoreInfo";
 
-const useCartButton = (productsId, material, quantity = 1) => {
-  const [clicked, setClicked] = useState(false);
-  const { clientId, cartStore, isProductInCart } = useStoreInfo({
+const useCartButton = (productsId, material) => {
+  const { clientId, cartStore, isProductInCart, quantity } = useStoreInfo({
     productsId,
     material,
   });
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const addDate = new Date().toISOString();
-  const productCart = { productsId, material, quantity, addDate };
+  const productCart = { productsId, material, addDate, quantity };
 
   useEffect(() => {
     const cartProductsString = localStorage.getItem("cartProducts");
@@ -97,12 +96,7 @@ const useCartButton = (productsId, material, quantity = 1) => {
       }
     }
   };
-  const handleClickAdd = async () => {
-    setClicked(true);
-    await handleAddToCart();
-    setTimeout(() => setClicked(false), 2000); // Reset after animation duration
-  };
-  return { handleRemoveToCart, isProductInCart, clicked, handleClickAdd };
+  return { handleRemoveToCart, isProductInCart, handleAddToCart };
 };
 
 export default useCartButton;

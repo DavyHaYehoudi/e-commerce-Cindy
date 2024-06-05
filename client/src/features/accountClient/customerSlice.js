@@ -97,7 +97,8 @@ const customer = createSlice({
       }
     },
     addOneProductToCart: (state, action) => {
-      const { productsId, material, quantity } = action.payload;
+      console.log('il se redeclence ?'); 
+      const { productsId, material, quantity = 1 } = action.payload;
       const addDate = new Date().toISOString();
       if (!productsId) return;
       const existingProduct = state.data.client.cart.find((item) => {
@@ -137,12 +138,25 @@ const customer = createSlice({
         });
       }
     },
+    changeQuantityProductToCart: (state, action) => {
+      const { productId, materialId, quantity } = action.payload;
+      state.data.client.cart = state.data.client.cart.map((product) => {
+        if (
+          product?.productsId === productId &&
+          product?.material === materialId
+        ) {
+          return { ...product, quantity };
+        } else {
+          return product;
+        }
+      });
+    },
     addWishlistToCart: (state, action) => {
       const { wishlist } = action.payload;
       state.data.client.cart = [...state.data.client.cart, ...wishlist];
     },
-    clearWishlist:(state,action)=>{
-      state.data.client.wishlist = []
+    clearWishlist: (state, action) => {
+      state.data.client.wishlist = [];
     },
     clearCart: (state, action) => {
       state.data.client.cart = [];
@@ -219,7 +233,8 @@ export const {
   removeOneProductToCart,
   addWishlistToCart,
   clearCart,
-  clearWishlist
+  clearWishlist,
+  changeQuantityProductToCart
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

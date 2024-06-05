@@ -26,6 +26,13 @@ const filterStore = ({ store = [], productsStore }) => {
     )
   );
 };
+const quantityProduct = (store = [], productId, materialId) => {
+  const product = store.find(
+    (product) =>
+      product?.productsId === productId && product?.material === materialId
+  );
+  return product?.quantity || 1;
+};
 
 const useStoreInfo = ({ productsId, material }) => {
   const { clientId: getClientId } = useAuthWrappers();
@@ -56,9 +63,20 @@ const useStoreInfo = ({ productsId, material }) => {
     store: wishlistVisitor,
     productsStore,
   });
+  const quantityProductClient = quantityProduct(
+    cartStoreClientFilter,
+    productsId,
+    material
+  );
+  const quantityProductVisitor = quantityProduct(
+    cartStoreVisitorFilter,
+    productsId,
+    material
+  );
 
   const wishlist = clientId ? wishlistClientFilter : wishlistVisitorFilter;
   const cartStore = clientId ? cartStoreClientFilter : cartStoreVisitorFilter;
+  const quantity = clientId ? quantityProductClient : quantityProductVisitor;
 
   const isLiked = findIsLiked(wishlist, productsId, material);
   const isProductInCart = cartStore.find(
@@ -72,6 +90,7 @@ const useStoreInfo = ({ productsId, material }) => {
     cartStore,
     wishlistClient: wishlistClientFilter,
     wishlist,
+    quantity,
   };
 };
 export default useStoreInfo;
