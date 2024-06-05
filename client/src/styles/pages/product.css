@@ -111,12 +111,18 @@
     white-space: pre-wrap;
     /* Conserve les espaces et les sauts de ligne */
 }
-#master-product-content .addToCart {
-    padding: 8px;
-    color: var(--dark);
-    height: 30px;
+#master-product-content .addToCartContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-#master-product-content .addToCart button:hover{
+#master-product-content .addToCart {
+    flex: 1;
+}
+#master-product-content .addToCart .remove{
+    color: var(--dark);
+}
+#master-product-content .addToCart .remove:hover{
     color: whitesmoke;
 }
 /* ************************** INFORMATIONS ************************** */

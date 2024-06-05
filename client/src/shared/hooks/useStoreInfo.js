@@ -46,23 +46,26 @@ const useStoreInfo = ({ productsId, material }) => {
     productsStore,
   });
   const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart) || [];
-  const cartStoreVisitorFilter = filterStore({
-    store: cartStoreVisitor,
-    productsStore,
-  });
+  const cartStoreVisitorFilter =
+    filterStore({
+      store: cartStoreVisitor,
+      productsStore,
+    }) || [];
   const wishlistClient =
     useSelector((state) => state?.customer?.data?.client?.wishlist) || [];
-  const wishlistClientFilter = filterStore({
-    store: wishlistClient,
-    productsStore,
-  });
+  const wishlistClientFilter =
+    filterStore({
+      store: wishlistClient,
+      productsStore,
+    }) || [];
   const wishlistVisitor = useSelector(
     (state) => state?.visitUser?.wishlist || []
   );
-  const wishlistVisitorFilter = filterStore({
-    store: wishlistVisitor,
-    productsStore,
-  });
+  const wishlistVisitorFilter =
+    filterStore({
+      store: wishlistVisitor,
+      productsStore,
+    }) || [];
   const quantityProductClient = quantityProduct(
     cartStoreClientFilter,
     productsId,
@@ -83,6 +86,8 @@ const useStoreInfo = ({ productsId, material }) => {
     (product) =>
       product.productsId === productsId && product?.material === material
   );
+  const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
+
   return {
     clientId,
     isLiked,
@@ -91,6 +96,7 @@ const useStoreInfo = ({ productsId, material }) => {
     wishlistClient: wishlistClientFilter,
     wishlist,
     quantity,
+    numberArticleInCart,
   };
 };
 export default useStoreInfo;

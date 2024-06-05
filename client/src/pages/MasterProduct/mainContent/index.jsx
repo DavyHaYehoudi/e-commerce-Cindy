@@ -12,12 +12,14 @@ import isCurrent from "../../../helpers/utils/isCurrentDate";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 
 const MainContent = ({ productId, materialId }) => {
-  const { product, materialSelected, handleMaterialSelected } =
-    useMainContent({ productId, materialId });
-    const { isProductInCart } = useStoreInfo({
-      productsId: productId,
-      material: materialId,
-    });
+  const { product, materialSelected, handleMaterialSelected } = useMainContent({
+    productId,
+    materialId,
+  });
+  const { isProductInCart } = useStoreInfo({
+    productsId: productId,
+    material: materialId,
+  });
   return (
     <div id="master-product-content">
       <div className="images-container">
@@ -80,13 +82,20 @@ const MainContent = ({ productId, materialId }) => {
           />
         </div>
         <p className="separator"></p>
-        <QuantitySelectProduct productId={productId} materialId={materialId} />
-        <div className="addToCart">
-        <AddToCartButton
-          productsId={productId}
-          material={materialId}
-          isProductInCart={isProductInCart}
-        />
+        <div className="addToCartContainer">
+          {isProductInCart && (
+            <QuantitySelectProduct
+              productId={productId}
+              materialId={materialId}
+            />
+          )}
+          <div className="addToCart">
+            <AddToCartButton
+              productsId={productId}
+              material={materialId}
+              isProductInCart={isProductInCart}
+            />
+          </div>
         </div>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />

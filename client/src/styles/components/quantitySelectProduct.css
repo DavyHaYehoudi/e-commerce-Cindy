@@ -6,14 +6,20 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
-.quantity-select input{
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    flex: 0.2;
+    animation: swingInRight 2s ease 0s 1 normal forwards;
 }
 
-  .quantity-select input:focus {
+.quantity-select input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.quantity-select input:focus {
     outline-color: var(--text-golden);
-  }
-  
+}

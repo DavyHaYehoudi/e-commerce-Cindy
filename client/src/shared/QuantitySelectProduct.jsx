@@ -9,7 +9,6 @@ const QuantitySelectProduct = ({ productId, materialId }) => {
 
   return (
     <div className="quantity-select">
-      <label>Quantité : </label>
       {loading ? (
         "..."
       ) : (

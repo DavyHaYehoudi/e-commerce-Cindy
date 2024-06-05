@@ -6,10 +6,12 @@ import { AiOutlineShopping } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import useNavIcons from "./hooks/useNavIcons";
+import useStoreInfo from "../../shared/hooks/useStoreInfo";
 
 
 const NavIcons = ({ onClickHeart }) => {
   const { token, role, imageUrl, logout } = useNavIcons();
+  const {numberArticleInCart}=useStoreInfo({productsId:"",material:""})
 
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
@@ -57,7 +59,7 @@ const NavIcons = ({ onClickHeart }) => {
           >
             <AiOutlineShopping className="navlink-icon" aria-hidden="true" />
           </NavLink>
-          <span id="numberCart">1</span>
+          <span id="numberCart">{numberArticleInCart} </span>
         </li>
       </ul>
     </nav>

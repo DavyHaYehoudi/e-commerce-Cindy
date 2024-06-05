@@ -376,6 +376,19 @@ img {
 		transform: translateX(0);
 	}
 }
+@keyframes swingInRight {
+	0% {
+		opacity: 0;
+		transform: rotateY(-100deg);
+		transform-origin: right;
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateY(0);
+		transform-origin: right;
+	}
+}
 
 /* *{
     border: 1px red solid;
