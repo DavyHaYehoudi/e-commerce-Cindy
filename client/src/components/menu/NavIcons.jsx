@@ -5,20 +5,11 @@ import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { resetCustomerStore } from "../../features/accountClient/customerSlice";
-import { resetStore } from "../../features/authentication/authenticationSlice";
+import useNavIcons from "./hooks/useNavIcons";
+
 
 const NavIcons = ({ onClickHeart }) => {
-  const token = useSelector((state) => state?.authentication?.token) || "";
-  const role = useSelector((state) => state?.authentication?.role);
-
-  const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(resetCustomerStore());
-    dispatch(resetStore());
-    localStorage.clear();
-  };
+  const { token, role, imageUrl, logout } = useNavIcons();
 
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
@@ -46,7 +37,7 @@ const NavIcons = ({ onClickHeart }) => {
               to={role === "admin" ? "admin/dashboard" : "account"}
               aria-label="Mon compte"
             >
-              MON COMPTE
+              <img src={imageUrl} alt="profil" />
             </NavLink>
           </li>
         )}

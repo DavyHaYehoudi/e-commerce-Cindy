@@ -80,7 +80,7 @@ const Contact = () => {
             name="message"
             placeholder="MESSAGE"
           ></textarea>
-          <input type="submit" value="ENVOYER" className="btn" />
+          <input type="submit" value="ENVOYER" className="btn contact-btn" />
         </fieldset>
       </form>
     </section>

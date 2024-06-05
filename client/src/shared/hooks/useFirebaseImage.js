@@ -12,7 +12,7 @@ const useFirebaseImage = (imagePath) => {
       const imageRef = ref(storage, imagePath);
 
       getDownloadURL(imageRef)
-        .then((url) => {
+        .then((url) => { 
           setImageUrl(url);
           setLoading(false);
         })

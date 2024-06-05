@@ -7,7 +7,9 @@
     padding: 50px;
     z-index: 1;
     color: whitesmoke;
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
+
 .collections-ui::before {
     content: '';
     position: absolute;
@@ -24,6 +26,9 @@ h2,
 h4 {
     text-align: center;
     letter-spacing: 5px;
+}
+.collection-master{
+    animation: fadeInRight 2s ease 0s 1 normal forwards;
 }
 
 .collection-master .title {

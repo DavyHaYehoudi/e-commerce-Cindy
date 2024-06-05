@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
@@ -10,6 +10,7 @@ import { toggleFavorite } from "../../features/accountClient/customerSlice";
 import useStoreInfo from "./useStoreInfo";
 
 const useFavorite = (productId, materialId) => {
+  const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const { clientId, wishlistClient, isLiked } = useStoreInfo({
@@ -88,8 +89,13 @@ const useFavorite = (productId, materialId) => {
       localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
     }
   };
+  const handleClickHeart = async () => {
+    setClicked(true);
+    await handleLike();
+    setTimeout(() => setClicked(false), 2000);
+  };
 
-  return { isLiked, handleLike };
+  return { isLiked, handleClickHeart, clicked };
 };
 
 export default useFavorite;

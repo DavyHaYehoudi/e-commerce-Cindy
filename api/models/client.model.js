@@ -20,7 +20,7 @@ const clientSchema = new mongoose.Schema(
       required: true,
     },
     phone: { type: String, default: "", maxlength: 100 },
-    avatar: { type: String, defaut: null },
+    avatar: { type: String, default: "avatars/default-avatar.svg" },
     shippingAddress: {
       firstName: { type: String, maxlength: 100, trim: true },
       lastName: { type: String, maxlength: 100, trim: true },
@@ -139,8 +139,8 @@ const clientSchema = new mongoose.Schema(
       },
       resetPasswordExpires: {
         type: Date,
-        default: null,  
-      }, 
+        default: null,
+      },
     },
   },
   {
@@ -154,14 +154,19 @@ clientSchema.pre("save", async function (next) {
   }
   try {
     const salt = await bcrypt.genSalt(10);
-    this.authentication.password = await bcrypt.hash(this.authentication.password, salt);
+    this.authentication.password = await bcrypt.hash(
+      this.authentication.password,
+      salt
+    );
     next();
   } catch (error) {
-    console.log("Erreur lors de la sauvegarde du mot de passe dans le middleware du schéma client :", error);
+    console.log(
+      "Erreur lors de la sauvegarde du mot de passe dans le middleware du schéma client :",
+      error
+    );
     next(error);
   }
 });
-
 
 // Method to compare passwords
 clientSchema.methods.comparePassword = async function (password) {
@@ -170,7 +175,6 @@ clientSchema.methods.comparePassword = async function (password) {
   }
   return await bcrypt.compare(password, this.authentication.password);
 };
-
 
 clientSchema.pre("validate", function (next) {
   const error = this.validateSync();

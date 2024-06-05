@@ -1,31 +1,26 @@
 import React from "react";
-import useFirebaseImage from "./hooks/useFirebaseImage";
-import { formatPrice } from "../helpers/utils/prices";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import isCurrent from "../helpers/utils/isCurrentDate";
+import useStoreInfo from "./hooks/useStoreInfo";
 import FavoriteButton from "./FavoriteButton";
 import AddToCartButton from "./AddToCartButton";
-import useStoreInfo from "./hooks/useStoreInfo";
+import { formatPrice } from "../helpers/utils/prices";
+import isCurrent from "../helpers/utils/isCurrentDate";
+import useCardProduct from "./hooks/useCardProduct";
 
 const CardProduct = ({ product, material }) => {
-  const materialsStore = useSelector((state) => state?.material?.data);
-  const { imageUrl } = useFirebaseImage(material?.main_image);
+  const { currentImage, handleMouseEnter, handleMouseLeave, materialName } =
+    useCardProduct(material?.main_image, product?.secondary_images, material);
+  const { isProductInCart } = useStoreInfo({
+    productsId: product?._id,
+    material: material?._id,
+  });
 
-  //Utile pour les produits suggérés en bas des pages
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-
-  const materialName =
-    materialsStore.find((mat) => mat?._id === material?._id)?.name || "";
-  const { isProductInCart } = useStoreInfo({
-    productsId: product?._id,
-    material: material?._id,
-  });
 
   return (
     <div className="card-product">
@@ -34,8 +29,12 @@ const CardProduct = ({ product, material }) => {
         state={{ materialId: material?._id }}
         onClick={scrollToTop}
       >
-        <div className="img-container">
-          <img src={imageUrl} alt={product?.name} />
+        <div
+          className="img-container"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <img src={currentImage} alt={product?.name} />
         </div>
         <div className="card-info">
           <h4>{product?.name}</h4>

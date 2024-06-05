@@ -2,7 +2,7 @@ import React from "react";
 import useCartButton from "./hooks/useCartButton";
 
 const AddToCartButton = ({ productsId, material, quantity = 1 }) => {
-  const { handleAddToCart, handleRemoveToCart, isProductInCart } =
+  const { handleRemoveToCart, isProductInCart, clicked, handleClickAdd } =
     useCartButton(productsId, material, quantity);
   return (
     <>
@@ -12,7 +12,10 @@ const AddToCartButton = ({ productsId, material, quantity = 1 }) => {
           <span>🛒 ❌</span>
         </button>
       ) : (
-        <button className="cart-button btn" onClick={handleAddToCart}>
+        <button
+          className={`cart-button btn ${clicked ? "clicked" : ""}`}
+          onClick={handleClickAdd}
+        >
           <span>Ajouter au panier</span>
           <span>🛒 ➕</span>
         </button>

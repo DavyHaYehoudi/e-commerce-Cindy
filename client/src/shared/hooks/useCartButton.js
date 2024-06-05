@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 import {
@@ -14,10 +14,11 @@ import {
 import useStoreInfo from "./useStoreInfo";
 
 const useCartButton = (productsId, material, quantity = 1) => {
+  const [clicked, setClicked] = useState(false);
   const { clientId, cartStore, isProductInCart } = useStoreInfo({
     productsId,
     material,
-  }); 
+  });
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const addDate = new Date().toISOString();
@@ -96,8 +97,12 @@ const useCartButton = (productsId, material, quantity = 1) => {
       }
     }
   };
-
-  return { handleAddToCart, handleRemoveToCart, isProductInCart };
+  const handleClickAdd = async () => {
+    setClicked(true);
+    await handleAddToCart();
+    setTimeout(() => setClicked(false), 2000); // Reset after animation duration
+  };
+  return { handleRemoveToCart, isProductInCart, clicked, handleClickAdd };
 };
 
 export default useCartButton;
