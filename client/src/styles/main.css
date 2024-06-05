@@ -380,19 +380,6 @@ img {
 }
 /* ********************* END CARD PRODUCT ********************* */
 
-@keyframes progressiveDisplayTopToBottom {
-	0% {
-		opacity: 0;
-		transform: rotateX(70deg);
-		transform-origin: top;
-	}
-
-	100% {
-		opacity: 1;
-		transform: rotateX(0deg);
-		transform-origin: top;
-	}
-}
 @keyframes slideFromTop {
 	0% {
 		opacity: 0;

@@ -1,12 +1,15 @@
 #about-container {
-    max-width: 1200px;
+  max-width: 1200px;
   margin: auto;
-}
-#about-container section,.bottom-section{
-margin: 50px;
+  animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
-.noralya-section img{
-    display: block;
-    margin: auto;
+#about-container section,
+.bottom-section {
+  margin: 50px;
+}
+
+.noralya-section img {
+  display: block;
+  margin: auto;
 }
