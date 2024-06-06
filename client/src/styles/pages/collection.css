@@ -81,9 +81,21 @@ h4 {
     /* Internet Explorer 10+ */
     /* scrollbar-width: none; */
     /* Firefox */
+      /* Pour Firefox */
 }
 
-.collection-master .collection-master-row-wrapper::-webkit-scrollbar {
-    /* display: none; */
-    /* Safari and Chrome */
+.collection-master .collection-master-row-wrapper::-webkit-scrollbar{
+    width: 120px;
+    height: 5px;
+}
+.collection-master .collection-master-row-wrapper::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.collection-master .collection-master-row-wrapper::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 10px;
+}
+.collection-master .collection-master-row-wrapper::-webkit-scrollbar-thumb:hover{
+    background: #6A6A6A;
 }
