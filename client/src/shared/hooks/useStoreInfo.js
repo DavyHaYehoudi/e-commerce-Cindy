@@ -94,12 +94,11 @@ const useStoreInfo = ({ productsId, material }) => {
 
   const isLiked = findIsLiked(wishlist, productsId, material);
   const isProductInCart = cartStore.find(
-    (product) =>
-      product.productsId === productsId && product?.material === material
-  );
+      (product) =>
+        product.productsId === productsId && product?.material === material
+    );
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
   const cartTotalAmount = calculateTotalCartPrice(cartStore,productsStore)
-  console.log('cartTotalAmount:', cartTotalAmount)
 
   return {
     clientId,

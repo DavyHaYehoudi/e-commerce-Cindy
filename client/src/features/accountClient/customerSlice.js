@@ -97,7 +97,6 @@ const customer = createSlice({
       }
     },
     addOneProductToCart: (state, action) => {
-      console.log('il se redeclence ?'); 
       const { productsId, material, quantity = 1 } = action.payload;
       const addDate = new Date().toISOString();
       if (!productsId) return;

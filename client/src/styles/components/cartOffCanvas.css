@@ -23,6 +23,7 @@
 .offcanvas-heading {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 40px 20px;
 }
 
@@ -36,6 +37,13 @@
 
 .offcanvas-heading button:hover {
     transform: rotate(180deg) translateY(10%);
+}
+.offcanvas-heading .cart-clear-trash {
+    font-size: 1.25rem;
+}
+.offcanvas-heading .cart-clear-trash:hover {
+    color: #838282;
+    animation: shake-rotate 2s ease 0s 1 normal forwards;
 }
 
 .cart-offcanvas-content {

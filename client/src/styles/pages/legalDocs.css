@@ -4,10 +4,14 @@
     margin: 20px;
 }
 
-h1 {
+#legalNotice-contain,
+#deliveries-contain,
+#termsOfSales-contain h1 {
     text-align: center;
 }
 
-h2 {
+#legalNotice-contain,
+#deliveries-contain,
+#termsOfSales-contain h2 {
     margin-top: 10px;
 }

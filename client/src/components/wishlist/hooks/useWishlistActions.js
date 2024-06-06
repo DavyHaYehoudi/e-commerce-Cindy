@@ -64,13 +64,13 @@ const useWishlistActions = () => {
           null,
           handleUnauthorized
         );
+        dispatch(clearWishlist());
       } catch (error) {
         console.log(
           "Erreur dans handleClearWishlist WishlistModalActions :",
           error
         );
       }
-      dispatch(clearWishlist());
     } else {
       dispatch(clearWishlistVisitor());
       localStorage.removeItem("likedProducts");
