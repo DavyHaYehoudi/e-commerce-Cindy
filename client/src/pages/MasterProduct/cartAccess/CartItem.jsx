@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getProductProperties } from "../../../selectors/product";
@@ -7,9 +7,9 @@ import QuantitySelectProduct from "../../../shared/QuantitySelectProduct";
 import TrashIcon from "../../../shared/TrashIcon";
 import useFirebaseImage from "../../../shared/hooks/useFirebaseImage";
 import useCartButton from "../../../shared/hooks/useCartButton";
+import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 
 const CartItem = ({ product }) => {
-  const [coefficient, setCoefficient] = useState(1);
   const productStore = useSelector((state) => state?.product?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
@@ -31,14 +31,15 @@ const CartItem = ({ product }) => {
   const { imageUrl } = useFirebaseImage(imagePath);
   const { handleRemoveToCart } = useCartButton(productsId, material);
 
-  const handleChangeQuantity = (quantity) => {
-    setCoefficient(quantity);
-  };
+  const { quantity } = useStoreInfo({ productsId, material });
   return (
     <div className="cart-item">
       <div className="cart-item-top">
         <div className="info-tooltip" aria-label="Revenir à l'article">
-          <Link>
+          <Link
+            to={`/master-product/${productsId}`}
+            state={{ materialId: material }}
+          >
             <img
               src={imageUrl}
               alt={
@@ -72,7 +73,7 @@ const CartItem = ({ product }) => {
       </div>
       <div className="cart-item-bottom">
         <div className="cart-item-subtotal">
-          {coefficient} x{" "}
+          {quantity} x{" "}
           {formatPrice(
             getProductProperties(
               productsId,
@@ -92,15 +93,11 @@ const CartItem = ({ product }) => {
               categoryStore,
               tagStore,
               material
-            )?.pricing?.currentPrice * coefficient
+            )?.pricing?.currentPrice * quantity
           )}
         </div>
         <div className="cart-item-quantity">
-          <QuantitySelectProduct
-            handleChangeQuantity={handleChangeQuantity}
-            productId={productsId}
-            materialId={material}
-          />
+          <QuantitySelectProduct productId={productsId} materialId={material} />
         </div>
         <div className="cart-item-delete" onClick={handleRemoveToCart}>
           <TrashIcon />

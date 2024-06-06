@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCartAccess } from "../../../features/admin/productSlice";
 
 const CartOffcanvas = () => {
-  const { cartStore } = useStoreInfo({ productsId: "", material: "" });
+  const { cartStore,cartTotalAmount } = useStoreInfo({ productsId: "", material: "" });
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(showCartAccess(false));
@@ -36,7 +36,7 @@ const CartOffcanvas = () => {
         <div className="fixed-bottom-content">
           <p>
             TOTAL DES ARTICLES :{" "}
-            <b>{formatPrice(250)} A CALCULER PAR LE BACK</b>
+            <b>{formatPrice(cartTotalAmount)}</b>
           </p>
           <div>
             <Link to="/cart">

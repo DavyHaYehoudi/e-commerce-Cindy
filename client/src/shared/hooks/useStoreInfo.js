@@ -33,6 +33,17 @@ const quantityProduct = (store = [], productId, materialId) => {
   );
   return product?.quantity || 1;
 };
+const calculateTotalCartPrice = (cartStore = [], productsStore = []) => {
+    return cartStore.reduce((total, cartItem) => {
+      const product = productsStore.find(product => product?._id === cartItem?.productsId);
+      if (product) {
+        const material = product?.materials?.find(mat => mat?._id === cartItem?.material);
+        const price = material?.pricing?.currentPrice ?? product?.materials?.[0]?.pricing?.currentPrice;
+        total += (price || 0) * (cartItem?.quantity || 0);
+      }
+      return total;
+    }, 0);
+  };
 
 const useStoreInfo = ({ productsId, material }) => {
   const { clientId: getClientId } = useAuthWrappers();
@@ -87,16 +98,19 @@ const useStoreInfo = ({ productsId, material }) => {
       product.productsId === productsId && product?.material === material
   );
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
+  const cartTotalAmount = calculateTotalCartPrice(cartStore,productsStore)
+  console.log('cartTotalAmount:', cartTotalAmount)
 
   return {
     clientId,
     isLiked,
-    isProductInCart,
+    isProductInCart, 
     cartStore,
     wishlistClient: wishlistClientFilter,
     wishlist,
     quantity,
     numberArticleInCart,
+    cartTotalAmount
   };
 };
 export default useStoreInfo;
