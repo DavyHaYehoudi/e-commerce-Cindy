@@ -140,7 +140,7 @@ export const {
   addWishlistToCartVisitor,
   clearCartVisitor,
   clearWishlistVisitor,
-  changeQuantityProductToCartVisitor
+  changeQuantityProductToCartVisitor,
 } = visitUserSlice.actions;
 export { fetchCategories };
 export default visitUserSlice.reducer;

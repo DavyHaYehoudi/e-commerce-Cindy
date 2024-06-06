@@ -1,0 +1,109 @@
+.card-product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 400px;
+    width: 400px;
+    height: 500px;
+    border: 1px solid var(--background);
+    border-radius: 20px;
+    cursor: pointer;
+    background: var(--collection-card-bg);
+    color: var(--collection-card-text);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-product a {
+    width: 100%;
+    height: 65%;
+}
+
+.card-product:hover {
+    transform: scale(1.005);
+}
+
+.card-product .img-container {
+    width: 100%;
+    height: 100%;
+}
+
+.card-product img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 5px;
+}
+
+.card-info {
+    text-align: center;
+}
+.card-info h4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Nombre de lignes avant de tronquer le texte */
+    line-height: 1.5; /* Ajustez la hauteur de ligne si nécessaire */
+    max-height: calc(1.5em * 2); /* Hauteur maximale basée sur le nombre de lignes et la hauteur de ligne */
+}
+
+.card-button {
+    width: 100%;
+    margin: 20px auto 10px auto;
+    display: flex;
+    justify-content: center;
+}
+.cart-button {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+.cart-button:hover {
+    color: whitesmoke;
+}
+.cart-button.add{
+    background: var(--button-background) ;
+    color: whitesmoke;
+}
+.cart-button.add:hover{
+    animation: pulse 2s ease 0s 1 normal forwards;
+}
+@keyframes pulse {
+	0% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+		transform-origin: center center;
+	}
+
+	10% {
+		animation-timing-function: ease-in;
+		transform: scale(0.91);
+	}
+
+	17% {
+		animation-timing-function: ease-out;
+		transform: scale(0.98);
+	}
+
+	33% {
+		animation-timing-function: ease-in;
+		transform: scale(0.87);
+	}
+
+	45% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+}
+.manufacture {
+    font-size: 0.7rem;
+    color: var(--manufacture);
+}

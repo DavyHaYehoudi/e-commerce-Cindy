@@ -1,46 +1,38 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { TfiClose } from "react-icons/tfi";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../helpers/utils/prices";
-import { useSelector } from "react-redux";
+import useStoreInfo from "../../../shared/hooks/useStoreInfo";
+import { useDispatch, useSelector } from "react-redux";
+import { showCartAccess } from "../../../features/admin/productSlice";
 
-const CartOffcanvas = ({ show, handleClose }) => {
-  const carts = useSelector((state) => state?.customer?.data?.client?.cart);
-  const handleOutsideClick = useCallback(
-    (e) => {
-      if (
-        !e.target.closest(".offcanvas") &&
-        e.target.tagName.toLowerCase() !== "button"
-      ) {
-        handleClose();
-      }
-    },
-    [handleClose]
-  );
-  useEffect(() => {
-    window.addEventListener("click", handleOutsideClick);
-    return () => {
-      window.removeEventListener("click", handleOutsideClick);
-    };
-  }, [handleOutsideClick]);
+const CartOffcanvas = () => {
+  const { cartStore } = useStoreInfo({ productsId: "", material: "" });
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch(showCartAccess(false));
+  };
+  const show = useSelector(state=>state?.product?.cartAccess)
 
   return (
     <div className={`offcanvas ${show ? "show" : ""}`}>
       <div className="offcanvas-heading">
-        <h2>VOTRE PANIER</h2>
+        <h2>MON PANIER</h2>
         <button onClick={handleClose} aria-label="Fermer la fenêtre">
           <TfiClose aria-hidden="true" />
         </button>
       </div>
       <div className="cart-offcanvas-content">
-        {carts && carts.length > 0 ? (
-          carts.map((cart) => <CartItem cart={cart} key={cart.productsId} />)
+        {cartStore && cartStore.length > 0 ? (
+          cartStore.map((product,i) => (
+            <CartItem product={product} key={product?.productsId+i} />
+          ))
         ) : (
-          <p className="empty-cart-message">VOTRE PANIER EST VIDE</p>
+          <p className="empty-cart-message">Le panier est vide</p>
         )}
       </div>
-      {carts && carts.length > 0 && (
+      {cartStore && cartStore.length > 0 && (
         <div className="fixed-bottom-content">
           <p>
             TOTAL DES ARTICLES :{" "}

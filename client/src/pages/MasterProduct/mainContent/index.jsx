@@ -89,7 +89,7 @@ const MainContent = ({ productId, materialId }) => {
               materialId={materialId}
             />
           )}
-          <div className="addToCart">
+          <div className="addToCart" >
             <AddToCartButton
               productsId={productId}
               material={materialId}

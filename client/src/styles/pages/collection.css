@@ -28,7 +28,7 @@ h4 {
     letter-spacing: 5px;
 }
 
-.collection-master {
+.collection-master .animated-container{
     animation: fadeInRight 2s ease 0s 1 normal forwards;
 }
 

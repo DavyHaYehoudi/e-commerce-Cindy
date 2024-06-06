@@ -5,7 +5,7 @@ const QuantitySelectProduct = ({ productId, materialId }) => {
   const { loading, quantity, handleChangeValue } = useQuantitySelectProduct(
     productId,
     materialId
-  );
+  ); 
 
   return (
     <div className="quantity-select">

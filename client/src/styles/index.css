@@ -8,12 +8,12 @@
 @import "./components/navMenu.css";
 @import "./components/quantitySelectProduct.css";
 @import "./components/cartOffCanvas.css";
-@import "./components/cartIem.css";
 @import "./components/trashIcon.css";
 @import "./components/orderItemAdmin.css";
 @import "./components/paymentForm.css";
 @import "./components/wishlistModal.css";
 @import "./components/orderActionsDropdown.css";
+@import "./components/cardProduct.css";
 @import "./darkMode/darkMode.css";
 
 /* LAYOUT */

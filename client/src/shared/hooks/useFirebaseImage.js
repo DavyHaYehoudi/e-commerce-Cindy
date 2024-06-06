@@ -10,7 +10,7 @@ const useFirebaseImage = (imagePath) => {
   useEffect(() => {
     if (imagePath) {
       const imageRef = ref(storage, imagePath);
-
+ 
       getDownloadURL(imageRef)
         .then((url) => { 
           setImageUrl(url);

@@ -12,6 +12,7 @@ import {
   removeOneProductToCart,
 } from "../../features/accountClient/customerSlice";
 import useStoreInfo from "./useStoreInfo";
+import { showCartAccess } from "../../features/admin/productSlice";
 
 const useCartButton = (productsId, material) => {
   const { clientId, cartStore, isProductInCart, quantity } = useStoreInfo({
@@ -42,12 +43,14 @@ const useCartButton = (productsId, material) => {
           null,
           handleUnauthorized
         );
+        dispatch(addOneProductToCart(productCart));
+        dispatch(showCartAccess(true))
       } catch (error) {
         console.log("Erreur dans handleAddToCart AddToCartButton :", error);
       }
-      dispatch(addOneProductToCart(productCart));
     } else {
       dispatch(addOneProductToCartVisitor(productCart));
+      dispatch(showCartAccess(true))
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)
@@ -80,8 +83,10 @@ const useCartButton = (productsId, material) => {
         console.log("Erreur dans handleRemoveToCart AddToCartButton :", error);
       }
       dispatch(removeOneProductToCart(productCart));
+      dispatch(showCartAccess(true))
     } else {
       dispatch(removeOneProductToCartVisitor(productCart));
+      dispatch(showCartAccess(true))
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Informations from "./informations";
 import MainContent from "./mainContent";
 import CartOffcanvas from "./cartAccess";
@@ -8,10 +8,6 @@ import useFetchData from "../../useFetchData";
 import { useLocation, useParams } from "react-router-dom";
 
 const MasterProduct = () => {
-  const [showCart, setShowCart] = useState(false);
-
-  const handleCartClose = () => setShowCart(false);
-  const handleCartShow = () => setShowCart(true);
   const { role: getRole, clientId: getClientId } = useAuthWrappers();
   const role = getRole();
   const clientId = getClientId();
@@ -20,14 +16,10 @@ const MasterProduct = () => {
   const { state } = useLocation();
   return (
     <section id="master-product">
-      <MainContent
-        productId={productId}
-        materialId={state?.materialId}
-        handleCartShow={handleCartShow}
-      />
+      <MainContent productId={productId} materialId={state?.materialId} />
       <Informations />
       <Assortments productId={productId} />
-      <CartOffcanvas show={showCart} handleClose={handleCartClose} />
+      <CartOffcanvas />
     </section>
   );
 };

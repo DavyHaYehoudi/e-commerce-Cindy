@@ -6,6 +6,7 @@ import { BsCartDashFill } from "react-icons/bs";
 const AddToCartButton = ({ productsId, material }) => {
   const { handleRemoveToCart, isProductInCart, handleAddToCart } =
     useCartButton(productsId, material);
+
   return (
     <>
       {isProductInCart ? (

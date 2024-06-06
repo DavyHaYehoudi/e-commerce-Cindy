@@ -5,13 +5,32 @@ import { getProductProperties } from "../../../selectors/product";
 import { formatPrice } from "../../../helpers/utils/prices";
 import QuantitySelectProduct from "../../../shared/QuantitySelectProduct";
 import TrashIcon from "../../../shared/TrashIcon";
+import useFirebaseImage from "../../../shared/hooks/useFirebaseImage";
+import useCartButton from "../../../shared/hooks/useCartButton";
 
-const CartItem = ({ cart }) => {
+const CartItem = ({ product }) => {
   const [coefficient, setCoefficient] = useState(1);
   const productStore = useSelector((state) => state?.product?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
+  const { productsId, material } = product || {};
+  const productInStore = productStore.find(
+    (product) => product?._id === productsId
+  );
+  let imagePath;
+  if (productInStore) {
+    const materialMatch = productInStore.materials.find(
+      (mat) => mat?._id === material
+    );
+    imagePath = materialMatch
+      ? materialMatch.main_image
+      : productInStore.materials[0]?.main_image;
+  }
+
+  const { imageUrl } = useFirebaseImage(imagePath);
+  const { handleRemoveToCart } = useCartButton(productsId, material);
+
   const handleChangeQuantity = (quantity) => {
     setCoefficient(quantity);
   };
@@ -21,24 +40,15 @@ const CartItem = ({ cart }) => {
         <div className="info-tooltip" aria-label="Revenir à l'article">
           <Link>
             <img
-              src={`/photos/${
-                getProductProperties(
-                  cart?.productsId,
-                  productStore,
-                  collectionStore,
-                  categoryStore,
-                  tagStore,
-                  cart?.material
-                ).main_image
-              }`}
+              src={imageUrl}
               alt={
                 getProductProperties(
-                  cart?.productsId,
+                  productsId,
                   productStore,
                   collectionStore,
                   categoryStore,
                   tagStore,
-                  cart?.material
+                  material
                 ).name
               }
               width="75px"
@@ -50,12 +60,12 @@ const CartItem = ({ cart }) => {
         <div className="cart-item-name">
           {
             getProductProperties(
-              cart?.productsId,
+              productsId,
               productStore,
               collectionStore,
               categoryStore,
               tagStore,
-              cart?.material
+              material
             ).name
           }
         </div>
@@ -65,30 +75,34 @@ const CartItem = ({ cart }) => {
           {coefficient} x{" "}
           {formatPrice(
             getProductProperties(
-              cart?.productsId,
+              productsId,
               productStore,
               collectionStore,
               categoryStore,
               tagStore,
-              cart?.material
+              material
             )?.pricing?.currentPrice
           )}{" "}
           ={" "}
           {formatPrice(
             getProductProperties(
-              cart?.productsId,
+              productsId,
               productStore,
               collectionStore,
               categoryStore,
               tagStore,
-              cart?.material
+              material
             )?.pricing?.currentPrice * coefficient
           )}
         </div>
         <div className="cart-item-quantity">
-          <QuantitySelectProduct handleChangeQuantity={handleChangeQuantity} />
+          <QuantitySelectProduct
+            handleChangeQuantity={handleChangeQuantity}
+            productId={productsId}
+            materialId={material}
+          />
         </div>
-        <div className="cart-item-delete">
+        <div className="cart-item-delete" onClick={handleRemoveToCart}>
           <TrashIcon />
         </div>
       </div>

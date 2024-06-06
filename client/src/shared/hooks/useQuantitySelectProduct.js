@@ -5,6 +5,7 @@ import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedire
 import { Patch } from "../../services/httpMethods";
 import { changeQuantityProductToCart } from "../../features/accountClient/customerSlice";
 import { changeQuantityProductToCartVisitor } from "../../features/visitUser/visitUserSlice";
+import { showCartAccess } from "../../features/admin/productSlice";
 
 const useQuantitySelectProduct = (productId, materialId) => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
       return;
     }
     setLoading(true);
+    dispatch(showCartAccess(true));
     const cartUpdated = cartStore.map((product) => {
       if (
         product?.productsId === productId &&
@@ -55,7 +57,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         })
       );
     } else {
-        setLoading(true);
+      setLoading(true);
       dispatch(
         changeQuantityProductToCartVisitor({
           productId,
@@ -64,7 +66,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         })
       );
       localStorage.setItem("cartProducts", JSON.stringify(cartUpdated));
-      setLoading(false)
+      setLoading(false);
     }
   };
 

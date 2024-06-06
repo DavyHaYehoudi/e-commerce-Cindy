@@ -30,7 +30,7 @@ const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async ({ productId, handleUnauthorized }) => {
     await Del(`products/${productId}`, null, handleUnauthorized);
-    return productId
+    return productId;
   }
 );
 
@@ -42,6 +42,7 @@ const productSlice = createSlice({
     materials: [],
     mainImagesToRemoveStorage: [],
     isProductCheetModified: false,
+    cartAccess: false,
     status: "idle",
     error: null,
   },
@@ -89,11 +90,14 @@ const productSlice = createSlice({
     },
     changeProductActiveStatus: (state, action) => {
       const { productId, status } = action.payload;
-      state.data = state.data.map(product => 
+      state.data = state.data.map((product) =>
         product._id === productId ? { ...product, isActive: status } : product
       );
-    }}
-    ,
+    },
+    showCartAccess: (state, action) => {
+      state.cartAccess = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
@@ -151,7 +155,7 @@ const productSlice = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.totalProductsCount -= 1;
-        const  productId  = action.payload;
+        const productId = action.payload;
         state.data = state.data.filter((product) => product?._id !== productId);
       })
       .addCase(deleteProduct.rejected, (state, action) => {
@@ -168,6 +172,7 @@ export const {
   initProductMaterials,
   resetStore,
   modifyProductCheet,
-  changeProductActiveStatus
+  changeProductActiveStatus,
+  showCartAccess
 } = productSlice.actions;
 export default productSlice.reducer;
