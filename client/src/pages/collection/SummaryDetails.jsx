@@ -48,10 +48,8 @@ const SummaryDetails = ({ category, collectionId }) => {
       {productsNumber > 0 && (
         <>
           <div className="category-title">
-            <h2>Catégorie : {category?.name}</h2>
-            <small>
+            <h2 className="text-effect-1" >Catégorie : {category?.name}</h2>
               ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
-            </small>
           </div>
           <div className="collection-master-row-wrapper">
           <Slider {...settings}>

@@ -9,7 +9,7 @@ const ProductColorSelector = ({
 }) => {
   const materialsStore = useSelector((state) => state?.material?.data);
   const materialName =
-    materialsStore.find((material) => material._id === materialSelected.id)
+    materialsStore.find((material) => material?._id === materialSelected?.id)
       ?.name || "";
 
   return (
@@ -21,7 +21,7 @@ const ProductColorSelector = ({
         materialsProductId={materialsProductId}
         materialName={materialName}
       />
-      {materialName && <span>Matériau : {materialName}</span>}
+      {materialName && <p>Matériau : {materialName}</p>}
     </div>
   );
 };

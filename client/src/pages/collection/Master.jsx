@@ -24,10 +24,8 @@ const Master = () => {
     <div className="collection-master">
       <div className="animated-container">
         <div className="main-title">
-          <h1>Collection : {collectionName}</h1>
-          <small>
+          <h1 className="text-effect-1" >Collection : {collectionName}</h1>
             ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
-          </small>
         </div>
         <Summary
           categoriesLinkedToCollection={categoriesLinkedToCollection}

@@ -12,7 +12,7 @@ const Collections = () => {
   useFetchData({ role, clientId });
   return (
     <div className="collections-ui">
-      <h1>TOUTES LES COLLECTIONS</h1>
+      <h1 className="text-effect-1" >TOUTES LES COLLECTIONS</h1>
       <div className="collections-wrapper-ui">
         {collectionsStore &&
           collectionsStore.length > 0 &&

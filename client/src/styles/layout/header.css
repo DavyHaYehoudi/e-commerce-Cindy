@@ -5,6 +5,8 @@ header {
 #headerWrapper {
     margin: 30px;
 }
+#headerWrapper h1{
+text-align: center;}
 
 #headerWrapper #flex-item {
     display: flex;
