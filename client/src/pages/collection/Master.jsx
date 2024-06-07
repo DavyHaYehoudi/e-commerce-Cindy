@@ -4,6 +4,7 @@ import useMasterData from "./hooks/useMasterData";
 import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData";
 import CartOffcanvas from "../MasterProduct/cartAccess";
+import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
 
 const Master = () => {
   const { role: getRole, clientId: getClientId } = useAuthWrappers();
@@ -15,12 +16,14 @@ const Master = () => {
     categoriesLinkedToCollection,
     productsNumber,
     collectionId,
+    imageCollection,
   } = useMasterData();
 
+  const { imageUrl } = useFirebaseImage(imageCollection);
   return (
     <div className="collection-master">
       <div className="animated-container">
-        <div className="title">
+        <div className="main-title">
           <h1>Collection : {collectionName}</h1>
           <small>
             ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
@@ -32,6 +35,12 @@ const Master = () => {
         />
       </div>
       <CartOffcanvas />
+      <div
+        className="background-collection-master"
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+        }}
+      ></div>
     </div>
   );
 };

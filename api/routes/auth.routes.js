@@ -8,7 +8,7 @@ import authenticateJWT from "../controllers/authentication/authenticateJWT.js";
 import verifyToken from "../controllers/authentication/verifyToken.controller.js";
 import authenticateAdmin from "../controllers/authentication/authenticateAdmin.js";
 import authenticateUser from "../controllers/authentication/authenticateUser.js";
-const router = express.Router();
+const router = express.Router(); 
 
 router.post("/register", register);
 router.post("/verify-email", verifyEmail);

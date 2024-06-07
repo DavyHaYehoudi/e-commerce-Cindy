@@ -18,7 +18,8 @@ const useMasterData = () => {
   const productsStore = useSelector((state) => state?.product?.data);
   const productsLinkedToCollectionAndCategory = productsStore.filter(
     (product) =>
-      product._collection === collectionId && product.isActive&&
+      product._collection === collectionId &&
+      product.isActive &&
       categoriesLinkedToCollection.some(
         (category) => category._id === product.category
       )
@@ -32,6 +33,9 @@ const useMasterData = () => {
     },
     0
   );
+  const imageCollection = collectionsStore.find(
+    (collection) => collection._id === collectionId
+  )?.main_image||"";
 
   return {
     collectionName,
@@ -39,6 +43,7 @@ const useMasterData = () => {
     productsLinkedToCollectionAndCategory,
     productsNumber: totalMaterialsCount,
     collectionId,
+    imageCollection,
   };
 };
 

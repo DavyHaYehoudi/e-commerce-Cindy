@@ -246,45 +246,70 @@ img {
     border: none;
     background-color: transparent;
 }
-.like.clicked{
+
+.like.clicked {
     animation: pulse 2s ease 0s 1 normal forwards;
 }
+
+/* ********************* LIBRARIE SLICK CAROUSEL********************* */
+
+.slick-dots li button::before {
+    color: #6A6A6A !important;
+    font-size: 0.8rem !important;
+}
+
+.slick-next::before,
+.slick-prev::before {
+    color: var(--dark) !important;
+    font-size: 2rem !important;
+}
+
+.slick-initialized {
+    margin: 20px;
+}
+
+.slick-list {
+    padding: 20px;
+}
+
 /* ********************* END CARD PRODUCT ********************* */
 
 @keyframes slideFromTop {
-	0% {
-		opacity: 0;
-		transform: translateY(-250px);
-	}
+    0% {
+        opacity: 0;
+        transform: translateY(-250px);
+    }
 
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
 @keyframes fadeInRight {
-	0% {
-		opacity: 0;
-		transform: translateX(50px);
-	}
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
 
-	100% {
-		opacity: 1;
-		transform: translateX(0);
-	}
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
-@keyframes swingInRight {
-	0% {
-		opacity: 0;
-		transform: rotateY(-100deg);
-		transform-origin: right;
-	}
 
-	100% {
-		opacity: 1;
-		transform: rotateY(0);
-		transform-origin: right;
-	}
+@keyframes swingInRight {
+    0% {
+        opacity: 0;
+        transform: rotateY(-100deg);
+        transform-origin: right;
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateY(0);
+        transform-origin: right;
+    }
 }
 
 /* *{
