@@ -8,7 +8,7 @@ const ColorPicker = ({
 }) => {
   const handleColorClick = ({ materialId }) => {
     const materialSelectedIndex = materialsProductId.findIndex(
-      (material) => material._id === materialId
+      (material) => material?._id === materialId
     );
     handleMaterialSelected({
       id: materialId,
@@ -21,7 +21,7 @@ const ColorPicker = ({
     <div className="color-picker">
       {materialsProductId &&
         materialsStore
-          .filter((ms) => materialsProductId.some((mp) => mp._id === ms._id))
+          .filter((ms) => materialsProductId.some((mp) => mp?._id === ms?._id))
           .map((material) => (
             <div
               key={material?._id}

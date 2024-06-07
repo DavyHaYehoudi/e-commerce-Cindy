@@ -21,6 +21,7 @@ const Informations = () => {
               body={description}
               headerClassName="master-product-dropdown-header"
               bodyClassName="master-product-dropdown-body"
+              defaultOpen={true}
             />
             <Dropdown
               title="↩️ Livraisons & Retours"

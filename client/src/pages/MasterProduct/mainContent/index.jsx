@@ -18,7 +18,7 @@ const MainContent = ({ productId, materialId }) => {
   });
   const { isProductInCart } = useStoreInfo({
     productsId: productId,
-    material: materialId,
+    material: materialSelected?.id,
   });
   return (
     <div id="master-product-content">
@@ -37,7 +37,10 @@ const MainContent = ({ productId, materialId }) => {
               product?.materials[materialSelected.index]?.untilNew
             ) && <span>NOUVEAU</span>}
           </h2>
-          <FavoriteButton productId={productId} materialId={materialId} />
+          <FavoriteButton
+            productId={productId}
+            materialId={materialSelected?.id}
+          />
         </div>
         {isCurrent(
           product?.materials[materialSelected.index]?.promotion?.endDate
@@ -86,13 +89,13 @@ const MainContent = ({ productId, materialId }) => {
           {isProductInCart && (
             <QuantitySelectProduct
               productId={productId}
-              materialId={materialId}
+              materialId={materialSelected?.id}
             />
           )}
-          <div className="addToCart" >
+          <div className="addToCart">
             <AddToCartButton
               productsId={productId}
-              material={materialId}
+              material={materialSelected?.id}
               isProductInCart={isProductInCart}
             />
           </div>

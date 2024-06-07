@@ -9,8 +9,9 @@ const Dropdown = ({
   bodyClassName,
   linkPath,
   linkText,
+  defaultOpen = false,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const toggleDropdownOpen = () => {
     setIsOpen(!isOpen);
   };

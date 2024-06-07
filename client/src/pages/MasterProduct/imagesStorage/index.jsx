@@ -25,7 +25,7 @@ const ImageCarousel = ({
         ref={mainImageRef}
       >
         <div
-          className="image-wrapper"
+          className={zoomLevel > 1 ? "image-wrapper-zooming" : "image-wrapper"}
           style={{ transform: `scale(${zoomLevel})` }}
         >
           <img
