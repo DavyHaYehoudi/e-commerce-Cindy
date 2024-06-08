@@ -60,7 +60,8 @@
   border: 1px solid var(--border-color);
   padding: 8px;
 }
-.user-info-account button.modified{
+
+.user-info-account button.modified {
   background-color: var(--success);
 }
 
@@ -109,12 +110,14 @@
   color: var(--secondary);
   cursor: pointer;
 }
-.user-info-account-container  .image-container.main_image .loader {
+
+.user-info-account-container .image-container.main_image .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+
 .user-info-account-container .image-container.main_image {
   width: 200px;
   height: 200px;
@@ -143,6 +146,7 @@
 .user-info-account-container input[type='file'] {
   display: none;
 }
+
 .user-info-account-container .delete-image {
   color: var(--danger);
 }
@@ -210,7 +214,6 @@
   color: var(--text-golden);
 }
 
-
 .order-item-wrapper-user-account {
   border: 1px solid #ccc;
   padding: 15px;
@@ -226,9 +229,11 @@
 .order-item-wrapper-user-account .header {
   margin-bottom: 20px;
 }
-.order-item-wrapper-user-account .toggle{
+
+.order-item-wrapper-user-account .toggle {
   margin-top: 20px;
 }
+
 .order-item-wrapper-user-account .order-header-details {
   margin: 10px;
 }
@@ -256,7 +261,7 @@
 }
 
 /**************************** CARTES-CADEAUX *****************************/
-.giftcards li {
+.advantages li {
   position: relative;
   width: 400px;
   margin: 20px auto;
@@ -265,20 +270,23 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 3);
 }
 
-.giftcards .tag-isUsed {
+.advantages .tag {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--success);
   padding: 5px;
   border-radius: 5px;
 
 }
 
-.giftcards .tag-isUsed.used {
-  background-color: var(--info);
+.advantages .tag.not-available {
+  background-color: var(--warning);
 }
 
-.giftcards .text-used {
+.advantages .tag.available {
+  background-color: var(--success);
+}
+
+.advantages .text-used {
   color: var(--info)
 }

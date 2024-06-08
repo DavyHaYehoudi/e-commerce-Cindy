@@ -8,7 +8,8 @@ import { IoMdPricetag } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { MdCardGiftcard } from "react-icons/md";
 import Giftcards from "./accountClient/menu/Giftcards";
-
+import { MdLabel } from "react-icons/md";
+import Credits from "./accountClient/menu/Credits";
 const AccountClient = () => {
   const {
     clientId,
@@ -59,6 +60,17 @@ const AccountClient = () => {
               Cartes-cadeaux
             </span>
           </button>
+          <button
+            className={`account-btn ${
+              selectedTab === "Avoirs" ? "selected" : ""
+            }`}
+            onClick={() => handleTabChange("Avoirs")}
+          >
+            <span>
+              <MdLabel />
+              Avoirs
+            </span>
+          </button>
         </div>
       </div>
 
@@ -76,6 +88,7 @@ const AccountClient = () => {
       )}
       {selectedTab === "Commandes" && <Menu />}
       {selectedTab === "Cartes-cadeaux" && <Giftcards />}
+      {selectedTab === "Avoirs" && <Credits />}
 
       <ToastContainer autoClose={2500} />
     </div>

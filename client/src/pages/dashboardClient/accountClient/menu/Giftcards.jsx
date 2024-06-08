@@ -5,7 +5,7 @@ import Giftcard from "./Giftcard";
 const Giftcards = () => {
   const giftcards = useSelector((state) => state?.customer?.data?.giftcard);
   return (
-    <div className="giftcards">
+    <div className="advantages">
       <ul>
         {giftcards.map((card) => (
           <Giftcard key={card._id} card={card} />

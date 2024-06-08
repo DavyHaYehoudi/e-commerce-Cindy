@@ -3,39 +3,40 @@ import { formatDate } from "../../../../helpers/utils/formatDate";
 import { formatPrice } from "../../../../helpers/utils/prices";
 import isCurrent from "../../../../helpers/utils/isCurrentDate";
 
-const Giftcard = ({ card }) => {
+const Credit = ({ credit }) => {
   return (
     <li>
       <p>
         {" "}
-        <span className="underline">Montant </span>: {formatPrice(card?.amount)}{" "}
+        <span className="underline">Montant </span>:{" "}
+        {formatPrice(credit?.amount)}{" "}
       </p>
       <p>
-        <span className="underline">Achetée le </span> :{" "}
-        {formatDate(card?.createdAt)}{" "}
+        <span className="underline">Obtenu le </span> :{" "}
+        {formatDate(credit?.createdAt)}{" "}
       </p>
       <p>
         {" "}
         <span className="underline">Date d'expiration</span> :{" "}
-        {formatDate(card?.dateExpire)}{" "}
+        {formatDate(credit?.dateExpire)}{" "}
       </p>
       <p>
-        <span className="underline">Code numérique</span> : {card?.code}{" "}
+        <span className="underline">Code numérique</span> : {credit?.code}{" "}
       </p>
-      {card?.consumerId && (
+      {credit?.isArchived && (
         <p className="text-used">
-          <span className="underline">Utilisée le</span> :{" "}
-          {formatDate(card?.updatedAt)}{" "}
+          <span className="underline">Utilisé le</span> :{" "}
+          {formatDate(credit?.updatedAt)}{" "}
         </p>
       )}
       <span
         className={`tag ${
-          card?.consumerId || !isCurrent(card?.dateExpire)
+          credit?.isArchived || !isCurrent(credit?.dateExpire)
             ? "not-available"
             : "available"
         }`}
       >
-        {card?.consumerId || !isCurrent(card?.dateExpire)
+        {credit?.isArchived || !isCurrent(credit?.dateExpire)
           ? "Non valable"
           : "Toujours valable"}{" "}
       </span>
@@ -43,4 +44,4 @@ const Giftcard = ({ card }) => {
   );
 };
 
-export default Giftcard;
+export default Credit;

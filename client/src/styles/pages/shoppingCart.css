@@ -155,7 +155,8 @@
 #payment-form .security-text {
     margin-bottom: 20px;
 }
-#payment-form button{
+
+#payment-form button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -163,6 +164,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 #payment-form .payment-button {
     display: block;
     margin: 20px auto;
@@ -184,14 +186,23 @@
     gap: 10px;
 
 }
-#payment-form-advantages .item-content button{
+
+#payment-form-advantages .item-content button {
     padding: 15px;
     flex: 1;
 }
-#payment-form-advantages .item-content input,#payment-form-advantages .item-content select{
+
+#payment-form-advantages .item-content input,
+#payment-form-advantages .item-content select {
     padding: 15px;
     border: 1px solid var(--border-color);
     margin: 0;
     border-radius: 5px;
     flex: 2;
+}
+
+/* Fields Validation */
+#payment-form .error {
+    border-color: var(--danger);
+    box-shadow: 0 0 5px var(--danger);
 }

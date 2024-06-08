@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { PiTruckThin } from "react-icons/pi";
 
-const PaymentFormDelivery = ({ onUpdate }) => {
+const PaymentFormDelivery = ({
+  onUpdate,
+  validationErrors,
+  clearValidationError,
+}) => {
   const [selectedValue, setSelectedValue] = useState("france");
 
   const handleSelectChange = (event) => {
@@ -9,7 +13,11 @@ const PaymentFormDelivery = ({ onUpdate }) => {
   };
 
   const handleChange = (e) => {
-    onUpdate({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    onUpdate({ [name]: value });
+  };
+  const handleFocus = (e) => {
+    clearValidationError(e.target.name);
   };
   return (
     <>
@@ -43,16 +51,21 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="firstname"
             placeholder="Prénom *"
             required
+            className={validationErrors.firstname ? "error" : ""}
+            onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
           />
           <input
             type="text"
-            id="last-name"
-            name="last-name"
+            id="lastname"
+            name="lastname"
             placeholder="Nom *"
             required
+            className={validationErrors.lastname ? "error" : ""}
+            onFocus={handleFocus}
             aria-required="true"
+            onChange={handleChange}
           />
         </div>
         <input
@@ -61,6 +74,8 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           name="address"
           placeholder="Adresse *"
           required
+          className={validationErrors.address ? "error" : ""}
+          onFocus={handleFocus}
           aria-required="true"
           onChange={handleChange}
         />
@@ -78,6 +93,8 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="postal-code"
             placeholder="Code postal *"
             required
+            className={validationErrors["postal-code"] ? "error" : ""}
+            onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
           />
@@ -87,6 +104,8 @@ const PaymentFormDelivery = ({ onUpdate }) => {
             name="city"
             placeholder="Ville *"
             required
+            className={validationErrors.city ? "error" : ""}
+            onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
           />
@@ -98,12 +117,19 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           id="emailRecipient"
           name="emailRecipient"
           placeholder="Email *"
+          required
+          className={validationErrors.emailRecipient ? "error" : ""}
+          onFocus={handleFocus}
+          onChange={handleChange}
         />
         <input
           type="tel"
           id="phone"
           name="phone"
           placeholder="Téléphone *"
+          required
+          className={validationErrors.phone ? "error" : ""}
+          onFocus={handleFocus}
           onChange={handleChange}
         />
       </div>

@@ -1,61 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import PaymentFormDelivery from "./PaymentFormDelivery";
 import PaymentFormCard from "./PaymentFormCard";
 import PaymentFormBilling from "./PaymentFormBilling";
-import axios from "axios";
-import Avantages from "./Avantages";
+import Advantages from "./Advantages";
+import useFormValidation from "./hooks/useFormValidation";
 
 const PaymentForm = () => {
-  const [formData, setFormData] = useState({
-    delivery: {},
-    card: {},
-    billing: {},
-    saveInfo: true, 
-  });
+  const {
+    formData,
+    validationErrors,
+    updateData,
+    handleCheckboxChange,
+    handleSubmit,
+    clearValidationError,
+  } = useFormValidation();
 
-  const updateDeliveryData = (data) => {
-    setFormData((prevData) => ({ ...prevData, delivery: data }));
-  };
-
-  const updateCardData = (data) => {
-    setFormData((prevData) => ({ ...prevData, card: data }));
-  };
-
-  const updateBillingData = (data) => {
-    setFormData((prevData) => ({ ...prevData, billing: data }));
-  };
-
-  const handleCheckboxChange = () => {
-    setFormData((prevData) => ({ ...prevData, saveInfo: !prevData.saveInfo }));
-  };
-
-  const handleSubmit = () => {
-    axios.post("/endpoint", formData)
-      .then((response) => {
-      })
-      .catch((error) => {
-      });
-  };
+  const requiredDeliveryFields = [
+    "firstname",
+    "lastname",
+    "address",
+    "postal-code",
+    "city",
+    "emailRecipient",
+    "phone",
+    "card-number",
+    "expiration-date",
+    "security-code",
+    "card-name",
+  ];
 
   return (
     <div id="payment-form" data-testid="payment-form">
-      <p className="asterix">Les champs marqués par une étoile * sont obligatoires.</p>
-      <PaymentFormDelivery onUpdate={updateDeliveryData} />
-      <Avantages />
-      <PaymentFormCard onUpdate={updateCardData} />
-      <PaymentFormBilling onUpdate={updateBillingData} />
+      <p className="asterix">
+        Les champs marqués par une étoile * sont obligatoires.
+      </p>
+      <PaymentFormDelivery
+        onUpdate={(data) => updateData("delivery", data)}
+        validationErrors={validationErrors}
+        clearValidationError={clearValidationError}
+      />
+      <Advantages />
+      <PaymentFormCard
+        onUpdate={(data) => updateData("card", data)}
+        validationErrors={validationErrors}
+        clearValidationError={clearValidationError}
+      />
+      <PaymentFormBilling onUpdate={(data) => updateData("billing", data)} />
       <div className="checkbox">
-
         <input
+          id="remember-me"
           type="checkbox"
-          checked={formData.saveInfo}
+          checked={formData.rememberMe}
           onChange={handleCheckboxChange}
         />
-      <label>
-        Enregistrer ces informations pour les prochaines commandes.
-      </label>
+        <label htmlFor="remember-me">
+          Enregistrer ces informations pour les prochaines commandes.
+        </label>
       </div>
-      <button className="payment-button" type="button" onClick={handleSubmit}>
+      <button
+        className="payment-button"
+        type="button"
+        onClick={() => handleSubmit(requiredDeliveryFields)}
+      >
         Procéder au paiement
       </button>
     </div>
