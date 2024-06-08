@@ -4,11 +4,7 @@ import useCartOffcanvas from "../../pages/MasterProduct/hooks/useCartOffcanvas";
 import CartItem from "../../shared/CartItem";
 
 const ShoppingCartContent = () => {
-  const {
-    cartStore,
-    cartTotalAmount,
-    handleClearCart,
-  } = useCartOffcanvas();
+  const { cartStore, cartTotalAmount } = useCartOffcanvas();
 
   return (
     <div className="shoppingCart-content" data-testid="shoppingCart-content">

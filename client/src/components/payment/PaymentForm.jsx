@@ -3,6 +3,7 @@ import PaymentFormDelivery from "./PaymentFormDelivery";
 import PaymentFormCard from "./PaymentFormCard";
 import PaymentFormBilling from "./PaymentFormBilling";
 import axios from "axios";
+import Avantages from "./Avantages";
 
 const PaymentForm = () => {
   const [formData, setFormData] = useState({
@@ -40,6 +41,7 @@ const PaymentForm = () => {
     <div id="payment-form" data-testid="payment-form">
       <p className="asterix">Les champs marqués par une étoile * sont obligatoires.</p>
       <PaymentFormDelivery onUpdate={updateDeliveryData} />
+      <Avantages />
       <PaymentFormCard onUpdate={updateCardData} />
       <PaymentFormBilling onUpdate={updateBillingData} />
       <div className="checkbox">
@@ -53,8 +55,8 @@ const PaymentForm = () => {
         Enregistrer ces informations pour les prochaines commandes.
       </label>
       </div>
-      <button type="button" onClick={handleSubmit}>
-        Vérifier la commande
+      <button className="payment-button" type="button" onClick={handleSubmit}>
+        Procéder au paiement
       </button>
     </div>
   );

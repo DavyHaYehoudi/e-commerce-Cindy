@@ -92,10 +92,7 @@ const PaymentFormDelivery = ({ onUpdate }) => {
           />
         </div>
       </div>
-      <div
-        className="info-tooltip"
-        aria-label="Uniquement pour vous joindre éventuellement dans le cadre de votre commande"
-      >
+      <div>
         <input
           type="email"
           id="emailRecipient"

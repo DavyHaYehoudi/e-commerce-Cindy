@@ -1,5 +1,6 @@
 #shoppingCart-page h1 {
     text-align: center;
+    letter-spacing: 5px;
 }
 
 .shoppingCart-container {
@@ -21,7 +22,6 @@
 
 #shoppingCart-page .cart-clear {
     text-align: center;
-
 }
 
 #shoppingCart-page .cart-clear-trash {
@@ -30,7 +30,6 @@
 }
 
 #shoppingCart-page .cart-clear-trash:hover {
-    color: white;
     animation: shake-rotate 2s ease 0s 1 normal forwards;
 }
 
@@ -90,4 +89,109 @@
 /* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
 #shoppingCart-page .cart-item-delete .info-tooltip:hover::before {
     left: -90%;
+}
+
+
+/* ****************** PAYMENT FORM ****************** */
+#payment-form {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    color: black;
+}
+
+#payment-form h2 {
+    margin: 10px;
+    font-weight: 600;
+}
+
+.payment-form-heading,
+#payment-form-advantages .title {
+    display: flex;
+    align-items: center;
+}
+
+#payment-form label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#payment-form input,
+#payment-form select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+#payment-form .checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#payment-form .checkbox input {
+    margin: 10px;
+    width: initial;
+    cursor: pointer;
+}
+
+#payment-form .address-input-container,
+#payment-form .location-details {
+    display: flex;
+    gap: 10px;
+}
+
+#payment-form .credit-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#payment-form .security-text {
+    margin-bottom: 20px;
+}
+#payment-form button{
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#payment-form .payment-button {
+    display: block;
+    margin: 20px auto;
+    font-size: 1rem;
+    padding: 15px;
+}
+
+#payment-form button:hover {
+    background-color: #45a049;
+}
+
+.payment-form-heading .icon {
+    font-size: 1.5rem;
+}
+
+#payment-form-advantages .item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+#payment-form-advantages .item-content button{
+    padding: 15px;
+    flex: 1;
+}
+#payment-form-advantages .item-content input,#payment-form-advantages .item-content select{
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    margin: 0;
+    border-radius: 5px;
+    flex: 2;
 }
