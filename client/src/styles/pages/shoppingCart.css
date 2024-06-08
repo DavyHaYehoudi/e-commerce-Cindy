@@ -1,3 +1,6 @@
+#shoppingCart-page h1 {
+    text-align: center;
+}
 
 .shoppingCart-container {
     display: flex;
@@ -6,43 +9,85 @@
     margin: 150px auto;
 }
 
-.shoppingCart-container h1 {
-    text-align: center;
-}
-#shoppingCart-items{
-    position: sticky;
-    top: 100px; 
-    z-index: 1; 
-    max-height: 1px;
-}
-
 .shoppingCart-content {
     display: flex;
     flex-direction: column;
 }
 
-.shoppingCart-tabs {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-.shoppingCart-tab:first-child {
-    flex: 2;
-}
-
-.shoppingCart-tab {
-    flex: 1;
-    padding: 10px;
-}
-
-.shoppingCart-tab:nth-child(2),
-.shoppingCart-tab:last-child {
-    text-align: end;
-}
-.shoppingCart-total{
+.shoppingCart-total {
     text-align: end;
     margin: 10px;
 }
 
-  
+#shoppingCart-page .cart-clear {
+    text-align: center;
+
+}
+
+#shoppingCart-page .cart-clear-trash {
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+#shoppingCart-page .cart-clear-trash:hover {
+    color: white;
+    animation: shake-rotate 2s ease 0s 1 normal forwards;
+}
+
+/* ****************** ROWS CART ITEM COMPONENT ****************** */
+#shoppingCart-page .cart-item {
+    border-top: 1px solid var(--border-color);
+    padding: 10px;
+    margin: 10px 20px;
+}
+
+#shoppingCart-page img {
+    border-radius: 5px;
+}
+
+#shoppingCart-page .cart-item-top,
+#shoppingCart-page .cart-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#shoppingCart-page .cart-item-image {
+    flex: 1;
+    max-width: 25%;
+}
+
+#shoppingCart-page .cart-item-name {
+    flex: 3;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* Nombre de lignes avant de tronquer le texte */
+    line-height: 1.5;
+    /* Ajustez la hauteur de ligne si nécessaire */
+    max-height: calc(1.5em * 2);
+    /* Hauteur maximale basée sur le nombre de lignes et la hauteur de ligne*/
+}
+
+#shoppingCart-page .cart-item-delete {
+    flex: 0.5;
+    text-align: right;
+    transition: color 0.2s ease-in;
+}
+
+#shoppingCart-page .cart-item-subtotal {
+    flex: 3;
+}
+
+#shoppingCart-page .cart-item-quantity {
+    flex: 0.5;
+}
+
+/* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
+#shoppingCart-page .cart-item-delete .info-tooltip:hover::before {
+    left: -90%;
+}

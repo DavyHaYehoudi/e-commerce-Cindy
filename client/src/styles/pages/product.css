@@ -35,13 +35,14 @@
 /* bouton nouveau */
 .description-heading h2 span {
     position: absolute;
-    top: -10px;
+    top: -30px;
     font-size: 0.5rem;
     color: var(--new-badge-text);
     background: linear-gradient(var(--new-badge-bkg));
     font-weight: bold;
     padding: 4px 8px;
     animation: blink 2s;
+    animation-delay: 5s;
 }
 
 /* bouton promotion */
@@ -52,6 +53,7 @@
     padding: 4px 8px;
     margin: 5px;
     animation: blink 2s;
+    animation-delay: 5s;
 }
 
 /* animation bouton */
@@ -97,9 +99,11 @@
 #master-product-content .color-picker {
     display: flex;
 }
+
 #master-product-content .color-option {
     border-radius: 50%;
 }
+
 #master-product-content .color-option.selected {
     border: 3px solid var(--dark);
 }
@@ -112,20 +116,25 @@
     white-space: pre-wrap;
     /* Conserve les espaces et les sauts de ligne */
 }
-#master-product-content .addToCartContainer{
+
+#master-product-content .addToCartContainer {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 #master-product-content .addToCart {
     flex: 1;
 }
-#master-product-content .addToCart .remove{
+
+#master-product-content .addToCart .remove {
     color: var(--dark);
 }
-#master-product-content .addToCart .remove:hover{
+
+#master-product-content .addToCart .remove:hover {
     color: whitesmoke;
 }
+
 /* ************************** INFORMATIONS ************************** */
 #master-product-informations {
     width: calc(100vw - 8px);
@@ -302,7 +311,7 @@
     position: relative;
 }
 
-.image-wrapper-zooming{
+.image-wrapper-zooming {
     position: relative;
     z-index: 100;
     transform: translateX(-50%);
@@ -334,7 +343,7 @@
 #master-product-assortments-section {
     width: calc(100vw);
     max-width: 100vw;
-    margin-left: calc(-50vw + 49% );
+    margin-left: calc(-50vw + 49%);
     margin-top: 50px;
     padding: 50px;
     color: var(--dark);
@@ -354,6 +363,7 @@
 #master-product-assortments-section h3 {
     letter-spacing: var(--letter-spacing);
 }
-.master-product-assortments-container{
+
+.master-product-assortments-container {
     margin: 50px;
 }

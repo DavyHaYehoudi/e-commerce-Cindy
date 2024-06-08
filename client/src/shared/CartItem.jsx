@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import QuantitySelectProduct from "../../../shared/QuantitySelectProduct";
-import TrashIcon from "../../../shared/TrashIcon";
-import useCartItem from "../hooks/useCartItem";
-import { formatPrice } from "../../../helpers/utils/prices";
+import QuantitySelectProduct from "./QuantitySelectProduct";
+import TrashIcon from "./TrashIcon";
+import useCartItem from "./hooks/useCartItem";
+import { formatPrice } from "../helpers/utils/prices";
 
 const CartItem = ({ product }) => {
   const {

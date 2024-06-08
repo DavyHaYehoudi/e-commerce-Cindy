@@ -1,14 +1,9 @@
 import { useSelector } from "react-redux";
-import useFirebaseImage from "../../../shared/hooks/useFirebaseImage";
-import useCartButton from "../../../shared/hooks/useCartButton";
-import useStoreInfo from "../../../shared/hooks/useStoreInfo";
-import { getProductProperties } from "../../../selectors/product";
-import { formatPrice } from "../../../helpers/utils/prices";
-// import { getProductProperties } from "../../../selectors/product";
-// import useFirebaseImage from "../../../shared/hooks/useFirebaseImage";
-// import useCartButton from "../../../shared/hooks/useCartButton";
-// import useStoreInfo from "../../../shared/hooks/useStoreInfo";
-// import { formatPrice } from "../../../helpers/utils/prices";
+import useFirebaseImage from "./useFirebaseImage";
+import useCartButton from "./useCartButton";
+import useStoreInfo from "./useStoreInfo";
+import { getProductProperties } from "../../selectors/product";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const useCartItem = (product) => {
   const productStore = useSelector((state) => state?.product?.data);

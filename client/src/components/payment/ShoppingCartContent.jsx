@@ -1,26 +1,26 @@
 import React from "react";
-import OrderItem from "./OrderItem";
 import { formatPrice } from "../../helpers/utils/prices";
-import { useSelector } from "react-redux";
+import useCartOffcanvas from "../../pages/MasterProduct/hooks/useCartOffcanvas";
+import CartItem from "../../shared/CartItem";
 
 const ShoppingCartContent = () => {
-  const carts = useSelector((state) => state?.customer?.data?.client?.cart);
+  const {
+    cartStore,
+    cartTotalAmount,
+    handleClearCart,
+  } = useCartOffcanvas();
 
   return (
     <div className="shoppingCart-content" data-testid="shoppingCart-content">
-      <div className="shoppingCart-tabs">
-        <p className="shoppingCart-tab">PRODUIT</p>
-        <p className="shoppingCart-tab">QUANTITE</p>
-        <p className="shoppingCart-tab">TOTAL</p>
-      </div>
-
-      {carts && carts.length > 0 ? (
-        carts.map((cart) => <OrderItem cart={cart} key={cart.productsId} />)
+      {cartStore && cartStore.length > 0 ? (
+        cartStore.map((product, i) => (
+          <CartItem product={product} key={product?.productsId + i} />
+        ))
       ) : (
-        <p>VOTRE PANIER EST VIDE</p>
+        <p className="empty-cart-message">Le panier est vide</p>
       )}
       <div className="shoppingCart-total">
-        TOTAL : <b>{formatPrice(717)} A CALCULER PAR LE BACK</b>
+        TOTAL DES ARTICLES : <b>{formatPrice(cartTotalAmount)}</b>
       </div>
     </div>
   );

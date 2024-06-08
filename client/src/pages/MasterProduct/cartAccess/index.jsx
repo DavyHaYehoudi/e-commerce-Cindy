@@ -1,50 +1,20 @@
 import React from "react";
 import { TfiClose } from "react-icons/tfi";
-import CartItem from "./CartItem";
-import { Link } from "react-router-dom";
-import { formatPrice } from "../../../helpers/utils/prices";
-import useStoreInfo from "../../../shared/hooks/useStoreInfo";
-import { useDispatch, useSelector } from "react-redux";
-import { showCartAccess } from "../../../features/admin/productSlice";
 import { BsFillTrash2Fill } from "react-icons/bs";
-import { Patch } from "../../../services/httpMethods";
-import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
-import { clearCart } from "../../../features/accountClient/customerSlice";
-import { clearCartVisitor } from "../../../features/visitUser/visitUserSlice";
+import { Link } from "react-router-dom";
+import CartItem from "../../../shared/CartItem";
+import { formatPrice } from "../../../helpers/utils/prices";
+import useCartOffcanvas from "../hooks/useCartOffcanvas";
 
 const CartOffcanvas = () => {
-  const { clientId, cartStore, cartTotalAmount } =
-  useStoreInfo({
-    productsId: "",
-    material: "",
-  });
-  const isCartContent = cartStore.length>0
-  const dispatch = useDispatch();
-  const handleUnauthorized = useUnauthorizedRedirect();
-  const handleClose = () => {
-    dispatch(showCartAccess(false));
-  };
-  const show = useSelector((state) => state?.product?.cartAccess);
-  const handleClearCart = async () => {
-    if (clientId) {
-      let cart = [];
-      const formatData = { cart };
-      try {
-        await Patch(
-          `clients/${clientId}`,
-          formatData,
-          null,
-          handleUnauthorized
-        );
-        dispatch(clearCart());
-      } catch (error) {
-        console.log("Erreur dans handleClearCart CartOffcanvas :", error);
-      }
-    } else {
-      dispatch(clearCartVisitor());
-      localStorage.removeItem("cartProducts");
-    }
-  };
+  const {
+    show,
+    cartStore,
+    cartTotalAmount,
+    isCartContent,
+    handleClose,
+    handleClearCart,
+  } = useCartOffcanvas();
 
   return (
     <div className={`offcanvas ${show ? "show" : ""}`}>

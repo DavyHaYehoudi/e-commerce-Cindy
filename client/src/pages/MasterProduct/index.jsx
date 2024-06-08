@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Informations from "./informations";
 import MainContent from "./mainContent";
 import CartOffcanvas from "./cartAccess";
@@ -14,6 +14,15 @@ const MasterProduct = () => {
   useFetchData({ role, clientId });
   const { productId } = useParams();
   const { state } = useLocation();
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTop();
+  }, []);
   return (
     <section id="master-product">
       <MainContent productId={productId} materialId={state?.materialId} />
