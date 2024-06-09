@@ -1,31 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
-const PaymentFormBilling = ({ onUpdate }) => {
-  const [useShippingAddress, setUseShippingAddress] = useState(true);
-  const [billingData, setBillingData] = useState({
-    billingFirstName: "",
-    billingLastName: "",
-    billingCompany: "",
-    billingAddress: "",
-    billingApartment: "",
-    billingPostalCode: "",
-    billingCity: "",
-  });
-
-  const handleChange = () => {
-    setUseShippingAddress(!useShippingAddress);
-    onUpdate({
-      useShippingAddress: !useShippingAddress,
-      ...billingData,
-    });
+const PaymentFormBilling = ({
+  onUpdate,
+  validationErrors,
+  validFields,
+  clearValidationError,
+  handleCheckboxChange,
+  formData,
+}) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    onUpdate({ [name]: value });
   };
-
-  const handleBillingChange = (field, value) => {
-    setBillingData((prevData) => ({ ...prevData, [field]: value }));
-    onUpdate({
-      ...billingData,
-      [field]: value,
-    });
+  const handleFocus = (e) => {
+    clearValidationError(e.target.name);
   };
 
   return (
@@ -35,24 +23,22 @@ const PaymentFormBilling = ({ onUpdate }) => {
           type="checkbox"
           id="useShippingAddress"
           name="useShippingAddress"
-          checked={useShippingAddress}
-          onChange={handleChange}
+          checked={formData.isBillingAddress}
+          onChange={() => handleCheckboxChange("isBillingAddress")}
         />
         <label htmlFor="useShippingAddress">
           Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
-      {!useShippingAddress && (
+      {!formData.isBillingAddress && (
         <div className="billing-fields">
           <input
             type="text"
             id="billingCompany"
             name="billingCompany"
             placeholder="Nom de la société ou raison sociale"
-            onChange={(e) =>
-              handleBillingChange("billingCompany", e.target.value)
-            }
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -61,9 +47,15 @@ const PaymentFormBilling = ({ onUpdate }) => {
             placeholder="Prénom *"
             required
             aria-required="true"
-            onChange={(e) =>
-              handleBillingChange("billingFirstName", e.target.value)
+            className={
+              validationErrors.billingFirstName
+                ? "error"
+                : validFields.billingFirstName
+                ? "success"
+                : ""
             }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -72,9 +64,15 @@ const PaymentFormBilling = ({ onUpdate }) => {
             placeholder="Nom *"
             required
             aria-required="true"
-            onChange={(e) =>
-              handleBillingChange("billingLastName", e.target.value)
+            className={
+              validationErrors.billingLastName
+                ? "error"
+                : validFields.billingLastName
+                ? "success"
+                : ""
             }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -83,18 +81,23 @@ const PaymentFormBilling = ({ onUpdate }) => {
             placeholder="Adresse *"
             required
             aria-required="true"
-            onChange={(e) =>
-              handleBillingChange("billingAddress", e.target.value)
+            className={
+              validationErrors.billingAddress
+                ? "error"
+                : validFields.billingAddress
+                ? "success"
+                : ""
             }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="text"
             id="billingApartment"
             name="billingApartment"
             placeholder="Appartement"
-            onChange={(e) =>
-              handleBillingChange("billingApartment", e.target.value)
-            }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -103,9 +106,15 @@ const PaymentFormBilling = ({ onUpdate }) => {
             placeholder="Code postal *"
             required
             aria-required="true"
-            onChange={(e) =>
-              handleBillingChange("billingPostalCode", e.target.value)
+            className={
+              validationErrors.billingPostalCode
+                ? "error"
+                : validFields.billingPostalCode
+                ? "success"
+                : ""
             }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -114,18 +123,36 @@ const PaymentFormBilling = ({ onUpdate }) => {
             placeholder="Ville *"
             required
             aria-required="true"
-            onChange={(e) => handleBillingChange("billingCity", e.target.value)}
+            className={
+              validationErrors.billingCity
+                ? "error"
+                : validFields.billingCity
+                ? "success"
+                : ""
+            }
+            onFocus={handleFocus}
+            onChange={handleChange}
           />
           <input
             type="email"
-            id="emailBill"
-            name="emailBill"
+            id="billingEmail"
+            name="billingEmail"
             placeholder="Email *"
+            required
+            aria-required="true"
+            className={
+              validationErrors.billingEmail
+                ? "error"
+                : validFields.billingEmail
+                ? "success"
+                : ""
+            }
+            onChange={handleChange}
           />
           <input
             type="text"
-            id="phoneBill"
-            name="phoneBill"
+            id="billingPhone"
+            name="billingPhone"
             placeholder="Téléphone"
           />
         </div>

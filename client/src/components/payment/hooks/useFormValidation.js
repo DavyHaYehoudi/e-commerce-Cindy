@@ -6,49 +6,68 @@ const useFormValidation = () => {
       card: {},
       billing: {},
       rememberMe: true,
+      isBillingAddress: true,
     });
-    console.log('formData:', formData)
   const [validationErrors, setValidationErrors] = useState({});
+  const [validFields, setValidFields] = useState({});
 
   const updateData = (section, data) => {
-    setFormData((prevData) => ({ ...prevData, [section]: { ...prevData[section], ...data }, }));
-  };
-
-  const handleCheckboxChange = () => {
     setFormData((prevData) => ({
       ...prevData,
-      rememberMe: !prevData.rememberMe,
+      [section]: { ...prevData[section], ...data },
     }));
   };
 
+  const handleCheckboxChange = (name) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: !prevData[name],
+    }));
+  };
+
+  const clearValidationError = (section, field) => {
+    setValidationErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      if (newErrors[section]) {
+        delete newErrors[section][field];
+        if (Object.keys(newErrors[section]).length === 0) {
+          delete newErrors[section];
+        }
+      }
+      return newErrors;
+    });
+  };
   const handleSubmit = (requiredFields) => {
     const errors = {};
+    const valid = {};
 
-    requiredFields.forEach((field) => {
-      if (!formData[field]) {
-        errors[field] = "Ce champ est requis";
+    Object.keys(requiredFields).forEach((section) => {
+      if (section === "billing" && formData.isBillingAddress) {
+        return;
       }
+      requiredFields[section].forEach((field) => {
+        if (!formData[section][field]) {
+          if (!errors[section]) errors[section] = {};
+          errors[section][field] = "Ce champ est requis";
+        } else {
+          if (!valid[section]) valid[section] = {};
+          valid[section][field] = true;
+        }
+      });
     });
 
     setValidationErrors(errors);
+    setValidFields(valid);
 
     // Si aucun erreur, procéder au paiement
     if (Object.keys(errors).length === 0) {
       // Logique de soumission du paiement ici
     }
   };
-
-  const clearValidationError = (field) => {
-    setValidationErrors((prevErrors) => {
-      const newErrors = { ...prevErrors };
-      delete newErrors[field];
-      return newErrors;
-    });
-  };
-
   return {
     formData,
     validationErrors,
+    validFields,
     updateData,
     handleCheckboxChange,
     handleSubmit,

@@ -204,5 +204,10 @@
 /* Fields Validation */
 #payment-form .error {
     border-color: var(--danger);
-    box-shadow: 0 0 5px var(--danger);
+    box-shadow: 0 0 3px var(--danger);
+}
+
+#payment-form .success {
+    border-color: var(--success);
+    box-shadow: 0 0 3px var(--success);
 }

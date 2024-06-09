@@ -4,6 +4,7 @@ import { PiTruckThin } from "react-icons/pi";
 const PaymentFormDelivery = ({
   onUpdate,
   validationErrors,
+  validFields,
   clearValidationError,
 }) => {
   const [selectedValue, setSelectedValue] = useState("france");
@@ -51,7 +52,13 @@ const PaymentFormDelivery = ({
             name="firstname"
             placeholder="Prénom *"
             required
-            className={validationErrors.firstname ? "error" : ""}
+            className={
+              validationErrors.firstname
+                ? "error"
+                : validFields.firstname
+                ? "success"
+                : ""
+            }
             onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
@@ -62,7 +69,13 @@ const PaymentFormDelivery = ({
             name="lastname"
             placeholder="Nom *"
             required
-            className={validationErrors.lastname ? "error" : ""}
+            className={
+              validationErrors.lastname
+                ? "error"
+                : validFields.lastname
+                ? "success"
+                : ""
+            }
             onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
@@ -74,7 +87,13 @@ const PaymentFormDelivery = ({
           name="address"
           placeholder="Adresse *"
           required
-          className={validationErrors.address ? "error" : ""}
+          className={
+            validationErrors.address
+              ? "error"
+              : validFields.address
+              ? "success"
+              : ""
+          }
           onFocus={handleFocus}
           aria-required="true"
           onChange={handleChange}
@@ -93,7 +112,13 @@ const PaymentFormDelivery = ({
             name="postal-code"
             placeholder="Code postal *"
             required
-            className={validationErrors["postal-code"] ? "error" : ""}
+            className={
+              validationErrors["postal-code"]
+                ? "error"
+                : validFields["postal-code"]
+                ? "success"
+                : ""
+            }
             onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
@@ -104,7 +129,13 @@ const PaymentFormDelivery = ({
             name="city"
             placeholder="Ville *"
             required
-            className={validationErrors.city ? "error" : ""}
+            className={
+              validationErrors.city
+                ? "error"
+                : validFields.city
+                ? "success"
+                : ""
+            }
             onFocus={handleFocus}
             aria-required="true"
             onChange={handleChange}
@@ -118,7 +149,13 @@ const PaymentFormDelivery = ({
           name="emailRecipient"
           placeholder="Email *"
           required
-          className={validationErrors.emailRecipient ? "error" : ""}
+          className={
+            validationErrors.emailRecipient
+              ? "error"
+              : validFields.emailRecipient
+              ? "success"
+              : ""
+          }
           onFocus={handleFocus}
           onChange={handleChange}
         />
@@ -128,7 +165,13 @@ const PaymentFormDelivery = ({
           name="phone"
           placeholder="Téléphone *"
           required
-          className={validationErrors.phone ? "error" : ""}
+          className={
+            validationErrors.phone
+              ? "error"
+              : validFields.phone
+              ? "success"
+              : ""
+          }
           onFocus={handleFocus}
           onChange={handleChange}
         />
