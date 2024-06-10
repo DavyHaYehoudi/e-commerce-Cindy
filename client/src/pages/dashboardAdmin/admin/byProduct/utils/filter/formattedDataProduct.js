@@ -12,7 +12,7 @@ export const formattedDataProduct = (
 
   // Trouver la collection sélectionnée dans collectionsStore
   const selectedCollection = collectionsStore.find(
-    (item) => item.name === collectionSelected
+    (item) => item?.name === collectionSelected
   );
 
   // Si une collection correspondante est trouvée, la définir dans formattedData
@@ -24,9 +24,9 @@ export const formattedDataProduct = (
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
       // Vérifier si la clé de data correspond à une propriété 'name' dans categoriesStore
-      const categoryMatch = categoriesStore.find((item) => item.name === key);
+      const categoryMatch = categoriesStore.find((item) => item?.name === key);
       if (categoryMatch) {
-        formattedData.categories.push(categoryMatch._id);
+        formattedData.categories.push(categoryMatch?._id);
       } else {
         // Si la clé de data ne correspond à aucune propriété dans categoriesStore,
         // ajouter la clé à la propriété other de formattedData
@@ -45,6 +45,6 @@ export const formattedDataProduct = (
     }
   }
 
-  console.log("formattedData:", formattedData);
+  // console.log("formattedData:", formattedData);
   return formattedData;
 };

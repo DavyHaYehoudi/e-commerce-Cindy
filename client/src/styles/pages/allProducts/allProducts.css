@@ -1,0 +1,13 @@
+#allProducts{
+    width: 80%;
+    margin: auto;
+}
+#allProducts .filterBlock-content-action button{
+    color: whitesmoke;
+}
+#allProducts .filterBlock-content-action .validate-btn{
+    background: var(--success);
+}
+#allProducts .filterBlock-content-action .reset-btn{
+    background: var(--warning);
+}

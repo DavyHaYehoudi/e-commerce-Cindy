@@ -22,6 +22,7 @@ import { configureStoreWithRole } from "./app/configureStoreWithRole";
 import Collection from "./pages/collection/Master";
 import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
+import AllProductsPage from "./pages/search";
 
 function App() {
   const {
@@ -75,6 +76,7 @@ function App() {
             <Route path="/master-product/:productId" element={<MasterProduct />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/products" element={<AllProductsPage />} />
             <Route path="/deliveries&returns" element={<Deliveries />} />
             <Route path="/terms-of-sales" element={<TermsOfSales />} />
             <Route path="/legal-notice" element={<LegalNotice />} />

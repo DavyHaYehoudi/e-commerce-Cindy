@@ -1,11 +1,19 @@
 import React from "react";
+import useStoreInfo from "../../../../../shared/hooks/useStoreInfo";
 
+let options = [
+  { name: "En promotion", label: "promotion" },
+  { name: "Nouveau", label: "untilNew" },
+  { name: "Suspendu", label: "pending" },
+];
 const Status = ({ handleCheckboxChange, checkedItems }) => {
-  const options = [
-    { name: "En promotion", label: "promotion" },
-    { name: "Nouveau", label: "untilNew" },
-    { name: "Suspendu", label: "pending" },
-  ];
+  const { role } = useStoreInfo({ productsId: "", material: "" });
+  if (role !== "admin") {
+    options = [
+      { name: "En promotion", label: "promotion" },
+      { name: "Nouveau", label: "untilNew" },
+    ];
+  }
   return (
     <div className="filterBlock-content-subBlock">
       <p className="underline">PAR STATUTS :</p>

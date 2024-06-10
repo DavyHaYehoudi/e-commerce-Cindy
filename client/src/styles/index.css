@@ -29,6 +29,7 @@
 @import "pages/contact.css";
 @import "pages/legalDocs.css";
 @import "pages/about.css";
+@import "pages/allProducts/allProducts.css";
 @import "pages/shoppingCart.css";
 @import "pages/accountClient.css";
 @import "pages/adminDashboard/main.css";
@@ -38,4 +39,4 @@
 @import "pages/adminDashboard/stats.css";
 @import "pages/adminDashboard/config.css";
 @import "pages/collection.css";
-@import "pages/product.css";
+@import "pages/masterProduct/product.css";

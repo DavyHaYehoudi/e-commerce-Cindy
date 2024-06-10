@@ -15,6 +15,14 @@ const NavMenu = () => {
         </li>
         <li>
           <NavLink
+            to="products"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Produits
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
