@@ -17,16 +17,16 @@ const LegalNotice = () => {
     scrollToTop();
   }, []);
   return (
-    <div className="legalNotice" >
+    <div className="legalNotice">
       <h1>mentions legales</h1>
       <div id="legalNotice-contain">
         <p>
           Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004
           pour la confiance en l'économie numérique, il est précisé aux
           utilisateurs du site Atelier Noralya l'identité des différents
-          intervenants dans le cadre de sa réalisation et de son suivi.<br /> Atelier
-          Noralya est une marque artisanale française de bijoux et
-          d'accessoires.
+          intervenants dans le cadre de sa réalisation et de son suivi.
+          <br /> Atelier Noralya est une marque artisanale française de bijoux
+          et d'accessoires.
         </p>
         <h2>me contacter :</h2>
         <p>

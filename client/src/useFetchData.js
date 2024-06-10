@@ -10,6 +10,7 @@ import {
   addRole,
   addToken,
 } from "./features/authentication/authenticationSlice";
+import { initCart, initWishlist } from "./features/visitUser/visitUserSlice";
 
 const useFetchData = ({ role, clientId }) => {
   // console.log("clientId:", clientId);
@@ -42,11 +43,24 @@ const useFetchData = ({ role, clientId }) => {
     }
     if (role === "user") {
       fetchSliceCustomer();
-    }
-    else if(role!=="user"||role==="admin") {
+    } else if (role !== "user" || role === "admin") {
       fetchSliceVisit();
     }
   }, [fetchSliceVisit, fetchSliceCustomer, role, dispatch]);
+
+  //Data visitor
+  useEffect(() => {
+    const cartProductsString = localStorage.getItem("cartProducts");
+    const cartProducts = cartProductsString
+      ? JSON.parse(cartProductsString)
+      : [];
+    dispatch(initCart(cartProducts));
+    const likedProductsString = localStorage.getItem("likedProducts");
+    const likedProducts = likedProductsString
+      ? JSON.parse(likedProductsString)
+      : [];
+    dispatch(initWishlist(likedProducts));
+  }, [dispatch]);
 
   return fetchSliceVisit;
 };
