@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CardCollection from "./CardCollection";
 import useAuthWrappers from "../../useAuthWrappers";
@@ -10,6 +10,15 @@ const Collections = () => {
   const role = getRole();
   const clientId = getClientId();
   useFetchData({ role, clientId });
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTop();
+  }, []);
   return (
     <div className="collections-ui">
       <h1 className="text-effect-1" >TOUTES LES COLLECTIONS</h1>

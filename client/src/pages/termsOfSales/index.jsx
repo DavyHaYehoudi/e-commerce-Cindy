@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useAuthWrappers from "../../useAuthWrappers";
+import useFetchData from "../../useFetchData";
 
 const TermsOfSales = () => {
+  const { role: getRole, clientId: getClientId } = useAuthWrappers();
+  const role = getRole();
+  const clientId = getClientId();
+  useFetchData({ role, clientId });
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTop();
+  }, []);
   return (
-    <div>
+    <div className="termsOfSales">
       <h1>Conditions generales de vente</h1>
       <div id="termsOfSales-contain">
         <p>
@@ -70,8 +85,8 @@ const TermsOfSales = () => {
           <br /> Atelier Noralya se dégage de fait de toute responsabilité
           juridique si l'acquittement des taxes n'était pas effectué par le
           Client.
-          <br /> Je ne pourrai être tenue responsable envers vous ou tout
-          tiers de tout changement de prix, ou encore de toute modification,
+          <br /> Je ne pourrai être tenue responsable envers vous ou tout tiers
+          de tout changement de prix, ou encore de toute modification,
           suspension ou interruption du Service.
           <br />
           Pour toute commande supérieure à 100e, les frais d'envois sont

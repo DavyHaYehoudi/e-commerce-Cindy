@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useAuthWrappers from "../../../useAuthWrappers";
 import useFetchData from "../../../useFetchData";
-import { fetchProduct } from "../../../features/admin/productSlice";
+import {
+  fetchProduct,
+  showCartAccess,
+} from "../../../features/admin/productSlice";
 
 const useAllProductsPage = () => {
   const [searchBarValue, setSearchBarValue] = useState("");
@@ -28,7 +31,9 @@ const useAllProductsPage = () => {
       dispatch(fetchProduct());
     }
   };
-
+  useEffect(() => {
+    dispatch(showCartAccess(false));
+  }, [dispatch]);
   return {
     searchBarValue,
     setSearchBarValue,

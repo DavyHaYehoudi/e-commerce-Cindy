@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
@@ -47,9 +46,6 @@ const NavIcons = ({ onClickHeart }) => {
           <button onClick={onClickHeart} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>
-        </li>
-        <li className="info-tooltip" aria-label="Recherche">
-          <IoSearchOutline className="navlink-icon" aria-hidden="true" />
         </li>
         <li id="iconCart" className="info-tooltip" aria-label="Panier">
           <NavLink

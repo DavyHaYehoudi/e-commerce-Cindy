@@ -22,7 +22,7 @@ import { configureStoreWithRole } from "./app/configureStoreWithRole";
 import Collection from "./pages/collection/Master";
 import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
-import AllProductsPage from "./pages/search";
+import AllProductsPage from "./pages/allProducts";
 
 function App() {
   const {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData";
 
@@ -7,6 +7,15 @@ const Home = () => {
   const role = getRole();
   const clientId = getClientId();
   useFetchData({ role, clientId });
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTop();
+  }, []);
   return (
     <div>
       <h1>ACCUEIL</h1>

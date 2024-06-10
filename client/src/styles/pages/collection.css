@@ -25,9 +25,9 @@
     text-align: center;
 }
 
+.collection-card-ui h2,
 .collection-master h1,
-h2,
-h4 {
+.collection-master h4 {
     text-align: center;
     letter-spacing: 5px;
 }

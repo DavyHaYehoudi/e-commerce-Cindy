@@ -1,17 +1,25 @@
+.legalNotice h1,
+.termsOfSales h1,
+.deliveries h1 {
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.legalNotice,
+.termsOfSales,
+.deliveries {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
+}
+
 #legalNotice-contain,
 #deliveries-contain,
 #termsOfSales-contain {
-    margin: 20px;
+    max-width: 1440px;
+    margin: 100px auto;
 }
 
-#legalNotice-contain,
-#deliveries-contain,
-#termsOfSales-contain h1 {
-    text-align: center;
-}
-
-#legalNotice-contain,
-#deliveries-contain,
+#legalNotice-contain h2,
+#deliveries-contain h2,
 #termsOfSales-contain h2 {
-    margin-top: 10px;
+    margin-top: 50px;
 }

@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profil from "../../assets/profil.jpg"
+import useAuthWrappers from "../../useAuthWrappers";
+import useFetchData from "../../useFetchData";
 
 const About = () => {
+  const { role: getRole, clientId: getClientId } = useAuthWrappers();
+  const role = getRole();
+  const clientId = getClientId();
+  useFetchData({ role, clientId });
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTop();
+  }, []);
   return (
     <div id="about-container">
       <section className="story-section">

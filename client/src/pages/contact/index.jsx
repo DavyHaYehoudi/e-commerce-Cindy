@@ -1,26 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-// import Spin from "../components/Spin";
+import React from "react";
+import MoonLoader from "react-spinners/MoonLoader";
+import useContactForm from "./hooks/useContactForm";
 
 const Contact = () => {
-  const [successForm] = useState({
-    success: false,
-    failed: false,
-  });
-  const [spinActiv] = useState(false);
-  const form = useRef();
-
-  //   const sendEmail = (e) => {
-  //     console.log("e :", e);
-  //     e.preventDefault();
-  //     setSpinActiv(true);
-  //   }
-  // L autofocus ne fonctionne pas toujours au chargement de la page
-  useEffect(() => {
-    setTimeout(() => {
-      document.getElementById("nom").focus();
-    }, 0);
-  }, []);
-
+  const { form, successForm, loading, handleSubmit } = useContactForm();
   return (
     <section id="contact">
       <p id="contact-text">
@@ -29,8 +12,7 @@ const Contact = () => {
           sécurisées
         </span>
       </p>
-      <form id="contact-form-box"  ref={form}>
-        {/* {spinActiv && <Spin />} */}
+      <form id="contact-form-box" onSubmit={handleSubmit} ref={form}>
         {successForm.success && (
           <p className="successForm">
             Les données ont bien été envoyées, je reviens vers vous rapidement.
@@ -44,18 +26,14 @@ const Contact = () => {
           </p>
         )}
         <fieldset
-          className={
-            successForm.success || successForm.failed || spinActiv
-              ? "d-none"
-              : ""
-          }
+          className={successForm.success || successForm.failed ? "d-none" : ""}
         >
           <legend>Formulaire de contact</legend>
 
           <input
             type="text"
             id="nom"
-            name="name"
+            name="lastname"
             placeholder="NOM *"
             autoFocus
             required
@@ -70,16 +48,22 @@ const Contact = () => {
           <input
             type="text"
             id="telephone"
-            name="tel"
-            placeholder="TELEPHONE *"
-            required
-            aria-required="true"
+            name="phone"
+            placeholder="TELEPHONE"
           />
           <textarea
             id="message"
             name="message"
-            placeholder="MESSAGE"
+            placeholder="MESSAGE *"
+            required
+            aria-required="true"
           ></textarea>
+          {loading && (
+            <div className="loader">
+              <MoonLoader color="var(--dark)" />
+              <p>Veuillez patienter...</p>
+            </div>
+          )}
           <input type="submit" value="ENVOYER" className="btn contact-btn" />
         </fieldset>
       </form>
