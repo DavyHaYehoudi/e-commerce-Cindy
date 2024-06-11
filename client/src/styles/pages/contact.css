@@ -1,5 +1,11 @@
 #contact {
-    margin: 100px;
+    background: var(--background-whitesmoke);
+}
+#contact .contact-content{
+    padding: 100px 0;
+}
+
+#contact .animated-container {
     animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
@@ -18,12 +24,14 @@
     padding: 1.25rem;
     margin: 20px;
 }
-#contact-info-box .info a{
+
+#contact-info-box .info a {
     margin: 20px;
     display: flex;
     align-items: center;
 }
-#contact-info-box .info a span{
+
+#contact-info-box .info a span {
     margin: 5px;
 }
 
@@ -44,9 +52,10 @@ textarea {
     padding: 15px;
     border-radius: 5px;
 }
+
 #contact-form-box,
 textarea {
-padding: 0 15px;
+    padding: 0 15px;
 }
 
 #contact-form-box input::placeholder,
@@ -72,19 +81,22 @@ textarea:focus {
     padding: 1.25rem;
 }
 
-#contact-form-box .contact-btn{
+#contact-form-box .contact-btn {
     color: var(--dark);
 }
-#contact-form-box .contact-btn:hover{
+
+#contact-form-box .contact-btn:hover {
     color: whitesmoke;
 }
-#contact-form-box .loader{
+
+#contact-form-box .loader {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-#contact-form-box .d-none{
+
+#contact-form-box .d-none {
     display: none;
 
 }

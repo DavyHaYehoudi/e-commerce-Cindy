@@ -3,7 +3,7 @@ export const tabs = [
   "AVOIRS",
   "REMBOURSEMENTS",
   "ECHANGES",
-  "CARTES-CADEAUX",
+  "CARTES CADEAUX",
   "IMAGES",
   "BALANCE",
 ];

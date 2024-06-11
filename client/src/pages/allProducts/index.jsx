@@ -15,6 +15,8 @@ const AllProductsPage = () => {
 
   return (
     <div id="allProducts">
+      <div className="allProducts-content">
+
       <div className="productsFilterPanel">
         <div className="productsFilterPanel-content">
           <div>
@@ -29,6 +31,7 @@ const AllProductsPage = () => {
           <Block setSearchBarValue={setSearchBarValue} />
         </div>
         <Products updateMaterialCount={updateMaterialCount} />
+      </div>
       </div>
     </div>
   );

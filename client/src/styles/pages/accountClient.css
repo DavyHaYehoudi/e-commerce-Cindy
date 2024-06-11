@@ -1,11 +1,15 @@
 /* ******************************* MENU ******************************* */
 .user-profile-container .selected {
-  color: var(--danger);
+  color: var(--redOnBlack);
 }
 
 .user-profile-container {
   max-width: 1400px;
   margin: 20px auto;
+}
+
+.user-profile-container .animated-container {
+  animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
 .user-profile-menu {
@@ -260,7 +264,7 @@
   margin-bottom: 30px;
 }
 
-/**************************** CARTES-CADEAUX *****************************/
+/**************************** ADVANTAGES (carte cadeau + avoir) *****************************/
 .advantages li {
   position: relative;
   width: 400px;
@@ -276,7 +280,7 @@
   right: 10px;
   padding: 5px;
   border-radius: 5px;
-
+  color: whitesmoke;
 }
 
 .advantages .tag.not-available {

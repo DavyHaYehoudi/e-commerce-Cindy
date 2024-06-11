@@ -22,7 +22,7 @@ const Giftcard = ({ data }) => {
     <div className="giftcards-stats">
       <div className="tab-stats-content">
         <p>
-          Nombre total de cartes-cadeaux achetées :
+          Nombre total de cartes cadeaux achetées :
           {totalGiftcards > 0 ? (
             <>
               <strong> {totalGiftcards}</strong> pour un montant cumulé de{" "}
@@ -33,7 +33,7 @@ const Giftcard = ({ data }) => {
           )}
         </p>
         <p>
-          Nombre de cartes-cadeaux en cours :{" "}
+          Nombre de cartes cadeaux en cours :{" "}
           {validGiftcards > 0 ? (
             <>
               <strong>{validGiftcards} </strong>
@@ -47,7 +47,7 @@ const Giftcard = ({ data }) => {
           )}
         </p>
         <p>
-          Nombre de cartes-cadeaux utilisées :{" "}
+          Nombre de cartes cadeaux utilisées :{" "}
           {usedGiftcards > 0 ? (
             <>
               <strong>{usedGiftcards} </strong>pour un montant cumulé de{" "}
@@ -91,7 +91,7 @@ const Giftcard = ({ data }) => {
           )}
         </div>
         <div className="content-table ">
-          <h3 className="underline">Cartes-cadeaux utilisées</h3>
+          <h3 className="underline">Cartes cadeaux utilisées</h3>
           {usedGiftcardsDetails && usedGiftcardsDetails.length > 0 ? (
             <table>
               <thead>

@@ -3,6 +3,7 @@
     max-width: 1400px;
     margin: 20px auto;
 }
+
 .admin-dashboard-menu {
     display: flex;
     justify-content: flex-end;
@@ -21,9 +22,11 @@
     align-items: center;
     gap: 5px;
 }
-.admin-dashboard-menu .selected{
-    color: var(--danger);
+
+.admin-dashboard-menu .selected {
+    color: var(--redOnBlack);
 }
+
 .searchBarAdmin-wrapper {
     display: flex;
     align-items: center;
@@ -45,4 +48,5 @@
     font-size: 1.2rem;
     color: var(--secondary);
 }
+
 /* ********************* END DASHBOARD VIEW ********************* */

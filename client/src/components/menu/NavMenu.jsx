@@ -1,5 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { MdCollections } from "react-icons/md";
+import { IoMdPricetag } from "react-icons/io";
+import { IoMail } from "react-icons/io5";
+import { FaBook } from "react-icons/fa";
 
 const NavMenu = () => {
   return (
@@ -10,7 +14,11 @@ const NavMenu = () => {
             to="menu-tab-collections"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Collections
+            <span className="icon">
+              {" "}
+              <MdCollections />
+            </span>
+            <span className="navlink-text"> Collections</span>
           </NavLink>
         </li>
         <li>
@@ -18,7 +26,10 @@ const NavMenu = () => {
             to="products"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Produits
+            <span className="icon">
+              <IoMdPricetag />
+            </span>
+            <span className="navlink-text">Produits</span>
           </NavLink>
         </li>
         <li>
@@ -26,7 +37,10 @@ const NavMenu = () => {
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            A propos
+            <span className="icon">
+              <FaBook />
+            </span>
+            <span className="navlink-text">A propos</span>
           </NavLink>
         </li>
         <li>
@@ -34,7 +48,10 @@ const NavMenu = () => {
             to="contact"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Contact
+            <span className="icon">
+              <IoMail />
+            </span>
+            <span className="navlink-text">Contact</span>
           </NavLink>
         </li>
       </ul>

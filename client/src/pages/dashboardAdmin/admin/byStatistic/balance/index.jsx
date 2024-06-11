@@ -36,7 +36,7 @@ const Balance = ({ data }) => {
               <small>Commandes :</small> {formatPrice(totalOrderAmount)}
             </p>
             <p>
-              <small>Cartes-cadeaux :</small>{" "}
+              <small>Cartes cadeaux :</small>{" "}
               {formatPrice(totalAmountGiftcards)}
             </p>
           </div>

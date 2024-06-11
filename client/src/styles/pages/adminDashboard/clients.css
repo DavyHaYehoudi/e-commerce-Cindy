@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
 .itemsPerPage-select {
@@ -233,13 +234,14 @@
 }
 
 .admin-order-item-header .order-header {
-  text-align: left;
+    text-align: left;
 }
+
 .admin-order-item-header .order-header-details {
     display: flex;
     gap: 50px;
     margin: 20px;
-  font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 /* Icon email client */

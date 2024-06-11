@@ -3,11 +3,12 @@
 .deliveries h1 {
     text-align: center;
     letter-spacing: 5px;
+    margin-top: 60px;
 }
 
-.legalNotice,
-.termsOfSales,
-.deliveries {
+.legalNotice .animated-container,
+.termsOfSales .animated-container,
+.deliveries .animated-container {
     animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
@@ -15,7 +16,8 @@
 #deliveries-contain,
 #termsOfSales-contain {
     max-width: 1440px;
-    margin: 100px auto;
+    margin: 50px auto;
+    padding:0 10px;
 }
 
 #legalNotice-contain h2,

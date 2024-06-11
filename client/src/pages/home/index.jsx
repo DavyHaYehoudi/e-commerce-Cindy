@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData";
+import CartOffcanvas from "../MasterProduct/cartAccess";
 
 const Home = () => {
   const { role: getRole, clientId: getClientId } = useAuthWrappers();
@@ -19,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <h1>ACCUEIL</h1>
+      <CartOffcanvas />
     </div>
   );
 };

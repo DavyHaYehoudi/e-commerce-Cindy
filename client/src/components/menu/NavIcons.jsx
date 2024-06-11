@@ -10,7 +10,7 @@ import useStoreInfo from "../../shared/hooks/useStoreInfo";
 
 const NavIcons = ({ onClickHeart }) => {
   const { token, role, imageUrl, logout } = useNavIcons();
-  const {numberArticleInCart}=useStoreInfo({productsId:"",material:""})
+  const {numberArticleInCart,numberArticleInWihslist}=useStoreInfo({productsId:"",material:""})
 
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
@@ -46,6 +46,7 @@ const NavIcons = ({ onClickHeart }) => {
           <button onClick={onClickHeart} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>
+          <span id="numberWishlist">{numberArticleInWihslist} </span>
         </li>
         <li id="iconCart" className="info-tooltip" aria-label="Panier">
           <NavLink

@@ -1,38 +1,61 @@
-footer{
+footer {
     background-color: var(--footer-background);
     color: var(--footer-text-color);
-    margin-top: 40px;
 }
-footer h3{
+
+footer h3 {
     font-size: var(--footer-heading-fontSize);
     color: var(--text-golden);
     font-weight: 600;
     letter-spacing: var(--letter-spacing);
 }
-footer li a{
+
+footer li a {
     font-size: var(--footer-text-fontSize);
 }
-footer li  :hover{
+
+footer li :hover {
     color: var(--text-golden);
 }
-.footer-contain-top,.footer-contain-bottom{
+
+.footer-contain-top,
+.footer-contain-bottom {
     padding: 40px;
 }
-.footer-contain-top{
+
+.footer-contain-top {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
 }
-footer .social ul{
+
+footer .social ul {
     display: flex;
     justify-content: space-around;
     margin: 10px;
 }
-.footer-contain-bottom .info{
+
+.footer-contain-bottom .info {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 768px) {
+    footer {
+        padding: 10px;
+    }
+
+    .footer-contain-top,
+    .footer-contain-bottom {
+        padding: 0;
+    }
+
+    footer .payment {
+        margin: 20px auto;
+    }
 }

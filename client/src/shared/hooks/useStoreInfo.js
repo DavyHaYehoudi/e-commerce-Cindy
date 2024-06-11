@@ -99,6 +99,7 @@ const useStoreInfo = ({ productsId, material }) => {
     );
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
   const cartTotalAmount = calculateTotalCartPrice(cartStore,productsStore)
+  const numberArticleInWihslist = wishlist.length
 
   return {
     clientId,
@@ -109,7 +110,8 @@ const useStoreInfo = ({ productsId, material }) => {
     wishlist,
     quantity,
     numberArticleInCart,
-    cartTotalAmount
+    cartTotalAmount,
+    numberArticleInWihslist
   };
 };
 export default useStoreInfo;

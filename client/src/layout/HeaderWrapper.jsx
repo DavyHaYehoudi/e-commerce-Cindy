@@ -22,14 +22,17 @@ const HeaderWrapper = () => {
 
   return (
     <div id="headerWrapper" onClick={handleCloseWishlistModal}>
-      <div id="flex-item">
+      <div id="flex-item" >
+        <div className="flex-item-left">
+
         <DarkMode />
-        <h1>
+        </div>
+        <h1 className="flex-item-center">
           <Link to="/">
             <img src={logo} alt="logo" width="200px" />{" "}
           </Link>
         </h1>
-        <div className="flex-item-navIcons">
+        <div className="flex-item-navIcons flex-item-right">
           <NavIcons onClickHeart={handleOpenWishlistModal} />
         </div>
       </div>
