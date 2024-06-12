@@ -7,6 +7,10 @@ import {
   updateCategory,
 } from "../../../../../features/admin/categorySlice";
 import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
+import { Get } from "../../../../../services/httpMethods";
+import { generateFilePath } from "../../../../../helpers/utils/generateFilePath";
+import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../../../../firebase";
 
 const useCategoriesIndex = () => {
   const [editCategoryId, setEditCategoryId] = useState(null);
@@ -29,20 +33,45 @@ const useCategoriesIndex = () => {
   const nameModal = categoriesStore.find(
     (category) => category._id === categoryId
   )?.name;
+  const [loading, setLoading] = useState(false);
+  const main_image = useSelector((state) => state?.category?.illustration);
+  const categoryIdEdit = useSelector(
+    (state) => state?.category?.categoryIdEdit
+  );
 
   const handleUnauthorized = useUnauthorizedRedirect();
   const dispatch = useDispatch();
 
-  const handleAddCategory = () => {
-    if (newCategoryName.trim() !== "" && selectedParentCollections.length > 0) {
-      dispatch(
-        addCategory({
-          name: newCategoryName,
-          parentCollection: selectedParentCollections,
-          handleUnauthorized,
-        })
-      );
-      resetState();
+  const handleAddCategory = async ({ mainImageCreate, setMainImageCreate }) => {
+    if (
+      newCategoryName.trim() !== "" &&
+      selectedParentCollections.length > 0 &&
+      mainImageCreate
+    ) {
+      setLoading(true);
+      try {
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        const path = generateFilePath(mainImageCreate, "categories/");
+        const storageRef = ref(storage, path);
+        await uploadBytes(storageRef, mainImageCreate);
+        setMainImageCreate(null);
+        dispatch(
+          addCategory({
+            name: newCategoryName,
+            parentCollection: selectedParentCollections,
+            main_image: path,
+            handleUnauthorized,
+          })
+        );
+        resetState();
+        setLoading(false);
+      } catch (error) {
+        console.log(
+          "Erreur ajout illustration catégorie dans firebase storage",
+          error
+        );
+        setLoading(false);
+      }
     }
   };
   const handleKeyPress = (event) => {
@@ -101,12 +130,54 @@ const useCategoriesIndex = () => {
     setOpenModal(false);
   };
 
-  const handleEditCategory = () => {
+  const handleEditCategory = async ({
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
     if (editedCategoryName.trim() !== "") {
+      setLoading(true);
       const formData = {
         name: editedCategoryName,
         parentCollection: selectedParentCollections,
+        main_image,
       };
+      try {
+        // Vérifier le token avant d'interagir avec Firebase Storage
+        await Get("auth/verify-token/admin", null, handleUnauthorized);
+        if (addIllustrationToStorage && categoryIdEdit) {
+          const { path, file } = addIllustrationToStorage;
+          const storageRef = ref(storage, path);
+          await uploadBytes(storageRef, file);
+          dispatch(
+            updateCategory({
+              categoryId: editCategoryId,
+              formData,
+              handleUnauthorized,
+            })
+          );
+          console.log("Image illustration envoyée avec succès !");
+        }
+        if (removeIllustrationToStorage) {
+          const imageUrl = removeIllustrationToStorage;
+          const imageRef = ref(storage, imageUrl);
+          await deleteObject(imageRef);
+          console.log("Image illustration supprimée avec succès !");
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la mise à jour de l'image categorie dans firebase storage :",
+          error
+        );
+        setLoading(false);
+      } finally {
+        setAddIllustrationToStorage(null);
+        setRemoveIllustrationToStorage(null);
+        setLoading(false);
+      }
+
       dispatch(
         updateCategory({
           categoryId: editCategoryId,
@@ -114,6 +185,8 @@ const useCategoriesIndex = () => {
           handleUnauthorized,
         })
       );
+      setEditCategoryId(null);
+      setEditedCategoryName("");
       resetState();
     }
   };
@@ -129,8 +202,20 @@ const useCategoriesIndex = () => {
     setSelectedParentCollections(parentCollections);
   };
 
-  const handleSaveClick = () => {
-    handleEditCategory();
+  const handleSaveClick = ({
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
+    if (editedCategoryName.trim() !== "") {
+      handleEditCategory({
+        addIllustrationToStorage,
+        removeIllustrationToStorage,
+        setAddIllustrationToStorage,
+        setRemoveIllustrationToStorage,
+      });
+    }
   };
 
   const resetState = () => {
@@ -165,6 +250,7 @@ const useCategoriesIndex = () => {
     handleKeyPressEdit,
     handleCancel,
     handleConfirm,
+    loading,
   };
 };
 

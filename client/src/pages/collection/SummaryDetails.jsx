@@ -49,7 +49,7 @@ const SummaryDetails = ({ category, collectionId }) => {
         <>
           <div className="category-title">
             <h2 className="text-effect-1" >Catégorie : {category?.name}</h2>
-              ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
+            <span className="productsNumber" >({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}</span>
           </div>
           <div className="collection-master-row-wrapper">
           <Slider {...settings}>

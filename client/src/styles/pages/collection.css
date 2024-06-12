@@ -108,4 +108,6 @@
     -webkit-mask-image: linear-gradient(to right, black, transparent);
     mask-image: linear-gradient(to right, black, transparent);
 }
-
+.collection-master .collection-master-row .category-title .productsNumber{
+    margin-left: 10px;
+}

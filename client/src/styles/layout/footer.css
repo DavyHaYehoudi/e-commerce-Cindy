@@ -1,5 +1,5 @@
 footer {
-    background-color: var(--footer-background);
+    background: linear-gradient(to top, #C4B6C3 0%, #D6C9D4 50%, #E4DAE4 80%, #FFFFFF 100%);
     color: var(--footer-text-color);
 }
 

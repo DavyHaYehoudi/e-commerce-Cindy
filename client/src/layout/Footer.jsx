@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="payment">
             <img src={payment} alt="payment" width="300px" />
           </div>
-          <div className="logo">© SUPER CINDY</div>
+          <div className="logo">© Atelier Noralya</div>
         </div>
       </div>
     </footer>

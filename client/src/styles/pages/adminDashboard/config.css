@@ -99,6 +99,7 @@
     background: var(--info);
     padding: 2px;
     border-radius: 5px;
+    color:whitesmoke;
 }
 
 /* *********************** COLLECTION *********************** */
@@ -112,22 +113,22 @@
     justify-content: flex-end;
 }
 
-/* *********************** IMAGE PRINCIPALE COLLECTION *********************** */
-.admin-collections .content-block-main_image {
+/* *********************** IMAGE PRINCIPALE COLLECTION + CATEGORIE *********************** */
+.admin-configuration .content-block-main_image {
     padding: 10px;
     display: flex;
     justify-content: center;
 }
 
-.admin-collections .content-block-main_image button,
-.admin-collections .main_image-select button {
+.admin-configuration .content-block-main_image button,
+.admin-configuration .main_image-select button {
     margin-top: 5px;
     width: 100px;
     display: block;
 }
 
-.admin-collections .content-block-main_image .images-wrapper span,
-.admin-collections .main_image-select .images-wrapper span {
+.admin-configuration .content-block-main_image .images-wrapper span,
+.admin-configuration .main_image-select .images-wrapper span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,43 +137,43 @@
     cursor: pointer;
 }
 
-.admin-collections .image-container.main_image .loader {
+.admin-configuration .image-container.main_image .loader {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.admin-collections .image-container.main_image {
+.admin-configuration .image-container.main_image {
     width: 100px;
     height: 100px;
 }
 
-.admin-collections .image-container {
+.admin-configuration .image-container {
     border: 1px solid var(--secondary);
     margin-right: 10px;
     position: relative;
     border-radius: 5px;
 }
 
-.admin-collections .images-wrapper img {
+.admin-configuration .images-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.admin-collections .labels-details input {
+.admin-configuration .labels-details input {
     width: auto;
     height: 10px;
     margin: 5px;
 }
 
-.admin-collections input[type='file'] {
+.admin-configuration input[type='file'] {
     display: none;
 }
 
-.admin-collections .delete-image {
+.admin-configuration .delete-image {
     color: var(--danger);
 }
 

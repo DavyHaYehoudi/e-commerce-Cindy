@@ -162,6 +162,8 @@ img {
 
 [disabled] {
     cursor: not-allowed;
+    color:var(--color-disabled);
+    background: var(--background-disabled);
 }
 
 /* SPECIFICITE TOGGLE */

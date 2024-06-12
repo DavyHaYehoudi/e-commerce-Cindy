@@ -11,10 +11,10 @@ const fetchCategories = createAsyncThunk(
 
 const addCategory = createAsyncThunk(
   "category/addCategories",
-  async ({ name, parentCollection, handleUnauthorized }) => {
+  async ({ name, parentCollection, main_image, handleUnauthorized }) => {
     return await Post(
       "categories",
-      { name, parentCollection },
+      { name, parentCollection, main_image },
       null,
       handleUnauthorized
     );
@@ -44,7 +44,14 @@ const deleteCategory = createAsyncThunk(
 
 const categoriesSlice = createSlice({
   name: "category",
-  initialState: { data: [], categoryId: "", status: "idle", error: null },
+  initialState: {
+    data: [],
+    categoryId: "",
+    status: "idle",
+    error: null,
+    categoryIdEdit: "",
+    illustration:""
+  },
   reducers: {
     updateCategoriesByCollectionId: (state, action) => {
       const { collectionId } = action.payload;
@@ -56,9 +63,14 @@ const categoriesSlice = createSlice({
         ),
       }));
     },
-
     categoryToRemove: (state, action) => {
       state.categoryId = action.payload;
+    },
+    updateCategoryIdEdit: (state, action) => {
+      state.categoryIdEdit = action.payload;
+    },
+    updateIllustration: (state, action) => {
+      state.illustration = action.payload;
     },
   },
 
@@ -85,46 +97,45 @@ const categoriesSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
-        const { categoryId, productSolded, formData, restore } =
-        action.payload;
+        const { categoryId, productSolded, formData, restore } = action.payload;
 
-      // Trouver l'index de la categorie à mettre à jour dans le state
-      const updatedCategoryIndex = state.data.findIndex(
-        (category) => category._id === categoryId
-      );
+        // Trouver l'index de la categorie à mettre à jour dans le state
+        const updatedCategoryIndex = state.data.findIndex(
+          (category) => category._id === categoryId
+        );
 
-      if (updatedCategoryIndex !== -1) {
-        // Créer une nouvelle copie de la categorie avec les modifications
-        const updatedCategory = {
-          ...state.data[updatedCategoryIndex],
-          ...formData,
-        };
+        if (updatedCategoryIndex !== -1) {
+          // Créer une nouvelle copie de la categorie avec les modifications
+          const updatedCategory = {
+            ...state.data[updatedCategoryIndex],
+            ...formData,
+          };
 
-        // Créer une nouvelle copie du state avec la categorie mise à jour
-        const newState = {
-          ...state,
-          data: [
-            ...state.data.slice(0, updatedCategoryIndex),
-            updatedCategory,
-            ...state.data.slice(updatedCategoryIndex + 1),
-          ],
-        };
+          // Créer une nouvelle copie du state avec la categorie mise à jour
+          const newState = {
+            ...state,
+            data: [
+              ...state.data.slice(0, updatedCategoryIndex),
+              updatedCategory,
+              ...state.data.slice(updatedCategoryIndex + 1),
+            ],
+          };
 
-        // Si productSolded est true, marquer la categorie comme archivée
-        if (productSolded) {
-          updatedCategory.isArchived = true;
-          toast.success("La catégorie a bien été archivée.");
-        } else if (restore) {
-          toast.success("La catégorie a bien été restaurée.");
-        } else {
-          toast.success("La catégorie a bien été modifiée 😀");
+          // Si productSolded est true, marquer la categorie comme archivée
+          if (productSolded) {
+            updatedCategory.isArchived = true;
+            toast.success("La catégorie a bien été archivée.");
+          } else if (restore) {
+            toast.success("La catégorie a bien été restaurée.");
+          } else {
+            toast.success("La catégorie a bien été modifiée 😀");
+          }
+
+          return newState;
         }
 
-        return newState;
-      }
-
-      // Si la categorie n'est pas trouvée, retourner simplement le state inchangé
-      return state;
+        // Si la categorie n'est pas trouvée, retourner simplement le state inchangé
+        return state;
       })
       .addCase(updateCategory.rejected, (state, action) => {
         state.status = "failed";
@@ -143,6 +154,10 @@ const categoriesSlice = createSlice({
   },
 });
 export { fetchCategories, addCategory, deleteCategory, updateCategory };
-export const { updateCategoriesByCollectionId, categoryToRemove } =
-  categoriesSlice.actions;
+export const {
+  updateCategoriesByCollectionId,
+  categoryToRemove,
+  updateCategoryIdEdit,
+  updateIllustration
+} = categoriesSlice.actions;
 export default categoriesSlice.reducer;

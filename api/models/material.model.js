@@ -10,7 +10,7 @@ const materialSchema = new mongoose.Schema({
     unique: true,
   },
   value: { type: String, maxlength: 50, required: true },
-  isArchived: {
+  isArchived: { 
     type: Boolean,
     default: false,
   },

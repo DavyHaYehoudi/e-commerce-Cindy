@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
 import useCategoriesIndex from "../hooks/useCategoriesIndex";
 import Modal from "../shared/Modal";
 import Archives from "../shared/Archives";
 import ToggleButton from "../../../../../shared/ToggleButton";
+import useIllustrationCreate from "../collections/hooks/useIllustrationCreate";
 
 const Categories = () => {
+  const [addIllustrationToStorage, setAddIllustrationToStorage] =
+  useState(null);
+const [removeIllustrationToStorage, setRemoveIllustrationToStorage] =
+  useState(null);
   const {
     editCategoryId,
     editedCategoryName,
@@ -32,7 +37,14 @@ const Categories = () => {
     handleKeyPressEdit,
     handleCancel,
     handleConfirm,
+    loading
   } = useCategoriesIndex();
+  const {
+    handleIllustrationCreateChange,
+    handleDeleteImage,
+    mainImageCreate,
+    setMainImageCreate,
+  } = useIllustrationCreate();
 
   return (
     <div className="admin-categories configuration">
@@ -62,6 +74,12 @@ const Categories = () => {
             setEditedCategoryName={setEditedCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
             handleKeyPressEdit={handleKeyPressEdit}
+            addIllustrationToStorage={addIllustrationToStorage}
+            setAddIllustrationToStorage={setAddIllustrationToStorage}
+            removeIllustrationToStorage={removeIllustrationToStorage}
+            setRemoveIllustrationToStorage={
+              setRemoveIllustrationToStorage
+            }
           />
           <AddCategoryForm
             newCategoryName={newCategoryName}
@@ -71,6 +89,11 @@ const Categories = () => {
             setNewCategoryName={setNewCategoryName}
             setSelectedParentCollections={setSelectedParentCollections}
             handleKeyPress={handleKeyPress}
+            mainImageCreate={mainImageCreate}
+            handleIllustrationCreateChange={handleIllustrationCreateChange}
+            handleDeleteImage={handleDeleteImage}
+            setMainImageCreate={setMainImageCreate}
+            loading={loading}
           />
         </div>
       )}

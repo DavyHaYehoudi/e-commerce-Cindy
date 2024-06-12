@@ -1,6 +1,9 @@
 import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import MainImageDisplay from "./storage/MainImageDisplay";
+import { useSelector } from "react-redux";
+import MainImageEdit from "./storage/MainImageEdit";
 
 const CategoryItem = ({
   category,
@@ -15,14 +18,22 @@ const CategoryItem = ({
   collectionsStore,
   setSelectedParentCollections,
   handleKeyPressEdit,
+  addIllustrationToStorage,
+  removeIllustrationToStorage,
+  setAddIllustrationToStorage,
+  setRemoveIllustrationToStorage,
 }) => {
   const parentCollection = (parentCollectionArray) => {
-    const parentCollectionFiltered = parentCollectionArray?.map((pcol) =>
-      collectionsStore?.filter((collection) => !collection?.isArchived).find((collection) => collection?._id === pcol)
-    ).filter(collection => collection !== undefined);
-    return parentCollectionFiltered
+    const parentCollectionFiltered = parentCollectionArray
+      ?.map((pcol) =>
+        collectionsStore
+          ?.filter((collection) => !collection?.isArchived)
+          .find((collection) => collection?._id === pcol)
+      )
+      .filter((collection) => collection !== undefined);
+    return parentCollectionFiltered;
   };
-
+  const categoriesStore = useSelector((state) => state?.category?.data);
   return (
     <li key={category?._id} className="content-block-wrapper">
       {editCategoryId === category?._id ? (
@@ -37,6 +48,18 @@ const CategoryItem = ({
                 onChange={(e) => setEditedCategoryName(e.target.value)}
                 onKeyDown={handleKeyPressEdit}
               />
+              <div className="content-block-main_image">
+                <MainImageEdit
+                  required={true}
+                  editable={true}
+                  categoryId={category?._id}
+                  legend="Illustration"
+                  setAddIllustrationToStorage={setAddIllustrationToStorage}
+                  setRemoveIllustrationToStorage={
+                    setRemoveIllustrationToStorage
+                  }
+                />
+              </div>
               <div className="content-category-checkbox">
                 {collectionsStore &&
                   collectionsStore.length > 0 &&
@@ -82,7 +105,14 @@ const CategoryItem = ({
                 editedCategoryName === "" ||
                 selectedParentCollections.length === 0
               }
-              onClick={handleSaveClick}
+              onClick={() =>
+                handleSaveClick({
+                  addIllustrationToStorage,
+                  removeIllustrationToStorage,
+                  setAddIllustrationToStorage,
+                  setRemoveIllustrationToStorage,
+                })
+              }
             >
               Enregistrer
             </button>
@@ -99,6 +129,12 @@ const CategoryItem = ({
           <div>
             <p>{category?.name} </p>
             <div className="content-block-left details">
+              <div className="content-block-main_image">
+                <MainImageDisplay
+                  categoryId={category?._id}
+                  categoriesStore={categoriesStore}
+                />
+              </div>
               <p>
                 <small>
                   {category?.parentCollection?.length > 1
@@ -107,12 +143,11 @@ const CategoryItem = ({
                 </small>{" "}
               </p>
               <ul>
-                {parentCollection(category?.parentCollection)?.map(
-                  (item) =>
+                {parentCollection(category?.parentCollection)?.map((item) => (
                   <small key={item?._id + category?.name}>
                     <li>{item?.name}</li>
                   </small>
-                )}
+                ))}
               </ul>
             </div>
           </div>

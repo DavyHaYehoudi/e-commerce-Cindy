@@ -22,6 +22,7 @@
     --color-gray: #6A6A6A;
     --redOnBlack: #f49b80;
     --color-icon-menu:#6A6A6A;
+    --color-disabled:whitesmoke;
 
     /* BACKGROUND */
     --background: #FFFFFF;
@@ -40,6 +41,7 @@
     --background-golden: #D9C2B6;
     --background-taup: #6A6A6A;
     --background-whitesmoke:rgb(252, 252, 252);
+    --background-disabled :#6c757d;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -50,7 +52,7 @@
     --product-heading-fontSize: 2rem;
     --product-price-fontSize: 1rem;
     --footer-heading-fontSize: 1rem;
-    --footer-text-fontSize: 0.75rem;
+    --footer-text-fontSize: 1rem;
 
     /* LETTER SPACING */
     --letter-spacing: 0.2em;

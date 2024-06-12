@@ -23,7 +23,7 @@ const useCollections = () => {
   const [newCollectionName, setNewCollectionName] = useState("");
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const[loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const [productsLinkedToCollectionId, setProductsLinkedToCollectionId] =
     useState([]);
   const [categoriesLinkedToCollectionId, setCategoriesLinkedToCollectionId] =
@@ -53,7 +53,7 @@ const useCollections = () => {
     setMainImageCreate,
   }) => {
     if (newCollectionName.trim() !== "" && mainImageCreate) {
-      setLoading(true)
+      setLoading(true);
       try {
         await Get("auth/verify-token/admin", null, handleUnauthorized);
         const path = generateFilePath(mainImageCreate, "collections/");
@@ -63,13 +63,13 @@ const useCollections = () => {
         const formData = { name: newCollectionName, main_image: path };
         dispatch(addCollection({ formData, handleUnauthorized }));
         setNewCollectionName("");
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error(
           "Erreur ajout illustration collection dans firebase storage :",
           error
         );
-        setLoading(false)
+        setLoading(false);
       }
     }
   };
@@ -123,7 +123,7 @@ const useCollections = () => {
     setRemoveIllustrationToStorage,
   }) => {
     if (editedCollectionName.trim() !== "") {
-      setLoading(true)
+      setLoading(true);
       const formData = {
         name: editedCollectionName,
         main_image,
@@ -151,17 +151,17 @@ const useCollections = () => {
           await deleteObject(imageRef);
           console.log("Image illustration supprimée avec succès !");
         }
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error(
-          "Erreur lors de la mise à jour de l'image avatar dans firebase storage :",
+          "Erreur lors de la mise à jour de l'image collection dans firebase storage :",
           error
         );
-        setLoading(false)
+        setLoading(false);
       } finally {
         setAddIllustrationToStorage(null);
         setRemoveIllustrationToStorage(null);
-        setLoading(false)
+        setLoading(false);
       }
       dispatch(
         updateCollection({
