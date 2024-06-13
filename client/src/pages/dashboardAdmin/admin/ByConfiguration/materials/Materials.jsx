@@ -124,7 +124,7 @@ const Materials = () => {
           <div className="adding">
             <input
               type="search"
-              placeholder="Nouveau matériau"
+              placeholder="Nouveau matériau (50 caractères maximum)"
               className="account-input-config"
               autoFocus
               value={newMaterial.name}

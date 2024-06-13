@@ -7,8 +7,8 @@ const Modal = ({
   categoriesLinkedToCollectionId = [],
   productsLinkedToCategories = [],
   productsLinkedToMaterialId = [],
-  productSolded,
-  name
+  productSolded = "",
+  name,
 }) => {
   const productsLinkedToCollectionIdNumber =
     productsLinkedToCollectionId.length;
@@ -49,14 +49,14 @@ const Modal = ({
               productsLinkedToMaterialIdNumber > 0 ? (
                 <p>
                   <br />
-                  {productSoldedNumber>0
+                  {productSoldedNumber > 0
                     ? `⚠️ Des produits déjà vendus sont reliés (${productSoldedNumber}), le paramètre ne sera pas supprimé. Il sera archivé et vous pourrez le restaurer par la suite, au besoin.`
                     : `⚠️  Il y a des produits reliés.`}
                 </p>
               ) : (
                 <p>
                   Etes-vous sûr de vouloir{" "}
-                  {productSoldedNumber>0 ? "archiver" : "supprimer"} ?
+                  {productSoldedNumber > 0 ? "archiver" : "supprimer"} ?
                 </p>
               )}
 

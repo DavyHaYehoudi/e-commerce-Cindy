@@ -1,6 +1,10 @@
 #allProducts {
     background: var(--background-whitesmoke);
 }
+#allProducts h1{
+    letter-spacing: 5px;
+    text-align: center;
+}
 
 #allProducts .allProducts-content {
     width: 80%;
@@ -8,6 +12,9 @@
     padding: 50px;
 }
 
+#allProducts .productsFilterPanel{
+    margin-top: 80px;
+}
 #allProducts .filterBlock-content-action button {
     color: whitesmoke;
 }

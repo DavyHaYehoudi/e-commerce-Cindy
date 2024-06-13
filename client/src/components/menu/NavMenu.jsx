@@ -4,6 +4,7 @@ import { MdCollections } from "react-icons/md";
 import { IoMdPricetag } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import { FaBook } from "react-icons/fa";
+import { PiFoldersFill } from "react-icons/pi";
 
 const NavMenu = () => {
   return (
@@ -19,6 +20,18 @@ const NavMenu = () => {
               <MdCollections />
             </span>
             <span className="navlink-text"> Collections</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="menu-tab-categories"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <span className="icon">
+              {" "}
+              <PiFoldersFill />
+            </span>
+            <span className="navlink-text"> Catégories</span>
           </NavLink>
         </li>
         <li>

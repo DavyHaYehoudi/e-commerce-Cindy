@@ -51,7 +51,7 @@
 
 .admin-configuration .validate-btn {
     background-color: var(--success);
-    color: var(--dark);
+    color: whitesmoke;
 }
 
 .adding {

@@ -7,6 +7,7 @@ import {
   updateMaterial,
 } from "../../../../../features/admin/materialSlice";
 import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
+import { toast } from "react-toastify";
 
 const useMaterials = () => {
   const [editMaterialId, setEditMaterialId] = useState(null);
@@ -38,7 +39,17 @@ const useMaterials = () => {
   };
 
   const handleAddMaterial = () => {
-    if (newMaterial.name.trim() !== "" && newMaterial.value.trim() !== "") {
+    if (newMaterial.name.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (newMaterial.name.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
+    if (
+      newMaterial.name.trim() !== "" &&
+      newMaterial.name.length <= 50 &&
+      newMaterial.value.trim() !== ""
+    ) {
       dispatch(addMaterial({ newMaterial, handleUnauthorized }));
       setNewMaterial({ name: "", value: "" });
     }
@@ -53,7 +64,7 @@ const useMaterials = () => {
     dispatch(materialIdToRemove(materialId));
     const productsLinkedToMaterialSearch = productsStore.filter((product) =>
       product?.materials.some((material) => material._id === materialId)
-  );
+    );
     if (productsLinkedToMaterialSearch.length > 0) {
       setProductsLinkedToMaterialId(productsLinkedToMaterialSearch);
       const isProductInOrderProducts = orderProductsStore.filter(
@@ -64,7 +75,7 @@ const useMaterials = () => {
       );
       if (isProductInOrderProducts) {
         setProductSolded(isProductInOrderProducts);
-      } 
+      }
     }
     setOpenModal(true);
   };
@@ -99,11 +110,17 @@ const useMaterials = () => {
     setOpenModal(false);
   };
   const handleEditMaterial = (materialId) => {
+    if (editedMaterial.name.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (editedMaterial.name.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
     if (
       editedMaterial.name.trim() !== "" ||
       editedMaterial.value.trim() !== ""
     ) {
-      const formData = {...editedMaterial };
+      const formData = { ...editedMaterial };
       dispatch(
         updateMaterial({
           materialId,

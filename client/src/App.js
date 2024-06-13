@@ -23,6 +23,7 @@ import Collection from "./pages/collection/Master";
 import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
 import AllProductsPage from "./pages/allProducts";
+import Categories from "./pages/category";
 
 function App() {
   const {
@@ -72,6 +73,7 @@ function App() {
             />
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/menu-tab-collections" element={<Collections />} />
+            <Route path="/menu-tab-categories" element={<Categories />} />
             <Route path="/menu-tab-collections/:collectionId" element={<Collection />} />
             <Route path="/master-product/:productId" element={<MasterProduct />} />
             <Route path="/about" element={<About />} />

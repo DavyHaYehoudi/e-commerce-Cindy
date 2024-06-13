@@ -174,7 +174,10 @@ img {
 /* SPECIFICITE ICONES */
 .icon-trash {
     background-color: var(--danger);
-    color: var(--text-whitesmoke);
+    color: whitesmoke;
+}
+.validate-btn{
+    color: whitesmoke;
 }
 
 .icon-edit {

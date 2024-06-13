@@ -20,7 +20,7 @@ const AddCategoryForm = ({
     <div>
       <input
         type="search"
-        placeholder="Nouvelle catégorie"
+        placeholder="Nouvelle catégorie (50 caractères maximum)"
         className="account-input-config"
         autoFocus
         value={newCategoryName}

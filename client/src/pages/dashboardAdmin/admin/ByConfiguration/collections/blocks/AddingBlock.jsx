@@ -17,7 +17,7 @@ const AddingBlock = ({
     <div className="adding">
       <input
         type="search"
-        placeholder="Nouvelle collection"
+        placeholder="Nouvelle collection (50 caractères maximum)"
         className="account-input-config"
         autoFocus
         value={newCollectionName}

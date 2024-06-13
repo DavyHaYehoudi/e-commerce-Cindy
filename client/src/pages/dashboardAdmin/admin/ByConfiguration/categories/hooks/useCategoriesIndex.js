@@ -5,12 +5,13 @@ import {
   categoryToRemove,
   deleteCategory,
   updateCategory,
-} from "../../../../../features/admin/categorySlice";
-import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
-import { Get } from "../../../../../services/httpMethods";
-import { generateFilePath } from "../../../../../helpers/utils/generateFilePath";
+} from "../../../../../../features/admin/categorySlice";
+import useUnauthorizedRedirect from "../../../../../../services/errors/useUnauthorizedRedirect";
+import { Get } from "../../../../../../services/httpMethods";
+import { generateFilePath } from "../../../../../../helpers/utils/generateFilePath";
 import { deleteObject, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../../../../firebase";
+import { storage } from "../../../../../../firebase";
+import { toast } from "react-toastify";
 
 const useCategoriesIndex = () => {
   const [editCategoryId, setEditCategoryId] = useState(null);
@@ -43,8 +44,15 @@ const useCategoriesIndex = () => {
   const dispatch = useDispatch();
 
   const handleAddCategory = async ({ mainImageCreate, setMainImageCreate }) => {
+    if (newCategoryName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (newCategoryName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
     if (
       newCategoryName.trim() !== "" &&
+      newCategoryName.length <= 50 &&
       selectedParentCollections.length > 0 &&
       mainImageCreate
     ) {
@@ -136,7 +144,13 @@ const useCategoriesIndex = () => {
     setAddIllustrationToStorage,
     setRemoveIllustrationToStorage,
   }) => {
-    if (editedCategoryName.trim() !== "") {
+    if (editedCategoryName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (editedCategoryName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
+    if (editedCategoryName.trim() !== "" && editedCategoryName.length <= 50) {
       setLoading(true);
       const formData = {
         name: editedCategoryName,

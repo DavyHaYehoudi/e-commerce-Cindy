@@ -85,7 +85,7 @@ const Tags = () => {
           <div className="adding">
             <input
               type="search"
-              placeholder="Nouveau tag"
+              placeholder="Nouveau tag (50 caractères maximum)"
               className="account-input-config"
               autoFocus
               value={newTagName}

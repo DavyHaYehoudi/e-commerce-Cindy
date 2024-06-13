@@ -5,6 +5,7 @@ import { BsFillTrash2Fill } from "react-icons/bs";
 import useCartOffcanvas from "../MasterProduct/hooks/useCartOffcanvas";
 import useAuthWrappers from "../../useAuthWrappers";
 import useFetchData from "../../useFetchData"
+import CartOffcanvas from "../MasterProduct/cartAccess";
 
 const ShoppingCart = () => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const ShoppingCart = () => {
           <PaymentForm />
         </section>
       </div>
+      <CartOffcanvas />
     </div>
   );
 };

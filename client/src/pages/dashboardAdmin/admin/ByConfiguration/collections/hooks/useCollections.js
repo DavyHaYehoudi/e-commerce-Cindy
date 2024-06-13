@@ -16,6 +16,7 @@ import {
 } from "firebase/storage";
 import { storage } from "../../../../../../firebase";
 import useUnauthorizedRedirect from "../../../../../../services/errors/useUnauthorizedRedirect";
+import { toast } from "react-toastify";
 
 const useCollections = () => {
   const [editCollectionId, setEditCollectionId] = useState(null);
@@ -52,7 +53,17 @@ const useCollections = () => {
     mainImageCreate,
     setMainImageCreate,
   }) => {
-    if (newCollectionName.trim() !== "" && mainImageCreate) {
+    if (newCollectionName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (newCollectionName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
+    if (
+      newCollectionName.trim() !== "" &&
+      newCollectionName.length <= 50 &&
+      mainImageCreate
+    ) {
       setLoading(true);
       try {
         await Get("auth/verify-token/admin", null, handleUnauthorized);
@@ -191,7 +202,16 @@ const useCollections = () => {
     setAddIllustrationToStorage,
     setRemoveIllustrationToStorage,
   }) => {
-    if (editedCollectionName.trim() !== "") {
+    if (editedCollectionName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (editedCollectionName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
+    if (
+      editedCollectionName.trim() !== "" &&
+      editedCollectionName.length <= 50
+    ) {
       handleEditCollection({
         addIllustrationToStorage,
         removeIllustrationToStorage,

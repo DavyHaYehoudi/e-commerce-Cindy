@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddCategoryForm from "./AddCategoryForm";
 import CategoriesList from "./CategoriesList";
-import useCategoriesIndex from "../hooks/useCategoriesIndex";
+import useCategoriesIndex from "./hooks/useCategoriesIndex";
 import Modal from "../shared/Modal";
 import Archives from "../shared/Archives";
 import ToggleButton from "../../../../../shared/ToggleButton";

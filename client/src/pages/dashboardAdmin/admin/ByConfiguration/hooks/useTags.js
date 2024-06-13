@@ -7,6 +7,7 @@ import {
   updateTag,
 } from "../../../../../features/admin/tagSlice";
 import useUnauthorizedRedirect from "../../../../../services/errors/useUnauthorizedRedirect";
+import { toast } from "react-toastify";
 
 const useTags = () => {
   const [editTagId, setEditTagId] = useState(null);
@@ -22,7 +23,13 @@ const useTags = () => {
   const dispatch = useDispatch();
 
   const handleAddTag = () => {
-    if (newTagName.trim() !== "") {
+    if (newTagName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (newTagName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
+    if (newTagName.trim() !== "" && newTagName.length <= 50) {
       const formatData = {
         name: newTagName,
       };
@@ -49,6 +56,12 @@ const useTags = () => {
     setOpenModal(false);
   };
   const handleEditTag = (tagId, name) => {
+    if (editedTagName.trim() === "") {
+      return toast.error("Le nom ne peut pas être vide");
+    }
+    if (editedTagName.length > 50) {
+      return toast.error("Le nom ne peut pas dépasser 50 caractères.");
+    }
     dispatch(updateTag({ tagId, name, handleUnauthorized }));
   };
   const handleKeyPressEdit = (event) => {
