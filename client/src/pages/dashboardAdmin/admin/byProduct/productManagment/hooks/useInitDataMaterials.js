@@ -37,8 +37,15 @@ const useInitDataMaterials = ({
         root = product?.materials[0];
       }
 
-      const { stock, pricing, untilNew, promotion, main_image, isActive } =
-        root || {};
+      const {
+        stock,
+        pricing,
+        untilNew,
+        promotion,
+        main_image,
+        isActive,
+        isStar,
+      } = root || {};
 
       data["stock"] = stock;
       data["currentPrice"] = pricing?.currentPrice;
@@ -49,6 +56,7 @@ const useInitDataMaterials = ({
       data["endDate"] = formatDateMaterials(promotion?.endDate);
       data["mainImage"] = main_image;
       data["isActive"] = isActive;
+      data["isStar"] = isStar;
     }
     return data;
   };

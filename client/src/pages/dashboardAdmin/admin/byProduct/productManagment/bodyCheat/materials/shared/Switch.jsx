@@ -14,6 +14,6 @@ const Switch = ({ checked, onChange }) => {
       <div className="slider"></div>
     </div>
   );
-};
+};  
 
 export default Switch;

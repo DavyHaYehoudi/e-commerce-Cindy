@@ -1,6 +1,7 @@
 import React from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import MainImage from "../../../../../../shared/MainImage";
+import Switch from "../../../byProduct/productManagment/bodyCheat/materials/shared/Switch";
 
 const AddingBlock = ({
   newCollectionName,
@@ -12,6 +13,8 @@ const AddingBlock = ({
   handleAddCollection,
   setMainImageCreate,
   loading,
+  handleSwitchChange,
+  isStar,
 }) => {
   return (
     <div className="adding">
@@ -32,6 +35,14 @@ const AddingBlock = ({
           required={true}
           legend="Illustration"
         />
+      </div>
+      <div className="switch-collection-btn">
+        {isStar ? (
+          <p className="actived">Parution vedette</p>
+        ) : (
+          <p>Parution classique</p>
+        )}
+        <Switch checked={isStar} onChange={handleSwitchChange} />
       </div>
       <button
         className={`account-btn ${

@@ -48,7 +48,7 @@ const productSlice = createSlice({
   },
   reducers: {
     updateProductMaterials: (state, action) => {
-      const { _id, stock, newDate, pricing, promo, main_image, isActive } =
+      const { _id, stock, newDate, pricing, promo, main_image, isActive,isStar } =
         action.payload || {};
 
       const existingMaterialIndex = state.materials.findIndex(
@@ -63,6 +63,7 @@ const productSlice = createSlice({
         if (promo !== undefined) updatedMaterial.promotion = promo;
         if (main_image !== undefined) updatedMaterial.main_image = main_image;
         if (isActive !== undefined) updatedMaterial.isActive = isActive;
+        if (isStar !== undefined) updatedMaterial.isStar = isStar;
 
         state.materials[existingMaterialIndex] = updatedMaterial;
       } else {

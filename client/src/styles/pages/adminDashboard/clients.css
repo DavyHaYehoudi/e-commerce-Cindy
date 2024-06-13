@@ -81,6 +81,7 @@
 
 .filterBlock-content-action .reset-btn {
     background-color: var(--danger);
+    color: whitesmoke;
 }
 
 .filterBlock-content-action .validate-btn {

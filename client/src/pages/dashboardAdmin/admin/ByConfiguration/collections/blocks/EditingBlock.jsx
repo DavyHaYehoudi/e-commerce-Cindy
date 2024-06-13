@@ -1,6 +1,7 @@
 import React from "react";
 import MainImageEdit from "../storage/MainImageEdit";
 import EditValidation from "./EditValidation";
+import Switch from "../../../byProduct/productManagment/bodyCheat/materials/shared/Switch";
 
 const EditingBlock = ({
   editedCollectionName,
@@ -14,6 +15,8 @@ const EditingBlock = ({
   setAddIllustrationToStorage,
   removeIllustrationToStorage,
   setRemoveIllustrationToStorage,
+  starStatus,
+  handleSwitchChange,
 }) => {
   return (
     <div className="content-block">
@@ -25,6 +28,17 @@ const EditingBlock = ({
           autoFocus
           onChange={(e) => setEditedCollectionName(e.target.value)}
           onKeyDown={(e) => handleKeyPressEdit(e, collection?._id)}
+        />
+      </div>
+      <div className="switch-collection-btn">
+        {starStatus(collection?._id) ? (
+          <p className="actived">Collection vedette</p>
+        ) : (
+          <p>Collection classique</p>
+        )}
+        <Switch
+          checked={starStatus(collection?._id)}
+          onChange={handleSwitchChange}
         />
       </div>
       <div className="content-block-main_image">

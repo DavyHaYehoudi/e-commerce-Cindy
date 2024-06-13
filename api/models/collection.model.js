@@ -11,6 +11,10 @@ const collectionSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isStar: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 collectionSchema.pre("validate", function (next) {

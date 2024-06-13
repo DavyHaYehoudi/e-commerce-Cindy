@@ -39,6 +39,9 @@ const Collections = () => {
     handleSaveClick,
     handleKeyPress,
     handleKeyPressEdit,
+    isStar,
+    handleSwitchChange,
+    starStatus
   } = useCollections();
 
   const {
@@ -85,6 +88,8 @@ const Collections = () => {
                       setRemoveIllustrationToStorage={
                         setRemoveIllustrationToStorage
                       }
+                      starStatus={starStatus}
+                      handleSwitchChange={handleSwitchChange}
                     />
                   ) : (
                     <DisplayBlock
@@ -92,6 +97,7 @@ const Collections = () => {
                       collectionsStore={collectionsStore}
                       handleEditClick={handleEditClick}
                       handleDeleteCollection={handleDeleteCollection}
+                      starStatus={starStatus}
                     />
                   )}
                 </li>
@@ -107,6 +113,8 @@ const Collections = () => {
             handleAddCollection={handleAddCollection}
             setMainImageCreate={setMainImageCreate}
             loading={loading}
+            handleSwitchChange={handleSwitchChange}
+            isStar={isStar}
           />
         </div>
       )}

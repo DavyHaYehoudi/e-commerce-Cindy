@@ -40,6 +40,9 @@ export const formattedDataProduct = (
         if (key === "Suspendu") {
           rename = "pending";
         }
+        if (key === "En vedette") {
+          rename = "isStar";
+        }
         formattedData.other.push(rename);
       }
     }

@@ -8,10 +8,18 @@ const DisplayBlock = ({
   collectionsStore,
   handleEditClick,
   handleDeleteCollection,
+  starStatus,
 }) => {
   return (
     <>
-      <div className="content-block-left">{collection?.name}</div>
+      <div className="content-block-left">
+        <div className="group-name">
+          <div>{collection?.name}</div>
+          {starStatus(collection?._id) && (
+            <p className="tag">Collection vedette</p>
+          )}
+        </div>
+      </div>
       <div className="content-block-main_image">
         <MainImageDisplay
           collectionId={collection?._id}

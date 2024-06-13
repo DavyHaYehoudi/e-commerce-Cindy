@@ -238,9 +238,6 @@
 .confirm-section .edit-section .delete {
     background: var(--danger);
 }
-.confirm-section :disabled {
-    color: var(--dark);
-}
 
 /* ******* MATERIALS   materials-row =>avec matériau ******* */
 .product-modal-content .materials-radio {
@@ -350,7 +347,6 @@
 .product-modal-content .switch-product-btn p.actived {
     color: var(--text-dark);
 }
-
 
 .product-modal-content .switch,
 .product-modal-content  .switch {

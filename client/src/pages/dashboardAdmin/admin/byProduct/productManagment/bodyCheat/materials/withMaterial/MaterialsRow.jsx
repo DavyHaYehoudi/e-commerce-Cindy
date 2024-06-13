@@ -5,6 +5,7 @@ import Stock from "../shared/Stock";
 import CurrentPrice from "../shared/CurrentPrice";
 import OldPrice from "../shared/OldPrice";
 import useMaterials from "../hooks/useMaterials";
+import Star from "../shared/Star";
 
 const MaterialsRow = ({
   data,
@@ -34,6 +35,8 @@ const MaterialsRow = ({
     handleDeleteImage,
     materialActive,
     handleSwitchChange,
+    handleSwitchChangeMaterial,
+    isFeaturedMaterial,
   } = useMaterials({
     material,
     currentAction,
@@ -64,6 +67,10 @@ const MaterialsRow = ({
             material={material}
             handlePricingChange={handlePricingChange}
             pricing={pricing}
+          />
+          <Star
+            isFeaturedMaterial={isFeaturedMaterial}
+            handleSwitchChangeMaterial={handleSwitchChangeMaterial}
           />
         </div>
       </div>

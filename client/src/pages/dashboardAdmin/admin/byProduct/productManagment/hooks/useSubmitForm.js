@@ -26,7 +26,7 @@ const useSubmitForm = ({
   reset,
   data,
 }) => {
-  const [loadingSubmit,setLoadingSubmit]=useState(false)
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const productsStore = useSelector((state) => state?.product?.data);
   const isProductActive = productsStore.find(
     (product) => product._id === currentProductId
@@ -61,7 +61,7 @@ const useSubmitForm = ({
   };
 
   const handleSubmit = async (currentAction, paths) => {
-    setLoadingSubmit(true)
+    setLoadingSubmit(true);
     const handleCreateProduct = async () => {
       try {
         await Get("auth/verify-token/admin");
@@ -70,13 +70,13 @@ const useSubmitForm = ({
         dispatch(addProduct({ formData, handleUnauthorized }));
         reset();
         handleCloseModal();
-        setLoadingSubmit(false)
+        setLoadingSubmit(false);
       } catch (error) {
         dispatch(resetProductMaterials());
         dispatch(modifyProductCheet(false));
-        setLoadingSubmit(false)
+        setLoadingSubmit(false);
       }
-      setLoadingSubmit(false)
+      setLoadingSubmit(false);
     };
 
     const handleEditProduct = async () => {
@@ -138,7 +138,7 @@ const useSubmitForm = ({
     }
   };
 
-  return { handleSubmit, handleSwitchChange, isProductActive ,loadingSubmit};
+  return { handleSubmit, handleSwitchChange, isProductActive, loadingSubmit };
 };
 
 export default useSubmitForm;

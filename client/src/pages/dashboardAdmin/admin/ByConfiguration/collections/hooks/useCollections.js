@@ -33,11 +33,12 @@ const useCollections = () => {
     []
   );
   const [productSolded, setProductSolded] = useState([]);
+  const collectionsStore = useSelector((state) => state?.collection?.data);
+  const collectionId = useSelector((state) => state?.collection?.collectionId);
+  const [isStar, setIsStart] = useState(false);
   const productsStore = useSelector((state) => state?.product?.data);
   const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
-  const collectionsStore = useSelector((state) => state?.collection?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
-  const collectionId = useSelector((state) => state?.collection?.collectionId);
   const nameModal = collectionsStore.find(
     (collection) => collection._id === collectionId
   )?.name;
@@ -48,7 +49,9 @@ const useCollections = () => {
   const collectionIdEdit = useSelector(
     (state) => state?.collection?.collectionIdEdit
   );
-
+  const handleSwitchChange = (isChecked) => {
+    setIsStart(isChecked);
+  };
   const handleAddCollection = async ({
     mainImageCreate,
     setMainImageCreate,
@@ -71,7 +74,11 @@ const useCollections = () => {
         const storageRef = ref(storage, path);
         await uploadBytes(storageRef, mainImageCreate);
         setMainImageCreate(null);
-        const formData = { name: newCollectionName, main_image: path };
+        const formData = {
+          name: newCollectionName,
+          main_image: path,
+          isStar,
+        };
         dispatch(addCollection({ formData, handleUnauthorized }));
         setNewCollectionName("");
         setLoading(false);
@@ -138,6 +145,7 @@ const useCollections = () => {
       const formData = {
         name: editedCollectionName,
         main_image,
+        isStar,
       };
 
       try {
@@ -194,6 +202,12 @@ const useCollections = () => {
   const handleEditClick = (collectionId, collectionName) => {
     setEditCollectionId(collectionId);
     setEditedCollectionName(collectionName);
+  };
+  const starStatus = (collectionId) => {
+    const isStar = collectionsStore.find(
+      (collection) => collection?._id === collectionId
+    )?.isStar;
+    return isStar;
   };
 
   const handleSaveClick = ({
@@ -291,6 +305,9 @@ const useCollections = () => {
     handleSaveClick,
     handleKeyPress,
     handleKeyPressEdit,
+    handleSwitchChange,
+    isStar,
+    starStatus,
   };
 };
 

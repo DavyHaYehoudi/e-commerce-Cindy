@@ -5,6 +5,7 @@ let options = [
   { name: "En promotion", label: "promotion" },
   { name: "Nouveau", label: "untilNew" },
   { name: "Suspendu", label: "pending" },
+  { name: "En vedette", label: "isStar" },
 ];
 const Status = ({ handleCheckboxChange, checkedItems }) => {
   const { role } = useStoreInfo({ productsId: "", material: "" });
@@ -12,6 +13,7 @@ const Status = ({ handleCheckboxChange, checkedItems }) => {
     options = [
       { name: "En promotion", label: "promotion" },
       { name: "Nouveau", label: "untilNew" },
+      { name: "En vedette", label: "isStar" },
     ];
   }
   return (
