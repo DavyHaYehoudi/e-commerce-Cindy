@@ -1,0 +1,22 @@
+#home .hero-bg-container {
+    height: 600px;
+    display: flex;
+}
+
+#home .hero-bkg .hero-bg-left {
+    background: url("../assets/home/home-bck-1.jpeg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#home .hero-bkg .hero-bg-right {
+    background: url("../assets/home/home-bck-2.jpeg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
