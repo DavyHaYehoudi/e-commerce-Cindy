@@ -1,22 +1,9 @@
-import React, { useEffect } from "react";
-import useAuthWrappers from "../../useAuthWrappers";
-import useFetchData from "../../useFetchData";
+import React from "react";
+
 import CartOffcanvas from "../MasterProduct/cartAccess";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Home = () => {
-  const { role: getRole, clientId: getClientId } = useAuthWrappers();
-  const role = getRole();
-  const clientId = getClientId();
-  useFetchData({ role, clientId });
-  useEffect(() => {
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    };
-    scrollToTop();
-  }, []);
   return (
     <main id="home">
       <div id="home-container">
@@ -40,14 +27,19 @@ const Home = () => {
             </div>
           </section>{" "}
           <section>
-            <h3> Les dernières collections </h3>
-            <div className="collections-gallery"></div>
+            <h3>
+              {" "}
+              Collections coup de coeur <AiOutlineHeart />{" "}
+            </h3>
+            <div className="collections-star-gallery"></div>
           </section>
-          <section className="bk-image-intermetted-1"></section>
+          <section className="bk-image-intermetted-1">
+            <div className="banner-media-home"></div>
+          </section>
           <section>
-            <div className="categories-container">
+            <div className="products-star-container">
               <h3>Découvrez</h3>
-              <div className="categories-gallery"></div>
+              <div className="products-star-gallery"></div>
               <div className="info-legal">
                 <p className="item">Retours sous 14 jours</p>
                 <p className="item">Paiements sécurisés</p>
@@ -55,7 +47,9 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section className="bk-image-intermetted-2"></section>
+          <section className="bk-image-intermetted-2">
+          <div className="banner-media-home"></div>
+          </section>
           <section className="partners">
             <div className="partners-container">
               <h3>Mes Partenaires</h3>

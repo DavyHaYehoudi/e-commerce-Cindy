@@ -1,5 +1,5 @@
 footer {
-    background: linear-gradient(to top, #C4B6C3 0%, #D6C9D4 50%, #E4DAE4 80%, #FFFFFF 100%);
+    background: linear-gradient(to top, #A897A9 0%, #B9A8B8 50%, #C7B7C6 80%, #D5D5D5 100%);
     color: var(--footer-text-color);
     padding-top: 60px;
 }

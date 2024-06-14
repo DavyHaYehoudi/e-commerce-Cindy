@@ -16,7 +16,7 @@ import AccountClient from "./pages/dashboardClient/AccountClient";
 import AdminDashboard from "./pages/dashboardAdmin";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 import ResetPassword from "./pages/authentication/ResetPassword";
-import useAuthWrappers from "./useAuthWrappers";
+import useAuthWrappers from "./config/useAuthWrappers";
 import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
 import Collection from "./pages/collection/Master";
@@ -24,6 +24,7 @@ import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
 import AllProductsPage from "./pages/allProducts";
 import Categories from "./pages/category";
+import InitConfigPage from "./config/InitConfigPage";
 
 function App() {
   const {
@@ -48,7 +49,14 @@ function App() {
                 </RequireAuthAdmin>
               }
             />
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <InitConfigPage>
+                  <Home />
+                </InitConfigPage>
+              }
+            />
             <Route
               path="/account"
               element={
@@ -71,17 +79,96 @@ function App() {
               path="/account/reset-password/:token"
               element={<ResetPassword />}
             />
-            <Route path="/cart" element={<ShoppingCart />} />
-            <Route path="/menu-tab-collections" element={<Collections />} />
-            <Route path="/menu-tab-categories" element={<Categories />} />
-            <Route path="/menu-tab-collections/:collectionId" element={<Collection />} />
-            <Route path="/master-product/:productId" element={<MasterProduct />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/products" element={<AllProductsPage />} />
-            <Route path="/deliveries&returns" element={<Deliveries />} />
-            <Route path="/terms-of-sales" element={<TermsOfSales />} />
-            <Route path="/legal-notice" element={<LegalNotice />} />
+            <Route
+              path="/cart"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <ShoppingCart />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-collections"
+              element={
+                <InitConfigPage>
+                  <Collections />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-categories"
+              element={
+                <InitConfigPage>
+                  <Categories />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-collections/:collectionId"
+              element={
+                <InitConfigPage>
+                  <Collection />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/master-product/:productId"
+              element={
+                <InitConfigPage>
+                  <MasterProduct />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <About />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <InitConfigPage>
+                  <Contact />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <InitConfigPage>
+                  <AllProductsPage />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/deliveries&returns"
+              element={
+                <InitConfigPage>
+                  <Deliveries />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/terms-of-sales"
+              element={
+                <InitConfigPage>
+                  <TermsOfSales />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/legal-notice"
+              element={
+                <InitConfigPage>
+                  <LegalNotice />
+                </InitConfigPage>
+              }
+            />
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />

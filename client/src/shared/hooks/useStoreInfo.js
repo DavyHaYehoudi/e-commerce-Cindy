@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import useAuthWrappers from "../../useAuthWrappers";
+import useAuthWrappers from "../../config/useAuthWrappers";
 
 const findIsLiked = (wishlistStore, productId, materialId) => {
   return wishlistStore.find((product) => {

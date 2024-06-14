@@ -1,16 +1,16 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchProduct } from "./features/admin/productSlice";
-import { fetchMaterials } from "./features/admin/materialSlice";
-import { fetchCollections } from "./features/admin/collectionSlice";
-import { fetchTags } from "./features/admin/tagSlice";
-import { fetchCategories } from "./features/admin/categorySlice";
-import { fetchCustomer } from "./features/accountClient/customerSlice";
+import { fetchProduct } from "../features/admin/productSlice";
+import { fetchMaterials } from "../features/admin/materialSlice";
+import { fetchCollections } from "../features/admin/collectionSlice";
+import { fetchTags } from "../features/admin/tagSlice";
+import { fetchCategories } from "../features/admin/categorySlice";
+import { fetchCustomer } from "../features/accountClient/customerSlice";
 import {
   addRole,
   addToken,
-} from "./features/authentication/authenticationSlice";
-import { initCart, initWishlist } from "./features/visitUser/visitUserSlice";
+} from "../features/authentication/authenticationSlice";
+import { initCart, initWishlist } from "../features/visitUser/visitUserSlice";
 
 const useFetchData = ({ role, clientId }) => {
   // console.log("clientId:", clientId);

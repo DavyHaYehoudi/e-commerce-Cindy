@@ -1,22 +1,68 @@
 #home .hero-bg-container {
     height: 600px;
     display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .banner-media-home {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-animation: kenburns-bottom-left 60s ease-out infinite alternate-reverse both;
+    animation: kenburns-bottom-left 60s ease-out infinite alternate-reverse both;
 }
 
 #home .hero-bkg .hero-bg-left {
-    background: url("../assets/home/home-bck-1.jpeg");
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("../assets/home/home-bck-1.jpeg");
 }
 
 #home .hero-bkg .hero-bg-right {
-    background: url("../assets/home/home-bck-2.jpeg");
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("../assets/home/home-bck-2.jpeg");
+}
+
+#home .title {
+    width: 30%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+#home .title h1 {
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+#home .title h2 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+#home .title button {
+    color: var(--text-whitesmoke);
+    background: var(--dark);
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 3px var(--dark);
+}
+
+#home .bk-image-intermetted-1 {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+#home .bk-image-intermetted-2 {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .bk-image-intermetted-1 .banner-media-home {
+    background-image: url("../assets/home/home-bck-3.jpeg");
+}
+#home .bk-image-intermetted-2 .banner-media-home {
+    background-image: url("../assets/home/home-bck-4.jpeg");
 }

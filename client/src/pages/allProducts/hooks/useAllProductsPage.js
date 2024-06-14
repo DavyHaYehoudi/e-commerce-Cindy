@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import useAuthWrappers from "../../../useAuthWrappers";
-import useFetchData from "../../../useFetchData";
 import {
   fetchProduct,
   showCartAccess,
@@ -15,12 +13,6 @@ const useAllProductsPage = () => {
   const updateMaterialCount = (count) => {
     setMaterialCount(count);
   };
-
-  const { role: getRole, clientId: getClientId } = useAuthWrappers();
-  const role = getRole();
-  const clientId = getClientId();
-
-  useFetchData({ role, clientId });
 
   const handleSearchChange = (e) => {
     const name = e.target.value;
