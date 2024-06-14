@@ -162,7 +162,7 @@ img {
 
 [disabled] {
     cursor: not-allowed;
-    color:var(--color-disabled);
+    color: var(--color-disabled);
     background: var(--background-disabled);
 }
 
@@ -176,7 +176,8 @@ img {
     background-color: var(--danger);
     color: whitesmoke;
 }
-.validate-btn{
+
+.validate-btn {
     color: whitesmoke;
 }
 
@@ -251,7 +252,8 @@ img {
     border: none;
     background-color: transparent;
 }
-.like:hover{
+
+.like:hover {
     -webkit-animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -396,49 +398,59 @@ img {
         transform-origin: left bottom;
     }
 }
+
 @-webkit-keyframes blink-1 {
+
     0%,
     50%,
     100% {
-      opacity: 1;
+        opacity: 1;
     }
+
     25%,
     75% {
-      opacity: 0;
+        opacity: 0;
     }
-  }
-  @keyframes blink-1 {
+}
+
+@keyframes blink-1 {
+
     0%,
     50%,
     100% {
-      opacity: 1;
+        opacity: 1;
     }
+
     25%,
     75% {
-      opacity: 0;
+        opacity: 0;
     }
-  }
-  @-webkit-keyframes flip-horizontal-bottom {
+}
+
+@-webkit-keyframes flip-horizontal-bottom {
     0% {
-      -webkit-transform: rotateX(0);
-              transform: rotateX(0);
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
     }
+
     100% {
-      -webkit-transform: rotateX(-180deg);
-              transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-180deg);
+        transform: rotateX(-180deg);
     }
-  }
-  @keyframes flip-horizontal-bottom {
+}
+
+@keyframes flip-horizontal-bottom {
     0% {
-      -webkit-transform: rotateX(0);
-              transform: rotateX(0);
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
     }
+
     100% {
-      -webkit-transform: rotateX(-180deg);
-              transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-180deg);
+        transform: rotateX(-180deg);
     }
-  }
-  
+}
+
 
 /* ********************* STYLE TEXYES ********************* */
 .text-effect-1 {

@@ -6,7 +6,7 @@
     overflow: hidden;
     background: linear-gradient(to bottom, #D9C2B6 0%, #EDE4DF 90%, #FFFFFF 100%);
     box-shadow: 0 0 2px whitesmoke;
-    padding: 0 10px;
+    padding: 5px 10px;
 }
 
 #freeShippingBanner a {

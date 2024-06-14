@@ -1,6 +1,7 @@
 #home h3 {
     font-size: 2rem;
     margin-bottom: 30px;
+    color: var(--dark);
 }
 
 #home section:not(:first-of-type) {
@@ -9,7 +10,7 @@
 
 #home .card {
     text-align: center;
-    background: rgb(255, 255, 255) linear-gradient(rgba(37, 37, 37, .04), rgba(37, 37, 37, .04));
+    background: var(--collection-card-bg);
     border-radius: 12px;
     border: 2px solid var(--color-gray);
 }
@@ -58,12 +59,14 @@
     margin: 20px 0;
 }
 
-#home .title button {
+#home .title p.btn {
+    width: 320px;
     color: var(--text-whitesmoke);
     background: var(--dark);
     padding: 12px;
     border-radius: 15px;
     box-shadow: 0 0 3px var(--dark);
+    margin: auto;
 }
 
 /* ***************************** BANNERS ***************************** */
@@ -91,6 +94,7 @@
 #home .collections {
     max-width: 1440px;
     margin: auto;
+    color: black;
 }
 
 #home .collections-star-gallery {
@@ -139,17 +143,20 @@
     gap: 20px;
     margin-top: 40px;
 }
-#home .products-star .info-legal a {
-  flex:1;
-}
-#home .products-star .info-legal a p {
-  padding: 20px;
 
+#home .products-star .info-legal a {
+    flex: 1;
+}
+
+#home .products-star .info-legal a p {
+    padding: 20px;
+    color: black;
 }
 
 /* ***************************** PARTNERS ***************************** */
 #home .partners {
     max-width: 1440px;
+    color: black;
 }
 
 #home .partners-gallery {

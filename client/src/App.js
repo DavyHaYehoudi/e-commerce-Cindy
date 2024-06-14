@@ -25,6 +25,7 @@ import MasterProduct from "./pages/MasterProduct";
 import AllProductsPage from "./pages/allProducts";
 import Categories from "./pages/category";
 import InitConfigPage from "./config/InitConfigPage";
+import Tradition from "./pages/tradition";
 
 function App() {
   const {
@@ -126,6 +127,15 @@ function App() {
                 <InitConfigPage>
                   {" "}
                   <About />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/tradition"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <Tradition />
                 </InitConfigPage>
               }
             />

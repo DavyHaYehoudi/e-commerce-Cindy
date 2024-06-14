@@ -12,8 +12,10 @@ const Footer = () => {
           <h3>MENU PRINCIPAL</h3>
           <ul>
             <li><Link to="menu-tab-collections">Les collections</Link> </li>
+            <li><Link to="menu-tab-categories">Les catégories</Link> </li>
             <li><Link to="products" >Les produits</Link></li>
-            <li><Link to="about">A propos</Link></li>
+            <li><Link to="tradition" >Tradition</Link></li>
+            <li><Link to="about">Moi</Link></li>
             <li><Link to="contact">Contact</Link></li>
           </ul>
         </div>

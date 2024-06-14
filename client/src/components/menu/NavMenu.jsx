@@ -2,9 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { MdCollections } from "react-icons/md";
 import { IoMdPricetag } from "react-icons/io";
-import { IoMail } from "react-icons/io5";
-import { FaBook } from "react-icons/fa";
 import { PiFoldersFill } from "react-icons/pi";
+import { FaRegAddressBook } from 'react-icons/fa';
+import { MdOutlineHistoryEdu } from "react-icons/md";
+import { MdMailOutline } from "react-icons/md";
 
 const NavMenu = () => {
   return (
@@ -47,13 +48,24 @@ const NavMenu = () => {
         </li>
         <li>
           <NavLink
+            to="tradition"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <span className="icon">
+              <MdOutlineHistoryEdu />
+            </span>
+            <span className="navlink-text">Tradition</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <span className="icon">
-              <FaBook />
+              <FaRegAddressBook />
             </span>
-            <span className="navlink-text">A propos</span>
+            <span className="navlink-text">Moi</span>
           </NavLink>
         </li>
         <li>
@@ -62,7 +74,7 @@ const NavMenu = () => {
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <span className="icon">
-              <IoMail />
+              <MdMailOutline />
             </span>
             <span className="navlink-text">Contact</span>
           </NavLink>

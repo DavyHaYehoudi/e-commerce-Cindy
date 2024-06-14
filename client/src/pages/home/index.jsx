@@ -57,7 +57,11 @@ const Home = () => {
                 ensemble un bijou, LE bijou qui vous ressemble, qui vous honore
                 et qui rend hommage à votre lignée familiale.
               </h2>
-              <button>Etes-vous curieuse ? Si oui, c'est par ici</button>
+                <p className="btn">
+              <Link to="tradition">
+                  Etes-vous curieuse ? Si oui, c'est par ici
+              </Link>
+                </p>
             </div>
           </section>{" "}
           <hr />
@@ -70,10 +74,7 @@ const Home = () => {
                 </h3>
                 <div className="collections-star-gallery">
                   {collectionsStar
-                    .filter(
-                      (collection) =>
-                        !collection.isArchived && collection?.isActive
-                    )
+                    .filter((collection) => !collection.isArchived)
                     .map((collection) => (
                       <CardCollection
                         key={collection?._id}
