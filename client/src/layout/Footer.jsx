@@ -11,9 +11,9 @@ const Footer = () => {
         <div className="col">
           <h3>MENU PRINCIPAL</h3>
           <ul>
-            <li><Link to="menu-tab-collections">Les collections</Link> </li>
-            <li><Link to="menu-tab-categories">Les catégories</Link> </li>
-            <li><Link to="products" >Les produits</Link></li>
+            <li><Link to="menu-tab-collections">Collections</Link> </li>
+            <li><Link to="menu-tab-categories">Catégories</Link> </li>
+            <li><Link to="products" >Produits</Link></li>
             <li><Link to="tradition" >Tradition</Link></li>
             <li><Link to="about">Moi</Link></li>
             <li><Link to="contact">Contact</Link></li>

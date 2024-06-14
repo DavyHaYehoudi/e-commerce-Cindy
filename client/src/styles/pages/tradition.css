@@ -103,6 +103,7 @@
     padding: 40px;
     border: none;
     background: inherit;
+    color: var(--dark);
 }
 
 #tradition section .particularity-content {

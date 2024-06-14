@@ -18,7 +18,8 @@ const InitConfigPage = ({ children }) => {
       });
     };
     scrollToTop();
-  }, []);
+  }, [children]);
+
 
   return <>{children}</>;
 };

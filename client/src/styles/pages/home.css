@@ -1,3 +1,6 @@
+#home .animated-container {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
+  }
 #home h3 {
     font-size: 2rem;
     margin-bottom: 30px;
@@ -151,6 +154,7 @@
 #home .products-star .info-legal a p {
     padding: 20px;
     color: black;
+    border: none;
 }
 
 /* ***************************** PARTNERS ***************************** */
