@@ -5,7 +5,7 @@
 #tradition section {
     margin: 40px auto;
     max-width: 1000px;
-    text-align: center;
+    text-align: justify;
     background: var(--collection-card-bg);
     border-radius: 12px;
     border: 2px solid var(--color-gray);
@@ -100,7 +100,7 @@
     margin: 0;
     max-width: initial;
     width: 100%;
-    padding: 40px;
+    padding: 40px 0;
     border: none;
     background: inherit;
     color: var(--dark);
@@ -110,7 +110,6 @@
     margin: 0 auto;
     max-width: 800px;
     width: 100%;
-    text-align: start;
 }
 
 #tradition section .particularity-content li {
@@ -129,4 +128,34 @@
     border-radius: 15px;
     box-shadow: 0 0 3px var(--dark);
     margin: 50px auto;
+    text-align: center;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    #tradition .block-content.right {
+        flex-direction: column-reverse;
+    }
+
+    #tradition .block-content.left {
+        flex-direction: column;
+    }
+
+    #tradition .block .block-content.right .illustration img,
+    #tradition .block .block-content.left .illustration img {
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        height: 300px;
+    }
+
+
+    #tradition section .title-content h1 {
+        margin: 0;
+    }
+
+    #tradition .particularity h3 {
+        text-align: center;
+    }
 }

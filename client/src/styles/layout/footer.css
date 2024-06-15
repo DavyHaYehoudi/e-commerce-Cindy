@@ -21,7 +21,7 @@ footer li :hover {
 
 .footer-contain-top,
 .footer-contain-bottom {
-    padding: 40px;
+    padding: 40px 10px 0 10px;
 }
 
 .footer-contain-top {
@@ -46,7 +46,7 @@ footer .social ul {
 }
 
 /* ******************** MEDIAS QUERIES ******************** */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     footer {
         padding: 10px;
     }

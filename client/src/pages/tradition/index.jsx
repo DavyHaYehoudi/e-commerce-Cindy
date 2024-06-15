@@ -8,7 +8,7 @@ const Tradition = () => {
     <div id="tradition">
       <div className="animated-container">
         <section className="hero block">
-          <div className="hero-content block-content">
+          <div className="hero-content block-content right">
             <div className="text">
               <p className="first">
                 <b>
@@ -55,7 +55,7 @@ const Tradition = () => {
           </div>
         </section>
         <section className="somethingOld block">
-          <div className="somethingOld-content block-content">
+          <div className="somethingOld-content block-content left">
             <div className="illustration left">
               <img src={imagePending} alt="" />
             </div>
@@ -74,7 +74,7 @@ const Tradition = () => {
           </div>
         </section>
         <section className="somethingNew block">
-          <div className="somethingNew-content block-content">
+          <div className="somethingNew-content block-content right">
             <div className="text">
               <h2>Something New</h2>
               <p>
@@ -90,7 +90,7 @@ const Tradition = () => {
           </div>
         </section>
         <section className="somethingBorrowed block">
-          <div className="somethingBorrowed block-content">
+          <div className="somethingBorrowed block-content left">
             <div className="illustration left">
               <img src={imagePending} alt="" />
             </div>
@@ -107,7 +107,7 @@ const Tradition = () => {
           </div>
         </section>
         <section className="somethingBlue block">
-          <div className="somethingBlue-content block-content">
+          <div className="somethingBlue-content block-content right">
             <div className="text">
               <h2>Something Blue</h2>
               <p>
@@ -128,7 +128,7 @@ const Tradition = () => {
         <hr />
         <section className="particularity">
           <div className="particularity-content">
-            <h3>La particularité de l'Atelier Noralya?</h3>
+            <h3>La particularité de l'Atelier Noralya ?</h3>
             <ol>
               <li>
                 J'intègre un ou plusieurs éléments de cette tradition à votre

@@ -21,8 +21,8 @@
     --manufacture: #967F71;
     --color-gray: #6A6A6A;
     --redOnBlack: #f49b80;
-    --color-icon-menu:#6A6A6A;
-    --color-disabled:whitesmoke;
+    --color-icon-menu: #6A6A6A;
+    --color-disabled: whitesmoke;
 
     /* BACKGROUND */
     --background: #FFFFFF;
@@ -40,8 +40,8 @@
     --master-product-information-bg: #f4f1f1;
     --background-golden: #D9C2B6;
     --background-taup: #6A6A6A;
-    --background-whitesmoke:rgb(252, 252, 252);
-    --background-disabled :#6c757d;
+    --background-whitesmoke: rgb(252, 252, 252);
+    --background-disabled: #6c757d;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -88,6 +88,14 @@
     --dark: #FFFFFF;
     --secondary: #FFFFFF;
     --danger: #ff754c;
-    --color-icon-menu:whitesmoke;
-    --background-whitesmoke:#282c34;
+    --color-icon-menu: whitesmoke;
+    --background-whitesmoke: #282c34;
+
+    /* ******************** MEDIAS QUERIES ******************** */
+    --breakpoint-xs: 576px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 992px;
+    --breakpoint-lg: 1200px;
+    --breakpoint-xl: 1400px;
+
 }
