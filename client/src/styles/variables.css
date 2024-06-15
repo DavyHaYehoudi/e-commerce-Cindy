@@ -66,6 +66,12 @@
     --warning: #ffc107;
     --info: #17a2b8;
 
+    /* HEADINGS */
+    --h1-mobile:1.8rem;
+    --h2-mobile:1.6rem;
+    --h3-mobile:1.4rem;
+    --h4-mobile:1.2rem;
+
 }
 
 [data-theme="dark"] {

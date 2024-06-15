@@ -1,6 +1,6 @@
 import React from "react";
 import CartOffcanvas from "../MasterProduct/cartAccess";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import partner1 from "../../styles/assets/partners/partner-1.jpeg";
 import partner2 from "../../styles/assets/partners/partner-2.jpeg";
 import partner3 from "../../styles/assets/partners/partner-3.jpeg";
@@ -10,6 +10,7 @@ import CardCollection from "./cards/CardCollection";
 import CardProduct from "../../shared/CardProduct";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
 
 const partners = [
   {
@@ -38,6 +39,39 @@ const Home = () => {
   const productsStar = productsStore.filter((product) =>
     product?.materials.some((mat) => mat?.isStar)
   );
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <main id="home">
       <div id="home-container">
@@ -57,61 +91,60 @@ const Home = () => {
                 ensemble un bijou, LE bijou qui vous ressemble, qui vous honore
                 et qui rend hommage à votre lignée familiale.
               </h2>
-                <p className="btn">
-              <Link to="tradition">
+              <p className="btn">
+                <Link to="tradition">
                   Etes-vous curieuse ? Si oui, c'est par ici
-              </Link>
-                </p>
+                </Link>
+              </p>
             </div>
           </section>{" "}
           <hr />
           <section className="collections">
-            {collectionsStar && collectionsStar.length > 0 && (
-              <>
-                <h3>
-                  {" "}
-                  Collections coup de coeur <AiOutlineHeart />{" "}
-                </h3>
-                <div className="collections-star-gallery">
-                  {collectionsStar
-                    .filter((collection) => !collection.isArchived)
+            <h3>
+              {" "}
+              <span>Collections coup de coeur</span>
+              <AiFillHeart color="var(--favorite-heart-bg)" />
+            </h3>
+            <div className="collections-star-gallery">
+              <Slider {...settings}>
+                {collectionsStar &&
+                  collectionsStar.length > 0 &&
+                  collectionsStar
+                    .filter((collection) => !collection?.isArchived)
                     .map((collection) => (
                       <CardCollection
                         key={collection?._id}
                         collection={collection}
                       />
                     ))}
-                </div>
-              </>
-            )}
+              </Slider>
+            </div>
           </section>
           <section className="bk-image-intermetted-1">
             <div className="banner-media-home"></div>
           </section>
           <section>
             <div className="products-star">
-              {productsStar && productsStar.length > 0 && (
-                <>
-                  <h3>Découvrez</h3>
-                  <div className="products-star-gallery">
-                    {productsStar
-                      .filter(
-                        (product) => !product?.isArchived && product?.isActive
-                      )
-                      .map((product) =>
-                        product?.materials
-                          .filter((mat) => !mat?.isArchived && mat?.isActive)
-                          .map((mat) => (
-                            <CardProduct
-                              key={product?._id}
-                              product={product}
-                              material={mat}
-                            />
-                          ))
-                      )}
-                  </div>
-                </>
-              )}
+              <h3>Découvrez</h3>
+              <Slider {...settings}>
+                {productsStar &&
+                  productsStar.length > 0 &&
+                  productsStar
+                    .filter(
+                      (product) => !product?.isArchived && product?.isActive
+                    )
+                    .map((product) =>
+                      product?.materials
+                        .filter((mat) => !mat?.isArchived && mat?.isActive)
+                        .map((mat) => (
+                          <CardProduct
+                            key={product?._id}
+                            product={product}
+                            material={mat}
+                          />
+                        ))
+                    )}
+              </Slider>
               <div className="info-legal">
                 <Link to="deliveries&returns">
                   {" "}
