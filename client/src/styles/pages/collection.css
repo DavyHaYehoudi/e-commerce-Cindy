@@ -27,6 +27,7 @@
 .collections-ui h1 {
     text-align: center;
 }
+
 .collection-card-ui h2 {
     white-space: nowrap;
     overflow: hidden;
@@ -54,6 +55,7 @@
     -webkit-animation: kenburns-bottom-left 2s ease-out reverse both;
     animation: kenburns-bottom-left 2s ease-out reverse both;
 }
+
 .collection-master {
     position: relative;
     color: whitesmoke;
@@ -121,4 +123,34 @@
 
 .collection-master .collection-master-row .category-title .productsNumber {
     margin-left: 10px;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    .collections-ui {
+        padding: 30px 5px;
+    }
+
+    .collections-wrapper-ui {
+        margin: 0;
+    }
+
+    .collection-card-ui h2 {
+        white-space: inherit;
+    }
+
+    .collection-card-ui {
+        width: inherit;
+        max-width: 600px;
+        height: 350px;
+    }
+
+    .collection-master .collection-master-row .category-title {
+        display: inherit;
+        text-align: start;
+    }
+
+    .collection-master .collection-master-row-wrapper {
+        margin: 15px 0;
+    }
 }
