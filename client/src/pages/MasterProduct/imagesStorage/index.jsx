@@ -25,7 +25,9 @@ const ImageCarousel = ({
         ref={mainImageRef}
       >
         <div
-          className={zoomLevel > 1 ? "image-wrapper-zooming" : "image-wrapper"}
+          className={
+            zoomLevel > 1 ? "image-wrapper zoom-enabled" : "image-wrapper"
+          }
           style={{ transform: `scale(${zoomLevel})` }}
         >
           <img
@@ -37,7 +39,7 @@ const ImageCarousel = ({
             <button
               onClick={handleCloseClick}
               aria-label="Dézoomer l'image'"
-              className="mainImage-zooming-close"
+              className="mainImage-zooming-close zoom-enabled"
             >
               <TfiClose aria-hidden="true" />
             </button>
