@@ -180,7 +180,7 @@ header {
 /* ******************** MEDIAS QUERIES ******************** */
 @media (max-width: 576px) {
     #headerWrapper {
-        margin: 5px !important;
+        margin: 10px !important;
     }
 
     #headerWrapper #flex-item {
@@ -199,10 +199,6 @@ header {
         font-size: 50px;
     }
 
-    #headerWrapper #flex-item .flex-item-left {
-        margin-top: -30px;
-    }
-
     #headerWrapper #flex-item .flex-item-left .hamburger {
         font-size: 2rem;
         color: var(--color-icon-menu);
@@ -216,7 +212,8 @@ header {
         display: none;
     }
 
-    #navIcons {
+    #navIcons #iconConnexion,
+    #navIcons #iconAccount {
         display: none;
     }
 }

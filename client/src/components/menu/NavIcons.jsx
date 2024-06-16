@@ -18,6 +18,7 @@ const NavIcons = ({ onClickHeart, toggleModalMenuSmart }) => {
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
       <ul>
         <li
+        id="iconConnexion"
           className="info-tooltip"
           aria-label={!token ? "Se connecter" : "Se déconnecter"}
           onClick={toggleModalMenuSmart}
@@ -42,7 +43,7 @@ const NavIcons = ({ onClickHeart, toggleModalMenuSmart }) => {
           </NavLink>
         </li>
         {role && (
-          <li className="info-tooltip" aria-label="Mon compte">
+          <li id="iconAccount" className="info-tooltip" aria-label="Mon compte">
             <NavLink
               to={role === "admin" ? "admin/dashboard" : "account"}
               aria-label="Mon compte"

@@ -386,7 +386,7 @@
 
     .main-image-container img {
         width: 100%;
-        height: 600px;
+        height: 500px;
     }
 
     .image-wrapper.zoom-enabled {
@@ -445,7 +445,8 @@
     }
 
     #master-product-informations {
-        margin: 0;
+        margin: 0 auto;
+        border-radius: 15px;
     }
 
     #master-product-informations .container {
@@ -456,6 +457,10 @@
 @media (max-width: 768px) {
     #master-product {
         margin: 50px auto;
+    }
+
+    .main-image-container img {
+        height: 450px;
     }
 
     #master-product-informations .body {
@@ -483,9 +488,14 @@
         margin: 10px auto;
     }
 
+    .main-image-container img {
+        height: 400px;
+    }
+
     #master-product-informations .container {
         padding: 5px;
-        margin: 20px 5px;
+        margin: 20px 0;
+        border: none;
     }
 
     #master-product-informations {

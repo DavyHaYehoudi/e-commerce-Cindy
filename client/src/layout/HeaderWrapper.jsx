@@ -32,7 +32,7 @@ const HeaderWrapper = ({ toggleModalMenuSmart }) => {
             {" "}
             <GiHamburgerMenu />
           </span>
-          <span className="darkmode">
+          <span className="darkmode" onClick={toggleModalMenuSmart}>
             {" "}
             <DarkMode />
           </span>

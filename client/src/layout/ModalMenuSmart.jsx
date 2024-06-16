@@ -7,11 +7,15 @@ import NavIcons from "../components/menu/NavIcons";
 const ModalMenuSmart = ({ toggleModalMenuSmart, isModalMenuSmartOpen }) => {
   return (
     <div className={`modalMenuSmart ${isModalMenuSmartOpen ? "show" : ""}`}>
-      <NavMenu toggleModalMenuSmart={toggleModalMenuSmart} />
-      <div className="darkmode">
-        <DarkMode />
+      <div className="top-block">
+        <NavMenu toggleModalMenuSmart={toggleModalMenuSmart} />
       </div>
-      <NavIcons toggleModalMenuSmart={toggleModalMenuSmart} />
+      <div className="bottom-block">
+        <div className="darkmode">
+          <DarkMode />
+        </div>
+        <NavIcons toggleModalMenuSmart={toggleModalMenuSmart} />
+      </div>
       <div className="close-btn" onClick={toggleModalMenuSmart}>
         <TfiClose />
       </div>

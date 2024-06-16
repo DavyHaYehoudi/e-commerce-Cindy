@@ -34,12 +34,11 @@
     padding: 0;
 }
 
-.modalMenuSmart .darkmode {
-    margin-bottom: 60px;
-}
-
 .modalMenuSmart #navIcons {
-    display: inherit;
+    display: flex;
+}
+.modalMenuSmart #navIcons>* {
+flex:1;
 }
 
 .modalMenuSmart #navIcons a {
@@ -56,4 +55,16 @@
 .modalMenuSmart #navIcons ul #iconCart,
 .modalMenuSmart #navIcons ul #iconHeart {
     display: none;
+}
+.modalMenuSmart #navIcons #iconConnexion,
+.modalMenuSmart #navIcons #iconAccount {
+    display: flex;
+}
+.modalMenuSmart #navIcons #iconConnexion{
+    align-self: flex-end;
+}
+.modalMenuSmart .bottom-block{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
