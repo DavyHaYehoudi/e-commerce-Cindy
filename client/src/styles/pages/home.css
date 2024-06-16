@@ -192,12 +192,7 @@
 /* ******************** MEDIAS QUERIES ******************** */
 @media (max-width: 576px) {
     #home .hero-bg-container {
-        height: 500px;
-        flex-direction: column;
-    }
-
-    #home .banner-media-home {
-        animation: inherit;
+        height: 300px;
     }
 
     #home .hero-bkg .title h1 {

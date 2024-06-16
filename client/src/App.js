@@ -19,7 +19,8 @@ import ResetPassword from "./pages/authentication/ResetPassword";
 import useAuthWrappers from "./config/useAuthWrappers";
 import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
-import Collection from "./pages/collection/Master";
+import MasterCollection from "./pages/collection/Master";
+import MasterCategory from "./pages/category/Master"
 import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
 import AllProductsPage from "./pages/allProducts";
@@ -109,7 +110,15 @@ function App() {
               path="/menu-tab-collections/:collectionId"
               element={
                 <InitConfigPage>
-                  <Collection />
+                  <MasterCollection />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-categories/:categoryId"
+              element={
+                <InitConfigPage>
+                  <MasterCategory />
                 </InitConfigPage>
               }
             />
