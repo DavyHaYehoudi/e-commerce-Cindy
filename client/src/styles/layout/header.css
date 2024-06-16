@@ -95,6 +95,10 @@ header {
     color: var(--text-golden);
 }
 
+#navIcons .navlink-text {
+    display: none;
+}
+
 #iconCart {
     position: relative;
 }
@@ -179,10 +183,14 @@ header {
         margin: 5px !important;
     }
 
-    #headerWrapper #flex-item  {
+    #headerWrapper #flex-item {
         box-shadow: 0 -1px var(--border-color) inset;
-
     }
+
+    #headerWrapper #flex-item .darkmode {
+        display: none;
+    }
+
     #headerWrapper #flex-item .flex-item-center {
         order: -1;
         width: 100%;
@@ -190,17 +198,25 @@ header {
         margin: 20px;
         font-size: 50px;
     }
+
     #headerWrapper #flex-item .flex-item-left {
-       margin-top: -30px;
+        margin-top: -30px;
     }
 
-    #navMenu .navlink-text {
-        display: none;
+    #headerWrapper #flex-item .flex-item-left .hamburger {
+        font-size: 2rem;
+        color: var(--color-icon-menu);
+    }
+
+    #navIcons .navlink-text {
+        display: block;
     }
 
     #navMenu ul {
-        justify-content: space-between;
-        padding: 0;
+        display: none;
     }
 
+    #navIcons {
+        display: none;
+    }
 }

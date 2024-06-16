@@ -1,6 +1,11 @@
 import React from "react";
 import CartOffcanvas from "../MasterProduct/cartAccess";
-import imagePending from "../../styles/assets/home/home-bck-1.jpeg";
+import tradition1 from "../../styles/assets/tradition/tradition-1.jpeg";
+import tradition2 from "../../styles/assets/tradition/tradition-2.jpeg";
+import tradition3 from "../../styles/assets/tradition/tradition-3.jpeg";
+import tradition4 from "../../styles/assets/tradition/tradition-4.jpeg";
+import tradition5 from "../../styles/assets/tradition/tradition-5.jpeg";
+
 import { Link } from "react-router-dom";
 
 const Tradition = () => {
@@ -28,7 +33,7 @@ const Tradition = () => {
               </p>
             </div>
             <div className="illustration right">
-              <img src={imagePending} alt="" />
+              <img src={tradition1} alt="" />
             </div>
           </div>
         </section>
@@ -57,7 +62,7 @@ const Tradition = () => {
         <section className="somethingOld block">
           <div className="somethingOld-content block-content left">
             <div className="illustration left">
-              <img src={imagePending} alt="" />
+              <img src={tradition2} alt="" />
             </div>
             <div className="text">
               <h2>Something Old</h2>
@@ -85,14 +90,14 @@ const Tradition = () => {
               </p>
             </div>
             <div className="illustration right">
-              <img src={imagePending} alt="" />
+              <img src={tradition3} alt="" />
             </div>
           </div>
         </section>
         <section className="somethingBorrowed block">
           <div className="somethingBorrowed block-content left">
             <div className="illustration left">
-              <img src={imagePending} alt="" />
+              <img src={tradition4} alt="" />
             </div>
             <div className="text">
               <h2>Something Borrowed</h2>
@@ -121,7 +126,7 @@ const Tradition = () => {
               </p>
             </div>
             <div className="illustration right">
-              <img src={imagePending} alt="" />
+              <img src={tradition5} alt="" />
             </div>
           </div>
         </section>

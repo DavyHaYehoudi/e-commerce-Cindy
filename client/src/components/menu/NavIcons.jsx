@@ -7,10 +7,12 @@ import { NavLink } from "react-router-dom";
 import useNavIcons from "./hooks/useNavIcons";
 import useStoreInfo from "../../shared/hooks/useStoreInfo";
 
-
-const NavIcons = ({ onClickHeart }) => {
+const NavIcons = ({ onClickHeart, toggleModalMenuSmart }) => {
   const { token, role, imageUrl, logout } = useNavIcons();
-  const {numberArticleInCart,numberArticleInWihslist}=useStoreInfo({productsId:"",material:""})
+  const { numberArticleInCart, numberArticleInWihslist } = useStoreInfo({
+    productsId: "",
+    material: "",
+  });
 
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
@@ -18,6 +20,7 @@ const NavIcons = ({ onClickHeart }) => {
         <li
           className="info-tooltip"
           aria-label={!token ? "Se connecter" : "Se déconnecter"}
+          onClick={toggleModalMenuSmart}
         >
           <NavLink
             to="account/login"
@@ -26,9 +29,15 @@ const NavIcons = ({ onClickHeart }) => {
             aria-label={!token ? "Se connecter à mon compte" : "Se déconnecter"}
           >
             {!token ? (
-              <AiOutlineUser className="navlink-icon" aria-hidden="true" />
+              <>
+                <AiOutlineUser className="navlink-icon" aria-hidden="true" />
+                <span className="navlink-text"> Connection</span>
+              </>
             ) : (
-              <IoIosLogOut className="navlink-icon" aria-hidden="true" />
+              <>
+                <IoIosLogOut className="navlink-icon" aria-hidden="true" />
+                <span className="navlink-text"> Déconnection</span>
+              </>
             )}
           </NavLink>
         </li>
@@ -37,12 +46,14 @@ const NavIcons = ({ onClickHeart }) => {
             <NavLink
               to={role === "admin" ? "admin/dashboard" : "account"}
               aria-label="Mon compte"
+              onClick={toggleModalMenuSmart}
             >
               <img src={imageUrl} alt="profil" />
+              <span className="navlink-text"> Compte</span>
             </NavLink>
           </li>
         )}
-        <li className="info-tooltip" aria-label="Mes favoris">
+        <li id="iconHeart" className="info-tooltip" aria-label="Mes favoris">
           <button onClick={onClickHeart} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>

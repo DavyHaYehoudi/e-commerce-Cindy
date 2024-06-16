@@ -6,8 +6,9 @@ import logo from "../assets/logo.png";
 import WishlistModal from "../components/wishlist/WishlistModal";
 import DarkMode from "../components/darkMode/DarkMode";
 import useStoreInfo from "../shared/hooks/useStoreInfo";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const HeaderWrapper = () => {
+const HeaderWrapper = ({ toggleModalMenuSmart }) => {
   const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
   const { wishlist } = useStoreInfo({ productsId: "", material: "" });
   const handleOpenWishlistModal = () => {
@@ -22,10 +23,19 @@ const HeaderWrapper = () => {
 
   return (
     <div id="headerWrapper" onClick={handleCloseWishlistModal}>
-      <div id="flex-item" >
+      <div id="flex-item">
         <div className="flex-item-left">
-
-        <DarkMode />
+          <span
+            className="smart-screen hamburger"
+            onClick={toggleModalMenuSmart}
+          >
+            {" "}
+            <GiHamburgerMenu />
+          </span>
+          <span className="darkmode">
+            {" "}
+            <DarkMode />
+          </span>
         </div>
         <h1 className="flex-item-center">
           <Link to="/">

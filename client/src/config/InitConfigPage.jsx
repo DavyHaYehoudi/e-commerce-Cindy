@@ -21,7 +21,9 @@ const InitConfigPage = ({ children }) => {
   }, [children]);
 
 
-  return <>{children}</>;
+  return <>
+  {children}
+  </>;
 };
 
 export default InitConfigPage;

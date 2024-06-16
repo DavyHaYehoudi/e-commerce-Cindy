@@ -102,7 +102,7 @@ const Home = () => {
           <section className="collections">
             <h3>
               {" "}
-              <span>Collections coup de coeur</span>
+              Collections coup de coeur{" "}
               <AiFillHeart color="var(--favorite-heart-bg)" />
             </h3>
             <div className="collections-star-gallery">

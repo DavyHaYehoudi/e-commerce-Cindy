@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import { MdCollections } from "react-icons/md";
 import { IoMdPricetag } from "react-icons/io";
 import { PiFoldersFill } from "react-icons/pi";
-import { FaRegAddressBook } from 'react-icons/fa';
+import { FaRegAddressBook } from "react-icons/fa";
 import { MdOutlineHistoryEdu } from "react-icons/md";
 import { MdMailOutline } from "react-icons/md";
 
-const NavMenu = () => {
+const NavMenu = ({ toggleModalMenuSmart }) => {
   return (
     <nav id="navMenu" role="navigation">
       <ul>
@@ -15,6 +15,7 @@ const NavMenu = () => {
           <NavLink
             to="menu-tab-collections"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               {" "}
@@ -27,6 +28,7 @@ const NavMenu = () => {
           <NavLink
             to="menu-tab-categories"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               {" "}
@@ -39,6 +41,7 @@ const NavMenu = () => {
           <NavLink
             to="products"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               <IoMdPricetag />
@@ -50,6 +53,7 @@ const NavMenu = () => {
           <NavLink
             to="tradition"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               <MdOutlineHistoryEdu />
@@ -61,6 +65,7 @@ const NavMenu = () => {
           <NavLink
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               <FaRegAddressBook />
@@ -72,6 +77,7 @@ const NavMenu = () => {
           <NavLink
             to="contact"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
             <span className="icon">
               <MdMailOutline />

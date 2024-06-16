@@ -453,7 +453,13 @@ img {
 }
 
 /* ******************** MEDIAS QUERIES ******************** */
+.smart-screen{
+    display: none;
+}
 @media (max-width: 576px) {
+    .smart-screen{
+        display: block;
+    }
     .slick-initialized {
         margin: 0;
     }
