@@ -1,7 +1,7 @@
 import Product from "../../../models/product/product.model.js";
 
 const process = async (queries) => {
-  console.log("queries:", queries);
+  // console.log("queries:", queries);
   const {
     name = null,
     collection = null,

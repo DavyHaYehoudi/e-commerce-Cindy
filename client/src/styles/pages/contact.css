@@ -100,3 +100,26 @@ textarea:focus {
     display: none;
 
 }
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    #contact-form-box {
+        margin: auto;
+        width: inherit;
+        max-width: 40rem;
+        height: 30rem;
+        padding: 1.6rem 1rem;
+        text-align: center;
+    }
+    
+    #contact-form-box input,
+    textarea {
+        width: inherit;
+        width: 90%;
+        max-width: 35rem;
+        height: 3.125rem;
+        border: 1px solid var(--border-color);
+        margin: 0.5rem;
+        padding: 15px;
+        border-radius: 5px;
+    }
+}

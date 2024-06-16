@@ -9,7 +9,6 @@ const Master = () => {
     categoryName,
     productsLinkedToCategory,
     productsNumber,
-    categoryId,
     imageCategory,
   } = useMasterData();
 

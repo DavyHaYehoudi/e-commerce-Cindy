@@ -31,7 +31,6 @@ const useMasterData = () => {
     categoryName,
     productsLinkedToCategory,
     productsNumber: totalMaterialsCount,
-    categoryId,
     imageCategory,
   };
 };
