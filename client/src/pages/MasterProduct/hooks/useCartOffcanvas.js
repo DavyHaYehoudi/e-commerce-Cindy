@@ -2,11 +2,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
-import { showCartAccess } from "../../../features/admin/productSlice";
+import {
+  showCartAccess,
+  showWishlistAccess,
+} from "../../../features/admin/productSlice";
 import { Patch } from "../../../services/httpMethods";
 import { clearCart } from "../../../features/accountClient/customerSlice";
 import { clearCartVisitor } from "../../../features/visitUser/visitUserSlice";
-
 
 const useCartOffcanvas = () => {
   const { clientId, cartStore, cartTotalAmount } = useStoreInfo({
@@ -18,8 +20,11 @@ const useCartOffcanvas = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
   const show = useSelector((state) => state?.product?.cartAccess);
 
-  const handleClose = () => {
+  const handleCloseCartAccess = () => {
     dispatch(showCartAccess(false));
+  };
+  const handleCloseWishlistModal = () => {
+    dispatch(showWishlistAccess(false));
   };
 
   const handleClearCart = async () => {
@@ -27,7 +32,12 @@ const useCartOffcanvas = () => {
       let cart = [];
       const formatData = { cart };
       try {
-        await Patch(`clients/${clientId}`, formatData, null, handleUnauthorized);
+        await Patch(
+          `clients/${clientId}`,
+          formatData,
+          null,
+          handleUnauthorized
+        );
         dispatch(clearCart());
       } catch (error) {
         console.log("Erreur dans handleClearCart CartOffcanvas :", error);
@@ -43,8 +53,9 @@ const useCartOffcanvas = () => {
     cartStore,
     cartTotalAmount,
     isCartContent,
-    handleClose,
+    handleCloseCartAccess,
     handleClearCart,
+    handleCloseWishlistModal,
   };
 };
 

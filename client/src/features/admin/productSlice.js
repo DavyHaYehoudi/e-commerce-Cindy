@@ -43,13 +43,22 @@ const productSlice = createSlice({
     mainImagesToRemoveStorage: [],
     isProductCheetModified: false,
     cartAccess: false,
+    wishlistAccess: false,
     status: "idle",
     error: null,
   },
   reducers: {
     updateProductMaterials: (state, action) => {
-      const { _id, stock, newDate, pricing, promo, main_image, isActive,isStar } =
-        action.payload || {};
+      const {
+        _id,
+        stock,
+        newDate,
+        pricing,
+        promo,
+        main_image,
+        isActive,
+        isStar,
+      } = action.payload || {};
 
       const existingMaterialIndex = state.materials.findIndex(
         (material) => material._id === _id
@@ -97,6 +106,9 @@ const productSlice = createSlice({
     },
     showCartAccess: (state, action) => {
       state.cartAccess = action.payload;
+    },
+    showWishlistAccess: (state, action) => {
+      state.wishlistAccess = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -174,6 +186,7 @@ export const {
   resetStore,
   modifyProductCheet,
   changeProductActiveStatus,
-  showCartAccess
+  showCartAccess,
+  showWishlistAccess,
 } = productSlice.actions;
 export default productSlice.reducer;

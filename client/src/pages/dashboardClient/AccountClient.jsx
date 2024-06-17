@@ -28,7 +28,7 @@ const AccountClient = () => {
     <div className="user-profile-container" data-testid="account-dashboard">
       <div className="animated-container">
         <div className="user-profile-menu">
-          <div>
+          <div className="user-profile-menu-wrapper">
             <button
               className={`account-btn ${
                 selectedTab === "Compte" ? "selected" : ""

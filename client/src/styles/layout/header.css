@@ -134,6 +134,7 @@ header {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
     margin-top: 30px;
     padding: 30px;
 }
@@ -181,6 +182,9 @@ header {
 @media (max-width: 576px) {
     #headerWrapper {
         margin: 10px !important;
+    }
+    #headerWrapper h1 img{
+        width: 150px;
     }
 
     #headerWrapper #flex-item {

@@ -17,10 +17,6 @@ const useQuantitySelectProduct = (productId, materialId) => {
   const handleUnauthorized = useUnauthorizedRedirect();
 
   const handleChangeValue = async (newQuantity) => {
-    console.log('newQuantity:', newQuantity)
-    // if (newQuantity < 1) {
-    //   return;
-    // }
     setLoading(true);
     dispatch(showCartAccess(true));
     const cartUpdated = cartStore.map((product) => {
@@ -28,7 +24,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         product?.productsId === productId &&
         product?.material === materialId
       ) {
-        return { ...product, quantity: newQuantity||1 };
+        return { ...product, quantity: newQuantity || 1 };
       } else {
         return product;
       }
@@ -54,7 +50,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         changeQuantityProductToCart({
           productId,
           materialId,
-          quantity: newQuantity||1,
+          quantity: newQuantity || 1,
         })
       );
     } else {

@@ -6,8 +6,10 @@ import { formatPrice } from "../../helpers/utils/prices";
 import { getMaterialProperty } from "../../selectors/material";
 import useWishlistProductContent from "./hooks/useWishlistProductContent";
 import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
+import { useDispatch } from "react-redux";
+import { showWishlistAccess } from "../../features/admin/productSlice";
 
-const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
+const WishlistProductContent = ({ product }) => {
   const { productsId, material } = product || {};
   const {
     productStore,
@@ -25,10 +27,12 @@ const WishlistProductContent = ({ product, handleCloseWishlistModal }) => {
     tagStore,
     material
   );
-
+  const dispatch = useDispatch();
   const materialProperty = getMaterialProperty(material, materialStore);
   const { imageUrl } = useFirebaseImage(productProperties?.main_image);
-
+  const handleCloseWishlistModal = () => {
+    dispatch(showWishlistAccess(false));
+  };
   return (
     <div className="modal-product-content">
       <div

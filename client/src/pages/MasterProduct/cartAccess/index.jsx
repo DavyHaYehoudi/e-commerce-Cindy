@@ -12,8 +12,9 @@ const CartOffcanvas = () => {
     cartStore,
     cartTotalAmount,
     isCartContent,
-    handleClose,
+    handleCloseCartAccess,
     handleClearCart,
+    handleCloseWishlistModal,
   } = useCartOffcanvas();
 
   return (
@@ -29,7 +30,7 @@ const CartOffcanvas = () => {
             <BsFillTrash2Fill className="cart-clear-trash" />
           </div>
         )}
-        <button onClick={handleClose} aria-label="Fermer la fenêtre">
+        <button onClick={handleCloseCartAccess} aria-label="Fermer la fenêtre">
           <TfiClose aria-hidden="true" />
         </button>
       </div>
@@ -47,9 +48,11 @@ const CartOffcanvas = () => {
           <p>
             TOTAL DES ARTICLES : <b>{formatPrice(cartTotalAmount)}</b>
           </p>
-          <div>
+          <div onClick={handleCloseWishlistModal}>
             <Link to="/cart">
-              <button className="btn"onClick={handleClose} >REGLEMENT</button>
+              <button className="btn" onClick={handleCloseCartAccess}>
+                REGLEMENT
+              </button>
             </Link>
           </div>
         </div>

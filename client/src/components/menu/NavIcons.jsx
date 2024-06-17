@@ -6,14 +6,19 @@ import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import useNavIcons from "./hooks/useNavIcons";
 import useStoreInfo from "../../shared/hooks/useStoreInfo";
+import { useDispatch } from "react-redux";
+import { showWishlistAccess } from "../../features/admin/productSlice";
 
-const NavIcons = ({ onClickHeart, toggleModalMenuSmart }) => {
+const NavIcons = ({ toggleModalMenuSmart }) => {
   const { token, role, imageUrl, logout } = useNavIcons();
   const { numberArticleInCart, numberArticleInWihslist } = useStoreInfo({
     productsId: "",
     material: "",
   });
-
+  const dispatch=useDispatch()
+  const handleOpenWishlistModal=()=>{
+    dispatch(showWishlistAccess(true))
+    }
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
       <ul>
@@ -55,7 +60,7 @@ const NavIcons = ({ onClickHeart, toggleModalMenuSmart }) => {
           </li>
         )}
         <li id="iconHeart" className="info-tooltip" aria-label="Mes favoris">
-          <button onClick={onClickHeart} aria-label="Mes favoris">
+          <button onClick={handleOpenWishlistModal} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>
           <span id="numberWishlist">{numberArticleInWihslist} </span>

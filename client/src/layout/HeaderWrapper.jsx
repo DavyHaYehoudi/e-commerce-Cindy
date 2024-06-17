@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavIcons from "../components/menu/NavIcons";
 import NavMenu from "../components/menu/NavMenu";
 import { Link } from "react-router-dom";
@@ -7,22 +7,19 @@ import WishlistModal from "../components/wishlist/WishlistModal";
 import DarkMode from "../components/darkMode/DarkMode";
 import useStoreInfo from "../shared/hooks/useStoreInfo";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { showWishlistAccess } from "../features/admin/productSlice";
 
 const HeaderWrapper = ({ toggleModalMenuSmart }) => {
-  const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
+  const wishlistAccess = useSelector((state) => state?.product?.wishlistAccess);
   const { wishlist } = useStoreInfo({ productsId: "", material: "" });
-  const handleOpenWishlistModal = () => {
-    setWishlistModalOpen(true);
-  };
-
+  const dispatch = useDispatch();
   const handleCloseWishlistModal = () => {
-    if (isWishlistModalOpen) {
-      setWishlistModalOpen(false);
-    }
+    dispatch(showWishlistAccess(false));
   };
 
   return (
-    <div id="headerWrapper" onClick={handleCloseWishlistModal}>
+    <div id="headerWrapper">
       <div id="flex-item">
         <div className="flex-item-left">
           <span
@@ -43,7 +40,7 @@ const HeaderWrapper = ({ toggleModalMenuSmart }) => {
           </Link>
         </h1>
         <div className="flex-item-navIcons flex-item-right">
-          <NavIcons onClickHeart={handleOpenWishlistModal} />
+          <NavIcons />
         </div>
       </div>
       <div>
@@ -51,10 +48,9 @@ const HeaderWrapper = ({ toggleModalMenuSmart }) => {
       </div>
 
       <WishlistModal
-        isOpen={isWishlistModalOpen}
+        isOpen={wishlistAccess}
         onClose={handleCloseWishlistModal}
         wishlist={wishlist}
-        handleCloseWishlistModal={handleCloseWishlistModal}
       />
     </div>
   );
