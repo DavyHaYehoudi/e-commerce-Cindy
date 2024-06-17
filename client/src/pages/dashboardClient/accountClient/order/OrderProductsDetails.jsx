@@ -1,53 +1,36 @@
 import React from "react";
-import { getProductProperties } from "../../../../selectors/product";
-import { useSelector } from "react-redux";
-import { getMaterialProperty } from "../../../../selectors/material";
 import { formatPrice, sumPriceArticle } from "../../../../helpers/utils/prices";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../../helpers/utils/formatDate";
-import { getProductsInfo } from "../../../../selectors/orderProducts";
-import useFirebaseImage from "../../../../shared/hooks/useFirebaseImage";
+import useOrderProductDetails from "./hooks/useOrderProductDetails";
 
 const OrderProductsDetails = ({
   orderProductsItem,
   orderProductsStore,
   orderId,
 }) => {
-  const productStore = useSelector((state) => state?.product?.data);
-  const collectionStore = useSelector((state) => state?.collection?.data);
-  const categoryStore = useSelector((state) => state?.category?.data);
-  const tagStore = useSelector((state) => state?.tag?.data);
-  const materialStore = useSelector((state) => state?.material?.data);
-  const ordersStore = useSelector((state) => state?.customer?.data?.orders);
-  const creditStore = useSelector((state) => state?.customer?.data?.credit);
-  const { amount, code, dateExpire } =
-    creditStore?.find((cdt) => cdt.orderProductsId === orderProductsItem._id) ||
-    {};
-
-  const { productsId, material, quantity } = orderProductsItem || {};
-  const { orderProductsInfo, isTagProductExisted } = getProductsInfo(
-    ordersStore,
-    orderProductsStore,
-    orderId,
-    orderProductsItem._id
-  );
-
-  const { name, pricing, main_image, collection, category } =
-    getProductProperties(
-      productsId,
-      productStore,
-      collectionStore,
-      categoryStore,
-      tagStore,
-      material
-    );
-  const { exchange, refund, credit } = orderProductsInfo ?? {};
-  const {imageUrl}=useFirebaseImage(main_image)
+  const {
+    name,
+    pricing,
+    collection,
+    category,
+    exchange,
+    refund,
+    credit,
+    amount,
+    code,
+    dateExpire,
+    productsId,
+    quantity,
+    materialName,
+    isTagProductExisted,
+    imageUrl,
+  } = useOrderProductDetails(orderProductsItem, orderProductsStore, orderId);
   return (
     <div key={productsId} className="order-item-user-account">
       <div>
         <h3>
-          {name} {getMaterialProperty(material, materialStore)?.name}
+          {name} {materialName}
         </h3>
         <p className="pricing">
           {quantity} article

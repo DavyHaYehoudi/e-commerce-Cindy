@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import useTrackingNumberCreate from "./hooks/useTrackingNumberCreate";
+import React from "react";
+import useTrackingNumberForm from "./hooks/useTrackingNumberForm";
 
 const TrackingNumberCreate = ({ orderId }) => {
-  const [errors, setErrors] = useState({ trackingField: "", date: "" });
-  const [trackingInfo, setTrackingInfo] = useState({
-    trackingField: "",
-    date: "",
-  });
-
-  const { handleValidate, handleCancel } = useTrackingNumberCreate({
-    setErrors,
-    setTrackingInfo,
-    orderId,
-  });
-
-  const isFormValid = !errors.trackingField && !errors.date;
+  const {
+    errors,
+    trackingInfo,
+    isFormValid,
+    handleInputChange,
+    handleValidate,
+    handleCancel,
+  } = useTrackingNumberForm(orderId);
 
   return (
     <div
@@ -29,33 +24,19 @@ const TrackingNumberCreate = ({ orderId }) => {
           placeholder="Entrer le numéro de suivi"
           autoFocus
           value={trackingInfo.trackingField}
-          onChange={(e) => {
-            setTrackingInfo({
-              ...trackingInfo,
-              trackingField: e.target.value,
-            });
-            setErrors({ ...errors, trackingField: "" });
-          }}
+          onChange={(e) => handleInputChange("trackingField", e.target.value)}
         />
         {errors.trackingField && (
           <p className="error-message">{errors.trackingField}</p>
         )}
       </div>
 
-      <label htmlFor="trackingNumberInputDate">
-        Choisir une date d'envoi :
-      </label>
+      <label htmlFor="trackingNumberInputDate">Choisir une date d'envoi :</label>
       <input
         type="date"
         id="trackingNumberInputDate"
         value={trackingInfo.date}
-        onChange={(e) => {
-          setTrackingInfo({
-            ...trackingInfo,
-            date: e.target.value,
-          });
-          setErrors({ ...errors, date: "" });
-        }}
+        onChange={(e) => handleInputChange("date", e.target.value)}
       />
       {errors.date && <p className="error-message">{errors.date}</p>}
 
