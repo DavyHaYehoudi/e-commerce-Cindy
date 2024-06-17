@@ -497,13 +497,16 @@
         word-break: break-word;
         hyphens: auto;
     }
+
     .description-heading h2 span {
         position: initial;
         padding: 8px;
     }
+
     #master-product-content .addToCart {
         flex: 0.6;
     }
+
     #master-product-informations .container {
         padding: 5px;
         margin: 20px 0;
@@ -515,7 +518,11 @@
     }
 
 }
+
 @media (max-width: 375px) {
+    .description-heading h2 {
+        font-size: var(--h2-mobile);
+    }
     #master-product-content .addToCart {
         flex: 0.8;
     }

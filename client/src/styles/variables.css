@@ -42,6 +42,7 @@
     --background-taup: #6A6A6A;
     --background-whitesmoke: rgb(252, 252, 252);
     --background-disabled: #6c757d;
+    --background-pricing:whitesmoke;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -67,10 +68,10 @@
     --info: #17a2b8;
 
     /* HEADINGS */
-    --h1-mobile:1.8rem;
-    --h2-mobile:1.6rem;
-    --h3-mobile:1.4rem;
-    --h4-mobile:1.2rem;
+    --h1-mobile:1.6rem;
+    --h2-mobile:1.4rem;
+    --h3-mobile:1.2rem;
+    --h4-mobile:1rem;
 
 }
 
@@ -96,6 +97,7 @@
     --danger: #ff754c;
     --color-icon-menu: whitesmoke;
     --background-whitesmoke: #282c34;
+    --background-pricing:transparent;
 
     /* ******************** MEDIAS QUERIES ******************** */
     --breakpoint-xs: 576px;

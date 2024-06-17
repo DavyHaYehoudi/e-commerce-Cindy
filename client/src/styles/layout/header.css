@@ -163,9 +163,11 @@ header {
     transition: width 0.3s ease;
 }
 
-#navMenu a:hover::before {
+#navMenu a:hover::before,
+#navMenu a.active::before {
     width: 100%;
 }
+
 
 #navMenu a.active {
     color: var(--text-golden);
@@ -175,8 +177,6 @@ header {
     font-size: 1.5rem;
     color: var(--color-icon-menu)
 }
-
-
 
 /* ******************** MEDIAS QUERIES ******************** */
 @media (max-width: 576px) {
@@ -199,7 +199,6 @@ header {
         order: -1;
         width: 100%;
         text-align: center;
-        margin: 20px;
         font-size: 50px;
     }
 

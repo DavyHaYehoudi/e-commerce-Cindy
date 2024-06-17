@@ -6,6 +6,7 @@ import { formatPrice, sumPriceArticle } from "../../../../helpers/utils/prices";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../../helpers/utils/formatDate";
 import { getProductsInfo } from "../../../../selectors/orderProducts";
+import useFirebaseImage from "../../../../shared/hooks/useFirebaseImage";
 
 const OrderProductsDetails = ({
   orderProductsItem,
@@ -41,6 +42,7 @@ const OrderProductsDetails = ({
       material
     );
   const { exchange, refund, credit } = orderProductsInfo ?? {};
+  const {imageUrl}=useFirebaseImage(main_image)
   return (
     <div key={productsId} className="order-item-user-account">
       <div>
@@ -61,7 +63,7 @@ const OrderProductsDetails = ({
       >
         <Link>
           <img
-            src={`/photos/${main_image}`}
+            src={imageUrl}
             alt={name || "Non disponible"}
             style={{ width: "100px", height: "150px" }}
           />

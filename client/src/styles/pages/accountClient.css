@@ -181,6 +181,7 @@
 .addTrackingNumberClientBtn {
   background-color: var(--success);
   margin: 20px 0;
+  color: whitesmoke;
 }
 
 .ClientTrackingNumberCreate {
@@ -214,6 +215,7 @@
   overflow: hidden;
   font-size: var(--nav-menu-text-fontSize);
   letter-spacing: var(--letter-spacing);
+  text-align: center;
 }
 
 .tabs-history h3::before {
@@ -228,7 +230,8 @@
   transition: width 0.3s ease;
 }
 
-.tabs-history h3:hover::before {
+.tabs-history h3:hover::before,
+.tabs-history h3.active::before {
   width: 100%;
 }
 
@@ -245,6 +248,7 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
@@ -263,6 +267,7 @@
 .order-item-user-account {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   border: 1px solid #ccc;
   padding: 15px;
   margin: 20px 0;
@@ -285,7 +290,7 @@
 /**************************** ADVANTAGES (carte cadeau + avoir) *****************************/
 .advantages li {
   position: relative;
-  width: 400px;
+  max-width: 400px;
   margin: 20px auto;
   padding: 20px;
   color: var(--text-color);
@@ -334,7 +339,9 @@
   .user-info-account-container {
     margin: 30px 5px;
   }
-
+  .order-item-wrapper-user-account {
+    padding: 10px;
+  }
   .user-info-account-container .card {
     padding: 20px 10px;
 

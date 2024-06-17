@@ -366,6 +366,7 @@
 .trackingNumberClientItem-validate .btn-confirm {
     background-color: var(--success);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .adminTrackingItemTrashConfirm .btn-cancel,
@@ -373,6 +374,7 @@
 .trackingNumberClientItem-validate .btn-cancel {
     background-color: var(--danger);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .account-btn.icon-trash.trackingNumber {
@@ -577,3 +579,17 @@
 }
 
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    .trackingNumber {
+        margin: 0;
+        padding: 5px 0;
+    }
+    .account-btn.icon-trash.trackingNumber {
+        position: initial;
+        /* display: inline-block; */
+        padding: 4px 8px;
+        /* text-align: end; */
+    }
+  }

@@ -1,7 +1,7 @@
 footer {
     background: linear-gradient(to top, #A897A9 0%, #B9A8B8 50%, #C7B7C6 80%, #D5D5D5 100%);
     color: var(--footer-text-color);
-    padding-top: 60px;
+    padding: 60px 10px 20px 10px;
 }
 
 footer h3 {
