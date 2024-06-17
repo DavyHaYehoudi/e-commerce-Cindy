@@ -20,8 +20,8 @@ const CartItem = ({ product }) => {
       <div className="cart-item-top">
         <div className="info-tooltip" aria-label="Revenir à l'article">
           <Link
-            to={`/master-product/${product.productsId}`}
-            state={{ materialId: product.material }}
+            to={`/master-product/${product?.productsId}`}
+            state={{ materialId: product?.material }}
           >
             <img src={imageUrl} alt={itemName} width="75px" height="75px" />
           </Link>
@@ -34,8 +34,8 @@ const CartItem = ({ product }) => {
         </div>
         <div className="cart-item-quantity">
           <QuantitySelectProduct
-            productId={product.productsId}
-            materialId={product.material}
+            productId={product?.productsId}
+            materialId={product?.material}
           />
         </div>
         <div className="cart-item-delete" onClick={handleRemoveToCart}>

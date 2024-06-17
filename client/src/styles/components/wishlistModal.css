@@ -68,36 +68,38 @@
     color: #838282;
     animation: shake-rotate 2s ease 0s 1 normal forwards;
 }
+
 @keyframes shake-rotate {
-	0%,
-	100% {
-		transform: rotate(0deg);
-		transform-origin: 50% 50%;
-	}
 
-	10% {
-		transform: rotate(8deg);
-	}
+    0%,
+    100% {
+        transform: rotate(0deg);
+        transform-origin: 50% 50%;
+    }
 
-	20%,
-	40%,
-	60% {
-		transform: rotate(-10deg);
-	}
+    10% {
+        transform: rotate(8deg);
+    }
 
-	30%,
-	50%,
-	70% {
-		transform: rotate(10deg);
-	}
+    20%,
+    40%,
+    60% {
+        transform: rotate(-10deg);
+    }
 
-	80% {
-		transform: rotate(-8deg);
-	}
+    30%,
+    50%,
+    70% {
+        transform: rotate(10deg);
+    }
 
-	90% {
-		transform: rotate(8deg);
-	}
+    80% {
+        transform: rotate(-8deg);
+    }
+
+    90% {
+        transform: rotate(8deg);
+    }
 }
 
 .modal {
@@ -142,6 +144,9 @@
 
 .modal-product-details h3 {
     font-size: 1rem;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 300px;
 }
 
 .modal-product-details .price {
@@ -154,4 +159,34 @@
     padding: 5px;
     color: var(--dark);
     min-width: 150px;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 5px;
+        border: 1px solid var(--dark);
+    }
+
+    .modal-product-content {
+        align-items: center;
+    }
+
+    .modal-body {
+        margin: 5px;
+    }
+
+    .modal-product-image img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .modal-product-details {
+        display: initial;
+    }
+
+    .modal-product-details>* {
+        text-align: left;
+        margin: 10px;
+    }
 }
