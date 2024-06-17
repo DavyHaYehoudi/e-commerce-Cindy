@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteCredit } from "../../../../../../../../features/admin/creditSlice";
 import {
   isClientNotified,
   totalsInOut,
-} from "../../../../../../../../features/admin/ordersSlice";
-import { updateActionContent } from "../../../../../../../../features/admin/orderProductsSlice";
+} from "../../../../../../../../../features/admin/ordersSlice";
+import { deleteCredit } from "../../../../../../../../../features/admin/creditSlice";
+import { updateActionContent } from "../../../../../../../../../features/admin/orderProductsSlice";
 
 const useConfirmation = ({
   confirmation,
@@ -75,7 +75,7 @@ const useConfirmation = ({
           productActionContent: null,
         })
       );
-      dispatch(isClientNotified({orderId}));
+      dispatch(isClientNotified({ orderId }));
       updateProductActions(confirmAction);
     }
 
@@ -94,7 +94,7 @@ const useConfirmation = ({
         })
       );
     }
-    dispatch(isClientNotified({orderId}));
+    dispatch(isClientNotified({ orderId }));
     setIsConfirmed(true);
   };
 

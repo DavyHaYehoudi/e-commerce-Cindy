@@ -11,7 +11,7 @@
     border-bottom: 1px solid var(--dark);
     border-bottom-right-radius: 15px;
     color: black;
-    background: var(--background,0.9);
+    background: var(--background, 0.9);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
     overflow-y: auto;
@@ -38,8 +38,9 @@
 .modalMenuSmart #navIcons {
     display: flex;
 }
+
 .modalMenuSmart #navIcons>* {
-flex:1;
+    flex: 1;
 }
 
 .modalMenuSmart #navIcons a {
@@ -57,14 +58,17 @@ flex:1;
 .modalMenuSmart #navIcons ul #iconHeart {
     display: none;
 }
+
 .modalMenuSmart #navIcons #iconConnexion,
 .modalMenuSmart #navIcons #iconAccount {
     display: flex;
 }
-.modalMenuSmart #navIcons #iconConnexion{
+
+.modalMenuSmart #navIcons #iconConnexion {
     align-self: flex-end;
 }
-.modalMenuSmart .bottom-block{
+
+.modalMenuSmart .bottom-block {
     display: flex;
     flex-direction: column;
     gap: 20px;

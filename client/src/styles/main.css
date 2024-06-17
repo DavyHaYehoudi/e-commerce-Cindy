@@ -126,12 +126,12 @@ img {
 }
 
 .confirmation-popup button:nth-child(2) {
-    color: var(--text-whitesmoke);
+    color: whitesmoke;
     background-color: var(--danger);
 }
 
 .confirmation-popup button:nth-child(3) {
-    color: var(--text-whitesmoke);
+    color: whitesmoke;
     background-color: var(--success);
 }
 
@@ -187,7 +187,7 @@ img {
 }
 
 .icon-validate {
-    color: var(--text-whitesmoke);
+    color: whitesmoke;
     background-color: var(--success);
 }
 
@@ -352,6 +352,7 @@ img {
         opacity: 1;
     }
 }
+
 @keyframes flip-in-hor-bottom {
     0% {
         -webkit-transform: rotateX(80deg);
@@ -365,6 +366,7 @@ img {
         opacity: 1;
     }
 }
+
 @-webkit-keyframes kenburns-bottom-left {
     0% {
         -webkit-transform: scale(1) translate(0, 0);
@@ -380,6 +382,7 @@ img {
         transform-origin: left bottom;
     }
 }
+
 @keyframes kenburns-bottom-left {
     0% {
         -webkit-transform: scale(1) translate(0, 0);
@@ -395,6 +398,7 @@ img {
         transform-origin: left bottom;
     }
 }
+
 @-webkit-keyframes blink-1 {
 
     0%,
@@ -408,6 +412,7 @@ img {
         opacity: 0;
     }
 }
+
 @keyframes blink-1 {
 
     0%,
@@ -421,6 +426,7 @@ img {
         opacity: 0;
     }
 }
+
 @-webkit-keyframes flip-horizontal-bottom {
     0% {
         -webkit-transform: rotateX(0);
@@ -432,6 +438,7 @@ img {
         transform: rotateX(-180deg);
     }
 }
+
 @keyframes flip-horizontal-bottom {
     0% {
         -webkit-transform: rotateX(0);
@@ -453,13 +460,15 @@ img {
 }
 
 /* ******************** MEDIAS QUERIES ******************** */
-.smart-screen{
+.smart-screen {
     display: none;
 }
+
 @media (max-width: 576px) {
-    .smart-screen{
+    .smart-screen {
         display: block;
     }
+
     .slick-initialized {
         margin: 0;
     }
@@ -468,6 +477,7 @@ img {
     .slick-prev {
         display: none !important;
     }
+
     .slick-next::before,
     .slick-prev::before {
         display: none !important;

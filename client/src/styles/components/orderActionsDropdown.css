@@ -53,3 +53,11 @@
 .dropdown-closed.open .dropdown-toggle {
   display: block;
 }
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+  .dropdown {
+    width: 100%;
+    text-align: center;
+  }
+}

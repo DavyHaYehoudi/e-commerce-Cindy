@@ -5,6 +5,7 @@ import { formatPrice } from "../../../../../helpers/utils/prices";
 import { formatDate } from "../../../../../helpers/utils/formatDate";
 import { getProductProperties } from "../../../../../selectors/product";
 import { getMaterialProperty } from "../../../../../selectors/material";
+import useFirebaseImage from "../../../../../shared/hooks/useFirebaseImage";
 
 const Wishlist = ({ productsId, productCart }) => {
   const productStore = useSelector((state) => state?.product?.data);
@@ -12,6 +13,15 @@ const Wishlist = ({ productsId, productCart }) => {
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
   const materialStore = useSelector((state) => state?.material?.data);
+  const path =     getProductProperties(
+    productsId,
+    productStore,
+    collectionStore,
+    categoryStore,
+    tagStore,
+    productCart?.material
+  ).main_image
+  const {imageUrl}=useFirebaseImage(path)
   return (
     <div
       className="wishlistUserViewAdmin"
@@ -86,16 +96,7 @@ const Wishlist = ({ productsId, productCart }) => {
       <div className="info-tooltip" aria-label="Revenir à la fiche produit">
         <Link>
           <img
-            src={`/photos/${
-              getProductProperties(
-                productsId,
-                productStore,
-                collectionStore,
-                categoryStore,
-                tagStore,
-                productCart?.material
-              ).main_image
-            }`}
+            src={imageUrl}
             alt={
               getProductProperties(
                 productsId,
