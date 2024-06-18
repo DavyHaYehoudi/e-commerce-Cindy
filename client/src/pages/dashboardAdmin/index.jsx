@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "./admin"
+import Menu from "./admin";
 import useAdminDashboard from "./hooks/useAdminDashboard";
 
 const AdminDashboard = () => {

@@ -1,6 +1,5 @@
 import React from "react";
-import Wishlist from "./Wishlist";
-import Cart from "./Cart";
+import ProductItem from "./ProductItem";
 
 const Details = ({ client }) => {
   return (
@@ -10,11 +9,12 @@ const Details = ({ client }) => {
           <span className="underline">Sa liste de favoris</span> 😉 :{" "}
         </p>
         {client?.wishlist?.length > 0 ? (
-          client.wishlist.map((item) => (
-            <Wishlist
-              key={item.productsId}
-              productsId={item.productsId}
+          client.wishlist.map((item, i) => (
+            <ProductItem
+              key={i}
+              productsId={item?.productsId}
               productCart={item}
+              type="wishlist"
             />
           ))
         ) : (
@@ -27,11 +27,12 @@ const Details = ({ client }) => {
         </p>
 
         {client?.cart?.length > 0 ? (
-          client?.cart?.map((item) => (
-            <Cart
-              key={item.productsId}
-              productsId={item.productsId}
+          client?.cart?.map((item, i) => (
+            <ProductItem
+              key={i}
+              productsId={item?.productsId}
               productCart={item}
+              type="cart"
             />
           ))
         ) : (

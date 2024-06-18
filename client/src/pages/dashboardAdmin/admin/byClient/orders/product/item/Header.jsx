@@ -11,6 +11,7 @@ import { getCreditsInfo } from "../../../../../../../selectors/credit";
 import { useSelector } from "react-redux";
 import { getMaterialProperty } from "../../../../../../../selectors/material";
 import useFirebaseImage from "../../../../../../../shared/hooks/useFirebaseImage";
+import { Link } from "react-router-dom";
 
 const Header = ({
   interaction,
@@ -42,7 +43,7 @@ const Header = ({
       material
     ) || {};
   const { exchange, refund, credit } = orderProductsInfo ?? {};
-  const {imageUrl}=useFirebaseImage(main_image)
+  const { imageUrl } = useFirebaseImage(main_image);
   return (
     <>
       <p
@@ -70,7 +71,12 @@ const Header = ({
           <p>Collection : {collection}</p>
           <p>Catégorie : {category}</p>
         </div>
-        <img src={imageUrl} alt={name} width="150px" />
+        <Link
+          to={`/master-product/${productsId}`}
+          state={{ materialId: material }}
+        >
+          <img src={imageUrl} alt={name} width="150px" />
+        </Link>
         <ul>
           <li className={isTagProductExisted && exchange ? "product-tag" : ""}>
             {exchange && (

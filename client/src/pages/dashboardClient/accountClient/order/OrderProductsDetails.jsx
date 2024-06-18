@@ -22,6 +22,7 @@ const OrderProductsDetails = ({
     dateExpire,
     productsId,
     quantity,
+    material,
     materialName,
     isTagProductExisted,
     imageUrl,
@@ -44,7 +45,7 @@ const OrderProductsDetails = ({
         className="image-container info-tooltip"
         aria-label="Revenir au produit"
       >
-        <Link>
+        <Link to={`/master-product/${productsId}`} state={{materialId: material}}>
           <img
             src={imageUrl}
             alt={name || "Non disponible"}

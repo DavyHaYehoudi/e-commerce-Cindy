@@ -2,7 +2,7 @@ import React from "react";
 
 const MaterialName = ({ material, handleCheckboxChange }) => {
   return (
-    <>
+    <div>
       <input
         type="checkbox"
         id={`materialsCheckbox-${material?._id}`}
@@ -20,7 +20,7 @@ const MaterialName = ({ material, handleCheckboxChange }) => {
           marginLeft: "10px",
         }}
       ></span>
-    </>
+    </div>
   );
 };
 
