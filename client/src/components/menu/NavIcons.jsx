@@ -15,15 +15,15 @@ const NavIcons = ({ toggleModalMenuSmart }) => {
     productsId: "",
     material: "",
   });
-  const dispatch=useDispatch()
-  const handleOpenWishlistModal=()=>{
-    dispatch(showWishlistAccess(true))
-    }
+  const dispatch = useDispatch();
+  const handleOpenWishlistModal = () => {
+    dispatch(showWishlistAccess(true));
+  };
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
       <ul>
         <li
-        id="iconConnexion"
+          id="iconConnexion"
           className="info-tooltip"
           aria-label={!token ? "Se connecter" : "Se déconnecter"}
           onClick={toggleModalMenuSmart}
@@ -54,7 +54,7 @@ const NavIcons = ({ toggleModalMenuSmart }) => {
               aria-label="Mon compte"
               onClick={toggleModalMenuSmart}
             >
-              <img src={imageUrl} alt="profil" />
+             {imageUrl&& <img src={imageUrl} alt="profil" />}
               <span className="navlink-text"> Compte</span>
             </NavLink>
           </li>
