@@ -69,54 +69,61 @@ const Credit = ({
 
       {isActionSelected && (
         <>
-          <input
-            type="number"
-            id="amountCreditField"
-            className="productActionInput"
-            value={inputCreditAmount || ""}
-            min="0"
-            onChange={(e) => {
-              handleChangeInputCreditAmount(e);
-            }}
-            onClick={(e) => e.stopPropagation()}
-            placeholder={placeholderValue}
-          />
+          <div className="item-li">
+            <input
+              type="number"
+              id="amountCreditField"
+              className="productActionInput"
+              value={inputCreditAmount || ""}
+              min="0"
+              onChange={(e) => {
+                handleChangeInputCreditAmount(e);
+              }}
+              onClick={(e) => e.stopPropagation()}
+              placeholder={placeholderValue}
+            />
+          </div>
+          <div className="item-li">
+            <label htmlFor="dateExpireField">Valable jusqu'au :</label><br/>
+            <input
+              type="date"
+              id="dateExpireField"
+              className="productActionInput"
+              value={inputDateValue || ""}
+              onChange={(e) => {
+                handleChangeInputCreditDate(e);
+              }}
+              onClick={(e) => e.stopPropagation()}
+              placeholder="Choisir une date de fin de validité"
+            />
+          </div>
+          <div className="item-li">
+            <button
+              className="btn1"
+              onClick={(e) =>
+                handleConfirmCreditEntry(
+                  e,
+                  action,
+                  orderProductsActions,
+                  setProductActions,
+                  setEntryError,
+                  orderId,
+                  orderProducts,
+                  productPrice,
+                  clientId
+                )
+              }
+            >
+              Valider
+            </button>
 
-          <label htmlFor="dateExpireField">Valable jusqu'au :</label>
-          <input
-            type="date"
-            id="dateExpireField"
-            className="productActionInput"
-            value={inputDateValue || ""}
-            onChange={(e) => {
-              handleChangeInputCreditDate(e);
-            }}
-            onClick={(e) => e.stopPropagation()}
-            placeholder="Choisir une date de fin de validité"
-          />
-
-          <button
-            className="btn1"
-            onClick={(e) =>
-              handleConfirmCreditEntry(
-                e,
-                action,
-                orderProductsActions,
-                setProductActions,
-                setEntryError,
-                orderId,
-                orderProducts,
-                productPrice,
-                clientId
-              )
-            }
-          >
-            Valider
-          </button>
-
-          <button className="btn2" onClick={(e) => handleCancelCreditEntry(e)}>
-            Annuler
-          </button>
+            <button
+              className="btn2"
+              onClick={(e) => handleCancelCreditEntry(e)}
+            >
+              Annuler
+            </button>
+          </div>
         </>
       )}
     </li>
