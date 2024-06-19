@@ -43,7 +43,11 @@ const CardProduct = ({ product, material }) => {
           {isCurrent(material?.promotion?.endDate) && (
             <small className="promo-badge">EN PROMOTION</small>
           )}
-          <p>{formatPrice(material?.pricing?.currentPrice)} </p>
+          <p>
+            {isCurrent(material?.promotion?.endDate)
+              ? formatPrice(material?.promotion?.promoPrice)
+              : formatPrice(material?.pricing?.currentPrice)}{" "}
+          </p>
         </div>
       </Link>
       <div className="card-button">

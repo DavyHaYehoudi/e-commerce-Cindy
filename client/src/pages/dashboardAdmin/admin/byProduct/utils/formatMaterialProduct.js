@@ -13,6 +13,7 @@ const formatMaterialProduct = (materialsData) => {
       endDate: material?.promotion?.endDate
         ? new Date(material?.promotion?.endDate).toISOString()
         : null,
+      promoPrice: parseFloat(material?.promotion?.promoPrice),
     },
     main_image: material?.main_image,
     untilNew: material?.untilNew

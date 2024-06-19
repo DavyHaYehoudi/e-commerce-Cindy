@@ -15,7 +15,7 @@ const AllProductsPage = () => {
   } = useAllProductsPage();
 
   return (
-    <div id="allProducts">
+    <div className="allProducts">
       <div className="allProducts-content">
         <h1>Tous les produits</h1>
         <div className="productsFilterPanel">
@@ -23,7 +23,6 @@ const AllProductsPage = () => {
             <div>
               {materialCount} produit{materialCount > 1 ? "s" : ""} au total{" "}
             </div>
-
             <SearchBarAdmin
               searchBarValue={searchBarValue}
               handleSearchChange={handleSearchChange}

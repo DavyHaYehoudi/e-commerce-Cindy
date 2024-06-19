@@ -42,6 +42,7 @@ const productSlice = createSlice({
     materials: [],
     mainImagesToRemoveStorage: [],
     isProductCheetModified: false,
+    isPendingProduct: false,
     cartAccess: false,
     wishlistAccess: false,
     status: "idle",
@@ -99,10 +100,11 @@ const productSlice = createSlice({
       state.isProductCheetModified = action.payload;
     },
     changeProductActiveStatus: (state, action) => {
-      const { productId, status } = action.payload;
+      const { productId, status, isPending } = action.payload;
       state.data = state.data.map((product) =>
         product._id === productId ? { ...product, isActive: status } : product
       );
+      state.isPendingProduct = isPending;
     },
     showCartAccess: (state, action) => {
       state.cartAccess = action.payload;

@@ -166,6 +166,10 @@
     cursor: pointer;
 }
 
+#payment-form button.cancel {
+    background-color: var(--danger);
+}
+
 #payment-form .payment-button {
     display: block;
     margin: 20px auto;
@@ -177,6 +181,10 @@
     background-color: #45a049;
 }
 
+#payment-form button.cancel:hover {
+    background-color: #b02a37;
+}
+
 .payment-form-heading .icon {
     font-size: 1.5rem;
 }
@@ -184,13 +192,14 @@
 #payment-form-advantages .item-content {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
 
 }
 
 #payment-form-advantages .item-content button {
     padding: 15px;
-    flex: 1;
+    flex: 0.5;
 }
 
 #payment-form-advantages .item-content input,
@@ -199,7 +208,7 @@
     border: 1px solid var(--border-color);
     margin: 0;
     border-radius: 5px;
-    flex: 2;
+    flex: 2.5;
 }
 
 /* Fields Validation */
@@ -212,21 +221,35 @@
     border-color: var(--success);
     box-shadow: 0 0 3px var(--success);
 }
+
 @media (max-width: 1200px) {
     .shoppingCart-container {
         display: inherit;
         margin: 100px 20px;
     }
-    #shoppingCart-payment #payment-form{
+
+    #shoppingCart-payment #payment-form {
         margin: 50px auto;
     }
 }
+
 @media (max-width: 576px) {
     .shoppingCart-container {
         margin: 50px 0;
     }
+
     #shoppingCart-page .cart-item {
         margin: 10px 0;
         padding: 10px 15px;
     }
+
+    #payment-form-advantages .item-content input,
+    #payment-form-advantages .item-content select {
+        flex: inherit;
+        width: 100%;
+    }
+    #payment-form-advantages .item-content button {
+        padding: 8px;
+    }
+
 }

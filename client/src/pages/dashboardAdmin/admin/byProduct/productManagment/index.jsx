@@ -70,20 +70,25 @@ const Modal = ({
     deleteAllMainImagesFromStorage,
     reset,
   } = useMainImagesToAddStorage(data);
-  const { handleSubmit, handleSwitchChange, isProductActive, loadingSubmit } =
-    useSubmitForm({
-      handleCloseModal,
-      fields,
-      tags,
-      materialsData,
-      currentProductId,
-      data,
-      uploadMainImagesToStorage,
-      deleteMainImagesFromStorage,
-      deleteAllMainImagesFromStorage,
-      deleteAllSecondariesImagesFromStorage,
-      reset,
-    });
+  const {
+    handleSubmit,
+    handleSwitchChange,
+    isProductActive,
+    loadingSubmit,
+    isPendingProduct,
+  } = useSubmitForm({
+    handleCloseModal,
+    fields,
+    tags,
+    materialsData,
+    currentProductId,
+    data,
+    uploadMainImagesToStorage,
+    deleteMainImagesFromStorage,
+    deleteAllMainImagesFromStorage,
+    deleteAllSecondariesImagesFromStorage,
+    reset,
+  });
   const { confirmationEnabled } = useConfirmationFunctions({
     fields,
   });
@@ -109,7 +114,8 @@ const Modal = ({
       dispatch(initProductMaterials(data?.materials));
     }
   }, [data?.materials, dispatch]);
-
+  const isEditAction = currentAction === "edit";
+  const isActive = isEditAction ? isProductActive : isPendingProduct;
   return (
     <div className="product-modal">
       {loadingSubmit ? (
@@ -125,11 +131,7 @@ const Modal = ({
             <h2>Création d'un produit</h2>
           )}
           <div className="switch-product-btn">
-            {isProductActive ? (
-              <p className="actived">PRODUIT PUBLIE</p>
-            ) : (
-              <p>PRODUIT SUSPENDU</p>
-            )}
+            {isActive ? "PRODUIT PUBLIE" : "PRODUIT SUSPENDU"}
             <Switch checked={isProductActive} onChange={handleSwitchChange} />
           </div>
           <span className="product-modal-close" onClick={handleCloseModal}>

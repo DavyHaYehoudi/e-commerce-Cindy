@@ -109,7 +109,8 @@
 }
 
 .category-master .category-master-row {
-    margin-top: 100px;
+    width: 80%;
+    margin: 100px auto;
 }
 
 .category-master .category-master-row .category-title {
@@ -144,6 +145,11 @@
     .category-master .category-master-row .category-title {
         display: inherit;
         text-align: start;
+    }
+
+    .category-master .category-master-row {
+        width: 100%;
+        margin: 20px 0;
     }
 
     .category-master .category-master-row-wrapper {

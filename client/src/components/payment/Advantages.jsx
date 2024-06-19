@@ -22,7 +22,8 @@ const Advantages = () => {
               name="promo"
               placeholder="Entrez le code promo"
             />
-            <button>Valider</button>
+            <button>Appliquer</button>
+            <button className="cancel">Annuler</button>
           </div>
         </div>
         <div className="item">
@@ -34,7 +35,8 @@ const Advantages = () => {
               name="giftcard"
               placeholder="Entrez le numéro de votre carte cadeau"
             />
-            <button>Valider</button>
+            <button>Appliquer</button>
+            <button className="cancel">Annuler</button>
           </div>
         </div>
         <div className="item">
@@ -56,7 +58,7 @@ const Advantages = () => {
                   </option>
                 ))}
             </select>
-            <button>Valider</button>
+            <button>Appliquer</button>
           </div>
         </div>
       </div>

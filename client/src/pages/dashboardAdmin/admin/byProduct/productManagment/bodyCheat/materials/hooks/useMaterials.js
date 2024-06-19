@@ -33,9 +33,10 @@ const useMaterials = ({
   const initAmount = data?.amount;
   const initStartDate = data?.startDate;
   const initEndDate = data?.endDate;
+  const initPromoPrice = data?.promoPrice;
   const initMainImage = data?.mainImage;
   const initIsActive = data?.isActive;
-  const initIsStar= data?.isStar;
+  const initIsStar = data?.isStar;
   const [isChecked, setIsChecked] = useState(false);
   const [stock, setStock] = useState(initStock);
   const [pricing, setPricing] = useState({
@@ -47,6 +48,7 @@ const useMaterials = ({
     amount: initAmount,
     startDate: initStartDate,
     endDate: initEndDate,
+    promoPrice: initPromoPrice,
   });
   const [mainImage, setMainImage] = useState(initMainImage);
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,9 +65,7 @@ const useMaterials = ({
   };
   const handleSwitchChangeMaterial = (isChecked) => {
     setIsFeaturedMaterial(isChecked);
-    dispatch(
-      updateProductMaterials({ _id: material?._id, isStar: isChecked })
-    );
+    dispatch(updateProductMaterials({ _id: material?._id, isStar: isChecked }));
     dispatch(modifyProductCheet(true));
   };
   const handleCheckboxChange = (e) => {
@@ -122,16 +122,18 @@ const useMaterials = ({
       const endDateValue = new Date(updatedPromo.endDate);
 
       if (
-        updatedPromo.amount ||
         updatedPromo.startDate ||
-        updatedPromo.endDate
+        updatedPromo.endDate ||
+        updatedPromo.amount ||
+        updatedPromo.promoPrice
       ) {
         if (
-          !updatedPromo.amount ||
           !updatedPromo.startDate ||
-          !updatedPromo.endDate
+          !updatedPromo.endDate ||
+          !updatedPromo.amount ||
+          updatedPromo.promoPrice
         ) {
-          updatedErrorMessage = "Remplir les 3 champs promotion";
+          updatedErrorMessage = "Remplir les 4 champs promotion";
         }
       }
       if (property === "startDate") {
@@ -235,7 +237,7 @@ const useMaterials = ({
     materialActive,
     handleSwitchChange,
     isFeaturedMaterial,
-    handleSwitchChangeMaterial
+    handleSwitchChangeMaterial,
   };
 };
 

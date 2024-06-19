@@ -1,28 +1,38 @@
-#allProducts {
+.allProducts {
     background: var(--background-whitesmoke);
 }
-#allProducts h1{
+
+.allProducts h1 {
     letter-spacing: 5px;
     text-align: center;
 }
 
-#allProducts .allProducts-content {
+.allProducts .allProducts-content {
     width: 80%;
     margin: auto;
     padding: 50px;
 }
 
-#allProducts .productsFilterPanel{
-    margin-top: 80px;
-}
-#allProducts .filterBlock-content-action button {
+.allProducts .filterBlock-content-action button {
     color: whitesmoke;
 }
 
-#allProducts .filterBlock-content-action .validate-btn {
+.allProducts .filterBlock-content-action .validate-btn {
     background: var(--success);
 }
 
-#allProducts .filterBlock-content-action .reset-btn {
+.allProducts .filterBlock-content-action .reset-btn {
     background: var(--warning);
+}
+
+.allProducts .productsFilterPanel-content {
+    animation: inherit;
+}
+
+@media (max-width: 576px) {
+    .allProducts .allProducts-content {
+        margin: auto;
+        padding: 0;
+        width: 100%;
+    }
 }

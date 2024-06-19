@@ -64,9 +64,17 @@ const MainContent = ({ productId, materialId }) => {
         )}
         <div className="prices">
           <span className="price">
-            {formatPrice(
-              product?.materials[materialSelected.index]?.pricing?.currentPrice
-            )}
+            {isCurrent(
+              product?.materials[materialSelected.index]?.promotion?.endDate
+            )
+              ? formatPrice(
+                  product?.materials[materialSelected.index]?.promotion
+                    ?.promoPrice
+                )
+              : formatPrice(
+                  product?.materials[materialSelected.index]?.pricing
+                    ?.currentPrice
+                )}
           </span>
           {product?.materials[materialSelected.index]?.pricing?.oldPrice >
             0 && (

@@ -40,11 +40,15 @@ const useSubmitForm = ({
   if (materialsData.length === 0) {
     materialsData = materialBeforeEditing;
   }
+  const isPendingProduct = useSelector(
+    (state) => state?.product?.isPendingProduct
+  );
   const handleSwitchChange = (isChecked) => {
     dispatch(
       changeProductActiveStatus({
         productId: currentProductId,
         status: isChecked,
+        isPending: !isPendingProduct,
       })
     );
     dispatch(modifyProductCheet(true));
@@ -138,7 +142,13 @@ const useSubmitForm = ({
     }
   };
 
-  return { handleSubmit, handleSwitchChange, isProductActive, loadingSubmit };
+  return {
+    handleSubmit,
+    handleSwitchChange,
+    isProductActive,
+    loadingSubmit,
+    isPendingProduct,
+  };
 };
 
 export default useSubmitForm;
