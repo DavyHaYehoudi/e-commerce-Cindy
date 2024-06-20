@@ -37,15 +37,15 @@ const useCartButton = (productsId, material) => {
       let cartUpdated = [...cartStore, productCart];
       const formatData = { cart: cartUpdated };
       try {
-        await Patch(
+        await Patch( 
           `clients/${clientId}`,
           formatData,
           null,
           handleUnauthorized
-        );
+        ); 
         dispatch(addOneProductToCart(productCart));
         dispatch(showCartAccess(true))
-      } catch (error) {
+      } catch (error) { 
         console.log("Erreur dans handleAddToCart AddToCartButton :", error);
       }
     } else {

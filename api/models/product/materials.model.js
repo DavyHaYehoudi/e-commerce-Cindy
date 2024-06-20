@@ -38,10 +38,6 @@ const materialsSchema = new mongoose.Schema({
         type: Date,
         default: null,
       },
-      promoPrice: {
-        type: Number,
-        default: null,
-      },
     },
     default: null,
   },

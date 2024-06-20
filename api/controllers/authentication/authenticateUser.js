@@ -1,7 +1,7 @@
 const authenticateUser = async (req, res, next) => {
   const { client } = req;
-  if(client?.role==="admin"){
-    return
+  if (client?.role === "admin") {
+    return next();
   }
   if (client?.role !== "user") {
     return res

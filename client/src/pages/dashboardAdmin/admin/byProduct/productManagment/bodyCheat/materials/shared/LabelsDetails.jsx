@@ -113,19 +113,6 @@ const LabelsDetails = ({
                     onChange={(e) => handlePromoChange(e, "amount")}
                   />
                 </div>
-                <div className="block block2">
-                  <label htmlFor={`promo-price-${material?._id}`}>
-                    Prix après la promotion (€) :{" "}
-                  </label>
-                  <input
-                    type="number"
-                    className="account-input"
-                    id={`promo-price-${material?._id}`}
-                    value={promo?.promoPrice || ""}
-                    min={0}
-                    onChange={(e) => handlePromoChange(e, "promoPrice")}
-                  />
-                </div>
               </div>
             )}
           </div>

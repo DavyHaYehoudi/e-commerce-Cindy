@@ -21,6 +21,10 @@ const CardProduct = ({ product, material }) => {
       behavior: "smooth",
     });
   };
+  const amount = material?.promotion?.amount;
+  const currentPrice = material?.pricing?.currentPrice;
+  const reductionAmount = (currentPrice * amount) / 100;
+  const promoPrice = currentPrice - reductionAmount;
 
   return (
     <div className="card-product">
@@ -45,7 +49,7 @@ const CardProduct = ({ product, material }) => {
           )}
           <p>
             {isCurrent(material?.promotion?.endDate)
-              ? formatPrice(material?.promotion?.promoPrice)
+              ? formatPrice(promoPrice)
               : formatPrice(material?.pricing?.currentPrice)}{" "}
           </p>
         </div>

@@ -33,7 +33,6 @@ const useMaterials = ({
   const initAmount = data?.amount;
   const initStartDate = data?.startDate;
   const initEndDate = data?.endDate;
-  const initPromoPrice = data?.promoPrice;
   const initMainImage = data?.mainImage;
   const initIsActive = data?.isActive;
   const initIsStar = data?.isStar;
@@ -48,7 +47,6 @@ const useMaterials = ({
     amount: initAmount,
     startDate: initStartDate,
     endDate: initEndDate,
-    promoPrice: initPromoPrice,
   });
   const [mainImage, setMainImage] = useState(initMainImage);
   const [errorMessage, setErrorMessage] = useState("");
@@ -117,30 +115,33 @@ const useMaterials = ({
       const updatedPromo = { ...prevPromo, [property]: newValue };
       let updatedErrorMessage = "";
 
-      const currentDate = new Date();
-      const startDateValue = new Date(updatedPromo.startDate);
-      const endDateValue = new Date(updatedPromo.endDate);
+      let currentDate = new Date();
+      let startDateValue = new Date(updatedPromo.startDate);
+      let endDateValue = new Date(updatedPromo.endDate);
+      // Function to reset time parts of a date to 00:00:00.000
+      const resetTime = (date) => {
+        const newDate = new Date(date);
+        newDate.setHours(0, 0, 0, 0);
+        return newDate;
+      };
 
+      currentDate = resetTime(currentDate);
+      startDateValue = resetTime(startDateValue);
+      endDateValue = resetTime(endDateValue);
       if (
         updatedPromo.startDate ||
         updatedPromo.endDate ||
-        updatedPromo.amount ||
-        updatedPromo.promoPrice
-      ) {
+        updatedPromo.amount       ) {
         if (
           !updatedPromo.startDate ||
           !updatedPromo.endDate ||
-          !updatedPromo.amount ||
-          updatedPromo.promoPrice
+          !updatedPromo.amount
         ) {
           updatedErrorMessage = "Remplir les 4 champs promotion";
         }
       }
       if (property === "startDate") {
-        if (startDateValue < currentDate) {
-          updatedErrorMessage =
-            "La date de début de la promotion doit être postérieure ou égale à la date actuelle";
-        } else if (endDateValue && endDateValue <= startDateValue) {
+        if (endDateValue && endDateValue <= startDateValue) {
           updatedErrorMessage =
             "La date de fin de la promotion doit être postérieure à la date de début de la promotion";
         }
@@ -148,9 +149,6 @@ const useMaterials = ({
         if (endDateValue && endDateValue < currentDate) {
           updatedErrorMessage =
             "La date de fin de la promotion doit être postérieure ou égale à la date actuelle";
-        } else if (startDateValue < currentDate) {
-          updatedErrorMessage =
-            "La date de début de la promotion doit être postérieure ou égale à la date actuelle";
         } else if (endDateValue && endDateValue < startDateValue) {
           updatedErrorMessage =
             "La date de fin de la promotion doit être postérieure à la date de début de la promotion";
@@ -216,6 +214,7 @@ const useMaterials = ({
   useEffect(() => {
     setIsChecked(!!initMainImage);
   }, [initMainImage]);
+
   return {
     isChecked,
     stock,

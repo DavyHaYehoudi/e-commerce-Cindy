@@ -20,6 +20,13 @@ const MainContent = ({ productId, materialId }) => {
     productsId: productId,
     material: materialSelected?.id,
   });
+  //if promotion
+  const currentPrice =
+    product?.materials[materialSelected.index]?.pricing?.currentPrice;
+  const amount = product?.materials[materialSelected.index]?.promotion?.amount;
+  const reductionAmount = (currentPrice * amount) / 100;
+  const promoPrice = currentPrice - reductionAmount;
+
   return (
     <div id="master-product-content">
       <div className="images-container">
@@ -67,10 +74,7 @@ const MainContent = ({ productId, materialId }) => {
             {isCurrent(
               product?.materials[materialSelected.index]?.promotion?.endDate
             )
-              ? formatPrice(
-                  product?.materials[materialSelected.index]?.promotion
-                    ?.promoPrice
-                )
+              ? formatPrice(promoPrice)
               : formatPrice(
                   product?.materials[materialSelected.index]?.pricing
                     ?.currentPrice
