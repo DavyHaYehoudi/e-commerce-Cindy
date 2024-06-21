@@ -4,7 +4,6 @@ import Block from "../dashboardAdmin/admin/byProduct/filters/Block";
 import Products from "./Products";
 import useAllProductsPage from "./hooks/useAllProductsPage";
 import CartOffcanvas from "../MasterProduct/cartAccess";
-import useFilter from "../dashboardAdmin/admin/byProduct/filters/hooks/usefilter";
 
 const AllProductsPage = () => {
   const {
@@ -14,8 +13,6 @@ const AllProductsPage = () => {
     updateMaterialCount,
     handleSearchChange,
   } = useAllProductsPage();
-  const { checkedItems } = useFilter();
-  console.log('checkedItems:', checkedItems)
 
   return (
     <div className="allProducts">

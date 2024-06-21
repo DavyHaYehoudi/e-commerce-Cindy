@@ -17,11 +17,11 @@ const Master = () => {
     <div className="category-master">
       <div className="animated-container">
         <div className="main-title">
-          <h1 className="text-effect-1" >Catégorie : {categoryName}</h1>
-            ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
+          <h1 className="text-effect-1">Catégorie : {categoryName}</h1>(
+          {productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
         </div>
         <Summary
-        categoryName={categoryName}
+          categoryName={categoryName}
           productsLinked={productsLinkedToCategory}
           productsNumber={productsNumber}
         />

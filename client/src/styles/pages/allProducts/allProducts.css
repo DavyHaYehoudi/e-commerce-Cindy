@@ -31,7 +31,7 @@
 
 @media (max-width: 576px) {
     .allProducts .allProducts-content {
-        margin: auto;
+        margin: 20px auto;
         padding: 0;
         width: 100%;
     }

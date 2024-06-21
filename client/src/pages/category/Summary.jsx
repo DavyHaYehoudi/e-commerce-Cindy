@@ -1,42 +1,10 @@
 import React from "react";
 import CardProduct from "../../shared/CardProduct";
 import Slider from "react-slick";
+import settings from "../../styles/utils/slider";
 
 const Summary = ({ categoryName ,productsNumber,productsLinked}) => {
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
+
   return (
     <div className="category-master-row">
       {productsNumber > 0 && (
@@ -52,7 +20,7 @@ const Summary = ({ categoryName ,productsNumber,productsLinked}) => {
                 productsLinked.map((product) =>
                   product?.materials
                     .filter(
-                      (material) => material.isActive && !material.isArchived
+                      (material) => material?.isActive && !material?.isArchived
                     )
                     .map((material, i) => (
                       <div key={i}>

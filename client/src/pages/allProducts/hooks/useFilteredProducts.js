@@ -9,19 +9,6 @@ const useFilteredProducts = (updateMaterialCount) => {
     (product) => !product.isArchived && product.isActive
   );
 
-  let materialCount = 0;
-  productsCurrented.forEach((product) => {
-    product.materials
-      .filter((material) => material.isActive && !material.isArchived)
-      .forEach(() => {
-        materialCount += 1;
-      });
-  });
-
-  useEffect(() => {
-    updateMaterialCount(materialCount);
-  }, [materialCount, updateMaterialCount]);
-
   const filterMaterials = (material) => {
     const today = new Date();
 
@@ -46,6 +33,16 @@ const useFilteredProducts = (updateMaterialCount) => {
 
     return material?.isActive && !material?.isArchived;
   };
+
+  const filteredMaterials =
+    productsCurrented
+      ?.flatMap((product) => product.materials)
+      ?.filter(filterMaterials) || [];
+  const materialCount = filteredMaterials.length;
+
+  useEffect(() => {
+    updateMaterialCount(materialCount);
+  }, [materialCount, updateMaterialCount]);
 
   return { productsCurrented, filterMaterials };
 };

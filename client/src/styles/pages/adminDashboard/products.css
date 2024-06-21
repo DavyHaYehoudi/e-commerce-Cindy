@@ -9,16 +9,12 @@
     animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
-
-.products {
-    margin: 50px;
-}
-
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     justify-items: center;
+    margin: 50px;
 }
 
 .products .card {
