@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { formattedDataProduct } from "../../utils/filter/formattedDataProduct";
-import { fetchProduct } from "../../../../../../features/admin/productSlice";
+import { checkItemsFilter, fetchProduct } from "../../../../../../features/admin/productSlice";
 
 const useFilter = (setSearchBarValue) => {
   const [checkedItems, setCheckedItems] = useState({});
@@ -13,10 +13,13 @@ const useFilter = (setSearchBarValue) => {
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    setCheckedItems((prevCheckedItems) => ({
-      ...prevCheckedItems,
+    const newCheckedItems = {
+      ...checkedItems,
       [name]: checked,
-    }));
+    };
+
+    setCheckedItems(newCheckedItems);
+    dispatch(checkItemsFilter(newCheckedItems));
   };
 
   const handleValidation = () => {
