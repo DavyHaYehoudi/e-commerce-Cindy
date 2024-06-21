@@ -2,24 +2,20 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateActionContent } from "../../../../../../../../features/admin/orderProductsSlice";
 import { handleActionClick } from "./handler/item";
-import { getProductProperties } from "../../../../../../../../selectors/product";
 import { useInputQuantityHandler } from "./hooks/transaction/useInputQuantityHandler";
 import { useValidateEntryHandler } from "./hooks/transaction/useValidateEntryHandler";
 import { useCancelEntryHandler } from "./hooks/transaction/useCancelEntryHandler";
 
 const Transaction = ({
-  material,
   interaction,
   action,
   actions,
   label,
   placeholderValue,
-  productsId,
   orderId,
   orderProducts,
   textCancel,
   orderProductsInfo,
-  productStore,
   isActionSelected,
   inputQuantityValue,
   orderProductsActions,
@@ -30,17 +26,10 @@ const Transaction = ({
   setConfirmation,
 }) => {
   const dispatch = useDispatch();
-  const collectionStore = useSelector((state) => state?.collection?.data);
-  const categoryStore = useSelector((state) => state?.category?.data);
-  const tagStore = useSelector((state) => state?.tag?.data);
-  const productPrice = getProductProperties(
-    productsId,
-    productStore,
-    collectionStore,
-    categoryStore,
-    tagStore,
-    material
-  )?.pricing?.currentPrice;
+  const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
+  const { finalPrice } = orderProductsStore.find(
+    (op) => op?._id === orderProducts?._id
+  );
   const { handleChangeInputQuantity } = useInputQuantityHandler(
     actions,
     setProductActions
@@ -100,7 +89,7 @@ const Transaction = ({
                 action,
                 orderId,
                 setProductActions,
-                productPrice
+                finalPrice
               )
             }
           >

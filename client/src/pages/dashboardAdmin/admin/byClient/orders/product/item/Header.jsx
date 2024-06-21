@@ -1,5 +1,4 @@
 import React from "react";
-import { getProductProperties } from "../../../../../../../selectors/product";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { formatDate } from "../../../../../../../helpers/utils/formatDate";
@@ -7,11 +6,9 @@ import {
   formatPrice,
   sumPriceArticle,
 } from "../../../../../../../helpers/utils/prices";
-import { getCreditsInfo } from "../../../../../../../selectors/credit";
-import { useSelector } from "react-redux";
 import { getMaterialProperty } from "../../../../../../../selectors/material";
-import useFirebaseImage from "../../../../../../../shared/hooks/useFirebaseImage";
 import { Link } from "react-router-dom";
+import useProductHeader from "./hooks/useProductHeader";
 
 const Header = ({
   interaction,
@@ -23,27 +20,23 @@ const Header = ({
   orderProductsInfo,
   productStore,
   toggleActions,
+  getOneOrderProducts,
 }) => {
-  const { amount, code, dateExpire } =
-    useSelector((state) =>
-      getCreditsInfo(state, { productsId: orderProducts._id })
-    ) || {};
-  const collectionStore = useSelector((state) => state?.collection?.data);
-  const categoryStore = useSelector((state) => state?.category?.data);
-  const tagStore = useSelector((state) => state?.tag?.data);
-  const materialStore = useSelector((state) => state?.material?.data);
+  const {
+    amount,
+    code,
+    dateExpire,
+    collection,
+    category,
+    name,
+    imageUrl,
+    materialStore,
+  } = useProductHeader(orderProducts, productsId, productStore, material);
 
-  const { collection, category, name, pricing, main_image } =
-    getProductProperties(
-      productsId,
-      productStore,
-      collectionStore,
-      categoryStore,
-      tagStore,
-      material
-    ) || {};
+  const { originalPrice, finalPrice, amountPromotion, amountPromoCode } =
+    getOneOrderProducts || "";
   const { exchange, refund, credit } = orderProductsInfo ?? {};
-  const { imageUrl } = useFirebaseImage(main_image);
+
   return (
     <>
       <p
@@ -63,13 +56,21 @@ const Header = ({
           <h3>
             {name} {getMaterialProperty(material, materialStore)?.name}
           </h3>
+          <p>Collection : {collection}</p>
+          <p>Catégorie : {category}</p>
+          <p>Prix original : {formatPrice(originalPrice)} </p>
+          <p>
+            Promotion : {amountPromotion ? amountPromotion + "%" : "aucune"}{" "}
+          </p>
+          <p>
+            Code Promotion : {amountPromoCode ? amountPromoCode + "%" : "aucun"}{" "}
+          </p>
+          <p>Prix final : {formatPrice(finalPrice)} </p>
           <p className="pricing inPricing">
             {quantity} article
             {quantity > 1 ? "s" : ""} -{" "}
-            {sumPriceArticle(quantity, pricing?.currentPrice)}
+            {sumPriceArticle(quantity, finalPrice)}
           </p>
-          <p>Collection : {collection}</p>
-          <p>Catégorie : {category}</p>
         </div>
         <Link
           to={`/master-product/${productsId}`}
@@ -93,7 +94,7 @@ const Header = ({
               <>
                 <span>REMBOURSEMENT :</span>{" "}
                 <span className="pricing outPricing">
-                  {sumPriceArticle(parseInt(refund), pricing?.currentPrice)}
+                  {sumPriceArticle(parseInt(refund), finalPrice)}
                 </span>
               </>
             )}

@@ -6,14 +6,11 @@ export const generateItemTransactionComponent = (
   isActionSelected,
   inputQuantityValue,
   placeholderValue,
-  material,
   actions,
   interaction,
-  productsId,
   orderId,
   orderProducts,
   orderProductsInfo,
-  orderProductsState,//productStore
   orderProductsActions,
   articleNumber,
   setEntryError,
@@ -23,18 +20,15 @@ export const generateItemTransactionComponent = (
 ) => {
   return (
     <Transaction
-      material={material}
       interaction={interaction}
       action={action}
       actions={actions}
       label={label}
       placeholderValue={placeholderValue}
-      productsId={productsId}
       orderId={orderId}
       orderProducts={orderProducts}
       textCancel={`ANNULER ${label}`}
       orderProductsInfo={orderProductsInfo}
-      productStore={orderProductsState}
       isActionSelected={isActionSelected}
       inputQuantityValue={inputQuantityValue}
       orderProductsActions={orderProductsActions}

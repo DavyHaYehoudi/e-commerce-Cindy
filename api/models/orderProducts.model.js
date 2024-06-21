@@ -28,6 +28,22 @@ const orderProductsSchema = new mongoose.Schema(
         message: (props) => `${props.value} n'est pas compris entre 1 et 100!`,
       },
     },
+    originalPrice:{
+      type: Number,
+      required: true,
+    },
+    finalPrice:{
+      type: Number,
+      required: true,
+    },
+    amountPromotion:{
+      type: Number,
+      default:null
+    },
+    amountPromoCode:{
+      type: Number,
+      default:null
+    },
     material: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Material",

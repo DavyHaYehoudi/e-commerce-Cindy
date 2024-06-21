@@ -14,7 +14,7 @@ const useConfirmation = ({
   orderId,
   orderProducts,
   amount,
-  productPrice,
+  finalPrice,
   orderProductsInfo,
   setProductActions,
   setConfirmation,
@@ -89,7 +89,7 @@ const useConfirmation = ({
       dispatch(
         totalsInOut({
           orderId,
-          amount: orderProductsInfo?.refund * productPrice,
+          amount: orderProductsInfo?.refund * finalPrice,
           movement: "outCancel",
         })
       );

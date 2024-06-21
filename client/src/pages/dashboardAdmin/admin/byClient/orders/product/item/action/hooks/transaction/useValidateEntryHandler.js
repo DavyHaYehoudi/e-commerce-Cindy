@@ -18,7 +18,7 @@ export const useValidateEntryHandler = (
     action,
     orderId,
     setProductActions,
-    productPrice
+    finalPrice
   ) => {
     e.stopPropagation();
 
@@ -63,7 +63,7 @@ export const useValidateEntryHandler = (
         dispatch(
           totalsInOut({
             orderId,
-            amount: orderProductsActions.refundContent * productPrice,
+            amount: orderProductsActions.refundContent * finalPrice,
             movement: "out",
           })
         );
