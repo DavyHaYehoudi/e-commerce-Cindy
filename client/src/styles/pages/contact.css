@@ -1,8 +1,12 @@
 #contact {
-    margin: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: var(--background-whitesmoke);
+}
+#contact .contact-content{
+    padding: 100px 0;
+}
+
+#contact .animated-container {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
 #contact-text {
@@ -20,16 +24,19 @@
     padding: 1.25rem;
     margin: 20px;
 }
-#contact-info-box .info a{
+
+#contact-info-box .info a {
     margin: 20px;
     display: flex;
     align-items: center;
 }
-#contact-info-box .info a span{
+
+#contact-info-box .info a span {
     margin: 5px;
 }
 
 #contact-form-box {
+    margin: auto;
     width: 40rem;
     height: 30rem;
     padding: 1.6rem 1rem;
@@ -42,6 +49,13 @@ textarea {
     height: 3.125rem;
     border: 1px solid var(--border-color);
     margin: 0.5rem;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#contact-form-box,
+textarea {
+    padding: 0 15px;
 }
 
 #contact-form-box input::placeholder,
@@ -65,4 +79,47 @@ textarea:focus {
     justify-content: center;
     border: 1px solid var(--border-color);
     padding: 1.25rem;
+}
+
+#contact-form-box .contact-btn {
+    color: var(--dark);
+}
+
+#contact-form-box .contact-btn:hover {
+    color: whitesmoke;
+}
+
+#contact-form-box .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#contact-form-box .d-none {
+    display: none;
+
+}
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    #contact-form-box {
+        margin: auto;
+        width: inherit;
+        max-width: 40rem;
+        height: 30rem;
+        padding: 1.6rem 1rem;
+        text-align: center;
+    }
+    
+    #contact-form-box input,
+    textarea {
+        width: inherit;
+        width: 90%;
+        max-width: 35rem;
+        height: 3.125rem;
+        border: 1px solid var(--border-color);
+        margin: 0.5rem;
+        padding: 15px;
+        border-radius: 5px;
+    }
 }

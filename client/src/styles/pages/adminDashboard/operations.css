@@ -32,7 +32,8 @@
     transition: width 0.3s ease;
 }
 
-.tabs-operations h2:hover::before {
+.tabs-operations h2:hover::before,
+.tabs-operations h2.active::before {
     width: 100%;
 }
 
@@ -41,10 +42,11 @@
 }
 
 .promocodes {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    margin: auto;
+    justify-items: center;
 }
 
 .promocodes .card {
@@ -98,6 +100,7 @@
 
 .promocodes-modal {
     position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
@@ -133,9 +136,16 @@
 .promocodes-modal-close:hover {
     transform: rotate(180deg) translateY(25%);
 }
+
 .promocodes .validate-btn {
     background-color: var(--success);
 }
 
 
 /* ********************* END PAGE PROMOCODE ********************* */
+
+@media (max-width: 1200px) {
+    h1 {
+        text-align: center;
+    }
+}

@@ -1,46 +1,88 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { MdCollections } from "react-icons/md";
+import { IoMdPricetag } from "react-icons/io";
+import { PiFoldersFill } from "react-icons/pi";
+import { FaRegAddressBook } from "react-icons/fa";
+import { MdOutlineHistoryEdu } from "react-icons/md";
+import { MdMailOutline } from "react-icons/md";
 
-const NavMenu = ({ handleMenuEnter, handleMenuLeave }) => {
+const NavMenu = ({ toggleModalMenuSmart }) => {
   return (
-    <nav id="navMenu" role="navigation" >
+    <nav id="navMenu" role="navigation">
       <ul>
-        <li
-          onMouseEnter={() => handleMenuEnter("display1")}
-          
-        >
+        <li>
           <NavLink
-            to="menu-tab/forTheDay"
+            to="menu-tab-collections"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
-            Pour un jour unique
+            <span className="icon">
+              {" "}
+              <MdCollections />
+            </span>
+            <span className="navlink-text"> Collections</span>
           </NavLink>
         </li>
-        <li
-          onMouseEnter={() => handleMenuEnter("display2")}
-          
-        >
+        <li>
           <NavLink
-            to="menu-tab/forEveryday"
+            to="menu-tab-categories"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
-            Pour le quotidien
+            <span className="icon">
+              {" "}
+              <PiFoldersFill />
+            </span>
+            <span className="navlink-text"> Catégories</span>
           </NavLink>
         </li>
-        <li onMouseEnter={() => handleMenuLeave()}>
+        <li>
+          <NavLink
+            to="products"
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
+          >
+            <span className="icon">
+              <IoMdPricetag />
+            </span>
+            <span className="navlink-text">Produits</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="tradition"
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
+          >
+            <span className="icon">
+              <MdOutlineHistoryEdu />
+            </span>
+            <span className="navlink-text">Tradition</span>
+          </NavLink>
+        </li>
+        <li>
           <NavLink
             to="about"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
-            A propos
+            <span className="icon">
+              <FaRegAddressBook />
+            </span>
+            <span className="navlink-text">Moi</span>
           </NavLink>
         </li>
-        <li onMouseEnter={() => handleMenuLeave()}>
+        <li>
           <NavLink
             to="contact"
             className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleModalMenuSmart}
           >
-            Contact
+            <span className="icon">
+              <MdMailOutline />
+            </span>
+            <span className="navlink-text">Contact</span>
           </NavLink>
         </li>
       </ul>

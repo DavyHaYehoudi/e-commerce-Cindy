@@ -11,7 +11,7 @@ const OrderStep = ({ order }) => {
   };
 
   return (
-    <p>
+    <p className="step-order">
       <span style={StepColorStyle} data-testid="order-step">
         {getOrderStepProperty(order.step)?.name}
       </span>

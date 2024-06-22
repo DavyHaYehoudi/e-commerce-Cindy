@@ -1,20 +1,26 @@
 import React from "react";
+import useCartButton from "./hooks/useCartButton";
+import { BsCartPlusFill } from "react-icons/bs";
+import { BsCartDashFill } from "react-icons/bs";
 
-const AddToCartButton = ({
-  onClick,
-  additionalFunction,
-  buttonText,
-  className,
-}) => {
-  const handleClick = () => {
-    onClick();
-    additionalFunction();
-  };
+const AddToCartButton = ({ productsId, material }) => {
+  const { handleRemoveToCart, isProductInCart, handleAddToCart } =
+    useCartButton(productsId, material);
 
   return (
-    <button className={className} onClick={handleClick}>
-      {buttonText}
-    </button>
+    <>
+      {isProductInCart ? (
+        <button className="cart-button btn remove" onClick={handleRemoveToCart}>
+          <BsCartDashFill />
+          <span>Retirer du panier </span>
+        </button>
+      ) : (
+        <button className="cart-button btn add" onClick={handleAddToCart}>
+          <span>Ajouter au panier</span>
+          <BsCartPlusFill />
+        </button>
+      )}
+    </>
   );
 };
 

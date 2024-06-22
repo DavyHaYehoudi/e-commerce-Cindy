@@ -4,9 +4,13 @@
     right: -400px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 400px;
     height: 800px;
-    background-color: #fff;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    color: var(--dark);
+    background: var(--background);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
     overflow-y: auto;
@@ -14,12 +18,16 @@
 
 .offcanvas.show {
     right: 0;
+    z-index: 300;
 }
 
 .offcanvas-heading {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 40px 20px;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .offcanvas-heading button {
@@ -28,14 +36,32 @@
     font-size: 1.25rem;
     cursor: pointer;
     transition: transform 0.3s ease;
+    color: var(--dark);
 }
 
 .offcanvas-heading button:hover {
     transform: rotate(180deg) translateY(10%);
 }
 
+.offcanvas-heading .cart-clear-trash {
+    font-size: 1.25rem;
+}
+
+.offcanvas-heading .cart-clear-trash:hover {
+    color: #838282;
+    animation: shake-rotate 2s ease 0s 1 normal forwards;
+}
+
 .cart-offcanvas-content {
     margin-top: 20px;
+}
+
+.cart-offcanvas-content .quantity-select input {
+    font-size: 1rem;
+}
+
+.cart-offcanvas-content img {
+    border-radius: 5px;
 }
 
 .empty-cart-message {
@@ -43,18 +69,75 @@
     text-align: center;
 }
 
-.fixed-bottom-content button {
-    width: 100%;
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid var(--border-color);
-}
-
 .fixed-bottom-content {
     position: sticky;
     bottom: 0;
     padding: 10px;
     width: 100%;
-    background-color: #fff;
+    background: var(--background);
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-bottom-content button {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--dark);
+}
+
+.fixed-bottom-content button:hover {
+    color: whitesmoke;
+}
+
+/* ****************** ROWS CART ITEM COMPONENT ****************** */
+.offcanvas .cart-item {
+    border-top: 1px solid var(--border-color);
+    padding: 10px;
+    margin: 10px 20px;
+}
+
+.offcanvas .cart-item-top,
+.offcanvas .cart-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.offcanvas .cart-item-image {
+    flex: 1;
+    max-width: 25%;
+}
+
+.offcanvas .cart-item-name {
+    flex: 3;
+}
+
+.offcanvas .cart-item-delete {
+    flex: 0.2;
+    text-align: right;
+    transition: color 0.2s ease-in;
+}
+
+.offcanvas .cart-item-subtotal {
+    flex: 3;
+}
+
+.offcanvas .cart-item-quantity {
+    flex: 1;
+    text-align: right;
+}
+
+/* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
+.offcanvas .cart-item-delete .info-tooltip:hover::before {
+    left: -90%;
+}
+
+@media (max-width: 576px) {
+    .offcanvas.show {
+       max-width: 100%;
+    }
+
 }

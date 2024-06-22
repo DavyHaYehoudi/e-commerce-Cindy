@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import orderController from "../controllers/order.controller.js";
+import orderController from "../controllers/ordersController/order.controller.js";
 import sendToClientController from "../controllers/sendToClient/index.js";
 import authenticateAdmin from "../controllers/authentication/authenticateAdmin.js";
 import authenticateUser from "../controllers/authentication/authenticateUser.js";
@@ -26,4 +26,5 @@ router.delete(
   authenticateUser,
   orderController.deleteTrackingNumberClient
 );
+router.post("/", authenticateUser, orderController.createOrder);
 export default router;

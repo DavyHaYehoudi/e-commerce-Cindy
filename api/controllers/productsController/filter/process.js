@@ -47,6 +47,8 @@ const process = async (queries) => {
         otherQueries.push({
           "materials.untilNew": { $gt: new Date() },
         });
+      } else if (propertyName === "pending") {
+        otherQueries.push({ isActive: false });
       } else {
         otherQueries.push({
           [`materials.${propertyName}`]: true,

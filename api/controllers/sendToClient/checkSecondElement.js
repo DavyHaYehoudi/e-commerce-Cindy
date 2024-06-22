@@ -44,39 +44,6 @@ export async function checkSecondElement(req, step, trackingNumberList) {
       quantity: product.quantity,
     }));
 
-    for (const trackingNumberItem of trackingNumberList) {
-      try {
-        const orderProductsArray = trackingNumberItem.orderProducts;
-
-        for (const productByOrder of orderProductsArray) {
-          const productsId = productByOrder.productsId;
-          const { orderProductsId } = productByOrder;
-
-          if (
-            !orderProductsDetails.find((item) => item.productsId.equals(productsId) )
-          ) {
-            throw new Error(
-              "ProductsId inexistant ou non associé à la commande."
-            );
-          }
-
-          // Vérifier si articlesNumber ne dépasse pas quantity
-          const { quantity } =
-            (await OrderProducts.findOne({
-              _id: orderProductsId,
-            })) || {};
-          const articlesNumber = parseInt(productByOrder.articlesNumber, 10);
-
-          if (isNaN(articlesNumber) || articlesNumber > quantity) {
-            throw new Error(
-              "ArticlesNumber ne peut pas dépasser la quantité commandée."
-            );
-          }
-        }
-      } catch (error) {
-        errors.push(error.message);
-      }
-    }
     return { errors };
   } catch (error) {
     console.log("error dans checkSecondElement.js:", error);

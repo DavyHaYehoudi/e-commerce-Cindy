@@ -15,8 +15,14 @@
     --new-badge-text: #FFFFFF;
     --footer-heading-color: #1C1B1B;
     --footer-text-color: #FFFFFF;
-    --text-whitesmoke:#F5F5F5; 
-    --text-color-white:#FFFFFF;
+    --text-whitesmoke: #F5F5F5;
+    --text-color-white: #FFFFFF;
+    --collection-card-text: #6A6A6A;
+    --manufacture: #967F71;
+    --color-gray: #6A6A6A;
+    --redOnBlack: #f49b80;
+    --color-icon-menu: #6A6A6A;
+    --color-disabled: whitesmoke;
 
     /* BACKGROUND */
     --background: #FFFFFF;
@@ -25,10 +31,18 @@
     --new-badge-bkg: to right, #d8e1eb, #aeb8c5;
     --quantity-cart: #D9C2B6;
     --footer-background: #C4B6C3;
-    --client-list:#f2f2f2;
-    --client-item:#fff;
-    --client-details:#fff;
-    --client-header:#f9f9f9;
+    --client-list: #f2f2f2;
+    --client-item: #fff;
+    --client-details: #fff;
+    --client-header: #f9f9f9;
+    --collection-card-bg: #f4f1f1;
+    --favorite-heart-bg: #D9C2B6;
+    --master-product-information-bg: #f4f1f1;
+    --background-golden: #D9C2B6;
+    --background-taup: #6A6A6A;
+    --background-whitesmoke: rgb(252, 252, 252);
+    --background-disabled: #6c757d;
+    --background-pricing:whitesmoke;
 
     /* FONT WEIGHT */
     --font-weight: 400;
@@ -36,26 +50,33 @@
     /* FONT SIZE */
     --nav-menu-heading-fontSize: 0.6875rem;
     --nav-menu-text-fontSize: 0.75rem;
-    --product-heading-fontSize: 1.125rem;
+    --product-heading-fontSize: 2rem;
     --product-price-fontSize: 1rem;
     --footer-heading-fontSize: 1rem;
-    --footer-text-fontSize: 0.75rem;
+    --footer-text-fontSize: 1rem;
 
     /* LETTER SPACING */
     --letter-spacing: 0.2em;
 
     /* COMPTES ADMIN ET CLIENT */
-    --dark:black;
-    --primary:#007bff;
-    --secondary:#6c757d;
-    --success:#28a745;
-    --danger:#dc3545;
-    --warning:#ffc107;
-    --info:#17a2b8; 
+    --dark: black;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+
+    /* HEADINGS */
+    --h1-mobile:1.6rem;
+    --h2-mobile:1.4rem;
+    --h3-mobile:1.2rem;
+    --h4-mobile:1rem;
 
 }
-[data-theme="dark"]{
-    --background:#282c34;
+
+[data-theme="dark"] {
+    --background: #282c34;
     --border-color: #DDDDDD;
     --text-color: #FFFFFF;
     --text-golden: #967F71;
@@ -63,17 +84,26 @@
     --nav-menu-color: #FFFFFF;
     --footer-text-color: #FFFFFF;
     --freeShippingBanner-bkg: #282c34;
-    --button-background: #282c34;
     --footer-background: #282c34;
-    --client-list:#282c34;
-    --client-item:#282c34;
-    --client-header:#282c34;
-    --client-details:#282c34;
-    --text-whitesmoke:#282c34; 
-    --text-color-white:#282c34;
-    --text-golden:#FFFFFF;
-    --dark:#FFFFFF;
-    --secondary:#FFFFFF;
-    /* --danger:#d2483d; */
-    --danger:#ff754c;
+    --client-list: #282c34;
+    --client-item: #282c34;
+    --client-header: #282c34;
+    --client-details: #282c34;
+    --text-whitesmoke: #282c34;
+    --text-color-white: #282c34;
+    --text-golden: #FFFFFF;
+    --dark: #FFFFFF;
+    --secondary: #FFFFFF;
+    --danger: #ff754c;
+    --color-icon-menu: whitesmoke;
+    --background-whitesmoke: #282c34;
+    --background-pricing:transparent;
+
+    /* ******************** MEDIAS QUERIES ******************** */
+    --breakpoint-xs: 576px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 992px;
+    --breakpoint-lg: 1200px;
+    --breakpoint-xl: 1400px;
+
 }

@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ColorPicker = ({ colors, onSelectColor, defaultColor, onHoverColor }) => {
-  const [selectedColor, setSelectedColor] = useState(defaultColor);
-
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
-    onSelectColor(color);
-  };
-
-  const handleColorHover = (color) => {
-    onHoverColor(color);
+const ColorPicker = ({
+  materialsStore,
+  handleMaterialSelected,
+  materialsProductId,
+  materialName,
+}) => {
+  const handleColorClick = ({ materialId }) => {
+    const materialSelectedIndex = materialsProductId.findIndex(
+      (material) => material?._id === materialId
+    );
+    handleMaterialSelected({
+      id: materialId,
+      index: materialSelectedIndex,
+      currentImage: materialsProductId[materialSelectedIndex]?.main_image,
+    });
   };
 
   return (
     <div className="color-picker">
-      {colors.map((color) => (
-        <div
-          key={color.name}
-          className={`color-option ${
-            color.name === selectedColor ? "selected" : ""
-          }`}
-          style={{ backgroundColor: color.value }}
-          onClick={() => handleColorClick(color.name)}
-          onMouseEnter={() => handleColorHover(color.name)}
-          onMouseLeave={() => handleColorHover(null)}
-        ></div>
-      ))}
+      {materialsProductId &&
+        materialsStore
+          .filter((ms) => materialsProductId.some((mp) => mp?._id === ms?._id))
+          .map((material) => (
+            <div
+              key={material?._id}
+              className={`color-option ${
+                material?.name === materialName ? "selected" : ""
+              }`}
+              style={{ backgroundColor: material?.value }}
+              onClick={() =>
+                handleColorClick({
+                  color: material?.name,
+                  materialId: material?._id,
+                })
+              }
+            ></div>
+          ))}
     </div>
   );
 };

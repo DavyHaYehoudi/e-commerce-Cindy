@@ -1,13 +1,27 @@
+.legalNotice h1,
+.termsOfSales h1,
+.deliveries h1 {
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 60px;
+}
+
+.legalNotice .animated-container,
+.termsOfSales .animated-container,
+.deliveries .animated-container {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
+}
+
 #legalNotice-contain,
 #deliveries-contain,
 #termsOfSales-contain {
-    margin: 20px;
+    max-width: 1440px;
+    margin: 50px auto;
+    padding:0 10px;
 }
 
-h1 {
-    text-align: center;
-}
-
-h2 {
-    margin-top: 10px;
+#legalNotice-contain h2,
+#deliveries-contain h2,
+#termsOfSales-contain h2 {
+    margin-top: 50px;
 }

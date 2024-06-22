@@ -1,14 +1,10 @@
 import OrderProducts from "../../models/orderProducts.model.js";
-import Product from "../../models/product/product.model.js";
 
 export async function checkFirstElement(orderProductsArray) {
   let outTotalAmountCalc = 0;
   const errors = [];
   try {
-    if (
-      !Array.isArray(orderProductsArray) ||
-      orderProductsArray.length < 1
-    ) {
+    if (!Array.isArray(orderProductsArray) || orderProductsArray.length < 1) {
       throw new Error(
         "Le premier élément du tableau doit être un tableau non vide de orderProducts."
       );
@@ -54,38 +50,7 @@ export async function checkFirstElement(orderProductsArray) {
             `Le document OrderProducts avec l'ID ${orderProducts._id} n'a pas été trouvé dans la base de données.`
           );
         }
-
-        // Récupérer le prix du produit associé à orderProducts
-        const { productsId } = orderProductsInDB;
-
-        if (!productsId) {
-          throw new Error(
-            `La propriété 'productsId' n'est pas définie pour le document OrderProducts avec l'ID ${orderProducts._id}.`
-          );
-        }
-
-        // Récupérer le document Product en utilisant productsId
-        const productInDB = await Product.findOne({ _id: productsId });
-        const { material } = orderProducts;
-
-        if (!productInDB) {
-          throw new Error(`Le produit avec l'ID ${productsId} n'a pas été trouvé.`);
-        }
-        
-        let currentPrice;
-        
-        if (productInDB.materials && material) {
-          const materialEntry = productInDB.materials.find(entry => entry._id.equals(material));
-          if (!materialEntry || !materialEntry.pricing || !materialEntry.pricing.currentPrice) {
-            throw new Error(`Le prix actuel n'est pas défini pour le matériau ${material}.`);
-          }
-          currentPrice = materialEntry.pricing.currentPrice;
-        } else {
-          if (!productInDB.pricing || !productInDB.pricing.currentPrice) {
-            throw new Error(`Le prix actuel n'est pas défini pour le produit avec l'ID ${productsId}.`);
-          }
-          currentPrice = productInDB.pricing.currentPrice;
-        }
+        const { finalPrice } = orderProductsInDB || "";
 
         // Vérification spécifique pour quantity dans OrderProducts
         const { quantity } = orderProducts;
@@ -109,15 +74,15 @@ export async function checkFirstElement(orderProductsArray) {
         }
 
         if (refund) {
-          outTotalAmountCalc += refund * currentPrice;
+          outTotalAmountCalc += refund * finalPrice;
         }
       } catch (error) {
         errors.push(error.message);
       }
-    } 
+    }
     return { outTotalAmountCalc, errors };
   } catch (error) {
-    console.log('error dans checkFirstElement.js:', error)
+    console.log("error dans checkFirstElement.js:", error);
     return { errors: [error.message] };
-  } 
+  }
 }

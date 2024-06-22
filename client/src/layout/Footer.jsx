@@ -3,25 +3,19 @@ import payment from "../assets/payment.png";
 import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer role="contentinfo" >
       <div className="footer-contain-top">
         <div className="col">
-          <h3>BOUTIQUE</h3>
-          <ul>
-            <li><Link to="menu-tab-subcategory/accessoires-cheveux" >Accessoires cheveux</Link> </li>
-            <li><Link to="menu-tab-subcategory/bijoux">Bijoux</Link></li>
-            <li><Link to="menu-tab-subcategory/demoiselles-d-honneur">Demoiselles d'honneur</Link></li>
-            <li><Link to="menu-tab-subcategory/bracelets">Bracelets</Link></li>
-          </ul>
-        </div>
-        <div className="col">
           <h3>MENU PRINCIPAL</h3>
           <ul>
-            <li><Link to="menu-tab/forTheDay">Pour un jour unique</Link> </li>
-            <li><Link to="menu-tab/forEveryday">Pour le quotidien</Link></li>
-            <li><Link to="about">A propos</Link></li>
+            <li><Link to="menu-tab-collections">Collections</Link> </li>
+            <li><Link to="menu-tab-categories">Catégories</Link> </li>
+            <li><Link to="products" >Produits</Link></li>
+            <li><Link to="tradition" >Tradition</Link></li>
+            <li><Link to="about">Moi</Link></li>
             <li><Link to="contact">Contact</Link></li>
           </ul>
         </div>
@@ -59,10 +53,10 @@ const Footer = () => {
       </div>
       <div className="footer-contain-bottom">
         <div className="info">
-          <div className="logo">© SUPER CINDY</div>
           <div className="payment">
             <img src={payment} alt="payment" width="300px" />
           </div>
+          <div className="logo">© Atelier Noralya</div>
         </div>
       </div>
     </footer>

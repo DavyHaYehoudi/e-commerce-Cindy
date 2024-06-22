@@ -110,6 +110,7 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-};
+}; 
 
-export default clientController;
+export default clientController; 
+ 

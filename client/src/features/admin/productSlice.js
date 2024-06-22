@@ -30,7 +30,7 @@ const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async ({ productId, handleUnauthorized }) => {
     await Del(`products/${productId}`, null, handleUnauthorized);
-    return productId
+    return productId;
   }
 );
 
@@ -42,13 +42,25 @@ const productSlice = createSlice({
     materials: [],
     mainImagesToRemoveStorage: [],
     isProductCheetModified: false,
+    isPendingProduct: false,
+    cartAccess: false,
+    wishlistAccess: false,
+    checkedItemsFilter:{},
     status: "idle",
     error: null,
   },
   reducers: {
     updateProductMaterials: (state, action) => {
-      const { _id, stock, newDate, pricing, promo, main_image, isActive } =
-        action.payload || {};
+      const {
+        _id,
+        stock,
+        newDate,
+        pricing,
+        promo,
+        main_image,
+        isActive,
+        isStar,
+      } = action.payload || {};
 
       const existingMaterialIndex = state.materials.findIndex(
         (material) => material._id === _id
@@ -62,6 +74,7 @@ const productSlice = createSlice({
         if (promo !== undefined) updatedMaterial.promotion = promo;
         if (main_image !== undefined) updatedMaterial.main_image = main_image;
         if (isActive !== undefined) updatedMaterial.isActive = isActive;
+        if (isStar !== undefined) updatedMaterial.isStar = isStar;
 
         state.materials[existingMaterialIndex] = updatedMaterial;
       } else {
@@ -87,6 +100,22 @@ const productSlice = createSlice({
     modifyProductCheet: (state, action) => {
       state.isProductCheetModified = action.payload;
     },
+    changeProductActiveStatus: (state, action) => {
+      const { productId, status, isPending } = action.payload;
+      state.data = state.data.map((product) =>
+        product._id === productId ? { ...product, isActive: status } : product
+      );
+      state.isPendingProduct = isPending;
+    },
+    showCartAccess: (state, action) => {
+      state.cartAccess = action.payload;
+    },
+    showWishlistAccess: (state, action) => {
+      state.wishlistAccess = action.payload;
+    },
+    checkItemsFilter:(state,action)=>{
+    state.checkedItemsFilter = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -145,7 +174,7 @@ const productSlice = createSlice({
         state.status = "succeeded";
         state.error = null;
         state.totalProductsCount -= 1;
-        const  productId  = action.payload;
+        const productId = action.payload;
         state.data = state.data.filter((product) => product?._id !== productId);
       })
       .addCase(deleteProduct.rejected, (state, action) => {
@@ -162,5 +191,9 @@ export const {
   initProductMaterials,
   resetStore,
   modifyProductCheet,
+  changeProductActiveStatus,
+  showCartAccess,
+  showWishlistAccess,
+  checkItemsFilter
 } = productSlice.actions;
 export default productSlice.reducer;

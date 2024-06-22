@@ -14,6 +14,10 @@ const categorySchema = new mongoose.Schema({
       }
     ]
   },
+  main_image: {
+    type: String,
+    required: true,
+  },
   isArchived: {
     type: Boolean,
     default: false,

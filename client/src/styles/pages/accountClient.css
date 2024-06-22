@@ -1,6 +1,6 @@
 /* ******************************* MENU ******************************* */
 .user-profile-container .selected {
-  color: var(--danger);
+  color: var(--redOnBlack);
 }
 
 .user-profile-container {
@@ -8,15 +8,26 @@
   margin: 20px auto;
 }
 
+.user-profile-container .animated-container {
+  animation: slideFromTop 2s ease 0s 1 normal forwards;
+}
+
 .user-profile-menu {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
+}
+
+.user-profile-menu-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 
 .user-profile-menu button {
-  margin: 20px;
   color: var(--text-whitesmoke);
   background-color: var(--dark);
 }
@@ -36,6 +47,10 @@
   margin: 50px;
 }
 
+.user-info-account-container>* {
+  flex: 1;
+}
+
 .user-info-account-container h3 {
   margin-bottom: 30px;
   border: 1px solid var(--dark);
@@ -49,6 +64,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   padding: 30px;
   border-radius: 10px;
+  min-width: 300px;
 }
 
 .user-info-account-container .label {
@@ -60,7 +76,8 @@
   border: 1px solid var(--border-color);
   padding: 8px;
 }
-.user-info-account button.modified{
+
+.user-info-account button.modified {
   background-color: var(--success);
 }
 
@@ -92,9 +109,15 @@
 
 .user-info-account .btn:hover {
   transform: translateY(-2px);
+  color: whitesmoke;
 }
 
 /* ****** AVATAR ****** */
+.user-info-account-container .profil-image-client {
+  display: flex;
+  justify-content: center;
+}
+
 .user-info-account-container .profil-image-client button {
   margin-top: 5px;
   width: 200px;
@@ -109,12 +132,14 @@
   color: var(--secondary);
   cursor: pointer;
 }
-.user-info-account-container  .image-container.main_image .loader {
+
+.user-info-account-container .image-container.main_image .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+
 .user-info-account-container .image-container.main_image {
   width: 200px;
   height: 200px;
@@ -143,6 +168,7 @@
 .user-info-account-container input[type='file'] {
   display: none;
 }
+
 .user-info-account-container .delete-image {
   color: var(--danger);
 }
@@ -155,6 +181,7 @@
 .addTrackingNumberClientBtn {
   background-color: var(--success);
   margin: 20px 0;
+  color: whitesmoke;
 }
 
 .ClientTrackingNumberCreate {
@@ -166,6 +193,7 @@
   background-color: var(--background);
   padding: 20px;
   border: 2px solid var(--info);
+  border-radius: 5px;
   box-shadow: 0 0 3px var(--info);
 }
 
@@ -188,6 +216,7 @@
   overflow: hidden;
   font-size: var(--nav-menu-text-fontSize);
   letter-spacing: var(--letter-spacing);
+  text-align: center;
 }
 
 .tabs-history h3::before {
@@ -202,7 +231,8 @@
   transition: width 0.3s ease;
 }
 
-.tabs-history h3:hover::before {
+.tabs-history h3:hover::before,
+.tabs-history h3.active::before {
   width: 100%;
 }
 
@@ -210,25 +240,28 @@
   color: var(--text-golden);
 }
 
-
 .order-item-wrapper-user-account {
   border: 1px solid #ccc;
   padding: 15px;
+  border-radius: 5px;
 }
 
 .order-item-wrapper-user-account .header .date-step {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
 .order-item-wrapper-user-account .header {
   margin-bottom: 20px;
 }
-.order-item-wrapper-user-account .toggle{
+
+.order-item-wrapper-user-account .toggle {
   margin-top: 20px;
 }
+
 .order-item-wrapper-user-account .order-header-details {
   margin: 10px;
 }
@@ -236,10 +269,14 @@
 .order-item-user-account {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   border: 1px solid #ccc;
   padding: 15px;
   margin: 20px 0;
   gap: 20px;
+}
+.order-item-user-account img{
+border-radius: 5px;
 }
 
 .order-item-user-account p {
@@ -255,30 +292,64 @@
   margin-bottom: 30px;
 }
 
-/**************************** CARTES-CADEAUX *****************************/
-.giftcards li {
+/**************************** ADVANTAGES (carte cadeau + avoir) *****************************/
+.advantages li {
   position: relative;
-  width: 400px;
+  max-width: 400px;
   margin: 20px auto;
   padding: 20px;
   color: var(--text-color);
   box-shadow: 0 0 5px rgba(0, 0, 0, 3);
+  border-radius: 5px;
 }
 
-.giftcards .tag-isUsed {
+.advantages .tag {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--success);
   padding: 5px;
   border-radius: 5px;
-
+  color: whitesmoke;
 }
 
-.giftcards .tag-isUsed.used {
-  background-color: var(--info);
+.advantages .tag.not-available {
+  background-color: var(--warning);
 }
 
-.giftcards .text-used {
+.advantages .tag.available {
+  background-color: var(--success);
+}
+
+.advantages .text-used {
   color: var(--info)
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 1200px) {
+  .user-info-account-container>* {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile-menu {
+    justify-content: center;
+  }
+
+  .user-profile-menu {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-info-account-container {
+    margin: 30px 5px;
+  }
+  .order-item-wrapper-user-account {
+    padding: 10px;
+  }
+  .user-info-account-container .card {
+    padding: 20px 10px;
+
+  }
 }

@@ -5,18 +5,21 @@
 .quantity-select {
     display: flex;
     align-items: center;
+    gap: 10px;
+    flex: 0.2;
+    animation: swingInRight 2s ease 0s 1 normal forwards;
 }
 
-.quantity-select button {
-    border: var(--border-color);
-    padding: 5px 10px;
-    cursor: pointer;
+.quantity-select input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 
-.quantity-select span {
-    margin: 0 10px;
-}
-
-.quantity-icon {
-    color: var(--light-text-color);
+.quantity-select input:focus {
+    outline-color: var(--text-golden);
 }

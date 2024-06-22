@@ -24,6 +24,7 @@ const productSchema = new mongoose.Schema(
     secondary_images: { type: [String] },
     main_description: {
       type: String,
+      default:""
     },
     materials: {
       type: [materialsSchema],
@@ -31,6 +32,10 @@ const productSchema = new mongoose.Schema(
     isArchived: {
       type: Boolean,
       default: false,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {

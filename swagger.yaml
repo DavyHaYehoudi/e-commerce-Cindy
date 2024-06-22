@@ -157,7 +157,7 @@ paths:
                     type: string
                     example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
-        - api_key: []
+        - jwt_auth: []
   /clients/{clientId}:
     get:
       tags:
@@ -2397,8 +2397,10 @@ components:
               example: 65bc8c5b7f890edc1f631830
             _id:
               type: string
-            quantity:
-              type: integer
+            amountPromoCode:
+              type: number
+              format: int32
+              example: 10
             step:
               type: integer
               format: int32
@@ -2488,6 +2490,10 @@ components:
           type: integer
           format: int32
           example: 220
+        amountPromoCode:
+          type: integer
+          format: int32
+          example: 10
         paymentMethod:
           type: array
           items:
@@ -2566,6 +2572,18 @@ components:
             type: integer
             format: int16
             example: 2
+          originalPrice:
+            type: integer
+            format: int16
+            example: 100
+          finalPrice:
+            type: integer
+            format: int16
+            example: 80
+          amountPromotion:
+            type: integer
+            format: int16
+            example: 20
           material:
             type: integer
             format: int16

@@ -1,0 +1,75 @@
+.modalMenuSmart {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 500px;
+    border-right: 1px solid var(--dark);
+    border-bottom: 1px solid var(--dark);
+    border-bottom-right-radius: 15px;
+    color: black;
+    background: var(--background, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+    padding: 10px 15px;
+    color: var(--color-icon-menu);
+}
+
+.modalMenuSmart.show {
+    left: 0;
+    z-index: 300;
+}
+
+.modalMenuSmart .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.modalMenuSmart #navMenu ul {
+    display: inherit;
+    padding: 0;
+}
+
+.modalMenuSmart #navIcons {
+    display: flex;
+}
+
+.modalMenuSmart #navIcons>* {
+    flex: 1;
+}
+
+.modalMenuSmart #navIcons a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modalMenuSmart #navIcons ul {
+    flex-direction: column-reverse;
+    align-items: baseline;
+}
+
+.modalMenuSmart #navIcons ul #iconCart,
+.modalMenuSmart #navIcons ul #iconHeart {
+    display: none;
+}
+
+.modalMenuSmart #navIcons #iconConnexion,
+.modalMenuSmart #navIcons #iconAccount {
+    display: flex;
+}
+
+.modalMenuSmart #navIcons #iconConnexion {
+    align-self: flex-end;
+}
+
+.modalMenuSmart .bottom-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

@@ -1,67 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import NavIcons from "../components/menu/NavIcons";
 import NavMenu from "../components/menu/NavMenu";
 import { Link } from "react-router-dom";
-import MegaMenu from "../components/menu/MegaMenu";
 import logo from "../assets/logo.png";
 import WishlistModal from "../components/wishlist/WishlistModal";
-import { useSelector } from "react-redux";
 import DarkMode from "../components/darkMode/DarkMode";
+import useStoreInfo from "../shared/hooks/useStoreInfo";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { showWishlistAccess } from "../features/admin/productSlice";
 
-const HeaderWrapper = () => {
-  const [megaMenuSection, setMegaMenuSection] = useState(null);
-  const [isWishlistModalOpen, setWishlistModalOpen] = useState(false);
-  const favoriteProducts = useSelector(
-    (state) => state?.customer?.data?.client?.wishlist
-  );
-
-  const handleMenuEnter = (section) => {
-    setMegaMenuSection(section);
-  };
-
-  const handleMenuLeave = () => {
-    setMegaMenuSection(null);
-  };
-
-  const handleOpenWishlistModal = () => {
-    setWishlistModalOpen(true);
-  };
-
+const HeaderWrapper = ({ toggleModalMenuSmart }) => {
+  const wishlistAccess = useSelector((state) => state?.product?.wishlistAccess);
+  const { wishlist } = useStoreInfo({ productsId: "", material: "" });
+  const dispatch = useDispatch();
   const handleCloseWishlistModal = () => {
-    if (isWishlistModalOpen) {
-      setWishlistModalOpen(false);
-    }
+    dispatch(showWishlistAccess(false));
   };
 
   return (
-    <div id="headerWrapper" onClick={handleCloseWishlistModal}>
+    <div id="headerWrapper">
       <div id="flex-item">
-        <DarkMode />
-        <h1>
+        <div className="flex-item-left">
+          <span
+            className="smart-screen hamburger"
+            onClick={toggleModalMenuSmart}
+          >
+            {" "}
+            <GiHamburgerMenu />
+          </span>
+          <span className="darkmode" onClick={toggleModalMenuSmart}>
+            {" "}
+            <DarkMode />
+          </span>
+        </div>
+        <h1 className="flex-item-center">
           <Link to="/">
             <img src={logo} alt="logo" width="200px" />{" "}
           </Link>
         </h1>
-        <div className="flex-item-navIcons">
-          <NavIcons onClickHeart={handleOpenWishlistModal} />
+        <div className="flex-item-navIcons flex-item-right">
+          <NavIcons />
         </div>
       </div>
-      <div onMouseLeave={handleMenuLeave}>
-        <NavMenu
-          handleMenuEnter={handleMenuEnter}
-          handleMenuLeave={handleMenuLeave}
-        />
-
-        <MegaMenu
-          megaMenuSection={megaMenuSection}
-          handleMenuEnter={handleMenuEnter}
-        />
+      <div>
+        <NavMenu />
       </div>
 
       <WishlistModal
-        isOpen={isWishlistModalOpen}
+        isOpen={wishlistAccess}
         onClose={handleCloseWishlistModal}
-        favoriteProducts={favoriteProducts}
+        wishlist={wishlist}
       />
     </div>
   );

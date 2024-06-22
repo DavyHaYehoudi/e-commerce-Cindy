@@ -61,3 +61,14 @@
 .authentication .login-button:hover {
   background-color: #0056b3;
 }
+
+.authentication button:hover{
+  color: whitesmoke;
+}
+
+@media (max-width: 1200px) {
+  .authentication .modal-content {
+    width: 100%;
+  }
+  
+}

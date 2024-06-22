@@ -1,28 +1,122 @@
+/* ******************** BANNER  ******************** */
+#freeShippingBanner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #D9C2B6 0%, #EDE4DF 90%, #FFFFFF 100%);
+    box-shadow: 0 0 2px whitesmoke;
+    padding: 0 5px 10px 5px;
+    text-align: center;
+}
+
+#freeShippingBanner a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    letter-spacing: var(--letter-spacing);
+    color: #FFFFFF;
+    padding-top: 10px;
+}
+
+/* Animation de la camionnete */
+#freeShippingBanner span {
+    font-size: 2.18rem;
+    color: var(--freeShippingBanner-icon);
+    transform: translateX(-800%);
+    animation: slideIn 4s forwards, shake 0.5s infinite alternate;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes shake {
+    to {
+        transform: translateY(5px);
+        /* Légère secousse vers la droite */
+    }
+}
+
+/* ******************** HEADER GENERALITY ******************** */
 header {
     box-shadow: 0 -1px var(--border-color) inset;
 }
 
 #headerWrapper {
-    margin: 30px;
+    margin: 30px 30px 0 30px;
+}
+
+#headerWrapper h1 {
+    text-align: center;
 }
 
 #headerWrapper #flex-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
 }
-#headerWrapper #flex-item > * {
-width: 33%;
-}
-#headerWrapper .flex-item-navIcons{
+
+#headerWrapper .flex-item-navIcons {
     display: flex;
     justify-content: flex-end;
 }
+
+/* ******************** NAVICONS ******************** */
+#navIcons ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#navIcons li img {
+    border-radius: 50%;
+    max-width: 50px;
+}
+
+.navlink-icon {
+    font-size: 1.56rem;
+    cursor: pointer;
+    color: var(--color-icon-menu);
+}
+
+#navIcons button {
+    border: none;
+    background: transparent;
+}
+
+#navIcons a.active {
+    font-weight: bold;
+    color: var(--text-golden);
+}
+
+#navIcons .navlink-text {
+    display: none;
+}
+
 #iconCart {
     position: relative;
 }
 
 #numberCart {
+    position: absolute;
+    background-color: var(--info);
+    border-radius: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    top: -8px;
+    right: -5px;
+    color: aliceblue;
+}
+
+#numberWishlist {
     position: absolute;
     background-color: red;
     border-radius: 50%;
@@ -33,4 +127,95 @@ width: 33%;
     top: -8px;
     right: -5px;
     color: aliceblue;
+}
+
+/* ******************** NAV MENU ******************** */
+#navMenu ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 30px;
+}
+
+#navMenu a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: uppercase;
+    color: var(--text-color);
+    overflow: hidden;
+    font-size: var(--nav-menu-text-fontSize);
+    letter-spacing: var(--letter-spacing);
+}
+
+#navMenu a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-menu-color);
+    transition: width 0.3s ease;
+}
+
+#navMenu a:hover::before,
+#navMenu a.active::before {
+    width: 100%;
+}
+
+#navMenu a.active {
+    color: var(--text-golden);
+}
+
+#navMenu .icon {
+    font-size: 1.5rem;
+    color: var(--color-icon-menu)
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    #headerWrapper {
+        margin: 10px !important;
+    }
+    #headerWrapper h1 img{
+        width: 150px;
+    }
+
+    #headerWrapper #flex-item {
+        box-shadow: 0 -1px var(--border-color) inset;
+    }
+
+    #headerWrapper #flex-item .darkmode {
+        display: none;
+    }
+
+    #headerWrapper #flex-item .flex-item-center {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        font-size: 50px;
+    }
+
+    #headerWrapper #flex-item .flex-item-left .hamburger {
+        font-size: 2rem;
+        color: var(--color-icon-menu);
+    }
+
+    #navIcons .navlink-text {
+        display: block;
+    }
+
+    #navMenu ul {
+        display: none;
+    }
+
+    #navIcons #iconConnexion,
+    #navIcons #iconAccount {
+        display: none;
+    }
 }

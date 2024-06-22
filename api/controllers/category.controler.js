@@ -12,8 +12,8 @@ const categoryController = {
   },
   createCategory: async (req, res) => {
     try {
-      const { name, parentCollection } = req.body;
-      const category = await Category.create({ name, parentCollection });
+      const { name, parentCollection,main_image } = req.body;
+      const category = await Category.create({ name, parentCollection,main_image });
       res.status(201).json(category);
     } catch (error) {
       if (error.code === 11000 && error.keyPattern && error.keyPattern.name) {

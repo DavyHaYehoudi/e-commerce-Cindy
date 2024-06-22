@@ -9,7 +9,7 @@ const FreeShippingBanner = () => {
         <span aria-hidden="true">
           <PiTruckThin />
         </span>
-        <p> Livraison offerte à partir de 50€ </p>
+        <p> Livraison offerte à partir de 59€ </p>
       </Link>
     </div>
   );

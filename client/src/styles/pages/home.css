@@ -1,0 +1,231 @@
+#home .animated-container {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
+}
+
+#home h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--dark);
+}
+
+#home section:not(:first-of-type) {
+    margin: 60px auto;
+}
+
+#home .card {
+    text-align: center;
+    background: var(--collection-card-bg);
+    border-radius: 12px;
+    border: 2px solid var(--color-gray);
+}
+
+/* ***************************** HERO ***************************** */
+#home .hero-bg-container {
+    height: 600px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .banner-media-home {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-animation: kenburns-bottom-left 60s ease-out infinite alternate-reverse both;
+    animation: kenburns-bottom-left 60s ease-out infinite alternate-reverse both;
+}
+
+#home .hero-bkg .hero-bg-left {
+    background-image: url("../assets/home/home-bck-1.jpeg");
+}
+
+#home .hero-bkg .hero-bg-right {
+    background-image: url("../assets/home/home-bck-2.jpeg");
+}
+
+#home .hero-bkg .title {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 5px;
+}
+
+#home .hero-bkg .title h1 {
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+#home .hero-bkg .title h2 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+#home .hero-bkg .title p.btn {
+    width: 310px;
+    color: var(--text-whitesmoke);
+    background: var(--dark);
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 3px var(--dark);
+    margin: auto;
+}
+
+/* ***************************** BANNERS ***************************** */
+#home .bk-image-intermetted-1 {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .bk-image-intermetted-2 {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .bk-image-intermetted-1 .banner-media-home {
+    background-image: url("../assets/home/home-bck-3.jpeg");
+}
+
+#home .bk-image-intermetted-2 .banner-media-home {
+    background-image: url("../assets/home/home-bck-4.jpeg");
+}
+
+/* ***************************** COLLECTIONS ***************************** */
+#home .collections {
+    max-width: 80%;
+    margin: auto;
+    color: black;
+}
+
+#home .collections-star-gallery .card-container {
+    width: 500px;
+    height: 500px;
+}
+
+#home .collections-star-gallery .card-container .title {
+    margin-top: 30px;
+}
+
+#home .collections-star-gallery .card-container .box-image {
+    width: 500px;
+    min-width: 500px;
+    height: 375px;
+}
+
+#home .collections-star-gallery .card-container .box-image img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 5px;
+}
+
+/* ***************************** PRODUCTS ***************************** */
+#home .products-star {
+    max-width: 80%;
+    margin: auto;
+}
+
+#home .products-star .info-legal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+
+#home .products-star .info-legal>* {
+    min-width: 300px;
+}
+
+#home .products-star .info-legal a {
+    flex: 1;
+}
+
+#home .products-star .info-legal a p {
+    padding: 20px 0;
+    color: black;
+    border: none;
+}
+
+/* ***************************** PARTNERS ***************************** */
+#home .partners {
+    max-width: 80%;
+    color: black;
+}
+
+#home .partners-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#home .partners-gallery .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+}
+
+#home .partners-gallery .card-container .box-image {
+    width: 150px;
+    height: 150px;
+}
+
+#home .partners-gallery img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    #home .hero-bg-container {
+        height: 300px;
+    }
+
+    #home .hero-bkg .title h1 {
+        font-size: var(--h1-mobile);
+    }
+
+    #home h3 {
+        font-size: var(--h3-mobile);
+        text-align: center;
+    }
+
+    #home .collections,
+    #home .products-star,
+    #home .partners {
+        max-width: inherit;
+        width: 100%;
+    }
+
+    #home .collections-star-gallery>* {
+        flex: 1;
+    }
+
+    #home .collections-star-gallery .card-container {
+        width: inherit;
+        max-width: 500px;
+    }
+
+    #home .collections-star-gallery .card-container .box-image {
+        min-width: inherit;
+        width: inherit;
+    }
+
+    #home .products-star .info-legal>* {
+        margin: 5px;
+    }
+}

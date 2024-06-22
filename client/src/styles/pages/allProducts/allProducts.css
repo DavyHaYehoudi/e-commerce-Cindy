@@ -1,0 +1,38 @@
+.allProducts {
+    background: var(--background-whitesmoke);
+}
+
+.allProducts h1 {
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.allProducts .allProducts-content {
+    width: 80%;
+    margin: 20px auto;
+    padding: 50px;
+}
+
+.allProducts .filterBlock-content-action button {
+    color: whitesmoke;
+}
+
+.allProducts .filterBlock-content-action .validate-btn {
+    background: var(--success);
+}
+
+.allProducts .filterBlock-content-action .reset-btn {
+    background: var(--warning);
+}
+
+.allProducts .productsFilterPanel-content {
+    animation: inherit;
+}
+
+@media (max-width: 576px) {
+    .allProducts .allProducts-content {
+        margin: 60px auto;
+        padding: 0;
+        width: 100%;
+    }
+}

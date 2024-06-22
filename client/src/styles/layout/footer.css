@@ -1,38 +1,62 @@
-footer{
-    background-color: var(--footer-background);
+footer {
+    background: linear-gradient(to top, #A897A9 0%, #B9A8B8 50%, #C7B7C6 80%, #D5D5D5 100%);
     color: var(--footer-text-color);
-    margin-top: 40px;
+    padding: 60px 10px 20px 10px;
 }
-footer h3{
+
+footer h3 {
     font-size: var(--footer-heading-fontSize);
     color: var(--text-golden);
     font-weight: 600;
     letter-spacing: var(--letter-spacing);
 }
-footer li a{
+
+footer li a {
     font-size: var(--footer-text-fontSize);
 }
-footer li  :hover{
+
+footer li :hover {
     color: var(--text-golden);
 }
-.footer-contain-top,.footer-contain-bottom{
-    padding: 40px;
+
+.footer-contain-top,
+.footer-contain-bottom {
+    padding: 40px 10px 0 10px;
 }
-.footer-contain-top{
+
+.footer-contain-top {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
 }
-footer .social ul{
+
+footer .social ul {
     display: flex;
     justify-content: space-around;
     margin: 10px;
 }
-.footer-contain-bottom .info{
+
+.footer-contain-bottom .info {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    footer {
+        padding: 10px;
+    }
+
+    .footer-contain-top,
+    .footer-contain-bottom {
+        padding: 0;
+    }
+
+    footer .payment {
+        margin: 20px auto;
+    }
 }

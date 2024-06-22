@@ -1,0 +1,156 @@
+.collections-ui {
+    position: relative;
+    background-image: url('../assets/bg-collections.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 50px;
+    z-index: 1;
+    color: whitesmoke;
+}
+
+.collections-ui::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.collections-ui .animated-container {
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
+}
+
+.collections-ui h1 {
+    text-align: center;
+}
+
+.collection-card-ui h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collection-card-ui h2,
+.collection-master h1,
+.collection-master h4 {
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.collection-card-ui {
+    width: 600px;
+    height: 400px;
+    border-radius: 30px;
+    margin: 70px 20px;
+}
+
+.collection-card-ui img {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    -webkit-animation: kenburns-bottom-left 2s ease-out reverse both;
+    animation: kenburns-bottom-left 2s ease-out reverse both;
+}
+
+.collection-master {
+    position: relative;
+    color: whitesmoke;
+    padding: 30px 0;
+}
+
+.collection-master .background-collection-master {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: grayscale(80%);
+}
+
+.collection-master .animated-container {
+    animation: fadeInRight 2s ease 0s 1 normal forwards;
+}
+
+.collection-master .main-title {
+    text-align: center;
+}
+
+.collections-wrapper-ui {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 80px;
+    cursor: pointer;
+}
+
+.collection-master .summary {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.collection-master .collection-master-row {
+    margin-top: 100px;
+}
+
+.collection-master .collection-master-row .category-title {
+    align-items: center;
+    display: flex;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #6A6A6A 0%, #A8A8A8 50%, #FFFFFF 100%);
+    position: relative;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+    mask-image: linear-gradient(to right, black, transparent);
+    color: black;
+}
+
+.collection-master .collection-master-row .category-title h2 {
+    color: black;
+
+}
+
+.collection-master .collection-master-row .category-title .productsNumber {
+    margin-left: 10px;
+}
+
+/* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 576px) {
+    .collections-ui {
+        padding: 30px 5px;
+    }
+
+    .collections-wrapper-ui {
+        margin: 0;
+    }
+
+    .collection-card-ui h2 {
+        white-space: inherit;
+    }
+
+    .collection-card-ui {
+        width: inherit;
+        max-width: 600px;
+        height: 350px;
+    }
+
+    .collection-master .collection-master-row .category-title {
+        display: inherit;
+        text-align: start;
+    }
+
+    .collection-master .collection-master-row-wrapper {
+        margin: 15px 0;
+    }
+}

@@ -103,10 +103,13 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    outTotalAmount: {
+    outTotalAmount: { 
       type: Number,
-      required: true,
       default: 0,
+    }, 
+    amountPromoCode:{
+      type: Number,
+      default:null
     },
     paymentMethod: {
       cardType: {

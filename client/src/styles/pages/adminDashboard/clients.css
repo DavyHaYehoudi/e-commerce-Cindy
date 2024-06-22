@@ -3,7 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 10px 50px 10px;
+    animation: slideFromTop 2s ease 0s 1 normal forwards;
 }
 
 .itemsPerPage-select {
@@ -23,7 +26,7 @@
 .filterBlock-content {
     position: absolute;
     top: 100%;
-    left: -200px;
+    left: -230px;
     z-index: 1;
     width: 300px;
     border: 1px solid var(--secondary);
@@ -80,6 +83,7 @@
 
 .filterBlock-content-action .reset-btn {
     background-color: var(--danger);
+    color: whitesmoke;
 }
 
 .filterBlock-content-action .validate-btn {
@@ -99,11 +103,21 @@
     font-size: 18px;
 }
 
+.client-list img {
+    border-radius: 5px;
+}
+
+.client-list input,
+.client-list textarea {
+    border-radius: 5px;
+}
+
 .client-item {
     list-style: none;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
     background-color: var(--client-item);
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -200,10 +214,13 @@
 .client-details-orders-info {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .client-details-orders-badge {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-left: 10px;
 }
@@ -230,16 +247,20 @@
 .admin-order-item-header {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .admin-order-item-header .order-header {
-  text-align: left;
+    text-align: left;
 }
+
 .admin-order-item-header .order-header-details {
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
     margin: 20px;
-  font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 /* Icon email client */
@@ -270,18 +291,19 @@
 .wishlistUserViewAdmin,
 .cartUserViewAdmin {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-between;
     border-top: 1px solid var(--border-color);
     padding: 10px;
     text-align: initial;
-
+    margin: 10px 0;
 }
 
 .admin-order-item {
     margin-bottom: 20px;
     padding: 10px;
     border: 2px solid var(--dark);
+    border-radius: 5px;
     background-color: var(--client-header);
 }
 
@@ -322,15 +344,18 @@
 
 .trackingNumberAdminItem {
     border: 2px dotted var(--success);
+    border-radius: 5px;
 }
 
 .trackingNumberClientItem {
     border: 2px solid var(--info);
+    border-radius: 5px;
 }
 
 .trackingNumberClientItem .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .trackingNumberValue {
@@ -354,7 +379,7 @@
     margin: 10px;
     border: none;
     border-radius: 5px;
-    color: var(--text-whitesmoke);
+    color: whitesmoke;
     padding: 5px;
 }
 
@@ -363,6 +388,7 @@
 .trackingNumberClientItem-validate .btn-confirm {
     background-color: var(--success);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .adminTrackingItemTrashConfirm .btn-cancel,
@@ -370,6 +396,7 @@
 .trackingNumberClientItem-validate .btn-cancel {
     background-color: var(--danger);
     cursor: pointer;
+    color: whitesmoke;
 }
 
 .account-btn.icon-trash.trackingNumber {
@@ -387,6 +414,7 @@
 .articleNumberByProduct-description {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -398,7 +426,9 @@
     align-items: center;
     background-color: var(--background);
     padding: 20px;
+    margin: 10px 0;
     border: 2px solid var(--dark);
+    border-radius: 5px;
     box-shadow: 0 0 3px var(--dark);
 }
 
@@ -407,6 +437,7 @@
     width: 250px;
     border: 1px solid var(--border-color);
     padding: 5px;
+    border-radius: 5px;
 }
 
 #trackingNumberInput:focus,
@@ -447,12 +478,14 @@
 .previous-note {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
     padding-left: 10px;
 }
 
 .previous-note>* {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 5px;
 }
@@ -473,6 +506,7 @@
 #orderProducts-container .product-content {
     padding: 10px;
     border: 1px dotted var(--dark);
+    border-radius: 5px;
     margin: 20px;
 }
 
@@ -501,6 +535,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     text-align: initial;
 
 }
@@ -511,13 +546,14 @@
     align-items: flex-start;
     padding: 5px;
     margin: 10px;
+    border-radius: 5px;
 }
 
 .productActionInput {
     width: 250px;
     padding: 5px;
     border: 1px solid var(--border-color);
-    margin-left: 20px;
+    margin: 10px 20px;
 }
 
 .productActionInput+label {
@@ -531,8 +567,7 @@
 }
 
 .actions-list button {
-    color: var(--text-whitesmoke);
-    background-color: var(--success);
+    color: whitesmoke;
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -574,3 +609,150 @@
 }
 
 /* ********************* END ACTIONS DROPDOWN PRODUCT  ********************* */
+
+/* ******************** MEDIAS QUERIES ******************** */
+
+@media (max-width: 1200px) {
+    .client-list {
+        padding: 5px;
+    }
+
+    .client-item {
+        padding: 10px;
+    }
+
+    .trackingNumber {
+        margin: 10px 0;
+        padding: 5px;
+    }
+
+    .account-btn.icon-trash.trackingNumber {
+        position: initial;
+        padding: 4px 8px;
+    }
+
+    .client-details {
+        padding: 0;
+    }
+
+    .previous-note {
+        padding: 0;
+        gap: 0;
+    }
+
+    .previous-note>* {
+        gap: 10px;
+        margin: 10px 10px 5px 0;
+    }
+
+    .close-client-details {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .wishlist-container {
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .clientPreferenceDetails {
+        margin: 20px 0;
+    }
+
+    .orders-container {
+        margin: 20px 0;
+    }
+
+    .orders {
+        margin: 0;
+    }
+
+    .admin-order-item {
+        padding: 5px;
+    }
+
+    .orderControlContainer {
+        justify-content: space-between;
+    }
+
+    #orderProducts-container .product-content {
+        margin: 10px 0;
+    }
+
+    #orderProducts-container .product-note-container {
+        margin: 10px 0;
+    }
+
+    .trackingNumberList {
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-order-item-header .order-header {
+        order: 0;
+    }
+
+    .admin-order-item .step-order {
+        order: 2;
+    }
+
+    .orderControlContainer button {
+        order: -1;
+    }
+
+    .admin-order-item .dropdown p {
+        order: -1
+    }
+}
+
+@media (max-width: 768px) {
+    .clientsFilterPanel {
+        flex-direction: column;
+    }
+
+    .clientsFilterPanel .filter-block {
+        align-self: end;
+    }
+}
+
+@media (max-width: 576px) {
+    #orderProducts-container .product-content.open .actions-list {
+        margin: 10px 0;
+    }
+
+    #orderProducts-container .actions-list li {
+        text-align: start;
+    }
+
+    #orderProducts-container .product-content-details {
+        display: initial;
+        text-align: center;
+
+    }
+
+    .productActionInput {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .articleNumberByProduct-description {
+        display: initial;
+    }
+
+    .articleNumberByProduct-description .articleNumberInput {
+        width: 200px;
+    }
+
+}
+
+@media (max-width: 375px) {
+    .orderControlContainer {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .admin-order-item .dropdown P {
+        text-align: start;
+    }
+}

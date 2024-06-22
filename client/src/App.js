@@ -1,28 +1,32 @@
 import Header from "./layout/Header";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./pages/authentication/Login";
-import ShoppingCart from "./pages/ShoppingCart";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+import ShoppingCart from "./pages/shoppingCart";
+import About from "./pages/about";
+import Contact from "./pages/contact";
+import NotFound from "./pages/notFound";
 import Footer from "./layout/Footer";
-import Product from "./pages/ProductDetails";
-import Tab from "./pages/Tab";
-import Category from "./pages/Category";
-import SubCategory from "./pages/SubCategory";
-import Deliveries from "./pages/Deliveries";
-import TermsOfSales from "./pages/TermsOfSales";
-import LegalNotice from "./pages/LegalNotice";
+import Deliveries from "./pages/deliveries";
+import TermsOfSales from "./pages/termsOfSales";
+import LegalNotice from "./pages/legalNotice";
 import Register from "./pages/authentication/Register";
 import ForgotPassword from "./pages/authentication/ForgotPassword";
-import AccountClient from "./pages/dashboards/AccountClient";
-import AdminDashboard from "./pages/dashboards/AdminDashboard";
+import AccountClient from "./pages/dashboardClient/AccountClient";
+import AdminDashboard from "./pages/dashboardAdmin";
 import VerifyEmailRegister from "./pages/authentication/VerifyEmailRegister";
 import ResetPassword from "./pages/authentication/ResetPassword";
-import useAuthWrappers from "./useAuthWrappers";
+import useAuthWrappers from "./config/useAuthWrappers";
 import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
+import MasterCollection from "./pages/collection/Master";
+import MasterCategory from "./pages/category/Master"
+import Collections from "./pages/collection";
+import MasterProduct from "./pages/MasterProduct";
+import AllProductsPage from "./pages/allProducts";
+import Categories from "./pages/category";
+import InitConfigPage from "./config/InitConfigPage";
+import Tradition from "./pages/tradition";
 
 function App() {
   const {
@@ -47,7 +51,14 @@ function App() {
                 </RequireAuthAdmin>
               }
             />
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <InitConfigPage>
+                  <Home />
+                </InitConfigPage>
+              }
+            />
             <Route
               path="/account"
               element={
@@ -70,19 +81,113 @@ function App() {
               path="/account/reset-password/:token"
               element={<ResetPassword />}
             />
-            <Route path="/cart" element={<ShoppingCart />} />
-            <Route path="/menu-tab/:tab" element={<Tab />} />
-            <Route path="/menu-tab-category/:category" element={<Category />} />
             <Route
-              path="/menu-tab-subcategory/:subcategory"
-              element={<SubCategory />}
+              path="/cart"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <ShoppingCart />
+                </InitConfigPage>
+              }
             />
-            <Route path="/orderProducts/:id" element={<Product />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/deliveries&returns" element={<Deliveries />} />
-            <Route path="/terms-of-sales" element={<TermsOfSales />} />
-            <Route path="/legal-notice" element={<LegalNotice />} />
+            <Route
+              path="/menu-tab-collections"
+              element={
+                <InitConfigPage>
+                  <Collections />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-categories"
+              element={
+                <InitConfigPage>
+                  <Categories />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-collections/:collectionId"
+              element={
+                <InitConfigPage>
+                  <MasterCollection />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/menu-tab-categories/:categoryId"
+              element={
+                <InitConfigPage>
+                  <MasterCategory />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/master-product/:productId"
+              element={
+                <InitConfigPage>
+                  <MasterProduct />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <About />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/tradition"
+              element={
+                <InitConfigPage>
+                  {" "}
+                  <Tradition />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <InitConfigPage>
+                  <Contact />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <InitConfigPage>
+                  <AllProductsPage />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/deliveries&returns"
+              element={
+                <InitConfigPage>
+                  <Deliveries />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/terms-of-sales"
+              element={
+                <InitConfigPage>
+                  <TermsOfSales />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/legal-notice"
+              element={
+                <InitConfigPage>
+                  <LegalNotice />
+                </InitConfigPage>
+              }
+            />
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />

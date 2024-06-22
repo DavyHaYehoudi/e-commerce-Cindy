@@ -1,31 +1,32 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineShopping } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { resetCustomerStore } from "../../features/accountClient/customerSlice";
-import { resetStore } from "../../features/authentication/authenticationSlice";
+import useNavIcons from "./hooks/useNavIcons";
+import useStoreInfo from "../../shared/hooks/useStoreInfo";
+import { useDispatch } from "react-redux";
+import { showWishlistAccess } from "../../features/admin/productSlice";
 
-const NavIcons = ({ onClickHeart }) => {
-  const token = useSelector((state) => state?.authentication?.token) || "";
-  const role = useSelector((state) => state?.authentication?.role);
-
+const NavIcons = ({ toggleModalMenuSmart }) => {
+  const { token, role, imageUrl, logout } = useNavIcons();
+  const { numberArticleInCart, numberArticleInWihslist } = useStoreInfo({
+    productsId: "",
+    material: "",
+  });
   const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(resetCustomerStore());
-    dispatch(resetStore());
-    localStorage.clear();
+  const handleOpenWishlistModal = () => {
+    dispatch(showWishlistAccess(true));
   };
-
   return (
     <nav id="navIcons" role="navigation" aria-label="navigation secondaire">
       <ul>
         <li
+          id="iconConnexion"
           className="info-tooltip"
           aria-label={!token ? "Se connecter" : "Se déconnecter"}
+          onClick={toggleModalMenuSmart}
         >
           <NavLink
             to="account/login"
@@ -34,29 +35,35 @@ const NavIcons = ({ onClickHeart }) => {
             aria-label={!token ? "Se connecter à mon compte" : "Se déconnecter"}
           >
             {!token ? (
-              <AiOutlineUser className="navlink-icon" aria-hidden="true" />
+              <>
+                <AiOutlineUser className="navlink-icon" aria-hidden="true" />
+                <span className="navlink-text"> Connection</span>
+              </>
             ) : (
-              <IoIosLogOut className="navlink-icon" aria-hidden="true" />
+              <>
+                <IoIosLogOut className="navlink-icon" aria-hidden="true" />
+                <span className="navlink-text"> Déconnection</span>
+              </>
             )}
           </NavLink>
         </li>
         {role && (
-          <li className="info-tooltip" aria-label="Mon compte">
+          <li id="iconAccount" className="info-tooltip" aria-label="Mon compte">
             <NavLink
               to={role === "admin" ? "admin/dashboard" : "account"}
               aria-label="Mon compte"
+              onClick={toggleModalMenuSmart}
             >
-              MON COMPTE
+             {imageUrl&& <img src={imageUrl} alt="profil" />}
+              <span className="navlink-text"> Compte</span>
             </NavLink>
           </li>
         )}
-        <li className="info-tooltip" aria-label="Mes favoris">
-          <button onClick={onClickHeart} aria-label="Mes favoris">
+        <li id="iconHeart" className="info-tooltip" aria-label="Mes favoris">
+          <button onClick={handleOpenWishlistModal} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>
-        </li>
-        <li className="info-tooltip" aria-label="Recherche">
-          <IoSearchOutline className="navlink-icon" aria-hidden="true" />
+          <span id="numberWishlist">{numberArticleInWihslist} </span>
         </li>
         <li id="iconCart" className="info-tooltip" aria-label="Panier">
           <NavLink
@@ -66,7 +73,7 @@ const NavIcons = ({ onClickHeart }) => {
           >
             <AiOutlineShopping className="navlink-icon" aria-hidden="true" />
           </NavLink>
-          <span id="numberCart">1</span>
+          <span id="numberCart">{numberArticleInCart} </span>
         </li>
       </ul>
     </nav>
