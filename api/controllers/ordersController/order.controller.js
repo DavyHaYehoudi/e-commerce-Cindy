@@ -70,7 +70,9 @@ const orderController = {
     }
   },
   createOrder: async (req, res) => {
+    console.log('req.body :',req.body);
     const {clientId,shippingAddress,billingAddress}=req.body
+    res.status(201).json({message:"ressource créée avec succès"})
   },
 };
 

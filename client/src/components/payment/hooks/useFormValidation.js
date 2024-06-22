@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { Post } from "../../../services/httpMethods";
+import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
 
 const useFormValidation = () => {
   const [formData, setFormData] = useState({
-      delivery: {},
-      card: {},
-      billing: {},
-      rememberMe: true,
-      isBillingAddress: true,
-    });
+    delivery: {},
+    card: {},
+    billing: {},
+    rememberMe: true,
+    isBillingSameAddress: true,
+  });
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});
+  const handleUnauthorized = useUnauthorizedRedirect();
 
   const updateData = (section, data) => {
     setFormData((prevData) => ({
@@ -37,12 +40,12 @@ const useFormValidation = () => {
       return newErrors;
     });
   };
-  const handleSubmit = (requiredFields) => {
+  const handleSubmit = async (requiredFields) => {
     const errors = {};
     const valid = {};
 
     Object.keys(requiredFields).forEach((section) => {
-      if (section === "billing" && formData.isBillingAddress) {
+      if (section === "billing" && formData.isBillingSameAddress) {
         return;
       }
       requiredFields[section].forEach((field) => {
@@ -59,9 +62,14 @@ const useFormValidation = () => {
     setValidationErrors(errors);
     setValidFields(valid);
 
-    // Si aucun erreur, procéder au paiement
+    // Si aucune erreur, procéder au paiement
     if (Object.keys(errors).length === 0) {
-      // Logique de soumission du paiement ici
+      try {
+        console.log('formData:', formData)
+        await Post("orders", formData, null, handleUnauthorized);
+      } catch (error) {
+        console.log("Erreur lors du paiement :", error);
+      }
     }
   };
   return {

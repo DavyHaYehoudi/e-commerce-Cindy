@@ -23,15 +23,15 @@ const PaymentFormBilling = ({
           type="checkbox"
           id="useShippingAddress"
           name="useShippingAddress"
-          checked={formData.isBillingAddress}
-          onChange={() => handleCheckboxChange("isBillingAddress")}
+          checked={formData.isBillingSameAddress}
+          onChange={() => handleCheckboxChange("isBillingSameAddress")}
         />
         <label htmlFor="useShippingAddress">
           Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
-      {!formData.isBillingAddress && (
+      {!formData.isBillingSameAddress && (
         <div className="billing-fields">
           <input
             type="text"

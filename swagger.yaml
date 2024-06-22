@@ -2252,6 +2252,8 @@ components:
                 type: integer
                 format: int8
                 example: 3
+        rememberMe:
+          type: boolean
         Orders:
           type: array
           items:
@@ -2550,7 +2552,7 @@ components:
             city:
               type: string
             postalCode: 
-              type: string
+              type: string 
             country: 
               type: string
             email: 
