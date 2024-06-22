@@ -105,7 +105,6 @@ const orderSchema = new mongoose.Schema(
     },
     outTotalAmount: { 
       type: Number,
-      required: true,
       default: 0,
     }, 
     amountPromoCode:{

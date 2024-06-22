@@ -1,4 +1,4 @@
-import Order from "../models/order.model.js";
+import Order from "../../models/order.model.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -70,7 +70,7 @@ const orderController = {
     }
   },
   createOrder: async (req, res) => {
-    // Implementation for creating a new client
+    const {clientId,shippingAddress,billingAddress}=req.body
   },
 };
 
