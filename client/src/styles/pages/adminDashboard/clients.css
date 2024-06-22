@@ -258,6 +258,7 @@
 .admin-order-item-header .order-header-details {
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
     margin: 20px;
     font-size: 0.75rem;
 }

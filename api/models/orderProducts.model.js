@@ -40,10 +40,6 @@ const orderProductsSchema = new mongoose.Schema(
       type: Number,
       default:null
     },
-    amountPromoCode:{
-      type: Number,
-      default:null
-    },
     material: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Material",

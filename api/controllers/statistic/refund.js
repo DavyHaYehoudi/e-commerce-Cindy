@@ -45,37 +45,7 @@ export const refund = async (year) => {
           lastName: { $arrayElemAt: ["$clientDetails.lastName", 0] },
           productName: "$productDetails.name",
           materialName: "$materialDetails.name",
-          currentPrice: {
-            $reduce: {
-              input: "$productDetails.materials",
-              initialValue: null,
-              in: {
-                $cond: {
-                  if: { $eq: ["$$this._id", "$materialDetails._id"] },
-                  then: "$$this.pricing.currentPrice",
-                  else: "$$value",
-                },
-              },
-            },
-          },
-          refundAmount: {
-            $multiply: [
-              "$orderProductsActions.refund",
-              {
-                $reduce: {
-                  input: "$productDetails.materials",
-                  initialValue: null,
-                  in: {
-                    $cond: {
-                      if: { $eq: ["$$this._id", "$materialDetails._id"] },
-                      then: "$$this.pricing.currentPrice",
-                      else: "$$value",
-                    },
-                  },
-                },
-              },
-            ],
-          },
+          finalPrice: 1,
           refundDate: "$orderProductsActions.refundDate",
         },
       },
@@ -88,21 +58,21 @@ export const refund = async (year) => {
               lastName: "$lastName",
               productName: "$productName",
               materialName: "$materialName",
-              refundAmount: "$refundAmount",
+              refundAmount: "$finalPrice",
               refundDate: "$refundDate",
             },
           },
           totalRefundAmount: {
-            $sum: "$refundAmount",
+            $sum: "$finalPrice",
           },
         },
       },
       {
         $project: {
           _id: 0,
-          totalRefunds: 1,
           refundDetails: 1,
           totalRefundAmount: 1,
+          totalRefunds: { $size: "$refundDetails" },
         },
       },
     ]);
@@ -110,7 +80,7 @@ export const refund = async (year) => {
     // return { refundDetails: refundDetails[0] };
     const { refundDetails: refundDetailsData, totalRefundAmount } =
       refundDetails[0] || {};
-
+console.log("refundDetails :",refundDetails,"totalRefundAmount :",totalRefundAmount);
     // Retourne les variables distinctement
     return {
       refundDetails: refundDetailsData || [],

@@ -33,7 +33,7 @@ const Header = ({
     materialStore,
   } = useProductHeader(orderProducts, productsId, productStore, material);
 
-  const { originalPrice, finalPrice, amountPromotion, amountPromoCode } =
+  const { originalPrice, finalPrice, amountPromotion } =
     getOneOrderProducts || "";
   const { exchange, refund, credit } = orderProductsInfo ?? {};
 
@@ -61,9 +61,6 @@ const Header = ({
           <p>Prix original : {formatPrice(originalPrice)} </p>
           <p>
             Promotion : {amountPromotion ? amountPromotion + "%" : "aucune"}{" "}
-          </p>
-          <p>
-            Code Promotion : {amountPromoCode ? amountPromoCode + "%" : "aucun"}{" "}
           </p>
           <p>Prix final : {formatPrice(finalPrice)} </p>
           <p className="pricing inPricing">

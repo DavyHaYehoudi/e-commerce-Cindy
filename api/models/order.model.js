@@ -108,6 +108,10 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: 0,
     }, 
+    amountPromoCode:{
+      type: Number,
+      default:null
+    },
     paymentMethod: {
       cardType: {
         type: String,
