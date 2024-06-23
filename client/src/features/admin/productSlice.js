@@ -48,7 +48,7 @@ const productSlice = createSlice({
     checkedItemsFilter: {},
     advantages: {
       codePromo: { isValid: false, percentage: "" },
-      giftcard: { isValid: false, percentage: "" },
+      giftcard: { isValid: false, amount: "" },
       credit: { isValid: false, percentage: "" },
     },
     status: "idle",
@@ -122,10 +122,15 @@ const productSlice = createSlice({
       state.checkedItemsFilter = action.payload;
     },
     updateAdvantages: (state, action) => {
-      const { property, isValid = false, percentage = "" } = action.payload;
+      const {
+        property,
+        isValid = false,
+        percentage = "",
+        amount = "",
+      } = action.payload;
       state.advantages = {
         ...state.advantages,
-        [property]: { isValid, percentage },
+        [property]: { isValid, percentage, amount },
       };
     },
   },

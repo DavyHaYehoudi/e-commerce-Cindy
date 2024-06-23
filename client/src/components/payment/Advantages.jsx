@@ -7,10 +7,18 @@ import { FaCheck } from "react-icons/fa";
 import useAdvantages from "./hooks/useAdvantages";
 const Advantages = () => {
   const [promoCodeValue, setPromoCodeValue] = useState("");
+  const [giftcardValue, setGiftcardValue] = useState("");
   const creditsStore = useSelector((state) => state?.customer?.data?.credit);
   const { codePromo, giftcard } =
     useSelector((state) => state?.product?.advantages) || {};
-  const { handleCheckPromocode, handleCancelPromocode } = useAdvantages();
+  const {
+    handleCheckPromocode,
+    handleCancelPromocode,
+    handleCheckGiftcard,
+    handleCancelGiftcard,
+    handleKeyPressGiftcard,
+    handleKeyPressPromocode,
+  } = useAdvantages();
   return (
     <div id="payment-form-advantages">
       <div className="title">
@@ -27,12 +35,17 @@ const Advantages = () => {
               name="promo"
               placeholder="Entrez le code promo"
               onChange={(e) => setPromoCodeValue(e.target.value)}
+              onKeyDown={(e) =>
+                handleKeyPressPromocode({
+                  event: e,
+                  code: promoCodeValue,
+                })
+              }
             />
             {codePromo?.isValid && <FaCheck color="var(--success)" />}
             <button
               onClick={() =>
                 handleCheckPromocode({
-                  property: "codePromo",
                   code: promoCodeValue,
                 })
               }
@@ -55,10 +68,27 @@ const Advantages = () => {
               id="giftcard"
               name="giftcard"
               placeholder="Entrez le numéro de votre carte cadeau"
+              onChange={(e) => setGiftcardValue(e.target.value)}
+              onKeyDown={(e) =>
+                handleKeyPressGiftcard({ event: e, code: giftcardValue })
+              }
             />
             {giftcard?.isValid && <FaCheck color="var(--success)" />}
-            <button>Appliquer</button>
-            <button className="cancel">Annuler</button>
+            <button
+              onClick={() =>
+                handleCheckGiftcard({
+                  code: giftcardValue,
+                })
+              }
+            >
+              Appliquer
+            </button>
+            <button
+              className="cancel"
+              onClick={() => handleCancelGiftcard({ property: "giftcard" })}
+            >
+              Annuler
+            </button>
           </div>
         </div>
         <div className="item">

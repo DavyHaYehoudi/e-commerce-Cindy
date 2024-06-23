@@ -1435,6 +1435,45 @@ paths:
                     example: Le code promo n'existe pas.
       security:
         - api_key: []
+  /promocodes/verify-code:
+    get:
+      tags:
+        - promocode
+      summary: Check the code
+      description: This route checks one promotional code. If the code is verified then the reduction on the total price of the cart applies with the percentage returned by the API.
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  percentage:
+                    type: number
+                    example: 15
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le code promo n'existe pas.
+      security:
+        - api_key: []
   /giftcards:
     get:
       tags:
@@ -1470,6 +1509,7 @@ paths:
                     example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
+
     post:
       tags:
         - giftcard
@@ -1538,6 +1578,45 @@ paths:
                   message:
                     type: string
                     example: La carte-cadeau n'existe pas.
+      security:
+        - api_key: []
+  /giftcards/verify-code:
+    get:
+      tags:
+        - giftcard
+      summary: Check the code
+      description: This route checks one giftcard code. If the code is verified then the reduction on the total price of the cart applies with the amount returned by the API.
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  amount:
+                    type: number
+                    example: 50
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La carte cadeau n'existe pas.
       security:
         - api_key: []
   /statistics/{year}:

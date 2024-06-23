@@ -38,6 +38,27 @@ const giftcardController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
+  verifyGiftcard: async (req, res) => {
+    try {
+      const { code } = req.query;
+      const codeGiftcard = await Giftcard.findOne({ code });
+      if (!codeGiftcard) {
+        return res
+          .status(404)
+          .json({ message: "La carte cardeau n'existe pas." });
+      }
+      const currentDate = new Date();
+      if (codeGiftcard?.dateExpire < currentDate) {
+        return res
+          .status(404)
+          .json({ message: "La date de validité a expiré." });
+      }
+      res.status(200).json({ message: codeGiftcard?.amount });
+    } catch (error) {
+      console.error("Error verify giftcard:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 export default giftcardController;

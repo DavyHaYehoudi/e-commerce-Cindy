@@ -13,5 +13,6 @@ router.get("/", authenticateAdmin, giftcardController.getAllGiftcards);
 //Privé USER
 router.post("/", authenticateUser, giftcardController.createGiftcard);
 router.patch("/", authenticateUser, giftcardController.consumerGiftcard);
+router.get("/verify-code", authenticateUser, giftcardController.verifyGiftcard);
 
 export default router;
