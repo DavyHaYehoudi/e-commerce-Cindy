@@ -45,7 +45,12 @@ const productSlice = createSlice({
     isPendingProduct: false,
     cartAccess: false,
     wishlistAccess: false,
-    checkedItemsFilter:{},
+    checkedItemsFilter: {},
+    advantages: {
+      codePromo: { isValid: false, percentage: "" },
+      giftcard: { isValid: false, percentage: "" },
+      credit: { isValid: false, percentage: "" },
+    },
     status: "idle",
     error: null,
   },
@@ -113,9 +118,16 @@ const productSlice = createSlice({
     showWishlistAccess: (state, action) => {
       state.wishlistAccess = action.payload;
     },
-    checkItemsFilter:(state,action)=>{
-    state.checkedItemsFilter = action.payload
-    }
+    checkItemsFilter: (state, action) => {
+      state.checkedItemsFilter = action.payload;
+    },
+    updateAdvantages: (state, action) => {
+      const { property, isValid = false, percentage = "" } = action.payload;
+      state.advantages = {
+        ...state.advantages,
+        [property]: { isValid, percentage },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -194,6 +206,7 @@ export const {
   changeProductActiveStatus,
   showCartAccess,
   showWishlistAccess,
-  checkItemsFilter
+  checkItemsFilter,
+  updateAdvantages,
 } = productSlice.actions;
 export default productSlice.reducer;

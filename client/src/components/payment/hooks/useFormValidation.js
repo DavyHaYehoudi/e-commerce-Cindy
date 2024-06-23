@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Post } from "../../../services/httpMethods";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
+import { useSelector } from "react-redux";
 
 const useFormValidation = () => {
+  const advantages = useSelector(state=>state?.product?.advantages)
   const [formData, setFormData] = useState({
     delivery: {},
     card: {},
     billing: {},
     rememberMe: true,
     isBillingSameAddress: true,
+    advantages
   });
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});

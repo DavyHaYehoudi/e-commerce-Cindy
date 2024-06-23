@@ -48,6 +48,7 @@ const useFilter = (setSearchBarValue) => {
     setCollectionSelected("");
     dispatch(fetchProduct());
     dispatch(checkItemsFilter({}))
+    setIsFilterOpen((prevState) => !prevState);
   };
 
   const toggleFilter = () => {

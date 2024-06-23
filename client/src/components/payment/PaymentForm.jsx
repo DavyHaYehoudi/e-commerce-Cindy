@@ -4,6 +4,7 @@ import PaymentFormCard from "./PaymentFormCard";
 import PaymentFormBilling from "./PaymentFormBilling";
 import Advantages from "./Advantages";
 import useFormValidation from "./hooks/useFormValidation";
+import { ToastContainer } from "react-toastify";
 
 const requiredFields = {
   delivery: [
@@ -83,6 +84,7 @@ const PaymentForm = () => {
       >
         Procéder au paiement
       </button>
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };
