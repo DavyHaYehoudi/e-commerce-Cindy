@@ -47,9 +47,9 @@ const productSlice = createSlice({
     wishlistAccess: false,
     checkedItemsFilter: {},
     advantages: {
-      codePromo: { isValid: false, percentage: "" },
-      giftcard: { isValid: false, amount: "" },
-      credit: { isValid: false, percentage: "" },
+      codePromo: { isValid: false, percentage: "", code: "" },
+      giftcard: { isValid: false, amount: "", code: "" },
+      credit: { id: "", amount: "" },
     },
     status: "idle",
     error: null,
@@ -127,10 +127,12 @@ const productSlice = createSlice({
         isValid = false,
         percentage = "",
         amount = "",
+        id = "",
+        code = "",
       } = action.payload;
       state.advantages = {
         ...state.advantages,
-        [property]: { isValid, percentage, amount },
+        [property]: { isValid, percentage, amount, id, code },
       };
     },
   },

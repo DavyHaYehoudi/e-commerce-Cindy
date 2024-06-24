@@ -5,7 +5,8 @@ export const handleFetchError = (error) => {
   console.log("errorDetails:", errorDetails);
   const { status, message, route } = errorDetails;
 
-  if (route.includes("auth/")) {
+  if (route.includes("auth/") || route.includes("verify-code")) {
+    console.log('dedans');
     return toast.error(message);
   }
   if (status === 400) {

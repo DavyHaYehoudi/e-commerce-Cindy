@@ -22,6 +22,8 @@ import useMainImagesToAddStorage from "./bodyCheat/sections/hooks/useMainImagesT
 import useConfirmationFunctions from "./bodyCheat/sections/hooks/useConfirmationFunctions";
 import Switch from "./bodyCheat/materials/shared/Switch";
 import MoonLoader from "react-spinners/MoonLoader";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaPauseCircle } from "react-icons/fa";
 
 const Modal = ({
   handleCloseModal,
@@ -131,7 +133,17 @@ const Modal = ({
             <h2>Création d'un produit</h2>
           )}
           <div className="switch-product-btn">
-            {isActive ? "PRODUIT PUBLIE" : "PRODUIT SUSPENDU"}
+            {isActive ? (
+              <p className="status product-active">
+                <span>PRODUIT PUBLIE</span>
+                <FaCheckCircle />
+              </p>
+            ) : (
+              <p className="status product-pending">
+                <span>PRODUIT SUSPENDU</span>
+                <FaPauseCircle />
+              </p>
+            )}
             <Switch checked={isProductActive} onChange={handleSwitchChange} />
           </div>
           <span className="product-modal-close" onClick={handleCloseModal}>

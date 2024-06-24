@@ -9,6 +9,7 @@ let options = [
 ];
 const Status = ({ handleCheckboxChange, checkedItems }) => {
   const { role } = useStoreInfo({ productsId: "", material: "" });
+  console.log('role:', role)
   if (role !== "admin") {
     options = [
       { name: "En promotion", label: "promotion" },

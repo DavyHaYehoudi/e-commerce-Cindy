@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useMainImagesToAddStorage from "../bodyCheat/sections/hooks/useMainImagesToAddStorage";
 import useInitDataMain from "./useInitDataMain";
-import { modifyProductCheet } from "../../../../../../features/admin/productSlice";
+import {
+  modifyProductCheet,
+  changeProductActiveStatus,
+} from "../../../../../../features/admin/productSlice";
 
 const useProductModal = ({
   currentAction: initialAction,
@@ -41,6 +44,13 @@ const useProductModal = ({
     reset();
     resetMainImagesToAddStorage();
     dispatch(modifyProductCheet(false));
+    dispatch(
+      changeProductActiveStatus({
+        productId: currentProductId,
+        status: "",
+        isPending: false,
+      })
+    );
   };
 
   return {

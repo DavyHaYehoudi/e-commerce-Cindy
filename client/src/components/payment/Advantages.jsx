@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { LiaEuroSignSolid } from "react-icons/lia";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../helpers/utils/formatDate";
@@ -6,18 +6,23 @@ import isCurrent from "../../helpers/utils/isCurrentDate";
 import { FaCheck } from "react-icons/fa";
 import useAdvantages from "./hooks/useAdvantages";
 const Advantages = () => {
-  const [promoCodeValue, setPromoCodeValue] = useState("");
-  const [giftcardValue, setGiftcardValue] = useState("");
-  const creditsStore = useSelector((state) => state?.customer?.data?.credit);
   const { codePromo, giftcard } =
     useSelector((state) => state?.product?.advantages) || {};
   const {
+    promoCodeValue,
+    setPromoCodeValue,
+    giftcardValue,
+    setGiftcardValue,
+    creditsStore,
     handleCheckPromocode,
     handleCancelPromocode,
     handleCheckGiftcard,
     handleCancelGiftcard,
     handleKeyPressGiftcard,
     handleKeyPressPromocode,
+    handleSelectChange,
+    handleCreditApply,
+    handleKeyPressCredit
   } = useAdvantages();
   return (
     <div id="payment-form-advantages">
@@ -34,6 +39,7 @@ const Advantages = () => {
               id="promo"
               name="promo"
               placeholder="Entrez le code promo"
+              value={promoCodeValue}
               onChange={(e) => setPromoCodeValue(e.target.value)}
               onKeyDown={(e) =>
                 handleKeyPressPromocode({
@@ -49,6 +55,7 @@ const Advantages = () => {
                   code: promoCodeValue,
                 })
               }
+              disabled={promoCodeValue.trim() === ""}
             >
               Appliquer
             </button>
@@ -68,6 +75,7 @@ const Advantages = () => {
               id="giftcard"
               name="giftcard"
               placeholder="Entrez le numéro de votre carte cadeau"
+              value={giftcardValue}
               onChange={(e) => setGiftcardValue(e.target.value)}
               onKeyDown={(e) =>
                 handleKeyPressGiftcard({ event: e, code: giftcardValue })
@@ -80,6 +88,7 @@ const Advantages = () => {
                   code: giftcardValue,
                 })
               }
+              disabled={giftcardValue.trim() === ""}
             >
               Appliquer
             </button>
@@ -97,22 +106,23 @@ const Advantages = () => {
             <select
               id="credit"
               name="credit"
-              placeholder="Choisir"
+              placeholder="Choisir" 
               // value={selectedValue}
-              // onChange={handleSelectChange}
+              onChange={handleSelectChange}
+              onKeyDown={handleKeyPressCredit}
             >
-              <option value="none">Ne pas utiliser</option>
+              <option value="">Ne pas utiliser</option>
               {creditsStore &&
                 creditsStore
                   .filter((credit) => isCurrent(credit?.dateExpire))
                   .map((credit, index) => (
-                    <option key={index} value={credit?.amount}>
+                    <option key={index} value={credit?._id}>
                       {credit?.amount}€ (valable jusqu'au{" "}
                       {formatDate(credit?.dateExpire)})
                     </option>
                   ))}
             </select>
-            <button>Appliquer</button>
+            <button onClick={handleCreditApply} >Appliquer</button>
           </div>
         </div>
       </div>

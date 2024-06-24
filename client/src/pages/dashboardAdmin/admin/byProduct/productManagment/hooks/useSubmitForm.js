@@ -31,6 +31,7 @@ const useSubmitForm = ({
   const isProductActive = productsStore.find(
     (product) => product._id === currentProductId
   )?.isActive;
+
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
 
@@ -75,6 +76,13 @@ const useSubmitForm = ({
         reset();
         handleCloseModal();
         setLoadingSubmit(false);
+        dispatch(
+          changeProductActiveStatus({
+            productId: currentProductId,
+            status: "",
+            isPending: false,
+          })
+        );
       } catch (error) {
         dispatch(resetProductMaterials());
         dispatch(modifyProductCheet(false));

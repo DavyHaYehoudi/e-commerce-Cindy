@@ -142,10 +142,6 @@ const clientSchema = new mongoose.Schema(
         default: null,
       },
     },
-    rememberMe: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,

@@ -74,6 +74,17 @@ const orderController = {
     const {clientId,shippingAddress,billingAddress}=req.body
     res.status(201).json({message:"ressource créée avec succès"})
   },
+  orderAmount:async(req,res)=>{
+    const data = req.body
+    console.log('data:', data)
+    try {
+      
+      res.status(200).json({message: 'amount'})
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    } 
+    
+  }
 };
 
 export default orderController;

@@ -23,9 +23,11 @@ const ShoppingCart = () => {
         <section id="shoppingCart-items">
           <ShoppingCartContent />
         </section>
-        <section id="shoppingCart-payment">
-          <PaymentForm />
-        </section>
+        {isCartContent && (
+          <section id="shoppingCart-payment">
+            <PaymentForm />
+          </section>
+        )}
       </div>
       <CartOffcanvas />
     </div>
