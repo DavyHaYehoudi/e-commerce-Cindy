@@ -4,9 +4,11 @@ import ShoppingCartContent from "../../components/payment/ShoppingCartContent";
 import { BsFillTrash2Fill } from "react-icons/bs";
 import useCartOffcanvas from "../MasterProduct/hooks/useCartOffcanvas";
 import CartOffcanvas from "../MasterProduct/cartAccess";
+import useAmountCart from "./hooks/useAmountCart";
 
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
+  const { cartAmount } = useAmountCart();
   return (
     <div id="shoppingCart-page">
       <h1>MON PANIER</h1>
@@ -25,7 +27,7 @@ const ShoppingCart = () => {
         </section>
         {isCartContent && (
           <section id="shoppingCart-payment">
-            <PaymentForm />
+            <PaymentForm cartAmount={cartAmount} />
           </section>
         )}
       </div>

@@ -6,7 +6,6 @@
     flex-wrap: wrap;
     gap: 20px;
     margin: 0 10px 50px 10px;
-    /* animation: slideFromTop 2s ease 0s 1 normal forwards; */
     animation: inherit;
 }
 

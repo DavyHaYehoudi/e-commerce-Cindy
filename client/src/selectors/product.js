@@ -6,7 +6,6 @@ export const getProductProperties = (
   tagStore,
   materialId
 ) => {
-
   const product = productStore?.find((product) => product._id === productsId);
 
   if (product) {

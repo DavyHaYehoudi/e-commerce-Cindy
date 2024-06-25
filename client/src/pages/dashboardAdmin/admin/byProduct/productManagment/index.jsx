@@ -146,7 +146,10 @@ const Modal = ({
             )}
             <Switch checked={isProductActive} onChange={handleSwitchChange} />
           </div>
-          <span className="product-modal-close" onClick={handleCloseModal}>
+          <span
+            className="product-modal-close"
+            onClick={() => handleCloseModal(true)}
+          >
             <AiOutlineClose />
           </span>
           {confirmationEnabled && isProductModified ? (

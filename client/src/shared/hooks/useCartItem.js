@@ -39,22 +39,28 @@ const useCartItem = (product) => {
     material
   ).name;
 
-  const itemPrice = getProductProperties(
+  const productInfo = getProductProperties(
     productsId,
     productStore,
     collectionStore,
     categoryStore,
     tagStore,
     material
-  )?.pricing?.currentPrice;
+  );
+  let price = productInfo?.pricing?.currentPrice;
+  const { promotion } = productInfo;
 
-  const itemSubtotal = formatPrice(itemPrice * quantity);
+  if (promotion?.endDate && new Date(promotion.endDate) > new Date()) {
+    price -= (price * promotion.amount) / 100;
+  }
+
+  const itemSubtotal = formatPrice(price * quantity);
 
   return {
     imageUrl,
     itemName,
     quantity,
-    itemPrice,
+    price,
     itemSubtotal,
     handleRemoveToCart,
   };

@@ -10,7 +10,7 @@ const CartItem = ({ product }) => {
     imageUrl,
     itemName,
     quantity,
-    itemPrice,
+    price,
     itemSubtotal,
     handleRemoveToCart,
   } = useCartItem(product);
@@ -30,7 +30,7 @@ const CartItem = ({ product }) => {
       </div>
       <div className="cart-item-bottom">
         <div className="cart-item-subtotal">
-          {quantity} x {formatPrice(itemPrice)} = {itemSubtotal}
+          {quantity} x {formatPrice(price)} = {itemSubtotal}
         </div>
         <div className="cart-item-quantity">
           <QuantitySelectProduct

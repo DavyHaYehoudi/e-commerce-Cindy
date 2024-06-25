@@ -5,6 +5,7 @@ import PaymentFormBilling from "./PaymentFormBilling";
 import Advantages from "./Advantages";
 import useFormValidation from "./hooks/useFormValidation";
 import { ToastContainer } from "react-toastify";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const requiredFields = {
   delivery: [
@@ -26,7 +27,7 @@ const requiredFields = {
     "billingEmail"
   ],
 };
-const PaymentForm = () => {
+const PaymentForm = ({cartAmount}) => {
   const {
     formData,
     validationErrors,
@@ -82,7 +83,7 @@ const PaymentForm = () => {
         type="button"
         onClick={() => handleSubmit(requiredFields)}
       >
-        Procéder au paiement
+        Procéder au paiement : {formatPrice(cartAmount) }
       </button>
       <ToastContainer autoClose={5000} />
     </div>

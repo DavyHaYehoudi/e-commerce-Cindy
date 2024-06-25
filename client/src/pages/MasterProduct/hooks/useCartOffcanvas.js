@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";

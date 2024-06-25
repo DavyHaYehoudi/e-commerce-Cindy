@@ -27,5 +27,5 @@ router.delete(
   orderController.deleteTrackingNumberClient
 );
 router.post("/", authenticateUser, orderController.createOrder);
-router.post("/order-amount",orderController.orderAmount)
+router.get("/order-amount",orderController.orderAmount)
 export default router;
