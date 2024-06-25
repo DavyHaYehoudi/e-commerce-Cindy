@@ -49,8 +49,9 @@ const productSlice = createSlice({
     advantages: {
       codePromo: { isValid: false, percentage: "", code: "" },
       giftcard: { isValid: false, amount: "", code: "" },
-      credit: { id: "", amount: "" },
+      credit: { isValid: false, creditId: "", amount: "" },
     },
+    cartAmount:"",
     status: "idle",
     error: null,
   },
@@ -135,6 +136,9 @@ const productSlice = createSlice({
         [property]: { isValid, percentage, amount, id, code },
       };
     },
+    updateCartAmount:(state,action)=>{
+      state.cartAmount = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -215,5 +219,6 @@ export const {
   showWishlistAccess,
   checkItemsFilter,
   updateAdvantages,
+  updateCartAmount
 } = productSlice.actions;
 export default productSlice.reducer;

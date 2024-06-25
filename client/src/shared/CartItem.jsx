@@ -15,7 +15,7 @@ const CartItem = ({ product }) => {
     handleRemoveToCart,
   } = useCartItem(product);
 
-  return (
+  return ( 
     <div className="cart-item">
       <div className="cart-item-top">
         <div className="info-tooltip" aria-label="Revenir à l'article">

@@ -47,8 +47,7 @@ const giftcardController = {
           .status(404)
           .json({ message: "La carte cardeau n'existe pas." });
       }
-      const currentDate = new Date();
-      if (codeGiftcard?.dateExpire < currentDate) {
+      if (codeGiftcard?.dateExpire < new Date()) {
         return res
           .status(404)
           .json({ message: "La date de validité a expiré." });
@@ -62,3 +61,4 @@ const giftcardController = {
 };
 
 export default giftcardController;
+ 

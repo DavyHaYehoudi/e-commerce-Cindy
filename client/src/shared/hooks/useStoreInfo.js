@@ -39,20 +39,13 @@ const calculateTotalCartPrice = (cartStore = [], productsStore = []) => {
       (product) => product?._id === cartItem?.productsId
     );
     if (product) {
-      // const material = product?.materials?.find(
-      //   (mat) => mat?._id === cartItem?.material
-      // );
-      // let price =
-      //   material?.pricing?.currentPrice ??
-      //   product?.materials?.[0]?.pricing?.currentPrice;
-
       const material = product?.materials?.find((mat) => {
         if (mat?._id) {
           return mat?._id === cartItem?.material;
         }
         return product?.materials?.[0];
       });
-let price = material?.pricing?.currentPrice;
+      let price = material?.pricing?.currentPrice;
       if (
         material?.promotion?.endDate &&
         new Date(material?.promotion.endDate) > new Date()

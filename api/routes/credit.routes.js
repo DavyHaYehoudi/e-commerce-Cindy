@@ -15,5 +15,6 @@ router.patch(
   authenticateUser,
   creditController.archiveCredit
 );
+router.get("/verify-code", authenticateUser, creditController.verifyCredit);
 
 export default router;

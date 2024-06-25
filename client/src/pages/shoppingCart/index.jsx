@@ -8,7 +8,7 @@ import useAmountCart from "./hooks/useAmountCart";
 
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
-  const { cartAmount } = useAmountCart();
+  const cartAmount = useAmountCart();
   return (
     <div id="shoppingCart-page">
       <h1>MON PANIER</h1>

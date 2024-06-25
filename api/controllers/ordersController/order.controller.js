@@ -1,6 +1,7 @@
 import Client from "../../models/client.model.js";
 import Order from "../../models/order.model.js";
 import Product from "../../models/product/product.model.js";
+import checkAdvantages from "./advantages.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -78,51 +79,66 @@ const orderController = {
     const { clientId, shippingAddress, billingAddress } = req.body;
     res.status(201).json({ message: "ressource créée avec succès" });
   },
-  orderAmount : async (req, res) => {
+  orderAmount: async (req, res) => {
     try {
-      console.log('req.query:', req.query)
-      const { clientId } = req.query;
+      const clientId = req.query.clientId;
       const client = await Client.findById(clientId);
       if (!client) {
         return res.status(404).json({ message: "Le client n'existe pas." });
       }
-  
+
       const cart = client.cart;
       let totalAmount = 0;
-  
+
       for (const item of cart) {
         const product = await Product.findById(item.productsId).lean();
         if (!product) {
-          continue; // Skip this item if product is not found
+          continue;
         }
-  
+
         let material;
         if (item.material) {
-          material = product.materials.find(m => m._id.toString() === item.material.toString());
+          material = product.materials.find(
+            (m) => m._id.toString() === item.material.toString()
+          );
         } else if (product.materials.length === 1) {
           material = product.materials[0];
         } else {
-          continue; // Skip this item if material is not specified and there are multiple materials
+          continue;
         }
-  
+
         if (!material || !material.isActive || material.isArchived) {
-          continue; // Skip this item if material is not valid
+          continue;
         }
-  
+
         let price = material.pricing.currentPrice;
         if (material.promotion && material.promotion.endDate > new Date()) {
           price -= (price * material.promotion.amount) / 100;
         }
-  
+
         totalAmount += price * item.quantity;
       }
-  
-      console.log('totalAmount:', totalAmount)
+      const advantages = await checkAdvantages(req);
+      const codePromoPercentage = advantages?.codePromoPercentage;
+      if (codePromoPercentage) {
+        totalAmount -= (totalAmount * codePromoPercentage) / 100;
+      }
+
+      const giftCardAmount = advantages?.giftcardAmount;
+      if (giftCardAmount) {
+        totalAmount -= giftCardAmount;
+      }
+
+      const creditAmount = advantages?.creditAmount;
+      if (creditAmount) {
+        totalAmount -= creditAmount;
+      }
+
       res.status(200).json({ totalAmount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
+  }, 
 };
 
 export default orderController;

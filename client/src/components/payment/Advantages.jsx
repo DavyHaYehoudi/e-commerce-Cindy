@@ -107,7 +107,6 @@ const Advantages = () => {
               id="credit"
               name="credit"
               placeholder="Choisir" 
-              // value={selectedValue}
               onChange={handleSelectChange}
               onKeyDown={handleKeyPressCredit}
             >

@@ -33,9 +33,7 @@ const creditController = {
         );
 
         if (!updatedCredit) {
-          return res
-            .status(404)
-            .json({ message: "Le crédit n'existe pas." });
+          return res.status(404).json({ message: "Le crédit n'existe pas." });
         }
 
         // Mettre à jour les OrderProducts
@@ -55,7 +53,9 @@ const creditController = {
         const order = await Order.findOne({ orderProducts: orderProductsId });
 
         if (!order) {
-          return res.status(404).json({ message: "La commande associée n'existe pas." });
+          return res
+            .status(404)
+            .json({ message: "La commande associée n'existe pas." });
         }
 
         // Mettre à jour outTotalAmount de l'Order
@@ -73,6 +73,30 @@ const creditController = {
     } catch (error) {
       console.error("Error archiving credit:", error);
       res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  verifyCredit: async (req, res) => {
+    try {
+      const { clientId, creditId } = req.query;
+      const credit = await Credit.findById(creditId);
+      if (!credit) {
+        return res.status(404).json({ message: "L'avoir n'existe pas." });
+      }
+      if (credit?.dateExpire < new Date()) {
+        return res
+          .status(404)
+          .json({ message: "La date de validité a expiré." });
+      }
+      if (credit?.clientId.toString()!== clientId) {
+        return res
+          .status(403)
+          .json({ message: "Vous n'êtes pas autorisé à utiliser cet avoir." });
+      }
+
+      res.status(200).json({ message: credit?.amount });
+    } catch (error) {
+      console.error("Error verify credit:", error);
+      res.status(500).json({ message: "Internal server error" });
     }
   },
 };

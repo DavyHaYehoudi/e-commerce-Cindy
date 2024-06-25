@@ -47,8 +47,7 @@ const promocodeController = {
       if (!codePromo) {
         return res.status(404).json({ message: "Le code promo n'existe pas." });
       }
-      const currentDate = new Date();
-      if (codePromo?.dateExpire < currentDate) {
+      if (codePromo?.dateExpire < new Date()) {
         return res
           .status(404)
           .json({ message: "La date de validité a expiré." });
