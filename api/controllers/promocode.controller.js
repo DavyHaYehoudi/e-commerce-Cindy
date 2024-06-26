@@ -52,7 +52,7 @@ const promocodeController = {
           .status(404)
           .json({ message: "La date de validité a expiré." });
       }
-      res.status(200).json({ message: codePromo?.percentage });
+      res.status(200).json({ percentage: codePromo?.percentage });
     } catch (error) {
       console.error("Error verify promocode:", error);
       res.status(500).json({ message: "Internal server error" });

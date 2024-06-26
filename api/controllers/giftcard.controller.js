@@ -52,7 +52,7 @@ const giftcardController = {
           .status(404)
           .json({ message: "La date de validité a expiré." });
       }
-      res.status(200).json({ message: codeGiftcard?.amount });
+      res.status(200).json({ amount: codeGiftcard?.amount });
     } catch (error) {
       console.error("Error verify giftcard:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -61,4 +61,3 @@ const giftcardController = {
 };
 
 export default giftcardController;
- 

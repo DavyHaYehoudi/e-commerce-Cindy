@@ -5,6 +5,7 @@ import Promocode from "../../models/promocode.model.js";
 const checkAdvantages = async (req) => {
   let advantagesResult = { codePromoPercentage: "", giftcardAmount: "" };
   if (req.query.advantages) {
+    console.log('req.query.advantages:', req.query.advantages)
     const advantages = JSON.parse(req.query.advantages);
     const { codePromo, giftcard, credit } = advantages;
     if (codePromo?.isValid) {
@@ -31,7 +32,7 @@ const checkAdvantages = async (req) => {
         advantagesResult["creditAmount"] = creditDB?.amount;
       }
     }
-  }
+  } 
   return advantagesResult;
-};
+}; 
 export default checkAdvantages;

@@ -736,6 +736,52 @@ paths:
                     example: La commande n'existe pas.
       security:
         - api_key: []
+  /orders/order-amount:
+    get:
+      tags:
+        - order
+      summary: Get cart amount
+      description: Route reserved for customers.This route allows you to calculate the basket amount and adjust according to the benefits applied such as the promo code, gift card and credit.
+      parameters:
+        - name: clientId
+          in: query
+          description: The customer ID is used to verify that the user is indeed a registered customer.
+          required: true
+          schema:
+            type: string
+        - name: advantages
+          in: query
+          description: The 3 types of advantages have passed.
+          schema:
+            type: string
+            example: { advantages: {
+                        codePromo: { isValid: false, percentage: "", code: "" },
+                        giftcard: { isValid: false, amount: "", code: "" },
+                        credit: { isValid: false, creditId: "", amount: "" },
+                      },}
+      responses:
+        '200':
+          description: successful getting cart amount
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalAmount:
+                    type: number
+                    example: 325.9
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
   /orderProducts{orderProductsIds}:
     get:
       tags:
@@ -1124,6 +1170,58 @@ paths:
                     example: Le crédit n'existe pas.
       security:
         - api_key: []
+  /credits/verify-code:
+    get:
+      tags:
+        - credit
+      summary: Check the code
+      description: This route checks one credit code. In addition, we also ensure that the credit is indeed that belonging to the customer. The API returns the credit amount.
+      parameters:
+        - name: creditId
+          in: query
+          description: credit id mongoDB
+          required: true
+          schema:
+            type: string
+            example: 65f9e3161cb6b68d08b89893
+        - name: clientId
+          in: query
+          description: client id mongoDB
+          required: true
+          schema:
+            type: string
+            example: 65bc8c5b7f890edc1f63182f
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  amount:
+                    type: number
+                    example: 20.5
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'avoir n'existe pas.
   /materials:
     get:
       tags:
@@ -1441,6 +1539,14 @@ paths:
         - promocode
       summary: Check the code
       description: This route checks one promotional code. If the code is verified then the reduction on the total price of the cart applies with the percentage returned by the API.
+      parameters:
+        - name: code
+          in: query
+          description: promocode code
+          required: true
+          schema:
+            type: string
+            example: Bonjour-15
       responses:
         '200':
           description: successful checking
@@ -1586,6 +1692,14 @@ paths:
         - giftcard
       summary: Check the code
       description: This route checks one giftcard code. If the code is verified then the reduction on the total price of the cart applies with the amount returned by the API.
+      parameters:
+        - name: code
+          in: query
+          description: giftcard code
+          required: true
+          schema:
+            type: string
+            example: 4hj0AfFyT7mIdO4
       responses:
         '200':
           description: successful checking

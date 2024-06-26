@@ -14,6 +14,7 @@ const Advantages = () => {
     giftcardValue,
     setGiftcardValue,
     creditsStore,
+    selectedValue,
     handleCheckPromocode,
     handleCancelPromocode,
     handleCheckGiftcard,
@@ -22,7 +23,7 @@ const Advantages = () => {
     handleKeyPressPromocode,
     handleSelectChange,
     handleCreditApply,
-    handleKeyPressCredit
+    handleKeyPressCredit,
   } = useAdvantages();
   return (
     <div id="payment-form-advantages">
@@ -106,11 +107,12 @@ const Advantages = () => {
             <select
               id="credit"
               name="credit"
-              placeholder="Choisir" 
+              placeholder="Choisir"
+              defaultValue=""
               onChange={handleSelectChange}
               onKeyDown={handleKeyPressCredit}
             >
-              <option value="">Ne pas utiliser</option>
+              <option value="none">Ne pas utiliser</option>
               {creditsStore &&
                 creditsStore
                   .filter((credit) => isCurrent(credit?.dateExpire))
@@ -121,7 +123,9 @@ const Advantages = () => {
                     </option>
                   ))}
             </select>
-            <button onClick={handleCreditApply} >Appliquer</button>
+            <button onClick={handleCreditApply} disabled={selectedValue === ""}>
+              Appliquer
+            </button>
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ const useAdvantages = () => {
         null,
         handleUnauthorized
       );
-      const percentage = response?.message;
+      const { percentage } = response;
 
       dispatch(
         updateAdvantages({
@@ -64,12 +64,30 @@ const useAdvantages = () => {
       console.log("Erreur dans la vérification des avantages");
     }
   };
-  const handleCancelPromocode = ({ property }) => {
+  const handleCancelPromocode = async ({ property }) => {
     dispatch(updateAdvantages({ property }));
-    if (promoCodeValue) {
-      toast.info("Le code promo n'est plus appliqué.");
+
+    try {
+      dispatch(
+        updateAdvantages({
+          property: "codePromo",
+          isValid: false,
+          percentage: "",
+          code: "",
+        })
+      );
+      const cartAmountEvaluate = await handleOrderAmount({
+        codePromo: { isValid: false },
+      });
+      const newAmount = cartAmountEvaluate?.totalAmount;
+      dispatch(updateCartAmount(newAmount));
+      if (promoCodeValue) {
+        toast.info("Le code promo n'est plus appliqué.");
+      }
+      setPromoCodeValue("");
+    } catch (error) {
+      console.log("Erreur dans l'annulation des avantages");
     }
-    setPromoCodeValue("");
   };
 
   const handleCheckGiftcard = async ({ code }) => {
@@ -95,37 +113,77 @@ const useAdvantages = () => {
       console.log("Erreur dans la vérification des avantages");
     }
   };
-  const handleCancelGiftcard = ({ property }) => {
+  const handleCancelGiftcard = async ({ property }) => {
     dispatch(updateAdvantages({ property }));
-    if (giftcardValue) {
-      toast.info("La carte cadeau n'est plus appliquée.");
+
+    try {
+      dispatch(
+        updateAdvantages({
+          property: "giftcard",
+          isValid: false,
+          amount: "",
+          code: "",
+        })
+      );
+
+      const cartAmountEvaluate = await handleOrderAmount({
+        giftcard: { isValid: false },
+      });
+      const newAmount = cartAmountEvaluate?.totalAmount;
+      dispatch(updateCartAmount(newAmount));
+      if (giftcardValue) {
+        toast.info("La carte cadeau n'est plus appliquée.");
+      }
+      setGiftcardValue("");
+    } catch (error) {
+      console.log("Erreur dans la vérification des avantages");
     }
-    setGiftcardValue("");
   };
 
   const handleSelectChange = (e) => {
     setSelectedValue(e.target.value);
   };
   const handleCreditApply = async () => {
-    const response = await Get(
-      `credits/verify-code?creditId=${selectedValue}&clientId=${clientId}`,
-      null,
-      handleUnauthorized
-    );
-    const { amount } = response;
-
-    dispatch(
-      updateAdvantages({ property: "credit", creditId: selectedValue, amount })
-    );
-    const cartAmountEvaluate = await handleOrderAmount({
-      credit: { isValid: true, creditId: selectedValue, clientId },
-    });
-    const newAmount = cartAmountEvaluate?.totalAmount;
-    dispatch(updateCartAmount(newAmount));
     if (selectedValue === "") {
+      return;
+    }
+    if (selectedValue === "none") {
+      dispatch(
+        updateAdvantages({
+          property: "credit",
+          creditId: selectedValue,
+          amount: "",
+        })
+      );
+      const cartAmountEvaluate = await handleOrderAmount({
+        credit: { isValid: false },
+      });
+      const newAmount = cartAmountEvaluate?.totalAmount;
+      dispatch(updateCartAmount(newAmount));
       toast.info("L'avoir n'est plus appliqué.");
-    } else {
-      toast.success("L'avoir a bien été pris en compte.");
+    }
+    if (selectedValue && selectedValue !== "none") {
+      const response = await Get(
+        `credits/verify-code?creditId=${selectedValue}&clientId=${clientId}`,
+        null,
+        handleUnauthorized
+      );
+      const { amount } = response;
+
+      dispatch(
+        updateAdvantages({
+          property: "credit",
+          creditId: selectedValue,
+          amount,
+          isValid: true,
+          clientId,
+        })
+      );
+      const cartAmountEvaluate = await handleOrderAmount({
+        credit: { isValid: true, creditId: selectedValue, clientId },
+      });
+      const newAmount = cartAmountEvaluate?.totalAmount;
+      dispatch(updateCartAmount(newAmount));
     }
   };
   const handleKeyPressGiftcard = ({ event, code }) => {
@@ -156,6 +214,7 @@ const useAdvantages = () => {
     giftcardValue,
     setGiftcardValue,
     creditsStore,
+    selectedValue,
     handleCheckPromocode,
     handleCancelPromocode,
     handleCheckGiftcard,

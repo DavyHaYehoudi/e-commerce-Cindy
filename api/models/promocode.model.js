@@ -7,7 +7,7 @@ const promocodeSchema = new mongoose.Schema(
       type: String,
       required: true,
       maxlength: 50,
-      unique:true
+      unique: true,
     },
     percentage: {
       type: Number,
@@ -31,7 +31,7 @@ const promocodeSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 

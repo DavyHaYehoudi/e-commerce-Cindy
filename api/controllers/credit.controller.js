@@ -87,13 +87,13 @@ const creditController = {
           .status(404)
           .json({ message: "La date de validité a expiré." });
       }
-      if (credit?.clientId.toString()!== clientId) {
+      if (credit?.clientId.toString() !== clientId) {
         return res
-          .status(403)
+          .status(401)
           .json({ message: "Vous n'êtes pas autorisé à utiliser cet avoir." });
       }
 
-      res.status(200).json({ message: credit?.amount });
+      res.status(200).json({ amount: credit?.amount });
     } catch (error) {
       console.error("Error verify credit:", error);
       res.status(500).json({ message: "Internal server error" });

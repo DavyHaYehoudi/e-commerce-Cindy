@@ -6,6 +6,7 @@ import Advantages from "./Advantages";
 import useFormValidation from "./hooks/useFormValidation";
 import { ToastContainer } from "react-toastify";
 import { formatPrice } from "../../helpers/utils/prices";
+import InventoryAdvantages from "./InventoryAdvantages";
 
 const requiredFields = {
   delivery: [
@@ -78,6 +79,7 @@ const PaymentForm = ({cartAmount}) => {
           Enregistrer ces informations pour les prochaines commandes.
         </label>
       </div>
+      <InventoryAdvantages />
       <button
         className="payment-button"
         type="button"
