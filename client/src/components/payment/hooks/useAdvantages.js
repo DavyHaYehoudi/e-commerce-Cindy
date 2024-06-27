@@ -184,6 +184,7 @@ const useAdvantages = () => {
       });
       const newAmount = cartAmountEvaluate?.totalAmount;
       dispatch(updateCartAmount(newAmount));
+      toast.success("L'avoir est bien pris en compte.");
     }
   };
   const handleKeyPressGiftcard = ({ event, code }) => {

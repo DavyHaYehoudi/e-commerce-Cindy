@@ -189,14 +189,36 @@
     font-size: 1.5rem;
 }
 
-#payment-form-advantages .item-content {
+#payment-form-advantages  {
+ margin: 50px 0;
+}
+
+#payment-form-advantages .item-content.credit {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-
 }
 
+#payment-form-advantages .item-content .item-content-input {
+    position: relative;
+}
+
+#payment-form-advantages .item-content .item-content-input .validate {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#payment-form-advantages .item-content .item-content-buttons  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 5px 0;
+}
 #payment-form-advantages .item-content button {
     padding: 15px;
     flex: 0.5;
