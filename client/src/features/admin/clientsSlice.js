@@ -73,7 +73,9 @@ const clientsSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchClients.pending, (state) => {
@@ -130,4 +132,5 @@ const clientsSlice = createSlice({
   },
 });
 export { fetchClients, notesAdmin };
+export const { updateShippingAndBillingAddresses } = clientsSlice.actions;
 export default clientsSlice.reducer;

@@ -31,6 +31,8 @@ const requiredFields = {
 const PaymentForm = ({cartAmount}) => {
   const {
     formData,
+    shippingAddress,
+    billingAddress,
     validationErrors,
     validFields,
     updateData,
@@ -46,12 +48,12 @@ const PaymentForm = ({cartAmount}) => {
         Les champs marqués par une étoile * sont obligatoires.
       </p>
       <PaymentFormDelivery
-        onUpdate={(data) => updateData("delivery", data)}
         validationErrors={validationErrors.delivery || {}}
         validFields={validFields.delivery || {}}
         clearValidationError={(field) =>
           clearValidationError("delivery", field)
         }
+        shippingAddress={shippingAddress}
       />
       <Advantages />
       <PaymentFormCard
@@ -61,12 +63,12 @@ const PaymentForm = ({cartAmount}) => {
         clearValidationError={(field) => clearValidationError("card", field)}
       />
       <PaymentFormBilling
-        onUpdate={(data) => updateData("billing", data)}
         validationErrors={validationErrors.billing || {}}
         validFields={validFields.billing || {}}
         clearValidationError={(field) => clearValidationError("billing", field)}
         handleCheckboxChange={handleCheckboxChange}
         formData={formData}
+        billingAddress={billingAddress}
       />
       <div className="checkbox">
         <input

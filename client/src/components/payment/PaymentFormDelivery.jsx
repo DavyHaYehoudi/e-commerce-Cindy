@@ -1,25 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { PiTruckThin } from "react-icons/pi";
+import useFormValidation from "./hooks/useFormValidation";
 
 const PaymentFormDelivery = ({
-  onUpdate,
   validationErrors,
   validFields,
   clearValidationError,
+  shippingAddress,
 }) => {
-  const [selectedValue, setSelectedValue] = useState("france");
+  const {
+    firstName,
+    lastName,
+    street,
+    city,
+    postalCode,
+    country,
+    apartment,
+    email,
+    phone,
+  } = shippingAddress || {};
+  const { handleShippingAndBilling, selectedValue, handleSelectChange } =
+    useFormValidation();
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onUpdate({ [name]: value });
-  };
   const handleFocus = (e) => {
     clearValidationError(e.target.name);
   };
+
   return (
     <>
       <div className="payment-form-heading">
@@ -33,7 +39,7 @@ const PaymentFormDelivery = ({
         value={selectedValue}
         onChange={handleSelectChange}
       >
-        <option defaultValue="france">France</option>
+        <option defaultValue={country || selectedValue}>France</option>
         <option value="belgium">Belgique</option>
         <option value="switzerland">Suisse</option>
         <option value="germany">Allemagne</option>
@@ -61,7 +67,15 @@ const PaymentFormDelivery = ({
             }
             onFocus={handleFocus}
             aria-required="true"
-            onChange={handleChange}
+            value={firstName}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "shippingAddress",
+                field: "firstName",
+                e,
+                section: "delivery",
+              })
+            }
           />
           <input
             type="text"
@@ -76,9 +90,17 @@ const PaymentFormDelivery = ({
                 ? "success"
                 : ""
             }
+            value={lastName}
             onFocus={handleFocus}
             aria-required="true"
-            onChange={handleChange}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "shippingAddress",
+                field: "lastName",
+                e,
+                section: "delivery",
+              })
+            }
           />
         </div>
         <input
@@ -96,14 +118,30 @@ const PaymentFormDelivery = ({
           }
           onFocus={handleFocus}
           aria-required="true"
-          onChange={handleChange}
+          value={street}
+          onChange={(e) =>
+            handleShippingAndBilling({
+              property: "shippingAddress",
+              field: "street",
+              e,
+              section: "delivery",
+            })
+          }
         />
         <input
           type="text"
           id="apartment"
           name="apartment"
           placeholder="Appartement"
-          onChange={handleChange}
+          value={apartment}
+          onChange={(e) =>
+            handleShippingAndBilling({
+              property: "shippingAddress",
+              field: "apartment",
+              e,
+              section: "delivery",
+            })
+          }
         />
         <div className="location-details">
           <input
@@ -112,6 +150,7 @@ const PaymentFormDelivery = ({
             name="postal-code"
             placeholder="Code postal *"
             required
+            value={postalCode}
             className={
               validationErrors["postal-code"]
                 ? "error"
@@ -121,7 +160,14 @@ const PaymentFormDelivery = ({
             }
             onFocus={handleFocus}
             aria-required="true"
-            onChange={handleChange}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "shippingAddress",
+                field: "postalCode",
+                e,
+                section: "delivery",
+              })
+            }
           />
           <input
             type="text"
@@ -129,6 +175,7 @@ const PaymentFormDelivery = ({
             name="city"
             placeholder="Ville *"
             required
+            value={city}
             className={
               validationErrors.city
                 ? "error"
@@ -138,7 +185,14 @@ const PaymentFormDelivery = ({
             }
             onFocus={handleFocus}
             aria-required="true"
-            onChange={handleChange}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "shippingAddress",
+                field: "city",
+                e,
+                section: "delivery",
+              })
+            }
           />
         </div>
       </div>
@@ -157,7 +211,15 @@ const PaymentFormDelivery = ({
               : ""
           }
           onFocus={handleFocus}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) =>
+            handleShippingAndBilling({
+              property: "shippingAddress",
+              field: "email",
+              e,
+              section: "delivery",
+            })
+          }
         />
         <input
           type="tel"
@@ -172,8 +234,16 @@ const PaymentFormDelivery = ({
               ? "success"
               : ""
           }
+          value={phone}
           onFocus={handleFocus}
-          onChange={handleChange}
+          onChange={(e) =>
+            handleShippingAndBilling({
+              property: "shippingAddress",
+              field: "phone",
+              e,
+              section: "delivery",
+            })
+          }
         />
       </div>
     </>

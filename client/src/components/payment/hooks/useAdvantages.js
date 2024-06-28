@@ -23,6 +23,9 @@ const useAdvantages = () => {
 
   const handleOrderAmount = async (params) => {
     formParams = { ...formParams, ...params };
+    if (!clientId) {
+      return;
+    }
     const queryString = new URLSearchParams({
       clientId,
       advantages: JSON.stringify(formParams),

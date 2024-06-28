@@ -160,6 +160,23 @@ const customer = createSlice({
     clearCart: (state, action) => {
       state.data.client.cart = [];
     },
+    updateShippingAndBillingAddresses: (state, action) => {
+      const { property, field, value } = action.payload;
+      console.log('action.payload:', action.payload)
+
+     // Vérifiez si l'objet client existe
+     if (!state.data.client) {
+      state.data.client = {};
+    }
+
+    // Vérifiez si l'objet de la propriété imbriquée existe
+    if (!state.data.client[property]) {
+      state.data.client[property] = {};
+    }
+
+    // Mettre à jour le champ spécifique
+    state.data.client[property][field] = value;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -233,7 +250,8 @@ export const {
   addWishlistToCart,
   clearCart,
   clearWishlist,
-  changeQuantityProductToCart
+  changeQuantityProductToCart,
+  updateShippingAndBillingAddresses
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

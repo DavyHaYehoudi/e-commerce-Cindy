@@ -12,8 +12,12 @@ const useAmountCart = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
   const { clientId: getClientId } = useAuthWrappers();
   const clientId = getClientId();
+
   useEffect(() => {
     try {
+      if (!clientId) {
+        return;
+      }
       const fetchTotalAmount = async () => {
         const response = await Get(
           `orders/order-amount?clientId=${clientId}`,
