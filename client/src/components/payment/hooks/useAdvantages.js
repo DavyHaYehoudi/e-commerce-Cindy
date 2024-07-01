@@ -1,43 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Get } from "../../../services/httpMethods";
-import {
-  updateAdvantages,
-  updateCartAmount,
-} from "../../../features/admin/productSlice";
+import { updateAdvantages } from "../../../features/admin/productSlice";
 import { toast } from "react-toastify";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
-import { useState } from "react";
 import useAuthWrappers from "../../../config/useAuthWrappers";
+import useAmountCart from "../../../pages/shoppingCart/hooks/useAmountCart";
 
 const useAdvantages = () => {
-  const [promoCodeValue, setPromoCodeValue] = useState("");
-  const [giftcardValue, setGiftcardValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
   const creditsStore = useSelector((state) => state?.customer?.data?.credit);
+  const { codePromo, giftcard } =
+    useSelector((state) => state?.product?.advantages) || {};
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
   const { clientId: getClientId } = useAuthWrappers();
   const clientId = getClientId();
+  const { fetchTotalAmount } = useAmountCart();
 
-  let formParams = useSelector((state) => state?.product?.advantages);
-
-  const handleOrderAmount = async (params) => {
-    formParams = { ...formParams, ...params };
-    if (!clientId) {
-      return;
-    }
-    const queryString = new URLSearchParams({
-      clientId,
-      advantages: JSON.stringify(formParams),
-    }).toString();
-    const newAmount = await Get(
-      `orders/order-amount?${queryString}`,
-      null,
-      handleUnauthorized
-    );
-    return newAmount;
+  const handleAdvantagesValue = ({ property, value }) => {
+    dispatch(updateAdvantages({ property, code: value }));
   };
-
   const handleCheckPromocode = async ({ code }) => {
     dispatch(updateAdvantages({ property: "codePromo" }));
     try {
@@ -56,12 +37,12 @@ const useAdvantages = () => {
           code,
         })
       );
-      const cartAmountEvaluate = await handleOrderAmount({
-        codePromo: { isValid: true, percentage, code },
+      await fetchTotalAmount({
+        params: {
+          codePromo: { isValid: true, percentage, code },
+          advantage: "codePromo",
+        },
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
-
       toast.success("Le code promo est bien pris en compte.");
     } catch (error) {
       console.log("Erreur dans la vérification des avantages");
@@ -79,20 +60,18 @@ const useAdvantages = () => {
           code: "",
         })
       );
-      const cartAmountEvaluate = await handleOrderAmount({
-        codePromo: { isValid: false },
+      await fetchTotalAmount({
+        params: {
+          codePromo: { isValid: false },
+        },
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
-      if (promoCodeValue) {
+      if (codePromo?.code) {
         toast.info("Le code promo n'est plus appliqué.");
       }
-      setPromoCodeValue("");
     } catch (error) {
       console.log("Erreur dans l'annulation des avantages");
     }
   };
-
   const handleCheckGiftcard = async ({ code }) => {
     dispatch(updateAdvantages({ property: "giftcard" }));
     try {
@@ -106,11 +85,12 @@ const useAdvantages = () => {
         updateAdvantages({ property: "giftcard", isValid: true, amount, code })
       );
 
-      const cartAmountEvaluate = await handleOrderAmount({
-        giftcard: { isValid: true, code },
+      await fetchTotalAmount({
+        params: {
+          giftcard: { isValid: true, code },
+        },
+        advantage: "giftcard",
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
       toast.success("La carte cadeau est bien prise en compte.");
     } catch (error) {
       console.log("Erreur dans la vérification des avantages");
@@ -129,64 +109,58 @@ const useAdvantages = () => {
         })
       );
 
-      const cartAmountEvaluate = await handleOrderAmount({
-        giftcard: { isValid: false },
+      await fetchTotalAmount({
+        params: {
+          giftcard: { isValid: false },
+        },
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
-      if (giftcardValue) {
+      if (giftcard?.code) {
         toast.info("La carte cadeau n'est plus appliquée.");
       }
-      setGiftcardValue("");
     } catch (error) {
       console.log("Erreur dans la vérification des avantages");
     }
   };
-
-  const handleSelectChange = (e) => {
-    setSelectedValue(e.target.value);
-  };
-  const handleCreditApply = async () => {
-    if (selectedValue === "") {
-      return;
-    }
-    if (selectedValue === "none") {
+  const handleCreditChange = async (creditId) => {
+    dispatch(updateAdvantages({ creditId }));
+    if (creditId === "none") {
       dispatch(
         updateAdvantages({
           property: "credit",
-          creditId: selectedValue,
+          creditId,
           amount: "",
         })
       );
-      const cartAmountEvaluate = await handleOrderAmount({
-        credit: { isValid: false },
+      await fetchTotalAmount({
+        params: {
+          credit: { isValid: false },
+        },
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
       toast.info("L'avoir n'est plus appliqué.");
     }
-    if (selectedValue && selectedValue !== "none") {
+    if (creditId &&creditId !== "none") {
       const response = await Get(
-        `credits/verify-code?creditId=${selectedValue}&clientId=${clientId}`,
+        `credits/verify-code?creditId=${creditId}&clientId=${clientId}`,
         null,
         handleUnauthorized
       );
       const { amount } = response;
-
       dispatch(
         updateAdvantages({
           property: "credit",
-          creditId: selectedValue,
+          creditId,
           amount,
           isValid: true,
           clientId,
         })
       );
-      const cartAmountEvaluate = await handleOrderAmount({
-        credit: { isValid: true, creditId: selectedValue, clientId },
+
+      await fetchTotalAmount({
+        params: {
+          credit: { isValid: true, creditId, clientId },
+        },
+        advantage: "credit",
       });
-      const newAmount = cartAmountEvaluate?.totalAmount;
-      dispatch(updateCartAmount(newAmount));
       toast.success("L'avoir est bien pris en compte.");
     }
   };
@@ -208,26 +182,21 @@ const useAdvantages = () => {
   const handleKeyPressCredit = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleCreditApply();
+      handleCreditChange();
     }
   };
 
   return {
-    promoCodeValue,
-    setPromoCodeValue,
-    giftcardValue,
-    setGiftcardValue,
     creditsStore,
-    selectedValue,
     handleCheckPromocode,
     handleCancelPromocode,
     handleCheckGiftcard,
     handleCancelGiftcard,
     handleKeyPressGiftcard,
     handleKeyPressPromocode,
-    handleSelectChange,
-    handleCreditApply,
+    handleCreditChange,
     handleKeyPressCredit,
+    handleAdvantagesValue,
   };
 };
 export default useAdvantages;

@@ -49,7 +49,7 @@ const CartOffcanvas = () => {
             TOTAL DES ARTICLES : <b>{formatPrice(cartTotalAmount)}</b>
           </p>
           <div onClick={handleCloseWishlistModal}>
-            <Link to="/cart">
+            <Link to="/cart/payment">
               <button className="btn" onClick={handleCloseCartAccess}>
                 REGLEMENT
               </button>

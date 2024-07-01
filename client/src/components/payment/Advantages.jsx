@@ -6,24 +6,20 @@ import isCurrent from "../../helpers/utils/isCurrentDate";
 import { FaCheck } from "react-icons/fa";
 import useAdvantages from "./hooks/useAdvantages";
 const Advantages = () => {
-  const { codePromo, giftcard } =
+  const { codePromo, giftcard,credit } =
     useSelector((state) => state?.product?.advantages) || {};
+
   const {
-    promoCodeValue,
-    setPromoCodeValue,
-    giftcardValue,
-    setGiftcardValue,
     creditsStore,
-    selectedValue,
     handleCheckPromocode,
     handleCancelPromocode,
     handleCheckGiftcard,
     handleCancelGiftcard,
     handleKeyPressGiftcard,
     handleKeyPressPromocode,
-    handleSelectChange,
-    handleCreditApply,
     handleKeyPressCredit,
+    handleAdvantagesValue,
+    handleCreditChange
   } = useAdvantages();
   return (
     <div id="payment-form-advantages">
@@ -41,12 +37,12 @@ const Advantages = () => {
                 id="promo"
                 name="promo"
                 placeholder="Entrez le code promo"
-                value={promoCodeValue}
-                onChange={(e) => setPromoCodeValue(e.target.value)}
+                value={codePromo?.code}
+                onChange={(e) => handleAdvantagesValue({property:"codePromo",value: e.target.value})}
                 onKeyDown={(e) =>
                   handleKeyPressPromocode({
                     event: e,
-                    code: promoCodeValue,
+                    code: codePromo?.code,
                   })
                 }
               />
@@ -58,10 +54,10 @@ const Advantages = () => {
               <button
                 onClick={() =>
                   handleCheckPromocode({
-                    code: promoCodeValue,
+                    code: codePromo?.code,
                   })
                 }
-                disabled={promoCodeValue.trim() === ""}
+                disabled={codePromo?.code.trim() === ""}
               >
                 Appliquer
               </button>
@@ -83,10 +79,10 @@ const Advantages = () => {
                 id="giftcard"
                 name="giftcard"
                 placeholder="Entrez le numéro de votre carte cadeau"
-                value={giftcardValue}
-                onChange={(e) => setGiftcardValue(e.target.value)}
+                value={giftcard?.code}
+                onChange={(e) => handleAdvantagesValue({property:"giftcard",value: e.target.value})}
                 onKeyDown={(e) =>
-                  handleKeyPressGiftcard({ event: e, code: giftcardValue })
+                  handleKeyPressGiftcard({ event: e, code: giftcard?.code })
                 }
               />
               <span className="validate">
@@ -97,10 +93,10 @@ const Advantages = () => {
               <button
                 onClick={() =>
                   handleCheckGiftcard({
-                    code: giftcardValue,
+                    code: giftcard?.code,
                   })
                 }
-                disabled={giftcardValue.trim() === ""}
+                disabled={giftcard?.code.trim() === ""}
               >
                 Appliquer
               </button>
@@ -120,8 +116,9 @@ const Advantages = () => {
               id="credit"
               name="credit"
               placeholder="Choisir"
+              value={credit?.creditId||"none"}
               defaultValue=""
-              onChange={handleSelectChange}
+              onChange={(e) => handleCreditChange(e.target.value)}
               onKeyDown={handleKeyPressCredit}
             >
               <option value="none">Ne pas utiliser</option>
@@ -135,9 +132,6 @@ const Advantages = () => {
                     </option>
                   ))}
             </select>
-            <button onClick={handleCreditApply} disabled={selectedValue === ""}>
-              Appliquer
-            </button>
           </div>
         </div>
       </div>

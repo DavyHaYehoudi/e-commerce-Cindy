@@ -20,13 +20,15 @@ import useAuthWrappers from "./config/useAuthWrappers";
 import { Provider } from "react-redux";
 import { configureStoreWithRole } from "./app/configureStoreWithRole";
 import MasterCollection from "./pages/collection/Master";
-import MasterCategory from "./pages/category/Master"
+import MasterCategory from "./pages/category/Master";
 import Collections from "./pages/collection";
 import MasterProduct from "./pages/MasterProduct";
 import AllProductsPage from "./pages/allProducts";
 import Categories from "./pages/category";
 import InitConfigPage from "./config/InitConfigPage";
 import Tradition from "./pages/tradition";
+import PaymentCheckout from "./pages/payment";
+import StripeWrapper from "./components/payment/StripeWrapper";
 
 function App() {
   const {
@@ -87,6 +89,16 @@ function App() {
                 <InitConfigPage>
                   {" "}
                   <ShoppingCart />
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/cart/payment"
+              element={
+                <InitConfigPage>
+                  <StripeWrapper>
+                    <PaymentCheckout />
+                  </StripeWrapper>
                 </InitConfigPage>
               }
             />

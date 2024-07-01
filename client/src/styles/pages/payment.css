@@ -1,0 +1,255 @@
+/* ****************** GENERALITES ****************** */
+.payment-page {
+    margin: 40px auto;
+}
+
+.payment-page .block-1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+#payment-form,
+#payment-form-advantages,
+.payment-page .sub-block-1,
+.payment-page .block-2 {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: black;
+}
+
+#payment-form h2,
+#payment-form-advantages h2,
+.payment-page .block-2 h2 {
+    margin: 10px;
+    font-weight: 600;
+}
+
+.payment-page .block-2 {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.payment-form-heading,
+#payment-form-advantages .title {
+    display: flex;
+    align-items: center;
+}
+
+.payment-page button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.payment-page button.cancel {
+    background-color: var(--danger);
+}
+
+.payment-page button:hover {
+    background-color: #45a049;
+}
+
+.payment-page button.cancel:hover {
+    background-color: #b02a37;
+}
+
+/* ****************** PAYMENT ADRESSES ****************** */
+#payment-form label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#payment-form input,
+#payment-form-advantages input,
+#payment-form select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+#payment-form .checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#payment-form .checkbox input {
+    margin: 10px;
+    width: initial;
+    cursor: pointer;
+}
+
+#payment-form .address-input-container,
+#payment-form .location-details {
+    display: flex;
+    gap: 10px;
+}
+
+#payment-form .credit-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#payment-form .security-text {
+    margin-bottom: 20px;
+}
+
+.payment-form-heading .icon {
+    font-size: 1.5rem;
+}
+
+/* ****************** ADVANTAGES ****************** */
+#payment-form-advantages .item-content.credit {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#payment-form-advantages .item-content .item-content-input {
+    position: relative;
+}
+
+#payment-form-advantages .item-content .item-content-input .validate {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#payment-form-advantages .item-content .item-content-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+#payment-form-advantages .item-content button {
+    padding: 15px;
+    flex: 0.5;
+}
+
+#payment-form-advantages .item-content input,
+#payment-form-advantages .item-content select {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    margin: 0;
+    border-radius: 5px;
+    flex: 2.5;
+}
+
+/* ****************** FIELDS VALIDATION ****************** */
+#payment-form .error {
+    border-color: var(--danger);
+    box-shadow: 0 0 3px var(--danger);
+}
+
+#payment-form .success {
+    border-color: var(--success);
+    box-shadow: 0 0 3px var(--success);
+}
+
+.payment-page .inventoryAdvantages {
+    margin: 10px auto;
+}
+
+.payment-page .inventoryAdvantages table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.payment-page .inventoryAdvantages th,
+.payment-page .inventoryAdvantages td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.payment-page .inventoryAdvantages th {
+    background-color: #f2f2f2;
+}
+
+/* ****************** PAYMENT CARD  ****************** */
+
+@media (max-width: 768px) {
+    .payment-page .block-1 {
+        display: inherit;
+    }
+
+    #payment-form-advantages {
+        margin: 40px auto;
+    }
+
+    .payment-page .sub-block-1 {
+        margin: 40px auto;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .payment-page .inventoryAdvantages .item-content input,
+    .payment-page .inventoryAdvantages .item-content select {
+        flex: inherit;
+        width: 100%;
+    }
+
+    .payment-page .inventoryAdvantages .item-content button {
+        padding: 8px;
+    }
+
+    .payment-page .inventoryAdvantages table,
+    .payment-page .inventoryAdvantages thead,
+    .payment-page .inventoryAdvantages tbody,
+    .payment-page .inventoryAdvantages th,
+    .payment-page .inventoryAdvantages td,
+    .payment-page .inventoryAdvantages tr {
+        display: block;
+    }
+
+    .payment-page .inventoryAdvantages thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .payment-page .inventoryAdvantages tr {
+        border: 1px solid #ccc;
+    }
+
+    .payment-page .inventoryAdvantages td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .payment-page .inventoryAdvantages td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .payment-page .inventoryAdvantages td:before {
+        content: attr(data-label);
+    }
+}

@@ -48,8 +48,8 @@ const productSlice = createSlice({
     checkedItemsFilter: {},
     advantages: {
       codePromo: { isValid: false, percentage: "", code: "" },
-      giftcard: { isValid: false, amount: "", code: "" },
-      credit: { isValid: false, creditId: "", amount: "" },
+      giftcard: { isValid: false, amount: "", code: ""  },
+      credit: { isValid: false, creditId: "", amount: ""  },
     },
     cartAmount: "",
     status: "idle",

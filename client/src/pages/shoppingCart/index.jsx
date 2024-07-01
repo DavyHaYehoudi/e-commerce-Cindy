@@ -1,14 +1,15 @@
 import React from "react";
-import PaymentForm from "../../components/payment/PaymentForm";
-import ShoppingCartContent from "../../components/payment/ShoppingCartContent";
+import ShoppingCartContent from "../../components/shoppingCart/ShoppingCartContent";
 import { BsFillTrash2Fill } from "react-icons/bs";
 import useCartOffcanvas from "../MasterProduct/hooks/useCartOffcanvas";
-import CartOffcanvas from "../MasterProduct/cartAccess";
-import useAmountCart from "./hooks/useAmountCart";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
-  const cartAmount = useAmountCart();
+  const navigate = useNavigate();
+  const handlePaymentProcess = () => {
+    navigate("/cart/payment");
+  };
   return (
     <div id="shoppingCart-page">
       <h1>MON PANIER</h1>
@@ -25,13 +26,15 @@ const ShoppingCart = () => {
         <section id="shoppingCart-items">
           <ShoppingCartContent />
         </section>
-        {isCartContent && (
-          <section id="shoppingCart-payment">
-            <PaymentForm cartAmount={cartAmount} />
-          </section>
-        )}
       </div>
-      <CartOffcanvas />
+      <button
+        className="btn payment-button"
+        type="button"
+        onClick={handlePaymentProcess}
+        disabled={!isCartContent}
+      >
+        Procéder au paiement
+      </button>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import Client from "../../models/client.model.js";
 import Order from "../../models/order.model.js";
 import Product from "../../models/product/product.model.js";
 import checkAdvantages from "./advantages.js";
+import Stripe from 'stripe';
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -55,7 +56,6 @@ const orderController = {
       res.status(500).json({ message: error.message });
     }
   },
-
   deleteTrackingNumberClient: async (req, res) => {
     const { orderId, trackingNumberId } = req.params;
 
@@ -73,11 +73,6 @@ const orderController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
-  createOrder: async (req, res) => {
-    console.log("req.body :", req.body);
-    const { clientId, shippingAddress, billingAddress } = req.body;
-    res.status(201).json({ message: "ressource créée avec succès" });
   },
   orderAmount: async (req, res) => {
     try {
@@ -138,7 +133,28 @@ const orderController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }, 
+  },
+  payment: async (req, res) => {
+    console.log("req.body:", req.body);
+    const { amount } = req.body;
+    console.log("amount:", amount);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount,
+        currency: "EUR",
+      });
+      res.status(200).json({ clientSecret: paymentIntent.client_secret });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+  createOrder: async (req, res) => {
+    console.log("req.body :", req.body);
+    const { clientId, shippingAddress, billingAddress } = req.body;
+    res.status(201).json({ message: "ressource créée avec succès" });
+  },
 };
 
 export default orderController;
