@@ -29,6 +29,7 @@ import InitConfigPage from "./config/InitConfigPage";
 import Tradition from "./pages/tradition";
 import PaymentCheckout from "./pages/payment";
 import StripeWrapper from "./components/payment/StripeWrapper";
+import Success from "./pages/payment/Success";
 
 function App() {
   const {
@@ -98,6 +99,16 @@ function App() {
                 <InitConfigPage>
                   <StripeWrapper>
                     <PaymentCheckout />
+                  </StripeWrapper>
+                </InitConfigPage>
+              }
+            />
+            <Route
+              path="/cart/payment/success"
+              element={
+                <InitConfigPage>
+                  <StripeWrapper>
+                    <Success />
                   </StripeWrapper>
                 </InitConfigPage>
               }

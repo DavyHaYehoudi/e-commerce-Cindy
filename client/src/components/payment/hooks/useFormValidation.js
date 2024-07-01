@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShippingAndBillingAddresses } from "../../../features/accountClient/customerSlice";
+import { toggleCheckBilling } from "../../../features/admin/productSlice";
 
 const requiredFields = {
   delivery: [
@@ -27,6 +28,9 @@ const useFormValidation = () => {
   const dispatch = useDispatch();
   const { shippingAddress = {}, billingAddress = {} } =
     useSelector((state) => state?.customer?.data?.client) || {};
+  const isBillingSameAddress = useSelector(
+    (state) => state?.product?.isBillingSameAddress
+  );
 
   const [formData, setFormData] = useState({
     delivery: {
@@ -50,7 +54,6 @@ const useFormValidation = () => {
     },
     card: {},
     rememberMe: true,
-    isBillingSameAddress: true,
     advantages,
   });
   useEffect(() => {
@@ -77,7 +80,6 @@ const useFormValidation = () => {
       },
     }));
   }, [shippingAddress, billingAddress]);
-
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});
 
@@ -98,6 +100,9 @@ const useFormValidation = () => {
       [name]: !prevData[name],
     }));
   };
+  const handleToggleBillingCheck = () => {
+    dispatch(toggleCheckBilling());
+  };
   const clearValidationError = (section, field) => {
     setValidationErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
@@ -110,39 +115,11 @@ const useFormValidation = () => {
       return newErrors;
     });
   };
-  const handleSubmit = async () => {
-    const errors = {};
-    const valid = {};
-
-    Object.keys(requiredFields).forEach((section) => {
-      if (section === "billing" && formData.isBillingSameAddress) {
-        return;
-      }
-
-      requiredFields[section].forEach((field) => {
-        if (!formData[section][field]) {
-          if (!errors[section]) errors[section] = {};
-          errors[section][field] = "Ce champ est requis";
-        } else {
-          if (!valid[section]) valid[section] = {};
-          valid[section][field] = true;
-        }
-      });
-    });
-
-    setValidationErrors(errors);
-    setValidFields(valid);
-
-    // Si aucune erreur, procéder au paiement
-    // if (Object.keys(errors).length === 0) {
-    //   navigate("/cart/payment");
-    // }
-  };
   useEffect(() => {
     const errors = {};
     const valid = {};
     Object.keys(requiredFields).forEach((section) => {
-      if (section === "billing" && formData.isBillingSameAddress) {
+      if (section === "billing" && isBillingSameAddress) {
         return;
       }
       requiredFields[section].forEach((field) => {
@@ -157,7 +134,7 @@ const useFormValidation = () => {
     });
     setValidationErrors(errors);
     setValidFields(valid);
-  }, [formData]);
+  }, [formData, isBillingSameAddress]);
 
   return {
     formData,
@@ -167,10 +144,11 @@ const useFormValidation = () => {
     validFields,
     handleShippingAndBilling,
     handleCheckboxChange,
-    handleSubmit,
     clearValidationError,
     selectedValue,
     handleSelectChange,
+    handleToggleBillingCheck,
+    isBillingSameAddress,
   };
 };
 

@@ -9,15 +9,15 @@ const PaymentFormDelivery = ({
   shippingAddress,
 }) => {
   const {
-    firstName,
-    lastName,
-    street,
-    city,
-    postalCode,
-    country,
-    apartment,
-    email,
-    phone,
+    firstName="",
+    lastName="",
+    street="",
+    city="",
+    postalCode="",
+    country="",
+    apartment="",
+    email="",
+    phone="",
   } = shippingAddress || {};
   const { handleShippingAndBilling, selectedValue, handleSelectChange } =
     useFormValidation();

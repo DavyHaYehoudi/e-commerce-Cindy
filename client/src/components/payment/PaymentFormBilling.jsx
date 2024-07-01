@@ -10,17 +10,21 @@ const PaymentFormBilling = ({
   billingAddress,
 }) => {
   const {
-    companyName,
-    firstName,
-    lastName,
-    street,
-    city,
-    postalCode,
-    apartment,
-    email,
-    phone,
+    companyName="",
+    firstName="",
+    lastName="",
+    street="",
+    city="",
+    postalCode="",
+    apartment="",
+    email="",
+    phone="",
   } = billingAddress || {};
-  const { handleShippingAndBilling } = useFormValidation();
+  const {
+    handleShippingAndBilling,
+    isBillingSameAddress,
+    handleToggleBillingCheck,
+  } = useFormValidation();
   const handleFocus = (e) => {
     clearValidationError(e.target.name);
   };
@@ -32,15 +36,15 @@ const PaymentFormBilling = ({
           type="checkbox"
           id="useShippingAddress"
           name="useShippingAddress"
-          checked={formData.isBillingSameAddress}
-          onChange={() => handleCheckboxChange("isBillingSameAddress")}
+          checked={isBillingSameAddress}
+          onChange={() => handleToggleBillingCheck("isBillingSameAddress")}
         />
         <label htmlFor="useShippingAddress">
           Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
-      {!formData.isBillingSameAddress && (
+      {!isBillingSameAddress && (
         <div className="billing-fields">
           <input
             type="text"

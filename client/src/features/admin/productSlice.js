@@ -52,6 +52,7 @@ const productSlice = createSlice({
       credit: { isValid: false, creditId: "", amount: ""  },
     },
     cartAmount: "",
+    isBillingSameAddress:false,
     status: "idle",
     error: null,
   },
@@ -121,6 +122,9 @@ const productSlice = createSlice({
     },
     checkItemsFilter: (state, action) => {
       state.checkedItemsFilter = action.payload;
+    },
+    toggleCheckBilling:(state,action)=>{
+      state.isBillingSameAddress = !state.isBillingSameAddress
     },
     updateAdvantages: (state, action) => {
       const {
@@ -230,5 +234,6 @@ export const {
   checkItemsFilter,
   updateAdvantages,
   updateCartAmount,
+  toggleCheckBilling
 } = productSlice.actions;
 export default productSlice.reducer;

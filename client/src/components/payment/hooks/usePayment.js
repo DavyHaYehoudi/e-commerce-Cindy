@@ -4,6 +4,7 @@ import { Post } from "../../../services/httpMethods";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
+import { useNavigate } from "react-router-dom";
 
 const usePayment = async () => {
   const handleUnauthorized = useUnauthorizedRedirect();
@@ -12,6 +13,7 @@ const usePayment = async () => {
   const [error, setError] = useState(null);
   const [paymentProcessing, setPaymentProcessing] = useState(false);
   const cartAmount = useSelector((state) => state?.product?.cartAmount);
+  const navigate = useNavigate();
   const handlePayment = async () => {
     try {
       setPaymentProcessing(true);
@@ -28,9 +30,11 @@ const usePayment = async () => {
       });
 
       if (error) {
+        console.log('error:', error)
         setError(error.message);
         setPaymentProcessing(false);
       } else {
+        console.log('dans le else');
         const response = await Post(
           "orders/create-payment-intent",
           { amount: cartAmount * 100 },
@@ -39,6 +43,7 @@ const usePayment = async () => {
         );
 
         const { clientSecret } = await response;
+        console.log('clientSecret:', clientSecret)
 
         const { error: confirmError } = await stripe.confirmCardPayment(
           clientSecret,
@@ -54,7 +59,7 @@ const usePayment = async () => {
         } else {
           setError(null);
           setPaymentProcessing(false);
-          toast.success("Le payment a bien été réalisé.");
+          navigate("/cart/payment/success");
         }
       }
       // await Post("orders", formData, null, handleUnauthorized);

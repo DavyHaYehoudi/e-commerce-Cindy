@@ -7,12 +7,12 @@ import PaymentForm from "../../components/payment/PaymentForm";
 import useFormValidation from "../../components/payment/hooks/useFormValidation";
 import Advantages from "../../components/payment/Advantages";
 import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
-import PaymentFormCard from "../../components/payment/PaymentFormCard";
+// import PaymentFormCard from "../../components/payment/PaymentFormCard";
 
 const PaymentCheckout = () => {
   const cartAmount = useSelector((state) => state?.product?.cartAmount);
-  const { paymentProcessing } = usePayment();
-  const { handleSubmit, validationErrors } = useFormValidation();
+  const { paymentProcessing, handlePayment } = usePayment();
+  const { validationErrors } = useFormValidation();
   const allowedBtnProcessPayment = Object.keys(validationErrors).length === 0;
   return (
     <section className="payment-page">
@@ -24,7 +24,7 @@ const PaymentCheckout = () => {
         </div>
       </div>
       <div className="block-2">
-        <PaymentFormCard />
+        {/* <PaymentFormCard /> */}
         <CardElement options={{ hidePostalCode: true }} />
         {paymentProcessing ? (
           "Payment en cours …"
@@ -32,7 +32,7 @@ const PaymentCheckout = () => {
           <button
             className="payment-button"
             type="button"
-            onClick={handleSubmit}
+            onClick={handlePayment}
             disabled={!allowedBtnProcessPayment}
           >
             Payer : {formatPrice(cartAmount)}

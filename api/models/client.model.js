@@ -107,6 +107,7 @@ const clientSchema = new mongoose.Schema(
       {
         productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
+        quantity: { type: Number, default: 1 },
         addDate: {
           type: Date,
           default: Date.now,

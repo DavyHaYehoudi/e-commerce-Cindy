@@ -117,7 +117,6 @@ const Advantages = () => {
               name="credit"
               placeholder="Choisir"
               value={credit?.creditId||"none"}
-              defaultValue=""
               onChange={(e) => handleCreditChange(e.target.value)}
               onKeyDown={handleKeyPressCredit}
             >
