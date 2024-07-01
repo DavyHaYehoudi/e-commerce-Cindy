@@ -782,6 +782,44 @@ paths:
                     example: Token d'authentification manquant ou invalide.
       security:
         - api_key: []
+  /orders/create-payment-intent:
+    post:
+      tags:
+        - order
+      summary: Payment
+      description: Route reserved for customers.This route allows you to place your order by paying via your bank card using an online payment platform.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount: 
+                  type: number
+                  example: 255
+      responses:
+        '200':
+          description: successful getting cart amount
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  clientSecret:
+                    type: string
+                    example: "pi_3MtwBwLkdIwHu7ix28a3tqPa_secret_YrKJUKribcBjcG8HVhfZluoGH"
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
   /orderProducts{orderProductsIds}:
     get:
       tags:
