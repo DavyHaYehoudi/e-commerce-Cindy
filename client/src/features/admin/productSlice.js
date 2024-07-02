@@ -48,11 +48,11 @@ const productSlice = createSlice({
     checkedItemsFilter: {},
     advantages: {
       codePromo: { isValid: false, percentage: "", code: "" },
-      giftcard: { isValid: false, amount: "", code: ""  },
-      credit: { isValid: false, creditId: "", amount: ""  },
+      giftcard: { isValid: false, amount: "", code: "" },
+      credit: { isValid: false, creditId: "", amount: "" },
     },
     cartAmount: "",
-    isBillingSameAddress:false,
+    isBillingSameAddress: true,
     status: "idle",
     error: null,
   },
@@ -123,8 +123,8 @@ const productSlice = createSlice({
     checkItemsFilter: (state, action) => {
       state.checkedItemsFilter = action.payload;
     },
-    toggleCheckBilling:(state,action)=>{
-      state.isBillingSameAddress = !state.isBillingSameAddress
+    toggleCheckBilling: (state, action) => {
+      state.isBillingSameAddress = !state.isBillingSameAddress;
     },
     updateAdvantages: (state, action) => {
       const {
@@ -234,6 +234,6 @@ export const {
   checkItemsFilter,
   updateAdvantages,
   updateCartAmount,
-  toggleCheckBilling
+  toggleCheckBilling,
 } = productSlice.actions;
 export default productSlice.reducer;

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
 import { useNavigate } from "react-router-dom";
 
-const usePayment = async () => {
+const usePayment = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
   const stripe = useStripe();
   const elements = useElements();
@@ -30,11 +30,9 @@ const usePayment = async () => {
       });
 
       if (error) {
-        console.log('error:', error)
         setError(error.message);
         setPaymentProcessing(false);
       } else {
-        console.log('dans le else');
         const response = await Post(
           "orders/create-payment-intent",
           { amount: cartAmount * 100 },
@@ -43,7 +41,6 @@ const usePayment = async () => {
         );
 
         const { clientSecret } = await response;
-        console.log('clientSecret:', clientSecret)
 
         const { error: confirmError } = await stripe.confirmCardPayment(
           clientSecret,

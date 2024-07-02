@@ -2,11 +2,9 @@ import React from "react";
 import useFormValidation from "./hooks/useFormValidation";
 
 const PaymentFormBilling = ({
-  formData,
   validationErrors,
   validFields,
   clearValidationError,
-  handleCheckboxChange,
   billingAddress,
 }) => {
   const {

@@ -7,7 +7,25 @@ import PaymentForm from "../../components/payment/PaymentForm";
 import useFormValidation from "../../components/payment/hooks/useFormValidation";
 import Advantages from "../../components/payment/Advantages";
 import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
-// import PaymentFormCard from "../../components/payment/PaymentFormCard";
+import MoonLoader from "react-spinners/MoonLoader";
+// const cardElementStyles = {
+//   style: {
+//     base: {
+//       color: '#32325d',
+//       fontFamily: 'Arial, sans-serif',
+//       fontSmoothing: 'antialiased',
+//       fontSize: '16px',
+//       '::placeholder': {
+//         color: '#aab7c4',
+//       },
+//     },
+//     invalid: {
+//       color: '#fa755a',
+//       iconColor: '#fa755a',
+//     },
+//     hidePostalCode: true
+//   },
+// };
 
 const PaymentCheckout = () => {
   const cartAmount = useSelector((state) => state?.product?.cartAmount);
@@ -17,26 +35,38 @@ const PaymentCheckout = () => {
   return (
     <section className="payment-page">
       <div className="block-1">
-        <PaymentForm cartAmount={cartAmount} />
+        <PaymentForm />
         <div className="sub-block-1">
           <Advantages />
           <InventoryAdvantages />
         </div>
       </div>
       <div className="block-2">
-        {/* <PaymentFormCard /> */}
-        <CardElement options={{ hidePostalCode: true }} />
         {paymentProcessing ? (
-          "Payment en cours …"
+          <div className="processing loader">
+            <p>Veuillez patienter, payment en cours…</p>
+            <MoonLoader />
+          </div>
         ) : (
-          <button
-            className="payment-button"
-            type="button"
-            onClick={handlePayment}
-            disabled={!allowedBtnProcessPayment}
-          >
-            Payer : {formatPrice(cartAmount)}
-          </button>
+          <>
+            <div className="card-element-container">
+              <CardElement
+              //  options={{ hidePostalCode: true }}
+              //  options={cardElementStyles}
+              />
+            </div>
+            <div className="block-2-payment-btn">
+
+            <button
+              className="payment-button"
+              type="button"
+              onClick={handlePayment}
+              disabled={!allowedBtnProcessPayment}
+            >
+              Payer : {formatPrice(cartAmount)}
+            </button>
+            </div>
+          </>
         )}
       </div>
     </section>

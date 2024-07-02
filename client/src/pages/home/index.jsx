@@ -75,7 +75,6 @@ const Home = () => {
               <AiFillHeart color="var(--favorite-heart-bg)" />
             </h3>
             <div className="collections-star-gallery">
-              <Slider {...settings}>
                 {collectionsStar &&
                   collectionsStar.length > 0 &&
                   collectionsStar
@@ -86,7 +85,6 @@ const Home = () => {
                         collection={collection}
                       />
                     ))}
-              </Slider>
             </div>
           </section>
           <section className="bk-image-intermetted-1">

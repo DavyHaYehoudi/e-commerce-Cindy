@@ -48,7 +48,7 @@ footer .social ul {
 /* ******************** MEDIAS QUERIES ******************** */
 @media (max-width: 576px) {
     footer {
-        padding: 10px;
+        padding: 20px 10px;
     }
 
     .footer-contain-top,

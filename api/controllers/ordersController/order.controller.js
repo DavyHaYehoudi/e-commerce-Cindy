@@ -155,6 +155,6 @@ const orderController = {
     const { clientId, shippingAddress, billingAddress } = req.body;
     res.status(201).json({ message: "ressource créée avec succès" });
   },
-};
+};  
 
 export default orderController;
