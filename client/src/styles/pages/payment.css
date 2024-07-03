@@ -8,6 +8,7 @@
     justify-content: center;
     gap: 100px;
 }
+
 .payment-page .block-1 {
     max-width: 1200px;
     margin: auto;
@@ -113,9 +114,10 @@
 }
 
 /* ****************** ADVANTAGES ****************** */
-.payment-page .sub-block-1{
-    flex:1
+.payment-page .sub-block-1 {
+    flex: 1
 }
+
 #payment-form-advantages .item-content.credit {
     display: flex;
     align-items: center;
@@ -196,12 +198,13 @@
     justify-content: center;
     height: 100vh;
     position: relative;
-  }
-.payment-success-page span{
-color: var(--success);
-  }
-  
-  .success-page-container {
+}
+
+.payment-success-page span {
+    color: var(--success);
+}
+
+.success-page-container {
     text-align: center;
     padding: 20px;
     border: 1px solid var(--success);
@@ -210,33 +213,39 @@ color: var(--success);
 
     box-shadow: 0 0 10px var(--success);
     position: absolute;
-    top: 20%; 
+    top: 20%;
     transform: translateY(-30%);
-  }
+}
+
 /* ****************** PAYMENT CARD  ****************** */
-  .card-element-container {
-    width: 100%;
-    max-width: 50%; 
-    min-width: 300px;
-    margin: 40px auto;
-  }
-  /* .payment-page .block-2 .processing{
+#payment-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 20px;
     align-items: center;
-  } */
-  .payment-page .block-2 .block-2-payment-btn{
-    text-align: center;
-  }
-  .payment-page .payment-button{
+}
+
+#payment-form>* {
+    flex: 1;
+    width: 100%;
+}
+
+.payment-page #payment-form .pay_button {
     padding: 15px;
     width: 300px;
     transition: transform 0.3s;
-  }
-  .payment-page .payment-button:hover{
+}
+
+.payment-page .pay_button:hover {
     transform: translateY(-2px);
-  }
+}
+.payment-page #payment-form .loader{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
 /* ****************** MEDIAS QUERIES  ****************** */
 
 @media (max-width: 768px) {

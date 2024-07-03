@@ -1,37 +1,43 @@
-import React from "react";
-import { formatPrice } from "../../helpers/utils/prices";
-import usePayment from "../../components/payment/hooks/usePayment";
-import { CardElement } from "@stripe/react-stripe-js";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import PaymentForm from "../../components/payment/PaymentForm";
-import useFormValidation from "../../components/payment/hooks/useFormValidation";
 import Advantages from "../../components/payment/Advantages";
 import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
-import MoonLoader from "react-spinners/MoonLoader";
-// const cardElementStyles = {
-//   style: {
-//     base: {
-//       color: '#32325d',
-//       fontFamily: 'Arial, sans-serif',
-//       fontSmoothing: 'antialiased',
-//       fontSize: '16px',
-//       '::placeholder': {
-//         color: '#aab7c4',
-//       },
-//     },
-//     invalid: {
-//       color: '#fa755a',
-//       iconColor: '#fa755a',
-//     },
-//     hidePostalCode: true
-//   },
-// };
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
+import { Post } from "../../services/httpMethods";
+import PaymentFormCard from "../../components/payment/PaymentFormCard";
+
+const stripePromise = loadStripe(
+  process.env.REACT_APP_STRIPE_PUBLIC_KEY
+);
+// const stripePromise = loadStripe(
+//   "pk_test_51PWjfB2NPs6D7QFPnH6GXXB8xUMGLMYC7IYXmL7GYQ8dYTf8deyyMbOwmJOcxyMFZ349xmEZRcsaJuqEQ0AURPsx004Q2c9FBz"
+// );
 
 const PaymentCheckout = () => {
-  const cartAmount = useSelector((state) => state?.product?.cartAmount);
-  const { paymentProcessing, handlePayment } = usePayment();
-  const { validationErrors } = useFormValidation();
-  const allowedBtnProcessPayment = Object.keys(validationErrors).length === 0;
+  const [clientSecret, setClientSecret] = useState("");
+  const handleUnauthorized = useUnauthorizedRedirect();
+
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const response = await Post(
+        "orders/create-payment-intent",
+        { amount: 987 },
+        null,
+        handleUnauthorized
+      );
+      setClientSecret(response?.clientSecret);
+    };
+    getClientSecret();
+  }, [handleUnauthorized]);
+  const appearance = {
+    theme: "stripe",
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
   return (
     <section className="payment-page">
       <div className="block-1">
@@ -42,31 +48,10 @@ const PaymentCheckout = () => {
         </div>
       </div>
       <div className="block-2">
-        {paymentProcessing ? (
-          <div className="processing loader">
-            <p>Veuillez patienter, payment en cours…</p>
-            <MoonLoader />
-          </div>
-        ) : (
-          <>
-            <div className="card-element-container">
-              <CardElement
-              //  options={{ hidePostalCode: true }}
-              //  options={cardElementStyles}
-              />
-            </div>
-            <div className="block-2-payment-btn">
-
-            <button
-              className="payment-button"
-              type="button"
-              onClick={handlePayment}
-              disabled={!allowedBtnProcessPayment}
-            >
-              Payer : {formatPrice(cartAmount)}
-            </button>
-            </div>
-          </>
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <PaymentFormCard />
+          </Elements>
         )}
       </div>
     </section>

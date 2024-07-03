@@ -136,6 +136,7 @@ const orderController = {
   },
   payment: async (req, res) => {
     console.log("req.body:", req.body);
+    // const clientId = req.query.clientId;
     const { amount } = req.body;
     console.log("amount:", amount);
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
