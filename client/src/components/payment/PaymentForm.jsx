@@ -33,7 +33,7 @@ const PaymentForm = () => {
         validFields={validFields.billing || {}}
         clearValidationError={(field) => clearValidationError("billing", field)}
         handleCheckboxChange={handleCheckboxChange}
-        formData={formData}
+        // formData={formData}
         billingAddress={billingAddress}
       />
       <div className="checkbox">

@@ -5,22 +5,15 @@ import { toggleCheckBilling } from "../../../features/admin/productSlice";
 
 const requiredFields = {
   delivery: [
-    "firstname",
-    "lastname",
-    "address",
-    "postal-code",
+    "firstName",
+    "lastName",
+    "street",
+    "postalCode",
     "city",
-    "emailRecipient",
+    "email",
     "phone",
   ],
-  billing: [
-    "billingFirstName",
-    "billingLastName",
-    "billingAddress",
-    "billingPostalCode",
-    "billingCity",
-    "billingEmail",
-  ],
+  billing: ["firstName", "lastName", "street", "postalCode", "city", "email"],
 };
 const useFormValidation = () => {
   const [selectedValue, setSelectedValue] = useState("france");
@@ -31,64 +24,15 @@ const useFormValidation = () => {
   const isBillingSameAddress = useSelector(
     (state) => state?.product?.isBillingSameAddress
   );
-
   const [formData, setFormData] = useState({
-    delivery: {
-      firstname: shippingAddress.firstName || "",
-      lastname: shippingAddress.lastName || "",
-      address: shippingAddress.street || "",
-      "postal-code": shippingAddress.postalCode || "",
-      city: shippingAddress.city || "",
-      emailRecipient: shippingAddress.email || "",
-      phone: shippingAddress.phone || "",
-    },
-    billing: {
-      billingCompanyName: billingAddress.companyName || "",
-      billingFirstName: billingAddress.firstName || "",
-      billingLastName: billingAddress.lastName || "",
-      billingAddress: billingAddress.street || "",
-      billingPostalCode: billingAddress.postalCode || "",
-      billingCity: billingAddress.city || "",
-      billingEmail: billingAddress.email || "",
-      billingPhone: billingAddress.phone || "",
-    },
     card: {},
     rememberMe: true,
     advantages,
   });
-  useEffect(() => {
-    setFormData((prevData) => ({
-      ...prevData,
-      delivery: {
-        firstname: shippingAddress.firstName || "",
-        lastname: shippingAddress.lastName || "",
-        address: shippingAddress.street || "",
-        "postal-code": shippingAddress.postalCode || "",
-        city: shippingAddress.city || "",
-        emailRecipient: shippingAddress.email || "",
-        phone: shippingAddress.phone || "",
-      },
-      billing: {
-        billingCompanyName: billingAddress.companyName || "",
-        billingFirstName: billingAddress.firstName || "",
-        billingLastName: billingAddress.lastName || "",
-        billingAddress: billingAddress.street || "",
-        billingPostalCode: billingAddress.postalCode || "",
-        billingCity: billingAddress.city || "",
-        billingEmail: billingAddress.email || "",
-        billingPhone: billingAddress.phone || "",
-      },
-    }));
-  }, [shippingAddress, billingAddress]);
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});
-
-  const handleShippingAndBilling = ({ e, property, field, section }) => {
-    const { value, name } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [section]: { ...prevData[section], [name]: value },
-    }));
+  const handleShippingAndBilling = ({ e, property, field }) => {
+    const { value } = e.target;
     dispatch(updateShippingAndBillingAddresses({ property, field, value }));
   };
   const handleSelectChange = (event) => {
@@ -118,12 +62,17 @@ const useFormValidation = () => {
   useEffect(() => {
     const errors = {};
     const valid = {};
+
     Object.keys(requiredFields).forEach((section) => {
       if (section === "billing" && isBillingSameAddress) {
         return;
       }
+
       requiredFields[section].forEach((field) => {
-        if (!formData[section][field]) {
+        const address =
+          section === "delivery" ? shippingAddress : billingAddress;
+
+        if (!address[field]) {
           if (!errors[section]) errors[section] = {};
           errors[section][field] = "Ce champ est requis";
         } else {
@@ -132,9 +81,10 @@ const useFormValidation = () => {
         }
       });
     });
+
     setValidationErrors(errors);
     setValidFields(valid);
-  }, [formData, isBillingSameAddress]);
+  }, [isBillingSameAddress, shippingAddress, billingAddress]);
 
   return {
     formData,

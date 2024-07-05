@@ -7,8 +7,6 @@ import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRed
 
 const useAmountCart = () => {
   const cartAmount = useSelector((state) => state?.product?.cartAmount);
-  const { codePromo, giftcard, credit } =
-    useSelector((state) => state?.product?.advantages) || {};
   const formParamsRef = useRef(
     useSelector((state) => state?.product?.advantages)
   );
@@ -19,34 +17,22 @@ const useAmountCart = () => {
   const clientId = getClientId();
 
   const fetchTotalAmount = useCallback(
-    async ({ params = {},advantage=null }) => {
+    async ({ params = {}, advantage = null }) => {
       formParamsRef.current = { ...formParamsRef.current, ...params };
       const queryString = new URLSearchParams({
         clientId,
         advantages: JSON.stringify(formParamsRef.current),
       }).toString();
 
-      let {totalAmount} = await Get(
+      let { totalAmount } = await Get(
         `orders/order-amount?${queryString}`,
         null,
         handleUnauthorized
       );
 
-      if (codePromo?.code&&advantage==="codePromo") {
-        totalAmount -= (totalAmount * codePromo?.percentage) / 100;
-      }
-
-      if (giftcard?.code&&advantage==="giftcard") {
-        totalAmount -= giftcard?.amount;
-      }
-
-      if (credit?.creditId&&advantage==="credit") {
-        totalAmount -= credit?.amount;
-      }
-
       dispatch(updateCartAmount(totalAmount));
     },
-    [clientId, codePromo, giftcard, credit, dispatch, handleUnauthorized]
+    [clientId, dispatch, handleUnauthorized]
   );
 
   useEffect(() => {
@@ -60,7 +46,7 @@ const useAmountCart = () => {
     }
   }, [clientId, fetchTotalAmount]);
 
-  return {cartAmount,fetchTotalAmount};
+  return { cartAmount, fetchTotalAmount };
 };
 
 export default useAmountCart;

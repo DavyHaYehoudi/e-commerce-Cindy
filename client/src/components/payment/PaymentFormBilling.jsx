@@ -67,9 +67,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingFirstName
+              validationErrors.firstName
                 ? "error"
-                : validFields.billingFirstName
+                : validFields.firstName
                 ? "success"
                 : ""
             }
@@ -92,9 +92,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingLastName
+              validationErrors.lastName
                 ? "error"
-                : validFields.billingLastName
+                : validFields.lastName
                 ? "success"
                 : ""
             }
@@ -117,9 +117,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingAddress
+              validationErrors.street
                 ? "error"
-                : validFields.billingAddress
+                : validFields.street
                 ? "success"
                 : ""
             }
@@ -158,9 +158,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingPostalCode
+              validationErrors.postalCode
                 ? "error"
-                : validFields.billingPostalCode
+                : validFields.postalCode
                 ? "success"
                 : ""
             }
@@ -183,9 +183,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingCity
+              validationErrors.city
                 ? "error"
-                : validFields.billingCity
+                : validFields.city
                 ? "success"
                 : ""
             }
@@ -208,9 +208,9 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingEmail
+              validationErrors.email
                 ? "error"
-                : validFields.billingEmail
+                : validFields.email
                 ? "success"
                 : ""
             }

@@ -39,7 +39,7 @@ const useAdvantages = () => {
       );
       await fetchTotalAmount({
         params: {
-          codePromo: { isValid: true, percentage, code },
+          codePromo: { isValid: true, code },
           advantage: "codePromo",
         },
       });

@@ -55,13 +55,13 @@ const PaymentFormDelivery = ({
           <input
             type="text"
             id="firstname"
-            name="firstname"
+            name="firstName"
             placeholder="Prénom *"
             required
             className={
-              validationErrors.firstname
+              validationErrors.firstName
                 ? "error"
-                : validFields.firstname
+                : validFields.firstName
                 ? "success"
                 : ""
             }
@@ -73,7 +73,6 @@ const PaymentFormDelivery = ({
                 property: "shippingAddress",
                 field: "firstName",
                 e,
-                section: "delivery",
               })
             }
           />
@@ -84,9 +83,9 @@ const PaymentFormDelivery = ({
             placeholder="Nom *"
             required
             className={
-              validationErrors.lastname
+              validationErrors.lastName
                 ? "error"
-                : validFields.lastname
+                : validFields.lastName
                 ? "success"
                 : ""
             }
@@ -110,9 +109,9 @@ const PaymentFormDelivery = ({
           placeholder="Adresse *"
           required
           className={
-            validationErrors.address
+            validationErrors.street
               ? "error"
-              : validFields.address
+              : validFields.street
               ? "success"
               : ""
           }
@@ -152,9 +151,9 @@ const PaymentFormDelivery = ({
             required
             value={postalCode}
             className={
-              validationErrors["postal-code"]
+              validationErrors.postalCode
                 ? "error"
-                : validFields["postal-code"]
+                : validFields.postalCode
                 ? "success"
                 : ""
             }
@@ -204,9 +203,9 @@ const PaymentFormDelivery = ({
           placeholder="Email *"
           required
           className={
-            validationErrors.emailRecipient
+            validationErrors.email
               ? "error"
-              : validFields.emailRecipient
+              : validFields.email
               ? "success"
               : ""
           }

@@ -1,29 +1,37 @@
-import Credit from "../../models/credit.model.js";
-import Giftcard from "../../models/giftcard.model.js";
-import Promocode from "../../models/promocode.model.js";
+import promocodeRepository from "../repositories/promocodeRepository.js";
+import giftcardRepository from "../repositories/giftcardRepository.js";
+import creditRepository from "../repositories/creditRepository.js";
 
-const checkAdvantages = async (req) => {
-  let advantagesResult = { codePromoPercentage: "", giftcardAmount: "" };
-  if (req.query.advantages) {
-    // console.log('req.query.advantages:', req.query.advantages)
-    const advantages = JSON.parse(req.query.advantages);
+const checkAdvantages = async (advantages) => {
+  let advantagesResult = {
+    codePromoPercentage: "",
+    giftcardAmount: "",
+    creditAmount: "",
+  };
+
+  if (advantages) {
     const { codePromo, giftcard, credit } = advantages;
+
     if (codePromo?.isValid) {
-      const codePromoDB = await Promocode.findOne({
+      const codePromoDB = await promocodeRepository.findOne({
         code: codePromo?.code,
       });
       if (codePromoDB && codePromoDB?.dateExpire > new Date()) {
         advantagesResult["codePromoPercentage"] = codePromoDB?.percentage;
       }
     }
+
     if (giftcard?.isValid) {
-      const codeGiftcardDB = await Giftcard.findOne({ code: giftcard?.code });
+      const codeGiftcardDB = await giftcardRepository.findOne({
+        code: giftcard?.code,
+      });
       if (codeGiftcardDB && codeGiftcardDB?.dateExpire > new Date()) {
         advantagesResult["giftcardAmount"] = codeGiftcardDB?.amount;
       }
     }
+
     if (credit?.isValid) {
-      const creditDB = await Credit.findById(credit?.creditId);
+      const creditDB = await creditRepository.findById(credit?.creditId);
       if (
         creditDB &&
         creditDB?.clientId.toString() === credit?.clientId &&
@@ -32,7 +40,9 @@ const checkAdvantages = async (req) => {
         advantagesResult["creditAmount"] = creditDB?.amount;
       }
     }
-  } 
-  return advantagesResult;
-}; 
+  }
+
+  return advantagesResult;  
+};
+
 export default checkAdvantages;
