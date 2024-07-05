@@ -27,8 +27,12 @@ router.delete(
   orderController.deleteTrackingNumberClient
 );
 router.post("/", authenticateUser, orderController.createOrder);
-router.post("/create-payment-intent",authenticateUser,orderController.payment)
+router.post(
+  "/create-payment-intent",
+  authenticateUser,
+  orderController.payment
+);
 
 //VISITOR + USER
-router.get("/order-amount",orderController.orderAmount)
+router.get("/order-amount", orderController.orderAmount);
 export default router;

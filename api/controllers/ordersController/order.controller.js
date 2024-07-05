@@ -1,5 +1,5 @@
 import Order from "../../models/order.model.js";
-import Stripe from 'stripe';
+import Stripe from "stripe";
 import orderService from "../../service/orderService.js";
 
 const orderController = {
@@ -75,27 +75,31 @@ const orderController = {
   orderAmount: async (req, res) => {
     try {
       const clientId = req.query.clientId;
-      const advantages = req.query.advantages ? JSON.parse(req.query.advantages) : null;
-      const totalAmount = await orderService.calculateOrderAmount(clientId, advantages);
+      const advantages = req.query.advantages
+        ? JSON.parse(req.query.advantages)
+        : null;
+      const totalAmount = await orderService.calculateOrderAmount(
+        clientId,
+        advantages
+      );
       res.status(200).json({ totalAmount });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   },
   payment: async (req, res) => {
-    console.log("req.body:", req.body);
-    // const clientId = req.query.clientId;
     const { amount } = req.body;
-    console.log("amount:", amount);
+    const amountFormatStripe = Math.floor(amount * 100) ;
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount,
+        amount: amountFormatStripe,
         currency: "EUR",
       });
       res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
+      // console.log("error:", error);
       res.status(500).json({ error: error.message });
     }
   },
@@ -104,6 +108,6 @@ const orderController = {
     const { clientId, shippingAddress, billingAddress } = req.body;
     res.status(201).json({ message: "ressource créée avec succès" });
   },
-};  
+};
 
 export default orderController;

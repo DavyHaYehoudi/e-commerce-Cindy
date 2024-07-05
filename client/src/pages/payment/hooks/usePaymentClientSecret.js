@@ -12,7 +12,7 @@ const usePaymentClientSecret = (amount) => {
         "orders/create-payment-intent",
         { amount },
         null,
-        handleUnauthorized 
+        handleUnauthorized
       );
       setClientSecret(response?.clientSecret);
     };

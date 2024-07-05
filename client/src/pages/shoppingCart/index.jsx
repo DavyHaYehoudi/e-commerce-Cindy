@@ -3,9 +3,14 @@ import ShoppingCartContent from "../../components/shoppingCart/ShoppingCartConte
 import { BsFillTrash2Fill } from "react-icons/bs";
 import useCartOffcanvas from "../MasterProduct/hooks/useCartOffcanvas";
 import { useNavigate } from "react-router-dom";
+import Advantages from "../../components/payment/Advantages";
+import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
+import { useSelector } from "react-redux";
+import { formatPrice } from "../../helpers/utils/prices";
 
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
+  const cartAmount = useSelector((state) => state?.product?.cartAmount) || 100;
   const navigate = useNavigate();
   const handlePaymentProcess = () => {
     navigate("/cart/payment");
@@ -26,15 +31,23 @@ const ShoppingCart = () => {
         <section id="shoppingCart-items">
           <ShoppingCartContent />
         </section>
+        {isCartContent && (
+          <section className="advantages-section">
+            <Advantages />
+            <InventoryAdvantages />
+          </section>
+        )}
       </div>
-      <button
-        className="btn payment-button"
-        type="button"
-        onClick={handlePaymentProcess}
-        disabled={!isCartContent}
-      >
-        Procéder au paiement
-      </button>
+      {isCartContent && (
+        <button
+          className="btn payment-button"
+          type="button"
+          onClick={handlePaymentProcess}
+          disabled={!isCartContent}
+        >
+          Procéder au paiement de : {formatPrice(cartAmount)}
+        </button>
+      )}
     </div>
   );
 };

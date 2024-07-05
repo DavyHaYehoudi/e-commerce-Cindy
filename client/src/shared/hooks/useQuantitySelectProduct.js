@@ -6,6 +6,7 @@ import { Patch } from "../../services/httpMethods";
 import { changeQuantityProductToCart } from "../../features/accountClient/customerSlice";
 import { changeQuantityProductToCartVisitor } from "../../features/visitUser/visitUserSlice";
 import { showCartAccess } from "../../features/admin/productSlice";
+import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 
 const useQuantitySelectProduct = (productId, materialId) => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
     material: materialId,
   });
   const handleUnauthorized = useUnauthorizedRedirect();
+  const { fetchTotalAmount } = useAmountCart();
 
   const handleChangeValue = async (newQuantity) => {
     setLoading(true);
@@ -53,6 +55,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
           quantity: newQuantity || 1,
         })
       );
+      fetchTotalAmount({ params: {} });
     } else {
       setLoading(true);
       dispatch(

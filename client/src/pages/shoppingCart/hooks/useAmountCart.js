@@ -17,7 +17,7 @@ const useAmountCart = () => {
   const clientId = getClientId();
 
   const fetchTotalAmount = useCallback(
-    async ({ params = {}, advantage = null }) => {
+    async ({ params = {}}) => {
       formParamsRef.current = { ...formParamsRef.current, ...params };
       const queryString = new URLSearchParams({
         clientId,

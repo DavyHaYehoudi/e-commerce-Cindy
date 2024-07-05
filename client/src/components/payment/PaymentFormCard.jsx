@@ -2,11 +2,10 @@ import React from "react";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import usePaymentForm from "./hooks/usePaymentForm";
 import MoonLoader from "react-spinners/MoonLoader";
-import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 import { formatPrice } from "../../helpers/utils/prices";
 import useFormValidation from "./hooks/useFormValidation";
 
-const PaymentFormCard = () => {
+const PaymentFormCard = ({cartAmount}) => {
   const {
     handleSubmit,
     paymentElementOptions,
@@ -15,9 +14,7 @@ const PaymentFormCard = () => {
     elements,
     message,
   } = usePaymentForm();
-  const { cartAmount } = useAmountCart();
   const { validationErrors } = useFormValidation();
-  console.log('validationErrors:', validationErrors)
 
   return (
     <div className="form-card">

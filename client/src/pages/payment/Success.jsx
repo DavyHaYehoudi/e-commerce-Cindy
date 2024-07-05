@@ -13,6 +13,8 @@ const Success = () => {
           Payment bien effectué.
           <br />
           Nous allons gérer votre commande.
+          <br />
+          Retrouvez les détails dans votre espace client.
         </p>
       </div>
     </div>
