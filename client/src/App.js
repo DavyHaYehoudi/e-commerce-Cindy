@@ -95,17 +95,21 @@ function App() {
             <Route
               path="/cart/payment"
               element={
-                <InitConfigPage>
+                <RequireAuthUser>
+                  <InitConfigPage>
                     <PaymentCheckout />
-                </InitConfigPage>
+                  </InitConfigPage>
+                </RequireAuthUser>
               }
             />
             <Route
               path="/cart/payment/success"
               element={
-                <InitConfigPage>
+                <RequireAuthUser>
+                  <InitConfigPage>
                     <Success />
-                </InitConfigPage>
+                  </InitConfigPage>
+                </RequireAuthUser>
               }
             />
             <Route

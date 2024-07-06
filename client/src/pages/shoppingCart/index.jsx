@@ -7,9 +7,12 @@ import Advantages from "../../components/payment/Advantages";
 import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
 import { useSelector } from "react-redux";
 import { formatPrice } from "../../helpers/utils/prices";
+import useAccessPayment from "./hooks/useAccessPayment";
+import { ToastContainer } from "react-toastify";
 
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
+  const { clientId } = useAccessPayment();
   const cartAmount = useSelector((state) => state?.product?.cartAmount) || 100;
   const navigate = useNavigate();
   const handlePaymentProcess = () => {
@@ -38,7 +41,7 @@ const ShoppingCart = () => {
           </section>
         )}
       </div>
-      {isCartContent && (
+      {isCartContent && clientId && (
         <button
           className="btn payment-button"
           type="button"
@@ -48,6 +51,7 @@ const ShoppingCart = () => {
           Procéder au paiement de : {formatPrice(cartAmount)}
         </button>
       )}
+      <ToastContainer autoClose={10000} />
     </div>
   );
 };

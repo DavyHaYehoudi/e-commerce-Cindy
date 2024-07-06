@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import CartItem from "../../../shared/CartItem";
 import { formatPrice } from "../../../helpers/utils/prices";
 import useCartOffcanvas from "../hooks/useCartOffcanvas";
+import useAuthWrappers from "../../../config/useAuthWrappers";
 
 const CartOffcanvas = () => {
   const {
@@ -16,6 +17,8 @@ const CartOffcanvas = () => {
     handleClearCart,
     handleCloseWishlistModal,
   } = useCartOffcanvas();
+  const { clientId: getClientId } = useAuthWrappers();
+  const clientId = getClientId();
 
   return (
     <div className={`offcanvas ${show ? "show" : ""}`}>
@@ -48,13 +51,15 @@ const CartOffcanvas = () => {
           <p>
             TOTAL DES ARTICLES : <b>{formatPrice(cartTotalAmount)}</b>
           </p>
-          <div onClick={handleCloseWishlistModal}>
-            <Link to="/cart/payment">
-              <button className="btn" onClick={handleCloseCartAccess}>
-                REGLEMENT
-              </button>
-            </Link>
-          </div>
+          {clientId && (
+            <div onClick={handleCloseWishlistModal}>
+              <Link to="/cart/payment">
+                <button className="btn" onClick={handleCloseCartAccess}>
+                  REGLEMENT
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </div>

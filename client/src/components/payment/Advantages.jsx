@@ -5,6 +5,7 @@ import { formatDate } from "../../helpers/utils/formatDate";
 import isCurrent from "../../helpers/utils/isCurrentDate";
 import { FaCheck } from "react-icons/fa";
 import useAdvantages from "./hooks/useAdvantages";
+import useAuthWrappers from "../../config/useAuthWrappers";
 const Advantages = () => {
   const { codePromo, giftcard,credit } =
     useSelector((state) => state?.product?.advantages) || {};
@@ -21,6 +22,8 @@ const Advantages = () => {
     handleAdvantagesValue,
     handleCreditChange
   } = useAdvantages();
+  const { clientId: getClientId } = useAuthWrappers();
+  const clientId = getClientId();
   return (
     <div id="payment-form-advantages">
       <div className="title">
@@ -57,13 +60,14 @@ const Advantages = () => {
                     code: codePromo?.code,
                   })
                 }
-                disabled={codePromo?.code.trim() === ""}
+                disabled={codePromo?.code.trim() === "" ||!clientId}
               >
                 Appliquer
               </button>
               <button
                 className="cancel"
                 onClick={() => handleCancelPromocode({ property: "codePromo" })}
+                disabled={!clientId}
               >
                 Annuler
               </button>
@@ -96,13 +100,14 @@ const Advantages = () => {
                     code: giftcard?.code,
                   })
                 }
-                disabled={giftcard?.code.trim() === ""}
+                disabled={giftcard?.code.trim() === ""||!clientId}
               >
                 Appliquer
               </button>
               <button
                 className="cancel"
                 onClick={() => handleCancelGiftcard({ property: "giftcard" })}
+                disabled={!clientId}
               >
                 Annuler
               </button>
