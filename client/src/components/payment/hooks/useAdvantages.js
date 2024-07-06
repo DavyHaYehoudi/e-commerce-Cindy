@@ -138,7 +138,7 @@ const useAdvantages = () => {
       });
       toast.info("L'avoir n'est plus appliqué.");
     }
-    if (creditId &&creditId !== "none") {
+    if (creditId && creditId !== "none") {
       const response = await Get(
         `credits/verify-code?creditId=${creditId}&clientId=${clientId}`,
         null,

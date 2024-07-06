@@ -3,6 +3,11 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderSchema = new mongoose.Schema(
   {
+    orderNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
@@ -103,13 +108,13 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    outTotalAmount: { 
+    outTotalAmount: {
       type: Number,
       default: 0,
-    }, 
-    amountPromoCode:{
+    },
+    amountPromoCode: {
       type: Number,
-      default:null
+      default: null,
     },
     paymentMethod: {
       cardType: {
@@ -188,6 +193,29 @@ orderSchema.pre("validate", function (next) {
   const error = this.validateSync();
   if (error) {
     handleValidationErrors(error, "Order");
+  }
+  next();
+});
+const generateOrderNumber = () => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let orderNumber = "";
+  for (let i = 0; i < 10; i++) {
+    // Longueur de 10 caractères
+    orderNumber += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return orderNumber;
+};
+orderSchema.pre("save", async function (next) {
+  if (!this.orderNumber) {
+    let unique = false;
+    while (!unique) {
+      const orderNumber = generateOrderNumber();
+      const existingOrder = await Order.findOne({ orderNumber });
+      if (!existingOrder) {
+        this.orderNumber = orderNumber;
+        unique = true;
+      }
+    }
   }
   next();
 });

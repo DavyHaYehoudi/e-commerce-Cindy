@@ -20,6 +20,22 @@ const usePaymentForm = () => {
     if (!clientSecret) {
       return;
     }
+    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      switch (paymentIntent.status) {
+        case "succeeded":
+          setMessage("Payment réussi !");
+          break;
+        case "processing":
+          setMessage("Votre payment est en cours.");
+          break;
+        case "requires_payment_method":
+          setMessage("Votre payment n'a pas réussi, essayez de nouveau.");
+          break;
+        default:
+          setMessage("Il y a un empêchement au payment.");
+          break;
+      }
+    });
   }, [stripe]);
 
   const handleSubmit = async (e) => {

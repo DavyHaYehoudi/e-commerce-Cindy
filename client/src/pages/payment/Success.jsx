@@ -14,7 +14,9 @@ const Success = () => {
           <br />
           Nous allons gérer votre commande.
           <br />
-          Retrouvez les détails dans votre espace client.
+          Suivez son évolution dans votre espace client.
+          <br />
+          Numéro de commande : 
         </p>
       </div>
     </div>

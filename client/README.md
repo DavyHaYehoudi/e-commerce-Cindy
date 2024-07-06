@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Stripe Integration Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+Cette documentation fournit des informations sur l'intégration de Stripe en mode test. Stripe est une plateforme de paiement en ligne qui permet de traiter les transactions de manière sécurisée.
 
-In the project directory, you can run:
+## Cartes de Test Stripe
 
-### `npm start`
+Pour tester l'intégration de Stripe, vous pouvez utiliser les cartes de test suivantes. Ces cartes sont spécifiquement conçues pour les environnements de test et ne représentent pas des informations de carte de crédit réelles.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Mastercard
+- Numéro de carte : `5555 5555 5555 4444`
+- Date d'expiration : Toute date future valide (par exemple, `12/34`)
+- CVC : Tout numéro à 3 chiffres (par exemple, `123`)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Visa
+- Numéro de carte : `4242 4242 4242 4242`
+- Date d'expiration : Toute date future valide (par exemple, `12/34`)
+- CVC : Tout numéro à 3 chiffres (par exemple, `123`)
 
-### `npm test`
+### American Express (Amex)
+- Numéro de carte : `3782 822463 10005`
+- Date d'expiration : Toute date future valide (par exemple, `12/34`)
+- CVC : Tout numéro à 4 chiffres (par exemple, `1234`)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Discover
+- Numéro de carte : `6011 1111 1111 1117`
+- Date d'expiration : Toute date future valide (par exemple, `12/34`)
+- CVC : Tout numéro à 3 chiffres (par exemple, `123`)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -88,18 +88,38 @@ const orderController = {
     }
   },
   payment: async (req, res) => {
-    const { amount } = req.body;
-    const amountFormatStripe = Math.floor(amount * 100) ;
+    const { email, amount } = req.body;
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     try {
+      // Rechercher un client existant par email
+      const existingCustomers = await stripe.customers.list({
+        email: email,
+      });
+
+      let customer;
+      if (existingCustomers.data.length > 0) {
+        // Utiliser le client existant
+        customer = existingCustomers.data[0];
+      } else {
+        // Créer un nouveau client
+        customer = await stripe.customers.create({
+          email,
+        });
+      }
+
+      const customerId = customer.id;
+      const amountFormatStripe = Math.floor(amount * 100);
+
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amountFormatStripe,
         currency: "EUR",
+        customer: customerId,
       });
+
       res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
-      // console.log("error:", error);
+      console.log("error:", error);
       res.status(500).json({ error: error.message });
     }
   },
