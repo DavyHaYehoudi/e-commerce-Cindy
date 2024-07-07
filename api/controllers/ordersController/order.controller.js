@@ -3,6 +3,10 @@ import Stripe from "stripe";
 import orderService from "../../service/orderService.js";
 import checkAdvantages from "../../service/advantageService.js";
 import Client from "../../models/client.model.js";
+import Giftcard from "../../models/giftcard.model.js";
+import Credit from "../../models/credit.model.js";
+import checkStockAvailability from "../../service/checkStockAvailability.js";
+import Product from "../../models/product/product.model.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -139,28 +143,71 @@ const orderController = {
         shippingAddress,
         billingAddress,
       } = req.body;
+
+      // Vérifier la disponibilité du stock
+      const client = await Client.findById(clientId);
+      if (!client) {
+        throw new Error("Le client n'existe pas.");
+      }
+      const cart = client.cart;
+      await checkStockAvailability(cart);
+
+      // Créer la commande
       const inTotalAmount = await orderService.calculateOrderAmount(
         clientId,
         advantages
       );
-      const { codePromoPercentage } = await checkAdvantages(advantages);
-      const amountPromoCode = codePromoPercentage || "";
+      const { codePromoPercentage, giftcardAmount, creditAmount } =
+        await checkAdvantages(advantages);
+      const amountPromoCode = codePromoPercentage;
       const bodyCreateOrder = { ...req.body, inTotalAmount, amountPromoCode };
-        // Créer la commande
-        const order = await Order.create(bodyCreateOrder);
+      const order = await Order.create(bodyCreateOrder);
 
-        const bodyUpdateClient = { cart: [] };
-        if (isRememberMe) {
-          bodyUpdateClient.shippingAddress = shippingAddress;
-          bodyUpdateClient.billingAddress = billingAddress;
+      // Mettre à jour le client
+      const bodyUpdateClient = { cart: [] };
+      if (isRememberMe) {
+        bodyUpdateClient.shippingAddress = shippingAddress;
+        bodyUpdateClient.billingAddress = billingAddress;
+      }
+      await Client.findByIdAndUpdate(clientId, {
+        $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
+        $push: { orders: order._id },
+        ...bodyUpdateClient,
+      });
+
+      // Mettre à jour Giftcard
+      if (giftcardAmount) {
+        const code = advantages?.giftcard?.code;
+        await Giftcard.findOneAndUpdate({ code }, { consumerId: clientId });
+      }
+
+      // Mettre à jour Credit
+      if (creditAmount) {
+        const creditId = advantages?.credit?.creditId;
+        await Credit.findByIdAndUpdate(creditId, { isArchived: true });
+      }
+
+      // Mettre à jour le stock des produits
+      for (const item of cart) {
+        const product = await Product.findById(item.productsId);
+
+        let materialIndex;
+        if (item.material) {
+          materialIndex = product.materials.findIndex(
+            (m) => m._id.toString() === item.material.toString()
+          );
+        } else if (product.materials.length === 1) {
+          materialIndex = 0;
+        } else {
+          continue;
         }
-    
-        // Mettre à jour le client
-        await Client.findByIdAndUpdate(clientId, {
-          $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
-          $push: { orders: order._id },
-          ...bodyUpdateClient
-        });
+
+        if (materialIndex !== -1) {
+          product.materials[materialIndex].stock -= item.quantity;
+        }
+
+        await product.save();
+      }
 
       res.status(201).json({ message: "commande créée avec succès" });
     } catch (error) {

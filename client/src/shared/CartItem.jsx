@@ -4,6 +4,7 @@ import QuantitySelectProduct from "./QuantitySelectProduct";
 import TrashIcon from "./TrashIcon";
 import useCartItem from "./hooks/useCartItem";
 import { formatPrice } from "../helpers/utils/prices";
+import useQuantitySelectProduct from "./hooks/useQuantitySelectProduct";
 
 const CartItem = ({ product }) => {
   const {
@@ -14,6 +15,10 @@ const CartItem = ({ product }) => {
     itemSubtotal,
     handleRemoveToCart,
   } = useCartItem(product);
+  const {stockMaxProduct } = useQuantitySelectProduct(
+    product?.productsId,
+    product?.material
+  ); 
 
   return ( 
     <div className="cart-item">
@@ -42,6 +47,7 @@ const CartItem = ({ product }) => {
           <TrashIcon />
         </div>
       </div>
+      <small className="stock-number" >Stock disponible : {stockMaxProduct} </small>
     </div>
   );
 };

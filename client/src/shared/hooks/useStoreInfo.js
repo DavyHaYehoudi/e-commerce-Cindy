@@ -33,6 +33,24 @@ const quantityProduct = (store = [], productId, materialId) => {
   );
   return product?.quantity || 1;
 };
+const stockProduct = (store = [], productId, materialId) => {
+  const product = store.find((product) => product?._id === productId);
+  if (!product) {
+    return null;
+  }
+  let material;
+  if (materialId) {
+    material = product.materials.find(
+      (m) => m._id?.toString() === materialId.toString()
+    );
+  } else if (product.materials.length === 1) {
+    material = product.materials[0];
+  }
+  if (!material) {
+    return null;
+  }
+  return material.stock;
+};
 const calculateTotalCartPrice = (cartStore = [], productsStore = []) => {
   return cartStore.reduce((total, cartItem) => {
     const product = productsStore.find(
@@ -115,6 +133,7 @@ const useStoreInfo = ({ productsId, material }) => {
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
   const cartTotalAmount = calculateTotalCartPrice(cartStore, productsStore);
   const numberArticleInWihslist = wishlist.length;
+  const stockMaxProduct = stockProduct(productsStore, productsId, material);
 
   return {
     clientId,
@@ -128,6 +147,7 @@ const useStoreInfo = ({ productsId, material }) => {
     numberArticleInCart,
     cartTotalAmount,
     numberArticleInWihslist,
+    stockMaxProduct,
   };
 };
 export default useStoreInfo;

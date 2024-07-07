@@ -134,6 +134,9 @@
 #master-product-content .addToCart .remove:hover {
     color: whitesmoke;
 }
+#master-product-content .stock-number{
+    font-style: italic;
+}
 
 /* ************************** INFORMATIONS ************************** */
 #master-product-informations {

@@ -11,7 +11,7 @@ import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 const useQuantitySelectProduct = (productId, materialId) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const { clientId, cartStore, quantity } = useStoreInfo({
+  const { clientId, cartStore, quantity, stockMaxProduct } = useStoreInfo({
     productsId: productId,
     material: materialId,
   });
@@ -70,7 +70,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
     }
   };
 
-  return { loading, quantity, handleChangeValue };
+  return { loading, quantity, handleChangeValue, stockMaxProduct };
 };
 
 export default useQuantitySelectProduct;

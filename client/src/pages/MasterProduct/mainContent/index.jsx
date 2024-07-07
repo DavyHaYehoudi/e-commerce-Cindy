@@ -10,6 +10,7 @@ import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
+import useQuantitySelectProduct from "../../../shared/hooks/useQuantitySelectProduct";
 
 const MainContent = ({ productId, materialId }) => {
   const { product, materialSelected, handleMaterialSelected } = useMainContent({
@@ -20,6 +21,7 @@ const MainContent = ({ productId, materialId }) => {
     productsId: productId,
     material: materialSelected?.id,
   });
+  const { stockMaxProduct } = useQuantitySelectProduct(productId, materialId);
   //if promotion
   const currentPrice =
     product?.materials[materialSelected.index]?.pricing?.currentPrice;
@@ -112,6 +114,9 @@ const MainContent = ({ productId, materialId }) => {
             />
           </div>
         </div>
+        <small className="stock-number">
+          Stock disponible : {stockMaxProduct}{" "}
+        </small>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />
       </div>
