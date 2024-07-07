@@ -88,8 +88,12 @@ const orderController = {
     }
   },
   payment: async (req, res) => {
-    const { email, amount } = req.body;
+    const { email, advantages = null, clientId } = req.body;
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const amount = await orderService.calculateOrderAmount(
+      clientId,
+      advantages
+    );
 
     try {
       // Rechercher un client existant par email

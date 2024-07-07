@@ -73,7 +73,6 @@ const orderProductsSchema = new mongoose.Schema(
         ref: "OrderProducts",
         default: null,
       },
-
       note: {
         type: String,
         default: null,
