@@ -62,6 +62,7 @@ const useFormValidation = () => {
   useEffect(() => {
     const errors = {};
     const valid = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     Object.keys(requiredFields).forEach((section) => {
       if (section === "billing" && isBillingSameAddress) {
@@ -75,16 +76,34 @@ const useFormValidation = () => {
         if (!address[field]) {
           if (!errors[section]) errors[section] = {};
           errors[section][field] = "Ce champ est requis";
+        } else if (field === "email" && !emailRegex.test(address[field])) {
+          if (!errors[section]) errors[section] = {};
+          errors[section][field] = "Adresse email invalide";
         } else {
           if (!valid[section]) valid[section] = {};
           valid[section][field] = true;
         }
       });
     });
+    const errorsString = JSON.stringify(errors);
+    const validationErrorsString = JSON.stringify(validationErrors);
+    const validFieldsString = JSON.stringify(valid);
+    const currentValidFieldsString = JSON.stringify(validFields);
 
-    setValidationErrors(errors);
-    setValidFields(valid);
-  }, [isBillingSameAddress, shippingAddress, billingAddress]);
+    if (errorsString !== validationErrorsString) {
+      setValidationErrors(errors);
+    }
+
+    if (validFieldsString !== currentValidFieldsString) {
+      setValidFields(valid);
+    }
+  }, [
+    isBillingSameAddress,
+    shippingAddress,
+    billingAddress,
+    validationErrors,
+    validFields,
+  ]);
 
   return {
     formData,

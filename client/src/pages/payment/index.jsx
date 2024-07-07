@@ -10,7 +10,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentCheckout = () => {
   const cartAmount = useSelector((state) => state?.product?.cartAmount)||100;
-  const clientSecret = usePaymentClientSecret(cartAmount);
+  const clientSecret = usePaymentClientSecret();
   const appearance = {
     theme: "stripe",
   };

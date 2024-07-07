@@ -1,6 +1,8 @@
 import Order from "../../models/order.model.js";
 import Stripe from "stripe";
 import orderService from "../../service/orderService.js";
+import checkAdvantages from "../../service/advantageService.js";
+import Client from "../../models/client.model.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -128,9 +130,42 @@ const orderController = {
     }
   },
   createOrder: async (req, res) => {
-    console.log("req.body :", req.body);
-    const { clientId, shippingAddress, billingAddress } = req.body;
-    res.status(201).json({ message: "ressource créée avec succès" });
+    try {
+      // console.log("req.body:", req.body);
+      const {
+        clientId,
+        advantages,
+        isRememberMe,
+        shippingAddress,
+        billingAddress,
+      } = req.body;
+      const inTotalAmount = await orderService.calculateOrderAmount(
+        clientId,
+        advantages
+      );
+      const { codePromoPercentage } = await checkAdvantages(advantages);
+      const amountPromoCode = codePromoPercentage || "";
+      const bodyCreateOrder = { ...req.body, inTotalAmount, amountPromoCode };
+        // Créer la commande
+        const order = await Order.create(bodyCreateOrder);
+
+        const bodyUpdateClient = { cart: [] };
+        if (isRememberMe) {
+          bodyUpdateClient.shippingAddress = shippingAddress;
+          bodyUpdateClient.billingAddress = billingAddress;
+        }
+    
+        // Mettre à jour le client
+        await Client.findByIdAndUpdate(clientId, {
+          $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
+          $push: { orders: order._id },
+          ...bodyUpdateClient
+        });
+
+      res.status(201).json({ message: "commande créée avec succès" });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   },
 };
 

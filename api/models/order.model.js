@@ -5,7 +5,6 @@ const orderSchema = new mongoose.Schema(
   {
     orderNumber: {
       type: String,
-      required: true,
       unique: true,
     },
     clientId: {
@@ -94,7 +93,6 @@ const orderSchema = new mongoose.Schema(
     },
     step: {
       type: Number,
-      required: true,
       default: 0,
       validate: {
         validator: function (value) {
@@ -106,7 +104,6 @@ const orderSchema = new mongoose.Schema(
     },
     inTotalAmount: {
       type: Number,
-      required: true,
     },
     outTotalAmount: {
       type: Number,
@@ -119,11 +116,9 @@ const orderSchema = new mongoose.Schema(
     paymentMethod: {
       cardType: {
         type: String,
-        required: true,
       },
       last4Digits: {
         type: String,
-        required: true,
       },
     },
     trackingNumber: {

@@ -4,7 +4,7 @@ import { Post } from "../../../services/httpMethods";
 import { useSelector } from "react-redux";
 import useAuthWrappers from "../../../config/useAuthWrappers";
 
-const usePaymentClientSecret = (amount) => {
+const usePaymentClientSecret = () => {
   const [clientSecret, setClientSecret] = useState("");
   const handleUnauthorized = useUnauthorizedRedirect();
   const email = useSelector((state) => state?.customer?.data?.client?.email);
@@ -28,4 +28,4 @@ const usePaymentClientSecret = (amount) => {
   return clientSecret;
 };
 
-export default usePaymentClientSecret;
+export default usePaymentClientSecret; 
