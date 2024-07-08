@@ -7,6 +7,12 @@ import Giftcard from "../../models/giftcard.model.js";
 import Credit from "../../models/credit.model.js";
 import checkStockAvailability from "../../service/checkStockAvailability.js";
 import Product from "../../models/product/product.model.js";
+import {
+  ClientNotFoundError,
+  ProductNotFoundError,
+  MaterialNotFoundError,
+  InsufficientStockError,
+} from '../../service/errors.js';
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -84,13 +90,25 @@ const orderController = {
       const advantages = req.query.advantages
         ? JSON.parse(req.query.advantages)
         : null;
+      // Vérifier la disponibilité du stock
+      await checkStockAvailability(clientId);
       const totalAmount = await orderService.calculateOrderAmount(
         clientId,
         advantages
       );
       res.status(200).json({ totalAmount });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      if (error instanceof ClientNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof ProductNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof MaterialNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof InsufficientStockError) {
+        res.status(400).json({ message: error.message });
+      } else {
+        res.status(500).json({ error: "Erreur serveur interne" });
+      }
     }
   },
   payment: async (req, res) => {
@@ -102,6 +120,8 @@ const orderController = {
     );
 
     try {
+      // Vérifier la disponibilité du stock
+      await checkStockAvailability(clientId);
       // Rechercher un client existant par email
       const existingCustomers = await stripe.customers.list({
         email: email,
@@ -130,7 +150,17 @@ const orderController = {
       res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
       console.log("error:", error);
-      res.status(500).json({ error: error.message });
+      if (error instanceof ClientNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof ProductNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof MaterialNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof InsufficientStockError) {
+        res.status(400).json({ message: error.message });
+      } else {
+        res.status(500).json({ error: "Erreur serveur interne" });
+      }
     }
   },
   createOrder: async (req, res) => {
@@ -145,12 +175,7 @@ const orderController = {
       } = req.body;
 
       // Vérifier la disponibilité du stock
-      const client = await Client.findById(clientId);
-      if (!client) {
-        throw new Error("Le client n'existe pas.");
-      }
-      const cart = client.cart;
-      await checkStockAvailability(cart);
+      await checkStockAvailability(clientId);
 
       // Créer la commande
       const inTotalAmount = await orderService.calculateOrderAmount(
@@ -211,7 +236,17 @@ const orderController = {
 
       res.status(201).json({ message: "commande créée avec succès" });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      if (error instanceof ClientNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof ProductNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof MaterialNotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof InsufficientStockError) {
+        res.status(400).json({ message: error.message });
+      } else {
+        res.status(500).json({ error: "Erreur serveur interne" });
+      }
     }
   },
 };

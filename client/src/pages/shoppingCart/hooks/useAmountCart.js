@@ -18,19 +18,23 @@ const useAmountCart = () => {
 
   const fetchTotalAmount = useCallback(
     async ({ params = {}}) => {
-      formParamsRef.current = { ...formParamsRef.current, ...params };
-      const queryString = new URLSearchParams({
-        clientId,
-        advantages: JSON.stringify(formParamsRef.current),
-      }).toString();
-
-      let { totalAmount } = await Get(
-        `orders/order-amount?${queryString}`,
-        null,
-        handleUnauthorized
-      );
-
-      dispatch(updateCartAmount(totalAmount));
+      try {
+        formParamsRef.current = { ...formParamsRef.current, ...params };
+        const queryString = new URLSearchParams({
+          clientId,
+          advantages: JSON.stringify(formParamsRef.current),
+        }).toString();
+  
+        let { totalAmount } = await Get(
+          `orders/order-amount?${queryString}`,
+          null,
+          handleUnauthorized
+        );
+  
+        dispatch(updateCartAmount(totalAmount));
+      } catch (error) {
+        console.log('Erreur dans fetchTotalAmount :',error);
+      }
     },
     [clientId, dispatch, handleUnauthorized]
   );

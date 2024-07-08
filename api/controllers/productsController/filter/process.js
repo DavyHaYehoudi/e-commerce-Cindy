@@ -47,7 +47,12 @@ const process = async (queries) => {
         otherQueries.push({
           "materials.untilNew": { $gt: new Date() },
         });
-      } else if (propertyName === "pending") {
+      } else if(propertyName==="availableStock"){
+        otherQueries.push({
+          "materials.stock": 0,
+        });
+      }
+      else if (propertyName === "pending") {
         otherQueries.push({ isActive: false });
       } else {
         otherQueries.push({

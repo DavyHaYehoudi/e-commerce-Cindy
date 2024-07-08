@@ -47,7 +47,7 @@ const CartItem = ({ product }) => {
           <TrashIcon />
         </div>
       </div>
-      <small className="stock-number" >Stock disponible : {stockMaxProduct} </small>
+      <small className="stock-number" >Limité à : {stockMaxProduct} </small>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const List = ({ orderHistory, filter }) => {
               content={
                 <div className="order-header-details">
                   {" "}
-                  <p>
+                  {/* <p>
                     <span className="dotted">Moyen de paiement</span> :{" "}
                     {order?.paymentMethod["cardType"]}
                   </p>
@@ -49,7 +49,7 @@ const List = ({ orderHistory, filter }) => {
                     {" "}
                     <span className="dotted">Se terminant par</span> :{" "}
                     {order?.paymentMethod["last4Digits"]}{" "}
-                  </p>
+                  </p> */}
                   <div>
                     <span className="dotted">Adresse de livraison</span> :
                     <p>

@@ -2,10 +2,8 @@ import React from "react";
 import useQuantitySelectProduct from "./hooks/useQuantitySelectProduct";
 
 const QuantitySelectProduct = ({ productId, materialId }) => {
-  const { loading, quantity, handleChangeValue,stockMaxProduct } = useQuantitySelectProduct(
-    productId,
-    materialId
-  ); 
+  const { loading, quantity, handleChangeValue, stockMaxProduct } =
+    useQuantitySelectProduct(productId, materialId);
   return (
     <div className="quantity-select">
       {loading ? (

@@ -10,18 +10,16 @@ import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
-import useQuantitySelectProduct from "../../../shared/hooks/useQuantitySelectProduct";
 
 const MainContent = ({ productId, materialId }) => {
   const { product, materialSelected, handleMaterialSelected } = useMainContent({
     productId,
     materialId,
   });
-  const { isProductInCart } = useStoreInfo({
+  const { isProductInCart, stockMaxProduct } = useStoreInfo({
     productsId: productId,
     material: materialSelected?.id,
   });
-  const { stockMaxProduct } = useQuantitySelectProduct(productId, materialId);
   //if promotion
   const currentPrice =
     product?.materials[materialSelected.index]?.pricing?.currentPrice;
@@ -100,22 +98,26 @@ const MainContent = ({ productId, materialId }) => {
         </div>
         <p className="separator"></p>
         <div className="addToCartContainer">
-          {isProductInCart && (
+          {isProductInCart && stockMaxProduct > 0 && (
             <QuantitySelectProduct
               productId={productId}
               materialId={materialSelected?.id}
             />
           )}
           <div className="addToCart">
-            <AddToCartButton
-              productsId={productId}
-              material={materialSelected?.id}
-              isProductInCart={isProductInCart}
-            />
+            {stockMaxProduct > 0 ? (
+              <AddToCartButton
+                productsId={productId}
+                material={materialSelected?.id}
+                isProductInCart={isProductInCart}
+              />
+            ) : (
+              <p className="out-of-stock">Rupture de stock</p>
+            )}
           </div>
         </div>
         <small className="stock-number">
-          Stock disponible : {stockMaxProduct}{" "}
+          Limité à : {stockMaxProduct}{" "}
         </small>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />

@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 const ShoppingCart = () => {
   const { isCartContent, handleClearCart } = useCartOffcanvas();
   const { clientId } = useAccessPayment();
-  const cartAmount = useSelector((state) => state?.product?.cartAmount) || 100;
+  const cartAmount = useSelector((state) => state?.product?.cartAmount) || 0;
   const navigate = useNavigate();
   const handlePaymentProcess = () => {
     navigate("/cart/payment");

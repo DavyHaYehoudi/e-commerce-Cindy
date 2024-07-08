@@ -21,12 +21,15 @@ const useQuantitySelectProduct = (productId, materialId) => {
   const handleChangeValue = async (newQuantity) => {
     setLoading(true);
     dispatch(showCartAccess(true));
+    const quantitySelected =
+      newQuantity <= stockMaxProduct ? newQuantity : stockMaxProduct;
+
     const cartUpdated = cartStore.map((product) => {
       if (
         product?.productsId === productId &&
         product?.material === materialId
       ) {
-        return { ...product, quantity: newQuantity || 1 };
+        return { ...product, quantity: quantitySelected || 1 };
       } else {
         return product;
       }
@@ -52,7 +55,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         changeQuantityProductToCart({
           productId,
           materialId,
-          quantity: newQuantity || 1,
+          quantity: quantitySelected || 1,
         })
       );
       fetchTotalAmount({ params: {} });
@@ -62,7 +65,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
         changeQuantityProductToCartVisitor({
           productId,
           materialId,
-          quantity: newQuantity,
+          quantity: quantitySelected,
         })
       );
       localStorage.setItem("cartProducts", JSON.stringify(cartUpdated));

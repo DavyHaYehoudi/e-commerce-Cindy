@@ -13,9 +13,9 @@ const ProductsCard = ({ product, handleOpenModal }) => {
 
   return (
     <div className="card" onClick={() => handleOpenModal("edit", product?._id)}>
-      <div className="card-wrapper">
+      <div className={`card-wrapper ${!handleProductActive() ? "notActive" : ""}`}>
         {imageUrl ? (
-          <img src={imageUrl} alt={product?.name} />
+          <img src={imageUrl} alt={product?.name}  />
         ) : (
           <p>Chargement de l'image...</p>
         )}

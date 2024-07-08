@@ -59,6 +59,9 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.products .card-wrapper.notActive{
+    filter: brightness(0.3) ;
+}
 
 .products .card-wrapper p {
     max-width: 200px;
