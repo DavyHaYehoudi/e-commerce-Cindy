@@ -43,7 +43,7 @@ const calculateOrderAmount = async (clientId, advantages) => {
   const advantagesResult = await checkAdvantages(advantages);
   const codePromoPercentage = advantagesResult?.codePromoPercentage;
   if (codePromoPercentage) {
-    console.log('codePromoPercentage:', codePromoPercentage)
+    // console.log('codePromoPercentage:', codePromoPercentage)
     totalAmount -= (totalAmount * codePromoPercentage) / 100;
   }
 

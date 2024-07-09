@@ -26,7 +26,8 @@ router.delete(
   authenticateUser,
   orderController.deleteTrackingNumberClient
 );
-router.post("/", authenticateUser, orderController.createOrder);
+router.post("/", authenticateUser, orderController.orderPending);
+router.patch("/", authenticateUser, orderController.orderConfirm);
 router.post(
   "/create-payment-intent",
   authenticateUser,

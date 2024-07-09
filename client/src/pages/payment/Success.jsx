@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
+import useCreateOrder from "../../components/payment/hooks/useCreateOrder";
 
 const Success = () => {
+  const [orderNumber, setOrderNumber] = useState("");
+  const { handleOrderConfirm } = useCreateOrder();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderNumberParams = urlParams.get("orderNumber");
+    if (orderNumberParams) {
+      setOrderNumber(orderNumberParams);
+      handleOrderConfirm(orderNumberParams);
+    }
+    return;
+  }, [handleOrderConfirm]);
+
   return (
     <div className="payment-success-page">
       <div className="success-page-container">
@@ -12,11 +26,9 @@ const Success = () => {
         <p>
           Payment bien effectué.
           <br />
-          Nous allons gérer votre commande.
+          Suivez l'évolution de votre commande dans votre espace client.
           <br />
-          Suivez son évolution dans votre espace client.
-          <br />
-          Numéro de commande : 
+          Numéro de commande : {orderNumber}
         </p>
       </div>
     </div>

@@ -24,7 +24,7 @@ const Main = ({ orderProducts, client, orderId }) => {
     setConfirmation,
     entryError,
     setEntryError,
-    orderProductsActions,
+    orderProductsActions, 
     setProductActions,
     toggleActions,
   } = useOrderProducts(orderProducts, orderId);

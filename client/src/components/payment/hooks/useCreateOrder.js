@@ -1,26 +1,43 @@
 import { useSelector } from "react-redux";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
-import { Post } from "../../../services/httpMethods";
+import { Patch, Post } from "../../../services/httpMethods";
 import useFormValidation from "./useFormValidation";
 
-const useCreateOrder = async () => {
+const useCreateOrder = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
   const customer = useSelector((state) => state?.customer?.data?.client);
   const advantages = useSelector((state) => state?.product?.advantages);
-  const { _id, shippingAddress, billingAddress } = customer;
-  const amountPromoCode = advantages?.codePromo?.percentage;
+  const { _id, shippingAddress, billingAddress } = customer || {};
   const { formData } = useFormValidation();
   const isRememberMe = formData?.rememberMe;
-  try {
-    const formatData = {
-      clientId: _id,
-      shippingAddress,
-      billingAddress,
-      amountPromoCode,
-      isRememberMe,
-      advantages
-    };
-    await Post("orders", formatData, null, handleUnauthorized);
-  } catch (error) {}
+
+  const handleCreateOrder = async () => {
+    try {
+      const formatData = {
+        clientId: _id,
+        isRememberMe,
+        advantages,
+        shippingAddress,
+        billingAddress,
+      };
+      const response = await Post(
+        "orders",
+        formatData,
+        null,
+        handleUnauthorized
+      );
+      return { orderNumber: response?.orderNumber };
+    } catch (error) {
+      console.log("Erreur dans handleCreateOrder :", error);
+    }
+  };
+  const handleOrderConfirm = async (orderNumber) => {
+    try {
+      await Patch("orders", { orderNumber }, null, handleUnauthorized);
+    } catch (error) {
+      console.log("Erreur dans handleOrderConfirm :", error);
+    }
+  };
+  return { handleCreateOrder, handleOrderConfirm };
 };
 export default useCreateOrder;

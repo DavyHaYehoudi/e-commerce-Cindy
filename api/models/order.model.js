@@ -3,6 +3,10 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderSchema = new mongoose.Schema(
   {
+    statusPayment:{
+      type: String,
+      default:"pending"
+    },
     orderNumber: {
       type: String,
       unique: true,

@@ -2,17 +2,21 @@ import Order from "../../models/order.model.js";
 import Stripe from "stripe";
 import orderService from "../../service/orderService.js";
 import checkAdvantages from "../../service/advantageService.js";
-import Client from "../../models/client.model.js";
-import Giftcard from "../../models/giftcard.model.js";
-import Credit from "../../models/credit.model.js";
 import checkStockAvailability from "../../service/checkStockAvailability.js";
-import Product from "../../models/product/product.model.js";
 import {
   ClientNotFoundError,
   ProductNotFoundError,
   MaterialNotFoundError,
   InsufficientStockError,
-} from '../../service/errors.js';
+} from "../../service/errors.js";
+import {
+  createOrderProducts,
+  updateClient,
+  updateCredit,
+  updateGiftcard,
+  updateOrder,
+  updateProductStock,
+} from "../../service/createOrderService.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -163,9 +167,8 @@ const orderController = {
       }
     }
   },
-  createOrder: async (req, res) => {
+  orderPending: async (req, res) => {
     try {
-      // console.log("req.body:", req.body);
       const {
         clientId,
         advantages,
@@ -174,10 +177,7 @@ const orderController = {
         billingAddress,
       } = req.body;
 
-      // Vérifier la disponibilité du stock
-      await checkStockAvailability(clientId);
-
-      // Créer la commande
+      // Calculer le montant total de la commande
       const inTotalAmount = await orderService.calculateOrderAmount(
         clientId,
         advantages
@@ -185,68 +185,55 @@ const orderController = {
       const { codePromoPercentage, giftcardAmount, creditAmount } =
         await checkAdvantages(advantages);
       const amountPromoCode = codePromoPercentage;
-      const bodyCreateOrder = { ...req.body, inTotalAmount, amountPromoCode };
+      const bodyCreateOrder = {
+        clientId,
+        inTotalAmount,
+        amountPromoCode,
+        shippingAddress,
+        billingAddress,
+      };
+
+      // Créer la commande
       const order = await Order.create(bodyCreateOrder);
-
-      // Mettre à jour le client
-      const bodyUpdateClient = { cart: [] };
-      if (isRememberMe) {
-        bodyUpdateClient.shippingAddress = shippingAddress;
-        bodyUpdateClient.billingAddress = billingAddress;
-      }
-      await Client.findByIdAndUpdate(clientId, {
-        $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
-        $push: { orders: order._id },
-        ...bodyUpdateClient,
+      // Mettre à jour la carte cadeau
+      await updateGiftcard(advantages, giftcardAmount, clientId);
+      // Mettre à jour l'avoir
+      await updateCredit(advantages, creditAmount);
+      // Mettre à jour le stock dans le produit
+      await updateProductStock(clientId);
+      // Créer les documents OrderProducts
+      const orderProductIds = await createOrderProducts(clientId, order._id);
+      await Order.findByIdAndUpdate(order._id, {
+        $set: { orderProducts: orderProductIds },
       });
+      // Mettre à jour le client
+      await updateClient(
+        clientId,
+        inTotalAmount,
+        order._id,
+        isRememberMe,
+        shippingAddress,
+        billingAddress
+      );
 
-      // Mettre à jour Giftcard
-      if (giftcardAmount) {
-        const code = advantages?.giftcard?.code;
-        await Giftcard.findOneAndUpdate({ code }, { consumerId: clientId });
-      }
-
-      // Mettre à jour Credit
-      if (creditAmount) {
-        const creditId = advantages?.credit?.creditId;
-        await Credit.findByIdAndUpdate(creditId, { isArchived: true });
-      }
-
-      // Mettre à jour le stock des produits
-      for (const item of cart) {
-        const product = await Product.findById(item.productsId);
-
-        let materialIndex;
-        if (item.material) {
-          materialIndex = product.materials.findIndex(
-            (m) => m._id.toString() === item.material.toString()
-          );
-        } else if (product.materials.length === 1) {
-          materialIndex = 0;
-        } else {
-          continue;
-        }
-
-        if (materialIndex !== -1) {
-          product.materials[materialIndex].stock -= item.quantity;
-        }
-
-        await product.save();
-      }
-
-      res.status(201).json({ message: "commande créée avec succès" });
+      res
+        .status(201)
+        .json({
+          message: "Commande créée avec succès",
+          orderNumber: order?.orderNumber,
+        });
     } catch (error) {
-      if (error instanceof ClientNotFoundError) {
-        res.status(404).json({ message: error.message });
-      } else if (error instanceof ProductNotFoundError) {
-        res.status(404).json({ message: error.message });
-      } else if (error instanceof MaterialNotFoundError) {
-        res.status(404).json({ message: error.message });
-      } else if (error instanceof InsufficientStockError) {
-        res.status(400).json({ message: error.message });
-      } else {
-        res.status(500).json({ error: "Erreur serveur interne" });
-      }
+      console.error("Erreur lors de la création de la commande:", error);
+      res.status(500).json({ error: "Erreur serveur interne" });
+    }
+  },
+  orderConfirm: async (req, res) => {
+    try {
+      const { orderNumber } = req.body;
+      await updateOrder(orderNumber);
+      res.status(200).json({});
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   },
 };

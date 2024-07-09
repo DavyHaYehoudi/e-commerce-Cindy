@@ -68,7 +68,12 @@ function getTagNamesByIds(tags, tagIds) {
   return tags.filter((tag) => tagIds?.includes(tag._id)).map((tag) => tag.name);
 }
 function getDetailsProperty(materialId, materials) {
-  const material = materials?.find((mat) => mat?._id === materialId);
+  let material;
+  if (materialId) {
+    material = materials?.find((mat) => mat?._id === materialId);
+  } else if (!materialId) {
+    material = materials[0];
+  }
   const { main_image, pricing, untilNew, promotion, stock, isActive } =
     material || {};
   return { main_image, pricing, untilNew, promotion, stock, isActive };

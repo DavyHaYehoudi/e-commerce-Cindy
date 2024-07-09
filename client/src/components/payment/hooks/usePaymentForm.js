@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
+import useCreateOrder from "./useCreateOrder";
 
 const usePaymentForm = () => {
   const stripe = useStripe();
@@ -7,6 +8,7 @@ const usePaymentForm = () => {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { handleCreateOrder } = useCreateOrder();
 
   useEffect(() => {
     if (!stripe) {
@@ -40,6 +42,7 @@ const usePaymentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { orderNumber } = await handleCreateOrder();
 
     if (!stripe || !elements) {
       return;
@@ -50,7 +53,7 @@ const usePaymentForm = () => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${process.env.REACT_APP_BASE_URL_CLIENT}/cart/payment/success`,
+        return_url: `${process.env.REACT_APP_BASE_URL_CLIENT}/cart/payment/success?orderNumber=${orderNumber}`,
       },
     });
 
@@ -61,8 +64,6 @@ const usePaymentForm = () => {
         setMessage("An unexpected error occurred.");
       }
     }
-    
-
     setIsLoading(false);
   };
 
