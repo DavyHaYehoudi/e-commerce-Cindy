@@ -39,11 +39,28 @@ const OrderProductsDetails = ({
           {quantity} article
           {quantity > 1 ? "s" : ""} - {sumPriceArticle(quantity, finalPrice)}
         </p>
-        <p>Collection : {collection}</p>
-        <p>Catégorie : {category}</p>
-        <p>Prix original : {formatPrice(originalPrice)} </p>
-        <p>Promotion : {amountPromotion ? amountPromotion + "%" : "aucune"} </p>
-        <p>Prix final : {formatPrice(finalPrice)} </p>
+        <p>
+          <span className="underline"> Collection </span>
+          <span>: {collection}</span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Catégorie </span>
+          <span>: {category}</span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Prix original </span>
+          <span>: {formatPrice(originalPrice)} </span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Promotion </span>
+          <span>
+            : {amountPromotion ? amountPromotion + "%" : "aucune"}
+          </span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Prix final </span>
+          <span>: {formatPrice(finalPrice)}</span>{" "}
+        </p>
       </div>
       <div
         className="image-container info-tooltip"
@@ -51,7 +68,7 @@ const OrderProductsDetails = ({
       >
         <Link
           to={`/master-product/${productsId}`}
-          state={{ materialId: material?._id }}
+          state={{ materialId: material }}
         >
           <img
             src={imageUrl}

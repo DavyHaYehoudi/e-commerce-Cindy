@@ -39,20 +39,20 @@ const useCartButton = (productsId, material) => {
       let cartUpdated = [...cartStore, productCart];
       const formatData = { cart: cartUpdated };
       try {
-        await Patch( 
+        await Patch(
           `clients/${clientId}`,
           formatData,
           null,
           handleUnauthorized
-        ); 
+        );
         dispatch(addOneProductToCart(productCart));
-        dispatch(showCartAccess(true))
-      } catch (error) { 
+        dispatch(showCartAccess(true));
+      } catch (error) {
         console.log("Erreur dans handleAddToCart AddToCartButton :", error);
       }
     } else {
       dispatch(addOneProductToCartVisitor(productCart));
-      dispatch(showCartAccess(true))
+      dispatch(showCartAccess(true));
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)
@@ -85,11 +85,11 @@ const useCartButton = (productsId, material) => {
         console.log("Erreur dans handleRemoveToCart AddToCartButton :", error);
       }
       dispatch(removeOneProductToCart(productCart));
-      dispatch(showCartAccess(true))
-      fetchTotalAmount({})
+      dispatch(showCartAccess(true));
+      fetchTotalAmount({});
     } else {
       dispatch(removeOneProductToCartVisitor(productCart));
-      dispatch(showCartAccess(true))
+      dispatch(showCartAccess(true));
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)

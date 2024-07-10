@@ -15,12 +15,12 @@ const CartItem = ({ product }) => {
     itemSubtotal,
     handleRemoveToCart,
   } = useCartItem(product);
-  const {stockMaxProduct } = useQuantitySelectProduct(
+  const { stockMaxProduct } = useQuantitySelectProduct(
     product?.productsId,
     product?.material
-  ); 
+  );
 
-  return ( 
+  return (
     <div className="cart-item">
       <div className="cart-item-top">
         <div className="info-tooltip" aria-label="Revenir à l'article">
@@ -47,7 +47,7 @@ const CartItem = ({ product }) => {
           <TrashIcon />
         </div>
       </div>
-      <small className="stock-number" >Limité à : {stockMaxProduct} </small>
+      <small className="stock-number">Limité à : {stockMaxProduct} </small>
     </div>
   );
 };

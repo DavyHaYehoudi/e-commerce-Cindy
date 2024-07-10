@@ -32,16 +32,21 @@ const List = ({ orderHistory, filter }) => {
                   <span className="dotted">Date de commande</span> :{" "}
                   {formatDate(order?.createdAt)}
                 </span>
+                <p>
+                  <span className="dotted">№ de commande</span> :{" "}
+                  {order?.orderNumber}{" "}
+                </p>
+
                 <OrderStep order={order} />
               </div>
               <div className="details">
-                <p>
+                <div>
                   <span className="dotted">Prix total</span> :{" "}
                   <span className="outPricing">
                     {formatPrice(order?.inTotalAmount) || "Total NC"}
                   </span>{" "}
                   {getAdvantages(order?._id)?.amountPromocode &&
-                    `(code Promotion ${
+                    `(code promotion ${
                       getAdvantages(order?._id)?.amountPromocode
                     }% inclus)`}
                   <p>
@@ -56,7 +61,7 @@ const List = ({ orderHistory, filter }) => {
                         getAdvantages(order?._id)?.amountCredit
                       )} utilisé`}
                   </p>
-                </p>
+                </div>
               </div>
             </div>
             <ToggleButton
