@@ -82,10 +82,10 @@ const creditController = {
       if (!credit) {
         return res.status(404).json({ message: "L'avoir n'existe pas." });
       }
-      if (credit?.dateExpire < new Date()) {
+      if (credit?.dateExpire < new Date() || credit?.isArchived) {
         return res
           .status(404)
-          .json({ message: "La date de validité a expiré." });
+          .json({ message: "L'avoir n'est plus valable'." });
       }
       if (credit?.clientId.toString() !== clientId) {
         return res

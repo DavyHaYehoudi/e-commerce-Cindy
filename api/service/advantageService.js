@@ -25,7 +25,11 @@ const checkAdvantages = async (advantages) => {
       const codeGiftcardDB = await giftcardRepository.findOne({
         code: giftcard?.code,
       });
-      if (codeGiftcardDB && codeGiftcardDB?.dateExpire > new Date()) {
+      if (
+        codeGiftcardDB &&
+        codeGiftcardDB?.dateExpire > new Date() &&
+        !codeGiftcardDB?.consumerId
+      ) {
         advantagesResult["giftcardAmount"] = codeGiftcardDB?.amount;
       }
     }
@@ -35,14 +39,16 @@ const checkAdvantages = async (advantages) => {
       if (
         creditDB &&
         creditDB?.clientId.toString() === credit?.clientId &&
-        creditDB?.dateExpire > new Date()
+        creditDB?.dateExpire > new Date() &&
+        !creditDB?.isArchived
       ) {
         advantagesResult["creditAmount"] = creditDB?.amount;
       }
     }
   }
 
-  return advantagesResult;  
+  console.log("advantagesResult:", advantagesResult);
+  return advantagesResult;
 };
 
 export default checkAdvantages;

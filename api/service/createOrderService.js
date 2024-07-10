@@ -5,6 +5,8 @@ import Product from "../models/product/product.model.js";
 import clientRepository from "../repositories/clientRepository.js";
 import OrderProducts from "../models/orderProducts.model.js";
 import Order from "../models/order.model.js";
+import orderService from "./orderService.js";
+import checkAdvantages from "./advantageService.js";
 
 export const updateOrder = async (orderNumber) => {
   const order = await Order.findOneAndUpdate(
@@ -17,15 +19,35 @@ export const updateOrder = async (orderNumber) => {
   if (!order) {
     throw new Error("Commande introuvable pour sa mise à jour");
   }
+  return order;
+};
+export const createOrderPending = async (req) => {
+  const { clientId, advantages, shippingAddress, billingAddress } = req.body;
+  // Calculer le montant total de la commande
+  const inTotalAmount = await orderService.calculateOrderAmount(
+    clientId,
+    advantages
+  );
+  const { codePromoPercentage } = await checkAdvantages(advantages);
+  const amountPromoCode = codePromoPercentage;
+  const bodyCreateOrder = {
+    clientId,
+    inTotalAmount,
+    amountPromoCode,
+    shippingAddress,
+    billingAddress,
+  };
+  const order = await Order.create(bodyCreateOrder);
+  return order;
 };
 
 export const updateClient = async (
   clientId,
-  inTotalAmount,
   orderId,
   isRememberMe,
   shippingAddress,
-  billingAddress
+  billingAddress,
+  inTotalAmount
 ) => {
   const bodyUpdateClient = { cart: [] };
   if (isRememberMe) {
@@ -35,18 +57,20 @@ export const updateClient = async (
   await Client.findByIdAndUpdate(clientId, {
     $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
     $push: { orders: orderId },
-    ...bodyUpdateClient,
+    ...bodyUpdateClient, 
   });
 };
 
-export const updateGiftcard = async (advantages, giftcardAmount, clientId) => {
+export const updateGiftcard = async (advantages, clientId) => {
+  const { giftcardAmount } = await checkAdvantages(advantages);
   if (giftcardAmount) {
     const code = advantages?.giftcard?.code;
     await Giftcard.findOneAndUpdate({ code }, { consumerId: clientId });
   }
 };
 
-export const updateCredit = async (advantages, creditAmount) => {
+export const updateCredit = async (advantages) => {
+  const { creditAmount } = await checkAdvantages(advantages);
   if (creditAmount) {
     const creditId = advantages?.credit?.creditId;
     await Credit.findByIdAndUpdate(creditId, { isArchived: true });
@@ -129,4 +153,3 @@ export const createOrderProducts = async (clientId, orderId) => {
   }
   return orderProductIds;
 };
- 

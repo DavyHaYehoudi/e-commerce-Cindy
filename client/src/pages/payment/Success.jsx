@@ -11,9 +11,18 @@ const Success = () => {
     const orderNumberParams = urlParams.get("orderNumber");
     if (orderNumberParams) {
       setOrderNumber(orderNumberParams);
-      handleOrderConfirm(orderNumberParams);
+
+      // Récupérer les données du localStorage
+      const orderDataConfirm = localStorage.getItem('orderDataConfirm');
+      if (orderDataConfirm) {
+        const parsedOrderData = JSON.parse(orderDataConfirm);
+
+        handleOrderConfirm(parsedOrderData);
+        localStorage.removeItem('orderDataConfirm');
+      } else {
+        console.log("Aucune donnée de commande trouvée dans le localStorage");
+      }
     }
-    return;
   }, [handleOrderConfirm]);
 
   return (

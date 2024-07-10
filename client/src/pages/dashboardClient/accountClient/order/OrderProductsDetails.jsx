@@ -49,7 +49,7 @@ const OrderProductsDetails = ({
           <img
             src={imageUrl}
             alt={name || "Non disponible"}
-            style={{ width: "100px", height: "150px" }}
+            style={{ width: "150px", height: "150px" }}
           />
         </Link>
       </div>

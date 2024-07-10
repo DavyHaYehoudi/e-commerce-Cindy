@@ -47,10 +47,10 @@ const giftcardController = {
           .status(404)
           .json({ message: "La carte cardeau n'existe pas." });
       }
-      if (codeGiftcard?.dateExpire < new Date()) {
+      if (codeGiftcard?.dateExpire < new Date() || codeGiftcard?.consumerId) {
         return res
           .status(404)
-          .json({ message: "La date de validité a expiré." });
+          .json({ message: "La carte cadeau n'est plus valable." });
       }
       res.status(200).json({ amount: codeGiftcard?.amount });
     } catch (error) {

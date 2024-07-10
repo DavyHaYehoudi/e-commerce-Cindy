@@ -1,7 +1,6 @@
 import Order from "../../models/order.model.js";
 import Stripe from "stripe";
 import orderService from "../../service/orderService.js";
-import checkAdvantages from "../../service/advantageService.js";
 import checkStockAvailability from "../../service/checkStockAvailability.js";
 import {
   ClientNotFoundError,
@@ -10,6 +9,7 @@ import {
   InsufficientStockError,
 } from "../../service/errors.js";
 import {
+  createOrderPending,
   createOrderProducts,
   updateClient,
   updateCredit,
@@ -169,59 +169,11 @@ const orderController = {
   },
   orderPending: async (req, res) => {
     try {
-      const {
-        clientId,
-        advantages,
-        isRememberMe,
-        shippingAddress,
-        billingAddress,
-      } = req.body;
-
-      // Calculer le montant total de la commande
-      const inTotalAmount = await orderService.calculateOrderAmount(
-        clientId,
-        advantages
-      );
-      const { codePromoPercentage, giftcardAmount, creditAmount } =
-        await checkAdvantages(advantages);
-      const amountPromoCode = codePromoPercentage;
-      const bodyCreateOrder = {
-        clientId,
-        inTotalAmount,
-        amountPromoCode,
-        shippingAddress,
-        billingAddress,
-      };
-
-      // Créer la commande
-      const order = await Order.create(bodyCreateOrder);
-      // Mettre à jour la carte cadeau
-      await updateGiftcard(advantages, giftcardAmount, clientId);
-      // Mettre à jour l'avoir
-      await updateCredit(advantages, creditAmount);
-      // Mettre à jour le stock dans le produit
-      await updateProductStock(clientId);
-      // Créer les documents OrderProducts
-      const orderProductIds = await createOrderProducts(clientId, order._id);
-      await Order.findByIdAndUpdate(order._id, {
-        $set: { orderProducts: orderProductIds },
+      const order = await createOrderPending(req);
+      res.status(201).json({
+        message: "Commande créée avec succès",
+        orderNumber: order?.orderNumber,
       });
-      // Mettre à jour le client
-      await updateClient(
-        clientId,
-        inTotalAmount,
-        order._id,
-        isRememberMe,
-        shippingAddress,
-        billingAddress
-      );
-
-      res
-        .status(201)
-        .json({
-          message: "Commande créée avec succès",
-          orderNumber: order?.orderNumber,
-        });
     } catch (error) {
       console.error("Erreur lors de la création de la commande:", error);
       res.status(500).json({ error: "Erreur serveur interne" });
@@ -229,8 +181,30 @@ const orderController = {
   },
   orderConfirm: async (req, res) => {
     try {
-      const { orderNumber } = req.body;
-      await updateOrder(orderNumber);
+      const {
+        orderNumber,
+        advantages,
+        clientId,
+        isRememberMe,
+        shippingAddress,
+        billingAddress,
+      } = req.body;
+      const order = await updateOrder(orderNumber);
+      await updateGiftcard(advantages, clientId);
+      await updateCredit(advantages);
+      await updateProductStock(clientId);
+      const orderProductIds = await createOrderProducts(clientId, order._id);
+      await Order.findByIdAndUpdate(order._id, {
+        $set: { orderProducts: orderProductIds },
+      });
+      await updateClient(
+        clientId,
+        order?._id,
+        isRememberMe,
+        shippingAddress,
+        billingAddress,
+        order?.inTotalAmount
+      );
       res.status(200).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });

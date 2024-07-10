@@ -26,14 +26,29 @@ const useCreateOrder = () => {
         null,
         handleUnauthorized
       );
-      return { orderNumber: response?.orderNumber };
+      const orderNumber = response?.orderNumber;
+
+      const orderDataConfirm = {
+        clientId: _id,
+        isRememberMe,
+        advantages,
+        shippingAddress,
+        billingAddress,
+        orderNumber,
+      };
+      localStorage.setItem(
+        "orderDataConfirm",
+        JSON.stringify(orderDataConfirm)
+      );
+
+      return { orderNumber };
     } catch (error) {
       console.log("Erreur dans handleCreateOrder :", error);
     }
   };
-  const handleOrderConfirm = async (orderNumber) => {
+  const handleOrderConfirm = async (parsedOrderData) => {
     try {
-      await Patch("orders", { orderNumber }, null, handleUnauthorized);
+      await Patch("orders",  parsedOrderData , null, handleUnauthorized);
     } catch (error) {
       console.log("Erreur dans handleOrderConfirm :", error);
     }
