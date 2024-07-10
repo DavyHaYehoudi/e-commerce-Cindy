@@ -34,7 +34,13 @@ const List = ({ orderHistory, filter }) => {
                 </span>
                 <p>
                   <span className="dotted">№ de commande</span> :{" "}
-                  {order?.orderNumber}{" "}
+                  {order?.statusPayment === "paid" ? (
+                    order?.orderNumber
+                  ) : (
+                    <span style={{ color: "var(--danger)" }}>
+                      ECHEC DE PAYMENT
+                    </span>
+                  )}{" "}
                 </p>
 
                 <OrderStep order={order} />

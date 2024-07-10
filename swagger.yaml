@@ -535,7 +535,92 @@ paths:
               $ref: '#/components/schemas/FirstOrder'
       responses:
         '201':
-          description: successful posting order
+          description: successful posting order pending (before payment confirmation)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderNumber:
+                    type: string
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - order
+      summary: Payment confirmation
+      description: Route reserved for customers.This route allows you to confirm the order.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId: 
+                  type: string
+                orderNumber:
+                  type: string
+                rememberMe:
+                  type: boolean
+                email:
+                  type: string
+                shippingAddress:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    lastName: 
+                      type: string
+                    street: 
+                      type: string
+                    apartment: 
+                      type: string
+                    city:
+                      type: string
+                    postalCode: 
+                      type: string
+                    country: 
+                      type: string
+                    email: 
+                      type: string
+                    phone: 
+                      type: string
+                billingingAddress:
+                  type: object
+                  properties:
+                    companyName:
+                      type: string
+                    firstName:
+                      type: string
+                    lastName: 
+                      type: string
+                    street: 
+                      type: string
+                    apartment: 
+                      type: string
+                    city:
+                      type: string
+                    postalCode: 
+                      type: string
+                    country: 
+                      type: string
+                    email: 
+                      type: string
+                    phone: 
+                      type: string
+      responses:
+        '200':
+          description: successful order confirmation
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -794,9 +879,34 @@ paths:
             schema:
               type: object
               properties:
-                amount: 
-                  type: number
-                  example: 255
+                clientId: 
+                  type: string
+                email:
+                  type: string
+                advantages:
+                  type: object
+                  properties:
+                    codePromo:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        code:
+                          type: string
+                    giftcard:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        code:
+                          type: string
+                    credit:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        creditId:
+                          type: string
       responses:
         '200':
           description: successful getting cart amount
@@ -2608,60 +2718,57 @@ components:
     Order:
       type: object
       properties:
-        orderProducts:
-          type: object
-          properties:
-            orderProductsActions:
-              type: object
-              properties:
-                exchange:
-                  type: integer
-                exchangeDate:
+        statusPayment:
+          type: string
+          example: paid
+        orderNumber:
+          type: string
+          example: 01polKMj7f
+        clientId:
+          type: string
+          example: 65bc8c5b7f890edc1f631830
+        _id:
+          type: string
+        amountPromoCode:
+          type: number
+          format: int32
+          example: 10
+        amountGiftcard:
+          type: number
+          format: int32
+          example: 10
+        amountCredit:
+          type: number
+          format: int32
+          example: 10
+        step:
+          type: integer
+          format: int32
+          example: 2
+        trackingNumberList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              isAdmin:
+                type: boolean
+              value:
+                type: string
+              date:
+                type: string
+                format: date
+              orderProducts:
+                type: array
+                items:
                   type: string
-                refund:
-                  type: integer 
-                refundDate:
-                  type: string
-                  example: 2024-05-13
-                credit:
-                  type: string
-            clientId:
-              type: string
-              example: 65bc8c5b7f890edc1f631830
-            _id:
-              type: string
-            amountPromoCode:
-              type: number
-              format: int32
-              example: 10
-            step:
-              type: integer
-              format: int32
-              example: 2
-            trackingNumberList:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  isAdmin:
-                    type: boolean
-                  value:
-                    type: string
-                  date:
-                    type: string
-                    format: date
-                  orderProducts:
-                    type: array
-                    items:
-                      type: string
-                    example:
-                      - 2884d22b45a0fb3fd4a75p2
-                      - 7774d22b45a0fb3fd4a7bn0
-                      - 10m4d22b45a0fb3fd4a7l53
-                  _id:
-                    type: string
+                example:
+                  - 2884d22b45a0fb3fd4a75p2
+                  - 7774d22b45a0fb3fd4a7bn0
+                  - 10m4d22b45a0fb3fd4a7l53
+              _id:
+                type: string
         shippingAddress:
           type: object
           properties:
@@ -2706,10 +2813,18 @@ components:
               type: string
             phone: 
               type: string
-        phoneContact:
+        inTotalAmount:
+          type: integer
+          example: 250
+        outTotalAmount:
+          type: integer
+        lastSentDateToClient:
           type: string
-        emailContact:
-          type: string
+        orderProducts:
+          type: array
+          items:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
     Orders:
       type: array
       items:
@@ -2719,33 +2834,32 @@ components:
     FirstOrder:
       type: object
       properties:
-        inTotalAmount:
-          type: integer
-          format: int32
-          example: 220
-        amountPromoCode:
-          type: integer
-          format: int32
-          example: 10
-        paymentMethod:
-          type: array
-          items:
-            type: object
-            properties:
-              cardType:
-                type: string
-                example: Visa
-              last4Digits:
-                type: string
-                example: '**** 1234'
-        orderProducts:
-          type: array
-          items:
-            type: string
-            example:
-              - 2884d22b45a0fb3fd4a75p2
-              - 7774d22b45a0fb3fd4a7bn0
-              - 10m4d22b45a0fb3fd4a7l53
+        clientId:
+          type: string
+        advantages:
+          type: object
+          properties:
+            codePromo:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                code:
+                  type: string
+            giftcard:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                code:
+                  type: string
+            credit:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                creditId:
+                  type: string
         shippingAddress:
           type: object
           properties:
@@ -2818,9 +2932,7 @@ components:
             format: int16
             example: 20
           material:
-            type: integer
-            format: int16
-            example: 0
+            type: string
           orderId:
             type: string
             example: 65bc8c5b7f890edc1f631830
@@ -2925,6 +3037,10 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
+        isArchived:
+          type: boolean
     ProductCreate:
       type: object
       required:
@@ -3005,6 +3121,8 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
     ProductCreateResponse:
       type: object
       properties:
@@ -3083,6 +3201,11 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
+        isArchived:
+          type: boolean
+          example: false
     Products:
       type: array
       items:

@@ -39,6 +39,16 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
             <span className="dotted">Date de commande</span> :{" "}
             {order?.createdAt ? formatDate(order?.createdAt) : "Date NC"}
           </p>
+          <p>
+                  <span className="dotted">№ de commande</span> :{" "}
+                  {order?.statusPayment === "paid" ? (
+                    order?.orderNumber
+                  ) : (
+                    <span style={{ color: "var(--danger)" }}>
+                      ECHEC DE PAYMENT
+                    </span>
+                  )}{" "}
+                </p>
           <ToggleButton
             initialText="Détails"
             hiddenText="Fermer"
