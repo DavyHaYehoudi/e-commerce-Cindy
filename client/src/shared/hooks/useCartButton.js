@@ -13,6 +13,7 @@ import {
 } from "../../features/accountClient/customerSlice";
 import useStoreInfo from "./useStoreInfo";
 import { showCartAccess } from "../../features/admin/productSlice";
+import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 
 const useCartButton = (productsId, material) => {
   const { clientId, cartStore, isProductInCart, quantity } = useStoreInfo({
@@ -21,6 +22,7 @@ const useCartButton = (productsId, material) => {
   });
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
+  const { fetchTotalAmount } = useAmountCart();
   const addDate = new Date().toISOString();
   const productCart = { productsId, material, addDate, quantity };
 
@@ -84,6 +86,7 @@ const useCartButton = (productsId, material) => {
       }
       dispatch(removeOneProductToCart(productCart));
       dispatch(showCartAccess(true))
+      fetchTotalAmount({})
     } else {
       dispatch(removeOneProductToCartVisitor(productCart));
       dispatch(showCartAccess(true))

@@ -25,7 +25,9 @@ const OrderProductsDetails = ({
     materialName,
     isTagProductExisted,
     imageUrl,
-    finalPrice,originalPrice,amountPromotion 
+    finalPrice,
+    originalPrice,
+    amountPromotion,
   } = useOrderProductDetails(orderProductsItem, orderProductsStore, orderId);
   return (
     <div key={productsId} className="order-item-user-account">
@@ -35,22 +37,22 @@ const OrderProductsDetails = ({
         </h3>
         <p className="pricing">
           {quantity} article
-          {quantity > 1 ? "s" : ""} -{" "}
-          {sumPriceArticle(quantity, finalPrice)}
+          {quantity > 1 ? "s" : ""} - {sumPriceArticle(quantity, finalPrice)}
         </p>
         <p>Collection : {collection}</p>
         <p>Catégorie : {category}</p>
         <p>Prix original : {formatPrice(originalPrice)} </p>
-          <p>
-            Promotion : {amountPromotion ? amountPromotion + "%" : "aucune"}{" "}
-          </p>
-          <p>Prix final : {formatPrice(finalPrice)} </p>
+        <p>Promotion : {amountPromotion ? amountPromotion + "%" : "aucune"} </p>
+        <p>Prix final : {formatPrice(finalPrice)} </p>
       </div>
       <div
         className="image-container info-tooltip"
         aria-label="Revenir au produit"
       >
-        <Link to={`/master-product/${productsId}`} state={{materialId: material?._id}}>
+        <Link
+          to={`/master-product/${productsId}`}
+          state={{ materialId: material?._id }}
+        >
           <img
             src={imageUrl}
             alt={name || "Non disponible"}

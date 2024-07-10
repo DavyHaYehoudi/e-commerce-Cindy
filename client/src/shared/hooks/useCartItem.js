@@ -51,7 +51,7 @@ const useCartItem = (product) => {
   const { promotion } = productInfo;
 
   if (promotion?.endDate && new Date(promotion.endDate) > new Date()) {
-    price -= (price * promotion.amount) / 100;
+    price -= (price * promotion?.amount) / 100;
   }
 
   const itemSubtotal = formatPrice(price * quantity);

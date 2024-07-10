@@ -48,7 +48,7 @@ const useCreateOrder = () => {
   };
   const handleOrderConfirm = async (parsedOrderData) => {
     try {
-      await Patch("orders",  parsedOrderData , null, handleUnauthorized);
+      await Patch("orders", parsedOrderData, null, handleUnauthorized);
     } catch (error) {
       console.log("Erreur dans handleOrderConfirm :", error);
     }
