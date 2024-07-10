@@ -6,7 +6,7 @@ import { getCreditsInfo } from "../../../../../../../selectors/credit";
 const Totals = ({ orderProductsInfo, orderProducts }) => {
   const creditTotal =
     useSelector((state) =>
-      getCreditsInfo(state, { productsId: orderProducts._id })
+      getCreditsInfo(state, { productsId: orderProducts?._id })
     ).amount || 0;
   const { finalPrice } = orderProducts || "";
   const refundTotal = orderProductsInfo?.refund || 0;

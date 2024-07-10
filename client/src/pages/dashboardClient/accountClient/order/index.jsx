@@ -8,9 +8,18 @@ import { getOrderStepProperty } from "../../../../helpers/constants/orderStep";
 import { formatPrice } from "../../../../helpers/utils/prices";
 import TrackingNumberList from "./trackingFiled";
 import TrackingNumberCreate from "./trackingFiled/TrackingNumberCreate";
+import { useSelector } from "react-redux";
 
 const List = ({ orderHistory, filter }) => {
   const [openOrderId, setOpenOrderId] = useState(null);
+  const ordersStore = useSelector((state) => state?.customer?.data?.orders);
+  const getAdvantages = (orderId) => {
+    const order = ordersStore.find((order) => order?._id === orderId);
+    const amountPromocode = order?.amountPromoCode;
+    const amountGiftcard = order?.amountGiftcard;
+    const amountCredit = order?.amountCredit;
+    return { amountPromocode, amountGiftcard, amountCredit };
+  };
 
   return (
     <div className="other-orders" data-testid="list-orders">
@@ -30,7 +39,23 @@ const List = ({ orderHistory, filter }) => {
                   <span className="dotted">Prix total</span> :{" "}
                   <span className="outPricing">
                     {formatPrice(order?.inTotalAmount) || "Total NC"}
-                  </span>
+                  </span>{" "}
+                  {getAdvantages(order?._id)?.amountPromocode &&
+                    `(code Promotion ${
+                      getAdvantages(order?._id)?.amountPromocode
+                    }% inclus)`}
+                  <p>
+                    {getAdvantages(order?._id)?.amountGiftcard &&
+                      `Carte cadeau de ${formatPrice(
+                        getAdvantages(order?._id)?.amountGiftcard
+                      )} utilisée`}
+                  </p>
+                  <p>
+                    {getAdvantages(order?._id)?.amountCredit &&
+                      `Avoir de ${formatPrice(
+                        getAdvantages(order?._id)?.amountCredit
+                      )} utilisé`}
+                  </p>
                 </p>
               </div>
             </div>

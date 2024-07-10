@@ -26,7 +26,7 @@ const useTrackingNumberDetails = (trk, order) => {
     );
   };
 
-  const productProperties = trk?.orderProducts.map((item) => ({
+  const productProperties = trk?.orderProducts?.map((item) => ({
     name: getProductProperties(
       item.productsId,
       productStore,
@@ -37,7 +37,8 @@ const useTrackingNumberDetails = (trk, order) => {
     )?.name,
     materialName: getMaterialProperty(item?.material, materialStore)?.name,
     articlesNumber: item?.articlesNumber,
-  }));
+  })) || [];
+  
 
   return {
     isTrashConfirm,

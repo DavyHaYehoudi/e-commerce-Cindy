@@ -31,7 +31,7 @@ const Header = ({
     name,
     imageUrl,
     materialStore,
-  } = useProductHeader(orderProducts, productsId, productStore, material);
+  } = useProductHeader(orderProducts, productsId, productStore, material)||{};
 
   const { originalPrice, finalPrice, amountPromotion } =
     getOneOrderProducts || "";

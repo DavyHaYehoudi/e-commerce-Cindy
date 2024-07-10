@@ -9,7 +9,7 @@ const TrackingNumberList = ({ trk, order }) => {
     setIsTrashConfirm,
     handleConfirmCancel,
     productProperties,
-  } = useTrackingNumberDetails(trk, order);
+  } = useTrackingNumberDetails(trk, order)||{};
 
   return (
     <>
@@ -34,8 +34,8 @@ const TrackingNumberList = ({ trk, order }) => {
             {productProperties &&
               productProperties.map((item, index) => (
                 <li key={index}>
-                  {item.name} {item.materialName} {item.articlesNumber} article
-                  {item.articlesNumber > 1 ? "s" : ""}
+                  {item?.name} {item?.materialName}<br/> {item?.articlesNumber} article
+                  {item?.articlesNumber > 1 ? "s" : ""}
                 </li>
               ))}
           </ul>

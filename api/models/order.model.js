@@ -117,6 +117,14 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       default: null,
     },
+    amountGiftcard:{
+      type: Number,
+      default: null,
+    },
+    amountCredit:{
+      type: Number,
+      default: null,
+    },
     paymentMethod: {
       cardType: {
         type: String,

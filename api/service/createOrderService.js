@@ -28,12 +28,17 @@ export const createOrderPending = async (req) => {
     clientId,
     advantages
   );
-  const { codePromoPercentage } = await checkAdvantages(advantages);
+  const { codePromoPercentage, giftcardAmount, creditAmount } =
+    await checkAdvantages(advantages);
   const amountPromoCode = codePromoPercentage;
+  const amountGiftcard = giftcardAmount;
+  const amountCredit = creditAmount;
   const bodyCreateOrder = {
     clientId,
     inTotalAmount,
     amountPromoCode,
+    amountGiftcard,
+    amountCredit,
     shippingAddress,
     billingAddress,
   };
@@ -57,7 +62,7 @@ export const updateClient = async (
   await Client.findByIdAndUpdate(clientId, {
     $inc: { totalOrders: 1, totalOrderValue: inTotalAmount },
     $push: { orders: orderId },
-    ...bodyUpdateClient, 
+    ...bodyUpdateClient,
   });
 };
 

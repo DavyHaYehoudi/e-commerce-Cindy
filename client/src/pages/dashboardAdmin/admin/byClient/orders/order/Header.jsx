@@ -37,7 +37,7 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
         <div>
           <p>
             <span className="dotted">Date de commande</span> :{" "}
-            {order.createdAt ? formatDate(order.createdAt) : "Date NC"}
+            {order?.createdAt ? formatDate(order?.createdAt) : "Date NC"}
           </p>
           <ToggleButton
             initialText="Détails"

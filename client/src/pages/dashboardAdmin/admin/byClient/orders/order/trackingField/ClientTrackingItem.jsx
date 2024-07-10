@@ -38,12 +38,12 @@ const ClientTrackingItem = ({
   };
 
   return (
-    <div className="trackingNumber trackingNumberClientItem" key={item.id}>
+    <div className="trackingNumber trackingNumberClientItem" key={item?.id}>
       <div className="header">
         <p>
           <span className="underline">Numéro de suivi retour client</span> :{" "}
-          <span className="trackingNumberValue">{item.value}</span>{" "}
-          <small>- Envoyé le {formatDate(item.date, false)}</small>
+          <span className="trackingNumberValue">{item?.value}</span>{" "}
+          <small>- Envoyé le {formatDate(item?.date, false)}</small>
         </p>
         <button
           className="account-btn icon-edit info-tooltip"
@@ -56,11 +56,11 @@ const ClientTrackingItem = ({
       <ul>
         {item?.orderProducts?.map((product) => (
           <ProductListItem
-            key={product.id}
+            key={product?.id}
             product={product}
             client={client}
-            articleNumber={product.articlesNumber}
-            material={product.material}
+            articleNumber={product?.articlesNumber}
+            material={product?.material}
             productStore={productStore}
           />
         ))}

@@ -21,18 +21,18 @@ const AdminTrackingItem = ({ item, client, orderId, productStore }) => {
       <div className="header">
         <p>
           <span className="underline">Numéro de suivi d'envoi</span> :{" "}
-          <span className="trackingNumberValue">{item.value}</span>{" "}
-          <small>- Envoyé le {formatDate(item.date, false)}</small>
+          <span className="trackingNumberValue">{item?.value}</span>{" "}
+          <small>- Envoyé le {formatDate(item?.date, false)}</small>
         </p>
       </div>
       <ul className="orderProducts">
         {item?.orderProducts?.map((product) => (
           <ProductListItem
-            key={product.id}
+            key={product?.id}
             product={product}
             client={client}
-            articleNumber={product.articlesNumber}
-            material={product.material}
+            articleNumber={product?.articlesNumber}
+            material={product?.material}
             productStore={productStore}
           />
         ))}
@@ -42,7 +42,7 @@ const AdminTrackingItem = ({ item, client, orderId, productStore }) => {
           <p>⚠️ La suppression de ce numéro de suivi est définitive !</p>
           <button
             className="btn-confirm"
-            onClick={() => handleConfirmCancel(item.id)}
+            onClick={() => handleConfirmCancel(item?.id)}
           >
             Confirmer
           </button>
