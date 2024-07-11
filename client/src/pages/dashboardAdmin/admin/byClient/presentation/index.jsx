@@ -38,7 +38,7 @@ const Infos = ({ client, orders, handleClientClick }) => {
       </p>
       <p>
         <span className="dotted">Adresse de livraison</span> :
-        {` ${shippingAddress.street} - ${shippingAddress.postalCode} ${shippingAddress.city} `}
+        {` ${shippingAddress?.street ||""}  ${shippingAddress?.postalCode||""} ${shippingAddress?.city||""} `}
       </p>
 
       <p>

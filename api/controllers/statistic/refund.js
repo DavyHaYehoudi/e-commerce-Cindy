@@ -32,21 +32,39 @@ export const refund = async (year) => {
       {
         $lookup: {
           from: "materials",
-          localField: "material",
-          foreignField: "_id",
+          let: { materialId: "$material" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $or: [
+                    { $eq: ["$_id", "$$materialId"] },
+                    { $eq: ["$_id", null] }
+                  ]
+                }
+              }
+            }
+          ],
           as: "materialDetails",
         },
       },
-      { $unwind: "$materialDetails" },
+      { $unwind: { path: "$materialDetails", preserveNullAndEmptyArrays: true } },
       {
         $project: {
           clientId: 1,
           firstName: { $arrayElemAt: ["$clientDetails.firstName", 0] },
           lastName: { $arrayElemAt: ["$clientDetails.lastName", 0] },
           productName: "$productDetails.name",
-          materialName: "$materialDetails.name",
+          materialName: {
+            $cond: {
+              if: { $eq: ["$materialDetails", null] },
+              then: { $arrayElemAt: ["$productDetails.materials.name", 0] },
+              else: "$materialDetails.name",
+            },
+          },
           finalPrice: 1,
           refundDate: "$orderProductsActions.refundDate",
+          refundAmount: { $multiply: ["$finalPrice", "$orderProductsActions.refund"] },
         },
       },
       {
@@ -58,12 +76,12 @@ export const refund = async (year) => {
               lastName: "$lastName",
               productName: "$productName",
               materialName: "$materialName",
-              refundAmount: "$finalPrice",
+              refundAmount: "$refundAmount",
               refundDate: "$refundDate",
             },
           },
           totalRefundAmount: {
-            $sum: "$finalPrice",
+            $sum: "$refundAmount",
           },
         },
       },
@@ -77,15 +95,14 @@ export const refund = async (year) => {
       },
     ]);
 
-    // return { refundDetails: refundDetails[0] };
     const { refundDetails: refundDetailsData, totalRefundAmount } =
       refundDetails[0] || {};
-console.log("refundDetails :",refundDetails,"totalRefundAmount :",totalRefundAmount);
-    // Retourne les variables distinctement
+    console.log("refundDetails :", refundDetails, "totalRefundAmount :", totalRefundAmount);
+
     return {
       refundDetails: refundDetailsData || [],
       totalRefundAmount: totalRefundAmount || 0,
-      totalRefunds:refundDetailsData?.length||0
+      totalRefunds: refundDetailsData?.length || 0,
     };
   } catch (error) {
     console.log("Error folder statistic refund.js :", error);
