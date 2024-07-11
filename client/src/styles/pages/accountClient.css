@@ -79,6 +79,7 @@
 
 .user-info-account button.modified {
   background-color: var(--success);
+  color: whitesmoke;
 }
 
 .user-info-account input {

@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
 import { Patch, Post } from "../../../services/httpMethods";
-import useFormValidation from "./useFormValidation";
 
 const useCreateOrder = () => {
   const handleUnauthorized = useUnauthorizedRedirect();
   const customer = useSelector((state) => state?.customer?.data?.client);
   const advantages = useSelector((state) => state?.product?.advantages);
-  const { _id, shippingAddress, billingAddress } = customer || {};
-  const { formData } = useFormValidation();
-  const isRememberMe = formData?.rememberMe;
+  const { _id, shippingAddress, billingAddress, email } = customer || {};
+  const isRememberMe = useSelector((state) => state?.product?.isRememberMe);
+  const isBillingSameAddress = useSelector(
+    (state) => state?.product?.isBillingSameAddress
+  );
+  const witchBillingAddress = isBillingSameAddress
+    ? shippingAddress
+    : billingAddress;
 
   const handleCreateOrder = async () => {
     try {
@@ -18,7 +22,7 @@ const useCreateOrder = () => {
         isRememberMe,
         advantages,
         shippingAddress,
-        billingAddress,
+        billingAddress: witchBillingAddress,
       };
       const response = await Post(
         "orders",
@@ -33,8 +37,9 @@ const useCreateOrder = () => {
         isRememberMe,
         advantages,
         shippingAddress,
-        billingAddress,
+        billingAddress: witchBillingAddress,
         orderNumber,
+        email,
       };
       localStorage.setItem(
         "orderDataConfirm",

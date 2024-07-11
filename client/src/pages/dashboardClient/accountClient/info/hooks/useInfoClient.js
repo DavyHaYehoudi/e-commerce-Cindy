@@ -88,16 +88,8 @@ const useInfoClient = (
   const mapAddressFields = (address, nestedFieldName) => {
     if (!address) return [];
 
-    const {
-      firstName,
-      lastName,
-      street,
-      postalCode,
-      city,
-      country,
-      phone,
-      email,
-    } = address;
+    const { firstName, lastName, street, postalCode, city, phone, email } =
+      address;
 
     return [
       { label: "Prénom", name: "firstName", value: firstName, nestedFieldName },
@@ -110,7 +102,6 @@ const useInfoClient = (
         nestedFieldName,
       },
       { label: "Ville", name: "city", value: city, nestedFieldName },
-      { label: "Pays", name: "country", value: country, nestedFieldName },
       { label: "Téléphone", name: "phone", value: phone, nestedFieldName },
       { label: "Email", name: "email", value: email, nestedFieldName },
     ];

@@ -9,18 +9,16 @@ const PaymentFormDelivery = ({
   shippingAddress,
 }) => {
   const {
-    firstName="",
-    lastName="",
-    street="",
-    city="",
-    postalCode="",
-    country="",
-    apartment="",
-    email="",
-    phone="",
+    firstName = "",
+    lastName = "",
+    street = "",
+    city = "",
+    postalCode = "",
+    apartment = "",
+    email = "",
+    phone = "",
   } = shippingAddress || {};
-  const { handleShippingAndBilling, selectedValue, handleSelectChange } =
-    useFormValidation();
+  const { handleShippingAndBilling } = useFormValidation();
 
   const handleFocus = (e) => {
     clearValidationError(e.target.name);
@@ -32,24 +30,6 @@ const PaymentFormDelivery = ({
         <h2>Livraison</h2>
         <PiTruckThin className="icon" aria-hidden="true" />
       </div>
-      <select
-        id="country"
-        name="country"
-        placeholder="Pays/région"
-        value={selectedValue}
-        onChange={handleSelectChange}
-      >
-        <option defaultValue={country || selectedValue}>France</option>
-        <option value="belgium">Belgique</option>
-        <option value="switzerland">Suisse</option>
-        <option value="germany">Allemagne</option>
-        <option value="spain">Espagne</option>
-        <option value="italy">Italie</option>
-        <option value="united-kingdom">Royaume-Uni</option>
-        <option value="netherlands">Pays-Bas</option>
-        <option value="portugal">Portugal</option>
-        <option value="luxembourg">Luxembourg</option>
-      </select>
       <div className="name-input-container">
         <div className="address-input-container">
           <input

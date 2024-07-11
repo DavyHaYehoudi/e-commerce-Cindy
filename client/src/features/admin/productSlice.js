@@ -53,6 +53,7 @@ const productSlice = createSlice({
     },
     cartAmount: "",
     isBillingSameAddress: true,
+    isRememberMe: true,
     status: "idle",
     error: null,
   },
@@ -125,6 +126,9 @@ const productSlice = createSlice({
     },
     toggleCheckBilling: (state, action) => {
       state.isBillingSameAddress = !state.isBillingSameAddress;
+    },
+    toggleCheckRememberMe: (state, action) => {
+      state.isRememberMe = !state.isRememberMe;
     },
     updateAdvantages: (state, action) => {
       const {
@@ -235,5 +239,6 @@ export const {
   updateAdvantages,
   updateCartAmount,
   toggleCheckBilling,
+  toggleCheckRememberMe,
 } = productSlice.actions;
 export default productSlice.reducer;

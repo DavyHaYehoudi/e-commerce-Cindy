@@ -23,6 +23,7 @@ export const updateOrder = async (orderNumber) => {
 };
 export const createOrderPending = async (req) => {
   const { clientId, advantages, shippingAddress, billingAddress } = req.body;
+  console.log('req.body:', req.body)
   // Calculer le montant total de la commande
   const inTotalAmount = await orderService.calculateOrderAmount(
     clientId,
@@ -45,7 +46,7 @@ export const createOrderPending = async (req) => {
   const order = await Order.create(bodyCreateOrder);
   return order;
 };
-
+ 
 export const updateClient = async (
   clientId,
   orderId,

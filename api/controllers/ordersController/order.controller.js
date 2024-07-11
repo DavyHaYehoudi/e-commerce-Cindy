@@ -17,6 +17,7 @@ import {
   updateOrder,
   updateProductStock,
 } from "../../service/createOrderService.js";
+import { sendPaymentEmail } from "../../service/emailPayment.js";
 
 const orderController = {
   getAllOrders: async (req, res) => {
@@ -188,6 +189,7 @@ const orderController = {
         isRememberMe,
         shippingAddress,
         billingAddress,
+        email
       } = req.body;
       const order = await updateOrder(orderNumber);
       await updateGiftcard(advantages, clientId);
@@ -205,6 +207,7 @@ const orderController = {
         billingAddress,
         order?.inTotalAmount
       );
+      // sendPaymentEmail(email,orderNumber)
       res.status(200).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });

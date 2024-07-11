@@ -40,10 +40,6 @@ const clientSchema = new mongoose.Schema(
         type: String,
         maxlength: 100,
       },
-      country: {
-        type: String,
-        maxlength: 100,
-      },
       email: {
         type: String,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -82,10 +78,6 @@ const clientSchema = new mongoose.Schema(
         maxlength: 100,
       },
       postalCode: {
-        type: String,
-        maxlength: 100,
-      },
-      country: {
         type: String,
         maxlength: 100,
       },

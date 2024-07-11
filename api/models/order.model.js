@@ -47,11 +47,6 @@ const orderSchema = new mongoose.Schema(
         required: true,
         maxlength: 100,
       },
-      country: {
-        type: String,
-        required: true,
-        maxlength: 100,
-      },
     },
     billingAddress: {
       companyName: {
@@ -59,20 +54,18 @@ const orderSchema = new mongoose.Schema(
         maxlength: 100,
         default: "",
       },
-      firstName: { type: String, maxlength: 100, trim: true, required: true },
-      lastName: { type: String, maxlength: 100, trim: true, required: true },
+      firstName: { type: String, maxlength: 100, trim: true },
+      lastName: { type: String, maxlength: 100, trim: true },
       email: {
         type: String,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         lowercase: true,
         trim: true,
         default: null,
-        required: true,
       },
       phone: { type: String, maxlength: 100, default: null },
       street: {
         type: String,
-        required: true,
         maxlength: 100,
       },
       apartment: {
@@ -81,17 +74,10 @@ const orderSchema = new mongoose.Schema(
       },
       city: {
         type: String,
-        required: true,
         maxlength: 100,
       },
       postalCode: {
         type: String,
-        required: true,
-        maxlength: 100,
-      },
-      country: {
-        type: String,
-        required: true,
         maxlength: 100,
       },
     },
@@ -228,4 +214,4 @@ orderSchema.pre("save", async function (next) {
 });
 
 const Order = mongoose.model("Order", orderSchema);
-export default Order;
+export default Order; 

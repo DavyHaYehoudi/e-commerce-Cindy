@@ -99,7 +99,6 @@ const List = ({ orderHistory, filter }) => {
                       {order?.shippingAddress?.postalCode}{" "}
                       {order?.shippingAddress?.city}
                     </p>
-                    <p>{order?.shippingAddress?.country}</p>
                   </div>
                   <div>
                     <span className="dotted">Adresse de facturation</span> :
@@ -115,7 +114,6 @@ const List = ({ orderHistory, filter }) => {
                       {order?.billingAddress?.postalCode}{" "}
                       {order?.billingAddress?.city}
                     </p>
-                    <p>{order?.billingAddress?.country}</p>
                   </div>
                 </div>
               }

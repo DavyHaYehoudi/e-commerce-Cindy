@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShippingAndBillingAddresses } from "../../../features/accountClient/customerSlice";
-import { toggleCheckBilling } from "../../../features/admin/productSlice";
+import {
+  toggleCheckBilling,
+  toggleCheckRememberMe,
+} from "../../../features/admin/productSlice";
 
 const requiredFields = {
   delivery: [
@@ -16,33 +19,22 @@ const requiredFields = {
   billing: ["firstName", "lastName", "street", "postalCode", "city", "email"],
 };
 const useFormValidation = () => {
-  const [selectedValue, setSelectedValue] = useState("france");
-  const advantages = useSelector((state) => state?.product?.advantages);
   const dispatch = useDispatch();
   const { shippingAddress = {}, billingAddress = {} } =
     useSelector((state) => state?.customer?.data?.client) || {};
   const isBillingSameAddress = useSelector(
     (state) => state?.product?.isBillingSameAddress
   );
-  const [formData, setFormData] = useState({
-    card: {},
-    rememberMe: true,
-    advantages,
-  });
+  const isRememberMe = useSelector((state) => state?.product?.isRememberMe);
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});
   const handleShippingAndBilling = ({ e, property, field }) => {
     const { value } = e.target;
     dispatch(updateShippingAndBillingAddresses({ property, field, value }));
   };
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-  const handleCheckboxChange = (name) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: !prevData[name],
-    }));
+
+  const handleToggleRememberMe = (name) => {
+    dispatch(toggleCheckRememberMe());
   };
   const handleToggleBillingCheck = () => {
     dispatch(toggleCheckBilling());
@@ -106,16 +98,14 @@ const useFormValidation = () => {
   ]);
 
   return {
-    formData,
+    isRememberMe,
     shippingAddress,
     billingAddress,
     validationErrors,
     validFields,
     handleShippingAndBilling,
-    handleCheckboxChange,
+    handleToggleRememberMe,
     clearValidationError,
-    selectedValue,
-    handleSelectChange,
     handleToggleBillingCheck,
     isBillingSameAddress,
   };

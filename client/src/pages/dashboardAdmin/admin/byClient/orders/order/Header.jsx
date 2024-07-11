@@ -13,19 +13,17 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
     street: streetShipping,
     postalCode: postalCodeShipping,
     city: cityShipping,
-    country: countryShipping,
   } = order?.shippingAddress || {};
 
   const {
-    companyName:companyNameBilling,
-    firstName:firstNameBilling,
-    lastName:lastNameBilling,
-    email:emailBilling,
-    street:streetBilling,
-    postalCode:postalCodeBilling,
-    city:cityBilling,
-    country:countryBilling,
-    phone:phoneBilling
+    companyName: companyNameBilling,
+    firstName: firstNameBilling,
+    lastName: lastNameBilling,
+    email: emailBilling,
+    street: streetBilling,
+    postalCode: postalCodeBilling,
+    city: cityBilling,
+    phone: phoneBilling,
   } = order?.billingAddress || {};
 
   return (
@@ -40,15 +38,13 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
             {order?.createdAt ? formatDate(order?.createdAt) : "Date NC"}
           </p>
           <p>
-                  <span className="dotted">№ de commande</span> :{" "}
-                  {order?.statusPayment === "paid" ? (
-                    order?.orderNumber
-                  ) : (
-                    <span style={{ color: "var(--danger)" }}>
-                      ECHEC DE PAYMENT
-                    </span>
-                  )}{" "}
-                </p>
+            <span className="dotted">№ de commande</span> :{" "}
+            {order?.statusPayment === "paid" ? (
+              order?.orderNumber
+            ) : (
+              <span style={{ color: "var(--danger)" }}>ECHEC DE PAYMENT</span>
+            )}{" "}
+          </p>
           <ToggleButton
             initialText="Détails"
             hiddenText="Fermer"
@@ -67,7 +63,6 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
                   <p>
                     {postalCodeShipping} {cityShipping}
                   </p>
-                  <p>{countryShipping}</p>
                 </div>
                 <div>
                   <span className="dotted">Adresse de facturation</span> :
@@ -81,7 +76,6 @@ const Header = ({ order, handleSendToClient, step, lastSentDateToClient }) => {
                   <p>
                     {postalCodeBilling} {cityBilling}
                   </p>
-                  <p>{countryBilling}</p>
                 </div>
               </div>
             }

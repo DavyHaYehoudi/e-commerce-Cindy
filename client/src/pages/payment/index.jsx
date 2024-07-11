@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentCheckout = () => {
-  const cartAmount = useSelector((state) => state?.product?.cartAmount)||0;
+  const cartAmount = useSelector((state) => state?.product?.cartAmount) || 0;
   const clientSecret = usePaymentClientSecret();
   const appearance = {
     theme: "stripe",
