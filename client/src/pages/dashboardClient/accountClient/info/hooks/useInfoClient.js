@@ -152,8 +152,10 @@ const useInfoClient = (
     billingFields,
     handleInputChange,
     errorMessages,
+    setErrorMessages,
     hasErrors,
     handleSaveChanges,
+    avatarStore,
   };
 };
 

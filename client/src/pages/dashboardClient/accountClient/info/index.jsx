@@ -38,6 +38,7 @@ const InfoClient = ({
     errorMessages,
     hasErrors,
     handleSaveChanges,
+    avatarStore,
   } = useInfoClient(
     dataClient,
     setIsModified,
@@ -79,7 +80,7 @@ const InfoClient = ({
       {isEditing ? (
         <button
           className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
-          disabled={hasErrors}
+          disabled={hasErrors || !avatarStore}
           onClick={handleSaveChanges}
         >
           Enregistrer les modifications

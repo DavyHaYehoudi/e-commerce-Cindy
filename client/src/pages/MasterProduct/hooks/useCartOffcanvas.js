@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 import useUnauthorizedRedirect from "../../../services/errors/useUnauthorizedRedirect";
 import {
+  resetAdvantages,
   showCartAccess,
   showWishlistAccess,
 } from "../../../features/admin/productSlice";
@@ -27,6 +28,7 @@ const useCartOffcanvas = () => {
   };
 
   const handleClearCart = async () => {
+    dispatch(resetAdvantages())
     if (clientId) {
       let cart = [];
       const formatData = { cart };

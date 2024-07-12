@@ -47,7 +47,7 @@ const checkAdvantages = async (advantages) => {
     }
   }
 
-  console.log("advantagesResult:", advantagesResult);
+  // console.log("advantagesResult:", advantagesResult);
   return advantagesResult;
 };
 

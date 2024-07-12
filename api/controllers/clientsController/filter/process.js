@@ -15,7 +15,8 @@ const process = async (
   trackingNumber,
   preciseDate,
   rangeDateStart,
-  rangeDateEnd
+  rangeDateEnd,
+  orderNumber
 ) => {
   let clients = new Set();
   const queryInClient = buildClientQuery(name, note);
@@ -24,7 +25,8 @@ const process = async (
     steps,
     preciseDate,
     rangeDateStart,
-    rangeDateEnd
+    rangeDateEnd,
+    orderNumber
   );
   const queryInOrderProducts = buildOrderProductsQuery(
     credit,

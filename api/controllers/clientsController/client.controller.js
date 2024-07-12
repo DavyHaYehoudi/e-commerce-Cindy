@@ -20,7 +20,7 @@ const clientController = {
         orderId: { $in: orderIds },
       }).select("-orderProductsActions.note");
       const giftcard = await Giftcard.find({ buyerId: clientId });
-      const credit = await Credit.find({ clientId, isArchived: false });
+      const credit = await Credit.find({ clientId });
       res.json({
         client,
         orders,
@@ -110,7 +110,6 @@ const clientController = {
       res.status(500).json({ error: error.message });
     }
   },
-}; 
+};
 
-export default clientController; 
- 
+export default clientController;

@@ -18,6 +18,7 @@ const fetchClients = createAsyncThunk(
       preciseDate = "",
       rangeDateStart = "",
       rangeDateEnd = "",
+      orderNumber = "",
       handleUnauthorized,
     },
     { dispatch }
@@ -35,6 +36,7 @@ const fetchClients = createAsyncThunk(
         preciseDate,
         rangeDateStart,
         rangeDateEnd,
+        orderNumber,
       }).toString();
 
       const { clients, totalClientsCount } = await Get(
@@ -73,9 +75,7 @@ const clientsSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchClients.pending, (state) => {

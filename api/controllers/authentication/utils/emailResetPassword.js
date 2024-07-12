@@ -9,6 +9,11 @@ const sendPasswordResetEmail = async (client, resetToken) => {
       user: process.env.EMAIL_USERNAME_RESET_PASSWORD,
       pass: process.env.EMAIL_PASSWORD_RESET_PASSWORD,
     },
+    connectionTimeout: 10000,
+    socketTimeout: 15000,
+    pool: true,
+    debug: true, 
+    logger: true  
   });
 
   const mailOptions = {

@@ -1,7 +1,8 @@
 /* ********************* START PAGE STATISTICS ********************* */
-.select-date{
+.select-date {
   margin: 50px;
 }
+
 .tab-bar {
   display: flex;
   flex-direction: column;
@@ -64,7 +65,7 @@
 
 .tab-tables-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -88,27 +89,27 @@
 .content-table .center {
   text-align: center;
 }
-.content-table .name{
-  max-width: 250px;
-}
 
 /* ********************* END TAB ANALYTICS ********************* */
 /* ********************* START TAB BALANCE ********************* */
-.balance-stats .balance-content{
+.balance-stats .balance-content {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 50px;
 }
-.balance-stats h2{
-text-align: center;
-margin: 50px;
+
+.balance-stats h2 {
+  text-align: center;
+  margin: 50px;
 }
-.balance-stats .block{
+
+.balance-stats .block {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 /* ********************* END TAB BALANCE ********************* */
 /* ********************* START TAB IMAGES ********************* */
 .statistics .progress-bar-container {
@@ -119,28 +120,96 @@ margin: 50px;
   margin-top: 10px;
 }
 
-.statistics  .progress-bar {
+.statistics .progress-bar {
   height: 100%;
   background-color: var(--success);
   border-radius: 10px;
 }
+
 /* ********************* END TAB IMAGES ********************* */
 
+/* ********************* TABLE ********************* */
+
+.statistics .tab-stats-content p {
+  margin: 10px 0;
+}
+
+.statistics .content-table {
+  margin-bottom: 20px;
+  /* overflow-x: auto; */
+}
+
+.statistics .content-table h3 {
+  margin-bottom: 10px;
+}
+
+.statistics table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.statistics th,
+.statistics td {
+  border: 1px solid #ddd;
+}
+
+.statistics td.center {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .statistics table {
+    display: block;
+  }
+
+  .statistics thead {
+    display: none;
+  }
+
+  .statistics tbody {
+    display: inherit;
+  }
+
+  .statistics tbody tr {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .statistics tbody tr td {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+  }
+
+  .statistics tbody tr td::before {
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: left;
+    font-weight: bold;
+  }
+
+}
+
+/* ********************* MEDIAS QUERIES ********************* */
 @media (max-width: 1200px) {
   h1 {
-      text-align: center;
+    text-align: center;
   }
 }
+
 @media (max-width: 576px) {
   .tab-bar-tabs {
     gap: 15px;
   }
+
   .tab-bar-tabs>* {
     width: 100%;
+    margin: 5px;
+  }
 
+  .content-table {
+    margin: 0;
   }
-  .tab {
-margin: 0;
-  }
-  
+
 }

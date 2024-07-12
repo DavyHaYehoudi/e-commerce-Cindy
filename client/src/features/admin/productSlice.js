@@ -154,6 +154,13 @@ const productSlice = createSlice({
         },
       };
     },
+    resetAdvantages:(state,action)=>{
+      state.advantages = {...state.advantages,
+        codePromo: { isValid: false, percentage: "", code: "" },
+        giftcard: { isValid: false, amount: "", code: "" },
+        credit: { isValid: false, creditId: "", amount: "" },
+      }
+    },
     updateCartAmount: (state, action) => {
       state.cartAmount = action.payload;
     },
@@ -237,6 +244,7 @@ export const {
   showWishlistAccess,
   checkItemsFilter,
   updateAdvantages,
+  resetAdvantages,
   updateCartAmount,
   toggleCheckBilling,
   toggleCheckRememberMe,

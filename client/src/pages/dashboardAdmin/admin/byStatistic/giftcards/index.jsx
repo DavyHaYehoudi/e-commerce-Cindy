@@ -60,8 +60,8 @@ const Giftcard = ({ data }) => {
           )}
         </p>
       </div>
-      <div className="tab-tables-container ">
-        <div className="content-table ">
+      <div className="tab-tables-container">
+        <div className="content-table">
           <h3 className="underline">Cartes cadeaux en cours</h3>
           {validGiftcardsDetails && validGiftcardsDetails.length > 0 ? (
             <table>
@@ -76,12 +76,12 @@ const Giftcard = ({ data }) => {
               <tbody>
                 {validGiftcardsDetails?.map((giftcard, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {giftcard?.firstName} {giftcard?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {giftcard?.firstName} {giftcard?.lastName}
                     </td>
-                    <td>{formatDate(giftcard?.createdAt)}</td>
-                    <td className="center">{giftcard?.amount}</td>
+                    <td data-label="Date d'achat">{formatDate(giftcard?.createdAt)}</td>
+                    <td data-label="Montant (€)" className="center">{giftcard?.amount}</td>
                   </tr>
                 ))}
               </tbody>
@@ -90,7 +90,7 @@ const Giftcard = ({ data }) => {
             <p>Aucune carte-cadeau achetée actuellement.</p>
           )}
         </div>
-        <div className="content-table ">
+        <div className="content-table">
           <h3 className="underline">Cartes cadeaux utilisées</h3>
           {usedGiftcardsDetails && usedGiftcardsDetails.length > 0 ? (
             <table>
@@ -105,12 +105,12 @@ const Giftcard = ({ data }) => {
               <tbody>
                 {usedGiftcardsDetails?.map((giftcard, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {giftcard?.firstName} {giftcard?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {giftcard?.firstName} {giftcard?.lastName}
                     </td>
-                    <td>{formatDate(giftcard?.updatedAt)}</td>
-                    <td className="center">{giftcard?.amount}</td>
+                    <td data-label="Date d'utilisation">{formatDate(giftcard?.updatedAt)}</td>
+                    <td data-label="Montant (€)" className="center">{giftcard?.amount}</td>
                   </tr>
                 ))}
               </tbody>

@@ -207,12 +207,12 @@ const orderController = {
         billingAddress,
         order?.inTotalAmount
       );
-      // sendPaymentEmail(email,orderNumber)
+      await sendPaymentEmail(email,orderNumber)
       res.status(200).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
+  }
 };
 
 export default orderController;

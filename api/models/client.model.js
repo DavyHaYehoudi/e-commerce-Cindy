@@ -20,7 +20,7 @@ const clientSchema = new mongoose.Schema(
       required: true,
     },
     phone: { type: String, default: "", maxlength: 100 },
-    avatar: { type: String, default: "avatars/default-avatar.svg" },
+    avatar: { type: String, default: "avatars/default-avatar.png" },
     shippingAddress: {
       firstName: { type: String, maxlength: 100, trim: true },
       lastName: { type: String, maxlength: 100, trim: true },

@@ -42,14 +42,21 @@ const ShoppingCart = () => {
         )}
       </div>
       {isCartContent && clientId && (
-        <button
-          className="btn payment-button"
-          type="button"
-          onClick={handlePaymentProcess}
-          disabled={!isCartContent}
-        >
-          Procéder au paiement de : {formatPrice(cartAmount)}
-        </button>
+        <>
+          <button
+            className="btn payment-button"
+            type="button"
+            onClick={handlePaymentProcess}
+            disabled={cartAmount < 1}
+          >
+            Procéder au paiement de : {formatPrice(cartAmount)}
+          </button>
+          {cartAmount < 1 && (
+            <p className="error-message" style={{ textAlign: "center" }}>
+              Montant insuffisant
+            </p>
+          )}
+        </>
       )}
       <ToastContainer autoClose={10000} />
     </div>

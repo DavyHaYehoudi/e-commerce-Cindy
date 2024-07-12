@@ -12,8 +12,8 @@ const Exchange = ({ data }) => {
       <div className="tab-stats-content">
         <p>Nombre total d'échanges effectués : {totalExchanges}</p>
       </div>
-      <div className="tab-tables-container ">
-        <div className="content-table ">
+      <div className="tab-tables-container">
+        <div className="content-table">
           <h3 className="underline">Echanges effectués</h3>
           {exchangeDetails && exchangeDetails.length > 0 ? (
             <table>
@@ -30,14 +30,14 @@ const Exchange = ({ data }) => {
               <tbody>
                 {exchangeDetails?.map((exchange, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {exchange?.firstName} {exchange?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {exchange?.firstName} {exchange?.lastName}
                     </td>
-                    <td>{exchange?.productName}</td>
-                    <td>{exchange?.materialName}</td>
-                    <td>{formatDate(exchange?.exchangeDate)}</td>
-                    <td className="center">{exchange?.exchangedQuantity}</td>
+                    <td data-label="Produit">{exchange?.productName}</td>
+                    <td data-label="Matériau">{exchange?.materialName}</td>
+                    <td data-label="Date d'échange">{formatDate(exchange?.exchangeDate)}</td>
+                    <td data-label="Quantité" className="center">{exchange?.exchangedQuantity}</td>
                   </tr>
                 ))}
               </tbody>

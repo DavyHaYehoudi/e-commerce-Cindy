@@ -3,9 +3,10 @@ export const buildOrderQuery = (
   steps,
   preciseDate,
   rangeDateStart,
-  rangeDateEnd
+  rangeDateEnd,
+  orderNumber
 ) => {
-//   console.log("buildOrderQuery:");
+  //   console.log("buildOrderQuery:");
   const conditions = [];
 
   // Ajouter les critères à la liste en fonction de leur existence
@@ -44,12 +45,19 @@ export const buildOrderQuery = (
     });
   }
 
+  // Cas où un numéro de commande est fourni
+  if (orderNumber.trim() !== "") {
+    conditions.push({
+      orderNumber,
+    });
+  }
+
   // Combiner les conditions avec un "ou"
   const query = conditions.length > 0 ? { $or: conditions } : {};
 
-//   console.log(
-//     "*************** query dans buildOrderQuery *************:",
-//     query
-//   );
+  //   console.log(
+  //     "*************** query dans buildOrderQuery *************:",
+  //     query
+  //   );
   return query;
 };
