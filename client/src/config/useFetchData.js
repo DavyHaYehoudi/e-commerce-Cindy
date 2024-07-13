@@ -11,6 +11,7 @@ import {
   addToken,
 } from "../features/authentication/authenticationSlice";
 import { initCart, initWishlist } from "../features/visitUser/visitUserSlice";
+import { fetchProductsFixed } from "../features/admin/productsFixedSlice";
 
 const useFetchData = ({ role, clientId }) => {
   // console.log("clientId:", clientId);
@@ -19,6 +20,7 @@ const useFetchData = ({ role, clientId }) => {
 
   const fetchSliceVisit = useCallback(() => {
     dispatch(fetchProduct());
+    dispatch(fetchProductsFixed())
     dispatch(fetchMaterials());
     dispatch(fetchCollections());
     dispatch(fetchTags());
@@ -28,6 +30,7 @@ const useFetchData = ({ role, clientId }) => {
   const fetchSliceCustomer = useCallback(() => {
     dispatch(fetchCustomer({ clientId }));
     dispatch(fetchProduct());
+    dispatch(fetchProductsFixed())
     dispatch(fetchMaterials());
     dispatch(fetchCollections());
     dispatch(fetchTags());

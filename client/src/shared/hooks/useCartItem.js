@@ -6,13 +6,13 @@ import { getProductProperties } from "../../selectors/product";
 import { formatPrice } from "../../helpers/utils/prices";
 
 const useCartItem = (product) => {
-  const productStore = useSelector((state) => state?.product?.data);
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
 
   const { productsId, material } = product || {};
-  const productInStore = productStore.find(
+  const productInStore = productsStoreFixed.find(
     (product) => product?._id === productsId
   );
   let imagePath;
@@ -32,7 +32,7 @@ const useCartItem = (product) => {
 
   const itemName = getProductProperties(
     productsId,
-    productStore,
+    productsStoreFixed,
     collectionStore,
     categoryStore,
     tagStore,
@@ -41,7 +41,7 @@ const useCartItem = (product) => {
 
   const productInfo = getProductProperties(
     productsId,
-    productStore,
+    productsStoreFixed,
     collectionStore,
     categoryStore,
     tagStore,

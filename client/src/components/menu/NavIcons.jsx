@@ -11,7 +11,7 @@ import { showWishlistAccess } from "../../features/admin/productSlice";
 
 const NavIcons = ({ toggleModalMenuSmart }) => {
   const { token, role, imageUrl, logout } = useNavIcons();
-  const { numberArticleInCart, numberArticleInWihslist } = useStoreInfo({
+  const { numberArticleInCart, numberArticleInWishlist } = useStoreInfo({
     productsId: "",
     material: "",
   });
@@ -63,7 +63,7 @@ const NavIcons = ({ toggleModalMenuSmart }) => {
           <button onClick={handleOpenWishlistModal} aria-label="Mes favoris">
             <AiOutlineHeart className="navlink-icon heart" aria-hidden="true" />
           </button>
-          <span id="numberWishlist">{numberArticleInWihslist} </span>
+          <span id="numberWishlist">{numberArticleInWishlist} </span>
         </li>
         <li id="iconCart" className="info-tooltip" aria-label="Panier">
           <NavLink

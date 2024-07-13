@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const useWishlistProductContent = (product) => {
-  const productStore = useSelector((state) => state?.product?.data);
+  const productStore = useSelector((state) => state?.productsFixed?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);

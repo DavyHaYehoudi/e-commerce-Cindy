@@ -12,9 +12,9 @@ const findIsLiked = (wishlistStore, productId, materialId) => {
     }
   });
 };
-const filterStore = ({ store = [], productsStore }) => {
+const filterStore = ({ store = [], productsStoreFixed }) => {
   return store.filter((item) =>
-    productsStore.some(
+    productsStoreFixed.some(
       (ps) =>
         ps._id === item?.productsId &&
         !ps?.isArchived &&
@@ -51,15 +51,15 @@ const stockProduct = (store = [], productId, materialId) => {
   }
   return material.stock;
 };
-const calculateTotalCartPrice = (cartStore = [], productsStore = []) => {
+const calculateTotalCartPrice = (cartStore = [], productsStoreFixed = []) => {
   return cartStore.reduce((total, cartItem) => {
-    const product = productsStore.find(
+    const product = productsStoreFixed.find(
       (product) => product?._id === cartItem?.productsId
     );
     if (product) {
       const material = product?.materials?.find((mat) => {
         if (mat?._id) {
-          return mat?._id === cartItem?.material;
+          return mat?._id === cartItem?.material; 
         }
         return product?.materials?.[0];
       });
@@ -81,26 +81,26 @@ const useStoreInfo = ({ productsId, material }) => {
   const { clientId: getClientId, role: getRole } = useAuthWrappers();
   const clientId = getClientId();
   const role = getRole();
-  const productsStore = useSelector((state) => state?.product?.data);
+  const productsStoreFixed = useSelector(state=>state?.productsFixed?.data)
 
   const cartStoreClient =
     useSelector((state) => state?.customer?.data?.client?.cart) || [];
   const cartStoreClientFilter = filterStore({
     store: cartStoreClient,
-    productsStore,
+    productsStoreFixed,
   });
   const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart) || [];
   const cartStoreVisitorFilter =
     filterStore({
       store: cartStoreVisitor,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const wishlistClient =
     useSelector((state) => state?.customer?.data?.client?.wishlist) || [];
   const wishlistClientFilter =
     filterStore({
       store: wishlistClient,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const wishlistVisitor = useSelector(
     (state) => state?.visitUser?.wishlist || []
@@ -108,7 +108,7 @@ const useStoreInfo = ({ productsId, material }) => {
   const wishlistVisitorFilter =
     filterStore({
       store: wishlistVisitor,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const quantityProductClient = quantityProduct(
     cartStoreClientFilter,
@@ -131,9 +131,9 @@ const useStoreInfo = ({ productsId, material }) => {
       product.productsId === productsId && product?.material === material
   );
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
-  const cartTotalAmount = calculateTotalCartPrice(cartStore, productsStore);
-  const numberArticleInWihslist = wishlist.length;
-  const stockMaxProduct = stockProduct(productsStore, productsId, material);
+  const cartTotalAmount = calculateTotalCartPrice(cartStore, productsStoreFixed);
+  const numberArticleInWishlist = wishlist.length;
+  const stockMaxProduct = stockProduct(productsStoreFixed, productsId, material);
 
   return {
     clientId,
@@ -146,7 +146,7 @@ const useStoreInfo = ({ productsId, material }) => {
     quantity,
     numberArticleInCart,
     cartTotalAmount,
-    numberArticleInWihslist,
+    numberArticleInWishlist,
     stockMaxProduct,
   };
 };

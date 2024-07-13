@@ -6,6 +6,7 @@ import { fetchMaterials } from "../features/admin/materialSlice";
 import { fetchCollections } from "../features/admin/collectionSlice";
 import { fetchTags } from "../features/admin/tagSlice";
 import { fetchCategories } from "../features/admin/categorySlice";
+import { fetchProductsFixed } from "../features/admin/productsFixedSlice";
 import useUnauthorizedRedirect from "../services/errors/useUnauthorizedRedirect";
 
 const useFetchSliceCustomer = (clientId) => {
@@ -15,6 +16,7 @@ const useFetchSliceCustomer = (clientId) => {
   const fetchSliceCustomer = useCallback(() => {
     if (clientId) {
       dispatch(fetchProduct());
+      dispatch(fetchProductsFixed())
       dispatch(fetchMaterials());
       dispatch(fetchCollections());
       dispatch(fetchTags());
