@@ -25,7 +25,9 @@ const AddingBlock = ({
         autoFocus
         value={newCollectionName}
         onChange={(e) => setNewCollectionName(e.target.value)}
-        onKeyDown={handleKeyPress}
+        onKeyDown={(e) =>
+          handleKeyPress({ event: e, mainImageCreate, setMainImageCreate })
+        }
       />
       <div className="main_image-select">
         <MainImage

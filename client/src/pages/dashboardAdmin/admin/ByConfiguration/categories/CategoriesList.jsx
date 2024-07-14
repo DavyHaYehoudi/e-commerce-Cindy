@@ -6,24 +6,26 @@ const CategoriesList = ({ categoriesStore, collectionsStore, ...props }) => {
   const filteredCategories = categoriesStore?.filter(
     (category) =>
       // Vérifier si aucune collection avec cet _id n'est archivée dans collectionsStore
-    !category.parentCollection.some((collectionId) =>
-      collectionsStore.some(
-        (collection) =>
-          collection._id === collectionId && collection.isArchived
+      !category.parentCollection.some((collectionId) =>
+        collectionsStore.some(
+          (collection) =>
+            collection?._id === collectionId && collection?.isArchived
+        )
       )
-    )
   );
 
   return (
     <ul>
-      {filteredCategories?.filter((category) => !category?.isArchived).map((category) => (
-        <CategoryItem
-          key={category?._id}
-          category={category}
-          collectionsStore={collectionsStore}
-          {...props}
-        />
-      ))}
+      {filteredCategories
+        ?.filter((category) => !category?.isArchived)
+        .map((category) => (
+          <CategoryItem
+            key={category?._id}
+            category={category}
+            collectionsStore={collectionsStore}
+            {...props}
+          />
+        ))}
     </ul>
   );
 };

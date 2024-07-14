@@ -91,9 +91,9 @@ const useCollections = () => {
       }
     }
   };
-  const handleKeyPress = (event) => {
+  const handleKeyPress = ({ event, mainImageCreate, setMainImageCreate }) => {
     if (event.key === "Enter") {
-      handleAddCollection();
+      handleAddCollection({ mainImageCreate, setMainImageCreate });
     }
   };
   const handleDeleteCollection = (collectionId) => {
@@ -193,9 +193,20 @@ const useCollections = () => {
       setEditedCollectionName("");
     }
   };
-  const handleKeyPressEdit = (event, collectionId) => {
+  const handleKeyPressEdit = ({
+    event,
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
     if (event.key === "Enter") {
-      handleEditCollection(collectionId);
+      handleEditCollection({
+        addIllustrationToStorage,
+        removeIllustrationToStorage,
+        setAddIllustrationToStorage,
+        setRemoveIllustrationToStorage,
+      });
     }
   };
 

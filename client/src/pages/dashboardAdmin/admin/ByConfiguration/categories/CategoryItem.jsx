@@ -46,7 +46,15 @@ const CategoryItem = ({
                 autoFocus
                 value={editedCategoryName}
                 onChange={(e) => setEditedCategoryName(e.target.value)}
-                onKeyDown={handleKeyPressEdit}
+                onKeyDown={(e) =>
+                  handleKeyPressEdit({
+                    event: e,
+                    addIllustrationToStorage,
+                    removeIllustrationToStorage,
+                    setAddIllustrationToStorage,
+                    setRemoveIllustrationToStorage,
+                  })
+                }
               />
               <div className="content-block-main_image">
                 <MainImageEdit
@@ -83,7 +91,15 @@ const CategoryItem = ({
                                 : [...prevState, checkedCollectionId]
                             );
                           }}
-                          onKeyDown={handleKeyPressEdit}
+                          onKeyDown={(e) =>
+                            handleKeyPressEdit({
+                              event: e,
+                              addIllustrationToStorage,
+                              removeIllustrationToStorage,
+                              setAddIllustrationToStorage,
+                              setRemoveIllustrationToStorage,
+                            })
+                          }
                         />
                         {collection?.name}
                       </label>

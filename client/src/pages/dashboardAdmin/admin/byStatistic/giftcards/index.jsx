@@ -87,7 +87,7 @@ const Giftcard = ({ data }) => {
               </tbody>
             </table>
           ) : (
-            <p>Aucune carte-cadeau achetée actuellement.</p>
+            <p>Aucune carte cadeau achetée actuellement.</p>
           )}
         </div>
         <div className="content-table">
@@ -116,7 +116,7 @@ const Giftcard = ({ data }) => {
               </tbody>
             </table>
           ) : (
-            <p>Aucune carte-cadeau utilisée actuellement.</p>
+            <p>Aucune carte cadeau utilisée actuellement.</p>
           )}
         </div>
       </div>

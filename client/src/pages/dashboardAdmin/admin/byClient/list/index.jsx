@@ -9,14 +9,16 @@ const List = ({ handleClientClick, clientDetails }) => {
     <div className="client-list">
       <h2>Liste des clients</h2>
       <ul>
-        {clientsStore?.map((client) => (
-          <Item
-            key={client._id}
-            client={client}
-            handleClientClick={handleClientClick}
-            clientDetails={clientDetails}
-          />
-        ))}
+        {clientsStore &&
+          clientsStore.length > 0 &&
+          clientsStore.map((client) => (
+            <Item
+              key={client._id}
+              client={client}
+              handleClientClick={handleClientClick}
+              clientDetails={clientDetails}
+            />
+          ))}
       </ul>
     </div>
   );

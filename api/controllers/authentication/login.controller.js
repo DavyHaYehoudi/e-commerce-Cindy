@@ -20,9 +20,9 @@ const login = async (req, res) => {
     }
     const isMatch = await client.comparePassword(password);
 
-    // if (!isMatch) {
-    //   return res.status(404).json({ message: "Identifiants non valides" });
-    // }
+    if (!isMatch) {
+      return res.status(404).json({ message: "Identifiants non valides" });
+    }
     const isAdmin = client.role === "admin";
     const token = generateJWTToken(client, isAdmin);
 

@@ -82,11 +82,11 @@ const useCategoriesIndex = () => {
       }
     }
   };
-  const handleKeyPress = (event) => {
+  const handleKeyPress = ({ event, mainImageCreate, setMainImageCreate }) => {
     if (event.key === "Enter") {
-      handleAddCategory();
+      handleAddCategory({ mainImageCreate, setMainImageCreate });
     }
-  };
+  }; 
   const handleDeleteCategory = (categoryId) => {
     dispatch(categoryToRemove(categoryId));
     const productsLinkedToCategoriesSearch = productsStore.filter(
@@ -204,9 +204,20 @@ const useCategoriesIndex = () => {
       resetState();
     }
   };
-  const handleKeyPressEdit = (event) => {
+  const handleKeyPressEdit = ({
+    event,
+    addIllustrationToStorage,
+    removeIllustrationToStorage,
+    setAddIllustrationToStorage,
+    setRemoveIllustrationToStorage,
+  }) => {
     if (event.key === "Enter") {
-      handleEditCategory();
+      handleEditCategory({
+        addIllustrationToStorage,
+        removeIllustrationToStorage,
+        setAddIllustrationToStorage,
+        setRemoveIllustrationToStorage,
+      });
     }
   };
 

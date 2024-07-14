@@ -1831,7 +1831,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: La carte-cadeau n'existe pas.
+                    example: La carte cadeau n'existe pas.
       security:
         - api_key: []
   /giftcards/verify-code:

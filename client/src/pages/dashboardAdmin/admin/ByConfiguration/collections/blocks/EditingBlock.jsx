@@ -27,7 +27,15 @@ const EditingBlock = ({
           value={editedCollectionName}
           autoFocus
           onChange={(e) => setEditedCollectionName(e.target.value)}
-          onKeyDown={(e) => handleKeyPressEdit(e, collection?._id)}
+          onKeyDown={(e) =>
+            handleKeyPressEdit({
+              event: e,
+              addIllustrationToStorage,
+              removeIllustrationToStorage,
+              setAddIllustrationToStorage,
+              setRemoveIllustrationToStorage,
+            })
+          }
         />
       </div>
       <div className="switch-collection-btn">
