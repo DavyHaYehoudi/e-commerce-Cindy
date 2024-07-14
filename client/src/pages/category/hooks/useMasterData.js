@@ -5,8 +5,8 @@ const useMasterData = () => {
   const { categoryId } = useParams();
 
   const categoriesStore = useSelector((state) => state?.category?.data);
-  const productsStore = useSelector((state) => state?.product?.data);
-  const productsLinkedToCategory = productsStore.filter(
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
+  const productsLinkedToCategory = productsStoreFixed.filter(
     (product) =>
       !product?.isArchived &&
       product.isActive &&

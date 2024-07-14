@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 const useMasterData = () => {
   const { collectionId } = useParams();
-
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
   const collectionsStore = useSelector((state) => state?.collection?.data);
   const collectionName = collectionsStore.find(
     (collection) => collection._id === collectionId
@@ -15,8 +15,7 @@ const useMasterData = () => {
       category?.parentCollection.includes(collectionId) && !category?.isArchived
   );
 
-  const productsStore = useSelector((state) => state?.product?.data);
-  const productsLinkedToCollectionAndCategory = productsStore.filter(
+  const productsLinkedToCollectionAndCategory = productsStoreFixed.filter(
     (product) =>
       product._collection === collectionId &&
       product.isActive &&
@@ -33,9 +32,9 @@ const useMasterData = () => {
     },
     0
   );
-  const imageCollection = collectionsStore.find(
-    (collection) => collection._id === collectionId
-  )?.main_image||"";
+  const imageCollection =
+    collectionsStore.find((collection) => collection._id === collectionId)
+      ?.main_image || "";
 
   return {
     collectionName,
