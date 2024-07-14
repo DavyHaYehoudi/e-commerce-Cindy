@@ -127,13 +127,16 @@ const Modal = ({
         </div>
       ) : (
         <div className="product-modal-content">
-          {currentAction === "edit" ? (
+          {isEditAction ? (
             <h2>Modification du produit</h2>
           ) : (
             <h2>Création d'un produit</h2>
           )}
+          {
+            isEditAction&&
+
           <div className="switch-product-btn">
-            {isActive ? (
+            {isActive  ? (
               <p className="status product-active">
                 <span>PRODUIT PUBLIE</span>
                 <FaCheckCircle />
@@ -144,8 +147,13 @@ const Modal = ({
                 <FaPauseCircle />
               </p>
             )}
-            <Switch checked={isProductActive} onChange={handleSwitchChange} />
+            <Switch
+              checked={isProductActive}
+              onChange={handleSwitchChange}
+            />
           </div>
+            
+          }
           <span
             className="product-modal-close"
             onClick={() => handleCloseModal(true)}

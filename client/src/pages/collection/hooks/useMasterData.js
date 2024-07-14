@@ -32,9 +32,6 @@ const useMasterData = () => {
     },
     0
   );
-  const imageCollection =
-    collectionsStore.find((collection) => collection._id === collectionId)
-      ?.main_image || "";
 
   return {
     collectionName,
@@ -42,7 +39,6 @@ const useMasterData = () => {
     productsLinkedToCollectionAndCategory,
     productsNumber: totalMaterialsCount,
     collectionId,
-    imageCollection,
   };
 };
 

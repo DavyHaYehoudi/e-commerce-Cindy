@@ -10,6 +10,7 @@ const useCartItem = (product) => {
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
+  const materialsStore = useSelector((state) => state?.material?.data);
 
   const { productsId, material } = product || {};
   const productInStore = productsStoreFixed.find(
@@ -38,6 +39,9 @@ const useCartItem = (product) => {
     tagStore,
     material
   ).name;
+  const itemMaterialName = materialsStore.find(
+    (mat) => mat?._id === material
+  )?.name;
 
   const productInfo = getProductProperties(
     productsId,
@@ -59,6 +63,7 @@ const useCartItem = (product) => {
   return {
     imageUrl,
     itemName,
+    itemMaterialName,
     quantity,
     price,
     itemSubtotal,

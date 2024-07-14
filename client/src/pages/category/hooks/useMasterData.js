@@ -21,9 +21,6 @@ const useMasterData = () => {
     },
     0
   );
-  const imageCategory =
-    categoriesStore.find((category) => category._id === categoryId)
-      ?.main_image || "";
   const categoryName =
     categoriesStore.find((category) => category._id === categoryId)?.name || "";
 
@@ -31,7 +28,6 @@ const useMasterData = () => {
     categoryName,
     productsLinkedToCategory,
     productsNumber: totalMaterialsCount,
-    imageCategory,
   };
 };
 

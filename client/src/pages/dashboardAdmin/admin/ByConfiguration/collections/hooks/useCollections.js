@@ -40,7 +40,7 @@ const useCollections = () => {
   const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const categoriesStore = useSelector((state) => state?.category?.data);
   const nameModal = collectionsStore.find(
-    (collection) => collection._id === collectionId
+    (collection) => collection?._id === collectionId
   )?.name;
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
@@ -99,7 +99,7 @@ const useCollections = () => {
   const handleDeleteCollection = (collectionId) => {
     dispatch(collectionToRemove(collectionId));
     const productsLinkedToCollectionIdSearch = productsStore.filter(
-      (product) => product._collection === collectionId
+      (product) => product?._collection === collectionId
     );
 
     const categoriesLinkedToCollectionIdSearch = categoriesStore.filter(
@@ -109,7 +109,7 @@ const useCollections = () => {
 
     const productsLinkedToCategoriesSearch = productsStore.filter((product) =>
       categoriesLinkedToCollectionIdSearch.some(
-        (item) => item._id === product.category
+        (item) => item._id === product?.category
       )
     );
 
@@ -118,7 +118,7 @@ const useCollections = () => {
       const isProductInOrderProducts = orderProductsStore.filter(
         (orderProduct) =>
           productsLinkedToCollectionIdSearch.some(
-            (p) => p._id === orderProduct.productsId
+            (p) => p._id === orderProduct?.productsId
           )
       );
       if (isProductInOrderProducts) {
@@ -133,7 +133,6 @@ const useCollections = () => {
     }
     setOpenModal(true);
   };
-
   const handleEditCollection = async ({
     addIllustrationToStorage,
     removeIllustrationToStorage,
@@ -209,7 +208,6 @@ const useCollections = () => {
       });
     }
   };
-
   const handleEditClick = (collectionId, collectionName) => {
     setEditCollectionId(collectionId);
     setEditedCollectionName(collectionName);
@@ -220,7 +218,6 @@ const useCollections = () => {
     )?.isStar;
     return isStar;
   };
-
   const handleSaveClick = ({
     addIllustrationToStorage,
     removeIllustrationToStorage,
@@ -245,7 +242,6 @@ const useCollections = () => {
       });
     }
   };
-
   const handleCancel = () => {
     setOpenModal(false);
     dispatch(collectionToRemove(""));
@@ -254,7 +250,6 @@ const useCollections = () => {
     setProductsLinkedToCategories([]);
     setProductSolded([]);
   };
-
   const handleConfirm = async () => {
     if (productSolded.length > 0) {
       const formData = { isArchived: true };
@@ -268,8 +263,8 @@ const useCollections = () => {
       );
     } else {
       const illustrationToRemove = collectionsStore.find(
-        (collection) => collection._id === collectionId
-      ).main_image;
+        (collection) => collection?._id === collectionId
+      )?.main_image;
       const url = await getDownloadURL(ref(storage, illustrationToRemove));
       const imageRef = ref(storage, url);
       await deleteObject(imageRef);

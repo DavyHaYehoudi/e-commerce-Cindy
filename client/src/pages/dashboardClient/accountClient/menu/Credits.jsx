@@ -12,7 +12,7 @@ const Credits = () => {
             <Credit key={credit?._id} credit={credit} />
           ))
         ) : (
-          <p style={{ textAlign: "center" }}>Aucun avoir.</p>
+          <p style={{ textAlign: "center" }}>Aucun avoir</p>
         )}{" "}
       </ul>
     </div>

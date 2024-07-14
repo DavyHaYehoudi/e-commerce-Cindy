@@ -29,7 +29,7 @@ const useSubmitForm = ({
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const productsStore = useSelector((state) => state?.product?.data);
   const isProductActive = productsStore.find(
-    (product) => product._id === currentProductId
+    (product) => product?._id === currentProductId
   )?.isActive;
 
   const dispatch = useDispatch();

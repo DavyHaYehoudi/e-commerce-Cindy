@@ -9,7 +9,12 @@ import {
 import useUnauthorizedRedirect from "../../../../../../services/errors/useUnauthorizedRedirect";
 import { Get } from "../../../../../../services/httpMethods";
 import { generateFilePath } from "../../../../../../helpers/utils/generateFilePath";
-import { deleteObject, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { storage } from "../../../../../../firebase";
 import { toast } from "react-toastify";
 
@@ -86,18 +91,18 @@ const useCategoriesIndex = () => {
     if (event.key === "Enter") {
       handleAddCategory({ mainImageCreate, setMainImageCreate });
     }
-  }; 
+  };
   const handleDeleteCategory = (categoryId) => {
     dispatch(categoryToRemove(categoryId));
     const productsLinkedToCategoriesSearch = productsStore.filter(
-      (product) => product.category === categoryId
+      (product) => product?.category === categoryId
     );
     if (productsLinkedToCategoriesSearch.length > 0) {
       setProductsLinkedToCategories(productsLinkedToCategoriesSearch);
       const isProductInOrderProducts = orderProductsStore.filter(
         (orderProduct) =>
           productsLinkedToCategoriesSearch.some(
-            (p) => p._id === orderProduct.productsId
+            (p) => p?._id === orderProduct?.productsId
           )
       );
       if (isProductInOrderProducts) {
@@ -106,7 +111,7 @@ const useCategoriesIndex = () => {
     }
     setOpenModal(true);
   };
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (productSolded.length > 0) {
       const formData = { isArchived: true };
       dispatch(
@@ -125,7 +130,13 @@ const useCategoriesIndex = () => {
         })
       );
     }
-
+    const illustrationToRemove = categoriesStore.find(
+      (category) => category?._id === categoryId
+    )?.main_image;
+    const url = await getDownloadURL(ref(storage, illustrationToRemove));
+    const imageRef = ref(storage, url);
+    await deleteObject(imageRef);
+    console.log("Image illustration supprimée avec succès !");
     dispatch(categoryToRemove(""));
     setProductsLinkedToCategories([]);
     setProductSolded([]);
@@ -137,7 +148,6 @@ const useCategoriesIndex = () => {
     setProductSolded([]);
     setOpenModal(false);
   };
-
   const handleEditCategory = async ({
     addIllustrationToStorage,
     removeIllustrationToStorage,
@@ -220,13 +230,11 @@ const useCategoriesIndex = () => {
       });
     }
   };
-
   const handleEditClick = (categoryId, categoryName, parentCollections) => {
     setEditCategoryId(categoryId);
     setEditedCategoryName(categoryName);
     setSelectedParentCollections(parentCollections);
   };
-
   const handleSaveClick = ({
     addIllustrationToStorage,
     removeIllustrationToStorage,
@@ -242,7 +250,6 @@ const useCategoriesIndex = () => {
       });
     }
   };
-
   const resetState = () => {
     setNewCategoryName("");
     setEditCategoryId(null);

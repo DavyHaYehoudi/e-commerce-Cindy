@@ -28,7 +28,7 @@ const useCartOffcanvas = () => {
   };
 
   const handleClearCart = async () => {
-    dispatch(resetAdvantages())
+    dispatch(resetAdvantages());
     if (clientId) {
       let cart = [];
       const formatData = { cart };
@@ -54,6 +54,7 @@ const useCartOffcanvas = () => {
     cartStore,
     cartTotalAmount,
     isCartContent,
+    clientId,
     handleCloseCartAccess,
     handleClearCart,
     handleCloseWishlistModal,

@@ -10,6 +10,7 @@ const CartItem = ({ product }) => {
   const {
     imageUrl,
     itemName,
+    itemMaterialName,
     quantity,
     price,
     itemSubtotal,
@@ -31,7 +32,7 @@ const CartItem = ({ product }) => {
             <img src={imageUrl} alt={itemName} width="75px" height="75px" />
           </Link>
         </div>
-        <div className="cart-item-name">{itemName}</div>
+        <div className="cart-item-name">{itemName}{" "}<br/> {itemMaterialName} </div>
       </div>
       <div className="cart-item-bottom">
         <div className="cart-item-subtotal">
