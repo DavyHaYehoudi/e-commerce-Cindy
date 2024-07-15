@@ -59,6 +59,7 @@ const useSubmitForm = ({
     name: fields?.name,
     _collection: fields?.collection,
     category: fields?.category,
+    type: fields?.type,
     tags: tags?.map((tag) => tag?._id),
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),

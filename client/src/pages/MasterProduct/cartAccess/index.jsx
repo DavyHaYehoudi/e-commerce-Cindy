@@ -12,7 +12,6 @@ const CartOffcanvas = () => {
     cartStore,
     cartTotalAmount,
     isCartContent,
-    clientId,
     handleCloseCartAccess,
     handleClearCart,
     handleCloseWishlistModal,
@@ -49,19 +48,13 @@ const CartOffcanvas = () => {
           <p>
             TOTAL DES ARTICLES : <b>{formatPrice(cartTotalAmount)}</b>
           </p>
-          {clientId ? (
-            <div onClick={handleCloseWishlistModal}>
-              <Link to="/cart">
-                <button className="btn" onClick={handleCloseCartAccess}>
-                  PANIER
-                </button>
-              </Link>
-            </div>
-          ) : (
-            <p style={{ textAlign: "center", fontStyle: "italic" }}>
-              Connectez-vous à votre compte pour passer commande.
-            </p>
-          )}
+          <div onClick={handleCloseWishlistModal}>
+            <Link to="/cart">
+              <button className="btn" onClick={handleCloseCartAccess}>
+                PANIER
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

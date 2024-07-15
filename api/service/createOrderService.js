@@ -46,7 +46,7 @@ export const createOrderPending = async (req) => {
   const order = await Order.create(bodyCreateOrder);
   return order;
 };
- 
+
 export const updateClient = async (
   clientId,
   orderId,
@@ -65,6 +65,26 @@ export const updateClient = async (
     $push: { orders: orderId },
     ...bodyUpdateClient,
   });
+};
+export const createGiftcard = async (clientId) => {
+  const client = await clientRepository.findById(clientId);
+  const cart = client?.cart;
+  if (!cart || cart.length === 0) {
+    throw new Error("Le panier est vide ou non défini.");
+  }
+  for (const item of cart) {
+    const product = await Product.findById(item.productsId);
+    if (product?.type === "giftcard") {
+      const material = product.materials[0];
+      if (!material) continue;
+      const currentPrice = material.pricing.currentPrice;
+      const data = {
+        buyerId: clientId,
+        amount: currentPrice,
+      };
+      await Giftcard.create(data);
+    }
+  }
 };
 
 export const updateGiftcard = async (advantages, clientId) => {

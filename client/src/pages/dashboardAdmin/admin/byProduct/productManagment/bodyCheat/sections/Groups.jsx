@@ -72,6 +72,22 @@ const Groups = ({
               ))}
         </select>
       </div>
+      <div className="group-field">
+        <label htmlFor="type">
+          Type<span className="asterix">*</span> :{" "}
+        </label>
+        <select
+          id="type"
+          className="account-input"
+          value={fields?.type}
+          onChange={(e) => handleChangeFields(e, "type")}
+        >
+          <option value="product">Produit</option>
+          <option value="giftcard">Carte cadeau</option>
+          <option value="service">Service</option>
+
+        </select>
+      </div>
     </div>
   );
 };

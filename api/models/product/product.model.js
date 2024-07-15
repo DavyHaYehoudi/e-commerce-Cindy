@@ -18,13 +18,17 @@ const productSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
+    type: {
+      type: String,
+      default: "product",
+    },
     tags: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
     },
     secondary_images: { type: [String] },
     main_description: {
       type: String,
-      default:""
+      default: "",
     },
     materials: {
       type: [materialsSchema],

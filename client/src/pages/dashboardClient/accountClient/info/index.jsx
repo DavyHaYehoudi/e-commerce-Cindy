@@ -52,6 +52,21 @@ const InfoClient = ({
 
   return (
     <div className="user-info-account">
+      <div className="action-wrapper">
+        {isEditing ? (
+          <button
+            className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
+            disabled={hasErrors || !avatarStore}
+            onClick={handleSaveChanges}
+          >
+            Enregistrer les modifications
+          </button>
+        ) : (
+          <button className="btn" onClick={handleChangeProfilEdit}>
+            Modifier les Informations
+          </button>
+        )}
+      </div>
       <div className="user-info-account-container">
         <ProfilClient
           errorMessages={errorMessages}
@@ -76,20 +91,6 @@ const InfoClient = ({
           isEditing={isEditing}
         />
       </div>
-
-      {isEditing ? (
-        <button
-          className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
-          disabled={hasErrors || !avatarStore}
-          onClick={handleSaveChanges}
-        >
-          Enregistrer les modifications
-        </button>
-      ) : (
-        <button className="btn" onClick={handleChangeProfilEdit}>
-          Modifier les Informations
-        </button>
-      )}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import {
   InsufficientStockError,
 } from "../../service/errors.js";
 import {
+  createGiftcard,
   createOrderPending,
   createOrderProducts,
   updateClient,
@@ -189,10 +190,11 @@ const orderController = {
         isRememberMe,
         shippingAddress,
         billingAddress,
-        email
+        email,
       } = req.body;
       const order = await updateOrder(orderNumber);
       await updateGiftcard(advantages, clientId);
+      await createGiftcard(clientId);
       await updateCredit(advantages);
       await updateProductStock(clientId);
       const orderProductIds = await createOrderProducts(clientId, order._id);
@@ -207,12 +209,12 @@ const orderController = {
         billingAddress,
         order?.inTotalAmount
       );
-      await sendPaymentEmail(email,orderNumber)
+      await sendPaymentEmail(email, orderNumber);
       res.status(200).json({});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
+  },
 };
 
 export default orderController;

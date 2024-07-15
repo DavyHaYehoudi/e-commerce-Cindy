@@ -45,11 +45,12 @@ const Modal = ({
 
   //Hooks
   const dispatch = useDispatch();
-  const { name, collection, category, description } = data || {};
+  const { name, collection, category, description ,type} = data || {};
   const { fields, handleChangeFields } = useFormFields({
     name,
     collection,
     category,
+    type,
     description,
   });
   const { tags, addTag, removeTag } = useTagManagement(data);
