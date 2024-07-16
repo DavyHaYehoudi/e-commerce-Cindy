@@ -1831,7 +1831,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: La carte cadeau n'existe pas.
+                    example: La carte-cadeau n'existe pas.
       security:
         - api_key: []
   /giftcards/verify-code:
@@ -2970,6 +2970,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: service
         tags:
           type: array
           items:
@@ -3047,6 +3050,7 @@ components:
         - name
         - collection
         - category
+        - type
       properties:
         name:
           type: string
@@ -3057,6 +3061,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: product
         tags:
           type: array
           items:
@@ -3137,6 +3144,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: giftcard
         tags:
           type: array
           items:
