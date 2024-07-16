@@ -7,9 +7,13 @@ const Credits = () => {
   return (
     <div className="advantages">
       <ul>
-        {creditsStore.map((credit) => (
-          <Credit key={credit._id} credit={credit} />
-        ))}{" "}
+        {creditsStore && creditsStore.length > 0 ? (
+          creditsStore.map((credit) => (
+            <Credit key={credit?._id} credit={credit} />
+          ))
+        ) : (
+          <p style={{ textAlign: "center" }}>Aucun avoir</p>
+        )}{" "}
       </ul>
     </div>
   );

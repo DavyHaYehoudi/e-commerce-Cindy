@@ -24,6 +24,10 @@ const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
     dispatch(updateAvatar(path));
   };
   const handleDeleteImage = () => {
+    const confirmation = window.confirm("Une image de profil est nécessaire. Etes-vous sûr de vouloir supprimer l'image déjà enregistrée ?")
+    if(!confirmation){
+      return
+    }
     setIsModified(true);
     setIsEditing(true);
     if (mainImage && !mainImage?.name) {

@@ -3,6 +3,14 @@ import { handleValidationErrors } from "./errorModelHandler.js";
 
 const orderSchema = new mongoose.Schema(
   {
+    statusPayment:{
+      type: String,
+      default:"pending"
+    },
+    orderNumber: {
+      type: String,
+      unique: true,
+    },
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
@@ -39,11 +47,6 @@ const orderSchema = new mongoose.Schema(
         required: true,
         maxlength: 100,
       },
-      country: {
-        type: String,
-        required: true,
-        maxlength: 100,
-      },
     },
     billingAddress: {
       companyName: {
@@ -51,20 +54,18 @@ const orderSchema = new mongoose.Schema(
         maxlength: 100,
         default: "",
       },
-      firstName: { type: String, maxlength: 100, trim: true, required: true },
-      lastName: { type: String, maxlength: 100, trim: true, required: true },
+      firstName: { type: String, maxlength: 100, trim: true },
+      lastName: { type: String, maxlength: 100, trim: true },
       email: {
         type: String,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         lowercase: true,
         trim: true,
         default: null,
-        required: true,
       },
       phone: { type: String, maxlength: 100, default: null },
       street: {
         type: String,
-        required: true,
         maxlength: 100,
       },
       apartment: {
@@ -73,23 +74,15 @@ const orderSchema = new mongoose.Schema(
       },
       city: {
         type: String,
-        required: true,
         maxlength: 100,
       },
       postalCode: {
         type: String,
-        required: true,
-        maxlength: 100,
-      },
-      country: {
-        type: String,
-        required: true,
         maxlength: 100,
       },
     },
     step: {
       type: Number,
-      required: true,
       default: 0,
       validate: {
         validator: function (value) {
@@ -101,24 +94,29 @@ const orderSchema = new mongoose.Schema(
     },
     inTotalAmount: {
       type: Number,
-      required: true,
     },
-    outTotalAmount: { 
+    outTotalAmount: {
       type: Number,
       default: 0,
-    }, 
-    amountPromoCode:{
+    },
+    amountPromoCode: {
       type: Number,
-      default:null
+      default: null,
+    },
+    amountGiftcard:{
+      type: Number,
+      default: null,
+    },
+    amountCredit:{
+      type: Number,
+      default: null,
     },
     paymentMethod: {
       cardType: {
         type: String,
-        required: true,
       },
       last4Digits: {
         type: String,
-        required: true,
       },
     },
     trackingNumber: {
@@ -191,6 +189,29 @@ orderSchema.pre("validate", function (next) {
   }
   next();
 });
+const generateOrderNumber = () => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let orderNumber = "";
+  for (let i = 0; i < 10; i++) {
+    // Longueur de 10 caractères
+    orderNumber += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return orderNumber;
+};
+orderSchema.pre("save", async function (next) {
+  if (!this.orderNumber) {
+    let unique = false;
+    while (!unique) {
+      const orderNumber = generateOrderNumber();
+      const existingOrder = await Order.findOne({ orderNumber });
+      if (!existingOrder) {
+        this.orderNumber = orderNumber;
+        unique = true;
+      }
+    }
+  }
+  next();
+});
 
 const Order = mongoose.model("Order", orderSchema);
-export default Order;
+export default Order; 

@@ -10,7 +10,6 @@ import { MdCardGiftcard } from "react-icons/md";
 import Giftcards from "./accountClient/menu/Giftcards";
 import { MdLabel } from "react-icons/md";
 import Credits from "./accountClient/menu/Credits";
-import CartOffCanvas from "../MasterProduct/cartAccess";
 const AccountClient = () => {
   const {
     clientId,
@@ -92,7 +91,6 @@ const AccountClient = () => {
         {selectedTab === "Cartes cadeaux" && <Giftcards />}
         {selectedTab === "Avoirs" && <Credits />}
       </div>
-      <CartOffCanvas />
       <ToastContainer autoClose={2500} />
     </div>
   );

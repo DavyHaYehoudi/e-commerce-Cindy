@@ -11,6 +11,7 @@ const useInitDataMain = ({ action, productId, initialImageCount }) => {
       data["name"] = "";
       data["collection"] = "";
       data["category"] = "";
+      data["type"] = "";
       data["description"] = "";
       data["tags"] = [];
       data["images"] = Array(initialImageCount).fill(null);
@@ -22,6 +23,7 @@ const useInitDataMain = ({ action, productId, initialImageCount }) => {
         name,
         _collection,
         category,
+        type,
         main_description,
         tags,
         secondary_images,
@@ -38,6 +40,7 @@ const useInitDataMain = ({ action, productId, initialImageCount }) => {
       data["name"] = name;
       data["collection"] = _collection;
       data["category"] = category;
+      data["type"] = type;
       data["description"] = main_description;
       data["tags"] = tagsMatch;
       data["images"] = secondary_images;

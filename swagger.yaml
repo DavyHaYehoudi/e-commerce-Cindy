@@ -535,7 +535,92 @@ paths:
               $ref: '#/components/schemas/FirstOrder'
       responses:
         '201':
-          description: successful posting order
+          description: successful posting order pending (before payment confirmation)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderNumber:
+                    type: string
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
+    patch:
+      tags:
+        - order
+      summary: Payment confirmation
+      description: Route reserved for customers.This route allows you to confirm the order.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId: 
+                  type: string
+                orderNumber:
+                  type: string
+                rememberMe:
+                  type: boolean
+                email:
+                  type: string
+                shippingAddress:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    lastName: 
+                      type: string
+                    street: 
+                      type: string
+                    apartment: 
+                      type: string
+                    city:
+                      type: string
+                    postalCode: 
+                      type: string
+                    country: 
+                      type: string
+                    email: 
+                      type: string
+                    phone: 
+                      type: string
+                billingingAddress:
+                  type: object
+                  properties:
+                    companyName:
+                      type: string
+                    firstName:
+                      type: string
+                    lastName: 
+                      type: string
+                    street: 
+                      type: string
+                    apartment: 
+                      type: string
+                    city:
+                      type: string
+                    postalCode: 
+                      type: string
+                    country: 
+                      type: string
+                    email: 
+                      type: string
+                    phone: 
+                      type: string
+      responses:
+        '200':
+          description: successful order confirmation
         '401':
           description: Unauthorized - User is not authenticated
           content:
@@ -734,6 +819,115 @@ paths:
                   message:
                     type: string
                     example: La commande n'existe pas.
+      security:
+        - api_key: []
+  /orders/order-amount:
+    get:
+      tags:
+        - order
+      summary: Get cart amount
+      description: Route reserved for customers.This route allows you to calculate the basket amount and adjust according to the benefits applied such as the promo code, gift card and credit.
+      parameters:
+        - name: clientId
+          in: query
+          description: The customer ID is used to verify that the user is indeed a registered customer.
+          required: true
+          schema:
+            type: string
+        - name: advantages
+          in: query
+          description: The 3 types of advantages have passed.
+          schema:
+            type: string
+            example: { advantages: {
+                        codePromo: { isValid: false, percentage: "", code: "" },
+                        giftcard: { isValid: false, amount: "", code: "" },
+                        credit: { isValid: false, creditId: "", amount: "" },
+                      },}
+      responses:
+        '200':
+          description: successful getting cart amount
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalAmount:
+                    type: number
+                    example: 325.9
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+      security:
+        - api_key: []
+  /orders/create-payment-intent:
+    post:
+      tags:
+        - order
+      summary: Payment
+      description: Route reserved for customers.This route allows you to place your order by paying via your bank card using an online payment platform.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId: 
+                  type: string
+                email:
+                  type: string
+                advantages:
+                  type: object
+                  properties:
+                    codePromo:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        code:
+                          type: string
+                    giftcard:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        code:
+                          type: string
+                    credit:
+                      type: object
+                      properties:
+                        isValid: 
+                          type: boolean
+                        creditId:
+                          type: string
+      responses:
+        '200':
+          description: successful getting cart amount
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  clientSecret:
+                    type: string
+                    example: "pi_3MtwBwLkdIwHu7ix28a3tqPa_secret_YrKJUKribcBjcG8HVhfZluoGH"
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
       security:
         - api_key: []
   /orderProducts{orderProductsIds}:
@@ -1124,6 +1318,58 @@ paths:
                     example: Le crédit n'existe pas.
       security:
         - api_key: []
+  /credits/verify-code:
+    get:
+      tags:
+        - credit
+      summary: Check the code
+      description: This route checks one credit code. In addition, we also ensure that the credit is indeed that belonging to the customer. The API returns the credit amount.
+      parameters:
+        - name: creditId
+          in: query
+          description: credit id mongoDB
+          required: true
+          schema:
+            type: string
+            example: 65f9e3161cb6b68d08b89893
+        - name: clientId
+          in: query
+          description: client id mongoDB
+          required: true
+          schema:
+            type: string
+            example: 65bc8c5b7f890edc1f63182f
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  amount:
+                    type: number
+                    example: 20.5
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: L'avoir n'existe pas.
   /materials:
     get:
       tags:
@@ -1435,6 +1681,53 @@ paths:
                     example: Le code promo n'existe pas.
       security:
         - api_key: []
+  /promocodes/verify-code:
+    get:
+      tags:
+        - promocode
+      summary: Check the code
+      description: This route checks one promotional code. If the code is verified then the reduction on the total price of the cart applies with the percentage returned by the API.
+      parameters:
+        - name: code
+          in: query
+          description: promocode code
+          required: true
+          schema:
+            type: string
+            example: Bonjour-15
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  percentage:
+                    type: number
+                    example: 15
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Le code promo n'existe pas.
+      security:
+        - api_key: []
   /giftcards:
     get:
       tags:
@@ -1470,6 +1763,7 @@ paths:
                     example: Accès refusé. Vous n'êtes pas un administrateur.
       security:
         - api_key: []
+
     post:
       tags:
         - giftcard
@@ -1538,6 +1832,53 @@ paths:
                   message:
                     type: string
                     example: La carte-cadeau n'existe pas.
+      security:
+        - api_key: []
+  /giftcards/verify-code:
+    get:
+      tags:
+        - giftcard
+      summary: Check the code
+      description: This route checks one giftcard code. If the code is verified then the reduction on the total price of the cart applies with the amount returned by the API.
+      parameters:
+        - name: code
+          in: query
+          description: giftcard code
+          required: true
+          schema:
+            type: string
+            example: 4hj0AfFyT7mIdO4
+      responses:
+        '200':
+          description: successful checking
+          content:
+            application/json:
+              schema:
+                type : object
+                properties:
+                  amount:
+                    type: number
+                    example: 50
+        '401':
+          description: Unauthorized - User is not authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token d'authentification manquant ou invalide.
+        '404':
+          description: The ressource does not exist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: La carte cadeau n'existe pas.
       security:
         - api_key: []
   /statistics/{year}:
@@ -2252,6 +2593,8 @@ components:
                 type: integer
                 format: int8
                 example: 3
+        rememberMe:
+          type: boolean
         Orders:
           type: array
           items:
@@ -2375,60 +2718,57 @@ components:
     Order:
       type: object
       properties:
-        orderProducts:
-          type: object
-          properties:
-            orderProductsActions:
-              type: object
-              properties:
-                exchange:
-                  type: integer
-                exchangeDate:
+        statusPayment:
+          type: string
+          example: paid
+        orderNumber:
+          type: string
+          example: 01polKMj7f
+        clientId:
+          type: string
+          example: 65bc8c5b7f890edc1f631830
+        _id:
+          type: string
+        amountPromoCode:
+          type: number
+          format: int32
+          example: 10
+        amountGiftcard:
+          type: number
+          format: int32
+          example: 10
+        amountCredit:
+          type: number
+          format: int32
+          example: 10
+        step:
+          type: integer
+          format: int32
+          example: 2
+        trackingNumberList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              isAdmin:
+                type: boolean
+              value:
+                type: string
+              date:
+                type: string
+                format: date
+              orderProducts:
+                type: array
+                items:
                   type: string
-                refund:
-                  type: integer 
-                refundDate:
-                  type: string
-                  example: 2024-05-13
-                credit:
-                  type: string
-            clientId:
-              type: string
-              example: 65bc8c5b7f890edc1f631830
-            _id:
-              type: string
-            amountPromoCode:
-              type: number
-              format: int32
-              example: 10
-            step:
-              type: integer
-              format: int32
-              example: 2
-            trackingNumberList:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  isAdmin:
-                    type: boolean
-                  value:
-                    type: string
-                  date:
-                    type: string
-                    format: date
-                  orderProducts:
-                    type: array
-                    items:
-                      type: string
-                    example:
-                      - 2884d22b45a0fb3fd4a75p2
-                      - 7774d22b45a0fb3fd4a7bn0
-                      - 10m4d22b45a0fb3fd4a7l53
-                  _id:
-                    type: string
+                example:
+                  - 2884d22b45a0fb3fd4a75p2
+                  - 7774d22b45a0fb3fd4a7bn0
+                  - 10m4d22b45a0fb3fd4a7l53
+              _id:
+                type: string
         shippingAddress:
           type: object
           properties:
@@ -2473,10 +2813,18 @@ components:
               type: string
             phone: 
               type: string
-        phoneContact:
+        inTotalAmount:
+          type: integer
+          example: 250
+        outTotalAmount:
+          type: integer
+        lastSentDateToClient:
           type: string
-        emailContact:
-          type: string
+        orderProducts:
+          type: array
+          items:
+            type: string
+            example: 2884d22b45a0fb3fd4a75p2
     Orders:
       type: array
       items:
@@ -2486,33 +2834,32 @@ components:
     FirstOrder:
       type: object
       properties:
-        inTotalAmount:
-          type: integer
-          format: int32
-          example: 220
-        amountPromoCode:
-          type: integer
-          format: int32
-          example: 10
-        paymentMethod:
-          type: array
-          items:
-            type: object
-            properties:
-              cardType:
-                type: string
-                example: Visa
-              last4Digits:
-                type: string
-                example: '**** 1234'
-        orderProducts:
-          type: array
-          items:
-            type: string
-            example:
-              - 2884d22b45a0fb3fd4a75p2
-              - 7774d22b45a0fb3fd4a7bn0
-              - 10m4d22b45a0fb3fd4a7l53
+        clientId:
+          type: string
+        advantages:
+          type: object
+          properties:
+            codePromo:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                code:
+                  type: string
+            giftcard:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                code:
+                  type: string
+            credit:
+              type: object
+              properties:
+                isValid: 
+                  type: boolean
+                creditId:
+                  type: string
         shippingAddress:
           type: object
           properties:
@@ -2550,7 +2897,7 @@ components:
             city:
               type: string
             postalCode: 
-              type: string
+              type: string 
             country: 
               type: string
             email: 
@@ -2585,9 +2932,7 @@ components:
             format: int16
             example: 20
           material:
-            type: integer
-            format: int16
-            example: 0
+            type: string
           orderId:
             type: string
             example: 65bc8c5b7f890edc1f631830
@@ -2625,6 +2970,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: service
         tags:
           type: array
           items:
@@ -2692,12 +3040,17 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
+        isArchived:
+          type: boolean
     ProductCreate:
       type: object
       required:
         - name
         - collection
         - category
+        - type
       properties:
         name:
           type: string
@@ -2708,6 +3061,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: product
         tags:
           type: array
           items:
@@ -2772,6 +3128,8 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
     ProductCreateResponse:
       type: object
       properties:
@@ -2786,6 +3144,9 @@ components:
         category:
           type: string
           example: 65fafe1eab75220625f55db5
+        type:
+          type: string
+          example: giftcard
         tags:
           type: array
           items:
@@ -2850,6 +3211,11 @@ components:
               isArchived:
                 type: boolean
                 example: false
+        isActive:
+          type: boolean
+        isArchived:
+          type: boolean
+          example: false
     Products:
       type: array
       items:

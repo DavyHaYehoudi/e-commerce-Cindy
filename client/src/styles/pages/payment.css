@@ -1,0 +1,176 @@
+/* ****************** GENERALITES ****************** */
+.payment-page {
+    margin: 40px auto;
+}
+.payment-page .block-1 {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#payment-form,
+.payment-page .block-2 {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: black;
+}
+
+#payment-form h2,
+.payment-page .block-2 h2 {
+    margin: 10px;
+    font-weight: 600;
+}
+
+.payment-page .block-2 {
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.payment-form-heading {
+    display: flex;
+    align-items: center;
+}
+
+.payment-page button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.payment-page button.cancel {
+    background-color: var(--danger);
+}
+
+.payment-page button:hover {
+    background-color: #45a049;
+}
+
+.payment-page button.cancel:hover {
+    background-color: #b02a37;
+}
+
+/* ****************** PAYMENT ADRESSES ****************** */
+#payment-form label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#payment-form input,
+#payment-form select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+#payment-form .checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#payment-form .checkbox input {
+    margin: 10px;
+    width: initial;
+    cursor: pointer;
+}
+
+#payment-form .address-input-container,
+#payment-form .location-details {
+    display: flex;
+    gap: 10px;
+}
+
+#payment-form .credit-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#payment-form .security-text {
+    margin-bottom: 20px;
+}
+
+.payment-form-heading .icon {
+    font-size: 1.5rem;
+}
+
+/* ****************** FIELDS VALIDATION ****************** */
+#payment-form .error {
+    border-color: var(--danger);
+    box-shadow: 0 0 3px var(--danger);
+}
+
+#payment-form .success {
+    border-color: var(--success);
+    box-shadow: 0 0 3px var(--success);
+}
+
+/* ****************** PAYMENT SUCCESS PAGE ****************** */
+.payment-success-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+.payment-success-page span {
+    color: var(--success);
+}
+
+.success-page-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid var(--success);
+    border-radius: 10px;
+    width: 50%;
+
+    box-shadow: 0 0 10px var(--success);
+    position: absolute;
+    top: 20%;
+    transform: translateY(-30%);
+}
+
+/* ****************** PAYMENT CARD  ****************** */
+#payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+#payment-form>* {
+    flex: 1;
+    width: 100%;
+}
+
+.payment-page #payment-form .pay_button {
+    padding: 15px;
+    width: 300px;
+    transition: transform 0.3s;
+}
+
+.payment-page .pay_button:hover {
+    transform: translateY(-2px);
+}
+.payment-page #payment-form .loader{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ****************** MEDIAS QUERIES  ****************** */
+
+@media (max-width: 768px) {
+    .payment-page .block-1 {
+        display: inherit;
+    }
+}

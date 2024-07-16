@@ -46,7 +46,7 @@ const ProfilClient = ({
           handleMainImageChange={handleMainImageChange}
           handleDeleteImage={handleDeleteImage}
           loading={loading}
-          required={false}
+          required={true}
           legend="MON IMAGE DE PROFIL"
         />
       </div>

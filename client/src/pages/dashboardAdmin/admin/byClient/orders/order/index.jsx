@@ -23,7 +23,7 @@ const Item = ({
   return (
     <div
       className="admin-order-item"
-      data-testid={`item-component-${order._id}`}
+      data-testid={`item-component-${order?._id}`}
     >
       {!loading ? (
         <Header

@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    flex: 0.2;
     animation: swingInRight 2s ease 0s 1 normal forwards;
 }
 

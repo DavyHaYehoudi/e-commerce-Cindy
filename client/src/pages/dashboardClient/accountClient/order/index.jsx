@@ -8,9 +8,18 @@ import { getOrderStepProperty } from "../../../../helpers/constants/orderStep";
 import { formatPrice } from "../../../../helpers/utils/prices";
 import TrackingNumberList from "./trackingFiled";
 import TrackingNumberCreate from "./trackingFiled/TrackingNumberCreate";
+import { useSelector } from "react-redux";
 
 const List = ({ orderHistory, filter }) => {
   const [openOrderId, setOpenOrderId] = useState(null);
+  const ordersStore = useSelector((state) => state?.customer?.data?.orders);
+  const getAdvantages = (orderId) => {
+    const order = ordersStore.find((order) => order?._id === orderId);
+    const amountPromocode = order?.amountPromoCode;
+    const amountGiftcard = order?.amountGiftcard;
+    const amountCredit = order?.amountCredit;
+    return { amountPromocode, amountGiftcard, amountCredit };
+  };
 
   return (
     <div className="other-orders" data-testid="list-orders">
@@ -23,15 +32,42 @@ const List = ({ orderHistory, filter }) => {
                   <span className="dotted">Date de commande</span> :{" "}
                   {formatDate(order?.createdAt)}
                 </span>
+                <p>
+                  <span className="dotted">№ de commande</span> :{" "}
+                  {order?.statusPayment === "paid" ? (
+                    order?.orderNumber
+                  ) : (
+                    <span style={{ color: "var(--danger)" }}>
+                      ECHEC DE PAYMENT
+                    </span>
+                  )}{" "}
+                </p>
+
                 <OrderStep order={order} />
               </div>
               <div className="details">
-                <p>
+                <div>
                   <span className="dotted">Prix total</span> :{" "}
                   <span className="outPricing">
                     {formatPrice(order?.inTotalAmount) || "Total NC"}
-                  </span>
-                </p>
+                  </span>{" "}
+                  {getAdvantages(order?._id)?.amountPromocode &&
+                    `(code promotion ${
+                      getAdvantages(order?._id)?.amountPromocode
+                    }% inclus)`}
+                  <p>
+                    {getAdvantages(order?._id)?.amountGiftcard &&
+                      `Carte cadeau de ${formatPrice(
+                        getAdvantages(order?._id)?.amountGiftcard
+                      )} utilisée`}
+                  </p>
+                  <p>
+                    {getAdvantages(order?._id)?.amountCredit &&
+                      `Avoir de ${formatPrice(
+                        getAdvantages(order?._id)?.amountCredit
+                      )} utilisé`}
+                  </p>
+                </div>
               </div>
             </div>
             <ToggleButton
@@ -41,7 +77,7 @@ const List = ({ orderHistory, filter }) => {
               content={
                 <div className="order-header-details">
                   {" "}
-                  <p>
+                  {/* <p>
                     <span className="dotted">Moyen de paiement</span> :{" "}
                     {order?.paymentMethod["cardType"]}
                   </p>
@@ -49,7 +85,7 @@ const List = ({ orderHistory, filter }) => {
                     {" "}
                     <span className="dotted">Se terminant par</span> :{" "}
                     {order?.paymentMethod["last4Digits"]}{" "}
-                  </p>
+                  </p> */}
                   <div>
                     <span className="dotted">Adresse de livraison</span> :
                     <p>
@@ -63,7 +99,6 @@ const List = ({ orderHistory, filter }) => {
                       {order?.shippingAddress?.postalCode}{" "}
                       {order?.shippingAddress?.city}
                     </p>
-                    <p>{order?.shippingAddress?.country}</p>
                   </div>
                   <div>
                     <span className="dotted">Adresse de facturation</span> :
@@ -79,7 +114,6 @@ const List = ({ orderHistory, filter }) => {
                       {order?.billingAddress?.postalCode}{" "}
                       {order?.billingAddress?.city}
                     </p>
-                    <p>{order?.billingAddress?.country}</p>
                   </div>
                 </div>
               }

@@ -20,8 +20,9 @@ const ToggleButtonNote = ({ orderProductsInfo, orderProducts }) => {
         <>
           <small>
             {" "}
-            {500 - orderProductsInfo?.note?.length} caratère
-            {500 - orderProductsInfo?.note?.length > 1 ? "s" : ""} permis
+            {500 - orderProductsInfo?.note?.length || 500} caratère
+            {(500 - orderProductsInfo?.note?.length > 1 ? "s" : "") || "s"}{" "}
+            permis
           </small>{" "}
           <div className="product-note-wrapper">
             <textarea

@@ -31,7 +31,7 @@ const Header = ({
     name,
     imageUrl,
     materialStore,
-  } = useProductHeader(orderProducts, productsId, productStore, material);
+  } = useProductHeader(orderProducts, productsId, productStore, material)||{};
 
   const { originalPrice, finalPrice, amountPromotion } =
     getOneOrderProducts || "";
@@ -73,7 +73,7 @@ const Header = ({
           to={`/master-product/${productsId}`}
           state={{ materialId: material }}
         >
-          <img src={imageUrl} alt={name} width="150px" />
+          <img src={imageUrl} alt={name} width="150px" height="150px" />
         </Link>
         <ul>
           <li className={isTagProductExisted && exchange ? "product-tag" : ""}>

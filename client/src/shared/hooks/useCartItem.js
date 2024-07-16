@@ -6,13 +6,14 @@ import { getProductProperties } from "../../selectors/product";
 import { formatPrice } from "../../helpers/utils/prices";
 
 const useCartItem = (product) => {
-  const productStore = useSelector((state) => state?.product?.data);
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);
   const tagStore = useSelector((state) => state?.tag?.data);
+  const materialsStore = useSelector((state) => state?.material?.data);
 
   const { productsId, material } = product || {};
-  const productInStore = productStore.find(
+  const productInStore = productsStoreFixed.find(
     (product) => product?._id === productsId
   );
   let imagePath;
@@ -32,29 +33,39 @@ const useCartItem = (product) => {
 
   const itemName = getProductProperties(
     productsId,
-    productStore,
+    productsStoreFixed,
     collectionStore,
     categoryStore,
     tagStore,
     material
   ).name;
+  const itemMaterialName = materialsStore.find(
+    (mat) => mat?._id === material
+  )?.name;
 
-  const itemPrice = getProductProperties(
+  const productInfo = getProductProperties(
     productsId,
-    productStore,
+    productsStoreFixed,
     collectionStore,
     categoryStore,
     tagStore,
     material
-  )?.pricing?.currentPrice;
+  );
+  let price = productInfo?.pricing?.currentPrice;
+  const { promotion } = productInfo;
 
-  const itemSubtotal = formatPrice(itemPrice * quantity);
+  if (promotion?.endDate && new Date(promotion.endDate) > new Date()) {
+    price -= (price * promotion?.amount) / 100;
+  }
+
+  const itemSubtotal = formatPrice(price * quantity);
 
   return {
     imageUrl,
     itemName,
+    itemMaterialName,
     quantity,
-    itemPrice,
+    price,
     itemSubtotal,
     handleRemoveToCart,
   };

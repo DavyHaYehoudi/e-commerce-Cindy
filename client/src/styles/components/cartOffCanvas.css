@@ -105,6 +105,9 @@
     align-items: center;
     gap: 20px;
 }
+.offcanvas .stock-number{
+  font-style: italic;
+}
 
 .offcanvas .cart-item-image {
     flex: 1;

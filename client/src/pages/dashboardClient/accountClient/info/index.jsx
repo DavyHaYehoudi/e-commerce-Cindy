@@ -4,6 +4,7 @@ import ProfilClient from "./ProfilClient";
 import ShippingAddress from "./ShippingAddress";
 import BillingAddress from "./BillingAddress";
 import useProfilClientImage from "./hooks/useProfilClientImage";
+import { MdEdit } from "react-icons/md";
 
 const InfoClient = ({
   dataClient,
@@ -38,6 +39,7 @@ const InfoClient = ({
     errorMessages,
     hasErrors,
     handleSaveChanges,
+    avatarStore,
   } = useInfoClient(
     dataClient,
     setIsModified,
@@ -51,6 +53,21 @@ const InfoClient = ({
 
   return (
     <div className="user-info-account">
+      <div className="action-wrapper">
+        {isEditing ? (
+          <button
+            className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
+            disabled={hasErrors || !avatarStore}
+            onClick={handleSaveChanges}
+          >
+            Enregistrer les modifications
+          </button>
+        ) : (
+          <button className="btn" onClick={handleChangeProfilEdit}>
+            Modifier les Informations <MdEdit />
+          </button>
+        )}
+      </div>
       <div className="user-info-account-container">
         <ProfilClient
           errorMessages={errorMessages}
@@ -75,20 +92,6 @@ const InfoClient = ({
           isEditing={isEditing}
         />
       </div>
-
-      {isEditing ? (
-        <button
-          className={`btn ${isModified && !hasErrors ? "modified" : ""}`}
-          disabled={hasErrors}
-          onClick={handleSaveChanges}
-        >
-          Enregistrer les modifications
-        </button>
-      ) : (
-        <button className="btn" onClick={handleChangeProfilEdit}>
-          Modifier les Informations
-        </button>
-      )}
     </div>
   );
 };

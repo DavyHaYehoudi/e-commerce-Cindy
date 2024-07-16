@@ -7,8 +7,8 @@ const useMainContent = ({ productId, materialId }) => {
     index: "",
     currentImage: "",
   });
-  const productsStore = useSelector((state) => state?.product?.data);
-  const product = productsStore?.find((product) => product?._id === productId);
+  const productsStoreFixed = useSelector(state=>state?.productsFixed?.data)
+  const product = productsStoreFixed?.find((product) => product?._id === productId);
 
   useEffect(() => {
     if (product && product?.materials && product?.materials.length > 0) {

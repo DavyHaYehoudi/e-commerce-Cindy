@@ -13,6 +13,7 @@ import {
 } from "../../features/accountClient/customerSlice";
 import useStoreInfo from "./useStoreInfo";
 import { showCartAccess } from "../../features/admin/productSlice";
+import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 
 const useCartButton = (productsId, material) => {
   const { clientId, cartStore, isProductInCart, quantity } = useStoreInfo({
@@ -21,6 +22,7 @@ const useCartButton = (productsId, material) => {
   });
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
+  const { fetchTotalAmount } = useAmountCart();
   const addDate = new Date().toISOString();
   const productCart = { productsId, material, addDate, quantity };
 
@@ -37,20 +39,20 @@ const useCartButton = (productsId, material) => {
       let cartUpdated = [...cartStore, productCart];
       const formatData = { cart: cartUpdated };
       try {
-        await Patch( 
+        await Patch(
           `clients/${clientId}`,
           formatData,
           null,
           handleUnauthorized
-        ); 
+        );
         dispatch(addOneProductToCart(productCart));
-        dispatch(showCartAccess(true))
-      } catch (error) { 
+        dispatch(showCartAccess(true));
+      } catch (error) {
         console.log("Erreur dans handleAddToCart AddToCartButton :", error);
       }
     } else {
       dispatch(addOneProductToCartVisitor(productCart));
-      dispatch(showCartAccess(true))
+      dispatch(showCartAccess(true));
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)
@@ -83,10 +85,11 @@ const useCartButton = (productsId, material) => {
         console.log("Erreur dans handleRemoveToCart AddToCartButton :", error);
       }
       dispatch(removeOneProductToCart(productCart));
-      dispatch(showCartAccess(true))
+      dispatch(showCartAccess(true));
+      fetchTotalAmount({});
     } else {
       dispatch(removeOneProductToCartVisitor(productCart));
-      dispatch(showCartAccess(true))
+      dispatch(showCartAccess(true));
       const cartProductsString = localStorage.getItem("cartProducts");
       let cartProducts = cartProductsString
         ? JSON.parse(cartProductsString)

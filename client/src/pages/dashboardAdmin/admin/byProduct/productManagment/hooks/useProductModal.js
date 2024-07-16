@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useMainImagesToAddStorage from "../bodyCheat/sections/hooks/useMainImagesToAddStorage";
 import useInitDataMain from "./useInitDataMain";
-import { modifyProductCheet } from "../../../../../../features/admin/productSlice";
+import {
+  modifyProductCheet,
+  changeProductActiveStatus,
+} from "../../../../../../features/admin/productSlice";
 
 const useProductModal = ({
   currentAction: initialAction,
@@ -13,8 +16,12 @@ const useProductModal = ({
   const [currentAction, setCurrentActionLocal] = useState(initialAction);
   const [currentProductId, setCurrentProductIdLocal] =
     useState(initialProductId);
+  const [initStatusProduct, setInitStatusProduct] = useState("");
 
   const productsStore = useSelector((state) => state?.product?.data);
+  const isProductCheetModified = useSelector(
+    (state) => state?.product?.isProductCheetModified
+  );
   const { reset: resetMainImagesToAddStorage } = useMainImagesToAddStorage();
   const dispatch = useDispatch();
 
@@ -34,9 +41,29 @@ const useProductModal = ({
     setIsModalOpenLocal(true);
     setCurrentActionLocal(action);
     setCurrentProductIdLocal(_id);
+    const statusProduct = productsStore.find(
+      (product) => product?._id === _id
+    )?.isActive;
+    setInitStatusProduct(statusProduct);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (close = false) => {
+    if (isProductCheetModified && close) {
+      const confirm = window.confirm(
+        "⚠️ La fiche a été modifiée sans être enregistrée. Etes-vous sûr de vouloir fermer ?"
+      );
+      if (!confirm) {
+        return;
+      }
+      dispatch(
+        changeProductActiveStatus({
+          productId: currentProductId,
+          status: initStatusProduct,
+          isPending: initStatusProduct,
+        })
+      );
+    }
+
     setIsModalOpenLocal(false);
     reset();
     resetMainImagesToAddStorage();

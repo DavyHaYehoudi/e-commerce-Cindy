@@ -15,7 +15,7 @@ const MainImage = ({
     <div className="main-image">
       <figure>
         <figcaption>
-          {legend}
+          {legend}{" "}
           {required ? <span className="asterix">*</span> : ""}
         </figcaption>
         <div className="images-wrapper">

@@ -14,7 +14,7 @@ const AddCategoryForm = ({
   handleIllustrationCreateChange,
   handleDeleteImage,
   setMainImageCreate,
-  loading
+  loading,
 }) => {
   return (
     <div>
@@ -25,7 +25,9 @@ const AddCategoryForm = ({
         autoFocus
         value={newCategoryName}
         onChange={(e) => setNewCategoryName(e.target.value)}
-        onKeyDown={handleKeyPress}
+        onKeyDown={(e) =>
+          handleKeyPress({ event: e, mainImageCreate, setMainImageCreate })
+        }
       />
       <div className="main_image-select">
         <MainImage
@@ -55,7 +57,9 @@ const AddCategoryForm = ({
                         : [...prevState, checkedCollectionId]
                     );
                   }}
-                  onKeyDown={handleKeyPress}
+                  onKeyDown={(e) =>
+                    handleKeyPress({ event: e, mainImageCreate, setMainImageCreate })
+                  }
                 />
                 {collection.name}
               </label>
@@ -64,7 +68,9 @@ const AddCategoryForm = ({
       )}
       <button
         className={`account-btn ${
-          newCategoryName && selectedParentCollections.length > 0 &&mainImageCreate
+          newCategoryName &&
+          selectedParentCollections.length > 0 &&
+          mainImageCreate
             ? "validate-btn"
             : ""
         }`}
@@ -77,7 +83,7 @@ const AddCategoryForm = ({
           handleAddCategory({ mainImageCreate, setMainImageCreate })
         }
       >
-          {loading ? (
+        {loading ? (
           <div className="loader-config">
             <MoonLoader color="var(--dark)" />
           </div>

@@ -5,8 +5,8 @@ const useMasterData = () => {
   const { categoryId } = useParams();
 
   const categoriesStore = useSelector((state) => state?.category?.data);
-  const productsStore = useSelector((state) => state?.product?.data);
-  const productsLinkedToCategory = productsStore.filter(
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
+  const productsLinkedToCategory = productsStoreFixed.filter(
     (product) =>
       !product?.isArchived &&
       product.isActive &&
@@ -21,9 +21,6 @@ const useMasterData = () => {
     },
     0
   );
-  const imageCategory =
-    categoriesStore.find((category) => category._id === categoryId)
-      ?.main_image || "";
   const categoryName =
     categoriesStore.find((category) => category._id === categoryId)?.name || "";
 
@@ -31,7 +28,6 @@ const useMasterData = () => {
     categoryName,
     productsLinkedToCategory,
     productsNumber: totalMaterialsCount,
-    imageCategory,
   };
 };
 

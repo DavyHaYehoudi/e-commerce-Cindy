@@ -45,7 +45,15 @@ const productSlice = createSlice({
     isPendingProduct: false,
     cartAccess: false,
     wishlistAccess: false,
-    checkedItemsFilter:{},
+    checkedItemsFilter: {},
+    advantages: {
+      codePromo: { isValid: false, percentage: "", code: "" },
+      giftcard: { isValid: false, amount: "", code: "" },
+      credit: { isValid: false, creditId: "", amount: "" },
+    },
+    cartAmount: "",
+    isBillingSameAddress: true,
+    isRememberMe: true,
     status: "idle",
     error: null,
   },
@@ -113,9 +121,49 @@ const productSlice = createSlice({
     showWishlistAccess: (state, action) => {
       state.wishlistAccess = action.payload;
     },
-    checkItemsFilter:(state,action)=>{
-    state.checkedItemsFilter = action.payload
-    }
+    checkItemsFilter: (state, action) => {
+      state.checkedItemsFilter = action.payload;
+    },
+    toggleCheckBilling: (state, action) => {
+      state.isBillingSameAddress = !state.isBillingSameAddress;
+    },
+    toggleCheckRememberMe: (state, action) => {
+      state.isRememberMe = !state.isRememberMe;
+    },
+    updateAdvantages: (state, action) => {
+      const {
+        property,
+        isValid = false,
+        percentage = "",
+        amount = "",
+        id = "",
+        code = "",
+        creditId = "",
+        clientId = "",
+      } = action.payload;
+      state.advantages = {
+        ...state.advantages,
+        [property]: {
+          isValid,
+          percentage,
+          amount,
+          id,
+          code,
+          creditId,
+          clientId,
+        },
+      };
+    },
+    resetAdvantages:(state,action)=>{
+      state.advantages = {...state.advantages,
+        codePromo: { isValid: false, percentage: "", code: "" },
+        giftcard: { isValid: false, amount: "", code: "" },
+        credit: { isValid: false, creditId: "", amount: "" },
+      }
+    },
+    updateCartAmount: (state, action) => {
+      state.cartAmount = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -194,6 +242,11 @@ export const {
   changeProductActiveStatus,
   showCartAccess,
   showWishlistAccess,
-  checkItemsFilter
+  checkItemsFilter,
+  updateAdvantages,
+  resetAdvantages,
+  updateCartAmount,
+  toggleCheckBilling,
+  toggleCheckRememberMe,
 } = productSlice.actions;
 export default productSlice.reducer;

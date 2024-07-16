@@ -26,13 +26,15 @@ const Promocodes = () => {
           <IoIosAddCircleOutline />
         </span>{" "}
       </div>
-      {promocodes.map((promocode) => (
-        <PromocodesCard
-          key={promocode?._id}
-          promocode={promocode}
-          handleDeletePromocode={() => handleDeletePromocode(promocode?._id)}
-        />
-      ))}
+      {promocodes &&
+        promocodes.length > 0 &&
+        promocodes.map((promocode) => (
+          <PromocodesCard
+            key={promocode?._id}
+            promocode={promocode}
+            handleDeletePromocode={() => handleDeletePromocode(promocode?._id)}
+          />
+        ))}
 
       {isModalOpen && (
         <Modal

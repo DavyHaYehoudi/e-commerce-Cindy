@@ -1,4 +1,5 @@
 import Client from "../../models/client.model.js";
+import { sendNewClientEmail } from "./utils/emailNewClient.js";
 
 const verifyEmail = async (req, res) => {
   const { token } = req.body;
@@ -20,7 +21,7 @@ const verifyEmail = async (req, res) => {
         .status(400)
         .json({ message: "Le lien de vérification est invalide ou a expiré." });
     }
-
+    sendNewClientEmail(client);
     return res.status(200).json({ email: client?.email });
   } catch (error) {
     console.error("Erreur lors de la vérification de l'e-mail :", error);

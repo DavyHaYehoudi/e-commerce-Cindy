@@ -51,7 +51,7 @@ const CartOffcanvas = () => {
           <div onClick={handleCloseWishlistModal}>
             <Link to="/cart">
               <button className="btn" onClick={handleCloseCartAccess}>
-                REGLEMENT
+                PANIER
               </button>
             </Link>
           </div>

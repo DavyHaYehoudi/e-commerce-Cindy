@@ -19,13 +19,20 @@ const Analytic = ({ data }) => {
   return (
     <div className="analytics-stats">
       <div className="tab-stats-content">
-        <p>Nombre total de commandes : <strong>{ordersCount}</strong>  </p>
-        <p>Nombre de commandes annulées : <strong>{ordersCanceled}</strong>  </p>
+        <p>
+          Nombre total de commandes : <strong>{ordersCount}</strong>
+        </p>
+        <p>
+          Nombre de commandes annulées : <strong>{ordersCanceled}</strong>
+        </p>
         <p>
           Nombre de commandes pour ce mois ({currentMonth}) :{" "}
-         <strong>{currentMonthOrdersCount}</strong> 
+          <strong>{currentMonthOrdersCount}</strong>
         </p>
-        <p>Montant moyen par commande : <strong className="in">{formatPrice(averageByOrder)}</strong>  </p>
+        <p>
+          Montant moyen par commande :{" "}
+          <strong className="in">{formatPrice(averageByOrder)}</strong>
+        </p>
       </div>
       <div className="tab-tables-container">
         <div className="content-table">
@@ -43,10 +50,10 @@ const Analytic = ({ data }) => {
               <tbody>
                 {topSellingProducts?.map((product, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td className="name">{product?.productName}</td>
-                    <td>{product?.materialName}</td>
-                    <td className="center">{product?.totalQuantity}</td>
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Nom" className="name">{product?.productName}</td>
+                    <td data-label="Matériau">{product?.materialName}</td>
+                    <td data-label="Quantité" className="center">{product?.totalQuantity}</td>
                   </tr>
                 ))}
               </tbody>
@@ -72,10 +79,10 @@ const Analytic = ({ data }) => {
               <tbody>
                 {topCartProducts?.map((product, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td className="name">{product?.productName}</td>
-                    <td>{product?.materialName}</td>
-                    <td className="center">{product?.totalQuantity}</td>
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Nom" className="name">{product?.productName}</td>
+                    <td data-label="Matériau">{product?.materialName}</td>
+                    <td data-label="Quantité" className="center">{product?.totalQuantity}</td>
                   </tr>
                 ))}
               </tbody>

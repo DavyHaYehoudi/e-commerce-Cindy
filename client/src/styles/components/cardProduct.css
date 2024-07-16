@@ -84,6 +84,17 @@
 .cart-button.add:hover {
     animation: pulse 2s ease 0s 1 normal forwards;
 }
+.out-of-stock{
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    color: whitesmoke;
+}
 
 @keyframes pulse {
     0% {

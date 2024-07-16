@@ -16,6 +16,11 @@ const sendVerificationEmail = async (client, verificationToken) => {
       user: process.env.EMAIL_USERNAME_REGISTER,
       pass: process.env.EMAIL_PASSWORD_REGISTER,
     },
+    connectionTimeout: 10000,
+    socketTimeout: 15000,
+    pool: true,
+    debug: true, 
+    logger: true  
   });
 
   const mailOptions = {

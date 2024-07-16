@@ -16,7 +16,7 @@ const MainContent = ({ productId, materialId }) => {
     productId,
     materialId,
   });
-  const { isProductInCart } = useStoreInfo({
+  const { isProductInCart, stockMaxProduct } = useStoreInfo({
     productsId: productId,
     material: materialSelected?.id,
   });
@@ -98,20 +98,27 @@ const MainContent = ({ productId, materialId }) => {
         </div>
         <p className="separator"></p>
         <div className="addToCartContainer">
-          {isProductInCart && (
+          {isProductInCart && stockMaxProduct > 0 && (
             <QuantitySelectProduct
               productId={productId}
               materialId={materialSelected?.id}
             />
           )}
           <div className="addToCart">
-            <AddToCartButton
-              productsId={productId}
-              material={materialSelected?.id}
-              isProductInCart={isProductInCart}
-            />
+            {stockMaxProduct > 0 ? (
+              <AddToCartButton
+                productsId={productId}
+                material={materialSelected?.id}
+                isProductInCart={isProductInCart}
+              />
+            ) : (
+              <p className="out-of-stock">Rupture de stock</p>
+            )}
           </div>
         </div>
+        <small className="stock-number">
+          Limité à : {stockMaxProduct}{" "}
+        </small>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />
       </div>

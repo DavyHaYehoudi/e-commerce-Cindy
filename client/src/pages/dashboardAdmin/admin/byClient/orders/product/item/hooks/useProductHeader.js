@@ -2,11 +2,10 @@ import { useSelector } from "react-redux";
 import useFirebaseImage from "../../../../../../../../shared/hooks/useFirebaseImage";
 import { getCreditsInfo } from "../../../../../../../../selectors/credit";
 import { getProductProperties } from "../../../../../../../../selectors/product";
-// import { getMaterialProperty } from "../../../../../../../selectors/material";
 
 const useProductHeader = (orderProducts, productsId, productStore, material) => {
   const { amount, code, dateExpire } = useSelector((state) =>
-    getCreditsInfo(state, { productsId: orderProducts._id })
+    getCreditsInfo(state, { productsId: orderProducts?._id })
   ) || {};
   const collectionStore = useSelector((state) => state?.collection?.data);
   const categoryStore = useSelector((state) => state?.category?.data);

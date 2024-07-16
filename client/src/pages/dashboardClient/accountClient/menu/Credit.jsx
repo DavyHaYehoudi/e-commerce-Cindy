@@ -12,7 +12,7 @@ const Credit = ({ credit }) => {
         {formatPrice(credit?.amount)}{" "}
       </p>
       <p>
-        <span className="underline">Obtenu le </span> :{" "}
+        <span className="underline">Délivré le </span> :{" "}
         {formatDate(credit?.createdAt)}{" "}
       </p>
       <p>

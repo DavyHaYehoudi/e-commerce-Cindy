@@ -6,25 +6,30 @@ import { Patch } from "../../services/httpMethods";
 import { changeQuantityProductToCart } from "../../features/accountClient/customerSlice";
 import { changeQuantityProductToCartVisitor } from "../../features/visitUser/visitUserSlice";
 import { showCartAccess } from "../../features/admin/productSlice";
+import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 
 const useQuantitySelectProduct = (productId, materialId) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const { clientId, cartStore, quantity } = useStoreInfo({
+  const { clientId, cartStore, quantity, stockMaxProduct } = useStoreInfo({
     productsId: productId,
     material: materialId,
   });
   const handleUnauthorized = useUnauthorizedRedirect();
+  const { fetchTotalAmount } = useAmountCart();
 
   const handleChangeValue = async (newQuantity) => {
     setLoading(true);
     dispatch(showCartAccess(true));
+    const quantitySelected =
+      newQuantity <= stockMaxProduct ? newQuantity : stockMaxProduct;
+
     const cartUpdated = cartStore.map((product) => {
       if (
         product?.productsId === productId &&
         product?.material === materialId
       ) {
-        return { ...product, quantity: newQuantity || 1 };
+        return { ...product, quantity: quantitySelected || 1 };
       } else {
         return product;
       }
@@ -50,16 +55,17 @@ const useQuantitySelectProduct = (productId, materialId) => {
         changeQuantityProductToCart({
           productId,
           materialId,
-          quantity: newQuantity || 1,
+          quantity: quantitySelected || 1,
         })
       );
+      fetchTotalAmount({ params: {} });
     } else {
       setLoading(true);
       dispatch(
         changeQuantityProductToCartVisitor({
           productId,
           materialId,
-          quantity: newQuantity,
+          quantity: quantitySelected,
         })
       );
       localStorage.setItem("cartProducts", JSON.stringify(cartUpdated));
@@ -67,7 +73,7 @@ const useQuantitySelectProduct = (productId, materialId) => {
     }
   };
 
-  return { loading, quantity, handleChangeValue };
+  return { loading, quantity, handleChangeValue, stockMaxProduct };
 };
 
 export default useQuantitySelectProduct;

@@ -41,14 +41,18 @@ const Refund = ({ data }) => {
               <tbody>
                 {refundDetails?.map((refund, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {refund?.firstName} {refund?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {refund?.firstName} {refund?.lastName}
                     </td>
-                    <td>{refund?.productName}</td>
-                    <td>{refund?.materialName}</td>
-                    <td>{formatDate(refund?.refundDate)}</td>
-                    <td className="center">{refund?.refundAmount}</td>
+                    <td data-label="Produit">{refund?.productName}</td>
+                    <td data-label="Matériau">{refund?.materialName}</td>
+                    <td data-label="Date de remboursement">
+                      {formatDate(refund?.refundDate)}
+                    </td>
+                    <td data-label="Montant (€)" className="center">
+                      {refund?.refundAmount}
+                    </td>
                   </tr>
                 ))}
               </tbody>

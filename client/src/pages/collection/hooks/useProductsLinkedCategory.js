@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
 const useProductsLinkedCategory = ({ collectionId, categoryId }) => {
-  const productsStore = useSelector((state) => state?.product?.data);
-  const productsLinked = productsStore.filter(
+  const productsStoreFixed = useSelector((state) => state?.productsFixed?.data);
+  const productsLinked = productsStoreFixed.filter(
     (product) =>
       product._collection === collectionId &&
       product.category === categoryId &&

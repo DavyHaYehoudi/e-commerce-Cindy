@@ -6,6 +6,7 @@ let options = [
   { name: "Nouveau", label: "untilNew" },
   { name: "Suspendu", label: "pending" },
   { name: "En vedette", label: "isStar" },
+  { name: "Rupture de stock", label: "availableStock" },
 ];
 const Status = ({ handleCheckboxChange, checkedItems }) => {
   const { role } = useStoreInfo({ productsId: "", material: "" });

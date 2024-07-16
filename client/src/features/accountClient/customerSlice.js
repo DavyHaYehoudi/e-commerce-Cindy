@@ -160,6 +160,16 @@ const customer = createSlice({
     clearCart: (state, action) => {
       state.data.client.cart = [];
     },
+    updateShippingAndBillingAddresses: (state, action) => {
+      const { property, field, value } = action.payload;
+      if (!state.data.client) {
+        state.data.client = {};
+      }
+      if (!state.data.client[property]) {
+        state.data.client[property] = {};
+      }
+      state.data.client[property][field] = value;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -233,7 +243,8 @@ export const {
   addWishlistToCart,
   clearCart,
   clearWishlist,
-  changeQuantityProductToCart
+  changeQuantityProductToCart,
+  updateShippingAndBillingAddresses,
 } = customer.actions;
 export { fetchCustomer, addClientTrackingNumber, deleteTrackingNumber };
 export default customer.reducer;

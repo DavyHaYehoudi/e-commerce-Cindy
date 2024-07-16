@@ -4,16 +4,22 @@ import QuantitySelectProduct from "./QuantitySelectProduct";
 import TrashIcon from "./TrashIcon";
 import useCartItem from "./hooks/useCartItem";
 import { formatPrice } from "../helpers/utils/prices";
+import useQuantitySelectProduct from "./hooks/useQuantitySelectProduct";
 
 const CartItem = ({ product }) => {
   const {
     imageUrl,
     itemName,
+    itemMaterialName,
     quantity,
-    itemPrice,
+    price,
     itemSubtotal,
     handleRemoveToCart,
   } = useCartItem(product);
+  const { stockMaxProduct } = useQuantitySelectProduct(
+    product?.productsId,
+    product?.material
+  );
 
   return (
     <div className="cart-item">
@@ -26,11 +32,11 @@ const CartItem = ({ product }) => {
             <img src={imageUrl} alt={itemName} width="75px" height="75px" />
           </Link>
         </div>
-        <div className="cart-item-name">{itemName}</div>
+        <div className="cart-item-name">{itemName}{" "}<br/> {itemMaterialName} </div>
       </div>
       <div className="cart-item-bottom">
         <div className="cart-item-subtotal">
-          {quantity} x {formatPrice(itemPrice)} = {itemSubtotal}
+          {quantity} x {formatPrice(price)} = {itemSubtotal}
         </div>
         <div className="cart-item-quantity">
           <QuantitySelectProduct
@@ -42,6 +48,7 @@ const CartItem = ({ product }) => {
           <TrashIcon />
         </div>
       </div>
+      <small className="stock-number">Limité à : {stockMaxProduct} </small>
     </div>
   );
 };

@@ -5,10 +5,17 @@
 }
 
 .shoppingCart-container {
-    display: flex;
     justify-content: center;
+    display: flex;
+    align-items: center;
     gap: 100px;
-    margin: 150px auto;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 50px auto;
+}
+
+.shoppingCart-container>* {
+flex: 1;
 }
 
 .shoppingCart-content {
@@ -53,14 +60,7 @@
     gap: 20px;
 }
 
-#shoppingCart-page .cart-item-image {
-    flex: 1;
-    max-width: 25%;
-}
-
 #shoppingCart-page .cart-item-name {
-    flex: 3;
-    max-width: 400px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -74,17 +74,8 @@
 }
 
 #shoppingCart-page .cart-item-delete {
-    flex: 0.5;
     text-align: right;
     transition: color 0.2s ease-in;
-}
-
-#shoppingCart-page .cart-item-subtotal {
-    flex: 3;
-}
-
-#shoppingCart-page .cart-item-quantity {
-    flex: 0.5;
 }
 
 /* INFO-BULLE POUR LA SUPPRESSION D'UN ITEM */
@@ -92,72 +83,7 @@
     left: -90%;
 }
 
-
-/* ****************** PAYMENT FORM ****************** */
-#payment-form {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    max-width: 600px;
-    color: black;
-}
-
-#payment-form h2 {
-    margin: 10px;
-    font-weight: 600;
-}
-
-.payment-form-heading,
-#payment-form-advantages .title {
-    display: flex;
-    align-items: center;
-}
-
-#payment-form label {
-    display: block;
-    margin: 10px 0;
-    cursor: pointer;
-}
-
-#payment-form input,
-#payment-form select {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-}
-
-#payment-form .checkbox {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-#payment-form .checkbox input {
-    margin: 10px;
-    width: initial;
-    cursor: pointer;
-}
-
-#payment-form .address-input-container,
-#payment-form .location-details {
-    display: flex;
-    gap: 10px;
-}
-
-#payment-form .credit-cards {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-#payment-form .security-text {
-    margin-bottom: 20px;
-}
-
-#payment-form button {
+#shoppingCart-page button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -166,35 +92,48 @@
     cursor: pointer;
 }
 
-#payment-form button.cancel {
-    background-color: var(--danger);
-}
-
-#payment-form .payment-button {
+#shoppingCart-page .payment-button {
     display: block;
     margin: 20px auto;
     font-size: 1rem;
     padding: 15px;
 }
 
-#payment-form button:hover {
-    background-color: #45a049;
+/* ****************** ADVANTAGES ****************** */
+.advantages-section {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: black;
 }
 
-#payment-form button.cancel:hover {
-    background-color: #b02a37;
-}
-
-.payment-form-heading .icon {
-    font-size: 1.5rem;
-}
-
-#payment-form-advantages .item-content {
+#payment-form-advantages .item-content.credit {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+}
 
+#payment-form-advantages .item-content .item-content-input {
+    position: relative;
+}
+
+#payment-form-advantages .item-content .item-content-input .validate {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+#payment-form-advantages .item-content .item-content-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 5px 0;
 }
 
 #payment-form-advantages .item-content button {
@@ -210,26 +149,146 @@
     border-radius: 5px;
     flex: 2.5;
 }
-
-/* Fields Validation */
-#payment-form .error {
-    border-color: var(--danger);
-    box-shadow: 0 0 3px var(--danger);
+#payment-form-advantages {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: black;
 }
 
-#payment-form .success {
-    border-color: var(--success);
-    box-shadow: 0 0 3px var(--success);
+#payment-form-advantages h2 {
+    margin: 10px;
+    font-weight: 600;
+}
+
+#payment-form-advantages .title {
+    display: flex;
+    align-items: center;
+}
+#payment-form-advantages input{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+.advantages-section .inventoryAdvantages {
+    margin: 10px auto;
+}
+
+.advantages-section .inventoryAdvantages table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.advantages-section .inventoryAdvantages th,
+.advantages-section .inventoryAdvantages td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.advantages-section .inventoryAdvantages th {
+    background-color: #f2f2f2;
+}
+.advantages-section #payment-form-advantages button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.advantages-section #payment-form-advantages button.cancel {
+    background-color: var(--danger);
+}
+
+.advantages-section #payment-form-advantages button:hover {
+    background-color: #45a049;
+}
+
+.advantages-section #payment-form-advantages button.cancel:hover {
+    background-color: #b02a37;
+}
+
+/* ****************** MEDIAS QUERIES  ****************** */
+
+@media (max-width: 768px) {
+    .payment-page .block-1 {
+        display: inherit;
+    }
+
+    #payment-form-advantages {
+        margin: 40px auto;
+    }
+
+   .advantages-section {
+        margin: 40px auto;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .advantages-section .inventoryAdvantages .item-content input,
+    .advantages-section .inventoryAdvantages .item-content select {
+        flex: inherit;
+        width: 100%;
+    }
+
+    .advantages-section .inventoryAdvantages .item-content button {
+        padding: 8px;
+    }
+
+    .advantages-section .inventoryAdvantages table,
+    .advantages-section .inventoryAdvantages thead,
+    .advantages-section .inventoryAdvantages tbody,
+    .advantages-section .inventoryAdvantages th,
+    .advantages-section .inventoryAdvantages td,
+    .advantages-section .inventoryAdvantages tr {
+        display: block;
+    }
+
+    .advantages-section .inventoryAdvantages thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .advantages-section .inventoryAdvantages tr {
+        border: 1px solid #ccc;
+    }
+
+    .advantages-section .inventoryAdvantages td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .advantages-section .inventoryAdvantages td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .advantages-section .inventoryAdvantages td:before {
+        content: attr(data-label);
+    }
 }
 
 @media (max-width: 1200px) {
     .shoppingCart-container {
         display: inherit;
         margin: 100px 20px;
-    }
-
-    #shoppingCart-payment #payment-form {
-        margin: 50px auto;
     }
 }
 
@@ -248,8 +307,50 @@
         flex: inherit;
         width: 100%;
     }
+
     #payment-form-advantages .item-content button {
         padding: 8px;
     }
 
+    #payment-form .inventoryAdvantages table,
+    #payment-form .inventoryAdvantages thead,
+    #payment-form .inventoryAdvantages tbody,
+    #payment-form .inventoryAdvantages th,
+    #payment-form .inventoryAdvantages td,
+    #payment-form .inventoryAdvantages tr {
+        display: block;
+    }
+
+    #payment-form .inventoryAdvantages thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #payment-form .inventoryAdvantages tr {
+        border: 1px solid #ccc;
+    }
+
+    #payment-form .inventoryAdvantages td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    #payment-form .inventoryAdvantages td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    #payment-form .inventoryAdvantages td:before {
+        content: attr(data-label);
+    }
 }

@@ -75,6 +75,10 @@
     background-color: var(--secondary);
     color: var(--text-color-white);
 }
+.filterBlock-content-subBlock.orderNumber input{
+    width: 100%;
+    cursor: auto;
+}
 
 .filterBlock-content-action {
     display: flex;

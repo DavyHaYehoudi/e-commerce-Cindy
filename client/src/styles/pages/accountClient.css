@@ -71,14 +71,21 @@
   margin-right: 10px;
 }
 
+.user-info-account .action-wrapper {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
 .user-info-account button {
-  width: 100%;
   border: 1px solid var(--border-color);
   padding: 8px;
+  border-radius: 5px;
 }
 
 .user-info-account button.modified {
   background-color: var(--success);
+  color: whitesmoke;
 }
 
 .user-info-account input {
@@ -275,8 +282,9 @@
   margin: 20px 0;
   gap: 20px;
 }
-.order-item-user-account img{
-border-radius: 5px;
+
+.order-item-user-account img {
+  border-radius: 5px;
 }
 
 .order-item-user-account p {
@@ -345,9 +353,11 @@ border-radius: 5px;
   .user-info-account-container {
     margin: 30px 5px;
   }
+
   .order-item-wrapper-user-account {
     padding: 10px;
   }
+
   .user-info-account-container .card {
     padding: 20px 10px;
 

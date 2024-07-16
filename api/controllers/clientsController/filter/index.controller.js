@@ -19,6 +19,7 @@ const clientsController = {
         preciseDate,
         rangeDateStart,
         rangeDateEnd,
+        orderNumber
       } = req.query;
 
       // Vérifier si un nombre limité est demandé
@@ -50,7 +51,8 @@ const clientsController = {
         trackingNumber,
         preciseDate,
         rangeDateStart,
-        rangeDateEnd
+        rangeDateEnd,
+        orderNumber
       );
       totalClientsCount = clients.length;
       res.status(200).json({ clients, totalClientsCount });

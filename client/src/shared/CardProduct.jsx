@@ -10,7 +10,7 @@ import useCardProduct from "./hooks/useCardProduct";
 const CardProduct = ({ product, material }) => {
   const { currentImage, handleMouseEnter, handleMouseLeave, materialName } =
     useCardProduct(material?.main_image, product?.secondary_images, material);
-  const { isProductInCart } = useStoreInfo({
+  const { isProductInCart, stockMaxProduct } = useStoreInfo({
     productsId: product?._id,
     material: material?._id,
   });
@@ -55,11 +55,15 @@ const CardProduct = ({ product, material }) => {
         </div>
       </Link>
       <div className="card-button">
-        <AddToCartButton
-          productsId={product?._id}
-          material={material?._id}
-          isProductInCart={isProductInCart}
-        />
+        {stockMaxProduct > 0 ? (
+          <AddToCartButton
+            productsId={product?._id}
+            material={material?._id}
+            isProductInCart={isProductInCart}
+          />
+        ) : (
+          <p className="out-of-stock">Rupture de stock</p>
+        )}
       </div>
       <div className="like-card">
         <FavoriteButton productId={product?._id} materialId={material?._id} />

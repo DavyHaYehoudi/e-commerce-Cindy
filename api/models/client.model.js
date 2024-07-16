@@ -20,7 +20,7 @@ const clientSchema = new mongoose.Schema(
       required: true,
     },
     phone: { type: String, default: "", maxlength: 100 },
-    avatar: { type: String, default: "avatars/default-avatar.svg" },
+    avatar: { type: String, default: "avatars/default-avatar.png" },
     shippingAddress: {
       firstName: { type: String, maxlength: 100, trim: true },
       lastName: { type: String, maxlength: 100, trim: true },
@@ -37,10 +37,6 @@ const clientSchema = new mongoose.Schema(
         maxlength: 100,
       },
       postalCode: {
-        type: String,
-        maxlength: 100,
-      },
-      country: {
         type: String,
         maxlength: 100,
       },
@@ -85,10 +81,6 @@ const clientSchema = new mongoose.Schema(
         type: String,
         maxlength: 100,
       },
-      country: {
-        type: String,
-        maxlength: 100,
-      },
     },
     totalOrders: { type: Number, default: 0 },
     totalOrderValue: { type: Number, default: 0 },
@@ -107,6 +99,7 @@ const clientSchema = new mongoose.Schema(
       {
         productsId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
+        quantity: { type: Number, default: 1 },
         addDate: {
           type: Date,
           default: Date.now,

@@ -12,7 +12,7 @@ const useIllustrationEdit = ({
 }) => {
   const categoriesStore = useSelector((state) => state?.category?.data);
   const initIllustration = categoriesStore.find(
-    (category) => category._id === categoryId
+    (category) => category?._id === categoryId
   )?.main_image;
   const [mainImageEdit, setMainImageEdit] = useState(initIllustration);
   const [loading, setLoading] = useState(false);

@@ -11,7 +11,6 @@ const OrderProductsDetails = ({
 }) => {
   const {
     name,
-    pricing,
     collection,
     category,
     exchange,
@@ -26,6 +25,9 @@ const OrderProductsDetails = ({
     materialName,
     isTagProductExisted,
     imageUrl,
+    finalPrice,
+    originalPrice,
+    amountPromotion,
   } = useOrderProductDetails(orderProductsItem, orderProductsStore, orderId);
   return (
     <div key={productsId} className="order-item-user-account">
@@ -35,21 +37,43 @@ const OrderProductsDetails = ({
         </h3>
         <p className="pricing">
           {quantity} article
-          {quantity > 1 ? "s" : ""} -{" "}
-          {sumPriceArticle(quantity, pricing?.currentPrice)}
+          {quantity > 1 ? "s" : ""} - {sumPriceArticle(quantity, finalPrice)}
         </p>
-        <p>Collection : {collection}</p>
-        <p>Catégorie : {category}</p>
+        <p>
+          <span className="underline"> Collection </span>
+          <span>: {collection}</span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Catégorie </span>
+          <span>: {category}</span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Prix original </span>
+          <span>: {formatPrice(originalPrice)} </span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Promotion </span>
+          <span>
+            : {amountPromotion ? amountPromotion + "%" : "aucune"}
+          </span>{" "}
+        </p>
+        <p>
+          <span className="underline"> Prix final </span>
+          <span>: {formatPrice(finalPrice)}</span>{" "}
+        </p>
       </div>
       <div
         className="image-container info-tooltip"
         aria-label="Revenir au produit"
       >
-        <Link to={`/master-product/${productsId}`} state={{materialId: material}}>
+        <Link
+          to={`/master-product/${productsId}`}
+          state={{ materialId: material }}
+        >
           <img
             src={imageUrl}
             alt={name || "Non disponible"}
-            style={{ width: "100px", height: "150px" }}
+            style={{ width: "150px", height: "150px" }}
           />
         </Link>
       </div>
@@ -69,7 +93,7 @@ const OrderProductsDetails = ({
             <>
               <span>REMBOURSEMENT :</span>{" "}
               <span className="pricing inPricing">
-                {sumPriceArticle(parseInt(refund), pricing?.currentPrice)}
+                {sumPriceArticle(parseInt(refund), finalPrice)}
               </span>
             </>
           )}

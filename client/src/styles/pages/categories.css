@@ -1,23 +1,6 @@
 .categories-ui {
-    position: relative;
-    background-image: url('../assets/bg-collections.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     padding: 50px;
-    z-index: 1;
     color: whitesmoke;
-}
-
-.categories-ui::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: -1;
 }
 
 .categories-ui .animated-container {
@@ -42,6 +25,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 5px;
 }
 
 .category-card-ui h2,
@@ -68,7 +52,6 @@
 
 .category-master {
     position: relative;
-    color: whitesmoke;
     padding: 30px 0;
 }
 
@@ -136,6 +119,12 @@
 }
 
 /* ******************** MEDIAS QUERIES ******************** */
+@media (max-width: 768px) {
+    .category-card-ui {
+        margin: 70px 5px;
+    }
+}
+
 @media (max-width: 576px) {
 
     .categories-wrapper-ui {

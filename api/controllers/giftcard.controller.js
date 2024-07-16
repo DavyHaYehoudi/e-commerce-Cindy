@@ -24,7 +24,7 @@ const giftcardController = {
       const { giftcardId, consumerId } = req.body;
       const giftcard = await Giftcard.findById(giftcardId);
       if (!giftcard || giftcard.consumerId) {
-        res.status(404).json("La carte-cadeau n'existe pas.");
+        res.status(404).json("La carte cadeau n'existe pas.");
         return;
       }
       const consumerGiftcard = await Giftcard.findByIdAndUpdate(
@@ -36,6 +36,26 @@ const giftcardController = {
     } catch (error) {
       console.error("Error consuming giftcard:", error);
       res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  verifyGiftcard: async (req, res) => {
+    try {
+      const { code } = req.query;
+      const codeGiftcard = await Giftcard.findOne({ code });
+      if (!codeGiftcard) {
+        return res
+          .status(404)
+          .json({ message: "La carte cardeau n'existe pas." });
+      }
+      if (codeGiftcard?.dateExpire < new Date() || codeGiftcard?.consumerId) {
+        return res
+          .status(404)
+          .json({ message: "La carte cadeau n'est plus valable." });
+      }
+      res.status(200).json({ amount: codeGiftcard?.amount });
+    } catch (error) {
+      console.error("Error verify giftcard:", error);
+      res.status(500).json({ message: "Internal server error" });
     }
   },
 };

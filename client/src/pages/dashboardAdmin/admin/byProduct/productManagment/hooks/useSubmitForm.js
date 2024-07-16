@@ -29,8 +29,9 @@ const useSubmitForm = ({
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const productsStore = useSelector((state) => state?.product?.data);
   const isProductActive = productsStore.find(
-    (product) => product._id === currentProductId
+    (product) => product?._id === currentProductId
   )?.isActive;
+
   const dispatch = useDispatch();
   const handleUnauthorized = useUnauthorizedRedirect();
 
@@ -58,6 +59,7 @@ const useSubmitForm = ({
     name: fields?.name,
     _collection: fields?.collection,
     category: fields?.category,
+    type: fields?.type,
     tags: tags?.map((tag) => tag?._id),
     main_description: fields?.description,
     materials: formatMaterialProduct(materialsData),
@@ -75,6 +77,13 @@ const useSubmitForm = ({
         reset();
         handleCloseModal();
         setLoadingSubmit(false);
+        dispatch(
+          changeProductActiveStatus({
+            productId: currentProductId,
+            status: "",
+            isPending: false,
+          })
+        );
       } catch (error) {
         dispatch(resetProductMaterials());
         dispatch(modifyProductCheet(false));
@@ -125,6 +134,7 @@ const useSubmitForm = ({
           dispatch(resetStore());
         }
       }
+      setLoadingSubmit(false);
     };
 
     switch (currentAction) {

@@ -21,7 +21,14 @@ const useOrderProductDetails = (
     creditStore?.find((cdt) => cdt.orderProductsId === orderProductsItem._id) ||
     {};
 
-  const { productsId, material, quantity } = orderProductsItem || {};
+  const {
+    productsId,
+    material,
+    quantity,
+    finalPrice,
+    originalPrice,
+    amountPromotion,
+  } = orderProductsItem || {};
   const { orderProductsInfo, isTagProductExisted } = getProductsInfo(
     ordersStore,
     orderProductsStore,
@@ -60,6 +67,9 @@ const useOrderProductDetails = (
     isTagProductExisted,
     imageUrl,
     materialName: getMaterialProperty(material, materialStore)?.name,
+    finalPrice,
+    originalPrice,
+    amountPromotion,
   };
 };
 

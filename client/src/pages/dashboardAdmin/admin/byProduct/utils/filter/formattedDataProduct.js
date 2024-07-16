@@ -43,6 +43,9 @@ export const formattedDataProduct = (
         if (key === "En vedette") {
           rename = "isStar";
         }
+        if (key === "Rupture de stock") {
+          rename = "availableStock";
+        }
         formattedData.other.push(rename);
       }
     }

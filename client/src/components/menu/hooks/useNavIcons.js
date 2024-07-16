@@ -14,6 +14,7 @@ const useNavIcons = () => {
   const avatarPathAdmin = "avatars/admin.png";
   const avatarPath = role === "admin" ? avatarPathAdmin : avatarPathClient;
   const { imageUrl } = useFirebaseImage(avatarPath);
+  console.log('imageUrl:', imageUrl)
 
   const logout = useCallback(() => {
     dispatch(resetCustomerStore());

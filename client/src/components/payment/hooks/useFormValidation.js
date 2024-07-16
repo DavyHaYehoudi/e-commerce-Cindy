@@ -1,30 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateShippingAndBillingAddresses } from "../../../features/accountClient/customerSlice";
+import {
+  toggleCheckBilling,
+  toggleCheckRememberMe,
+} from "../../../features/admin/productSlice";
 
+const requiredFields = {
+  delivery: [
+    "firstName",
+    "lastName",
+    "street",
+    "postalCode",
+    "city",
+    "email",
+    "phone",
+  ],
+  billing: ["firstName", "lastName", "street", "postalCode", "city", "email"],
+};
 const useFormValidation = () => {
-  const [formData, setFormData] = useState({
-      delivery: {},
-      card: {},
-      billing: {},
-      rememberMe: true,
-      isBillingAddress: true,
-    });
+  const dispatch = useDispatch();
+  const { shippingAddress = {}, billingAddress = {} } =
+    useSelector((state) => state?.customer?.data?.client) || {};
+  const isBillingSameAddress = useSelector(
+    (state) => state?.product?.isBillingSameAddress
+  );
+  const isRememberMe = useSelector((state) => state?.product?.isRememberMe);
   const [validationErrors, setValidationErrors] = useState({});
   const [validFields, setValidFields] = useState({});
-
-  const updateData = (section, data) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [section]: { ...prevData[section], ...data },
-    }));
+  const handleShippingAndBilling = ({ e, property, field }) => {
+    const { value } = e.target;
+    dispatch(updateShippingAndBillingAddresses({ property, field, value }));
   };
 
-  const handleCheckboxChange = (name) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: !prevData[name],
-    }));
+  const handleToggleRememberMe = (name) => {
+    dispatch(toggleCheckRememberMe());
   };
-
+  const handleToggleBillingCheck = () => {
+    dispatch(toggleCheckBilling());
+  };
   const clearValidationError = (section, field) => {
     setValidationErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
@@ -37,41 +51,63 @@ const useFormValidation = () => {
       return newErrors;
     });
   };
-  const handleSubmit = (requiredFields) => {
+  useEffect(() => {
     const errors = {};
     const valid = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     Object.keys(requiredFields).forEach((section) => {
-      if (section === "billing" && formData.isBillingAddress) {
+      if (section === "billing" && isBillingSameAddress) {
         return;
       }
+
       requiredFields[section].forEach((field) => {
-        if (!formData[section][field]) {
+        const address =
+          section === "delivery" ? shippingAddress : billingAddress;
+
+        if (!address[field]) {
           if (!errors[section]) errors[section] = {};
           errors[section][field] = "Ce champ est requis";
+        } else if (field === "email" && !emailRegex.test(address[field])) {
+          if (!errors[section]) errors[section] = {};
+          errors[section][field] = "Adresse email invalide";
         } else {
           if (!valid[section]) valid[section] = {};
           valid[section][field] = true;
         }
       });
     });
+    const errorsString = JSON.stringify(errors);
+    const validationErrorsString = JSON.stringify(validationErrors);
+    const validFieldsString = JSON.stringify(valid);
+    const currentValidFieldsString = JSON.stringify(validFields);
 
-    setValidationErrors(errors);
-    setValidFields(valid);
-
-    // Si aucun erreur, procéder au paiement
-    if (Object.keys(errors).length === 0) {
-      // Logique de soumission du paiement ici
+    if (errorsString !== validationErrorsString) {
+      setValidationErrors(errors);
     }
-  };
-  return {
-    formData,
+
+    if (validFieldsString !== currentValidFieldsString) {
+      setValidFields(valid);
+    }
+  }, [
+    isBillingSameAddress,
+    shippingAddress,
+    billingAddress,
     validationErrors,
     validFields,
-    updateData,
-    handleCheckboxChange,
-    handleSubmit,
+  ]);
+
+  return {
+    isRememberMe,
+    shippingAddress,
+    billingAddress,
+    validationErrors,
+    validFields,
+    handleShippingAndBilling,
+    handleToggleRememberMe,
     clearValidationError,
+    handleToggleBillingCheck,
+    isBillingSameAddress,
   };
 };
 

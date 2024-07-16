@@ -12,7 +12,8 @@ import categoryReducer from "../features/admin/categorySlice";
 import tagReducer from "../features/admin/tagSlice";
 import collectionReducer from "../features/admin/collectionSlice";
 import authenticationReducer from "../features/authentication/authenticationSlice";
-import visitUserSliceReducer from "../features/visitUser/visitUserSlice"
+import visitUserSliceReducer from "../features/visitUser/visitUserSlice";
+import productsFixedReducer from "../features/admin/productsFixedSlice";
 
 export const configureStoreWithRole = (role) => {
   // console.log('role dans configureStoreWithRole:', role)
@@ -23,6 +24,7 @@ export const configureStoreWithRole = (role) => {
       orders: ordersReducer,
       orderProducts: orderProductsReducer,
       product: productReducer,
+      productsFixed: productsFixedReducer,
       credit: creditReducer,
       material: materialReducer,
       promocode: promocodeReducer,
@@ -30,7 +32,7 @@ export const configureStoreWithRole = (role) => {
       tag: tagReducer,
       collection: collectionReducer,
       authentication: authenticationReducer,
-      visitUser : visitUserSliceReducer
+      visitUser: visitUserSliceReducer,
     };
   } else {
     reducers = {
@@ -39,9 +41,10 @@ export const configureStoreWithRole = (role) => {
       tag: tagReducer,
       material: materialReducer,
       product: productReducer,
+      productsFixed: productsFixedReducer,
       collection: collectionReducer,
       authentication: authenticationReducer,
-      visitUser : visitUserSliceReducer
+      visitUser: visitUserSliceReducer,
     };
   }
 

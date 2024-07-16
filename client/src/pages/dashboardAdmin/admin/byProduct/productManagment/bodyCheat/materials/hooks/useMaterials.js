@@ -137,7 +137,7 @@ const useMaterials = ({
           !updatedPromo.endDate ||
           !updatedPromo.amount
         ) {
-          updatedErrorMessage = "Remplir les 4 champs promotion";
+          updatedErrorMessage = "Remplir les 3 champs promotion";
         }
       }
       if (property === "startDate") {

@@ -9,7 +9,7 @@ const useOrderProducts = (orderProducts, orderId) => {
   const orderProductsStore = useSelector((state) => state?.orderProducts?.data);
   const productStore = useSelector((state) => state?.product?.data);
   const { amount } = useSelector((state) =>
-    getCreditsInfo(state, { productsId: orderProducts._id })
+    getCreditsInfo(state, { productsId: orderProducts?._id })
   );
 
   const {
@@ -21,7 +21,7 @@ const useOrderProducts = (orderProducts, orderId) => {
     ordersStore,
     orderProductsStore,
     orderId,
-    orderProducts._id
+    orderProducts?._id
   );
 
   const [interaction, setInteraction] = useState({

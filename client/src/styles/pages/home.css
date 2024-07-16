@@ -102,6 +102,13 @@
     color: black;
 }
 
+#home .collections-star-gallery {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+}
 #home .collections-star-gallery .card-container {
     width: 500px;
     height: 500px;
@@ -217,6 +224,7 @@
 
     #home .collections-star-gallery .card-container {
         width: inherit;
+        min-width: 300px;
         max-width: 500px;
     }
 

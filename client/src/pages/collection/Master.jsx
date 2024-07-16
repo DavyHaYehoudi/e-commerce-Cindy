@@ -2,7 +2,6 @@ import React from "react";
 import Summary from "./Summary";
 import useMasterData from "./hooks/useMasterData";
 import CartOffcanvas from "../MasterProduct/cartAccess";
-import useFirebaseImage from "../../shared/hooks/useFirebaseImage";
 
 const Master = () => {
   const {
@@ -10,16 +9,14 @@ const Master = () => {
     categoriesLinkedToCollection,
     productsNumber,
     collectionId,
-    imageCollection,
   } = useMasterData();
 
-  const { imageUrl } = useFirebaseImage(imageCollection);
   return (
     <div className="collection-master">
       <div className="animated-container">
         <div className="main-title">
-          <h1 className="text-effect-1" >Collection : {collectionName}</h1>
-            ({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
+          <h1 className="text-effect-1">Collection : {collectionName}</h1>(
+          {productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}
         </div>
         <Summary
           categoriesLinkedToCollection={categoriesLinkedToCollection}
@@ -27,12 +24,7 @@ const Master = () => {
         />
       </div>
       <CartOffcanvas />
-      <div
-        className="background-collection-master"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      ></div>
+      <div className="background-collection-master"></div>
     </div>
   );
 };

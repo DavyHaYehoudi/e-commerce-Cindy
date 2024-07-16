@@ -8,6 +8,7 @@ import { fetchCollections } from "../features/admin/collectionSlice";
 import { fetchTags } from "../features/admin/tagSlice";
 import { fetchCategories } from "../features/admin/categorySlice";
 import useUnauthorizedRedirect from "../services/errors/useUnauthorizedRedirect";
+import { fetchProductsFixed } from "../features/admin/productsFixedSlice";
 
 const useFetchSliceAdmin = () => {
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -17,6 +18,7 @@ const useFetchSliceAdmin = () => {
   const fetchSliceAdmin = useCallback(() => {
     dispatch(fetchClients({ itemsPerPage, handleUnauthorized }));
     dispatch(fetchProduct());
+    dispatch(fetchProductsFixed());
     dispatch(fetchMaterials());
     dispatch(fetchPromocode({ handleUnauthorized }));
     dispatch(fetchCollections());

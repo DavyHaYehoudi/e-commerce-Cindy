@@ -1,17 +1,28 @@
 import React from "react";
+import useFormValidation from "./hooks/useFormValidation";
 
 const PaymentFormBilling = ({
-  onUpdate,
   validationErrors,
   validFields,
   clearValidationError,
-  handleCheckboxChange,
-  formData,
+  billingAddress,
 }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onUpdate({ [name]: value });
-  };
+  const {
+    companyName="",
+    firstName="",
+    lastName="",
+    street="",
+    city="",
+    postalCode="",
+    apartment="",
+    email="",
+    phone="",
+  } = billingAddress || {};
+  const {
+    handleShippingAndBilling,
+    isBillingSameAddress,
+    handleToggleBillingCheck,
+  } = useFormValidation();
   const handleFocus = (e) => {
     clearValidationError(e.target.name);
   };
@@ -23,22 +34,30 @@ const PaymentFormBilling = ({
           type="checkbox"
           id="useShippingAddress"
           name="useShippingAddress"
-          checked={formData.isBillingAddress}
-          onChange={() => handleCheckboxChange("isBillingAddress")}
+          checked={isBillingSameAddress}
+          onChange={() => handleToggleBillingCheck("isBillingSameAddress")}
         />
         <label htmlFor="useShippingAddress">
           Utiliser l'adresse de livraison comme adresse de facturation.
         </label>
       </div>
 
-      {!formData.isBillingAddress && (
+      {!isBillingSameAddress && (
         <div className="billing-fields">
           <input
             type="text"
             id="billingCompany"
             name="billingCompany"
             placeholder="Nom de la société ou raison sociale"
-            onChange={handleChange}
+            value={companyName}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "companyName",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -48,14 +67,22 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingFirstName
+              validationErrors.firstName
                 ? "error"
-                : validFields.billingFirstName
+                : validFields.firstName
                 ? "success"
                 : ""
             }
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={firstName}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "firstName",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -65,14 +92,22 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingLastName
+              validationErrors.lastName
                 ? "error"
-                : validFields.billingLastName
+                : validFields.lastName
                 ? "success"
                 : ""
             }
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={lastName}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "lastName",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -82,14 +117,22 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingAddress
+              validationErrors.street
                 ? "error"
-                : validFields.billingAddress
+                : validFields.street
                 ? "success"
                 : ""
             }
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={street}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "street",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -97,7 +140,15 @@ const PaymentFormBilling = ({
             name="billingApartment"
             placeholder="Appartement"
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={apartment}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "apartment",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -107,14 +158,22 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingPostalCode
+              validationErrors.postalCode
                 ? "error"
-                : validFields.billingPostalCode
+                : validFields.postalCode
                 ? "success"
                 : ""
             }
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={postalCode}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "postalCode",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
@@ -124,14 +183,22 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingCity
+              validationErrors.city
                 ? "error"
-                : validFields.billingCity
+                : validFields.city
                 ? "success"
                 : ""
             }
             onFocus={handleFocus}
-            onChange={handleChange}
+            value={city}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "city",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="email"
@@ -141,19 +208,36 @@ const PaymentFormBilling = ({
             required
             aria-required="true"
             className={
-              validationErrors.billingEmail
+              validationErrors.email
                 ? "error"
-                : validFields.billingEmail
+                : validFields.email
                 ? "success"
                 : ""
             }
-            onChange={handleChange}
+            value={email}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "email",
+                e,
+                section: "billing",
+              })
+            }
           />
           <input
             type="text"
             id="billingPhone"
             name="billingPhone"
             placeholder="Téléphone"
+            value={phone}
+            onChange={(e) =>
+              handleShippingAndBilling({
+                property: "billingAddress",
+                field: "phone",
+                e,
+                section: "billing",
+              })
+            }
           />
         </div>
       )}

@@ -21,29 +21,23 @@ const orderProductsSchema = new mongoose.Schema(
     quantity: {
       type: Number,
       required: true,
-      validate: {
-        validator: function (value) {
-          return value >= 1 && value <= 100;
-        },
-        message: (props) => `${props.value} n'est pas compris entre 1 et 100!`,
-      },
     },
-    originalPrice:{
+    originalPrice: {
       type: Number,
       required: true,
     },
-    finalPrice:{
+    finalPrice: {
       type: Number,
       required: true,
     },
-    amountPromotion:{
+    amountPromotion: {
       type: Number,
-      default:null
+      default: null,
     },
     material: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Material",
-      required: true,
+      default: null,
     },
     orderProductsActions: {
       exchange: {
@@ -61,7 +55,7 @@ const orderProductsSchema = new mongoose.Schema(
         type: Number,
         default: null,
         validate: {
-          validator: (value) => 
+          validator: (value) =>
             value === null || (typeof value === "number" && value > 0),
           message:
             "La propriété 'refund' doit être de type null ou un nombre supérieur à 0.",
@@ -73,7 +67,6 @@ const orderProductsSchema = new mongoose.Schema(
         ref: "OrderProducts",
         default: null,
       },
-
       note: {
         type: String,
         default: null,

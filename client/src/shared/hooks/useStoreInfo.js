@@ -12,9 +12,9 @@ const findIsLiked = (wishlistStore, productId, materialId) => {
     }
   });
 };
-const filterStore = ({ store = [], productsStore }) => {
+const filterStore = ({ store = [], productsStoreFixed }) => {
   return store.filter((item) =>
-    productsStore.some(
+    productsStoreFixed.some(
       (ps) =>
         ps._id === item?.productsId &&
         !ps?.isArchived &&
@@ -33,41 +33,74 @@ const quantityProduct = (store = [], productId, materialId) => {
   );
   return product?.quantity || 1;
 };
-const calculateTotalCartPrice = (cartStore = [], productsStore = []) => {
-    return cartStore.reduce((total, cartItem) => {
-      const product = productsStore.find(product => product?._id === cartItem?.productsId);
-      if (product) {
-        const material = product?.materials?.find(mat => mat?._id === cartItem?.material);
-        const price = material?.pricing?.currentPrice ?? product?.materials?.[0]?.pricing?.currentPrice;
-        total += (price || 0) * (cartItem?.quantity || 0);
+const stockProduct = (store = [], productId, materialId) => {
+  const product = store.find((product) => product?._id === productId);
+  if (!product) {
+    return null;
+  }
+  let material;
+  if (materialId) {
+    material = product.materials.find(
+      (m) => m._id?.toString() === materialId.toString()
+    );
+  } else if (product.materials.length === 1) {
+    material = product.materials[0];
+  }
+  if (!material) {
+    return null;
+  }
+  return material.stock;
+};
+const calculateTotalCartPrice = (cartStore = [], productsStoreFixed = []) => {
+  return cartStore.reduce((total, cartItem) => {
+    const product = productsStoreFixed.find(
+      (product) => product?._id === cartItem?.productsId
+    );
+    if (product) {
+      const material = product?.materials?.find((mat) => {
+        if (mat?._id) {
+          return mat?._id === cartItem?.material; 
+        }
+        return product?.materials?.[0];
+      });
+      let price = material?.pricing?.currentPrice;
+      if (
+        material?.promotion?.endDate &&
+        new Date(material?.promotion.endDate) > new Date()
+      ) {
+        price -= (price * material?.promotion?.amount) / 100;
       }
-      return total;
-    }, 0);
-  };
+
+      total += (price || 0) * (cartItem?.quantity || 0);
+    }
+    return total;
+  }, 0);
+};
 
 const useStoreInfo = ({ productsId, material }) => {
-  const { clientId: getClientId } = useAuthWrappers();
+  const { clientId: getClientId, role: getRole } = useAuthWrappers();
   const clientId = getClientId();
-  const productsStore = useSelector((state) => state?.product?.data);
+  const role = getRole();
+  const productsStoreFixed = useSelector(state=>state?.productsFixed?.data)
 
   const cartStoreClient =
     useSelector((state) => state?.customer?.data?.client?.cart) || [];
   const cartStoreClientFilter = filterStore({
     store: cartStoreClient,
-    productsStore,
+    productsStoreFixed,
   });
   const cartStoreVisitor = useSelector((state) => state?.visitUser?.cart) || [];
   const cartStoreVisitorFilter =
     filterStore({
       store: cartStoreVisitor,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const wishlistClient =
     useSelector((state) => state?.customer?.data?.client?.wishlist) || [];
   const wishlistClientFilter =
     filterStore({
       store: wishlistClient,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const wishlistVisitor = useSelector(
     (state) => state?.visitUser?.wishlist || []
@@ -75,7 +108,7 @@ const useStoreInfo = ({ productsId, material }) => {
   const wishlistVisitorFilter =
     filterStore({
       store: wishlistVisitor,
-      productsStore,
+      productsStoreFixed,
     }) || [];
   const quantityProductClient = quantityProduct(
     cartStoreClientFilter,
@@ -94,24 +127,27 @@ const useStoreInfo = ({ productsId, material }) => {
 
   const isLiked = findIsLiked(wishlist, productsId, material);
   const isProductInCart = cartStore.find(
-      (product) =>
-        product.productsId === productsId && product?.material === material
-    );
+    (product) =>
+      product.productsId === productsId && product?.material === material
+  );
   const numberArticleInCart = cartStore.reduce((a, b) => a + b.quantity, 0);
-  const cartTotalAmount = calculateTotalCartPrice(cartStore,productsStore)
-  const numberArticleInWihslist = wishlist.length
+  const cartTotalAmount = calculateTotalCartPrice(cartStore, productsStoreFixed);
+  const numberArticleInWishlist = wishlist.length;
+  const stockMaxProduct = stockProduct(productsStoreFixed, productsId, material);
 
   return {
     clientId,
+    role,
     isLiked,
-    isProductInCart, 
+    isProductInCart,
     cartStore,
     wishlistClient: wishlistClientFilter,
     wishlist,
     quantity,
     numberArticleInCart,
     cartTotalAmount,
-    numberArticleInWihslist
+    numberArticleInWishlist,
+    stockMaxProduct,
   };
 };
 export default useStoreInfo;

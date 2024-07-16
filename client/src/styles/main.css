@@ -161,9 +161,9 @@ img {
 }
 
 [disabled] {
-    cursor: not-allowed;
-    color: var(--color-disabled);
-    background: var(--background-disabled);
+    cursor: not-allowed !important;
+    color: var(--color-disabled) !important;
+    background: var(--background-disabled) !important;
 }
 
 /* SPECIFICITE TOGGLE */
@@ -454,9 +454,8 @@ img {
 
 /* ********************* STYLE TEXYES ********************* */
 .text-effect-1 {
-    text-shadow: 0 0 30px whitesmoke, 5px 9px 5px rgba(0, 0, 0, 0.5), 0 0 150px whitesmoke;
-    color: whitesmoke;
-    font-weight: bold;
+    text-shadow: 0 0 30px var(--dark), 5px 9px 5px rgba(0, 0, 0, 0.2), 0 0 150px var(--dark);
+    color: var(--dark);
 }
 
 /* ******************** MEDIAS QUERIES ******************** */

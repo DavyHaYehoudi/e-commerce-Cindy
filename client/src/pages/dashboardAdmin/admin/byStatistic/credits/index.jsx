@@ -6,7 +6,7 @@ const Credit = ({ data }) => {
   if (!data) {
     return <div>Chargement en cours...</div>;
   }
-  console.log(data);
+
   const {
     activeCreditDetails,
     activeCredits,
@@ -60,8 +60,8 @@ const Credit = ({ data }) => {
           )}
         </p>
       </div>
-      <div className="tab-tables-container ">
-        <div className="content-table ">
+      <div className="tab-tables-container">
+        <div className="content-table">
           <h3 className="underline">Avoirs attribués en cours</h3>
           {activeCreditDetails && activeCreditDetails.length > 0 ? (
             <table>
@@ -76,12 +76,12 @@ const Credit = ({ data }) => {
               <tbody>
                 {activeCreditDetails?.map((credit, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {credit?.firstName} {credit?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {credit?.firstName} {credit?.lastName}
                     </td>
-                    <td>{formatDate(credit?.awardedAt)}</td>
-                    <td className="center">{credit?.amount}</td>
+                    <td data-label="Date d'émission">{formatDate(credit?.awardedAt)}</td>
+                    <td data-label="Montant (€)" className="center">{credit?.amount}</td>
                   </tr>
                 ))}
               </tbody>
@@ -90,7 +90,7 @@ const Credit = ({ data }) => {
             <p>Aucun avoir émis actuellement.</p>
           )}
         </div>
-        <div className="content-table ">
+        <div className="content-table">
           <h3 className="underline">Avoirs utilisés</h3>
           {usedCreditDetails && usedCreditDetails.length > 0 ? (
             <table>
@@ -105,12 +105,12 @@ const Credit = ({ data }) => {
               <tbody>
                 {usedCreditDetails?.map((credit, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>
-                      {credit?.firstName} {credit?.lastName}{" "}
+                    <td data-label="Rang">{index + 1}</td>
+                    <td data-label="Identité">
+                      {credit?.firstName} {credit?.lastName}
                     </td>
-                    <td>{formatDate(credit?.usedAt)}</td>
-                    <td className="center">{credit?.amount}</td>
+                    <td data-label="Date d'utilisation">{formatDate(credit?.usedAt)}</td>
+                    <td data-label="Montant (€)" className="center">{credit?.amount}</td>
                   </tr>
                 ))}
               </tbody>

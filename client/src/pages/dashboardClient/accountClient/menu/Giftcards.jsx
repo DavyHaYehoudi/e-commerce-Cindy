@@ -7,9 +7,11 @@ const Giftcards = () => {
   return (
     <div className="advantages">
       <ul>
-        {giftcards.map((card) => (
-          <Giftcard key={card._id} card={card} />
-        ))}{" "}
+        {giftcards && giftcards.length > 0 ? (
+          giftcards.map((card) => <Giftcard key={card._id} card={card} />)
+        ) : (
+          <p style={{ textAlign: "center" }}>Aucune carte cadeau</p>
+        )}{" "}
       </ul>
     </div>
   );
