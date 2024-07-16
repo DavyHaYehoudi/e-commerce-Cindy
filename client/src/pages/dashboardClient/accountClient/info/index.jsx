@@ -4,6 +4,7 @@ import ProfilClient from "./ProfilClient";
 import ShippingAddress from "./ShippingAddress";
 import BillingAddress from "./BillingAddress";
 import useProfilClientImage from "./hooks/useProfilClientImage";
+import { MdEdit } from "react-icons/md";
 
 const InfoClient = ({
   dataClient,
@@ -63,7 +64,7 @@ const InfoClient = ({
           </button>
         ) : (
           <button className="btn" onClick={handleChangeProfilEdit}>
-            Modifier les Informations
+            Modifier les Informations <MdEdit />
           </button>
         )}
       </div>

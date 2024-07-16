@@ -134,6 +134,7 @@ const useSubmitForm = ({
           dispatch(resetStore());
         }
       }
+      setLoadingSubmit(false);
     };
 
     switch (currentAction) {
