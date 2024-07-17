@@ -14,22 +14,10 @@ import Slider from "react-slick";
 import settings from "../../styles/utils/slider";
 
 const partners = [
-  {
-    link: "https://marjoryclos.hubside.fr/",
-    img: partner1,
-  },
-  {
-    link: "https://www.lhccoiffuremariage.com/",
-    img: partner2,
-  },
-  {
-    link: "https://marjoryclos.hubside.fr/",
-    img: partner3,
-  },
-  {
-    link: "https://cindy-naturopathe.com/",
-    img: partner4,
-  },
+  { id: 0, link: "https://marjoryclos.hubside.fr/", img: partner1 },
+  { id: 1, link: "https://www.lhccoiffuremariage.com/", img: partner2 },
+  { id: 2, link: "https://marjoryclos.hubside.fr/", img: partner3 },
+  { id: 3, link: "https://cindy-naturopathe.com/", img: partner4 },
 ];
 const Home = () => {
   const collectionsStore = useSelector((state) => state?.collection?.data);
@@ -75,16 +63,16 @@ const Home = () => {
               <AiFillHeart color="var(--favorite-heart-bg)" />
             </h3>
             <div className="collections-star-gallery">
-                {collectionsStar &&
-                  collectionsStar.length > 0 &&
-                  collectionsStar
-                    .filter((collection) => !collection?.isArchived)
-                    .map((collection) => (
-                      <CardCollection
-                        key={collection?._id}
-                        collection={collection}
-                      />
-                    ))}
+              {collectionsStar &&
+                collectionsStar.length > 0 &&
+                collectionsStar
+                  .filter((collection) => !collection?.isArchived)
+                  .map((collection) => (
+                    <CardCollection
+                      key={collection?._id}
+                      collection={collection}
+                    />
+                  ))}
             </div>
           </section>
           <section className="bk-image-intermetted-1">
@@ -136,7 +124,7 @@ const Home = () => {
               <h3>Mes Partenaires</h3>
               <div className="partners-gallery">
                 {partners.map((partner) => (
-                  <CardPartner key={partner.link} partner={partner} />
+                  <CardPartner key={partner.id} partner={partner} />
                 ))}
               </div>
             </div>
