@@ -14,8 +14,11 @@ import tagRoutes from "./routes/tag.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import connectToDatabase from "./database/connectToMongoDB.js";
+import { onRequest } from "firebase-functions/v2/https";
+import { logger } from "firebase-functions";
+
 const app = express();
-const port = 3001;
+// const port = 3001;
 
 connectToDatabase();
 const corsOptions = {
@@ -38,6 +41,7 @@ app.use("/promocodes", promocodeRoutes);
 app.use("/giftcards", giftcardRoutes);
 app.use("/statistics", statisticsRoutes);
 
-app.listen(port, () => {
-  console.log(`Le serveur est démarré sur le port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Le serveur est démarré sur le port ${port}`);
+// });
+export const api = onRequest(app);
