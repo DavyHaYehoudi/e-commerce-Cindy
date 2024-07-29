@@ -50,7 +50,7 @@
 
 .authentication .login-button {
   background-color: var(--primary);
-  color: var(--background);
+  color: whitesmoke;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;

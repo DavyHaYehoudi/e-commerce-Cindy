@@ -14,7 +14,11 @@ const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
   const handleMainImageChange = async (e) => {
     setIsModified(true);
     setIsEditing(true);
-    if (mainImage && !mainImage?.name) {
+    if (
+      mainImage &&
+      !mainImage?.name &&
+      !mainImage.includes("default-avatar.png")
+    ) {
       setRemoveAvatarToStorage(mainImage);
     }
     const file = e.target.files[0];
@@ -24,13 +28,20 @@ const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
     dispatch(updateAvatar(path));
   };
   const handleDeleteImage = () => {
-    const confirmation = window.confirm("Une image de profil est nécessaire. Etes-vous sûr de vouloir supprimer l'image déjà enregistrée ?")
-    if(!confirmation){
-      return
+    const confirmation = window.confirm(
+      "Une image de profil est nécessaire. Etes-vous sûr de vouloir supprimer l'image déjà enregistrée ?"
+    );
+    if (!confirmation) {
+      return;
     }
     setIsModified(true);
     setIsEditing(true);
-    if (mainImage && !mainImage?.name) {
+    if (
+      mainImage &&
+      !mainImage?.name &&
+      !mainImage.includes("default-avatar.png")
+    ) {
+      console.log("on entre dans le if");
       setRemoveAvatarToStorage(mainImage);
     }
     setMainImage(null);
@@ -45,19 +56,19 @@ const useProfilClientImage = ({ initAvatar, setIsModified, setIsEditing }) => {
           const url = await getDownloadURL(ref(storage, initAvatar));
           setMainImage(url);
           setLoading(false);
-          dispatch(updateAvatar(initAvatar))
+          dispatch(updateAvatar(initAvatar));
         } catch (error) {
           console.error(
             "Erreur lors du chargement de l'image principale depuis Firebase Storage :",
-            error 
+            error
           );
           setLoading(false);
         }
       };
 
-      fetchImagesFromStorage(); 
+      fetchImagesFromStorage();
     }
-  }, [initAvatar,dispatch]);
+  }, [initAvatar, dispatch]);
 
   return {
     mainImage,

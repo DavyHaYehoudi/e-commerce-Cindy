@@ -5,7 +5,7 @@ const sendPaymentEmail = async (email,orderNumber) => {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST_PAYMENT,
     port: process.env.PORT_PAYMENT,
-    secure: false,
+    secure: process.env.PORT_PAYMENT,
     auth: {
       user: process.env.EMAIL_USERNAME_PAYMENT,
       pass: process.env.EMAIL_PASSWORD_PAYMENT,

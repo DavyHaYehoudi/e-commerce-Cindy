@@ -2,6 +2,7 @@
 .payment-page {
     margin: 40px auto;
 }
+
 .payment-page .block-1 {
     max-width: 1200px;
     margin: auto;
@@ -160,7 +161,8 @@
 .payment-page .pay_button:hover {
     transform: translateY(-2px);
 }
-.payment-page #payment-form .loader{
+
+.payment-page #payment-form .loader {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -172,5 +174,9 @@
 @media (max-width: 768px) {
     .payment-page .block-1 {
         display: inherit;
+    }
+
+    .success-page-container {
+        width: 100%;
     }
 }

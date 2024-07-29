@@ -18,7 +18,6 @@ import { onRequest } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
 
 const app = express();
-// const port = 3001;
 
 connectToDatabase();
 const corsOptions = {
@@ -41,7 +40,4 @@ app.use("/promocodes", promocodeRoutes);
 app.use("/giftcards", giftcardRoutes);
 app.use("/statistics", statisticsRoutes);
 
-// app.listen(port, () => {
-//   console.log(`Le serveur est démarré sur le port ${port}`);
-// });
 export const api = onRequest(app);

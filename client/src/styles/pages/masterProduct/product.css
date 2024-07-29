@@ -519,7 +519,12 @@
     #master-product-informations {
         padding: 0;
     }
-
+    .master-product-assortments-container {
+        margin: 50px 0;
+    }
+    #master-product-assortments-section {
+        padding: 0;
+    }
 }
 
 @media (max-width: 375px) {

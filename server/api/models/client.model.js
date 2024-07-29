@@ -19,7 +19,7 @@ const clientSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    phone: { type: String, default: "", maxlength: 100 },
+    phone: { type: String, default: "", maxlength: 20 },
     avatar: { type: String, default: "avatars/default-avatar.png" },
     shippingAddress: {
       firstName: { type: String, maxlength: 100, trim: true },
@@ -47,7 +47,7 @@ const clientSchema = new mongoose.Schema(
         trim: true,
         default: null,
       },
-      phone: { type: String, maxlength: 100, default: null },
+      phone: { type: String, maxlength: 20, default: null },
     },
     billingAddress: {
       companyName: {
@@ -64,7 +64,7 @@ const clientSchema = new mongoose.Schema(
         trim: true,
         default: null,
       },
-      phone: { type: String, maxlength: 100, default: null },
+      phone: { type: String, maxlength: 20, default: null },
       street: {
         type: String,
         maxlength: 100,

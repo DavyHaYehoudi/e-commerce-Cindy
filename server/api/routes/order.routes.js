@@ -6,6 +6,9 @@ import authenticateAdmin from "../controllers/authentication/authenticateAdmin.j
 import authenticateUser from "../controllers/authentication/authenticateUser.js";
 import authenticateJWT from "../controllers/authentication/authenticateJWT.js";
 
+//Public
+router.get("/order-amount", orderController.orderAmount);
+
 //Privé ADMIN
 router.use(authenticateJWT);
 router.get("/", authenticateAdmin, orderController.getAllOrders);
@@ -33,7 +36,4 @@ router.post(
   authenticateUser,
   orderController.payment
 );
-
-//VISITOR + USER
-router.get("/order-amount", orderController.orderAmount);
 export default router;

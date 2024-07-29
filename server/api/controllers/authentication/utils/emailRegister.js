@@ -11,7 +11,7 @@ const sendVerificationEmail = async (client, verificationToken) => {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST_REGISTER,
     port: process.env.PORT_REGISTER,
-    secure: false,
+    secure: process.env.PORT_REGISTER,
     auth: {
       user: process.env.EMAIL_USERNAME_REGISTER,
       pass: process.env.EMAIL_PASSWORD_REGISTER,

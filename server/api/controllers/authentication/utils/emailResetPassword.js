@@ -4,7 +4,7 @@ const sendPasswordResetEmail = async (client, resetToken) => {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST_RESET_PASSWORD,
     port: process.env.PORT_RESET_PASSWORD,
-    secure: false,
+    secure: process.env.PORT_RESET_PASSWORD,
     auth: {
       user: process.env.EMAIL_USERNAME_RESET_PASSWORD,
       pass: process.env.EMAIL_PASSWORD_RESET_PASSWORD,
