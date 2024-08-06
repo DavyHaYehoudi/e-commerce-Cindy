@@ -73,7 +73,7 @@ Atelier Noralya est une boutique en ligne dédiée à la vente de bijoux artisan
 
 1. **Clonez le dépôt :**
    ```bash
-   git clone https://github.com/votre-nom-utilisateur/atelier-noralya.git
+   git clone https://github.com/DavyHayehoudi/atelier-noralya.git
    cd atelier-noralya
 
 2. **Installez les dépendances :**
