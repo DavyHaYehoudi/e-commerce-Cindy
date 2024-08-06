@@ -117,6 +117,9 @@
 #home .collections-star-gallery .card-container .title {
     margin-top: 30px;
 }
+#home .collections-star-gallery .card-container .title a {
+    text-decoration: underline;
+}
 
 #home .collections-star-gallery .card-container .box-image {
     width: 500px;
@@ -188,6 +191,9 @@
 #home .partners-gallery .card-container .box-image {
     width: 150px;
     height: 150px;
+}
+#home .partners-gallery .card-container a{
+    text-decoration: underline;
 }
 
 #home .partners-gallery img {

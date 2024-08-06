@@ -10,7 +10,7 @@ const Summary = ({ categoryName ,productsNumber,productsLinked}) => {
       {productsNumber > 0 && (
         <>
           <div className="category-title">
-            <h2 className="text-effect-1" >Catégorie : {categoryName}</h2>
+            <h2>Catégorie : {categoryName}</h2>
             <span className="productsNumber" >({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}</span>
           </div>
           <div className="category-master-row-wrapper">

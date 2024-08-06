@@ -10,13 +10,13 @@ const MainImage = ({
   required,
   legend,
   editable = true,
+  label = "supprimer",
 }) => {
   return (
     <div className="main-image">
       <figure>
         <figcaption>
-          {legend}{" "}
-          {required ? <span className="asterix">*</span> : ""}
+          {legend} {required ? <span className="asterix">*</span> : ""}
         </figcaption>
         <div className="images-wrapper">
           <label htmlFor={fileInputId}>
@@ -56,7 +56,8 @@ const MainImage = ({
           className="delete-image account-btn"
           onClick={handleDeleteImage}
         >
-          Supprimer{" "}
+          {/* Supprimer{" "} */}
+          {label}
         </button>
       )}
     </div>

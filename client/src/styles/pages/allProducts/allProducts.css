@@ -1,5 +1,6 @@
 .allProducts {
     background: var(--background-whitesmoke);
+    padding-bottom: 50px;
 }
 
 .allProducts h1 {

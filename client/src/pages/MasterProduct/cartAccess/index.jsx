@@ -11,9 +11,7 @@ const CartOffcanvas = () => {
     show,
     cartStore,
     cartTotalAmount,
-    isCartContent,
     handleCloseCartAccess,
-    handleClearCart,
     handleCloseWishlistModal,
   } = useCartOffcanvas();
 
@@ -21,15 +19,6 @@ const CartOffcanvas = () => {
     <div className={`offcanvas ${show ? "show" : ""}`}>
       <div className="offcanvas-heading">
         <h2>MON PANIER</h2>
-        {isCartContent && (
-          <div
-            className="cart-clear info-tooltip"
-            aria-label="Vider le panier"
-            onClick={handleClearCart}
-          >
-            <BsFillTrash2Fill className="cart-clear-trash" />
-          </div>
-        )}
         <button onClick={handleCloseCartAccess} aria-label="Fermer la fenêtre">
           <TfiClose aria-hidden="true" />
         </button>

@@ -24,7 +24,7 @@ const TrackingNumberList = ({ trk, order }) => {
         >
           <p>
             {trk?.isAdmin
-              ? "№ suivi de commande : " + trk?.value
+              ? "№ suivi de livraison : " + trk?.value
               : "№ suivi de retour client : " + trk?.value}
           </p>
           <p>

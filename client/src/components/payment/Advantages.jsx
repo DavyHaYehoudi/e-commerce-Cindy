@@ -25,7 +25,7 @@ const Advantages = () => {
   const { clientId: getClientId } = useAuthWrappers();
   const clientId = getClientId();
   return (
-    <div id="payment-form-advantages">
+    <>
       <div className="title">
         <h2>AVANTAGES</h2>
         <LiaEuroSignSolid className="icon" aria-hidden="true" />
@@ -70,7 +70,7 @@ const Advantages = () => {
                 Appliquer
               </button>
               <button
-                className="cancel"
+                id="cancel"
                 onClick={() => handleCancelPromocode({ property: "codePromo" })}
                 disabled={!clientId}
               >
@@ -115,7 +115,7 @@ const Advantages = () => {
                 Appliquer
               </button>
               <button
-                className="cancel"
+                id="cancel"
                 onClick={() => handleCancelGiftcard({ property: "giftcard" })}
                 disabled={!clientId}
               >
@@ -152,7 +152,7 @@ const Advantages = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

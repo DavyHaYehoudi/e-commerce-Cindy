@@ -48,6 +48,7 @@ const ProfilClient = ({
           loading={loading}
           required={true}
           legend="MON IMAGE DE PROFIL"
+          label="Changer"
         />
       </div>
     </div>

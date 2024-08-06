@@ -144,7 +144,7 @@ const List = ({ orderHistory, filter }) => {
               ? order.trackingNumber.map((trk) => (
                   <TrackingNumberList key={trk?.id} trk={trk} order={order} />
                 ))
-              : "№ suivi de commande en attente d'être communiqué"}
+              : "№ suivi de livraison en attente d'être communiqué"}
           </div>
         </div>
       ))}

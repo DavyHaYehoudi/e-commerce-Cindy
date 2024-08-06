@@ -15,7 +15,7 @@ const SummaryDetails = ({ category, collectionId }) => {
       {productsNumber > 0 && (
         <>
           <div className="category-title">
-            <h2 className="text-effect-1" >Catégorie : {category?.name}</h2>
+            <h2>Catégorie : {category?.name}</h2>
             <span className="productsNumber" >({productsNumber} produit{productsNumber > 1 ? "s" : ""} ){" "}</span>
           </div>
           <div className="collection-master-row-wrapper">

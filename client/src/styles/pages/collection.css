@@ -1,6 +1,5 @@
 .collections-ui {
     padding: 50px;
-    color: whitesmoke;
 }
 
 .collections-ui .animated-container {
@@ -42,7 +41,7 @@
 
 .collection-master {
     position: relative;
-    padding: 30px 0;
+    padding: 30px 0 100px 0;
 }
 
 .collection-master .background-collection-master {
@@ -91,17 +90,6 @@
     text-align: center;
     padding: 12px;
     border-radius: 5px;
-    background: linear-gradient(to bottom, #6A6A6A 0%, #A8A8A8 50%, #FFFFFF 100%);
-    position: relative;
-    z-index: 1;
-    -webkit-mask-image: linear-gradient(to right, black, transparent);
-    mask-image: linear-gradient(to right, black, transparent);
-    color: black;
-}
-
-.collection-master .collection-master-row .category-title h2 {
-    color: black;
-
 }
 
 .collection-master .collection-master-row .category-title .productsNumber {

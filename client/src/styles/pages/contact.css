@@ -10,8 +10,11 @@
 }
 
 #contact-text {
-    text-align: center;
-    margin: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 2.5rem; 
 }
 
 #contact-text span {

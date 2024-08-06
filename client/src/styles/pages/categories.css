@@ -1,6 +1,5 @@
 .categories-ui {
     padding: 50px;
-    color: whitesmoke;
 }
 
 .categories-ui .animated-container {
@@ -51,21 +50,8 @@
 }
 
 .category-master {
-    position: relative;
+    /* position: relative; */
     padding: 30px 0;
-}
-
-.category-master .background-category-master {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    filter: grayscale(80%);
 }
 
 .category-master .animated-container {
@@ -94,6 +80,7 @@
 .category-master .category-master-row {
     width: 80%;
     margin: 100px auto;
+    padding-bottom: 100px;
 }
 
 .category-master .category-master-row .category-title {
@@ -102,16 +89,6 @@
     text-align: center;
     padding: 12px;
     border-radius: 5px;
-    background: linear-gradient(to bottom, #6A6A6A 0%, #A8A8A8 50%, #FFFFFF 100%);
-    position: relative;
-    z-index: 1;
-    -webkit-mask-image: linear-gradient(to right, black, transparent);
-    mask-image: linear-gradient(to right, black, transparent);
-    color: black;
-}
-
-.category-master .category-master-row .category-title h2 {
-    color: black;
 }
 
 .category-master .category-master-row .category-title .productsNumber {

@@ -67,6 +67,7 @@
 .wishlist-icon-actions:hover {
     color: #838282;
     animation: shake-rotate 2s ease 0s 1 normal forwards;
+    cursor: pointer;
 }
 
 @keyframes shake-rotate {

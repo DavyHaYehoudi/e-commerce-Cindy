@@ -8,7 +8,7 @@ const CardCategory = ({ category }) => {
   return (
     <Link to={`/menu-tab-categories/${category?._id} `}>
       <div className="category-card-ui">
-        <h2 className="text-effect-1" >{category?.name}</h2>
+        <h2>{category?.name}</h2>
         <img src={imageUrl} alt={category?.name} />
       </div>
     </Link>

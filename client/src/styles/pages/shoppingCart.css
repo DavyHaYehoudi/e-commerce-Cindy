@@ -109,18 +109,18 @@ flex: 1;
     color: black;
 }
 
-#payment-form-advantages .item-content.credit {
+.advantages-section .item-content.credit {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-#payment-form-advantages .item-content .item-content-input {
+.advantages-section .item-content .item-content-input {
     position: relative;
 }
 
-#payment-form-advantages .item-content .item-content-input .validate {
+.advantages-section .item-content .item-content-input .validate {
     position: absolute;
     right: 5px;
     top: 50%;
@@ -128,7 +128,7 @@ flex: 1;
 }
 
 
-#payment-form-advantages .item-content .item-content-buttons {
+.advantages-section .item-content .item-content-buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -136,20 +136,20 @@ flex: 1;
     margin: 5px 0;
 }
 
-#payment-form-advantages .item-content button {
+.advantages-section .item-content button {
     padding: 15px;
     flex: 0.5;
 }
 
-#payment-form-advantages .item-content input,
-#payment-form-advantages .item-content select {
+.advantages-section .item-content input,
+.advantages-section .item-content select {
     padding: 15px;
     border: 1px solid var(--border-color);
     margin: 0;
     border-radius: 5px;
     flex: 2.5;
 }
-#payment-form-advantages {
+.advantages-section {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -157,16 +157,16 @@ flex: 1;
     color: black;
 }
 
-#payment-form-advantages h2 {
+.advantages-section h2 {
     margin: 10px;
     font-weight: 600;
 }
 
-#payment-form-advantages .title {
+.advantages-section .title {
     display: flex;
     align-items: center;
 }
-#payment-form-advantages input{
+.advantages-section input{
     width: 100%;
     padding: 15px;
     margin-bottom: 15px;
@@ -193,7 +193,7 @@ flex: 1;
 .advantages-section .inventoryAdvantages th {
     background-color: #f2f2f2;
 }
-.advantages-section #payment-form-advantages button {
+.advantages-section button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -202,15 +202,15 @@ flex: 1;
     cursor: pointer;
 }
 
-.advantages-section #payment-form-advantages button.cancel {
+.advantages-section button#cancel {
     background-color: var(--danger);
 }
 
-.advantages-section #payment-form-advantages button:hover {
+.advantages-section button:hover {
     background-color: #45a049;
 }
 
-.advantages-section #payment-form-advantages button.cancel:hover {
+.advantages-section button#cancel:hover {
     background-color: #b02a37;
 }
 
@@ -221,47 +221,47 @@ flex: 1;
         display: inherit;
     }
 
-    #payment-form-advantages {
+    #.advantages-section {
         margin: 40px auto;
     }
 
-   .advantages-section {
+   ..advantages-section {
         margin: 40px auto;
     }
 }
 
 @media (max-width: 576px) {
 
-    .advantages-section .inventoryAdvantages .item-content input,
-    .advantages-section .inventoryAdvantages .item-content select {
+    ..advantages-section .inventoryAdvantages .item-content input,
+    ..advantages-section .inventoryAdvantages .item-content select {
         flex: inherit;
         width: 100%;
     }
 
-    .advantages-section .inventoryAdvantages .item-content button {
+    ..advantages-section .inventoryAdvantages .item-content button {
         padding: 8px;
     }
 
-    .advantages-section .inventoryAdvantages table,
-    .advantages-section .inventoryAdvantages thead,
-    .advantages-section .inventoryAdvantages tbody,
-    .advantages-section .inventoryAdvantages th,
-    .advantages-section .inventoryAdvantages td,
-    .advantages-section .inventoryAdvantages tr {
+    ..advantages-section .inventoryAdvantages table,
+    ..advantages-section .inventoryAdvantages thead,
+    ..advantages-section .inventoryAdvantages tbody,
+    ..advantages-section .inventoryAdvantages th,
+    ..advantages-section .inventoryAdvantages td,
+    ..advantages-section .inventoryAdvantages tr {
         display: block;
     }
 
-    .advantages-section .inventoryAdvantages thead tr {
+    ..advantages-section .inventoryAdvantages thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    .advantages-section .inventoryAdvantages tr {
+    ..advantages-section .inventoryAdvantages tr {
         border: 1px solid #ccc;
     }
 
-    .advantages-section .inventoryAdvantages td {
+    ..advantages-section .inventoryAdvantages td {
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
@@ -269,7 +269,7 @@ flex: 1;
         text-align: right;
     }
 
-    .advantages-section .inventoryAdvantages td:before {
+    ..advantages-section .inventoryAdvantages td:before {
         position: absolute;
         top: 6px;
         left: 6px;
@@ -280,7 +280,7 @@ flex: 1;
         font-weight: bold;
     }
 
-    .advantages-section .inventoryAdvantages td:before {
+    ..advantages-section .inventoryAdvantages td:before {
         content: attr(data-label);
     }
 }
@@ -302,13 +302,13 @@ flex: 1;
         padding: 10px 15px;
     }
 
-    #payment-form-advantages .item-content input,
-    #payment-form-advantages .item-content select {
+    #.advantages-section .item-content input,
+    #.advantages-section .item-content select {
         flex: inherit;
         width: 100%;
     }
 
-    #payment-form-advantages .item-content button {
+    #.advantages-section .item-content button {
         padding: 8px;
     }
 
