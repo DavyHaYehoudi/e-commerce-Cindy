@@ -2,7 +2,7 @@ import React from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import useContactForm from "./hooks/useContactForm";
 import CartOffCanvas from "../MasterProduct/cartAccess";
-import { ImInfo } from "react-icons/im";
+import { GiPadlockOpen } from "react-icons/gi";
 
 const Contact = () => {
   const { form, successForm, loading, handleSubmit } = useContactForm();
@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="contact-content">
         <div className="animated-container">
           <p id="contact-text">
-            <ImInfo />{" "}
+            <GiPadlockOpen />{" "}
             <span>
               Les informations saisies sur cette page sont confidentielles et
               sécurisées
