@@ -5,7 +5,7 @@ import {
 } from "./utils/emailRegister.js";
 
 const register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, cart, wishlist } = req.body;
 
   try {
     const existingClient = await Client.findOne({ email });
@@ -19,6 +19,8 @@ const register = async (req, res) => {
       firstName,
       lastName,
       email,
+      cart,
+      wishlist,
       authentication: {
         password,
       },

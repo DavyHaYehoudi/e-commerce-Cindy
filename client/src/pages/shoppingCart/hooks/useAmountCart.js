@@ -17,24 +17,36 @@ const useAmountCart = () => {
   const clientId = getClientId();
 
   const fetchTotalAmount = useCallback(
-    async ({ params = {}}) => {
+    async ({ params = {} }) => {
+      let isMounted = true;
+
       try {
         formParamsRef.current = { ...formParamsRef.current, ...params };
         const queryString = new URLSearchParams({
           clientId,
           advantages: JSON.stringify(formParamsRef.current),
         }).toString();
-  
-        let { totalAmount } = await Get(
+
+        const { totalAmount } = await Get(
           `orders/order-amount?${queryString}`,
           null,
           handleUnauthorized
         );
-  
-        dispatch(updateCartAmount(totalAmount));
+
+        if (isMounted) {
+          // Vérifie si le composant est toujours monté
+          dispatch(updateCartAmount(totalAmount));
+        }
       } catch (error) {
-        console.log('Erreur dans fetchTotalAmount :',error);
+        if (isMounted) {
+          // Seulement loguer l'erreur si monté
+          console.log("Erreur dans fetchTotalAmount :", error);
+        }
       }
+
+      return () => {
+        isMounted = false; // Définit la variable sur false lors du démontage
+      };
     },
     [clientId, dispatch, handleUnauthorized]
   );

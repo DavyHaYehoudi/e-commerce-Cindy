@@ -4,8 +4,10 @@ import usePaymentForm from "./hooks/usePaymentForm";
 import MoonLoader from "react-spinners/MoonLoader";
 import { formatPrice } from "../../helpers/utils/prices";
 import useFormValidation from "./hooks/useFormValidation";
+import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
 
-const PaymentFormCard = ({cartAmount}) => {
+const PaymentFormCard = () => {
+  const { cartAmount } = useAmountCart();
   const {
     handleSubmit,
     paymentElementOptions,

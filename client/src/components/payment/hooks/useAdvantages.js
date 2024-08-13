@@ -47,7 +47,7 @@ const useAdvantages = () => {
     } catch (error) {
       console.log("Erreur dans la vérification des avantages");
     }
-  };
+  }; 
   const handleCancelPromocode = async ({ property }) => {
     dispatch(updateAdvantages({ property }));
 

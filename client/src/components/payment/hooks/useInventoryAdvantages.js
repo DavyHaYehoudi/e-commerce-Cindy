@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import useCartOffcanvas from "../../../pages/MasterProduct/hooks/useCartOffcanvas";
+import useStoreInfo from "../../../shared/hooks/useStoreInfo";
 
 const useInventoryAdvantages = () => {
   const [intermediateAmounts, setIntermediateAmounts] = useState({});
   const { codePromo, giftcard, credit } = useSelector(
     (state) => state?.product?.advantages
   );
-  const { cartTotalAmount } = useCartOffcanvas();
+  const { cartTotalAmount } = useStoreInfo({
+    productsId: "",
+    material: "",
+  });
 
   useEffect(() => {
     let totalAmount = cartTotalAmount;

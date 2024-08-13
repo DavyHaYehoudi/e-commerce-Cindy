@@ -36,16 +36,30 @@ const useRegistration = () => {
       return;
     }
 
+    const cartProductsString = localStorage.getItem("cartProducts");
+    const likedProductsString = localStorage.getItem("likedProducts");
+    const cartProducts = cartProductsString
+      ? JSON.parse(cartProductsString)
+      : [];
+    const likedProducts = likedProductsString
+      ? JSON.parse(likedProductsString)
+      : [];
     try {
       setLoading(true);
-      await Post(
-        "auth/register",
-        { firstName, lastName, email, password }
-      );
+      await Post("auth/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+        cart: cartProducts,
+        wishlist: likedProducts,
+      });
       setLoading(false);
       setError(false);
       setCloseModal(false);
-      setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à : ${email} !`);
+      setMessageResponse(
+        `✅ Un email de confirmation vient d'être envoyé à : ${email} !`
+      );
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
     } finally {
@@ -61,7 +75,9 @@ const useRegistration = () => {
       handleRegister();
     }
   };
-  const handleCloseModal = () => {setCloseModal(true); };
+  const handleCloseModal = () => {
+    setCloseModal(true);
+  };
 
   return {
     firstName,
@@ -84,7 +100,7 @@ const useRegistration = () => {
     loading,
     messageResponse,
     isCloseModal,
-    handleCloseModal
+    handleCloseModal,
   };
 };
 

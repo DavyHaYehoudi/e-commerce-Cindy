@@ -4,12 +4,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentFormCard from "../../components/payment/PaymentFormCard";
 import usePaymentClientSecret from "./hooks/usePaymentClientSecret";
-import { useSelector } from "react-redux";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentCheckout = () => {
-  const cartAmount = useSelector((state) => state?.product?.cartAmount) || 0;
   const clientSecret = usePaymentClientSecret();
   const appearance = {
     theme: "stripe",
@@ -26,7 +24,7 @@ const PaymentCheckout = () => {
       <div className="block-2">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <PaymentFormCard cartAmount={cartAmount} />
+            <PaymentFormCard />
           </Elements>
         )}
       </div>

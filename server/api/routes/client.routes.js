@@ -6,6 +6,7 @@ import authenticateJWT from "../controllers/authentication/authenticateJWT.js";
 import authenticateAdmin from "../controllers/authentication/authenticateAdmin.js";
 import authenticateUser from "../controllers/authentication/authenticateUser.js";
 
+
 //Privé
 router.use(authenticateJWT);
 //Privé ADMIN
