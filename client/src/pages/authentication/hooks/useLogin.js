@@ -35,7 +35,7 @@ const useLogin = () => {
       if (tokenData.role === "admin") {
         navigate("/admin/dashboard");
       } else {
-        navigate("/account");
+        navigate("/menu-tab-categories");
       }
     }
   }, [token, dispatch, navigate]);

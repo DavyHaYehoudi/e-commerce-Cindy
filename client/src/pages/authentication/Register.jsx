@@ -26,6 +26,8 @@ const Register = () => {
     handleKeyPress,
     loading,
     messageResponse,
+    isCloseModal,
+    handleCloseModal,
   } = useRegistration();
   return (
     <div className="authentication register-container">
@@ -127,11 +129,15 @@ const Register = () => {
           </form>
         </>
       )}
-      {messageResponse && (
+      {messageResponse && !isCloseModal && (
         <div className="modal">
           <div className="modal-content">
             <p>{messageResponse}</p>
-            <p>Vous pouvez fermer cette page 👋</p>
+            <p>🚀
+              Rendez-vous donc sur votre compte mail, dans la boîte de réception
+              ou dans les SPAMS, pour cliquer sur le lien de confirmation.
+            </p>
+          <span className="close-btn" onClick={handleCloseModal}>X</span>
           </div>
         </div>
       )}

@@ -134,7 +134,8 @@
 #master-product-content .addToCart .remove:hover {
     color: whitesmoke;
 }
-#master-product-content .stock-number{
+
+#master-product-content .stock-number {
     font-style: italic;
 }
 
@@ -331,14 +332,17 @@
     position: absolute;
     top: 6.5em;
     right: 1em;
-    color: red;
-    font-size: 1rem;
-    z-index: 200;
     border: none;
-    padding: 3px;
-    border-radius: 5px;
+    z-index: 200;
     background: transparent;
     cursor: pointer;
+}
+
+.mainImage-zooming-close>* {
+    color: red;
+    font-size: 2rem;
+    border: 1px red solid;
+    border-radius: 50px;
 }
 
 /* ************************** ASSORTMENTS ************************** */
@@ -511,9 +515,11 @@
     #master-product-informations {
         padding: 0;
     }
+
     .master-product-assortments-container {
         margin: 50px 0;
     }
+
     #master-product-assortments-section {
         padding: 0 0 100px 0;
     }
@@ -523,6 +529,7 @@
     .description-heading h2 {
         font-size: var(--h2-mobile);
     }
+
     #master-product-content .addToCart {
         flex: 0.8;
     }

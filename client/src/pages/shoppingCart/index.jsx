@@ -1,6 +1,5 @@
 import React from "react";
 import ShoppingCartContent from "../../components/shoppingCart/ShoppingCartContent";
-import { BsFillTrash2Fill } from "react-icons/bs";
 import useCartOffcanvas from "../MasterProduct/hooks/useCartOffcanvas";
 import { useNavigate } from "react-router-dom";
 import Advantages from "../../components/payment/Advantages";
@@ -11,12 +10,15 @@ import useAccessPayment from "./hooks/useAccessPayment";
 import { ToastContainer } from "react-toastify";
 
 const ShoppingCart = () => {
-  const { isCartContent, handleClearCart } = useCartOffcanvas();
+  const { isCartContent } = useCartOffcanvas();
   const { clientId } = useAccessPayment();
   const cartAmount = useSelector((state) => state?.product?.cartAmount) || 0;
   const navigate = useNavigate();
   const handlePaymentProcess = () => {
     navigate("/cart/payment");
+  };
+  const handleCreateAccount = () => {
+    navigate("/account/register");
   };
   return (
     <div id="shoppingCart-page">
@@ -40,7 +42,7 @@ const ShoppingCart = () => {
             onClick={handlePaymentProcess}
             disabled={cartAmount < 1}
           >
-            Procéder au paiement de : {formatPrice(cartAmount)}
+            Procéder au paiement de : {formatPrice(cartAmount)} <br/> Livraison comprise
           </button>
           {cartAmount < 1 && (
             <p className="error-message" style={{ textAlign: "center" }}>
@@ -48,6 +50,13 @@ const ShoppingCart = () => {
             </p>
           )}
         </>
+      )}
+      {isCartContent && !clientId && (
+        <div className="wrapper-btn-create-account">
+        <button className="btn" type="button" onClick={handleCreateAccount}>
+          Je crée mon compte pour pouvoir passer la commande 🙂
+        </button>
+        </div>
       )}
       <ToastContainer autoClose={10000} />
     </div>

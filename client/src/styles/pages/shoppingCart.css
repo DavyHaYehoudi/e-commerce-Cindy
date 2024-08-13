@@ -15,7 +15,7 @@
 }
 
 .shoppingCart-container>* {
-flex: 1;
+    flex: 1;
 }
 
 .shoppingCart-content {
@@ -99,6 +99,12 @@ flex: 1;
     padding: 15px;
 }
 
+#shoppingCart-page .wrapper-btn-create-account {
+    text-align: center;
+    font-size: 1rem;
+    padding: 15px;
+}
+
 /* ****************** ADVANTAGES ****************** */
 .advantages-section {
     flex: 1;
@@ -149,6 +155,7 @@ flex: 1;
     border-radius: 5px;
     flex: 2.5;
 }
+
 .advantages-section {
     background-color: #fff;
     padding: 20px;
@@ -166,13 +173,15 @@ flex: 1;
     display: flex;
     align-items: center;
 }
-.advantages-section input{
+
+.advantages-section input {
     width: 100%;
     padding: 15px;
     margin-bottom: 15px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
 }
+
 .advantages-section .inventoryAdvantages {
     margin: 10px auto;
 }
@@ -193,6 +202,7 @@ flex: 1;
 .advantages-section .inventoryAdvantages th {
     background-color: #f2f2f2;
 }
+
 .advantages-section button {
     background-color: #4caf50;
     color: #fff;
@@ -225,7 +235,7 @@ flex: 1;
         margin: 40px auto;
     }
 
-   ..advantages-section {
+    ..advantages-section {
         margin: 40px auto;
     }
 }

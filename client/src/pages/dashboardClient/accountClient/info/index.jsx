@@ -64,7 +64,7 @@ const InfoClient = ({
           </button>
         ) : (
           <button className="btn" onClick={handleChangeProfilEdit}>
-            Modifier les Informations <MdEdit />
+            Modifier mon profil <MdEdit />
           </button>
         )}
       </div>

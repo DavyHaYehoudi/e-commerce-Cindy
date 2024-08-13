@@ -13,7 +13,12 @@
     margin: 20px auto;
     padding: 50px;
 }
-
+.allProducts-display{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
 .allProducts .filterBlock-content-action button {
     color: whitesmoke;
 }
@@ -30,10 +35,18 @@
     animation: inherit;
 }
 
+@media (max-width: 768px) {
+    .allProducts-display .wrapper{
+        width: 100%;
+    }
+    .allProducts-display .wrapper .card-product{
+        margin: auto;
+    }
+}
 @media (max-width: 576px) {
     .allProducts .allProducts-content {
         margin: 60px auto;
-        padding: 0;
+        padding: 20px 0;
         width: 100%;
     }
 }

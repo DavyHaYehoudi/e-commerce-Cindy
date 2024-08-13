@@ -12,6 +12,7 @@ const useRegistration = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [messageResponse, setMessageResponse] = useState(null);
+  const [isCloseModal, setCloseModal] = useState(true);
 
   const handleRegister = async () => {
     if (
@@ -43,8 +44,8 @@ const useRegistration = () => {
       );
       setLoading(false);
       setError(false);
-      setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à l'adresse mail
-     indiquée 📩 !`);
+      setCloseModal(false);
+      setMessageResponse(`✅ Un email de confirmation vient d'être envoyé à : ${email} !`);
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
     } finally {
@@ -60,6 +61,7 @@ const useRegistration = () => {
       handleRegister();
     }
   };
+  const handleCloseModal = () => {setCloseModal(true); };
 
   return {
     firstName,
@@ -81,6 +83,8 @@ const useRegistration = () => {
     handleKeyPress,
     loading,
     messageResponse,
+    isCloseModal,
+    handleCloseModal
   };
 };
 

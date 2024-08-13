@@ -38,7 +38,7 @@
   gap: 5px;
 }
 
-/* ******************************* COMPTE ******************************* */
+/* ******************************* PROFIL ******************************* */
 .user-info-account-container {
   display: flex;
   justify-content: space-between;
@@ -75,6 +75,10 @@
   margin: auto;
   width: 50%;
   text-align: center;
+}
+
+.user-info-account .action-wrapper button {
+  font-size: 1.5rem;
 }
 
 .user-info-account button {

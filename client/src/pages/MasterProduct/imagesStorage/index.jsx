@@ -21,7 +21,7 @@ const ImageCarousel = ({
     <div className="image-carousel-container">
       <div
         className="main-image-container"
-        onClick={() => handleImageClick(3)}
+        onClick={() => handleImageClick(1.75)}
         ref={mainImageRef}
       >
         <div

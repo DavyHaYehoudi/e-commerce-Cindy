@@ -4,11 +4,11 @@ import useAccountClient from "./hooks/useAccountClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Menu from "./accountClient/menu";
-import { IoMdPricetag } from "react-icons/io";
+import { IoIosAlbums } from "react-icons/io";
+import { FaEuroSign } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { MdCardGiftcard } from "react-icons/md";
 import Giftcards from "./accountClient/menu/Giftcards";
-import { MdLabel } from "react-icons/md";
 import Credits from "./accountClient/menu/Credits";
 const AccountClient = () => {
   const {
@@ -22,6 +22,11 @@ const AccountClient = () => {
     setIsModified,
     isModified,
     handleChangeProfilEdit,
+    otherOrdersCount,
+    deliveredOrdersCount,
+    ordersCount,
+    giftcardCount,
+    creditCount,
   } = useAccountClient();
   return (
     <div className="user-profile-container" data-testid="account-dashboard">
@@ -30,24 +35,13 @@ const AccountClient = () => {
           <div className="user-profile-menu-wrapper">
             <button
               className={`account-btn ${
-                selectedTab === "Compte" ? "selected" : ""
-              }`}
-              onClick={() => handleTabChange("Compte")}
-            >
-              <span>
-                <FaUser />
-                Compte
-              </span>
-            </button>
-            <button
-              className={`account-btn ${
                 selectedTab === "Commandes" ? "selected" : ""
               }`}
               onClick={() => handleTabChange("Commandes")}
             >
               <span>
-                <IoMdPricetag />
-                Commandes
+                <IoIosAlbums />
+                Commandes ({ordersCount})
               </span>
             </button>
             <button
@@ -58,7 +52,7 @@ const AccountClient = () => {
             >
               <span>
                 <MdCardGiftcard />
-                Cartes cadeaux
+                Cartes cadeaux ({giftcardCount})
               </span>
             </button>
             <button
@@ -68,14 +62,33 @@ const AccountClient = () => {
               onClick={() => handleTabChange("Avoirs")}
             >
               <span>
-                <MdLabel />
-                Avoirs
+                <FaEuroSign />
+                Avoirs ({creditCount})
+              </span>
+            </button>
+            <button
+              className={`account-btn ${
+                selectedTab === "Profil" ? "selected" : ""
+              }`}
+              onClick={() => handleTabChange("Profil")}
+            >
+              <span>
+                <FaUser />
+                Profil
               </span>
             </button>
           </div>
         </div>
 
-        {selectedTab === "Compte" && (
+        {selectedTab === "Commandes" && (
+          <Menu
+            otherOrdersCount={otherOrdersCount}
+            deliveredOrdersCount={deliveredOrdersCount}
+          />
+        )}
+        {selectedTab === "Cartes cadeaux" && <Giftcards />}
+        {selectedTab === "Avoirs" && <Credits />}
+        {selectedTab === "Profil" && (
           <InfoClient
             dataClient={dataClient}
             handleChangeProfilSave={handleChangeProfilSave}
@@ -87,9 +100,6 @@ const AccountClient = () => {
             isModified={isModified}
           />
         )}
-        {selectedTab === "Commandes" && <Menu />}
-        {selectedTab === "Cartes cadeaux" && <Giftcards />}
-        {selectedTab === "Avoirs" && <Credits />}
       </div>
       <ToastContainer autoClose={2500} />
     </div>

@@ -45,3 +45,13 @@
   text-align: center;
   margin-top: 16px;
 }
+.register-container .modal-content{
+  position: relative;
+}
+.register-container .modal-content .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

@@ -4,7 +4,7 @@ import OtherOrders from "./OtherOrders";
 import DeliveredOrders from "./Delivered";
 import { getStepColor } from "../../../../helpers/utils/getStepColor";
 
-const Menu = () => {
+const Menu = ({ otherOrdersCount, deliveredOrdersCount }) => {
   const orderHistory = useSelector((state) => state?.customer?.data?.orders);
   const [isActive, setIsActive] = useState("enCours");
   const handleTabClick = (tab) => {
@@ -18,13 +18,13 @@ const Menu = () => {
             onClick={() => handleTabClick("enCours")}
             className={isActive === "enCours" ? "active" : ""}
           >
-            Commandes en cours
+            Commandes en cours ({otherOrdersCount})
           </h3>
           <h3
             onClick={() => handleTabClick("expediees")}
             className={isActive === "expediees" ? "active" : ""}
           >
-            Commandes expédiées
+            Commandes expédiées ({deliveredOrdersCount})
           </h3>
         </div>
       </div>

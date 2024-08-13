@@ -22,7 +22,9 @@ const verifyEmail = async (req, res) => {
         .json({ message: "Le lien de vérification est invalide ou a expiré." });
     }
     sendNewClientEmail(client);
-    return res.status(200).json({ email: client?.email });
+    return res
+      .status(200)
+      .json({ email: client?.email, clientId: client?._id });
   } catch (error) {
     console.error("Erreur lors de la vérification de l'e-mail :", error);
     return res.status(500).json({
