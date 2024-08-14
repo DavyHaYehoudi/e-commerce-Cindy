@@ -1,13 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import usePaymentForm from "./hooks/usePaymentForm";
 import MoonLoader from "react-spinners/MoonLoader";
 import { formatPrice } from "../../helpers/utils/prices";
 import useFormValidation from "./hooks/useFormValidation";
-import useAmountCart from "../../pages/shoppingCart/hooks/useAmountCart";
+import { useSelector } from "react-redux";
+import useAuthWrappers from "../../config/useAuthWrappers";
+import { Get } from "../../services/httpMethods";
+import useUnauthorizedRedirect from "../../services/errors/useUnauthorizedRedirect";
 
 const PaymentFormCard = () => {
-  const { cartAmount } = useAmountCart();
+  const [cartAmount, setCartAmount] = useState(0);
+  const advantages = useSelector((state) => state?.product?.advantages);
+  const { clientId: getClientId } = useAuthWrappers();
+  const clientId = getClientId();
+  const handleUnauthorized = useUnauthorizedRedirect();
+
+  useEffect(() => {
+    const fetchTotalAmount = async () => {
+      // Vérification des données avant de faire l'appel API
+      if (!advantages || Object.keys(advantages).length === 0) {
+        console.warn("Advantages non disponible");
+        return;
+      }
+
+      const queryString = new URLSearchParams({
+        clientId,
+        advantages: JSON.stringify(advantages),
+      }).toString();
+
+      try {
+        const { totalAmount } = await Get(
+          `orders/order-amount?${queryString}`,
+          null,
+          handleUnauthorized
+        );
+        setCartAmount(totalAmount);
+      } catch (error) {
+        console.error("Erreur lors de la récupération du montant total :", error);
+      }
+    };
+
+    if (clientId) {
+      fetchTotalAmount();
+    }
+  }, [advantages, clientId, handleUnauthorized]);
+
   const {
     handleSubmit,
     paymentElementOptions,
@@ -39,7 +77,10 @@ const PaymentFormCard = () => {
                 <p>Veuillez patienter, paiement en cours...</p>
               </div>
             ) : (
-              <p>Payer : {formatPrice(cartAmount)} <br/>Livraison comprise </p>
+              <p>
+                Payer : {formatPrice(cartAmount)} <br />
+                Livraison comprise{" "}
+              </p>
             )}
           </div>
         </button>

@@ -43,21 +43,27 @@ const useAmountCart = () => {
       }
 
       return () => {
-        isMounted = false; 
+        isMounted = false;
       };
     },
     [clientId, dispatch, handleUnauthorized]
   );
 
   useEffect(() => {
+    let isMounted = true;
     try {
       if (!clientId) {
         return;
       }
       fetchTotalAmount({});
     } catch (error) {
-      console.log("Erreur dans la récupération du total du panier :", error);
+      if (isMounted) {
+        console.log("Erreur dans la récupération du total du panier :", error);
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [clientId, fetchTotalAmount]);
 
   return { cartAmount, fetchTotalAmount };
