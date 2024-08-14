@@ -39,7 +39,7 @@ const PaymentFormCard = () => {
                 <p>Veuillez patienter, paiement en cours...</p>
               </div>
             ) : (
-              <p>Payer : {formatPrice(cartAmount)} </p>
+              <p>Payer : {formatPrice(cartAmount)} <br/>Livraison comprise </p>
             )}
           </div>
         </button>

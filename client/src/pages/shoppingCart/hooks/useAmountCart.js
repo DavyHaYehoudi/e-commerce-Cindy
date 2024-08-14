@@ -34,18 +34,16 @@ const useAmountCart = () => {
         );
 
         if (isMounted) {
-          // Vérifie si le composant est toujours monté
           dispatch(updateCartAmount(totalAmount));
         }
       } catch (error) {
         if (isMounted) {
-          // Seulement loguer l'erreur si monté
           console.log("Erreur dans fetchTotalAmount :", error);
         }
       }
 
       return () => {
-        isMounted = false; // Définit la variable sur false lors du démontage
+        isMounted = false; 
       };
     },
     [clientId, dispatch, handleUnauthorized]

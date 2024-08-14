@@ -6,10 +6,10 @@ import FavoriteButton from "../../../shared/FavoriteButton";
 import AddToCartButton from "../../../shared/AddToCartButton";
 import ProductColorSelector from "./ProductColorSelector";
 import { formatPrice } from "../../../helpers/utils/prices";
-import { formatDate } from "../../../helpers/utils/formatDate";
 import useMainContent from "../hooks/useMainContent";
 import isCurrent from "../../../helpers/utils/isCurrentDate";
 import useStoreInfo from "../../../shared/hooks/useStoreInfo";
+import formatPromotionDate from "../../../helpers/utils/formatPromotionDate";
 
 const MainContent = ({ productId, materialId }) => {
   const { product, materialSelected, handleMaterialSelected } = useMainContent({
@@ -26,6 +26,9 @@ const MainContent = ({ productId, materialId }) => {
   const amount = product?.materials[materialSelected.index]?.promotion?.amount;
   const reductionAmount = (currentPrice * amount) / 100;
   const promoPrice = currentPrice - reductionAmount;
+  const promoText = formatPromotionDate(
+    product?.materials[materialSelected.index]?.promotion?.endDate
+  );
 
   return (
     <div id="master-product-content">
@@ -60,13 +63,7 @@ const MainContent = ({ productId, materialId }) => {
                 product?.materials[materialSelected.index]?.promotion?.amount
               }%{" "}
             </span>
-            <small>
-              (jusqu'au :{" "}
-              {formatDate(
-                product?.materials[materialSelected.index]?.promotion?.endDate
-              )}
-              )
-            </small>{" "}
+            <small>{promoText}</small>{" "}
           </p>
         )}
         <div className="prices">
@@ -116,9 +113,7 @@ const MainContent = ({ productId, materialId }) => {
             )}
           </div>
         </div>
-        <small className="stock-number">
-          Limité à : {stockMaxProduct}{" "}
-        </small>
+        <small className="stock-number">Limité à : {stockMaxProduct} </small>
         <p className="product-description">{product?.main_description} </p>
         <ProductMeta />
       </div>

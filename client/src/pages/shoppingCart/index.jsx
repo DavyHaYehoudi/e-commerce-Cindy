@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Advantages from "../../components/payment/Advantages";
 import InventoryAdvantages from "../../components/payment/InventoryAdvantages";
 import { useSelector } from "react-redux";
-import { formatPrice } from "../../helpers/utils/prices";
 import useAccessPayment from "./hooks/useAccessPayment";
 import { ToastContainer } from "react-toastify";
 
@@ -42,7 +41,7 @@ const ShoppingCart = () => {
             onClick={handlePaymentProcess}
             disabled={cartAmount < 1}
           >
-            Procéder au paiement de : {formatPrice(cartAmount)} <br/> Livraison comprise
+            Procéder au paiement
           </button>
           {cartAmount < 1 && (
             <p className="error-message" style={{ textAlign: "center" }}>
@@ -53,9 +52,9 @@ const ShoppingCart = () => {
       )}
       {isCartContent && !clientId && (
         <div className="wrapper-btn-create-account">
-        <button className="btn" type="button" onClick={handleCreateAccount}>
-          Je crée mon compte pour pouvoir passer la commande 🙂
-        </button>
+          <button className="btn" type="button" onClick={handleCreateAccount}>
+            Je crée mon compte pour pouvoir passer la commande 🙂
+          </button>
         </div>
       )}
       <ToastContainer autoClose={10000} />
