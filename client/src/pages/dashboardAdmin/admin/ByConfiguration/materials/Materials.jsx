@@ -32,7 +32,7 @@ const Materials = () => {
 
   return (
     <div className="admin-materials configuration">
-      <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Materials</h2>
+      <h2 onClick={() => setIsContentVisible(!isContentVisible)}>Matériaux</h2>
       {isContentVisible && (
         <div className=" admin-config-tab">
           <div className="archives">

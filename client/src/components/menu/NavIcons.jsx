@@ -37,12 +37,12 @@ const NavIcons = ({ toggleModalMenuSmart }) => {
             {!token ? (
               <>
                 <AiOutlineUser className="navlink-icon" aria-hidden="true" />
-                <span className="navlink-text"> Connection</span>
+                <span className="navlink-text"> Se connecter</span>
               </>
             ) : (
               <>
                 <IoIosLogOut className="navlink-icon" aria-hidden="true" />
-                <span className="navlink-text"> Déconnection</span>
+                <span className="navlink-text"> Se déconnecter</span>
               </>
             )}
           </NavLink>
